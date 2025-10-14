@@ -688,7 +688,7 @@ Polynomial regression is still linear-in-parameters: $ \hat y = θ₀ + θ₁ x 
 
 ---
 
-### Summarizing Model Generalization with RMSE and \$R^2\$
+### Summarizing Model Generalization with RMSE and $R^2$
 
 We evaluated the polynomial regression model using two key metrics:
 
@@ -723,28 +723,28 @@ $$
 
 ---
 
-#### Coefficient of Determination (\$R^2\$)
+#### Coefficient of Determination ($R^2$)
 
 **Definition:**
 
-The \$R^2\$ score measures the *proportion of variance in the target variable explained by the model*:
+The $R^2$ score measures the *proportion of variance in the target variable explained by the model*:
 
 $$
 R^2 = 1 - \frac{\sum_{i=1}^n (y_i - \hat{y}_i)^2}{\sum_{i=1}^n (y_i - \bar{y})^2}
 $$
 
-where \$\bar{y}\$ is the mean of the true \$y\$ values.
+where $\bar{y}$ is the mean of the true $y$ values.
 
 **Interpretation:**
-- The numerator (\$\sum (y_i - \hat{y}_i)^2\$) is the *residual sum of squares* — the unexplained variation.
-- The denominator (\$\sum (y_i - \bar{y})^2\$) is the *total sum of squares* — total variation in the data.
-- \$R^2\$ represents the fraction of variance in \$y\$ that is captured by the model.
+- The numerator ($\sum (y_i - \hat{y}_i)^2$) is the *residual sum of squares* — the unexplained variation.
+- The denominator ($\sum (y_i - \bar{y})^2$) is the *total sum of squares* — total variation in the data.
+- $R^2$ represents the fraction of variance in $y$ that is captured by the model.
 
-| \$R^2\$ value | Interpretation |
+| $R^2$ value | Interpretation |
 |---------------|----------------|
 | 1.0 | Perfect fit — predictions exactly match the data |
 | 0.9 | Model explains 90% of the variance |
-| 0 | Model no better than predicting the mean of \$y\$ |
+| 0 | Model no better than predicting the mean of $y$ |
 | < 0 | Model performs worse than a constant mean predictor |
 
 **Statistical relationship:**
@@ -755,23 +755,23 @@ where \$\bar{y}\$ is the mean of the true \$y\$ values.
 
 ---
 
-#### Relationship Between RMSE and \$R^2\$
+#### Relationship Between RMSE and $R^2$
 
 - **RMSE** provides an *absolute* measure of model error — “on average, how far off are we?”
-- **\$R^2\$** provides a *relative* measure — “how much better is the model than a naive mean predictor?”
+- **$R^2$** provides a *relative* measure — “how much better is the model than a naive mean predictor?”
 
-For a perfect model, RMSE → 0 and \$R^2 → 1$.
-If the model merely predicts the mean of \$y\$, RMSE ≈ standard deviation of \$y\$ and \$R^2 = 0\$.
+For a perfect model, RMSE → 0 and $R^2 → 1$.
+If the model merely predicts the mean of $y$, RMSE ≈ standard deviation of $y$ and $R^2 = 0$.
 
 ---
 
 #### In this Example
 
-Our true model is \$y = 3x + 5 + \epsilon\$ with noise \$\epsilon \sim N(0, 0.8^2)\$.
+Our true model is $y = 3x + 5 + \epsilon$ with noise $\epsilon \sim N(0, 0.8^2)$.
 Thus, for a well-fitted model:
 
 - **RMSE** should be close to the noise level, around 0.8.
-- **\$R^2\$** should be high (≈ 0.98 or above), indicating that the model explains nearly all variance in \$y\$.
+- **$R^2$** should be high (≈ 0.98 or above), indicating that the model explains nearly all variance in $y$.
 
 ---
 
@@ -779,15 +779,15 @@ Thus, for a well-fitted model:
 
 | Metric | Formula | Scale | Interpretation |
 |---------|----------|--------|----------------|
-| RMSE | \$\sqrt{\frac{1}{n} \sum (\hat{y}_i - y_i)^2}\$ | Same units as \$y\$ | Average magnitude of prediction error |
-| \$R^2\$ | \$1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}\$ | Unitless (≤ 1) | Proportion of variance in \$y\$ explained by the model |
+| RMSE | $\sqrt{\frac{1}{n} \sum (\hat{y}_i - y_i)^2}$ | Same units as $y$ | Average magnitude of prediction error |
+| $R^2$ | $1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}$ | Unitless (≤ 1) | Proportion of variance in $y$ explained by the model |
 
-Think of RMSE and \$R^2\$ as two complementary perspectives:
+Think of RMSE and $R^2$ as two complementary perspectives:
 
 - **RMSE:** "How far are our predictions from reality, on average?"
-- **\$R^2\$:** "How much of the variation in the data are we actually explaining?"
+- **$R^2$:** "How much of the variation in the data are we actually explaining?"
 
-Together, they provide both **quantitative** (RMSE) and **qualitative** (\$R^2\$) measures of model performance.
+Together, they provide both **quantitative** (RMSE) and **qualitative** ($R^2$) measures of model performance.
 
 
 
