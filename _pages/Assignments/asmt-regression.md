@@ -65,7 +65,7 @@ rubric:
     description: Regularization Analysis
     preemerging: Mentions regularization without concrete analysis or results.
     beginning: Demonstrates basic understanding of ridge and lasso effects on coefficients.
-    progressing: Analyzes the impact of regularization strength ($\lambda$) with empirical comparisons between ridge and lasso.
+    progressing: Analyzes the impact of regularization strength (<span>\\(\lambda\\)</span>) with empirical comparisons between ridge and lasso.
     proficient: Provides a detailed quantitative and qualitative analysis of ridge and lasso behavior, discussing bias-variance trade-offs and theoretical implications.
   - weight: 15
     description: Reflection on Generalization
@@ -124,7 +124,7 @@ Your linear regression section should include:
 - The fitted model parameters and predictions.  
 - Train and test **RMSE** and **R²** (**coefficient of determination**) values within your training set and your testing set (be sure to split them into distinct sets, and don't train on the testing set!).  
 - A plot of residuals versus fitted values, with commentary on any observed structure.  
-- A plot of **train/test RMSE versus regularization strength** ($\lambda$) for Ridge and Lasso.  
+- A plot of **train/test RMSE versus regularization strength** (<span>\\(\lambda\\)</span>) for Ridge and Lasso.  
 - The **loss curve** from your gradient descent implementation, annotated with iteration count and convergence remarks.  
 
 ---
@@ -161,4 +161,4 @@ Evaluate your logistic models using a comprehensive set of metrics: **RMSE**, **
 
 ## Deliverables
 
-Submit one or two Jupyter notebooks (`.ipynb`), clearly labeled for the regression and classification tasks. Each notebook should include clean, well-commented code with narrative explanations in Markdown cells, describing your data choices, implementation steps, and evaluation results. Include plots of metrics versus hyperparameters ($\lambda$, <span>\\(\alpha\\)</span>) and figures showing loss curves, ROC curves, and residual analyses. Accompany your notebooks with a short, well-structured report (approximately two pages) summarizing your dataset rationale, modeling decisions, your findings on generalization, and the observed effects of regularization and normalization. Ensure reproducibility by fixing random seeds and listing software version information.
+Submit one or two Jupyter notebooks (`.ipynb`), clearly labeled for the regression and classification tasks. Each notebook should include clean, well-commented code with narrative explanations in Markdown cells, describing your data choices, implementation steps, and evaluation results. Include plots of metrics versus hyperparameters (<span>\\(\lambda\\)</span>, <span>\\(\alpha\\)</span>) and figures showing loss curves, ROC curves, and residual analyses. Accompany your notebooks with a short, well-structured report (approximately two pages) summarizing your dataset rationale, modeling decisions, your findings on generalization, and the observed effects of regularization and normalization. Ensure reproducibility by fixing random seeds and listing software version information.
