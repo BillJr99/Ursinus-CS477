@@ -86,18 +86,16 @@ instructors:
     location: "Pfahler Hall 101L"           
     
 textbooks:
-- title: "Artificial Intelligence: A Guide for Thinking Humans"
-  authors: "Melanie Mitchell"
-  isbn: "978-1-250-75804-0"
-  link: false
+- title: "ML Animated"
+  authors: "markhliu"
+  link: "https://github.com/markhliu/ml_animated"
   isrequired: true 
-  freelyavailable: false
-- title: "The Philosophy of Artificial Intelligence"
-  authors: "Margaret A. Boden, editor"
-  isbn: "978-0198248545"
-  link: false
+  freelyavailable: "https://github.com/markhliu/ml_animated"
+- title: "Machine Learning for Engineers"
+  authors: "Joaquin Vanschoren"
+  link: "https://ml-course.github.io/master/intro.html"
   isrequired: true 
-  freelyavailable: false
+  freelyavailable: "https://ml-course.github.io/master/intro.html"
 - title: "AI by Hand"
   author: "Tom Yeh"
   link: "https://www.scribd.com/document/726922630/AI-by-Hand-Vol-1"
