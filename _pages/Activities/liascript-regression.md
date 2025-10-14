@@ -1,4 +1,4 @@
-# Linear & Logistic Regression — Notebook-Faithful LiaScript (Rebuilt Clean)
+# Linear and Logistic Regression 
 <!--
 author: Bill 
 version: 4.0
@@ -6,132 +6,12 @@ language: en
 narrator: US English Female
 -->
 
-## Table of Contents
-- [Linear & Logistic Regression: A Step‑by‑Step Tutorial](#Linear--Logistic-Regression-A-StepbyStep-Tutorial)
-  - [0. Environment & Utilities](#0-Environment--Utilities)
-    - [What this code does, line by line](#What-this-code-does-line-by-line)
-- [Part I — Linear Regression](#Part-I--Linear-Regression)
-  - [1. Intuition and Problem Setup](#1-Intuition-and-Problem-Setup)
-    - [What this code does, line by line](#What-this-code-does-line-by-line)
-      - [Mathematical step](#Mathematical-step)
-  - [2. Loss Function (Mean Squared Error)](#2-Loss-Function-Mean-Squared-Error)
-    - [What this code does, line by line](#What-this-code-does-line-by-line)
-      - [Mathematical step](#Mathematical-step)
-  - [3. Closed-Form Solution](#3-Closed-Form-Solution)
-    - [3.1. **Goal**:](#31-Goal)
-    - [3.2 **Create an Augmented Design Matrix $ X $ with a leading column vector $ [ 1, ..., 1 ]^\top $ for the Intercept**:](#32-Create-an-Augmented-Design-Matrix--X--with-a-leading-column-vector---1--1-top--for-the-Intercept)
-      - [3.2.1 Effect of the Augmented Design Matrix](#321-Effect-of-the-Augmented-Design-Matrix)
-    - [3.3. **Expand the cost function**:](#33-Expand-the-cost-function)
-    - [3.4. **Differentiate with respect to $ \boldsymbol{\theta} $**:](#34-Differentiate-with-respect-to--boldsymboltheta)
-      - [3.4.1. Start with the cost function](#341-Start-with-the-cost-function)
-      - [3.4.2. Expand the expression](#342-Expand-the-expression)
-      - [3.4.3. Use standard results from matrix calculus](#343-Use-standard-results-from-matrix-calculus)
-      - [3.4.4. Combine the results](#344-Combine-the-results)
-      - [3.4.5. Therefore, $\frac{\partial J}{\partial \boldsymbol{\theta}} = \frac{2}{n} X^\top (X\boldsymbol{\theta} - \mathbf{y})$](#345-Therefore-fracpartial-Jpartial-boldsymboltheta--frac2n-Xtop-Xboldsymboltheta---mathbfy)
-    - [3.5. **Set the gradient to zero** (first-order condition for a minimum):](#35-Set-the-gradient-to-zero-first-order-condition-for-a-minimum)
-    - [3.6. **Solve for $ \boldsymbol{\theta} $**:](#36-Solve-for--boldsymboltheta)
-    - [3.6.1. Interpretation:](#361-Interpretation)
-    - [3.7. **Closed Form Matrix Solution**:](#37-Closed-Form-Matrix-Solution)
-    - [What this code does, line by line](#What-this-code-does-line-by-line)
-      - [Mathematical step](#Mathematical-step)
-  - [4. Optimization by Gradient Descent](#4-Optimization-by-Gradient-Descent)
-    - [What this code does, line by line](#What-this-code-does-line-by-line)
-      - [Mathematical step](#Mathematical-step)
-  - [5. Feature Scaling & Multiple Linear Regression](#5-Feature-Scaling--Multiple-Linear-Regression)
-    - [What this code does, line by line](#What-this-code-does-line-by-line)
-      - [Mathematical step](#Mathematical-step)
-    - [Summarizing Model Generalization with RMSE and \$R^2\$](#Summarizing-Model-Generalization-with-RMSE-and-R2)
-      - [Root Mean Squared Error (RMSE)](#Root-Mean-Squared-Error-RMSE)
-      - [Coefficient of Determination (\$R^2\$)](#Coefficient-of-Determination-R2)
-      - [Relationship Between RMSE and \$R^2\$](#Relationship-Between-RMSE-and-R2)
-      - [In this Example](#In-this-Example)
-      - [Summary](#Summary)
-  - [6. Regularization: Ridge and Lasso](#6-Regularization-Ridge-and-Lasso)
-    - [Overfitting](#Overfitting)
-    - [Regularization: Controlling Model Complexity](#Regularization-Controlling-Model-Complexity)
-    - [Ridge Regression (L2 Regularization)](#Ridge-Regression-L2-Regularization)
-    - [Lasso Regression (L1 Regularization)](#Lasso-Regression-L1-Regularization)
-    - [Comparing Ridge and Lasso](#Comparing-Ridge-and-Lasso)
-    - [Choosing Between Them](#Choosing-Between-Them)
-    - [Summary](#Summary)
-    - [What this code does, line by line](#What-this-code-does-line-by-line)
-      - [Mathematical step](#Mathematical-step)
-    - [Why RMSE Increased More with Lasso than with Ridge](#Why-RMSE-Increased-More-with-Lasso-than-with-Ridge)
-      - [Ridge Shrinks Smoothly, Lasso Shrinks Abruptly](#Ridge-Shrinks-Smoothly-Lasso-Shrinks-Abruptly)
-      - [In Your Example: Few Features, All Relevant](#In-Your-Example-Few-Features-All-Relevant)
-      - [Geometric Explanation](#Geometric-Explanation)
-      - [Statistical Perspective: Bias–Variance Tradeoff](#Statistical-Perspective-BiasVariance-Tradeoff)
-      - [Summary](#Summary)
-  - [7. Diagnostics: Residuals](#7-Diagnostics-Residuals)
-    - [What this code does, line by line](#What-this-code-does-line-by-line)
-      - [Diagnostic step](#Diagnostic-step)
-    - [Exercises](#Exercises)
-- [Part II — Logistic Regression](#Part-II--Logistic-Regression)
-  - [8. From Regression to Classification](#8-From-Regression-to-Classification)
-    - [What this code does, line by line](#What-this-code-does-line-by-line)
-      - [Mathematical step](#Mathematical-step)
-      - [About $ z_i $](#About--zi)
-      - [Intuitive Interpretation](#Intuitive-Interpretation)
-      - [Summary](#Summary)
-  - [9. Loss: Binary Cross-Entropy (Log Loss)](#9-Loss-Binary-Cross-Entropy-Log-Loss)
-    - [Model and Parameterization](#Model-and-Parameterization)
-    - [Bernoulli Likelihood](#Bernoulli-Likelihood)
-    - [Negative Log-Likelihood = Cross-Entropy](#Negative-Log-Likelihood--Cross-Entropy)
-    - [Expressing the Loss in Terms of $z_i$](#Expressing-the-Loss-in-Terms-of-zi)
-    - [Gradient (First Derivative)](#Gradient-First-Derivative)
-    - [Hessian (Second Derivative) and Convexity](#Hessian-Second-Derivative-and-Convexity)
-    - [Numerical Stability (Practical Note)](#Numerical-Stability-Practical-Note)
-    - [Adding Regularization (Optional)](#Adding-Regularization-Optional)
-    - [Summary](#Summary)
-  - [10. Logistic Regression from Scratch (Gradient Descent)](#10-Logistic-Regression-from-Scratch-Gradient-Descent)
-    - [What this code does, line by line](#What-this-code-does-line-by-line)
-      - [Mathematical step](#Mathematical-step)
-  - [11. Visualizing True Labels and Predicted Probabilities on the Sigmoid Curve](#11-Visualizing-True-Labels-and-Predicted-Probabilities-on-the-Sigmoid-Curve)
-    - [Interpretation](#Interpretation)
-  - [12. Scikit‑learn Logistic Regression on a Real Dataset](#12-Scikitlearn-Logistic-Regression-on-a-Real-Dataset)
-    - [What this code does, line by line](#What-this-code-does-line-by-line)
-      - [Mathematical step](#Mathematical-step)
-    - [Understanding F1 Score and Support](#Understanding-F1-Score-and-Support)
-      - [1. The Confusion Matrix Foundation](#1-The-Confusion-Matrix-Foundation)
-      - [2. F1 Score](#2-F1-Score)
-      - [3. Support](#3-Support)
-      - [4. Summary Table](#4-Summary-Table)
-      - [5. When to Use F1 Score](#5-When-to-Use-F1-Score)
-    - [Understanding ROC and AUC in the Breast Cancer Example](#Understanding-ROC-and-AUC-in-the-Breast-Cancer-Example)
-      - [1. The Idea Behind ROC Curves](#1-The-Idea-Behind-ROC-Curves)
-      - [2. Reading the ROC Curve](#2-Reading-the-ROC-Curve)
-      - [3. AUC: Area Under the ROC Curve](#3-AUC-Area-Under-the-ROC-Curve)
-      - [4. Computing and Plotting ROC AUC in Python](#4-Computing-and-Plotting-ROC-AUC-in-Python)
-- [Predicted probabilities for the positive class (benign)](#Predicted-probabilities-for-the-positive-class-benign)
-- [Compute ROC curve points](#Compute-ROC-curve-points)
-- [Compute AUC](#Compute-AUC)
-- [Plot ROC curve](#Plot-ROC-curve)
-      - [5. Interpretation for the Breast Cancer Model](#5-Interpretation-for-the-Breast-Cancer-Model)
-      - [6. Why ROC AUC is Useful](#6-Why-ROC-AUC-is-Useful)
-  - [13. Regularization & the Role of **C**](#13-Regularization--the-Role-of-C)
-    - [What this code does, line by line](#What-this-code-does-line-by-line)
-      - [Mathematical step](#Mathematical-step)
-  - [14. Multiclass Logistic Regression (Softmax) with Iris](#14-Multiclass-Logistic-Regression-Softmax-with-Iris)
-    - [What this code does, line by line](#What-this-code-does-line-by-line)
-      - [Mathematical step](#Mathematical-step)
-    - [Exercises](#Exercises)
-  - [15. Summary](#15-Summary)
-
-
----
-
-
-# Linear & Logistic Regression: A Step‑by‑Step Tutorial
+# Linear and Logistic Regression
 
 1. **Linear Regression** (from intuition → loss → optimization → evaluation → regularization).
 2. **Logistic Regression** (from classification intuition → sigmoid/likelihood → optimization → evaluation → multiclass).
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
 
 
 
@@ -142,14 +22,6 @@ narrator: US English Female
 ## 0. Environment & Utilities
 
 This section imports the libraries used throughout. No internet access is required; all datasets used are provided by `scikit-learn` or are synthetically generated.
-
-
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
-
 
 
 ---
@@ -186,56 +58,35 @@ print("Environment ready.")
 ---
 
 
-### Line-by-Line Commentary
-- (comment/blank)
-- (comment/blank)
-- Import: `import math` — library purpose and usage.
-- Import: `import numpy as np` — library purpose and usage.
-- Import: `import matplotlib.pyplot as plt` — library purpose and usage.
-- (comment/blank)
-- (comment/blank)
-- Import: `from sklearn.model_selection import train_test_split` — library purpose and usage.
-- Import: `from sklearn.preprocessing import StandardScaler, PolynomialFeatures` — library purpose and usage.
-- Import: `from sklearn.linear_model import LinearRegression, Ridge, Lasso, SGDRegressor, LogisticRegression` — library purpose and usage.
-- Import: `from sklearn.pipeline import Pipeline` — library purpose and usage.
-- Import: `from sklearn.metrics import mean_squared_error, r2_score, confusion_matrix, ConfusionMatrixDisplay` — library purpose and usage.
-- Import: `from sklearn.metrics import roc_curve, auc, RocCurveDisplay, precision_recall_fscore_support, classification_report` — library purpose and usage.
-- Import: `from sklearn.datasets import load_breast_cancer, load_iris` — library purpose and usage.
-- (comment/blank)
-- (comment/blank)
-- `np.random.seed(42)`
-- (comment/blank)
-- (comment/blank)
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- (comment/blank)
-- `print("Environment ready.")`
-
-
----
-
-
 ## Theory & Derivations
 
 **Ordinary Least Squares (OLS)**  
 Model $\hat{\mathbf{y}}=\tilde{X}\boldsymbol{\theta}$ with intercept included by $\tilde{X}=[\mathbf{1}\;X]$.
-MSE: $J(\theta)=\frac{1}{n}\|\tilde{X}\theta-\mathbf{y}\|_2^2$; $\nabla J=\frac{2}{n}\tilde{X}^\top(\tilde{X}\theta-\mathbf{y})$.
+
+MSE: $J(\theta)=\frac{1}{n}\|\tilde{X}\theta-\mathbf{y}\|_2^2$; $\nabla
+
+J=\frac{2}{n}\tilde{X}^\top(\tilde{X}\theta-\mathbf{y})$.
+ 
 Normal equations: $\tilde{X}^\top\tilde{X}\theta=\tilde{X}^\top\mathbf{y}$. Prefer QR/SVD or `lstsq` numerically.
 
 
 **Ridge (L2) Regularization**  
 $J_{\text{ridge}}=\frac{1}{n}\|\tilde{X}\theta-\mathbf{y}\|^2+\lambda\|\theta_{1:}\|_2^2$ (intercept unpenalized).
+
 Closed form: $(\tilde{X}^\top\tilde{X}+\lambda D)^{-1}\tilde{X}^\top\mathbf{y}$ with $D=\mathrm{diag}(0,1,\dots,1)$.
 
 
 **Lasso (L1) Regularization**  
 $J_{\text{lasso}}=\frac{1}{n}\|\tilde{X}\theta-\mathbf{y}\|^2+\lambda\|\theta_{1:}\|_1$.
+
 No closed form; common solvers include coordinate descent and ISTA/FISTA. Encourages sparsity.
 
 
 **Logistic Regression**  
 $\hat{p}=\sigma(X\theta)$ with $\sigma(z)=1/(1+e^{-z})$.
+
 Loss: $J=-\frac{1}{n}\sum_i\big[y_i\log \hat{p}_i+(1-y_i)\log(1-\hat{p}_i)\big]$;
+
 $\nabla J=\frac{1}{n}X^\top(\hat{\mathbf{p}}-\mathbf{y})$; Hessian $X^\top W X \succeq 0$.
 
 
@@ -245,49 +96,13 @@ Fit preprocessing **only on training data** to avoid leakage; scaling improves c
 
 **Regression Metrics**  
 RMSE is $\sqrt{\tfrac{1}{n}\sum (\hat y_i-y_i)^2}$.  
-$R^2 = 1 - \tfrac{\sum (y_i-\hat y_i)^2}{\sum (y_i-\bar y)^2} = \tfrac{\mathrm{Var}(\hat y)}{\mathrm{Var}(y)}$ when the model is unbiased and includes an intercept,
-i.e., the **fraction of variance explained** (estimated variance / actual variance).
+
+$R^2 = 1 - \tfrac{\sum (y_i-\hat y_i)^2}{\sum (y_i-\bar y)^2} = \tfrac{\mathrm{Var}(\hat y)}{\mathrm{Var}(y)}$ when the model is unbiased and includes an intercept, i.e., the **fraction of variance explained** (estimated variance / actual variance).
 
 
 
 ---
 
-
-### Reproduction Checklist
-- Fix RNG seeds (`np.random.seed`, estimator `random_state`) for replicable runs.
-- Keep train/test strictly separated; fit scalers only on training data.
-- Verify solver convergence; raise `max_iter` if needed; watch warnings.
-- Log versions: `python`, `numpy`, `scikit-learn`, `matplotlib`; BLAS/LAPACK backends can change numerics.
-
-
-
----
-
-
-
-### What this code does, line by line
-
-- `import math`, `import numpy as np`, `import matplotlib.pyplot as plt` — load numerical and plotting libraries used throughout.
-- `from sklearn.model_selection import train_test_split` — utility to split data into training and test partitions.
-- `from sklearn.preprocessing import StandardScaler, PolynomialFeatures` — feature scaling and polynomial feature expansion for linear models.
-- `from sklearn.linear_model import LinearRegression, Ridge, Lasso, SGDRegressor, LogisticRegression` — linear-model estimators: OLS, L2/L1-regularized variants, stochastic gradient descent, and logistic regression.
-- `from sklearn.pipeline import Pipeline` — compose preprocessing and model steps into a single estimator.
-- `from sklearn.metrics import ...` — regression and classification metrics plus plotting helpers.
-- `from sklearn.datasets import load_breast_cancer, load_iris` — built-in, ready-to-use datasets.
-- `np.random.seed(42)` — fix the pseudorandom seed for reproducibility.
-- `plt.rcParams[...]` — set figure size and enable gridlines for consistent, readable plots.
-- `print("Environment ready.")` — simple confirmation that imports succeeded.
-
-
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
-
-
-
----
 
 
 
@@ -301,14 +116,6 @@ Linear regression models the relationship between a scalar **target** $ y $ and 
 $$ \hat{y} = \mathbf{x}^\top \boldsymbol{\theta} = \theta_0 + \theta_1 x_1 + \cdots + \theta_d x_d. $$
 
 We will begin with a **single feature** example to build intuition.
-
-
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
-
 
 
 ---
@@ -335,48 +142,6 @@ plt.legend()
 plt.show()
 ```
 
-
----
-
-
-### Line-by-Line Commentary
-- (comment/blank)
-- (comment/blank)
-- `n = 100`
-- `X = 2 * np.random.rand(n, 1)  # feature in [0, 2)`
-- `theta0_true = 5.0`
-- `theta1_true = 3.0`
-- `y_true = theta1_true * X[:, 0] + theta0_true`
-- `noise = np.random.randn(n) * 0.8`
-- `y = y_true + noise`
-- (comment/blank)
-- (comment/blank)
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-
-
----
-
-
-## Theory & Derivations
-*(General context: modeling assumptions, identifiability, optimization, diagnostics.)*
-
-
----
-
-
-### Reproduction Checklist
-- Fix RNG seeds (`np.random.seed`, estimator `random_state`) for replicable runs.
-- Keep train/test strictly separated; fit scalers only on training data.
-- Verify solver convergence; raise `max_iter` if needed; watch warnings.
-- Log versions: `python`, `numpy`, `scikit-learn`, `matplotlib`; BLAS/LAPACK backends can change numerics.
-
-
-
 ---
 
 
@@ -397,13 +162,6 @@ plt.show()
 We assume a data-generating model `y = θ₀ + θ₁ x + ε` with `ε ~ N(0, σ²)`. Here, `θ₀ = 5`, `θ₁ = 3`, and `σ ≈ 0.8`.
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
-
-
 
 ---
 
@@ -418,11 +176,6 @@ $$ J(\theta_0, \theta_1) = \frac{1}{n} \sum_{i=1}^n \big(\hat{y}_i - y_i\big)^2.
 Minimizing MSE yields the **Ordinary Least Squares (OLS)** solution.
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
 
 
 
@@ -443,34 +196,6 @@ print("MSE at theta0=0, theta1=0:", mse(0, 0, X, y))
 ---
 
 
-### Line-by-Line Commentary
-- (comment/blank)
-- `def mse(theta0, theta1, X, y):`
-- `y_hat = theta0 + theta1 * X[:, 0]`
-- `return np.mean((y_hat - y)**2)`
-- (comment/blank)
-- `print("MSE at theta0=0, theta1=0:", mse(0, 0, X, y))`
-
-
----
-
-
-## Theory & Derivations
-*(General context: modeling assumptions, identifiability, optimization, diagnostics.)*
-
-
----
-
-
-### Reproduction Checklist
-- Fix RNG seeds (`np.random.seed`, estimator `random_state`) for replicable runs.
-- Keep train/test strictly separated; fit scalers only on training data.
-- Verify solver convergence; raise `max_iter` if needed; watch warnings.
-- Log versions: `python`, `numpy`, `scikit-learn`, `matplotlib`; BLAS/LAPACK backends can change numerics.
-
-
-
----
 
 
 
@@ -485,11 +210,6 @@ print("MSE at theta0=0, theta1=0:", mse(0, 0, X, y))
 The objective is $ J(θ₀, θ₁) = \frac{1}{n} \sum_i (θ₀ + θ₁ x_i - y_i)^2 $. Minimizing `J` yields the OLS solution.
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
 
 
 
@@ -748,11 +468,6 @@ $$ \boldsymbol{\theta}^* = (X^\top X)^{-1} X^\top \mathbf{y}, $$
 where $ X $ has a leading column of ones for the intercept.
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
 
 
 
@@ -788,38 +503,6 @@ plt.show()
 print("MSE (closed form):", mean_squared_error(y, theta0_star + theta1_star * X[:,0]))
 ```
 
-
----
-
-
-### Line-by-Line Commentary
-- (comment/blank)
-- (comment/blank)
-- `X_design = np.c_[np.ones((n, 1)), X]  # [1, x]`
-- Solve linear systems; prefer `lstsq`/QR/SVD over explicit inversion for stability.
-- (comment/blank)
-- `theta0_star, theta1_star = theta_star`
-- `print(f"Closed-form solution: theta0={theta0_star:.3f}, theta1={theta1_star:.3f}")`
-- `print(f"Estimated model equation: y = {theta1_star:.3f} x + {theta0_star:.3f}")`
-- `print(f"True equation: y = {theta1_true:.3f} x + {theta0_true:.3f}")`
-- (comment/blank)
-- (comment/blank)
-- `x_line = np.linspace(0, 2, 100)`
-- `y_line_fit = theta0_star + theta1_star * x_line`
-- `y_line_true = theta0_true + theta1_true * x_line`
-- (comment/blank)
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- (comment/blank)
-- Compute regression metrics (MSE/RMSE, R^2).
-
-
 ---
 
 
@@ -841,17 +524,6 @@ i.e., the **fraction of variance explained** (estimated variance / actual varian
 ---
 
 
-### Reproduction Checklist
-- Fix RNG seeds (`np.random.seed`, estimator `random_state`) for replicable runs.
-- Keep train/test strictly separated; fit scalers only on training data.
-- Verify solver convergence; raise `max_iter` if needed; watch warnings.
-- Log versions: `python`, `numpy`, `scikit-learn`, `matplotlib`; BLAS/LAPACK backends can change numerics.
-
-
-
----
-
-
 
 ### What this code does, line by line
 
@@ -866,11 +538,6 @@ i.e., the **fraction of variance explained** (estimated variance / actual varian
 The normal equation solves $ \arg\min_θ \|X̃θ - y\|_2^2 $. When `X̃ᵀX̃` is invertible, $\boldsymbol{\theta}^* = ( \tilde{X}^\top \tilde{X} )^{-1} \tilde{X}^\top \mathbf{y}$.
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
 
 
 
@@ -893,11 +560,6 @@ $$ \boldsymbol{\theta} \leftarrow \boldsymbol{\theta} - \alpha \nabla J, $$
 Larger values of the learning rate $\alpha$ lead to larger steps toward this minimum mean-squared error (also called **loss**), requiring fewer iterations, but risking stepping over the global minimum.
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
 
 
 
@@ -930,35 +592,6 @@ plt.title("Gradient Descent Convergence")
 plt.show()
 ```
 
-
----
-
-
-### Line-by-Line Commentary
-- (comment/blank)
-- `def gradient_descent(X, y, lr=0.1, steps=200):`
-- `theta0, theta1 = 0.0, 0.0`
-- `history = []`
-- `for t in range(steps):`
-- `y_hat = theta0 + theta1 * X[:, 0]`
-- `err = y_hat - y`
-- `grad0 = (2/len(X)) * np.sum(err)`
-- `grad1 = (2/len(X)) * np.sum(err * X[:, 0])`
-- `theta0 -= lr * grad0`
-- `theta1 -= lr * grad1`
-- `history.append((theta0, theta1, np.mean(err**2)))`
-- `return theta0, theta1, np.array(history)`
-- (comment/blank)
-- `theta0_gd, theta1_gd, hist = gradient_descent(X, y, lr=0.1, steps=200)`
-- (comment/blank)
-- `print(f"GD solution: theta0={theta0_gd:.3f}, theta1={theta1_gd:.3f}")`
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-
-
 ---
 
 
@@ -966,18 +599,7 @@ plt.show()
 *(General context: modeling assumptions, identifiability, optimization, diagnostics.)*
 
 
----
-
-
-### Reproduction Checklist
-- Fix RNG seeds (`np.random.seed`, estimator `random_state`) for replicable runs.
-- Keep train/test strictly separated; fit scalers only on training data.
-- Verify solver convergence; raise `max_iter` if needed; watch warnings.
-- Log versions: `python`, `numpy`, `scikit-learn`, `matplotlib`; BLAS/LAPACK backends can change numerics.
-
-
-
----
+--
 
 
 
@@ -1003,14 +625,6 @@ $ \partial J/\partial θ₀ = \tfrac{2}{n} \sum (\hat y_i - y_i) $,
 $ \partial J/\partial θ₁ = \tfrac{2}{n} \sum (\hat y_i - y_i) x_i $.
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
-
-
-
 ---
 
 
@@ -1018,14 +632,6 @@ $ \partial J/\partial θ₁ = \tfrac{2}{n} \sum (\hat y_i - y_i) x_i $.
 ## 5. Feature Scaling & Multiple Linear Regression
 
 Gradient methods benefit from **feature scaling**. We also extend to multiple features (e.g., polynomial features).
-
-
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
-
 
 
 ---
@@ -1060,71 +666,6 @@ plt.title("Polynomial Linear Regression: Predictions vs True")
 plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()])  # y=x line
 plt.show()
 ```
-
-
----
-
-
-### Line-by-Line Commentary
-- (comment/blank)
-- (comment/blank)
-- Create polynomial feature map; model remains linear-in-parameters in feature space.
-- `X_poly = poly.fit_transform(X)  # [x, x^2, x^3]`
-- (comment/blank)
-- (comment/blank)
-- Split data into train/test to ensure unbiased evaluation; consider stratification for classification.
-- (comment/blank)
-- (comment/blank)
-- `model = Pipeline([`
-- Standardize features (zero-mean/unit-variance) to improve conditioning and interpretability.
-- Ordinary Least Squares estimator (OLS).
-- `])`
-- Fit the estimator: learn parameters using training data only.
-- Predict on held-out data to estimate generalization.
-- (comment/blank)
-- Compute regression metrics (MSE/RMSE, R^2).
-- Compute regression metrics (MSE/RMSE, R^2).
-- (comment/blank)
-- (comment/blank)
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-
-
----
-
-
-## Theory & Derivations
-
-**Ordinary Least Squares (OLS)**  
-Model $\hat{\mathbf{y}}=\tilde{X}\boldsymbol{\theta}$ with intercept included by $\tilde{X}=[\mathbf{1}\;X]$.
-MSE: $J(\theta)=\frac{1}{n}\|\tilde{X}\theta-\mathbf{y}\|_2^2$; $\nabla J=\frac{2}{n}\tilde{X}^\top(\tilde{X}\theta-\mathbf{y})$.
-Normal equations: $\tilde{X}^\top\tilde{X}\theta=\tilde{X}^\top\mathbf{y}$. Prefer QR/SVD or `lstsq` numerically.
-
-
-**Pipelines & Scaling**  
-Fit preprocessing **only on training data** to avoid leakage; scaling improves conditioning and convergence.
-
-
-**Regression Metrics**  
-RMSE is $\sqrt{\tfrac{1}{n}\sum (\hat y_i-y_i)^2}$.  
-$R^2 = 1 - \tfrac{\sum (y_i-\hat y_i)^2}{\sum (y_i-\bar y)^2} = \tfrac{\mathrm{Var}(\hat y)}{\mathrm{Var}(y)}$ when the model is unbiased and includes an intercept,
-i.e., the **fraction of variance explained** (estimated variance / actual variance).
-
-
-
----
-
-
-### Reproduction Checklist
-- Fix RNG seeds (`np.random.seed`, estimator `random_state`) for replicable runs.
-- Keep train/test strictly separated; fit scalers only on training data.
-- Verify solver convergence; raise `max_iter` if needed; watch warnings.
-- Log versions: `python`, `numpy`, `scikit-learn`, `matplotlib`; BLAS/LAPACK backends can change numerics.
-
 
 
 ---
@@ -1249,11 +790,6 @@ Think of RMSE and \$R^2\$ as two complementary perspectives:
 Together, they provide both **quantitative** (RMSE) and **qualitative** (\$R^2\$) measures of model performance.
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
 
 
 
@@ -1378,11 +914,6 @@ Here, both Ridge and Lasso were applied to show how **increasing $\lambda$ reduc
 
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
 
 
 
@@ -1417,37 +948,6 @@ plt.legend()
 plt.show()
 ```
 
-
----
-
-
-### Line-by-Line Commentary
-- (comment/blank)
-- `alphas = [0.0, 0.01, 0.1, 1.0, 10.0]`
-- `rmse_ridge = []`
-- `rmse_lasso = []`
-- (comment/blank)
-- `for a in alphas:`
-- Standardize features (zero-mean/unit-variance) to improve conditioning and interpretability.
-- Fit the estimator: learn parameters using training data only.
-- Predict on held-out data to estimate generalization.
-- Compute regression metrics (MSE/RMSE, R^2).
-- (comment/blank)
-- Standardize features (zero-mean/unit-variance) to improve conditioning and interpretability.
-- Fit the estimator: learn parameters using training data only.
-- Predict on held-out data to estimate generalization.
-- Compute regression metrics (MSE/RMSE, R^2).
-- (comment/blank)
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-
-
 ---
 
 
@@ -1455,34 +955,14 @@ plt.show()
 
 **Ridge (L2) Regularization**  
 $J_{\text{ridge}}=\frac{1}{n}\|\tilde{X}\theta-\mathbf{y}\|^2+\lambda\|\theta_{1:}\|_2^2$ (intercept unpenalized).
+
 Closed form: $(\tilde{X}^\top\tilde{X}+\lambda D)^{-1}\tilde{X}^\top\mathbf{y}$ with $D=\mathrm{diag}(0,1,\dots,1)$.
 
 
 **Lasso (L1) Regularization**  
 $J_{\text{lasso}}=\frac{1}{n}\|\tilde{X}\theta-\mathbf{y}\|^2+\lambda\|\theta_{1:}\|_1$.
+
 No closed form; common solvers include coordinate descent and ISTA/FISTA. Encourages sparsity.
-
-
-**Pipelines & Scaling**  
-Fit preprocessing **only on training data** to avoid leakage; scaling improves conditioning and convergence.
-
-
-**Regression Metrics**  
-RMSE is $\sqrt{\tfrac{1}{n}\sum (\hat y_i-y_i)^2}$.  
-$R^2 = 1 - \tfrac{\sum (y_i-\hat y_i)^2}{\sum (y_i-\bar y)^2} = \tfrac{\mathrm{Var}(\hat y)}{\mathrm{Var}(y)}$ when the model is unbiased and includes an intercept,
-i.e., the **fraction of variance explained** (estimated variance / actual variance).
-
-
-
----
-
-
-### Reproduction Checklist
-- Fix RNG seeds (`np.random.seed`, estimator `random_state`) for replicable runs.
-- Keep train/test strictly separated; fit scalers only on training data.
-- Verify solver convergence; raise `max_iter` if needed; watch warnings.
-- Log versions: `python`, `numpy`, `scikit-learn`, `matplotlib`; BLAS/LAPACK backends can change numerics.
-
 
 
 ---
@@ -1539,9 +1019,9 @@ However, they differ in *how* they shrink the coefficients.
 
 ---
 
-#### In Your Example: Few Features, All Relevant
+#### In Our Example: Few Features, All Relevant
 
-In Step 6, your model used **polynomial features of a single variable ($x, x^2, x^3$)** — and **all of them actually carry useful information** for fitting the true relationship $y = 3x + 5 + \epsilon$.
+In Step 6, our model used **polynomial features of a single variable ($x, x^2, x^3$)** — and **all of them actually carry useful information** for fitting the true relationship $y = 3x + 5 + \epsilon$.
 
 When you apply **Lasso**:
 - It can *zero out* one or more of those features entirely, even though they're genuinely helpful.
@@ -1592,11 +1072,6 @@ Thus, it **underfits** faster than Ridge as regularization increases.
 Since every polynomial term contributes to the true signal, Lasso's sparsity hurts predictive accuracy more than it helps — hence the higher RMSE.
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
 
 
 
@@ -1609,11 +1084,6 @@ Since every polynomial term contributes to the true signal, Lasso's sparsity hur
 A useful diagnostic is the **residual plot** (errors vs. predictions). Ideally, residuals are roughly zero-mean and display no clear pattern.
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
 
 
 
@@ -1639,46 +1109,6 @@ plt.show()
 ---
 
 
-### Line-by-Line Commentary
-- (comment/blank)
-- Ordinary Least Squares estimator (OLS).
-- Predict on held-out data to estimate generalization.
-- `residuals = y_test - y_pred_ols`
-- (comment/blank)
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-
-
----
-
-
-## Theory & Derivations
-
-**Ordinary Least Squares (OLS)**  
-Model $\hat{\mathbf{y}}=\tilde{X}\boldsymbol{\theta}$ with intercept included by $\tilde{X}=[\mathbf{1}\;X]$.
-MSE: $J(\theta)=\frac{1}{n}\|\tilde{X}\theta-\mathbf{y}\|_2^2$; $\nabla J=\frac{2}{n}\tilde{X}^\top(\tilde{X}\theta-\mathbf{y})$.
-Normal equations: $\tilde{X}^\top\tilde{X}\theta=\tilde{X}^\top\mathbf{y}$. Prefer QR/SVD or `lstsq` numerically.
-
-
-
----
-
-
-### Reproduction Checklist
-- Fix RNG seeds (`np.random.seed`, estimator `random_state`) for replicable runs.
-- Keep train/test strictly separated; fit scalers only on training data.
-- Verify solver convergence; raise `max_iter` if needed; watch warnings.
-- Log versions: `python`, `numpy`, `scikit-learn`, `matplotlib`; BLAS/LAPACK backends can change numerics.
-
-
-
----
-
-
 
 ### What this code does, line by line
 
@@ -1691,11 +1121,6 @@ Normal equations: $\tilde{X}^\top\tilde{X}\theta=\tilde{X}^\top\mathbf{y}$. Pref
 Randomly-scattered residuals around zero suggest model adequacy; systematic curvature, funnel shapes, or heteroscedasticity suggest misspecification or non-constant variance.
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
 
 
 
@@ -1711,19 +1136,10 @@ Randomly-scattered residuals around zero suggest model adequacy; systematic curv
 4. **Feature scaling:** Remove `StandardScaler` from the pipeline and use `SGDRegressor`. Does training stability change?
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
-
 
 
 ---
 
-
-
----
 # Part II — Logistic Regression
 
 ## 8. From Regression to Classification
@@ -1733,14 +1149,6 @@ When the target is **categorical** (e.g., spam vs. not-spam), linear regression 
 $$ \sigma(z) = \frac{1}{1 + e^{-z}}, \quad p(y=1\mid \mathbf{x}) = \sigma(\mathbf{x}^\top \boldsymbol{\theta}). $$
 
 We fit parameters by **maximizing the (log-)likelihood**, equivalently minimizing the loss.  Here, we define loss as the **cross-entropy**, which commonly used in **classification problems**, particularly in **logistic regression** and **neural networks**.  It measures the difference between two probability distributions — the *true labels* and the *predicted probabilities* output by the model.  In other words, it calculates how surprised the model is by its predictions, whether they were technically correct or not, by measuring the difference in the probability the model obtained of predicting that class from the true probability (`0` for `false` and `1` for `true`).
-
-
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
-
 
 
 ---
@@ -1758,44 +1166,6 @@ plt.ylabel("sigma(z)")
 plt.title("Sigmoid Function")
 plt.show()
 ```
-
-
----
-
-
-### Line-by-Line Commentary
-- (comment/blank)
-- (comment/blank)
-- `z = np.linspace(-8, 8, 400)`
-- `sig = 1.0 / (1.0 + np.exp(-z))`
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-
-
----
-
-
-## Theory & Derivations
-
-**Logistic Regression**  
-$\hat{p}=\sigma(X\theta)$ with $\sigma(z)=1/(1+e^{-z})$.
-Loss: $J=-\frac{1}{n}\sum_i\big[y_i\log \hat{p}_i+(1-y_i)\log(1-\hat{p}_i)\big]$;
-$\nabla J=\frac{1}{n}X^\top(\hat{\mathbf{p}}-\mathbf{y})$; Hessian $X^\top W X \succeq 0$.
-
-
-
----
-
-
-### Reproduction Checklist
-- Fix RNG seeds (`np.random.seed`, estimator `random_state`) for replicable runs.
-- Keep train/test strictly separated; fit scalers only on training data.
-- Verify solver convergence; raise `max_iter` if needed; watch warnings.
-- Log versions: `python`, `numpy`, `scikit-learn`, `matplotlib`; BLAS/LAPACK backends can change numerics.
-
 
 
 ---
@@ -1849,14 +1219,6 @@ $$
 
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
-
-
-
 ---
 
 
@@ -1870,14 +1232,18 @@ We derive the **binary cross-entropy (log loss)** used in logistic regression fr
 ### Model and Parameterization
 
 Let each label be $y_i \in \{0,1\}$ with features $x_i \in \mathbb{R}^d$, and define the linear score
+
 $$
 z_i = x_i^\top \boldsymbol{\theta}.
 $$
+
 Logistic regression models the class-1 probability with the **sigmoid**:
+
 $$
 \hat{p}_i \;=\; \Pr(y_i=1 \mid x_i;\boldsymbol{\theta}) \;=\; \sigma(z_i)
 \;=\; \frac{1}{1 + e^{-z_i}}.
 $$
+
 Then $\Pr(y_i=0\mid x_i;\boldsymbol{\theta}) = 1 - \hat{p}_i$.
 
 ---
@@ -1885,11 +1251,14 @@ Then $\Pr(y_i=0\mid x_i;\boldsymbol{\theta}) = 1 - \hat{p}_i$.
 ### Bernoulli Likelihood
 
 Assuming i.i.d. samples, the conditional likelihood of the labels $y_1,\dots,y_n$ given $X$ and $\boldsymbol{\theta}$ is
+
 $$
 L(\boldsymbol{\theta})
 = \prod_{i=1}^n \hat{p}_i^{\,y_i}\bigl(1-\hat{p}_i\bigr)^{(1-y_i)}.
 $$
+
 Taking logs (to turn products into sums) gives the **log-likelihood**:
+
 $$
 \ell(\boldsymbol{\theta})
 = \sum_{i=1}^n \Bigl[\, y_i \log \hat{p}_i + (1-y_i)\log(1-\hat{p}_i) \Bigr].
@@ -1900,11 +1269,13 @@ $$
 ### Negative Log-Likelihood = Cross-Entropy
 
 We **maximize** $\ell(\boldsymbol{\theta})$. Equivalently, we **minimize** its negative (the average loss):
+
 $$
 J(\boldsymbol{\theta})
 = -\frac{1}{n}\,\ell(\boldsymbol{\theta})
 = -\frac{1}{n}\sum_{i=1}^n \Bigl[\, y_i \log \hat{p}_i + (1-y_i)\log(1-\hat{p}_i) \Bigr].
 $$
+
 This is the **binary cross-entropy** (also called **log loss**).
 
 ---
@@ -2009,11 +1380,6 @@ Gradients are adjusted accordingly (subgradients for L1).
 - This loss is the **binary cross-entropy**, the standard objective for probabilistic binary classification.
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
 
 
 
@@ -2036,11 +1402,6 @@ Thus, the fitted logistic regression equation describes how the **linear score**
 $ z = x^\top\boldsymbol{\theta} $ is converted into the predicted probability of belonging to class 1.
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
 
 
 
@@ -2110,97 +1471,6 @@ plt.show()
 ```
 
 
----
-
-
-### Line-by-Line Commentary
-- (comment/blank)
-- (comment/blank)
-- `n = 300`
-- `mean0, mean1 = np.array([0, 0]), np.array([2, 2])`
-- `cov = np.array([[1.0, 0.2],[0.2, 1.0]])`
-- `X0 = np.random.multivariate_normal(mean0, cov, size=n//2)`
-- `X1 = np.random.multivariate_normal(mean1, cov, size=n//2)`
-- `X_bin = np.vstack([X0, X1])`
-- `y_bin = np.hstack([np.zeros(n//2, dtype=int), np.ones(n//2, dtype=int)])`
-- (comment/blank)
-- (comment/blank)
-- `perm = np.random.permutation(n)`
-- `X_bin, y_bin = X_bin[perm], y_bin[perm]`
-- (comment/blank)
-- `def sigmoid(z):`
-- `return 1.0 / (1.0 + np.exp(-z))`
-- (comment/blank)
-- `def logistic_loss(theta, X, y):`
-- Matrix multiply; verify shapes and inclusion of intercept term.
-- `p = sigmoid(z)`
-- `eps = 1e-12`
-- `return -np.mean(y * np.log(p + eps) + (1-y)*np.log(1 - p + eps))`
-- (comment/blank)
-- `def logistic_gd(X, y, lr=0.1, steps=500):`
-- `theta = np.zeros(X.shape[1])`
-- `history = []`
-- `for t in range(steps):`
-- Matrix multiply; verify shapes and inclusion of intercept term.
-- `p = sigmoid(z)`
-- Matrix multiply; verify shapes and inclusion of intercept term.
-- `theta -= lr * grad`
-- `history.append(logistic_loss(theta, X, y))`
-- `return theta, np.array(history)`
-- (comment/blank)
-- (comment/blank)
-- `X_aug = np.c_[np.ones((n, 1)), X_bin]`
-- `theta, hist = logistic_gd(X_aug, y_bin, lr=0.2, steps=500)`
-- (comment/blank)
-- `print("Final loss:", hist[-1])`
-- (comment/blank)
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- (comment/blank)
-- (comment/blank)
-- `xx, yy = np.meshgrid(np.linspace(X_bin[:,0].min()-1, X_bin[:,0].max()+1, 200),`
-- `np.linspace(X_bin[:,1].min()-1, X_bin[:,1].max()+1, 200))`
-- `grid = np.c_[np.ones((xx.size, 1)), xx.ravel(), yy.ravel()]`
-- Matrix multiply; verify shapes and inclusion of intercept term.
-- (comment/blank)
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-
-
----
-
-
-## Theory & Derivations
-
-**Ordinary Least Squares (OLS)**  
-Model $\hat{\mathbf{y}}=\tilde{X}\boldsymbol{\theta}$ with intercept included by $\tilde{X}=[\mathbf{1}\;X]$.
-MSE: $J(\theta)=\frac{1}{n}\|\tilde{X}\theta-\mathbf{y}\|_2^2$; $\nabla J=\frac{2}{n}\tilde{X}^\top(\tilde{X}\theta-\mathbf{y})$.
-Normal equations: $\tilde{X}^\top\tilde{X}\theta=\tilde{X}^\top\mathbf{y}$. Prefer QR/SVD or `lstsq` numerically.
-
-
-**Logistic Regression**  
-$\hat{p}=\sigma(X\theta)$ with $\sigma(z)=1/(1+e^{-z})$.
-Loss: $J=-\frac{1}{n}\sum_i\big[y_i\log \hat{p}_i+(1-y_i)\log(1-\hat{p}_i)\big]$;
-$\nabla J=\frac{1}{n}X^\top(\hat{\mathbf{p}}-\mathbf{y})$; Hessian $X^\top W X \succeq 0$.
-
-
-
----
-
-
-### Reproduction Checklist
-- Fix RNG seeds (`np.random.seed`, estimator `random_state`) for replicable runs.
-- Keep train/test strictly separated; fit scalers only on training data.
-- Verify solver convergence; raise `max_iter` if needed; watch warnings.
-- Log versions: `python`, `numpy`, `scikit-learn`, `matplotlib`; BLAS/LAPACK backends can change numerics.
-
 
 
 ---
@@ -2237,11 +1507,6 @@ Binary cross-entropy: $ J(θ) = -\tfrac{1}{n}\sum [y\log p + (1-y)\log(1-p)] $, 
 Gradient: $ \nabla J = X^\top(p - y)/n $.
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
 
 
 
@@ -2275,11 +1540,6 @@ You should observe that:
 This plot provides a geometric and probabilistic picture of how logistic regression maps input values $ x $ to predicted class probabilities via the sigmoid function.
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
 
 
 
@@ -2336,88 +1596,6 @@ equation = f"log( p / (1 - p) ) = {theta[0]:.3f} + " + " + ".join(eq_terms)
 print("\nEstimated logistic model:\n", equation)
 ```
 
-
----
-
-
-### Line-by-Line Commentary
-- (comment/blank)
-- (comment/blank)
-- (comment/blank)
-- (comment/blank)
-- (comment/blank)
-- (comment/blank)
-- (comment/blank)
-- (comment/blank)
-- Matrix multiply; verify shapes and inclusion of intercept term.
-- `p = sigmoid(z)                    # predicted P(y=1 | x)`
-- (comment/blank)
-- (comment/blank)
-- `z_grid = np.linspace(z.min() - 2, z.max() + 2, 400)`
-- `sig_grid = sigmoid(z_grid)`
-- (comment/blank)
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- (comment/blank)
-- (comment/blank)
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- (comment/blank)
-- (comment/blank)
-- `rng = np.random.default_rng(0)`
-- `jitter = (rng.random(len(y_bin)) - 0.5) * 0.04  # small vertical jitter`
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- `label="True class (0/1) at z_i", c=y_bin, cmap="bwr")`
-- (comment/blank)
-- (comment/blank)
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- (comment/blank)
-- (comment/blank)
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- (comment/blank)
-- (comment/blank)
-- `print("Fitted parameters (theta):", theta)`
-- (comment/blank)
-- (comment/blank)
-- (comment/blank)
-- `eq_terms = [f"{theta[j]:.3f}*x{j}" for j in range(1, len(theta))]`
-- `equation = f"log( p / (1 - p) ) = {theta[0]:.3f} + " + " + ".join(eq_terms)`
-- `print("\nEstimated logistic model:\n", equation)`
-
-
----
-
-
-## Theory & Derivations
-
-**Ordinary Least Squares (OLS)**  
-Model $\hat{\mathbf{y}}=\tilde{X}\boldsymbol{\theta}$ with intercept included by $\tilde{X}=[\mathbf{1}\;X]$.
-MSE: $J(\theta)=\frac{1}{n}\|\tilde{X}\theta-\mathbf{y}\|_2^2$; $\nabla J=\frac{2}{n}\tilde{X}^\top(\tilde{X}\theta-\mathbf{y})$.
-Normal equations: $\tilde{X}^\top\tilde{X}\theta=\tilde{X}^\top\mathbf{y}$. Prefer QR/SVD or `lstsq` numerically.
-
-
-**Logistic Regression**  
-$\hat{p}=\sigma(X\theta)$ with $\sigma(z)=1/(1+e^{-z})$.
-Loss: $J=-\frac{1}{n}\sum_i\big[y_i\log \hat{p}_i+(1-y_i)\log(1-\hat{p}_i)\big]$;
-$\nabla J=\frac{1}{n}X^\top(\hat{\mathbf{p}}-\mathbf{y})$; Hessian $X^\top W X \succeq 0$.
-
-
-
----
-
-
-### Reproduction Checklist
-- Fix RNG seeds (`np.random.seed`, estimator `random_state`) for replicable runs.
-- Keep train/test strictly separated; fit scalers only on training data.
-- Verify solver convergence; raise `max_iter` if needed; watch warnings.
-- Log versions: `python`, `numpy`, `scikit-learn`, `matplotlib`; BLAS/LAPACK backends can change numerics.
-
-
-
 ---
 
 
@@ -2440,11 +1618,6 @@ We use the **Breast Cancer Wisconsin** dataset, which contains the following fea
 | 10 | **fractal dimension** | Coastline approximation (a measure of boundary complexity) |
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
 
 
 
@@ -2486,68 +1659,6 @@ plt.title(f"ROC Curve (AUC = {roc_auc:.3f})")
 plt.show()
 ```
 
-
----
-
-
-### Line-by-Line Commentary
-- (comment/blank)
-- `data = load_breast_cancer()`
-- `X = data.data`
-- `y = data.target`
-- (comment/blank)
-- Split data into train/test to ensure unbiased evaluation; consider stratification for classification.
-- (comment/blank)
-- `pipe = Pipeline([`
-- Standardize features (zero-mean/unit-variance) to improve conditioning and interpretability.
-- Logistic regression; cross-entropy objective; `C` controls regularization strength.
-- `])`
-- Fit the estimator: learn parameters using training data only.
-- Predict on held-out data to estimate generalization.
-- Compute class probabilities for evaluation (ROC/AUC, calibration).
-- (comment/blank)
-- `print("Classification Report:\n")`
-- Summarize classification performance; consider class imbalance.
-- (comment/blank)
-- (comment/blank)
-- Summarize classification performance; consider class imbalance.
-- Summarize classification performance; consider class imbalance.
-- `disp.plot()`
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- (comment/blank)
-- (comment/blank)
-- Compute ROC/TPR/FPR and AUC for probabilistic classifiers.
-- Compute ROC/TPR/FPR and AUC for probabilistic classifiers.
-- `RocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=roc_auc, estimator_name="LogisticRegression").plot()`
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-
-
----
-
-
-## Theory & Derivations
-
-**Logistic Regression**  
-$\hat{p}=\sigma(X\theta)$ with $\sigma(z)=1/(1+e^{-z})$.
-Loss: $J=-\frac{1}{n}\sum_i\big[y_i\log \hat{p}_i+(1-y_i)\log(1-\hat{p}_i)\big]$;
-$\nabla J=\frac{1}{n}X^\top(\hat{\mathbf{p}}-\mathbf{y})$; Hessian $X^\top W X \succeq 0$.
-
-
-**Pipelines & Scaling**  
-Fit preprocessing **only on training data** to avoid leakage; scaling improves conditioning and convergence.
-
-
-
----
-
-
-### Reproduction Checklist
-- Fix RNG seeds (`np.random.seed`, estimator `random_state`) for replicable runs.
-- Keep train/test strictly separated; fit scalers only on training data.
-- Verify solver convergence; raise `max_iter` if needed; watch warnings.
-- Log versions: `python`, `numpy`, `scikit-learn`, `matplotlib`; BLAS/LAPACK backends can change numerics.
 
 
 
@@ -2793,11 +1904,6 @@ This means the classifier can correctly rank a malignant vs. benign sample about
 
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
 
 
 
@@ -2897,134 +2003,11 @@ print("\nEstimated logistic model on ORIGINAL features:\n", equation_orig)
 ---
 
 
-### Line-by-Line Commentary
-- (comment/blank)
-- (comment/blank)
-- (comment/blank)
-- `data = load_breast_cancer()`
-- `X = data.data                  # shape (n_samples, 30)`
-- `y = data.target                # 0 = malignant, 1 = benign`
-- Split data into train/test to ensure unbiased evaluation; consider stratification for classification.
-- `X, y, test_size=0.25, random_state=42, stratify=y`
-- `)`
-- (comment/blank)
-- (comment/blank)
-- `pipe = Pipeline([`
-- Standardize features (zero-mean/unit-variance) to improve conditioning and interpretability.
-- Logistic regression; cross-entropy objective; `C` controls regularization strength.
-- `])`
-- Fit the estimator: learn parameters using training data only.
-- (comment/blank)
-- (comment/blank)
-- (comment/blank)
-- `z_test = pipe.decision_function(X_test)          # shape (n_test,)`
-- Compute class probabilities for evaluation (ROC/AUC, calibration).
-- (comment/blank)
-- (comment/blank)
-- `z_min = z_test.min()`
-- `z_max = z_test.max()`
-- `padding = 0.5 * (z_max - z_min + 1e-9)`
-- `z_grid = np.linspace(z_min - padding, z_max + padding, 400)`
-- `sigmoid = lambda z: 1.0 / (1.0 + np.exp(-z))`
-- `sig_grid = sigmoid(z_grid)`
-- (comment/blank)
-- (comment/blank)
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- (comment/blank)
-- (comment/blank)
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- (comment/blank)
-- (comment/blank)
-- `rng = np.random.default_rng(0)`
-- `jitter = (rng.random(len(y_test)) - 0.5) * 0.04`
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- `label="True class (0/1) at z_i", c=y_test, cmap="bwr")`
-- (comment/blank)
-- (comment/blank)
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- `label="Predicted probability ŷ = σ(z_i)")`
-- (comment/blank)
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- (comment/blank)
-- (comment/blank)
-- (comment/blank)
-- `logreg = pipe.named_steps["logreg"]`
-- `scaler = pipe.named_steps["scaler"]`
-- (comment/blank)
-- (comment/blank)
-- `theta0_std = logreg.intercept_.item()      # scalar intercept in standardized space`
-- `theta_std = logreg.coef_.ravel()           # shape (n_features,) in standardized space`
-- (comment/blank)
-- `print("Fitted logistic parameters (on STANDARDIZED features):")`
-- `print(f"  θ₀ (intercept) = {theta0_std:.6f}")`
-- `print(f"  ‖θ‖₂           = {np.linalg.norm(theta_std):.6f}")`
-- `print("  First few weights:", np.array2string(theta_std[:6], precision=4, separator=", "))`
-- (comment/blank)
-- (comment/blank)
-- (comment/blank)
-- (comment/blank)
-- (comment/blank)
-- (comment/blank)
-- `theta_orig = theta_std / scaler.scale_`
-- `theta0_orig = theta0_std - np.sum(theta_std * scaler.mean_ / scaler.scale_)`
-- (comment/blank)
-- `print("\nFitted logistic parameters (on ORIGINAL feature scales):")`
-- `print(f"  θ₀ (intercept) = {theta0_orig:.6f}")`
-- `print(f"  ‖θ‖₂           = {np.linalg.norm(theta_orig):.6f}")`
-- `print("  First few weights:", np.array2string(theta_orig[:6], precision=4, separator=", "))`
-- (comment/blank)
-- (comment/blank)
-- `terms_orig = [f"{theta_orig[j]:.4f}*{data.feature_names[j]}" for j in range(len(theta_orig))]`
-- `equation_orig = "log( p / (1 - p) ) = " + f"{theta0_orig:.4f} + " + " + ".join(terms_orig)`
-- `print("\nEstimated logistic model on ORIGINAL features:\n", equation_orig)`
-
-
----
-
-
-## Theory & Derivations
-
-**Logistic Regression**  
-$\hat{p}=\sigma(X\theta)$ with $\sigma(z)=1/(1+e^{-z})$.
-Loss: $J=-\frac{1}{n}\sum_i\big[y_i\log \hat{p}_i+(1-y_i)\log(1-\hat{p}_i)\big]$;
-$\nabla J=\frac{1}{n}X^\top(\hat{\mathbf{p}}-\mathbf{y})$; Hessian $X^\top W X \succeq 0$.
-
-
-**Pipelines & Scaling**  
-Fit preprocessing **only on training data** to avoid leakage; scaling improves conditioning and convergence.
-
-
-
----
-
-
-### Reproduction Checklist
-- Fix RNG seeds (`np.random.seed`, estimator `random_state`) for replicable runs.
-- Keep train/test strictly separated; fit scalers only on training data.
-- Verify solver convergence; raise `max_iter` if needed; watch warnings.
-- Log versions: `python`, `numpy`, `scikit-learn`, `matplotlib`; BLAS/LAPACK backends can change numerics.
-
-
-
----
-
-
 ## 13. Regularization & the Role of **C**
 
 `LogisticRegression` uses L2 regularization by default. The parameter **`C`** is the **inverse** of regularization strength (larger `C` → less regularization). We sweep `C` to observe its effect.
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
 
 
 
@@ -3052,57 +2035,6 @@ plt.title("Effect of Regularization on AUC")
 plt.show()
 ```
 
-
----
-
-
-### Line-by-Line Commentary
-- (comment/blank)
-- `Cs = [0.01, 0.1, 1.0, 10.0, 100.0]`
-- `aucs = []`
-- (comment/blank)
-- `for C in Cs:`
-- Standardize features (zero-mean/unit-variance) to improve conditioning and interpretability.
-- Fit the estimator: learn parameters using training data only.
-- Compute class probabilities for evaluation (ROC/AUC, calibration).
-- Compute ROC/TPR/FPR and AUC for probabilistic classifiers.
-- Compute ROC/TPR/FPR and AUC for probabilistic classifiers.
-- (comment/blank)
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-
-
----
-
-
-## Theory & Derivations
-
-**Logistic Regression**  
-$\hat{p}=\sigma(X\theta)$ with $\sigma(z)=1/(1+e^{-z})$.
-Loss: $J=-\frac{1}{n}\sum_i\big[y_i\log \hat{p}_i+(1-y_i)\log(1-\hat{p}_i)\big]$;
-$\nabla J=\frac{1}{n}X^\top(\hat{\mathbf{p}}-\mathbf{y})$; Hessian $X^\top W X \succeq 0$.
-
-
-**Pipelines & Scaling**  
-Fit preprocessing **only on training data** to avoid leakage; scaling improves conditioning and convergence.
-
-
-
----
-
-
-### Reproduction Checklist
-- Fix RNG seeds (`np.random.seed`, estimator `random_state`) for replicable runs.
-- Keep train/test strictly separated; fit scalers only on training data.
-- Verify solver convergence; raise `max_iter` if needed; watch warnings.
-- Log versions: `python`, `numpy`, `scikit-learn`, `matplotlib`; BLAS/LAPACK backends can change numerics.
-
-
-
 ---
 
 
@@ -3119,11 +2051,6 @@ Fit preprocessing **only on training data** to avoid leakage; scaling improves c
 `C = 1/λ`. Over-regularization (small `C`) can underfit; too little regularization (large `C`) can overfit. The curve helps choose a reasonable trade-off.
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
 
 
 
@@ -3135,11 +2062,6 @@ Fit preprocessing **only on training data** to avoid leakage; scaling improves c
 For more than two classes, scikit‑learn uses an OvR (one‑vs‑rest) or multinomial (softmax) formulation. Here we use `multi_class='auto'`.
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
 
 
 
@@ -3175,62 +2097,6 @@ plt.show()
 ```
 
 
----
-
-
-### Line-by-Line Commentary
-- (comment/blank)
-- `iris = load_iris()`
-- `X = iris.data[:, :2]  # use 2 features for visualization`
-- `y = iris.target`
-- (comment/blank)
-- Split data into train/test to ensure unbiased evaluation; consider stratification for classification.
-- (comment/blank)
-- Standardize features (zero-mean/unit-variance) to improve conditioning and interpretability.
-- Logistic regression; cross-entropy objective; `C` controls regularization strength.
-- Fit the estimator: learn parameters using training data only.
-- `acc = clf.score(X_test, y_test)`
-- `print(f"Test accuracy (Iris, 2 features): {acc:.3f}")`
-- (comment/blank)
-- (comment/blank)
-- `xx, yy = np.meshgrid(np.linspace(X[:,0].min()-0.5, X[:,0].max()+0.5, 300),`
-- `np.linspace(X[:,1].min()-0.5, X[:,1].max()+0.5, 300))`
-- `grid = np.c_[xx.ravel(), yy.ravel()]`
-- Predict on held-out data to estimate generalization.
-- (comment/blank)
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-- Plotting for exploration/diagnostics; label axes and include references (e.g., y=x).
-
-
----
-
-
-## Theory & Derivations
-
-**Logistic Regression**  
-$\hat{p}=\sigma(X\theta)$ with $\sigma(z)=1/(1+e^{-z})$.
-Loss: $J=-\frac{1}{n}\sum_i\big[y_i\log \hat{p}_i+(1-y_i)\log(1-\hat{p}_i)\big]$;
-$\nabla J=\frac{1}{n}X^\top(\hat{\mathbf{p}}-\mathbf{y})$; Hessian $X^\top W X \succeq 0$.
-
-
-**Pipelines & Scaling**  
-Fit preprocessing **only on training data** to avoid leakage; scaling improves conditioning and convergence.
-
-
-
----
-
-
-### Reproduction Checklist
-- Fix RNG seeds (`np.random.seed`, estimator `random_state`) for replicable runs.
-- Keep train/test strictly separated; fit scalers only on training data.
-- Verify solver convergence; raise `max_iter` if needed; watch warnings.
-- Log versions: `python`, `numpy`, `scikit-learn`, `matplotlib`; BLAS/LAPACK backends can change numerics.
-
-
 
 ---
 
@@ -3253,14 +2119,6 @@ Multiclass logistic regression maximizes the multinomial log-likelihood with sof
 $ p(y=k|x) = \frac{\exp(θ_k^\top x)}{\sum_j \exp(θ_j^\top x)} $.
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
-
-
-
 ---
 
 
@@ -3273,11 +2131,6 @@ $ p(y=k|x) = \frac{\exp(θ_k^\top x)}{\sum_j \exp(θ_j^\top x)} $.
 4. **Feature subsets:** On the breast cancer dataset, try using only a subset of features. Does performance change significantly?
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
 
 
 
@@ -3286,6 +2139,7 @@ $ p(y=k|x) = \frac{\exp(θ_k^\top x)}{\sum_j \exp(θ_j^\top x)} $.
 
 
 ---
+
 ## 15. Summary
 
 - **Linear regression** models a continuous response, typically optimized via MSE (closed form or gradient methods), and benefits from regularization and diagnostics.
@@ -3293,11 +2147,6 @@ $ p(y=k|x) = \frac{\exp(θ_k^\top x)}{\sum_j \exp(θ_j^\top x)} $.
 - Both are **generalized linear models** with different link functions (identity vs. logit).
 
 
-**Deep Explanation (summary & augmentation)**
-
-- We restate the key ideas and connect to statistical foundations.
-- We flag assumptions, prerequisites, and pitfalls.
-- When formulas appear, we derive or reference the derivation steps.
 
 
 

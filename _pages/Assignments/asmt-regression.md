@@ -98,7 +98,13 @@ After selecting your datasets, clearly describe their sources, the meaning of ea
 
 ## Part 1 — Linear Regression
 
-In the **from-scratch implementation**, restrict yourself to a **linear relationship** between the input and output variables. That is, do not add squared or polynomial features and do not apply normalization or standardization. This will simplify your analysis and allow you to focus on the basic mathematics of linear regression. Construct the augmented design matrix $\tilde{X} = [\mathbf{1}\;X]$ and compute the optimal parameter vector using  
+In the **from-scratch implementation**, restrict yourself to a **linear relationship** between the input and output variables. That is, do not add squared or polynomial features and do not apply normalization or standardization. This will simplify your analysis and allow you to focus on the basic mathematics of linear regression. Construct the augmented design matrix
+
+$$
+\tilde{X} = [\mathbf{1}\;X]
+$$ 
+
+and compute the optimal parameter vector using  
 
 $$
 \boldsymbol{\theta}^* = (\tilde{X}^\top \tilde{X})^{-1}\tilde{X}^\top \mathbf{y},
@@ -110,7 +116,7 @@ $$
 \boldsymbol{\theta} \leftarrow \boldsymbol{\theta} - \alpha\frac{2}{n}\tilde{X}^\top(\tilde{X}\boldsymbol{\theta}-\mathbf{y}),
 $$
 
-where $\alpha$ is the learning rate. Report your model’s **loss curve** (mean squared error versus iteration) for the gradient descent approach to show convergence behavior, and report what value of your **learning rate** $\alpha$ gave you the best loss curve (be sure to try several!).
+where <span>\\(\alpha\\)</span> is the learning rate. Report your model’s **loss curve** (mean squared error versus iteration) for the gradient descent approach to show convergence behavior, and report what value of your **learning rate** <span>\\(\alpha\\)</span> gave you the best loss curve (be sure to try several!).
 
 For the **library-based implementation**, use `sklearn.linear_model.LinearRegression`. If your dataset exhibits nonlinear trends, you should **extend** your feature matrix by including scaled polynomial terms such as `x**2`, `x**3`, or interaction features generated via `PolynomialFeatures` from `sklearn.preprocessing`. Include an option in your code to apply normalization using a **Scaler pipeline** (e.g., `StandardScaler` or `MinMaxScaler`) and to toggle normalization **on or off**. Experiment with both configurations and discuss how feature scaling affects convergence and generalization. Finally, add an option to fit your model using **Ridge** and/or **Lasso** regularization. Run your analysis using each configuration — Ridge alone, Lasso alone, both together, and neither — and compare their effects on model coefficients, training and testing RMSE, and overall fit quality.
 
@@ -125,7 +131,13 @@ Your linear regression section should include:
 
 ## Part 2 — Logistic Regression
 
-In the **from-scratch implementation**, implement the logistic sigmoid function $\sigma(z) = 1 / (1 + e^{-z})$ and optimize the binary cross-entropy loss using gradient descent:
+In the **from-scratch implementation**, implement the logistic sigmoid function 
+
+$$
+\sigma(z) = 1 / (1 + e^{-z})
+$$ 
+
+and optimize the binary cross-entropy loss using gradient descent:
 
 $$
 J(\boldsymbol{\theta}) = -\frac{1}{n}\sum_i \left[y_i \log \hat{p}_i + (1 - y_i) \log (1 - \hat{p}_i)\right],
@@ -133,7 +145,13 @@ J(\boldsymbol{\theta}) = -\frac{1}{n}\sum_i \left[y_i \log \hat{p}_i + (1 - y_i)
 \nabla J = \frac{1}{n}X^\top(\hat{\mathbf{p}} - \mathbf{y}),
 $$
 
-where $\hat{\mathbf{p}}$ is the vector of predicted probabilities. Ensure that you monitor convergence by tracking the loss function over iterations.  
+where 
+
+$$
+\hat{\mathbf{p}}
+$$ 
+
+is the vector of predicted probabilities. Ensure that you monitor convergence by tracking the loss function over iterations.  
 
 For the **library implementation**, use `sklearn.linear_model.LogisticRegression`. Always **standardize or normalize** your features for logistic regression, as this improves numerical stability and ensures fair comparison of coefficient magnitudes. Incorporate a `Pipeline` to streamline preprocessing, including feature scaling and optional polynomial feature generation for nonlinear relationships. Allow users to toggle normalization and polynomial augmentation on or off. As with linear regression, include options to apply **Lasso (L1)** and **Ridge (L2)** regularization separately or together, and document the impact of each configuration.  
 
@@ -143,4 +161,4 @@ Evaluate your logistic models using a comprehensive set of metrics: **RMSE**, **
 
 ## Deliverables
 
-Submit one or two Jupyter notebooks (`.ipynb`), clearly labeled for the regression and classification tasks. Each notebook should include clean, well-commented code with narrative explanations in Markdown cells, describing your data choices, implementation steps, and evaluation results. Include plots of metrics versus hyperparameters ($\lambda$, $\alpha$) and figures showing loss curves, ROC curves, and residual analyses. Accompany your notebooks with a short, well-structured report (approximately two pages) summarizing your dataset rationale, modeling decisions, your findings on generalization, and the observed effects of regularization and normalization. Ensure reproducibility by fixing random seeds and listing software version information.
+Submit one or two Jupyter notebooks (`.ipynb`), clearly labeled for the regression and classification tasks. Each notebook should include clean, well-commented code with narrative explanations in Markdown cells, describing your data choices, implementation steps, and evaluation results. Include plots of metrics versus hyperparameters ($\lambda$, <span>\\(\alpha\\)</span>) and figures showing loss curves, ROC curves, and residual analyses. Accompany your notebooks with a short, well-structured report (approximately two pages) summarizing your dataset rationale, modeling decisions, your findings on generalization, and the observed effects of regularization and normalization. Ensure reproducibility by fixing random seeds and listing software version information.
