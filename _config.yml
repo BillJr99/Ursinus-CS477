@@ -8,11 +8,11 @@ relative_links:
 
 theme: jekyll-theme-slate
 
-title: "CS357"
-description: "Foundations of Artificial Intelligence"
+title: "CS477"
+description: "Artificial Intelligence and Machine Learning"
 
 url                      : https://BillJr99.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-baseurl                  : "/Ursinus-CS357-Fall2025" # the subpath of your site, e.g. "/blog"
+baseurl                  : "/Ursinus-CS477-Fall2025" # the subpath of your site, e.g. "/blog"
 
 # Reading Files
 include:
