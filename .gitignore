@@ -1,6 +1,7 @@
 updatecanvas.sh
 uploadghclassroom.sh
 updatecalendar.sh
+updateschedule.sh
 geckodriver.log
 do-jekyll.sh
 text2qti.sh
