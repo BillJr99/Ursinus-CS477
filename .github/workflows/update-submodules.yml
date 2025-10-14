@@ -1,0 +1,26 @@
+name: Update submodules
+
+# Controls when the action will run.
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  push:
+  pull_request:
+
+jobs:
+  # This workflow contains a single job called "update"
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Checkout submodules
+        run: |
+          git submodule update --init --recursive
+          git submodule update --remote --merge          
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          file_pattern: "*"
+          commit_message: "Update submodules from parent"          
