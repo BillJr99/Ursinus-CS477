@@ -1297,6 +1297,7 @@ $$
 $$
 
 In Python/NumPy:
+
 ```python
 z = X @ theta  # @ means matrix multiplication
 p_hat = 1 / (1 + np.exp(-z))
@@ -1383,50 +1384,50 @@ This form highlights the **margin** $\tilde{y}_i z_i$.
 
 The logistic loss (binary cross-entropy) for one example is:
 $$
-\\ell_i = -y_i\\log \\hat{p}_i - (1-y_i)\\log(1-\\hat{p}_i),
-\\quad \\hat{p}_i = \\sigma(z_i) = \\frac{1}{1+e^{-z_i}}.
+\ell_i = -y_i\log \hat{p}_i - (1-y_i)\log(1-\hat{p}_i),
+\quad \hat{p}_i = \sigma(z_i) = \frac{1}{1+e^{-z_i}}.
 $$
 
-#### Step 1 — Differentiate $\\ell_i$ with respect to $\\hat{p}_i$
+#### Step 1 — Differentiate $\ell_i$ with respect to $\hat{p}_i$
 
 $$
-\\frac{\\partial \\ell_i}{\\partial \\hat{p}_i}
-= -\\frac{y_i}{\\hat{p}_i} + \\frac{1 - y_i}{1 - \\hat{p}_i}.
+\frac{\partial \ell_i}{\partial \hat{p}_i}
+= -\frac{y_i}{\hat{p}_i} + \frac{1 - y_i}{1 - \hat{p}_i}.
 $$
 
 #### Step 2 — Chain rule through the sigmoid
 
 $$
-\\frac{\\partial \\hat{p}_i}{\\partial z_i}
-= \\hat{p}_i(1 - \\hat{p}_i).
+\frac{\partial \hat{p}_i}{\partial z_i}
+= \hat{p}_i(1 - \hat{p}_i).
 $$
 
 #### Step 3 — Combine them
 
 $$
-\\frac{\\partial \\ell_i}{\\partial z_i}
-= \\Bigl(-\\frac{y_i}{\\hat{p}_i} + \\frac{1-y_i}{1-\\hat{p}_i}\\Bigr)
-\\hat{p}_i(1-\\hat{p}_i)
-= \\hat{p}_i - y_i.
+\frac{\partial \ell_i}{\partial z_i}
+= \Bigl(-\frac{y_i}{\hat{p}_i} + \frac{1-y_i}{1-\hat{p}_i}\Bigr)
+\hat{p}_i(1-\hat{p}_i)
+= \hat{p}_i - y_i.
 $$
 
-#### Step 4 — Apply the chain rule to $\\boldsymbol{\\theta}$
+#### Step 4 — Apply the chain rule to $\boldsymbol{\theta}$
 
-Because $z_i = x_i^\\top \\boldsymbol{\\theta}$,
+Because $z_i = x_i^\top \boldsymbol{\theta}$,
 $$
-\\frac{\\partial z_i}{\\partial \\boldsymbol{\\theta}} = x_i.
+\frac{\partial z_i}{\partial \boldsymbol{\theta}} = x_i.
 $$
 
 Hence:
 $$
-\\nabla_{\\boldsymbol{\\theta}}\\ell_i = (\\hat{p}_i - y_i) x_i.
+\nabla_{\boldsymbol{\theta}}\ell_i = (\hat{p}_i - y_i) x_i.
 $$
 
 Averaging over all $n$ examples gives:
 $$
-\\nabla_{\\boldsymbol{\\theta}} J(\\boldsymbol{\\theta})
-= \\frac{1}{n}\\sum_{i=1}^{n} (\\hat{p}_i - y_i)x_i
-= \\frac{1}{n} X^\\top (\\hat{\\mathbf{p}} - \\mathbf{y}).
+\nabla_{\boldsymbol{\theta}} J(\boldsymbol{\theta})
+= \frac{1}{n}\sum_{i=1}^{n} (\hat{p}_i - y_i)x_i
+= \frac{1}{n} X^\top (\hat{\mathbf{p}} - \mathbf{y}).
 $$
 
 ---
@@ -1435,11 +1436,11 @@ $$
 
 | Step | Expression | Key Result |
 |------|-------------|------------|
-| Model | $\\hat{p}_i = \\sigma(x_i^\\top \\theta)$ | Sigmoid activation |
-| Loss | $\\ell_i = -y_i\\log \\hat{p}_i - (1-y_i)\\log(1-\\hat{p}_i)$ | Binary cross-entropy |
-| $\\partial \\ell_i / \\partial z_i$ | $\\hat{p}_i - y_i$ | Simplified gradient wrt $z_i$ |
-| Chain rule | $\\partial z_i / \\partial \\theta = x_i$ | Linear term |
-| **Final gradient** | $\\displaystyle \\nabla_\\theta J = \\frac{1}{n} X^\\top(\\hat{p}-y)$ | Used in gradient descent |
+| Model | $\hat{p}_i = \sigma(x_i^\top \theta)$ | Sigmoid activation |
+| Loss | $\ell_i = -y_i\log \hat{p}_i - (1-y_i)\log(1-\hat{p}_i)$ | Binary cross-entropy |
+| $\partial \ell_i / \partial z_i$ | $\hat{p}_i - y_i$ | Simplified gradient wrt $z_i$ |
+| Chain rule | $\partial z_i / \partial \theta = x_i$ | Linear term |
+| **Final gradient** | $\displaystyle \nabla_\theta J = \frac{1}{n} X^\top(\hat{p}-y)$ | Used in gradient descent |
 
 ---
 
@@ -1456,7 +1457,7 @@ grad = X.T @ (p - y) / len(y)
 
 This gradient drives the parameter updates in logistic regression training:
 $$
-\\boldsymbol{\\theta} \\leftarrow \\boldsymbol{\\theta} - \\alpha \\, \\nabla_\\theta J.
+\boldsymbol{\theta} \leftarrow \boldsymbol{\theta} - \alpha \, \nabla_\theta J.
 $$
 
 ---
