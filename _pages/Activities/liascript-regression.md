@@ -74,9 +74,9 @@ print("Environment ready.")
 **Ordinary Least Squares (OLS)**  
 Model $\hat{\mathbf{y}}=\tilde{X}\boldsymbol{\theta}$ with intercept included by $\tilde{X}=[\mathbf{1}\;X]$.
 
-MSE: $J(\theta)=\frac{1}{n}\|\tilde{X}\theta-\mathbf{y}\|_2^2$; $\nabla
+MSE: $J(\theta)=\frac{1}{n}\|\tilde{X}\theta-\mathbf{y}\|_2^2$; 
 
-J=\frac{2}{n}\tilde{X}^\top(\tilde{X}\theta-\mathbf{y})$.
+$\nabla J=\frac{2}{n}\tilde{X}^\top(\tilde{X}\theta-\mathbf{y})$.
  
 Normal equations: $\tilde{X}^\top\tilde{X}\theta=\tilde{X}^\top\mathbf{y}$. Prefer QR/SVD or `lstsq` numerically.
 
@@ -1262,37 +1262,38 @@ Then $\Pr(y_i=0\mid x_i;\boldsymbol{\theta}) = 1 - \hat{p}_i$.
 #### The Linear Score $z$: From Scalar to Matrix Form
 
 For a single data point:
+
 $$
-z_i = \\theta_0 + \\sum_{j=1}^{d} \\theta_j x_{ij}.
+z_i = \theta_0 + \sum_{j=1}^{d} \theta_j x_{ij}.
 $$
 
 We can express this compactly using vector notation:
 $$
-z_i = \\mathbf{x}_i^\\top \\boldsymbol{\\theta}.
+z_i = \mathbf{x}_i^\top \boldsymbol{\theta}.
 $$
 
 For all $n$ examples together, we define the **design matrix**:
 $$
 X =
-\\begin{bmatrix}
-1 & x_{11} & x_{12} & \\dots & x_{1d} \\\\
-1 & x_{21} & x_{22} & \\dots & x_{2d} \\\\
-\\vdots & \\vdots & \\vdots & \\ddots & \\vdots \\\\
-1 & x_{n1} & x_{n2} & \\dots & x_{nd}
-\\end{bmatrix},
-\\quad
-\\boldsymbol{\\theta} =
-\\begin{bmatrix}
-\\theta_0 \\\\
-\\theta_1 \\\\
-\\vdots \\\\
-\\theta_d
-\\end{bmatrix}.
+\begin{bmatrix}
+1 & x_{11} & x_{12} & \dots & x_{1d} \\\\
+1 & x_{21} & x_{22} & \dots & x_{2d} \\\\
+\vdots & \vdots & \vdots & \ddots & \vdots \\\\
+1 & x_{n1} & x_{n2} & \dots & x_{nd}
+\end{bmatrix},
+\quad
+\boldsymbol{\theta} =
+\begin{bmatrix}
+\theta_0 \\\\
+\theta_1 \\\\
+\vdots \\\\
+\theta_d
+\end{bmatrix}.
 $$
 
 Then:
 $$
-\\mathbf{z} = X\\boldsymbol{\\theta}.
+\mathbf{z} = X\boldsymbol{\theta}.
 $$
 
 In Python/NumPy:
@@ -1307,13 +1308,13 @@ p_hat = 1 / (1 + np.exp(-z))
 
 - $z_i$ is the **logit** or **log-odds** of the model’s prediction:
   $$
-  \\log \\frac{\\hat{p}_i}{1 - \\hat{p}_i} = z_i.
+  \log \frac{\hat{p}_i}{1 - \hat{p}_i} = z_i.
   $$
-- Large positive $z_i \\Rightarrow \\hat{p}_i \\approx 1$  
-  Large negative $z_i \\Rightarrow \\hat{p}_i \\approx 0$  
-  $z_i = 0 \\Rightarrow \\hat{p}_i = 0.5$
+- Large positive $z_i \Rightarrow \hat{p}_i \approx 1$  
+  Large negative $z_i \Rightarrow \hat{p}_i \approx 0$  
+  $z_i = 0 \Rightarrow \hat{p}_i = 0.5$
 
-Thus, the linear score $z = X\\theta$ acts as the bridge between the **linear model** and the **probabilistic output** via the sigmoid.
+Thus, the linear score $z = X\theta$ acts as the bridge between the **linear model** and the **probabilistic output** via the sigmoid.
 
 ---
 
