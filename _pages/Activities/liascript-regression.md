@@ -1,9 +1,16 @@
 # Linear and Logistic Regression 
 <!--
-author: Bill 
-version: 4.0
+author:   William M. Mongan
 language: en
-narrator: US English Female
+narrator: US English Male
+
+comment: Render with https://liascript.github.io/course/?https://github.com/BillJr99/Ursinus-CS477/blob/gh-pages/_pages/Activities/liascript-regression.md or locally if deployed via https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-regression.md
+
+import: https://raw.githubusercontent.com/liascript/CodeRunner/master/README.md
+
+link:   https://cdn.jsdelivr.net/gh/BillJr99/Ursinus-Boilerplate-Assets@main/css/liascript-custom.css?v=2025-08-23-4
+        https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap
+
 -->
 
 # Linear and Logistic Regression
@@ -13,6 +20,11 @@ narrator: US English Female
 
 
 
+---
+
+## Open Colab: Regression Tutorial
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/Linear_and_Logistic_Regression_Tutorial.ipynb)
 
 
 ---
@@ -53,7 +65,6 @@ plt.rcParams["axes.grid"] = True
 
 print("Environment ready.")
 ```
-
 
 ---
 
@@ -1248,6 +1259,64 @@ Then $\Pr(y_i=0\mid x_i;\boldsymbol{\theta}) = 1 - \hat{p}_i$.
 
 ---
 
+#### The Linear Score $z$: From Scalar to Matrix Form
+
+For a single data point:
+$$
+z_i = \\theta_0 + \\sum_{j=1}^{d} \\theta_j x_{ij}.
+$$
+
+We can express this compactly using vector notation:
+$$
+z_i = \\mathbf{x}_i^\\top \\boldsymbol{\\theta}.
+$$
+
+For all $n$ examples together, we define the **design matrix**:
+$$
+X =
+\\begin{bmatrix}
+1 & x_{11} & x_{12} & \\dots & x_{1d} \\\\
+1 & x_{21} & x_{22} & \\dots & x_{2d} \\\\
+\\vdots & \\vdots & \\vdots & \\ddots & \\vdots \\\\
+1 & x_{n1} & x_{n2} & \\dots & x_{nd}
+\\end{bmatrix},
+\\quad
+\\boldsymbol{\\theta} =
+\\begin{bmatrix}
+\\theta_0 \\\\
+\\theta_1 \\\\
+\\vdots \\\\
+\\theta_d
+\\end{bmatrix}.
+$$
+
+Then:
+$$
+\\mathbf{z} = X\\boldsymbol{\\theta}.
+$$
+
+In Python/NumPy:
+```python
+z = X @ theta  # @ means matrix multiplication
+p_hat = 1 / (1 + np.exp(-z))
+```
+
+---
+
+#### Interpretation of $z$
+
+- $z_i$ is the **logit** or **log-odds** of the model’s prediction:
+  $$
+  \\log \\frac{\\hat{p}_i}{1 - \\hat{p}_i} = z_i.
+  $$
+- Large positive $z_i \\Rightarrow \\hat{p}_i \\approx 1$  
+  Large negative $z_i \\Rightarrow \\hat{p}_i \\approx 0$  
+  $z_i = 0 \\Rightarrow \\hat{p}_i = 0.5$
+
+Thus, the linear score $z = X\\theta$ acts as the bridge between the **linear model** and the **probabilistic output** via the sigmoid.
+
+---
+
 ### Bernoulli Likelihood
 
 Assuming i.i.d. samples, the conditional likelihood of the labels $y_1,\dots,y_n$ given $X$ and $\boldsymbol{\theta}$ is
@@ -1310,6 +1379,88 @@ This form highlights the **margin** $\tilde{y}_i z_i$.
 ---
 
 ### Gradient (First Derivative)
+
+The logistic loss (binary cross-entropy) for one example is:
+$$
+\\ell_i = -y_i\\log \\hat{p}_i - (1-y_i)\\log(1-\\hat{p}_i),
+\\quad \\hat{p}_i = \\sigma(z_i) = \\frac{1}{1+e^{-z_i}}.
+$$
+
+#### Step 1 — Differentiate $\\ell_i$ with respect to $\\hat{p}_i$
+
+$$
+\\frac{\\partial \\ell_i}{\\partial \\hat{p}_i}
+= -\\frac{y_i}{\\hat{p}_i} + \\frac{1 - y_i}{1 - \\hat{p}_i}.
+$$
+
+#### Step 2 — Chain rule through the sigmoid
+
+$$
+\\frac{\\partial \\hat{p}_i}{\\partial z_i}
+= \\hat{p}_i(1 - \\hat{p}_i).
+$$
+
+#### Step 3 — Combine them
+
+$$
+\\frac{\\partial \\ell_i}{\\partial z_i}
+= \\Bigl(-\\frac{y_i}{\\hat{p}_i} + \\frac{1-y_i}{1-\\hat{p}_i}\\Bigr)
+\\hat{p}_i(1-\\hat{p}_i)
+= \\hat{p}_i - y_i.
+$$
+
+#### Step 4 — Apply the chain rule to $\\boldsymbol{\\theta}$
+
+Because $z_i = x_i^\\top \\boldsymbol{\\theta}$,
+$$
+\\frac{\\partial z_i}{\\partial \\boldsymbol{\\theta}} = x_i.
+$$
+
+Hence:
+$$
+\\nabla_{\\boldsymbol{\\theta}}\\ell_i = (\\hat{p}_i - y_i) x_i.
+$$
+
+Averaging over all $n$ examples gives:
+$$
+\\nabla_{\\boldsymbol{\\theta}} J(\\boldsymbol{\\theta})
+= \\frac{1}{n}\\sum_{i=1}^{n} (\\hat{p}_i - y_i)x_i
+= \\frac{1}{n} X^\\top (\\hat{\\mathbf{p}} - \\mathbf{y}).
+$$
+
+---
+
+#### Summary Table
+
+| Step | Expression | Key Result |
+|------|-------------|------------|
+| Model | $\\hat{p}_i = \\sigma(x_i^\\top \\theta)$ | Sigmoid activation |
+| Loss | $\\ell_i = -y_i\\log \\hat{p}_i - (1-y_i)\\log(1-\\hat{p}_i)$ | Binary cross-entropy |
+| $\\partial \\ell_i / \\partial z_i$ | $\\hat{p}_i - y_i$ | Simplified gradient wrt $z_i$ |
+| Chain rule | $\\partial z_i / \\partial \\theta = x_i$ | Linear term |
+| **Final gradient** | $\\displaystyle \\nabla_\\theta J = \\frac{1}{n} X^\\top(\\hat{p}-y)$ | Used in gradient descent |
+
+---
+
+#### Implementation Note
+
+In NumPy code:
+
+```python
+# X: (n, d+1), theta: (d+1,), y: (n,)
+z = X @ theta
+p = 1 / (1 + np.exp(-z))
+grad = X.T @ (p - y) / len(y)
+```
+
+This gradient drives the parameter updates in logistic regression training:
+$$
+\\boldsymbol{\\theta} \\leftarrow \\boldsymbol{\\theta} - \\alpha \\, \\nabla_\\theta J.
+$$
+
+---
+
+#### Recap
 
 Using $\partial \hat{p}_i / \partial z_i = \hat{p}_i(1-\hat{p}_i)$ and the chain rule:
 - For a single example,
