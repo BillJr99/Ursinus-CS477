@@ -635,6 +635,51 @@ $ \partial J/\partial θ₀ = \tfrac{2}{n} \sum (\hat y_i - y_i) $,
 
 $ \partial J/\partial θ₁ = \tfrac{2}{n} \sum (\hat y_i - y_i) x_i $.
 
+**Derivation:**
+
+Given: For $J(\theta)=\frac{1}{n}\sum_{i=1}^n (\theta_0+\theta_1 x_i - y_i)^2$, and $\hat y_i = \theta_0+\theta_1 x_i$.
+
+We can write the residual as $r_i := \hat y_i - y_i = \theta_0 + \theta_1 x_i - y_i$, so
+$$
+J(\theta) \;=\; \frac{1}{n}\sum_{i=1}^n r_i^2.
+$$
+
+**Derivative w.r.t. $\theta_0$** (chain rule; $\partial r_i/\partial \theta_0 = 1$):
+$$
+\frac{\partial J}{\partial \theta_0}
+= \frac{1}{n}\sum_{i=1}^n 2\,r_i \cdot \frac{\partial r_i}{\partial \theta_0}
+= \frac{2}{n}\sum_{i=1}^n r_i
+= \frac{2}{n}\sum_{i=1}^n (\hat y_i - y_i).
+$$
+
+**Derivative w.r.t. $\theta_1$** (chain rule; $\partial r_i/\partial \theta_1 = x_i$):
+$$
+\frac{\partial J}{\partial \theta_1}
+= \frac{1}{n}\sum_{i=1}^n 2\,r_i \cdot \frac{\partial r_i}{\partial \theta_1}
+= \frac{2}{n}\sum_{i=1}^n r_i\,x_i
+= \frac{2}{n}\sum_{i=1}^n (\hat y_i - y_i)\,x_i.
+$$
+
+Therefore,
+$$
+\frac{\partial J}{\partial \theta_0} = \tfrac{2}{n} \sum_{i=1}^n (\hat y_i - y_i),
+\qquad
+\frac{\partial J}{\partial \theta_1} = \tfrac{2}{n} \sum_{i=1}^n (\hat y_i - y_i)\,x_i.
+$$
+
+**Stacked gradient form**:
+$$
+\nabla J(\theta) \;=\; 
+\begin{bmatrix}
+\frac{\partial J}{\partial \theta_0}\\[2pt]
+\frac{\partial J}{\partial \theta_1}
+\end{bmatrix}
+= \frac{2}{n} \sum_{i=1}^n
+\begin{bmatrix}
+(\hat y_i - y_i)\\[2pt]
+(\hat y_i - y_i)\,x_i
+\end{bmatrix}.
+$$
 
 ---
 
