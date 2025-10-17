@@ -2314,10 +2314,10 @@ R^2=\frac{\text{SSR}}{\text{TSS}}=1-\frac{\text{RSS}}{\text{TSS}}.
 $$
 
 Notes:
-- The orthogonal decomposition \(\text{TSS}=\text{SSR}+\text{RSS}\) holds when the model includes an intercept (so residuals sum to zero).  
-- Degrees of freedom (full-rank OLS with \(k\) predictors + intercept): \(\operatorname{df}(\text{TSS})=n-1\), \(\operatorname{df}(\text{SSR})=k\), \(\operatorname{df}(\text{RSS})=n-k-1\).  
-- In matrix form with \(y\in\mathbb{R}^n\), hat matrix \(H=X(X^\top X)^{-1}X^\top\), and \(P_1=\frac{1}{n}\mathbf{1}\mathbf{1}^\top\):  
-  \(\text{TSS}=\|y-\bar y\mathbf{1}\|^2,\;\text{RSS}=\|(I-H)y\|^2,\;\text{SSR}=\|(H-P_1)y\|^2.\)
+- The orthogonal decomposition $\text{TSS}=\text{SSR}+\text{RSS}$ holds when the model includes an intercept (so residuals sum to zero).  
+- Degrees of freedom (full-rank OLS with $k$ predictors + intercept): $\operatorname{df}(\text{TSS})=n-1$, $\operatorname{df}(\text{SSR})=k$, $\operatorname{df}(\text{RSS})=n-k-1$.  
+- In matrix form with $y\in\mathbb{R}^n$, hat matrix $H=X(X^\top X)^{-1}X^\top$, and $P_1=\frac{1}{n}\mathbf{1}\mathbf{1}^\top$:  
+  $\text{TSS}=\|y-\bar y\mathbf{1}\|^2,\;\text{RSS}=\|(I-H)y\|^2,\;\text{SSR}=\|(H-P_1)y\|^2.$
 
 ---
 
