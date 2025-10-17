@@ -644,6 +644,8 @@ $$
 J(\theta) \;=\; \frac{1}{n}\sum_{i=1}^n r_i^2.
 $$
 
+**Recall** by the chain rule $\frac{\partial J}{\partial \theta_i} = \frac{\partial J}{\partial r} \cdot \frac{\partial r}{\partial \theta_i}$
+
 **Derivative w.r.t. $\theta_0$** (chain rule; $\partial r_i/\partial \theta_0 = 1$):
 $$
 \frac{\partial J}{\partial \theta_0}
