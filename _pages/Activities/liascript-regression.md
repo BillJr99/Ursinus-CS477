@@ -2284,28 +2284,42 @@ $ p(y=k|x) = \frac{\exp(θ_k^\top x)}{\sum_j \exp(θ_j^\top x)} $.
 4. **Feature subsets:** On the breast cancer dataset, try using only a subset of features. Does performance change significantly?
 
 
-
-
-
 ---
 
+## Regression Sums of Squares: TSS, RSS, SSR
 
+**Total Sum of Squares (TSS).** Baseline variability of the response around its mean:  
+$$
+\text{TSS}=\sum_{i=1}^n (y_i-\bar y)^2.
+$$
+
+**Residual Sum of Squares (RSS).** Unexplained variability left in the residuals:  
+$$
+\text{RSS}=\sum_{i=1}^n (y_i-\hat y_i)^2.
+$$
+
+**Regression (Explained) Sum of Squares (SSR).** Variation explained by the fitted model:  
+$$
+\text{SSR}=\sum_{i=1}^n (\hat y_i-\bar y)^2.
+$$
+
+**Decomposition (with an intercept):**  
+$$
+\text{TSS}=\text{SSR}+\text{RSS}.
+$$
+
+**Connection to $R^2$ (with an intercept):**  
+$$
+R^2=\frac{\text{SSR}}{\text{TSS}}=1-\frac{\text{RSS}}{\text{TSS}}.
+$$
+
+Notes:
+- The orthogonal decomposition \(\text{TSS}=\text{SSR}+\text{RSS}\) holds when the model includes an intercept (so residuals sum to zero).  
+- Degrees of freedom (full-rank OLS with \(k\) predictors + intercept): \(\operatorname{df}(\text{TSS})=n-1\), \(\operatorname{df}(\text{SSR})=k\), \(\operatorname{df}(\text{RSS})=n-k-1\).  
+- In matrix form with \(y\in\mathbb{R}^n\), hat matrix \(H=X(X^\top X)^{-1}X^\top\), and \(P_1=\frac{1}{n}\mathbf{1}\mathbf{1}^\top\):  
+  \(\text{TSS}=\|y-\bar y\mathbf{1}\|^2,\;\text{RSS}=\|(I-H)y\|^2,\;\text{SSR}=\|(H-P_1)y\|^2.\)
 
 ---
-
-## 15. Summary
-
-- **Linear regression** models a continuous response, typically optimized via MSE (closed form or gradient methods), and benefits from regularization and diagnostics.
-- **Logistic regression** models **probabilities** for classification, optimized via cross-entropy, and is evaluated using ROC/AUC, confusion matrices, and precision/recall/F1.
-- Both are **generalized linear models** with different link functions (identity vs. logit).
-
-
-
-
-
----
-
-
 
 ## Regression Evaluation: RMSE and Coefficient of Determination ($R^2$)
 
@@ -2332,6 +2346,20 @@ Notes:
 - $R^2\in(-\infty,1]$; $1$ is perfect fit; $0$ means no better than predicting $\bar y$; negative values indicate worse than the mean predictor.
 - For simple linear regression with an intercept, $R^2 = \big(\mathrm{corr}(y,\hat y)\big)^2$.
 - $R^2$ is not meaningful for probabilistic classification (logistic regression); use log-loss, ROC/AUC, PR, calibration instead.
+
+
+
+---
+
+## 15. Summary
+
+- **Linear regression** models a continuous response, typically optimized via MSE (closed form or gradient methods), and benefits from regularization and diagnostics.
+- **Logistic regression** models **probabilities** for classification, optimized via cross-entropy, and is evaluated using ROC/AUC, confusion matrices, and precision/recall/F1.
+- Both are **generalized linear models** with different link functions (identity vs. logit).
+
+
+
+
 
 
 
