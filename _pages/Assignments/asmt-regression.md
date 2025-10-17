@@ -145,13 +145,7 @@ J(\boldsymbol{\theta}) = -\frac{1}{n}\sum_i \left[y_i \log \hat{p}_i + (1 - y_i)
 \nabla J = \frac{1}{n}X^\top(\hat{\mathbf{p}} - \mathbf{y}),
 $$
 
-where 
-
-$$
-\hat{\mathbf{p}}
-$$ 
-
-is the vector of predicted probabilities. Ensure that you monitor convergence by tracking the loss function over iterations.  
+where <span>\\(\hat{\mathbf{p}}\\)</span> is the vector of predicted probabilities. Ensure that you monitor convergence by tracking the loss function over iterations.  
 
 For the **library implementation**, use `sklearn.linear_model.LogisticRegression`. Always **standardize or normalize** your features for logistic regression, as this improves numerical stability and ensures fair comparison of coefficient magnitudes. Incorporate a `Pipeline` to streamline preprocessing, including feature scaling and optional polynomial feature generation for nonlinear relationships. Allow users to toggle normalization and polynomial augmentation on or off. As with linear regression, include options to apply **Lasso (L1)** and **Ridge (L2)** regularization separately or together, and document the impact of each configuration.  
 
