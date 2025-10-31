@@ -37,19 +37,6 @@ For each algorithm we present **intuition**, **algorithm steps**, **full derivat
 
 **Example dataset (used throughout GMM):** Two overlapping 2D Gaussian blobs.
 
-ASCII sketch (elliptical contours):
-```
-   •••••••••             (cluster 2)
-  •        •
- •          •
-•            •         ••••••••
- •          •         •        •
-  •        •         •          •
-   ••••••••           •        •
-                      •••••••••
-   (cluster 1)
-```
-
 ---
 
 ## 2. Mathematical Formulation
@@ -73,6 +60,13 @@ N_k = \sum_{i=1}^n \gamma_{ik},\quad
 \Sigma_k \leftarrow \frac{1}{N_k}\sum_{i=1}^n \gamma_{ik}(x_i-\mu_k)(x_i-\mu_k)^\top.
 $$
 
+### Reader’s guide to the formulation (context)
+- **Mixture idea.** We model the overall density as a **weighted sum** of simpler densities (Gaussians). Each weight $\pi_k$ is how common component $k$ is.  
+- **What the normal pdf contributes.** $\mathcal{N}(x\mid \mu_k,\Sigma_k)$ is the **likelihood** of $x$ under bell $k$; elongated ellipses come from $\Sigma_k$.  
+- **Soft membership.** $\gamma_{ik}$ is the **probability** that $x_i$ came from component $k$, not a hard yes/no.  
+- **Sufficient statistics.** $N_k,\mu_k,\Sigma_k$ are exactly the weighted counts/means/covariances you would compute if labels were known; EM pretends they are known **in expectation**.  
+- **Why sums and normalization?** The denominator in $\gamma_{ik}$ ensures posterior probabilities across components sum to 1 for each point.  
+
 ---
 
 ## 3. Derivation (Likelihood $\to$ EM)
@@ -95,6 +89,13 @@ Each iteration increases the observed log-likelihood
 $$
 \log p(X\mid\Theta) = \sum_{i=1}^n \log\left(\sum_{k=1}^{K} \pi_k \mathcal{N}(x_i\mid\mu_k,\Sigma_k)\right).
 $$
+
+### Reader’s guide to the derivation (context)
+- **Why “complete-data”?** If we **knew** latent labels $z$, fitting each Gaussian would be trivial. EM takes the **expectation** over unknown $z$ instead.  
+- **$Q$-function purpose.** $Q$ is the **expected complete-data log-likelihood** under the current parameters. Maximizing it moves parameters in a direction that improves the true log-likelihood.  
+- **E-step intuition.** Compute soft labels $\gamma_{ik}$ via Bayes’ rule: prior $\pi_k$ times how well component $k$ explains $x_i$, renormalized.  
+- **M-step as weighted MLE.** Updating $\pi_k,\mu_k,\Sigma_k$ is exactly maximum likelihood for Gaussians where each point contributes a **fractional count** $\gamma_{ik}$.  
+- **Monotonic ascent.** EM guarantees $\log p(X\mid\Theta^{(t+1)})\ge \log p(X\mid\Theta^{(t)})$; in practice track it to diagnose convergence and singular covariances.
 
 ---
 
@@ -249,17 +250,6 @@ plt.show()
 **Intuition.** PCA finds orthogonal directions that capture maximal variance and projects data onto the top directions.  
 **Example dataset (PCA):** 3D correlated features collapsed to 2D for visualization.
 
-ASCII sketch (variance directions):
-```
-x2 ^
-   |        • • •
-   |     ••       •
-   |   •            •
-   |  •              •
-   | •                ••••  --> PC1 (long axis)
-   +------------------------> x1
-```
-
 ---
 
 ## 2. Mathematical Formulation
@@ -275,6 +265,13 @@ X_{\text{proj}} \;=\; X \, V_{[:,1:m]}.
 $$
 Explained variance ratio: $\lambda_j / \sum_i \lambda_i$.
 
+### Reader’s guide to the formulation (context)
+- **Centering matters.** Using $X$ **minus its column means** avoids spurious variance from offsets; otherwise PC1 might point toward the mean.  
+- **Covariance as energy map.** $\Sigma$ records **pairwise co-variation**; large off-diagonals indicate strong linear relationships.  
+- **Eigenpairs.** Eigenvectors in $V$ are directions; eigenvalues in $\Lambda$ quantify **how much variance** each direction carries.  
+- **Projection.** Multiplying by $V_{[:,1:m]}$ keeps only the top-$m$ variance axes, reducing dimension while preserving most energy.  
+- **Explained variance ratio.** The fraction $\lambda_j/\sum_i\lambda_i$ is a **budget** telling how much information each PC retains.
+
 ---
 
 ## 3. Derivation (Variance Maximization)
@@ -288,6 +285,13 @@ $$
 \Sigma v = \lambda v,
 $$
 so $v$ is an eigenvector of $\Sigma$ with eigenvalue $\lambda$. Subsequent PCs follow by orthogonality constraints.
+
+### Reader’s guide to the derivation (context)
+- **Optimization target.** We select the **direction** $v$ with maximum **spread** after projection; unit norm removes trivial scaling.  
+- **Lagrange multiplier role.** $\lambda$ enforces $\lVert v\rVert=1$ while we optimize; it becomes the eigenvalue at optimum.  
+- **Stationarity ⇒ eigenproblem.** Setting the gradient of $L$ to zero yields $\Sigma v=\lambda v$, revealing PCs as eigenvectors.  
+- **Orthogonality.** Constraining later components to be orthogonal to earlier ones prevents re-capturing the same variance.  
+- **SVD equivalence.** In practice we often compute via SVD of $X$; the right singular vectors equal $V$ for centered data.
 
 ---
 
@@ -392,13 +396,6 @@ plt.show()
 **Intuition.** K-Means partitions data into $K$ clusters by minimizing within-cluster squared distances.  
 **Example dataset:** Three compact 2D blobs.
 
-ASCII sketch (Voronoi-like regions):
-```
-    * * *        o o o o         + + +
-   *     *      o       o       +     +
-    * * *        o o o o         + + +
-```
-
 ---
 
 ## 2. Mathematical Formulation & Algorithm
@@ -415,6 +412,13 @@ $$
 
 Converges to a local optimum; sensitive to initialization (use **k-means++**).
 
+### Reader’s guide to the formulation (context)
+- **What are we minimizing?** The **total squared reconstruction error** if every point is approximated by its cluster center.  
+- **Two unknowns.** We jointly choose **labels** ($C_k$) and **centers** ($\mu_k$); the algorithm alternates because optimizing both at once is hard.  
+- **Geometry.** Squared Euclidean distance yields **linear decision boundaries** (Voronoi cells) between centers.  
+- **Assumptions.** Works best when clusters are **spherical**, similar size, and separable in Euclidean geometry.  
+- **Initialization.** k-means++ spreads initial centers to reduce bad local minima.
+
 ---
 
 ## 3. Derivation Explained (Line by Line, with Example)
@@ -426,6 +430,13 @@ Converges to a local optimum; sensitive to initialization (use **k-means++**).
 **Line 3 — Update step.** With fixed labels, the center that minimizes within-cluster SSE is the mean of cluster points.
 
 **Line 4 — Alternation.** Repeating 2–3 monotonically decreases the objective until convergence (local minimum).
+
+### Reader’s guide to the derivation (context)
+- **Assignment optimality.** Given fixed centers, the objective decouples by point; nearest-center labeling is optimal for squared distance.  
+- **Mean as minimizer.** Taking the derivative of $\sum\lVert x_i-\mu\rVert^2$ and setting to zero gives $\mu=\text{average}$.  
+- **Local vs global optimum.** Lloyd’s algorithm is **greedy**; multiple initializations help escape poor partitions.  
+- **Empty clusters.** If a center gets no points, reinitialize it (or keep the previous center); practical guardrails matter.  
+- **Complexity.** Each iteration is $O(nKd)$; mini-batch variants reduce cost for large $n$.
 
 ---
 
@@ -537,13 +548,6 @@ plt.show()
 **Intuition.** A **generator** $G(z)$ maps simple noise $z$ to realistic samples; a **discriminator** $D(x)$ distinguishes real vs generated. They co-train in a **minimax game**.  
 **Example dataset (GAN):** 1D standard normal target distribution.
 
-ASCII sketch (histograms overlap ideally):
-```
-Real:     ||||||||||||||||||||||
-Generated:   ||||||||||||||||||
-           <---- alignment ---->
-```
-
 ---
 
 ## 2. Mathematical Formulation
@@ -564,6 +568,13 @@ $$
 D^*(x) = \frac{p_{\text{data}}(x)}{p_{\text{data}}(x) + p_G(x)}.
 $$
 
+### Reader’s guide to the formulation (context)
+- **Two-player game.** $D$ is a classifier; $G$ is a generator whose outputs are judged by $D$. The objectives reflect opposing goals.  
+- **Why logs?** Using $\log$ turns products into sums and corresponds to **cross-entropy** classification, stabilizing gradients.  
+- **Non-saturating trick.** $\max_G \log D(G(z))$ avoids vanishing gradients when $D$ is initially strong.  
+- **Optimal $D$.** $D^*$ expresses the **posterior probability** of “real” vs “fake” under densities $p_{\text{data}}$ and $p_G$.  
+- **Goal.** When $p_G=p_{\text{data}}$, $D^*(x)=1/2$ everywhere — the equilibrium.
+
 ---
 
 ## 3. Derivation Explained (Line by Line, with Example)
@@ -575,6 +586,13 @@ $$
 **Line 3 — Non-saturating loss.** Replacing $\min_G \log(1-D(G(z)))$ with $\max_G \log D(G(z))$ maintains strong gradients when $D$ is competent early in training.
 
 **Line 4 — $D^*(x)$.** The Bayes-optimal discriminator returns the posterior of “real” vs “fake” given densities; when $p_G=p_{\text{data}}$, $D^*=1/2$ everywhere.
+
+### Reader’s guide to the derivation (context)
+- **Solving for $D$ given $G$.** For each $x$, maximize $\log D(x)$ for reals and $\log(1-D(x))$ for fakes; calculus yields $D^*(x)$.  
+- **Plug back to see the divergence.** Substituting $D^*$ into the objective shows the game minimizes a **Jensen–Shannon divergence** between $p_{\text{data}}$ and $p_G$ (at a high level).  
+- **Why alternating updates?** We cannot optimize both simultaneously easily; we **alternate** steps to track the moving target.  
+- **Pathologies.** Mode collapse occurs when $G$ discovers a few modes that fool $D$; remedies include architectural/regularization tweaks (e.g., WGAN-GP).  
+- **Evaluation.** In images, use FID or visual inspection; for 1D toy, compare histograms or empirical CDFs.
 
 ---
 
@@ -732,15 +750,7 @@ plt.show()
 
 ---
 
-# End
-
-This lecture rigorously interleaves code and explanations, adds prose after each derivation line, and ties every step back to concrete example datasets.
-
-
-
----
-
-# Real-World Case Studies: Datasets, Math ↔ Code Bridges
+# Case Studies: Datasets, Math ↔ Code Bridges
 
 > The following subsections add **real-world datasets** for each algorithm and explicitly tie the **math** back to the **implementation**. All examples adhere to the plotting policy (matplotlib only; one figure per chart; no explicit colors). Data loading prefers `sklearn.datasets` where possible to avoid brittle URLs.
 
