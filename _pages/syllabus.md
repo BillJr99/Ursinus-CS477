@@ -177,6 +177,7 @@ schedule:
   - week: "8"
     date: "1"
     title: "Unsupervised Learning: Clustering, Density Estimation, and Feature Discovery"
+    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-unsupervised.md"
   - week: "9"
     date: "0"
     title: "Perceptrons and Linear Separability with Model Evaluation"
