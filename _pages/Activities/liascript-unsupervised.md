@@ -752,8 +752,6 @@ plt.show()
 
 # Case Studies: Datasets, Math ↔ Code Bridges
 
-> The following subsections add **real-world datasets** for each algorithm and explicitly tie the **math** back to the **implementation**. All examples adhere to the plotting policy (matplotlib only; one figure per chart; no explicit colors). Data loading prefers `sklearn.datasets` where possible to avoid brittle URLs.
-
 ## GMM — Old Faithful Geyser (Eruptions vs Waiting)
 
 **Why this dataset?** Classic bimodal structure (short-waiting short-eruption vs long-waiting long-eruption). A natural fit for a 2-component Gaussian mixture.
@@ -1070,3 +1068,593 @@ plt.show()
 - **PCA:** center/scale $\to$ covariance/SVD $\to$ eigenpairs sorted $\to$ projection $\to$ EVR.  
 - **K-Means:** init $\mu_k$ $\to$ nearest-centroid labels $\to$ recompute means $\to$ repeat; track SSE.  
 - **GAN:** alternate $D/G$ $\to$ cross-entropy losses $\to$ sample/evaluate; watch for mode collapse and instabilities.
+
+---
+
+# Appendix — Computing Eigenvalues and Eigenvectors of a Matrix $X$
+
+> Scope: What eigenvalues/eigenvectors are, how to compute them **reliably**, how they relate to **PCA**, and which algorithms to use for **dense** vs **large/sparse** matrices. Examples are shown with NumPy/SciPy; adapt as needed.
+
+---
+
+## 1) Definitions & Basic Properties
+
+Let $X \in \mathbb{R}^{d \times d}$ (or $\mathbb{C}^{d \times d}$). A nonzero vector $v$ and scalar $\lambda$ satisfy
+$$
+Xv = \lambda v
+$$
+iff $\lambda$ is an **eigenvalue** of $X$ and $v$ is a corresponding **eigenvector**.
+
+- **Characteristic polynomial:** $\det(X-\lambda I)=0$ has roots $\{\lambda_i\}_{i=1}^d$.
+- **Eigen-decomposition (diagonalizable $X$):**
+  $$
+  X = V \Lambda V^{-1},\quad \Lambda = \mathrm{diag}(\lambda_1,\ldots,\lambda_d),\ V=[v_1\,\cdots\,v_d].
+  $$
+- **Symmetric/Hermitian case ($X=X^\top$ or $X=X^*$):**
+  - All eigenvalues are **real**.
+  - There exists an **orthonormal** eigenbasis: $X = Q \Lambda Q^\top$ (or $Q^*$).
+  - Numerically best-conditioned; use symmetry-aware solvers.
+
+---
+
+### Numerical Solution of Eigenvalues and Eigenvectors
+
+To **compute eigenvalues and eigenvectors numerically**, we solve the **eigenvalue problem**:
+$$
+Xv = \lambda v.
+$$
+This equation can be rewritten as
+$$
+(X - \lambda I)v = 0,
+$$
+which has a **nontrivial solution** only when
+$$
+\det(X - \lambda I) = 0.
+$$
+Solving this determinant equation gives the eigenvalues $\lambda_1, \lambda_2, \dots, \lambda_d$; substituting each eigenvalue back yields the corresponding eigenvector(s).
+
+---
+
+#### Step-by-Step Numerical Procedure
+
+1. **Form the characteristic equation**
+   $$
+   \det(X - \lambda I) = 0.
+   $$
+   This is a polynomial of degree $d$ in $\lambda$.  
+   - For a $2\times2$ matrix, the equation is quadratic.  
+   - For larger matrices, the polynomial is of higher order and is solved numerically.
+
+2. **Find eigenvalues numerically**
+   - For small matrices, one may expand the determinant explicitly and solve the polynomial.
+   - For large matrices, eigenvalues are computed using **iterative numerical methods** such as:
+     - **QR algorithm** (default in most libraries)
+     - **Jacobi method** (for symmetric matrices)
+     - **Power method** (for dominant eigenvalue)
+     - **Lanczos/Arnoldi** (for large sparse matrices)
+   These algorithms converge to the eigenvalues by successively refining approximate roots.
+
+3. **Solve for eigenvectors**
+   For each eigenvalue $\lambda_i$, substitute it into $(X - \lambda_i I)v_i = 0$ and solve the resulting homogeneous linear system for $v_i$.
+   - This is equivalent to finding the **null space** of $(X - \lambda_i I)$.
+   - Any nonzero scalar multiple of $v_i$ is also an eigenvector (they form a 1D eigenspace for simple eigenvalues).
+
+4. **Normalize eigenvectors**
+   Typically, each eigenvector is scaled to unit length:
+   $$
+   v_i \leftarrow \frac{v_i}{\|v_i\|}.
+   $$
+
+---
+
+#### Example 
+
+Given a $2\times2$ matrix
+$$
+X = \begin{bmatrix}
+4 & 2 \\
+1 & 3
+\end{bmatrix},
+$$
+we find its eigenvalues and eigenvectors as follows.
+
+1. **Characteristic equation:**
+   $$
+   \det(X - \lambda I)
+   = \begin{vmatrix}
+   4 - \lambda & 2 \\
+   1 & 3 - \lambda
+   \end{vmatrix}
+   = (4 - \lambda)(3 - \lambda) - 2(1)
+   = \lambda^2 - 7\lambda + 10.
+   $$
+   Set equal to zero:
+   $$
+   \lambda^2 - 7\lambda + 10 = 0.
+   $$
+
+2. **Solve for eigenvalues:**
+   $$
+   \lambda = \frac{7 \pm \sqrt{7^2 - 4(1)(10)}}{2}
+   = \frac{7 \pm \sqrt{9}}{2}
+   = \{5, 2\}.
+   $$
+
+3. **Find eigenvectors:**
+   - For $\lambda_1 = 5$,
+     $$
+     (X - 5I)v = 0
+     \Rightarrow
+     \begin{bmatrix}
+     -1 & 2 \\
+     1 & -2
+     \end{bmatrix}
+     \begin{bmatrix}
+     v_1 \\
+     v_2
+     \end{bmatrix}
+     = 0
+     \Rightarrow v_1 = 2v_2.
+     $$
+     One eigenvector is $v^{(1)} = \begin{bmatrix}2 \\ 1\end{bmatrix}$.
+
+   - For $\lambda_2 = 2$,
+     $$
+     (X - 2I)v = 0
+     \Rightarrow
+     \begin{bmatrix}
+     2 & 2 \\
+     1 & 1
+     \end{bmatrix}
+     \begin{bmatrix}
+     v_1 \\
+     v_2
+     \end{bmatrix}
+     = 0
+     \Rightarrow v_1 = -v_2.
+     $$
+     One eigenvector is $v^{(2)} = \begin{bmatrix}-1 \\ 1\end{bmatrix}$.
+
+4. **Normalize eigenvectors (optional):**
+   $$
+   \hat{v}^{(1)} = \frac{1}{\sqrt{5}}\begin{bmatrix}2 \\ 1\end{bmatrix}, \qquad
+   \hat{v}^{(2)} = \frac{1}{\sqrt{2}}\begin{bmatrix}-1 \\ 1\end{bmatrix}.
+   $$
+
+---
+
+#### Summary of Numerical Solution Philosophy
+
+- **Exact symbolic methods** (determinants, polynomials) are practical only for $d \leq 3$.
+- **For larger matrices**, direct polynomial roots are numerically unstable; modern software instead uses:
+  - **Orthogonal transformations** to upper-triangular (Schur form).
+  - **Iterative refinement** to extract eigenvalues/eigenvectors.
+- **Stability principle:** Algorithms (like QR) preserve orthogonality and minimize round-off errors.
+- **Verification:** Check residuals $\|Xv_i - \lambda_i v_i\|$ and orthogonality $v_i^\top v_j \approx 0$.
+
+---
+
+#### Key Takeaway
+
+Computing eigenvalues and eigenvectors numerically involves:
+1. Reformulating the eigenproblem as $(X - \lambda I)v=0$,
+2. Solving for $\lambda$ via stable iterative methods (e.g., QR algorithm),
+3. Solving for $v$ as null-space vectors for each $\lambda$,
+4. Normalizing and verifying results.
+
+The process transforms an **abstract algebraic condition** into a **numerically stable iterative solution** grounded in linear algebra and matrix factorization theory.
+
+---
+
+### Singular Value Decomposition (SVD): Theory, Numerical Example, and Code Implementation
+
+The **Singular Value Decomposition (SVD)** is one of the most fundamental tools in linear algebra and numerical analysis.  
+For any real matrix $ X \in \mathbb{R}^{m \times n} $, there exist orthogonal matrices $ U \in \mathbb{R}^{m \times m} $ and $ V \in \mathbb{R}^{n \times n} $, and a diagonal matrix $ \Sigma \in \mathbb{R}^{m \times n} $ such that
+
+$$
+X = U \Sigma V^\top.
+$$
+
+---
+
+#### Components of the Decomposition
+
+- $ U $: **Left singular vectors** — orthonormal eigenvectors of $ X X^\top $  
+- $ V $: **Right singular vectors** — orthonormal eigenvectors of $ X^\top X $  
+- $ \Sigma $: **Singular values** — nonnegative square roots of eigenvalues of $ X^\top X $ (or $ X X^\top $)
+
+$$
+\Sigma = \mathrm{diag}(\sigma_1, \sigma_2, \ldots, \sigma_r),
+\quad \text{where } \sigma_1 \ge \sigma_2 \ge \cdots \ge \sigma_r > 0,
+$$
+and $r = \mathrm{rank}(X)$.
+
+**Interpretation:**
+- Each $\sigma_i$ measures how much $X$ stretches the vector $v_i$ along direction $u_i$.
+- The SVD expresses $X$ as a **sum of rank-one matrices**:
+  $$
+  X = \sum_{i=1}^r \sigma_i u_i v_i^\top.
+  $$
+
+---
+
+#### Step-by-Step Numerical Example 
+
+Consider
+$$
+X = 
+\begin{bmatrix}
+3 & 1 \\
+1 & 3
+\end{bmatrix}.
+$$
+
+#### Step 1 — Compute $ X^\top X $ and $ X X^\top $
+
+$$
+X^\top X = 
+\begin{bmatrix}
+3 & 1 \\
+1 & 3
+\end{bmatrix}
+\begin{bmatrix}
+3 & 1 \\
+1 & 3
+\end{bmatrix}
+=
+\begin{bmatrix}
+10 & 6 \\
+6 & 10
+\end{bmatrix}.
+$$
+
+#### Step 2 — Eigenvalues and Right Singular Vectors
+
+Compute eigenvalues of $ X^\top X $:
+$$
+\det(X^\top X - \lambda I) = 
+\begin{vmatrix}
+10-\lambda & 6 \\
+6 & 10-\lambda
+\end{vmatrix}
+= (10-\lambda)^2 - 36 = 0.
+$$
+$$
+\lambda_1 = 16,\quad \lambda_2 = 4.
+$$
+The corresponding eigenvectors (right singular vectors $v_i$) are:
+$$
+v_1 = \frac{1}{\sqrt{2}}\begin{bmatrix}1 \\ 1\end{bmatrix}, \quad
+v_2 = \frac{1}{\sqrt{2}}\begin{bmatrix}1 \\ -1\end{bmatrix}.
+$$
+
+#### Step 3 — Singular Values
+
+$$
+\sigma_i = \sqrt{\lambda_i} \Rightarrow \sigma_1 = 4,\ \sigma_2 = 2.
+$$
+So
+$$
+\Sigma =
+\begin{bmatrix}
+4 & 0 \\
+0 & 2
+\end{bmatrix}.
+$$
+
+#### Step 4 — Left Singular Vectors
+
+Compute $ u_i = \frac{1}{\sigma_i} X v_i $.
+
+$$
+u_1 = \frac{1}{4} X v_1
+= \frac{1}{4}
+\begin{bmatrix}
+3 & 1 \\
+1 & 3
+\end{bmatrix}
+\frac{1}{\sqrt{2}}\begin{bmatrix}1 \\ 1\end{bmatrix}
+= \frac{1}{\sqrt{2}}\begin{bmatrix}1 \\ 1\end{bmatrix}.
+$$
+
+$$
+u_2 = \frac{1}{2} X v_2
+= \frac{1}{2}
+\begin{bmatrix}
+3 & 1 \\
+1 & 3
+\end{bmatrix}
+\frac{1}{\sqrt{2}}\begin{bmatrix}1 \\ -1\end{bmatrix}
+= \frac{1}{\sqrt{2}}\begin{bmatrix}1 \\ -1\end{bmatrix}.
+$$
+
+Hence,
+$$
+U = \frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1 & 1 \\
+1 & -1
+\end{bmatrix},\quad
+\Sigma =
+\begin{bmatrix}
+4 & 0 \\
+0 & 2
+\end{bmatrix},\quad
+V = \frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1 & 1 \\
+1 & -1
+\end{bmatrix}.
+$$
+
+**Verification:**
+$$
+X = U \Sigma V^\top =
+\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1 & 1 \\
+1 & -1
+\end{bmatrix}
+\begin{bmatrix}
+4 & 0 \\
+0 & 2
+\end{bmatrix}
+\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1 & 1 \\
+1 & -1
+\end{bmatrix}
+=
+\begin{bmatrix}
+3 & 1 \\
+1 & 3
+\end{bmatrix}.
+$$
+
+---
+
+#### Computing SVD from Scratch (Code Example)
+
+    import numpy as np
+
+    # Example matrix
+    X = np.array([[3., 1.],
+                  [1., 3.]])
+
+    # Step 1: Compute symmetric matrices
+    XtX = X.T @ X      # (n x n)
+    XXt = X @ X.T      # (m x m)
+
+    # Step 2: Eigen decomposition
+    eigvals_V, V = np.linalg.eigh(XtX)   # eigenvalues ascending
+    idx = np.argsort(eigvals_V)[::-1]    # sort descending
+    eigvals_V = eigvals_V[idx]
+    V = V[:, idx]
+
+    # Step 3: Singular values
+    S = np.sqrt(np.clip(eigvals_V, 0, None))
+
+    # Step 4: Left singular vectors
+    U = np.zeros_like(X)
+    for i in range(len(S)):
+        if S[i] > 1e-12:
+            U[:, i] = (X @ V[:, i]) / S[i]
+
+    # Step 5: Verification
+    Sigma = np.diag(S)
+    X_recon = U @ Sigma @ V.T
+
+    print("Singular values:", S)
+    print("Left singular vectors (U):\n", U)
+    print("Right singular vectors (V):\n", V)
+    print("Reconstruction:\n", X_recon)
+
+**Explanation (Code):**
+- Compute $ X^\top X $ and solve for its eigenpairs.
+- Take square roots of eigenvalues to get singular values.
+- Compute left singular vectors via normalization of $ Xv_i $.
+- Verify $ X = U \Sigma V^\top $ numerically.
+
+---
+
+#### Interpretation & Applications
+
+- **Dimensionality Reduction:** Keep only top $k$ singular values (Truncated SVD or PCA).
+- **Noise Reduction / Compression:** Lower singular values represent less significant structure.
+- **Pseudo-Inverse:** $ X^+ = V \Sigma^+ U^\top $.
+- **Condition Number:** $ \kappa(X) = \sigma_{\max}/\sigma_{\min} $.
+- **Latent Structure Discovery:** Used in Latent Semantic Analysis, recommender systems, and deep learning.
+
+---
+
+#### Key Takeaways
+
+| Concept | Symbol | Meaning |
+|----------|---------|----------|
+| Singular Values | $ \sigma_i $ | Strength of each independent “mode” of variation |
+| Left Singular Vectors | $ u_i $ | Basis in the output (row) space |
+| Right Singular Vectors | $ v_i $ | Basis in the input (column) space |
+| Orthogonality | $ U^\top U = I,\, V^\top V = I $ | Ensures numerical stability |
+| Reconstruction | $ X = U\Sigma V^\top $ | Exact (or rank-$k$ approximation) decomposition |
+
+---
+
+**Summary:**  
+SVD generalizes eigen-decomposition to **non-square** matrices, providing a numerically stable, orthogonal factorization that underpins PCA, low-rank approximation, and many machine learning algorithms.
+
+---
+
+## 2) PCA Connection (Why eigenpairs matter)
+
+For **centered** data matrix $Y \in \mathbb{R}^{n \times d}$, the sample covariance is
+$$
+\Sigma = \frac{1}{n-1}Y^\top Y.
+$$
+If $\Sigma v_j=\lambda_j v_j$ with $\lambda_1\ge\cdots\ge\lambda_d$, then $v_j$ is the $j$-th principal direction and $\lambda_j$ is the variance captured along $v_j$.
+- **Explained variance ratio:** $\mathrm{EVR}_j = \lambda_j / \sum_i \lambda_i$.
+- **SVD equivalence:** If $Y=U\Sigma_{\text{svd}}V^\top$, then $Y^\top Y = V \Sigma_{\text{svd}}^2 V^\top$, so $V$ are PCA directions and $\lambda_i=\sigma_i^2/(n-1)$.
+
+---
+
+## 3) Reliable Numerical Workflows
+
+### 3.1 Symmetric/Hermitian $X$ (preferred when applicable)
+Use a solver that exploits symmetry for stability and orthonormal eigenvectors.
+
+    import numpy as np
+
+    # Ensure symmetry numerically if X should be symmetric:
+    # X = 0.5 * (X + X.T)
+    evals, evecs = np.linalg.eigh(X)   # eigenvalues ascending; columns of evecs are eigenvectors
+    # Sort descending if desired:
+    idx = np.argsort(evals)[::-1]
+    evals = evals[idx]
+    evecs = evecs[:, idx]
+
+Why `eigh`? It is specialized for symmetric/Hermitian matrices, returning **real** eigenvalues and **orthonormal** eigenvectors with better numerical accuracy than general `eig`.
+
+### 3.2 General (possibly non-symmetric) $X$
+Use the general Schur/QR-based eigensolver.
+
+    import numpy as np
+
+    evals, evecs = np.linalg.eig(X)    # eigenvalues can be complex; evecs columns align with evals
+    # Optional: sort by magnitude or real part depending on application
+    idx = np.argsort(-np.abs(evals))
+    evals = evals[idx]
+    evecs = evecs[:, idx]
+
+Notes:
+- Real $X$ can have **complex** eigenpairs (e.g., rotations).
+- If $X$ is **defective** (not diagonalizable), you cannot form $V^{-1}XV=\Lambda$; numerical routines return Schur-factor data implicitly.
+
+### 3.3 PCA via SVD (most robust for data)
+Prefer SVD to avoid squaring the condition number when forming $Y^\top Y$.
+
+    import numpy as np
+
+    # Center columns
+    Yc = Y - Y.mean(axis=0, keepdims=True)
+
+    # Economy SVD if n >= d (or full_matrices=False to save work/memory)
+    U, S, Vt = np.linalg.svd(Yc, full_matrices=False)
+
+    # PCA directions and variances
+    V = Vt.T                                      # columns are principal directions
+    eigenvalues = (S**2) / (Yc.shape[0] - 1)      # variances per component
+    evr = eigenvalues / eigenvalues.sum()         # explained variance ratios
+
+    # Projection onto first m principal components
+    m = 2
+    Z = Yc @ V[:, :m]
+
+---
+
+## 4) Iterative Methods for Large/Sparse Problems
+
+When $d$ is large or $X$ is sparse, compute only a few extreme eigenpairs.
+
+### 4.1 Power Iteration (largest-magnitude eigenpair)
+Converges if the dominant eigenvalue is unique in magnitude and the start vector has a component in its direction.
+
+    import numpy as np
+
+    def power_iteration(X, iters=1000, tol=1e-9, seed=0):
+        rng = np.random.default_rng(seed)
+        v = rng.standard_normal(X.shape[1])
+        v /= np.linalg.norm(v)
+        lam_old = 0.0
+        for _ in range(iters):
+            w = X @ v
+            v = w / np.linalg.norm(w)
+            lam = v @ (X @ v)  # Rayleigh quotient
+            if abs(lam - lam_old) < tol * max(1.0, abs(lam_old)):
+                break
+            lam_old = lam
+        return lam, v
+
+To target eigenvalues near a shift $\mu$, apply power iteration to $(X-\mu I)^{-1}$ (requires solves).
+
+### 4.2 Lanczos / Arnoldi (multiple eigenpairs)
+Use library routines for efficiency and robustness (Krylov subspaces).
+
+    # Symmetric sparse case (SciPy):
+    from scipy.sparse.linalg import eigsh
+    k = 5  # number of largest eigenpairs
+    evals, evecs = eigsh(X, k=k, which='LM')  # 'LM' = largest magnitude
+
+For non-symmetric sparse matrices, use `scipy.sparse.linalg.eigs`.
+
+---
+
+## 5) Verification & Diagnostics
+
+- **Residual per pair:** $\|Xv - \lambda v\|_2$ should be small relative to $\|X\|_2\|v\|_2$.
+- **Orthogonality (symmetric case):** $evecs^\top evecs \approx I$.
+- **Reconstruction (diagonalizable case):** $\|X - V\Lambda V^{-1}\|$ small.
+- **Sensitivity:** Non-normal matrices can have highly sensitive eigenvalues; pseudospectra provide insight.
+
+---
+
+## 6) Common Pitfalls & Remedies
+
+- **PCA preprocessing:** Always **center**; **scale** if units differ greatly.
+- **Ill-conditioning:** Prefer **SVD** over eigendecomposing $Y^\top Y$.
+- **Complex pairs:** In real problems with rotations/shears, complex conjugate eigenpairs are expected.
+- **Defectiveness:** Do not force a full eigenbasis when the matrix is defective; analyze via Schur form instead.
+
+---
+
+## 7) Worked Mini-Examples
+
+### 7.1 Symmetric eigen-decomposition
+
+    import numpy as np
+
+    X = np.array([[2.0, 1.0, 0.0],
+                  [1.0, 2.0, 1.0],
+                  [0.0, 1.0, 2.0]])
+
+    evals, evecs = np.linalg.eigh(X)            # ascending
+    idx = np.argsort(evals)[::-1]               # descending
+    evals = evals[idx]; evecs = evecs[:, idx]
+
+    residuals = np.linalg.norm(X @ evecs - evecs * evals, axis=0)
+    orth_err = np.linalg.norm(evecs.T @ evecs - np.eye(evecs.shape[1]))
+
+    print("Eigenvalues (desc):", evals)
+    print("Residuals:", residuals)
+    print("Orthonormality error:", orth_err)
+
+### 7.2 PCA via SVD
+
+    import numpy as np
+
+    rng = np.random.default_rng(0)
+    n, d = 200, 3
+    Y = rng.normal(size=(n, d))
+    Yc = Y - Y.mean(axis=0, keepdims=True)
+
+    U, S, Vt = np.linalg.svd(Yc, full_matrices=False)
+    V = Vt.T
+    eigvals = (S**2) / (n - 1)
+    evr = eigvals / eigvals.sum()
+
+    print("Top-2 EVR:", evr[:2])
+    Z = Yc @ V[:, :2]  # 2D projection
+
+---
+
+## 8) Complexity (very rough orders)
+
+- **Dense full eigen or SVD:** $O(d^3)$ for $d\times d$ (eigen), or $O(nd^2)$ for SVD on $n\times d$ with $n \ge d$.
+- **Iterative top-$k$:** $O(k \cdot \text{mv-cost} \cdot \text{iters})$, where mv-cost is the cost of one matrix–vector multiply (excellent for sparse matrices).
+
+---
+
+## 9) Quick Checklists
+
+- **Eigen (symmetric):** verify symmetry → `eigh` → sort if needed → residual & orthogonality checks.
+- **Eigen (general):** `eig` → handle complex pairs → optional sorting criterion → residual checks.
+- **PCA (robust):** center (and often scale) → SVD → directions $V$, variances $S^2/(n-1)$ → project $YV_m$.
+- **Large/sparse:** `eigsh`/`eigs` or power/Lanczos/Arnoldi with shifts if targeting interior spectrum.
