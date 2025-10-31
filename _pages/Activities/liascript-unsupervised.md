@@ -1415,6 +1415,7 @@ $$
 
 #### Computing SVD from Scratch (Code Example)
 
+    ```python
     import numpy as np
 
     # Example matrix
@@ -1448,6 +1449,7 @@ $$
     print("Left singular vectors (U):\n", U)
     print("Right singular vectors (V):\n", V)
     print("Reconstruction:\n", X_recon)
+    ```
 
 **Explanation (Code):**
 - Compute $ X^\top X $ and solve for its eigenpairs.
@@ -1516,6 +1518,7 @@ Why `eigh`? It is specialized for symmetric/Hermitian matrices, returning **real
 ### 3.2 General (possibly non-symmetric) $X$
 Use the general Schur/QR-based eigensolver.
 
+    ```python
     import numpy as np
 
     evals, evecs = np.linalg.eig(X)    # eigenvalues can be complex; evecs columns align with evals
@@ -1523,6 +1526,7 @@ Use the general Schur/QR-based eigensolver.
     idx = np.argsort(-np.abs(evals))
     evals = evals[idx]
     evecs = evecs[:, idx]
+    ```
 
 Notes:
 - Real $X$ can have **complex** eigenpairs (e.g., rotations).
@@ -1530,7 +1534,8 @@ Notes:
 
 ### 3.3 PCA via SVD (most robust for data)
 Prefer SVD to avoid squaring the condition number when forming $Y^\top Y$.
-
+    
+    ```python
     import numpy as np
 
     # Center columns
@@ -1547,6 +1552,7 @@ Prefer SVD to avoid squaring the condition number when forming $Y^\top Y$.
     # Projection onto first m principal components
     m = 2
     Z = Yc @ V[:, :m]
+    ```
 
 ---
 
@@ -1557,6 +1563,7 @@ When $d$ is large or $X$ is sparse, compute only a few extreme eigenpairs.
 ### 4.1 Power Iteration (largest-magnitude eigenpair)
 Converges if the dominant eigenvalue is unique in magnitude and the start vector has a component in its direction.
 
+    ```python
     import numpy as np
 
     def power_iteration(X, iters=1000, tol=1e-9, seed=0):
@@ -1572,16 +1579,19 @@ Converges if the dominant eigenvalue is unique in magnitude and the start vector
                 break
             lam_old = lam
         return lam, v
+    ```
 
 To target eigenvalues near a shift $\mu$, apply power iteration to $(X-\mu I)^{-1}$ (requires solves).
 
 ### 4.2 Lanczos / Arnoldi (multiple eigenpairs)
 Use library routines for efficiency and robustness (Krylov subspaces).
 
+    ```python
     # Symmetric sparse case (SciPy):
     from scipy.sparse.linalg import eigsh
     k = 5  # number of largest eigenpairs
     evals, evecs = eigsh(X, k=k, which='LM')  # 'LM' = largest magnitude
+    ```
 
 For non-symmetric sparse matrices, use `scipy.sparse.linalg.eigs`.
 
@@ -1609,6 +1619,7 @@ For non-symmetric sparse matrices, use `scipy.sparse.linalg.eigs`.
 
 ### 7.1 Symmetric eigen-decomposition
 
+    ```python
     import numpy as np
 
     X = np.array([[2.0, 1.0, 0.0],
@@ -1625,9 +1636,11 @@ For non-symmetric sparse matrices, use `scipy.sparse.linalg.eigs`.
     print("Eigenvalues (desc):", evals)
     print("Residuals:", residuals)
     print("Orthonormality error:", orth_err)
-
+    ```
+    
 ### 7.2 PCA via SVD
-
+    
+    ```python
     import numpy as np
 
     rng = np.random.default_rng(0)
@@ -1642,7 +1655,8 @@ For non-symmetric sparse matrices, use `scipy.sparse.linalg.eigs`.
 
     print("Top-2 EVR:", evr[:2])
     Z = Yc @ V[:, :2]  # 2D projection
-
+    ```
+    
 ---
 
 ## 8) Complexity (very rough orders)
