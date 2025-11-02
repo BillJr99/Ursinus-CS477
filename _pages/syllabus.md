@@ -192,6 +192,7 @@ schedule:
   - week: "9"
     date: "1"
     title: "Dimensionality Reduction: Principal Component Analysis (PCA) and Latent Representations"
+    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-pca.md"
   - week: "10"
     date: "0"
     title: "Neural Networks: Multilayer Perceptrons and Backpropagation"
