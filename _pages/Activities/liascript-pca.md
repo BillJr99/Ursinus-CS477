@@ -32,15 +32,14 @@ Finally, we analyze the **Iris** dataset with a simple **linear regression One-v
 7. From PCA to **SVD** (and back)
 8. Choosing the Number of Components ($k$) & Whitening
 9. PCA as Low-Rank **Reconstruction** (Eckart–Young)
-10. PCA From Scratch — Code Walkthrough (Deep Dive)
-11. Sanity Check with scikit-learn
-12. Fisher's Separability: Why Large Eigenvalues Often Help
-13. Iris Classification Pipeline: Metrics & Validation (Deep Dive)
-14. Decision Regions & Intuition
-15. Practical Tips and Pitfalls
-16. Summary & Further Exercises
-17. Appendix A: Hand-Derivation Checklist
-18. Appendix B: Code Map (Notebook ↔ Slides)
+10. Numerical Worked Example of PCA and SVD
+11. PCA From Scratch — Code Walkthrough (Deep Dive)
+12. Sanity Check with scikit-learn
+13. Fisher's Separability: Why Large Eigenvalues Often Help
+14. Iris Classification Pipeline: Metrics & Validation (Deep Dive)
+15. Decision Regions & Intuition
+16. Practical Tips and Pitfalls
+17. Summary & Further Exercises
 
 ---
 
@@ -455,7 +454,260 @@ This captures the largest variance direction only, minimizing reconstruction err
 
 ---
 
-## 10. PCA From Scratch 
+## 10. Numerical Examples of PCA and SVD
+
+### 10.1 PCA by Hand — Step-by-Step Toy Example
+
+Let’s compute PCA **by hand** on a tiny dataset.
+
+#### Step 1. Define the data matrix
+
+We have three 2D samples:
+
+$$
+X =
+\begin{bmatrix}
+2 & 0 \\
+0 & 2 \\
+1 & 1
+\end{bmatrix}.
+$$
+
+#### Step 2. Center the data
+
+Compute the mean per column:
+$$
+\mu = (1, 1).
+$$
+
+Subtract from each row to center:
+$$
+\tilde{X} = X - \mathbf{1}\mu^T =
+\begin{bmatrix}
+1 & -1 \\
+-1 & 1 \\
+0 & 0
+\end{bmatrix}.
+$$
+
+#### Step 3. Compute the covariance matrix
+
+$$
+C = \frac{1}{n-1} \tilde{X}^T \tilde{X} =
+\frac{1}{2}
+\begin{bmatrix}
+2 & -2 \\
+-2 & 2
+\end{bmatrix} =
+\begin{bmatrix}
+1 & -1 \\
+-1 & 1
+\end{bmatrix}.
+$$
+
+#### Step 4. Find eigenvalues and eigenvectors
+
+Solve $|C - \lambda I| = 0$:
+
+$$
+\det
+\begin{bmatrix}
+1-\lambda & -1 \\
+-1 & 1-\lambda
+\end{bmatrix}
+= (1-\lambda)^2 - 1 = 0 \Rightarrow \lambda_1 = 2,\; \lambda_2 = 0.
+$$
+
+Eigenvectors:
+
+- For $\lambda_1 = 2$, $v_1 = (1, -1)$.
+- For $\lambda_2 = 0$, $v_2 = (1, 1)$.
+
+#### Step 5. Form the principal components
+
+Normalize eigenvectors to unit length and form $V = [v_1, v_2]$:
+
+$$
+V = \frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1 & 1 \\
+-1 & 1
+\end{bmatrix}.
+$$
+
+#### Step 6. Project data onto principal components
+
+$$
+Z = \tilde{X} V =
+\begin{bmatrix}
+1 & -1 \\
+-1 & 1 \\
+0 & 0
+\end{bmatrix}
+\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1 & 1 \\
+-1 & 1
+\end{bmatrix}
+=
+\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+2 & 0 \\
+-2 & 0 \\
+0 & 0
+\end{bmatrix}.
+$$
+
+The second column (PC2) is **zero variance**, meaning it can be **discarded** — PCA has reduced the dimensionality from 2D to 1D by **rotating the basis** to the eigenvectors.
+
+---
+
+### 10.2 Understanding Dimensionality Reduction via Change of Basis
+
+Originally, our features were aligned with the coordinate axes (x₁, x₂).  
+After PCA, we now represent data in the **eigenbasis**, where:
+
+- PC1 = direction of largest variance → (1, -1)
+- PC2 = direction of smallest variance → (1, 1)
+
+Since PC2 variance is zero, we can **drop that axis**, effectively collapsing 2D data into 1D without losing information about variance.
+
+This is the **essence of PCA** — finding a change of basis that compresses redundant dimensions.
+
+---
+
+### 10.3 SVD Step-by-Step on the Same Example
+
+Let’s compute the **SVD of the centered data matrix** $\tilde{X}$ from above.
+
+$$
+\tilde{X} =
+\begin{bmatrix}
+1 & -1 \\
+-1 & 1 \\
+0 & 0
+\end{bmatrix}.
+$$
+
+#### Step 1. Compute $\tilde{X}^T \tilde{X}$ and $\tilde{X}\tilde{X}^T$
+
+$$
+\tilde{X}^T\tilde{X} =
+\begin{bmatrix}
+2 & -2 \\
+-2 & 2
+\end{bmatrix}, \quad
+\tilde{X}\tilde{X}^T =
+\begin{bmatrix}
+2 & -2 & 0 \\
+-2 & 2 & 0 \\
+0 & 0 & 0
+\end{bmatrix}.
+$$
+
+Both have eigenvalues $\lambda_1 = 4, \lambda_2 = 0$.
+
+#### Step 2. Compute singular values
+
+$$
+\sigma_i = \sqrt{\lambda_i}.
+$$
+So $\Sigma = \mathrm{diag}(2, 0)$.
+
+#### Step 3. Compute V and U
+
+Right singular vectors $V$ are the eigenvectors of $\tilde{X}^T\tilde{X}$:
+
+$$
+V = \frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1 & 1 \\
+-1 & 1
+\end{bmatrix}.
+$$
+
+Left singular vectors $U$ are given by:
+
+$$
+U = \tilde{X} V \Sigma^{-1}.
+$$
+
+Using only the first component (since second singular value = 0):
+
+$$
+U_1 = \frac{1}{2} \tilde{X} v_1 = \frac{1}{2}
+\begin{bmatrix}
+1 & -1 \\
+-1 & 1 \\
+0 & 0
+\end{bmatrix}
+\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1 \\
+-1
+\end{bmatrix}
+= \frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1 \\
+-1 \\
+0
+\end{bmatrix}.
+$$
+
+#### Step 4. Verify reconstruction
+
+$$
+\tilde{X} = U \Sigma V^T =
+\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1 \\
+-1 \\
+0
+\end{bmatrix}
+[2, 0]
+\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1 & -1 \\
+1 & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & -1 \\
+-1 & 1 \\
+0 & 0
+\end{bmatrix}.
+$$
+
+Perfect reconstruction!
+
+---
+
+### 10.4 Connecting PCA and SVD (Geometric View)
+
+- The matrix $\tilde{X} = U\Sigma V^T$ represents **a rotation (V)**, **a scaling (Σ)**, and **another rotation (U)**.
+- PCA uses $C = \frac{1}{n-1}\tilde{X}^T\tilde{X} = V(\frac{\Sigma^2}{n-1})V^T$.
+- Hence, the columns of $V$ are PCA directions (principal axes).
+- The singular values encode the amount of variance — larger $\sigma_i^2$ = more important component.
+
+---
+
+### 10.5 Summary of the PCA vs SVD Connection
+
+| Concept | PCA | SVD |
+|----------|-----|-----|
+| Data matrix | $\tilde{X}$ | $\tilde{X}$ |
+| Covariance | $C = \frac{1}{n-1}\tilde{X}^T\tilde{X}$ | — |
+| Basis vectors | Eigenvectors of $C$ | Columns of $V$ |
+| Scaling | Eigenvalues ($\lambda_i$) | Singular values ($\sigma_i^2/(n-1)$) |
+| Reduction | Drop low-variance eigenvectors | Drop small singular values |
+
+In both methods, the **data is projected onto fewer orthogonal axes** that preserve most of the variance.  
+This is the mathematical foundation of **dimensionality reduction**.
+
+---
+
+
+## 11. PCA From Scratch 
 
 ```python
 def pca_from_scratch(X, n_components=None):
@@ -486,11 +738,11 @@ def pca_from_scratch(X, n_components=None):
 
 **Loadings:** The matrix `eigvecs` contains **loadings** — how each original feature contributes to a PC. Large magnitude $\Rightarrow$ stronger contribution.
 
-### 10.1 Sanity check block (2D toy)
+### 11.1 Sanity check block (2D toy)
 - Plot centered data, overlay PC axes (scaled by $\sqrt{\lambda}$).  
 - Histograms of $Z_{:,0}$ vs $Z_{:,1}$ to confirm PC1 variance $\gg$ PC2.
 
-### 10.2 Notes on numerical methods
+### 11.2 Notes on numerical methods
 
 - **Power iteration** finds top eigenvector by repeatedly applying $C$ to a vector and renormalizing.  
 - **Deflation** removes the found component to get the next.  
@@ -498,7 +750,7 @@ def pca_from_scratch(X, n_components=None):
 
 ---
 
-## 11. Sanity Check with scikit-learn
+## 12. Sanity Check with scikit-learn
 
 We use `sklearn.decomposition.PCA` and compare:
 
@@ -510,7 +762,7 @@ We use `sklearn.decomposition.PCA` and compare:
 
 ---
 
-## 12. Fisher's Separability: Why Large Eigenvalues Often Help
+## 13. Fisher's Separability: Why Large Eigenvalues Often Help
 
 **Binary Fisher score (for 1D projections):**
 $$
@@ -527,9 +779,9 @@ Projecting onto PC1 maximizes overall variance. If between-class variance is a *
 
 ---
 
-## 13. Iris Classification Pipeline: Metrics & Validation
+## 14. Iris Classification Pipeline: Metrics & Validation
 
-### 13.1 OVR Linear Regression — Concept, Math, and Code
+### 14.1 OVR Linear Regression — Concept, Math, and Code
 
 **OVR (One-vs-Rest) strategy:** Turn a $K$-class problem into $K$ binary regressions.  
 For class $k$, define a target $y^{(k)}\in\{0,1\}$ (1 if sample is class $k$). Fit linear regression:
@@ -576,7 +828,7 @@ $\min \|y-Xw\|^2+\alpha\|w\|^2$. Try `Ridge()` in place of `LinearRegression()`.
 
 ---
 
-### OVR Linear Regression Scores Intuition
+### 14.2 OVR Linear Regression Scores Intuition
 
 Each regression computes a **continuous score** for one class vs all others.  
 At prediction time, we choose the class whose regressor output is highest.
@@ -588,7 +840,7 @@ So, yes — each regression is trying to match a **one-hot** target vector, but 
 
 ---
 
-### 13.2 Pipelines — Scaling & PCA
+### 14.3 Pipelines — Scaling & PCA
 
 - **Baseline:** `StandardScaler → OVR Linear Regression`  
 - **With PCA:** `StandardScaler → PCA(2) → OVR Linear Regression`
@@ -597,7 +849,7 @@ So, yes — each regression is trying to match a **one-hot** target vector, but 
 
 **Why PCA here?** Reduce redundancy, potentially denoise, and visualize in 2D.
 
-### 13.3 Metrics — Definitions with Formulas
+### 14.4 Metrics — Definitions with Formulas
 
 - **Confusion Matrix** $[n_{ij}]$: true $i$, predicted $j$.
 - **Per-class Precision/Recall/F1:**
@@ -621,7 +873,7 @@ So, yes — each regression is trying to match a **one-hot** target vector, but 
 
 ---
 
-### 13.4 Macro vs Weighted Averaging
+### 14.5 Macro vs Weighted Averaging
 
 When we evaluate multiclass models, we compute metrics like **precision**, **recall**, and **F1** per class.  
 But how we **average** across those classes matters — a *lot*.
@@ -771,12 +1023,13 @@ while **macro F1** tracks average-class balance.
 
 ---
 
-### 13.5 No Data Leakage
+### 14.6 No Data Leakage
 
 **Data leakage** occurs when information from the test set influences the training process.  
 For PCA or scaling, leakage happens if we fit these transforms on *all* data before splitting.
 
 To prevent this:
+
 1. Split data into train/test first.
 2. Fit `StandardScaler` and `PCA` on **training data only**.
 3. Apply the fitted transformations to test data.
@@ -795,7 +1048,7 @@ This ensures test performance truly reflects generalization.
 
 ---
 
-## 14. Decision Regions & Intuition
+## 15. Decision Regions & Intuition
 
 Train in PCA(2) space and plot decision regions (color-coded).  
 **Simpler, smoother** regions suggest PCA found directions that align with class structure.  
@@ -803,7 +1056,7 @@ If boundaries are jagged or tangled, consider more PCs or supervised reductions 
 
 ---
 
-## 15. Practical Tips and Pitfalls
+## 16. Practical Tips and Pitfalls
 
 - **Scale then PCA.**
 - **Pick $k$** via EVR or validation; avoid over-compressing.
@@ -815,7 +1068,7 @@ If boundaries are jagged or tangled, consider more PCs or supervised reductions 
 
 ---
 
-## 16. Summary & Further Exercises
+## 17. Summary & Further Exercises
 
 **Summary:**
 
