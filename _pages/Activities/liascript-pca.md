@@ -122,6 +122,40 @@ You can already **see** the cloud lies along the line $x=y$ (variance only in th
 
 ---
 
+### 3.1 Additional Toy Example — Variance in Two Directions
+
+In the earlier toy example, variance existed primarily along one direction ($x = y$).  
+Let's now construct an example with **variance in two different directions**, to illustrate how PCA identifies both.
+
+**Toy data example:**
+
+$$
+\tilde{X} =
+\begin{bmatrix}
+2 & 0 \\
+0 & 2 \\
+1 & 1 \\
+-1 & -1 \\
+-2 & 0 \\
+0 & -2
+\end{bmatrix}
+$$
+
+The covariance matrix is:
+
+$$
+C = \frac{1}{n-1}\tilde{X}^T \tilde{X} =
+\begin{bmatrix}
+2.8 & 1.2 \\
+1.2 & 2.8
+\end{bmatrix}.
+$$
+
+You can see that both directions have substantial variance, but not equally.  
+PCA will find that the first principal component lies roughly along $(1, 1)$, and the second along $(1, -1)$.
+
+---
+
 ## 4. Variance, Directions, and the Rayleigh Quotient
 
 For a unit direction $w$ (think of it as an arrow of length 1), the **projected data** is $z = \tilde{X}w$ (a 1D number per sample).  
@@ -139,6 +173,29 @@ We want the $w$ that **maximizes** this value — the direction of **maximum var
 **Key theorem (informal):** For symmetric $C$, the Rayleigh quotient is maximized by the **top eigenvector** of $C$, and the maximum equals the **top eigenvalue**.
 
 **Why this matters:** It links “find the most variable direction” to **eigenvectors**/**eigenvalues**.
+
+---
+
+### 4.1 Understanding $w$ in $z = Xw$
+
+The vector **$w$** represents the **direction** in feature space onto which the data is projected.  
+It defines how to linearly combine the original features to get a 1D representation $z$.  
+In other words, $w$ is a unit-length arrow telling PCA *which way to look* to capture the most variance.
+
+For instance, if $w = (0.7, 0.7)$, then the projection $z = 0.7x_1 + 0.7x_2$ combines both coordinates equally — a projection along the diagonal direction.
+
+---
+
+### 4.2 Why Maximizing the Rayleigh Quotient Finds Maximum Variance
+
+We have the Rayleigh quotient $R(w) = \frac{w^T C w}{w^T w}$.  
+Maximizing it gives the direction of maximum variance because:
+
+- The numerator $w^T C w$ measures variance of the projection onto $w$.
+- The denominator normalizes by the length of $w$.
+
+The stationary points satisfy $\nabla_w R(w) = 0$, which leads to $Cw = \lambda w$.  
+Thus, eigenvectors of $C$ correspond to stationary directions, and the one with **largest eigenvalue** corresponds to the **maximum** variance direction.
 
 ---
 
@@ -174,6 +231,59 @@ Here, total variance $\sum\lambda_j=2$, so EVR$_1=1$, EVR$_2=0$. PC1 explains **
 
 ---
 
+### 5.1 Interpreting PC1 = (1,1) and PC2 = (1,-1)
+
+From the earlier covariance matrix example:
+
+$$
+C =
+\begin{bmatrix}
+1 & 1 \\
+1 & 1
+\end{bmatrix}
+$$
+
+PC1 = $(1, 1)$ means both coordinates increase together — movement along the diagonal.  
+PC2 = $(1, -1)$ means one coordinate increases while the other decreases — movement along the anti-diagonal.  
+
+This matches intuition: all points lie roughly along $x = y$, so variance is large there (PC1), and minimal along $x = -y$ (PC2).
+
+---
+
+### 5.2 Recomputing PCA on the Second Toy Example
+
+Using our 6-point dataset:
+
+$$
+\tilde{X} =
+\begin{bmatrix}
+2 & 0 \\
+0 & 2 \\
+1 & 1 \\
+-1 & -1 \\
+-2 & 0 \\
+0 & -2
+\end{bmatrix},
+$$
+
+Compute $C$, eigenvalues, and eigenvectors:
+
+$$
+C =
+\begin{bmatrix}
+2.8 & 1.2 \\
+1.2 & 2.8
+\end{bmatrix}
+\Rightarrow
+\lambda_1 = 4.0, \lambda_2 = 1.6,\
+v_1 = (1, 1)/\sqrt{2},\ v_2 = (1, -1)/\sqrt{2}.
+$$
+
+PC1 captures the direction with larger variance (diagonal), PC2 captures the smaller (anti-diagonal).  
+Thus, PCA "rotates" the axes to align with these natural data spreads.
+
+---
+
 ## 6. Deriving PCA with Lagrange Multipliers
 
 We want to maximize $w^\top C w$ subject to $\|w\|=1$.  
@@ -188,6 +298,30 @@ $$
 So $w$ must be an **eigenvector** of $C$. The **largest** eigenvalue gives PC1; successive PCs are the next eigenvectors under orthogonality constraints (**Rayleigh–Ritz**).
 
 **Intuition:** Subject to unit length, the best “aiming direction” is an axis of the covariance ellipsoid; the **longest** axis maximizes variance.
+
+---
+
+### 6.1 Detailed Lagrangian Explanation
+
+The Lagrangian is used to **maximize** $w^T C w$ under the constraint $w^T w = 1$.  
+We construct:
+
+$$
+\mathcal{L}(w, \alpha) = w^T C w - \alpha (w^T w - 1).
+$$
+
+The constraint ensures $w$ has unit length — without it, the solution would blow up to infinity.
+
+Setting the gradient to zero gives:
+
+$$
+\nabla_w \mathcal{L} = 2Cw - 2\alpha w = 0 \Rightarrow Cw = \alpha w.
+$$
+
+Hence, **stationary points** (solutions) are eigenvectors of $C$.  
+The **constraint** ensures we only consider unit-length vectors, keeping $w$ on the surface of a sphere.
+
+The Lagrange multiplier $\alpha$ becomes the eigenvalue — representing the amount of variance along that direction.
 
 ---
 
@@ -219,6 +353,42 @@ Thus:
 
 ---
 
+### 7.1 Why SVD Explains Covariance
+
+Given $\tilde{X} = U\Sigma V^T$, we compute covariance:
+
+$$
+C = \frac{1}{n-1}\tilde{X}^T\tilde{X} = V \frac{\Sigma^2}{n-1} V^T.
+$$
+
+This shows that the right singular vectors $V$ are eigenvectors of $C$, and $\sigma_i^2/(n-1)$ are the eigenvalues.  
+Thus, **SVD naturally performs PCA** — it decomposes data into orthogonal directions of decreasing variance.
+
+**Example:**
+
+$$
+\tilde{X} = \begin{bmatrix} 2 & 0 \\ 0 & 1 \end{bmatrix} \Rightarrow
+U, \Sigma, V^T = U \begin{bmatrix}2 & 0 \\ 0 & 1\end{bmatrix} V^T.
+$$
+
+Then $C = V \begin{bmatrix}4 & 0 \\ 0 & 1\end{bmatrix} V^T$. The same eigen-decomposition form appears!
+
+---
+
+### 7.2 Equivalence: PCA via Eigen, Lagrangian, and SVD
+
+All three formulations yield the same PCs:
+
+| Method | Equation | Output |
+|--------|-----------|--------|
+| **Eigen-decomposition** | $C v = \lambda v$ | $v = $ eigenvectors of $C$ |
+| **Lagrangian** | $Cw = \alpha w$ | $w = v$, $\alpha = \lambda$ |
+| **SVD** | $\tilde{X} = U \Sigma V^T$ | $V$ = eigenvectors, $\Sigma^2/(n-1)$ = eigenvalues |
+
+Thus, PCA by eigen-decomposition, Lagrange multipliers, or SVD are *mathematically identical* — only the computational path differs.
+
+---
+
 ## 8. Choosing the Number of Components ($k$) & Whitening
 
 **Choosing $k$**
@@ -230,6 +400,25 @@ Thus:
 **Whitening:**
 After $Z=\tilde{X}V_k$, set $Z_\text{white}=Z\Lambda_k^{-1/2}$. Now $\operatorname{Cov}(Z_\text{white})\approx I$.  
 **Pros**: decorrelated, unit variance features. **Cons**: can amplify noise when $\lambda_k$ is tiny.
+
+---
+
+### 8.1 Whitening and Scree Plot Deep Dive
+
+**Whitening** makes features uncorrelated and with unit variance by scaling PCs:
+
+$$
+Z_{\text{white}} = Z \Lambda^{-1/2}.
+$$
+
+- Covariance of whitened features ≈ identity.
+- Useful for algorithms assuming spherical distributions (e.g., ICA).
+
+**Example:**
+If eigenvalues $[4, 1]$, then dividing by their square roots scales the axes so both have unit variance.
+
+**Scree Plot:** plot eigenvalues vs component index.  
+Look for the “elbow” — where added components provide diminishing returns.
 
 ---
 
@@ -246,6 +435,23 @@ $$
 **Connection to “explained variance”:**  
 The squared Frobenius norm $\|\tilde{X}\|_F^2=\sum_i \sigma_i^2 = (n-1)\sum_j\lambda_j$.  
 Keeping top $k$ singular values preserves the largest share of energy/variance.
+
+---
+
+### 9.1 Eckart–Young Theorem Detailed
+
+The theorem states: among all rank-$k$ matrices, $\hat{X} = U_k\Sigma_k V_k^T$ best approximates $\tilde{X}$ in Frobenius norm.
+
+**Example:**
+
+Let
+$$
+\tilde{X} = U\Sigma V^T,\ \Sigma = \text{diag}(5, 2, 1).
+$$
+Rank-1 approximation uses $U_1\Sigma_1 V_1^T = 5 u_1 v_1^T$.  
+This captures the largest variance direction only, minimizing reconstruction error.
+
+**Intuition:** PCA truncates small singular values, keeping dominant structure and discarding noise.
 
 ---
 
@@ -368,6 +574,20 @@ class OVRLinearRegression:
 **Regularization (optional):** Ridge regression often improves stability:
 $\min \|y-Xw\|^2+\alpha\|w\|^2$. Try `Ridge()` in place of `LinearRegression()`.
 
+---
+
+### OVR Linear Regression Scores Intuition
+
+Each regression computes a **continuous score** for one class vs all others.  
+At prediction time, we choose the class whose regressor output is highest.
+
+This means we are effectively computing **K regression models**, each outputting a scalar value.  
+The prediction rule $\arg\max_k s_k(x)$ selects the regression whose line best “fits” the input as belonging to class $k$.
+
+So, yes — each regression is trying to match a **one-hot** target vector, but the continuous output tells us *how close* the sample is to belonging to that class.
+
+---
+
 ### 13.2 Pipelines — Scaling & PCA
 
 - **Baseline:** `StandardScaler → OVR Linear Regression`  
@@ -401,14 +621,14 @@ $\min \|y-Xw\|^2+\alpha\|w\|^2$. Try `Ridge()` in place of `LinearRegression()`.
 
 ---
 
-## 13.3.1 Macro vs Weighted Averaging — Deep Dive
+### 13.4 Macro vs Weighted Averaging
 
 When we evaluate multiclass models, we compute metrics like **precision**, **recall**, and **F1** per class.  
 But how we **average** across those classes matters — a *lot*.
 
 ---
 
-### Why averaging matters
+#### Why averaging matters
 
 Imagine a dataset with **class imbalance**:
 
@@ -425,7 +645,7 @@ That’s where **macro** and **weighted** averaging come in.
 
 ---
 
-### Macro Average (Unweighted)
+#### Macro Average (Unweighted)
 
 **Definition:**
 Each class contributes **equally**, regardless of its frequency.
@@ -445,7 +665,7 @@ No May underrepresent dominant classes if you truly care about aggregate perform
 
 ---
 
-### Weighted Average (Support-Weighted)
+#### Weighted Average (Support-Weighted)
 
 **Definition:**
 Each class’s contribution is proportional to its **support** (number of true samples $n_k$):
@@ -464,7 +684,7 @@ No Can mask poor performance on rare classes.
 
 ---
 
-### Intuition Summary
+#### Intuition Summary
 
 | Metric Type | Weights by | Emphasizes | Good for |
 |--------------|-------------|-------------|-----------|
@@ -473,7 +693,7 @@ No Can mask poor performance on rare classes.
 
 ---
 
-### Quick Example
+#### Quick Example
 
 | Class | Support ($n_k$) | F1$_k$ |
 |--------|------------------|--------|
@@ -497,7 +717,7 @@ $$
 
 ---
 
-### Code Snippet: Computing Macro vs Weighted
+#### Code Snippet: Computing Macro vs Weighted
 
 ```python
 from sklearn.metrics import precision_recall_fscore_support
@@ -509,7 +729,7 @@ weighted_f1 = (f1 * support).sum() / support.sum()  # Weighted
 print(f"Macro F1: {macro_f1:.3f}, Weighted F1: {weighted_f1:.3f}")
 ```
 
-### Practical Guidelines
+#### Practical Guidelines
 
 | **Situation** | **Use Macro** | **Use Weighted** |
 |----------------|---------------|------------------|
@@ -520,7 +740,7 @@ print(f"Macro F1: {macro_f1:.3f}, Weighted F1: {weighted_f1:.3f}")
 
 ---
 
-### Visual Comparison
+#### Visual Comparison
 
 Plot F1$_k$ for each class, plus macro and weighted averages:
 
@@ -542,15 +762,30 @@ while **macro F1** tracks average-class balance.
 
 ---
 
-### Key Takeaways
+#### Key Takeaways
 
 - **Macro average** = “How good am I *on average* across classes?”  
 - **Weighted average** = “How good am I *overall*, considering class frequency?”  
 - Always report **both** when datasets are **imbalanced**.  
 - Combine with the **confusion matrix** for detailed class-level insight.  
 
+---
 
-### 13.4 Stratified K-Fold Cross-Validation — No Leakage
+### 13.5 No Data Leakage
+
+**Data leakage** occurs when information from the test set influences the training process.  
+For PCA or scaling, leakage happens if we fit these transforms on *all* data before splitting.
+
+To prevent this:
+1. Split data into train/test first.
+2. Fit `StandardScaler` and `PCA` on **training data only**.
+3. Apply the fitted transformations to test data.
+
+This ensures test performance truly reflects generalization.
+
+---
+
+#### Stratified K-Fold Cross-Validation — No Leakage
 
 - **StratifiedKFold** preserves class ratios in each fold.  
 - Fit `StandardScaler` and `PCA` **inside** each fold on the **training** split only.  
@@ -601,3 +836,6 @@ If boundaries are jagged or tangled, consider more PCs or supervised reductions 
 5. Explore **whitening** and observe effects on classifiers.
 6. Compute **loadings** and interpret which original features dominate PC1/PC2.
 7. Implement **power iteration** to approximate PC1 and compare to SVD results.
+
+---
+
