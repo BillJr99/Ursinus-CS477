@@ -14,12 +14,10 @@ link:   https://cdn.jsdelivr.net/gh/BillJr99/Ursinus-Boilerplate-Assets@main/css
 
 -->
 
-## About this course 
+## Dimensionality Reduction
 We start with the intuition, then the derivation of, **Principal Component Analysis (PCA)**, step-by-step from first principles using only geometry and averages.  
 We connect PCA to **eigendecomposition** and then to the **Singular Value Decomposition (SVD)** — all explained for learners without a linear algebra background.  
 Finally, we analyze the **Iris** dataset with a simple **linear regression One-vs-Rest** classifier and show how PCA helps with metrics and visualization, and how **Fisher's separability score** relates to PCA eigenvalues.
-
-> This expanded edition adds: detailed geometric intuition, worked numeric examples, step-by-step derivations (Rayleigh quotient & Lagrange multipliers), the PCA–SVD connection with proofs, whitening, choosing $k$, **least-squares reconstruction view (Eckart–Young)**, and **deeper evaluation** (macro vs weighted F1, Precision/Recall, ROC AUC (OvR), confusion matrices, and **stratified k-fold** CV). It also explains each notebook code block line-by-line and expands on **OVR linear regression**.
 
 ---
 
@@ -58,6 +56,7 @@ Finally, we analyze the **Iris** dataset with a simple **linear regression One-v
 **Goal of PCA:** Find a small number of **new** features (called **principal components**) that capture most of the useful variation in the data.
 
 **Key properties:**
+
 - Components are **uncorrelated** (orthogonal directions).
 - Ordered by **explained variance**: PC1 captures the most, then PC2, etc.
 - Works **without labels** (unsupervised).
@@ -68,7 +67,7 @@ Finally, we analyze the **Iris** dataset with a simple **linear regression One-v
 
 ---
 
-## 2. Data as Points in Space (No Linear Algebra Required)
+## 2. Data as Points in Space 
 
 Imagine each example is a point with $d$ coordinates (one per feature).  
 For 2 features $(x_1, x_2)$ you can draw points on a 2D plane. For 4 features, it’s like a 4D "cloud", but we reason with the same ideas.
@@ -157,6 +156,7 @@ $$
 =(1-\lambda)^2-1=0
 \Rightarrow \lambda\in\{0,2\}.
 $$
+
 - For $\lambda=2$, $(C-2I)v=0 \Rightarrow v\propto (1,1)$ (PC1).
 - For $\lambda=0$, $v\propto (1,-1)$ (PC2).
 
@@ -167,13 +167,14 @@ $$
 Here, total variance $\sum\lambda_j=2$, so EVR$_1=1$, EVR$_2=0$. PC1 explains **all** variance.
 
 **Why eigenvectors/eigenvalues correspond to meaningful features:**  
+
 - Eigenvectors are **linear combinations** of original features that reveal **independent axes of variation**.  
 - Eigenvalues measure **how much** variation lies along each axis. Large $\lambda$ = “lots of structure/info” along that axis.  
 - In noisy, redundant data, top eigenvectors emphasize **shared, stable structure** and deemphasize random noise (often present in low-variance directions).
 
 ---
 
-## 6. Deriving PCA with Gentle Lagrange Multipliers
+## 6. Deriving PCA with Lagrange Multipliers
 
 We want to maximize $w^\top C w$ subject to $\|w\|=1$.  
 Set
@@ -205,10 +206,12 @@ C=\tfrac{1}{n-1}\tilde{X}^\top\tilde{X}
 $$
 
 Thus:
+
 - **Principal directions** = columns of **$V$** (right singular vectors).
 - **Eigenvalues** $\lambda_k=\sigma_k^2/(n-1)$.
 
 **Why SVD is preferred in practice:**
+
 - Numerically stable; handles rank deficiency.
 - Efficient when $n\ll d$ or $d\ll n$.
 
@@ -219,6 +222,7 @@ Thus:
 ## 8. Choosing the Number of Components ($k$) & Whitening
 
 **Choosing $k$**
+
 - **Scree plot**: look for elbow in $\lambda_k$ vs $k$.
 - **EVR threshold**: smallest $k$ with $\sum_{j=1}^k \lambda_j / \sum_{j} \lambda_j \ge \tau$ (e.g., 0.95).
 - **Validation-based**: pick $k$ maximizing downstream performance (e.g., macro F1).
@@ -245,11 +249,7 @@ Keeping top $k$ singular values preserves the largest share of energy/variance.
 
 ---
 
-## 10. PCA From Scratch — Code Walkthrough (Deep Dive)
-
-Below we reprint and **explain** the essential code from the notebook, with added commentary.
-
-### 10.1 Helper: `pca_from_scratch`
+## 10. PCA From Scratch 
 
 ```python
 def pca_from_scratch(X, n_components=None):
@@ -272,6 +272,7 @@ def pca_from_scratch(X, n_components=None):
 ```
 
 **Key details:**
+
 - `eigh` exploits symmetry; **guarantees real** eigenpairs.  
 - Sorting ensures components are ordered by **importance**.  
 - `Z` are the **scores** — coordinates in PC space.  
@@ -279,11 +280,12 @@ def pca_from_scratch(X, n_components=None):
 
 **Loadings:** The matrix `eigvecs` contains **loadings** — how each original feature contributes to a PC. Large magnitude $\Rightarrow$ stronger contribution.
 
-### 10.2 Sanity check block (2D toy)
+### 10.1 Sanity check block (2D toy)
 - Plot centered data, overlay PC axes (scaled by $\sqrt{\lambda}$).  
 - Histograms of $Z_{:,0}$ vs $Z_{:,1}$ to confirm PC1 variance $\gg$ PC2.
 
-### 10.3 Notes on numerical methods
+### 10.2 Notes on numerical methods
+
 - **Power iteration** finds top eigenvector by repeatedly applying $C$ to a vector and renormalizing.  
 - **Deflation** removes the found component to get the next.  
 - Practical PCA uses **SVD**, not explicit $C$ eigen-decomposition, for stability.
@@ -293,6 +295,7 @@ def pca_from_scratch(X, n_components=None):
 ## 11. Sanity Check with scikit-learn
 
 We use `sklearn.decomposition.PCA` and compare:
+
 - `explained_variance_` (our $\lambda$)  
 - `explained_variance_ratio_` (our EVR)  
 - `components_` (our eigenvectors, up to sign)
@@ -318,7 +321,7 @@ Projecting onto PC1 maximizes overall variance. If between-class variance is a *
 
 ---
 
-## 13. Iris Classification Pipeline: Metrics & Validation (Deep Dive)
+## 13. Iris Classification Pipeline: Metrics & Validation
 
 ### 13.1 OVR Linear Regression — Concept, Math, and Code
 
@@ -333,6 +336,7 @@ Prediction uses **scores** $s_k(x)=x^\top w_k+b_k$, choose $\hat{y}=\arg\max_k s
 **Cons:** Not probabilistic; can produce scores outside $[0,1]$; less robust than logistic loss.
 
 **Code (excerpt):**
+
 ```python
 class OVRLinearRegression:
     def fit(self, X, y):
@@ -431,6 +435,7 @@ $$
 $$
 
 **Interpretation:**
+
 - Treats all classes as equally important.
 - Reflects *balanced* performance.
 - Sensitive to small-class performance.
@@ -450,6 +455,7 @@ $$
 $$
 
 **Interpretation:**
+
 - Heavily influenced by large classes.
 - Reflects “global” dataset performance.
 
@@ -514,7 +520,7 @@ print(f"Macro F1: {macro_f1:.3f}, Weighted F1: {weighted_f1:.3f}")
 
 ---
 
-### Visual Comparison (Optional Slide)
+### Visual Comparison
 
 Plot F1$_k$ for each class, plus macro and weighted averages:
 
@@ -576,7 +582,8 @@ If boundaries are jagged or tangled, consider more PCs or supervised reductions 
 
 ## 16. Summary & Further Exercises
 
-**You learned:**
+**Summary:**
+
 - PCA from centering → covariance → eigenvectors/eigenvalues.
 - Rayleigh quotient & Lagrange multipliers derivation.
 - PCA–SVD connection and low-rank reconstruction (Eckart–Young).
@@ -586,6 +593,7 @@ If boundaries are jagged or tangled, consider more PCs or supervised reductions 
 - Full evaluation: $R^2$, Precision/Recall/F1, ROC AUC, Confusion Matrix, and stratified k-fold CV.
 
 **Exercises:**
+
 1. On Iris, vary `n_components` = 1, 2, 3 and compare metrics and Fisher scores.
 2. Replace OVR Linear Regression with `LogisticRegression` or `Ridge` and compare ROC AUC and F1.
 3. Plot **per-class ROC curves** from the decision scores.

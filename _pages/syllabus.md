@@ -181,6 +181,7 @@ schedule:
   - week: "9"
     date: "0"
     title: "Perceptrons and Linear Separability with Model Evaluation"
+    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-modelevaluation.md"
     readings:
     - rtitle: "Machine Learning for Engineers Chapter 3"
       rlink: "https://ml-course.github.io/master/notebooks/03%20-%20Model%20Evaluation.html"
@@ -196,6 +197,7 @@ schedule:
   - week: "10"
     date: "0"
     title: "Neural Networks: Multilayer Perceptrons and Backpropagation"
+    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-neuralnets.md"
     deliverables: 
     - dtitle: "Programming Assignment: Implementing a Neural Network Handed Out"
       dlink: "Assignments/NeuralNet"
