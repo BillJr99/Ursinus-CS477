@@ -2435,6 +2435,381 @@ which reduces to the outer products shown above.
 
 ---
 
+## Convolutional Neural Networks (CNNs)
+
+---
+
+### Open Colab: CNN Tutorial
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/CNN_Tutorial.ipynb)
+
+---
+
+### 1. Motivation & Intuition
+
+Traditional **fully connected neural networks** treat each input feature as independent.  
+For image data, this is inefficient because spatial locality (the proximity of pixels) is ignored — every pixel connects to every neuron, leading to a huge number of parameters.
+
+**Convolutional Neural Networks (CNNs)** exploit two key ideas:
+
+1. **Local Connectivity:**  
+   Neighboring pixels are more strongly correlated than distant ones.  
+   CNNs connect each neuron to only a small region of the input, called a **receptive field**.
+
+2. **Weight Sharing:**  
+   The same set of weights (a **filter** or **kernel**) is used across all locations in the image.  
+   This dramatically reduces the number of parameters and allows the network to detect the same pattern anywhere in the image.
+
+---
+
+### 2. Convolution Operation (Mathematical Foundation)
+
+A **convolution** between an image $I$ and a kernel $K$ is defined as:
+
+$$
+S(i, j) = (I * K)(i, j) = \sum_m \sum_n I(i - m, j - n) K(m, n)
+$$
+
+In deep learning frameworks, we usually implement **cross-correlation** (without flipping the kernel):
+
+$$
+S(i, j) = \sum_m \sum_n I(i + m, j + n) K(m, n)
+$$
+
+Each kernel learns to detect a **feature** (e.g., an edge, corner, texture).
+
+---
+
+### 3. Layers in a CNN
+
+1. **Convolutional Layer:**  
+   Applies filters that produce *feature maps*.
+
+2. **Activation (ReLU):**  
+   Introduces nonlinearity:  
+   $$ \text{ReLU}(x) = \max(0, x) $$
+
+3. **Pooling Layer:**  
+   Reduces spatial size (downsampling).  
+   Commonly: **Max Pooling** — keeps the maximum value in each small region.
+
+4. **Fully Connected Layer:**  
+   After flattening, acts as a classifier using learned features.
+
+5. **Softmax Output Layer:**  
+   Produces a probability distribution over classes:
+   $$
+   P(y = k | \mathbf{x}) = \frac{e^{z_k}}{\sum_j e^{z_j}}
+   $$
+
+---
+
+### 4. CNN Architecture Overview
+
+For a grayscale image of size $(H, W)$:
+
+| Layer | Input | Operation | Output Shape |
+|--------|--------|------------|----------------|
+| Conv2D | $(H, W, 1)$ | 5×5 kernel, stride 1 | $(H-4, W-4, N_1)$ |
+| ReLU | — | elementwise | same |
+| MaxPool | 2×2 | downsample | $(\frac{H-4}{2}, \frac{W-4}{2}, N_1)$ |
+| Conv2D | — | 3×3 kernel | smaller |
+| Flatten | — | vectorize | $(N,)$ |
+| Dense | — | fully connected | $(K)$ |
+
+---
+
+### 5. Gradient of Convolution (Backprop Intuition)
+
+Each filter weight is updated by convolving the **input** with the **gradient of the loss** w.r.t. the output feature map.
+
+If $L$ is the loss, and $\frac{\partial L}{\partial S}$ is the gradient at the output of the convolution:
+
+$$
+\frac{\partial L}{\partial K} = I * \frac{\partial L}{\partial S}
+$$
+
+The weight update follows:
+
+$$
+K \leftarrow K - \eta \frac{\partial L}{\partial K}
+$$
+
+where $\eta$ is the learning rate.
+
+---
+
+### 6. Code Example: CNN for MNIST Digits
+
+```python
+import tensorflow as tf
+from tensorflow.keras import layers, models, datasets
+
+# Load and normalize MNIST
+(x_train, y_train), (x_test, y_test) = datasets.mnist.load_data()
+x_train = x_train[..., tf.newaxis] / 255.0
+x_test = x_test[..., tf.newaxis] / 255.0
+
+# Define CNN architecture
+model = models.Sequential([
+    layers.Conv2D(32, (3,3), activation='relu', input_shape=(28,28,1)),
+    layers.MaxPooling2D((2,2)),
+    layers.Conv2D(64, (3,3), activation='relu'),
+    layers.MaxPooling2D((2,2)),
+    layers.Flatten(),
+    layers.Dense(64, activation='relu'),
+    layers.Dense(10, activation='softmax')
+])
+
+# Compile and train
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+model.fit(x_train, y_train, epochs=3, validation_split=0.1)
+
+test_loss, test_acc = model.evaluate(x_test, y_test)
+print(f"Test accuracy: {test_acc:.3f}")
+```
+
+---
+
+### 7. Visualizing Filters and Feature Maps
+
+Each convolutional filter learns distinct spatial features.
+
+```python
+# Extract first layer weights
+filters, biases = model.layers[0].get_weights()
+print(filters.shape)  # (3, 3, 1, 32)
+
+# Visualize some filters
+import matplotlib.pyplot as plt
+for i in range(6):
+    plt.subplot(1,6,i+1)
+    plt.imshow(filters[:,:,0,i], cmap='gray')
+    plt.axis('off')
+plt.show()
+```
+
+---
+
+### 8. CNN Summary
+
+| Concept | Intuition | Effect |
+|----------|------------|---------|
+| Convolution | Detects spatial features | Reduces parameters |
+| ReLU | Adds nonlinearity | Enables complex functions |
+| Pooling | Summarizes local regions | Provides invariance |
+| Weight sharing | Same filter across image | Translation invariance |
+| Stacking layers | Composes features | Detects high-level patterns |
+
+CNNs are particularly effective in vision, audio, and spatiotemporal tasks where local structure matters.
+
+---
+
+### Exercises
+
+1. Replace ReLU with LeakyReLU or ELU and compare accuracy.  
+2. Add Dropout between dense layers and observe overfitting behavior.  
+3. Visualize intermediate feature maps for a given test image.  
+4. Experiment with different kernel sizes (3×3, 5×5).  
+
+---
+
+## Recurrent Neural Networks (RNNs)
+
+---
+
+### Open Colab: RNN Tutorial
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/RNN_Tutorial.ipynb)
+
+---
+
+### 1. Motivation & Intuition
+
+While CNNs excel at spatial data (images), many tasks involve **sequences** — e.g., text, speech, time series — where **temporal order** and **context** matter.
+
+Traditional feed-forward networks assume all inputs are independent, making them unable to capture sequential dependencies.
+
+**Recurrent Neural Networks (RNNs)** address this by introducing a *hidden state* that carries information from previous time steps forward through the network.
+
+---
+
+### 2. Sequential Processing: The Recurrent Idea
+
+At time step $t$:
+
+- Input: $x_t$
+- Hidden state: $h_t$
+- Output: $y_t$
+
+The recurrence relations are:
+
+$$
+h_t = f(W_{hx} x_t + W_{hh} h_{t-1} + b_h)
+$$
+$$
+y_t = g(W_{yh} h_t + b_y)
+$$
+
+Here, $f$ is often $\tanh$ or ReLU, and $g$ could be a softmax (for classification).
+
+This structure creates a **computational graph with cycles**, allowing information to persist across time.
+
+---
+
+### 3. RNN Unrolled Through Time
+
+Over a sequence of $T$ steps, the RNN can be “unrolled” into a feed-forward network with *shared weights*:
+
+$$
+h_1 = f(W_{hx}x_1 + W_{hh}h_0)
+$$
+$$
+h_2 = f(W_{hx}x_2 + W_{hh}h_1)
+$$
+$$
+\vdots
+$$
+$$
+h_T = f(W_{hx}x_T + W_{hh}h_{T-1})
+$$
+
+Each $h_t$ depends on all previous inputs $x_1, \dots, x_t$, capturing temporal dependencies.
+
+---
+
+### 4. Training via Backpropagation Through Time (BPTT)
+
+RNNs are trained using **Backpropagation Through Time (BPTT)** — an extension of backpropagation that unrolls the recurrent connections over all time steps.
+
+The gradient of the loss $L$ with respect to parameters (e.g., $W_{hh}$) depends on **repeated products of derivatives**:
+
+$$
+\frac{\partial L}{\partial W_{hh}} \propto \prod_{t=1}^T \frac{\partial h_t}{\partial h_{t-1}}
+$$
+
+This product can **explode** (become huge) or **vanish** (approach zero), making long-range dependencies difficult to learn.
+
+---
+
+### 5. Addressing Vanishing/Exploding Gradients
+
+1. **Gradient Clipping:**  
+   Rescales gradients if their norm exceeds a threshold.
+
+2. **Gated Architectures:**  
+   LSTMs and GRUs introduce *gates* that control how information flows, allowing memory to persist longer.
+
+---
+
+### 6. LSTM (Long Short-Term Memory)
+
+LSTMs introduce a **cell state** $c_t$ and **gates** to regulate information:
+
+$$
+\begin{align}
+f_t &= \sigma(W_f [h_{t-1}, x_t] + b_f) &\text{(forget gate)}\\
+i_t &= \sigma(W_i [h_{t-1}, x_t] + b_i) &\text{(input gate)}\\
+\tilde{c}_t &= \tanh(W_c [h_{t-1}, x_t] + b_c) &\text{(candidate)}\\
+c_t &= f_t \odot c_{t-1} + i_t \odot \tilde{c}_t &\text{(new cell state)}\\
+o_t &= \sigma(W_o [h_{t-1}, x_t] + b_o) &\text{(output gate)}\\
+h_t &= o_t \odot \tanh(c_t) &\text{(new hidden state)}
+\end{align}
+$$
+
+These gates allow selective memory and control information flow across long sequences.
+
+---
+
+### 7. Code Example: Character-Level Text Generation
+
+```python
+import tensorflow as tf
+from tensorflow.keras import layers, models
+
+# Example: Predict next character in text
+text = "hello world"
+chars = sorted(set(text))
+char_to_idx = {c:i for i,c in enumerate(chars)}
+idx_to_char = {i:c for c,i in char_to_idx.items()}
+
+# Prepare sequences
+seq_length = 4
+X = []
+y = []
+for i in range(len(text) - seq_length):
+    seq = text[i:i+seq_length]
+    X.append([char_to_idx[c] for c in seq])
+    y.append(char_to_idx[text[i+seq_length]])
+
+X = tf.keras.utils.to_categorical(X, num_classes=len(chars))
+y = tf.keras.utils.to_categorical(y, num_classes=len(chars))
+
+# Define RNN model
+model = models.Sequential([
+    layers.SimpleRNN(64, input_shape=(seq_length, len(chars))),
+    layers.Dense(len(chars), activation='softmax')
+])
+
+model.compile(optimizer='adam', loss='categorical_crossentropy')
+model.fit(X, y, epochs=200, verbose=0)
+
+# Generate text
+input_seq = "hell"
+for _ in range(10):
+    x = tf.keras.utils.to_categorical([[char_to_idx[c] for c in input_seq[-4:]]],
+                                      num_classes=len(chars))
+    pred = model.predict(x, verbose=0)
+    next_char = idx_to_char[tf.argmax(pred[0]).numpy()]
+    input_seq += next_char
+
+print("Generated text:", input_seq)
+```
+
+---
+
+### 8. Visualizing Sequence Flow
+
+Conceptually, RNNs process sequences **one element at a time**, updating the hidden state:
+
+$$
+h_t = f(x_t, h_{t-1})
+$$
+
+The hidden state acts as the “memory” that summarizes all previous inputs.
+
+---
+
+### 9. When to Use RNNs, LSTMs, and GRUs
+
+| Model | Pros | Cons | Use Case |
+|--------|------|------|-----------|
+| RNN | Simple, interpretable | Vanishing gradients | Short sequences |
+| LSTM | Handles long dependencies | More parameters | Long-term dependencies (e.g., language) |
+| GRU | Fewer gates, faster | Slightly less expressive | Real-time tasks, streaming data |
+
+---
+
+### 10. Summary
+
+- RNNs maintain **hidden states** to capture sequential context.  
+- Training via **BPTT** can cause gradient instability.  
+- **LSTMs/GRUs** introduce gating to mitigate these issues.  
+- These architectures underpin many NLP systems: translation, speech recognition, and text generation.
+
+---
+
+### Exercises
+
+1. Modify the example to use an **LSTM** layer instead of `SimpleRNN`.  
+2. Visualize hidden state activations over time.  
+3. Try using a **GRU** for faster convergence.  
+4. Feed longer sequences from a real dataset (e.g., text8, IMDB).  
+
+---
+
 ## References & Further Reading
 
 - Goodfellow, Bengio, Courville. *Deep Learning*. MIT Press.  
