@@ -29,6 +29,13 @@ link:   https://cdn.jsdelivr.net/gh/BillJr99/Ursinus-Boilerplate-Assets@main/css
 
 ---
 
+## Open Colab: House Price Regression (From Scratch)
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/HousePriceRegression.ipynb)
+
+---
+
+
 
 
 ## 0. Environment & Utilities
@@ -1193,7 +1200,106 @@ Randomly-scattered residuals around zero suggest model adequacy; systematic curv
 3. **Heteroscedasticity:** Modify the data generation to make noise grow with `x`. How does the residual plot change?
 4. **Feature scaling:** Remove `StandardScaler` from the pipeline and use `SGDRegressor`. Does training stability change?
 
+---
 
+## 7-B. Real-World Linear Regression with Multiple Features
+
+The **House Price Regression** notebook extends simple linear regression to a realistic, multivariate dataset.  
+It illustrates the **full supervised-learning workflow**: preprocessing, feature engineering, model training, evaluation, and diagnostics.
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/HousePriceRegression.ipynb)
+
+---
+
+### 1. Dataset and Features
+
+The dataset consists of numeric and categorical predictors such as:
+- **Lot area**, **square footage**, **number of rooms**, **bathrooms**
+- **Year built**, **garage capacity**, **neighborhood**
+- The **target** is the house sale price (a continuous value).
+
+Before modeling, the notebook:
+1. Loads and inspects the data (using `pandas.describe()` and histograms).  
+2. Handles missing values via imputation.  
+3. Encodes categorical variables (e.g., one-hot encoding for "Neighborhood").  
+4. Scales numeric features for numerical stability.
+
+---
+
+### 2. Model Training Pipeline
+
+Two model families are demonstrated:
+
+- **Ordinary Least Squares (OLS)** via `LinearRegression`
+- **Regularized Regression** (`Ridge` and `Lasso`) to combat multicollinearity and overfitting.
+
+A typical pipeline looks like this:
+
+```python
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.linear_model import Ridge
+from sklearn.pipeline import Pipeline
+
+preproc = ColumnTransformer([
+    ("num", StandardScaler(), numeric_cols),
+    ("cat", OneHotEncoder(handle_unknown="ignore"), categorical_cols)
+])
+
+model = Pipeline([
+    ("preprocess", preproc),
+    ("regressor", Ridge(alpha=1.0))
+])
+
+model.fit(X_train, y_train)
+```
+
+---
+
+### 3. Model Evaluation
+
+The notebook reports:
+
+- **RMSE** and **\\(R^2\\)** on both training and test sets.  
+- **Cross-validation** using `cross_val_score` to assess generalization.  
+- **Feature importance** (absolute coefficients) to interpret which features drive price.
+
+```python
+from sklearn.metrics import mean_squared_error, r2_score
+y_pred = model.predict(X_test)
+print("Test RMSE:", mean_squared_error(y_test, y_pred, squared=False))
+print("Test R²:", r2_score(y_test, y_pred))
+```
+
+---
+
+### 4. Interpretation and Diagnostics
+
+Residual plots and error distributions help assess whether assumptions of linear regression hold:
+
+- Linearity (residuals vs. predictions shows no pattern)  
+- Homoscedasticity (variance roughly constant)  
+- Normality of residuals (bell-shaped histogram)
+
+If heteroscedasticity or outliers appear, the notebook discusses:
+- Transforming the target (e.g., `np.log(price)`)  
+- Robust regression alternatives (e.g., `HuberRegressor`)
+
+---
+
+### 5. Discussion
+
+The **House Price Regression** example concretely connects theory to practice:
+- Demonstrates **end-to-end regression** on messy, realistic data.  
+- Shows **why scaling, encoding, and regularization** are essential.  
+- Illustrates the **bias–variance trade-off** beyond synthetic examples.  
+- Bridges academic linear models with applied data science pipelines.
+
+[[MC]]
+In a regularized regression model (like Ridge) on this dataset, increasing the parameter `alpha` will generally:
+- ( ) Increase variance and decrease bias.
+- (x) Decrease variance and increase bias.
+- ( ) Leave both variance and bias unchanged.
 
 
 ---

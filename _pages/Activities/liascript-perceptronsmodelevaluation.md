@@ -4,7 +4,7 @@ author:   William M. Mongan
 language: en
 narrator: US English Male
 
-comment: Render with https://liascript.github.io/course/?https://github.com/BillJr99/Ursinus-CS477/blob/gh-pages/_pages/Activities/liascript-modelevaluation.md or locally if deployed via https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-modelevaluation.md
+comment: Render with https://liascript.github.io/course/?https://github.com/BillJr99/Ursinus-CS477/blob/gh-pages/_pages/Activities/liascript-perceptronsmodelevaluation.md or locally if deployed via https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-perceptronsmodelevaluation.md
 
 import: https://raw.githubusercontent.com/liascript/CodeRunner/master/README.md
 
@@ -15,12 +15,12 @@ link:   https://cdn.jsdelivr.net/gh/BillJr99/Ursinus-Boilerplate-Assets@main/css
 
 # Model Evaluation for Linear & Logistic Regression (scikit-learn)
 
-1. **Train/Test Splits & K-Fold Cross-Validation**
-2. **Overfitting vs. Generalization**
-3. **Linear Regression Metrics:** RMSE and $R^2$
-4. **Logistic Regression Metrics:** Precision, Recall, F1
-5. **Threshold Curves:** ROC & AUC
-6. **Scikit-learn Recipes** to compute each
+- **Train/Test Splits & K-Fold Cross-Validation**
+- **Overfitting vs. Generalization**
+- **Linear Regression Metrics:** RMSE and $R^2$
+- **Logistic Regression Metrics:** Precision, Recall, F1
+- **Threshold Curves:** ROC & AUC
+- **Scikit-learn Recipes** to compute each
 
 ---
 
@@ -357,3 +357,198 @@ fpr, tpr, _ = roc_curve(y_test, y_prob)
 roc_auc = auc(fpr, tpr)
 ```
 
+# Support Vector Machines (SVM)
+
+## Open Colab: SVM From Scratch (Linear & Kernel)
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/SVM_From_Scratch_Linear_and_Kernel.ipynb)
+
+---
+
+## 1. Intuition & Goal
+
+Support Vector Machines learn a **max-margin** decision boundary. For a binary task with labels $y_i \in \{-1, +1\}$ and feature vectors $\mathbf{x}_i$:
+
+- The **linear** decision function is $f(\mathbf{x}) = \mathbf{w}^\top \mathbf{x} + b$ and the classifier is $\mathrm{sign}(f(\mathbf{x}))$.
+- The goal is to maximize the **geometric margin** subject to correct classification (hard-margin) or limited violations (soft-margin).
+
+---
+
+## 2. Linear SVM: Hard-Margin and Soft-Margin
+
+**Hard-margin (separable):**
+$$
+\min_{\mathbf{w}, b} \ \frac{1}{2}\lVert \mathbf{w} \rVert^2
+\quad \text{s.t.} \quad y_i\,(\mathbf{w}^\top \mathbf{x}_i + b) \ge 1 \ \forall i.
+$$
+
+**Soft-margin (with slack $\xi_i \ge 0$ and penalty $C>0$):**
+$$
+\min_{\mathbf{w}, b, \{\xi_i\}} \ \frac{1}{2}\lVert \mathbf{w} \rVert^2 + C \sum_{i=1}^n \xi_i
+\quad \text{s.t.} \quad y_i\,(\mathbf{w}^\top \mathbf{x}_i + b) \ge 1 - \xi_i.
+$$
+
+Equivalent **regularized hinge-loss** form:
+$$
+\min_{\mathbf{w}, b}\ \frac{1}{2}\lVert \mathbf{w} \rVert^2 + C\sum_{i=1}^n \max\!\big(0,\,1 - y_i(\mathbf{w}^\top \mathbf{x}_i + b)\big).
+$$
+
+- $C \uparrow$ $\Rightarrow$ **less** regularization (fit training errors more aggressively).
+- $C \downarrow$ $\Rightarrow$ **more** regularization (wider margin, tolerate more violations).
+
+---
+
+## 3. Kernel SVM & Dual Formulation
+
+The dual problem depends on inner products $\mathbf{x}_i^\top \mathbf{x}_j$. Replacing them with a **kernel** $K(\mathbf{x}_i,\mathbf{x}_j)$ maps implicitly to a high-dimensional feature space:
+
+- **RBF (Gaussian) kernel:** $K(\mathbf{x},\mathbf{x}') = \exp(-\gamma \lVert \mathbf{x} - \mathbf{x}' \rVert^2)$  
+  - $\gamma \uparrow$ $\Rightarrow$ narrower kernels (more complex boundaries).  
+  - $\gamma \downarrow$ $\Rightarrow$ smoother boundaries.
+
+- **Polynomial kernel:** $K(\mathbf{x},\mathbf{x}') = (\mathbf{x}^\top \mathbf{x}' + c)^d$
+
+Support vectors are the training points with non-zero dual weights; they define the decision boundary.
+
+---
+
+## 4. scikit-learn Demo (Linear vs. RBF) — Classification Metrics
+
+We will compare **linear** and **RBF** SVMs on a non-linear toy dataset and report evaluation metrics consistent with earlier sections.
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_circles
+from sklearn.model_selection import train_test_split, StratifiedKFold, cross_val_score
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline
+from sklearn.svm import SVC, LinearSVC
+from sklearn.metrics import (
+    classification_report, confusion_matrix, ConfusionMatrixDisplay,
+    roc_curve, auc
+)
+
+X, y = make_circles(n_samples=800, factor=0.4, noise=0.25, random_state=42)
+Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+
+# Linear SVM (hinge) with feature scaling
+lin_clf = Pipeline([
+    ("scaler", StandardScaler()),
+    ("svm", LinearSVC(C=1.0, max_iter=5000))
+])
+
+# RBF SVM with probability estimates for ROC
+rbf_clf = Pipeline([
+    ("scaler", StandardScaler()),
+    ("svm", SVC(C=1.0, gamma="scale", kernel="rbf", probability=True))
+])
+
+lin_clf.fit(Xtr, ytr)
+rbf_clf.fit(Xtr, ytr)
+
+print("=== Linear SVM Report ===")
+print(classification_report(yte, lin_clf.predict(Xte)))
+print("=== RBF SVM Report ===")
+print(classification_report(yte, rbf_clf.predict(Xte)))
+
+# Confusion matrix (RBF)
+cm = confusion_matrix(yte, rbf_clf.predict(Xte))
+ConfusionMatrixDisplay(cm, display_labels=["class 0","class 1"]).plot()
+plt.title("RBF SVM — Confusion Matrix")
+plt.show()
+
+# ROC AUC (RBF; use predict_proba for scores)
+y_score = rbf_clf.predict_proba(Xte)[:,1]
+fpr, tpr, thr = roc_curve(yte, y_score)
+print("AUC:", auc(fpr, tpr))
+```
+
+**Notes**
+- Always **scale features** for SVMs.  
+- For ROC/AUC with SVMs, use `probability=True` (Platt scaling) or `decision_function` scores.
+
+---
+
+## 5. From Scratch: Linear SVM via Hinge-Loss SGD (Didactic)
+
+The following illustrates a **didactic** (not production-grade) linear SVM using subgradient updates on the hinge loss.
+
+```python
+import numpy as np
+
+def sgd_linear_svm(X, y, C=1.0, lr=1e-2, epochs=200):
+    # y in {-1, +1}
+    n, d = X.shape
+    w = np.zeros(d); b = 0.0
+    for _ in range(epochs):
+        for i in np.random.permutation(n):
+            margin = y[i]*(X[i].dot(w) + b)
+            if margin >= 1:
+                # Only regularization term
+                w -= lr * w
+            else:
+                # Regularization + hinge penalty gradient
+                w -= lr * (w - C * y[i] * X[i])
+                b += lr * (C * y[i])
+    return w, b
+
+# Example on a linearly separable toy set
+rng = np.random.default_rng(0)
+X_pos = rng.normal(loc=[2,2], scale=0.5, size=(50,2))
+X_neg = rng.normal(loc=[-2,-2], scale=0.5, size=(50,2))
+X_toy = np.vstack([X_pos, X_neg])
+y_toy = np.hstack([np.ones(50), -np.ones(50)])
+
+w, b = sgd_linear_svm(X_toy, y_toy, C=1.0, lr=1e-2, epochs=20)
+print("w:", w, "b:", b)
+```
+
+---
+
+## 6. Hyperparameter Tuning (C, $\gamma$) with Cross-Validation
+
+Use **StratifiedKFold** and grid search to optimize generalization performance.
+
+```python
+from sklearn.model_selection import GridSearchCV
+
+pipe = Pipeline([
+    ("scaler", StandardScaler()),
+    ("svm", SVC(kernel="rbf", probability=True))
+])
+
+param_grid = {
+    "svm__C": [0.1, 1, 10],
+    "svm__gamma": ["scale", 0.1, 0.01]
+}
+
+grid = GridSearchCV(pipe, param_grid, scoring="roc_auc",
+                    cv=StratifiedKFold(n_splits=5, shuffle=True, random_state=42))
+grid.fit(X, y)
+print("Best AUC:", grid.best_score_)
+print("Best params:", grid.best_params_)
+```
+
+**Interpretation**
+- $C$ controls the **margin–violation trade-off** (regularization strength).
+- $\gamma$ controls **kernel width**; too large can overfit (wiggly boundary), too small can underfit (overly smooth).
+
+---
+
+## 7. Connecting Back to Model Evaluation
+
+- Use the **same metrics** as logistic regression: precision, recall, F1, ROC AUC.  
+- For imbalanced data, prefer **AUC** and **PR curves** over accuracy.  
+- **Calibrate** scores if probability estimates are needed for downstream decision thresholds.
+
+---
+
+## 8. Exercises
+
+1. Re-run the RBF SVM with $C \in \{0.1, 1, 10\}$ and $\gamma \in \{\text{"scale"}, 0.1, 0.01\}$; report ROC AUC via 5-fold CV.  
+2. Plot decision boundaries for linear vs. RBF SVM on `make_circles` and discuss **bias–variance** behavior.  
+3. Replace `make_circles` with `sklearn.datasets.load_breast_cancer` and compare logistic regression vs. RBF SVM AUC.  
+4. Extend the from-scratch SGD to include an **$L_1$ penalty** and examine sparsity in $\mathbf{w}$.
+
+---
