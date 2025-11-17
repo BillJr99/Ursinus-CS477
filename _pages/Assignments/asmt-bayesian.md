@@ -422,14 +422,12 @@ print("Pr(theta_A > theta_B | data) =", round(p, 4))
 
 Detect a single change point <span>\\(\\tau\\)</span> in a sequence of Gaussian observations with known variance <span>\\(\\sigma^2\\)</span>:
 $$
-X_t \\sim
-\\begin{cases}
-\\mathcal{N}(\\mu_1, \\sigma^2), & t \\le \\tau,\\\\
-\\mathcal{N}(\\mu_2, \\sigma^2), & t > \\tau,
-\\end{cases}
-\\qquad
-\\mu_1,\\mu_2 \\sim \\mathcal{N}(\\mu_0, \\tau_0^2),\\quad
-\\tau \\sim \\text{Uniform}\\{1,\\ldots,T-1\\}.
+X_t \sim \mathcal{N}(\mu_1, \sigma^2) \quad \text{for } t \le \tau,
+\qquad
+X_t \sim \mathcal{N}(\mu_2, \sigma^2) \quad \text{for } t > \tau,
+\qquad
+\mu_1,\mu_2 \sim \mathcal{N}(\mu_0, \tau_0^2),\quad
+\tau \sim \text{Uniform}\{1,\ldots,T-1\}.
 $$
 
 **Scaffold.** Use conjugate Gaussian updates to compute the **marginal likelihood** for each proposed <span>\\(\\tau\\)</span> by integrating out <span>\\(\\mu_1,\\mu_2\\)</span>, then evaluate the posterior over <span>\\(\\tau\\)</span>.
@@ -474,9 +472,9 @@ print("MAP tau (1..T-1) =", int(np.argmax(p_tau)+1))
 ### Option C — Hierarchical Beta–Binomial **Partial Pooling** (Multi-Group)
 
 Pool information across groups (e.g., small clinics’ success rates) using a hierarchical prior:
-$$
-\\theta_i \\mid \\alpha,\\beta \\sim \\mathrm{Beta}(\\alpha,\\beta),\\quad k_i \\mid \\theta_i \\sim \\mathrm{Binomial}(n_i, \\theta_i),
-$$
+
+<span>\\(\\theta_i \\mid \\alpha,\\beta \\sim \\mathrm{Beta}(\\alpha,\\beta),\\quad k_i \\mid \\theta_i \\sim \\mathrm{Binomial}(n_i, \\theta_i)\\)</span>,
+
 with hyperprior on <span>\\((\\alpha,\\beta)\\)</span> (or empirical Bayes).
 
 **Scaffold (Empirical Bayes).** Estimate <span>\\((\\alpha,\\beta)\\)</span> by matching moments across groups, then compute group posteriors.
@@ -511,9 +509,9 @@ print("Posterior means:", np.round(theta_post_mean, 3))
 ### Option D — Naïve Bayes with **Asymmetric Loss** and **Calibration**
 
 Extend your Naïve Bayes to a deployment setting with asymmetric misclassification costs <span>\\((C_{\\text{FP}}, C_{\\text{FN}})\\)</span>. Choose a validation set and a decision threshold
-$$
-\\tau^* = \\frac{C_{\\text{FP}}}{C_{\\text{FP}} + C_{\\text{FN}}}
-$$
+
+<span>\\(\\tau^* = \\frac{C_{\\text{FP}}}{C_{\\text{FP}} + C_{\\text{FN}}}\\)</span>
+
 for classifying <span>\\(\\Pr(Y{=}1\\mid x) \\ge \\tau^*\\)</span>. Calibrate scores (e.g., isotonic regression) and report **cost-sensitive metrics**.
 
 **Scaffold.**
