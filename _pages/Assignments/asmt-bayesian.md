@@ -88,7 +88,7 @@ np.set_printoptions(precision=4, suppress=True)
 
 ## Stage 1 — Beta–Binomial: Derivation and Implementation (From Scratch)
 
-We model binary outcomes $X_i \sim \mathrm{Bernoulli}(\theta)$ with prior $\theta \sim \mathrm{Beta}(\alpha, \beta)$. Given $k$ successes in $n$ trials, the posterior is
+We model binary outcomes <span>\\(X_i \sim \mathrm{Bernoulli}(\theta)\\)</span> with prior <span>\\(\theta \sim \mathrm{Beta}(\alpha, \beta)\\)</span>. Given <span>\\(k\\)</span> successes in <span>\\(n\\)</span> trials, the posterior is
 $$
 \theta \mid k,n \sim \mathrm{Beta}(\alpha + k,\; \beta + n - k).
 $$
