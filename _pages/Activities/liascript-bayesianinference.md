@@ -723,7 +723,7 @@ These integrated slides tie each conceptual block directly to its corresponding 
 - Code-level insight
 - Interactive learning checks
 
-# Part V Supplement - Bayesian Code Examples
+# Part VI Supplement - Bayesian Code Examples
 
 ---
 
