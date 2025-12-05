@@ -254,114 +254,397 @@ The steady state of this Markov chain gives the **PageRank** scores.
 
 ---
 
-# Hidden Markov Models (HMMs): Overview
+### What Is PageRank?
 
-## 1. Conceptual Introduction
+PageRank is Google’s original method for estimating how *important* a webpage is.
 
-A Hidden Markov Model has:
-1. **Hidden states** — not directly observable  
-2. **Observations** — what we see  
-3. **Transition matrix** $ A $  
-4. **Emission matrix** $ B $  
-5. **Initial distribution** $ \pi $
+Think of a **random surfer**:
 
-Example:  
-Weather is hidden; whether someone carries an umbrella is visible.
+- They start on a random webpage.  
+- They click links at random to move to new pages.  
+- Sometimes they get bored and jump to a totally random page.  
+
+Pages that the surfer visits *more often in the long run* get **higher PageRank**.
+
+This is exactly how a **Markov chain** behaves:
+
+- Pages = **states**
+- Links = **transition probabilities**
+- Teleportation = **damping factor** (usually $ d = 0.85 $)
 
 ---
 
-## 2. Weather/Umbrella Example
+### Conceptual Walkthrough
 
-States (hidden):
-- `Sunny`
-- `Rainy`
+Suppose we have three pages:
 
-Observations:
-- `Umbrella`
-- `NoUmbrella`
+- **A** links to B and C  
+- **B** links to C  
+- **C** links to A  
 
-Transition matrix:
+#### Build the link-following probability table
+
+If a page has multiple outgoing links, we split probability equally.
+
+| From → To | A | B | C |
+|-----------|---|---|---|
+| **A**     | 0 | 1/2 | 1/2 |
+| **B**     | 0 | 0 | 1 |
+| **C**     | 1 | 0 | 0 |
+
+This gives the transition matrix:
 
 $$
-A = \begin{bmatrix}
-0.7 & 0.3 \\\\
+A =
+\begin{bmatrix}
+0 & \tfrac{1}{2} & \tfrac{1}{2} \\
+0 & 0 & 1 \\
+1 & 0 & 0
+\end{bmatrix}
+$$
+
+---
+
+### Adding Teleportation (Google Matrix)
+
+Google fixes "dead ends" by allowing the surfer to jump to *any* page occasionally.
+
+The PageRank matrix is:
+
+$$
+P = dA + (1-d)\frac{1}{n}\mathbf{1}\mathbf{1}^T,
+\quad d=0.85,\ n=3
+$$
+
+Teleportation adds a small probability $ \frac{1-d}{3} = 0.05 $ to every entry.
+
+So the Google matrix $ P $ becomes:
+
+$$
+P =
+\begin{bmatrix}
+0.05 & 0.475 & 0.475 \\
+0.05 & 0.05  & 0.90 \\
+0.90 & 0.05  & 0.05
+\end{bmatrix}
+$$
+
+---
+
+### Computing PageRank (Beginner Math)
+
+Start with an equal guess:
+
+$$
+x^{(0)} = \left(\tfrac{1}{3},\tfrac{1}{3},\tfrac{1}{3}\right)
+$$
+
+Apply the update:
+
+$$
+x^{(k+1)} = x^{(k)} P
+$$
+
+After several rounds:
+
+$$
+x^{(\infty)} \approx (0.40,\ 0.15,\ 0.45)
+$$
+
+Meaning:
+
+- **C** is the most visited page ≈ 45%
+- **A** is second ≈ 40%
+- **B** is least visited ≈ 15%
+
+This ranking *is* the PageRank.
+
+---
+
+### Math Theory Connection to Markov Chains
+
+A Markov chain describes how probabilities move between states.
+
+In PageRank:
+
+- States = webpages  
+- Transition matrix = Google matrix $ P $  
+- Teleportation ensures **irreducible + aperiodic** chain  
+- Therefore it has a **unique steady-state distribution**
+
+A steady state $ \pi $ satisfies:
+
+$$
+\pi = \pi P
+$$
+
+This eigenvector equation gives the PageRank.
+
+---
+
+### Code Example
+
+```python
+import numpy as np
+
+# Transition matrix from the example
+A = np.array([
+    [0,   1/2, 1/2],
+    [0,   0,   1  ],
+    [1,   0,   0  ]
+])
+
+def pagerank(A, d=0.85, tol=1e-8, max_iter=100):
+    n = A.shape[0]
+    teleport = np.ones((n, n)) / n
+    P = d * A + (1 - d) * teleport
+
+    x = np.ones(n) / n  # start uniformly
+    for _ in range(max_iter):
+        x_new = x @ P
+        if np.linalg.norm(x_new - x, 1) < tol:
+            return x_new
+        x = x_new
+    return x
+
+print("PageRank:", pagerank(A))
+```
+
+---
+
+### Summary
+
+- PageRank models a “random surfer” as a Markov chain.  
+- We build a link-based probability matrix.  
+- We fix problems with *teleportation*.  
+- The steady state of the Google matrix is the PageRank ranking.  
+- Power iteration is an easy way to compute it.
+
+---
+
+# Hidden Markov Models (HMMs): Overview
+
+## Concept and Intuition
+
+A Hidden Markov Model formalizes situations where:
+
+- The system evolves through **unseen (hidden) states** over time.
+- Each hidden state **probabilistically emits an observable symbol**.
+- State changes follow a **Markov process**:  
+  the next state depends *only* on the current state.
+- Learning or inference requires working backward from observations to the most plausible hidden structure.
+
+**Key components**
+
+- Hidden states: $ S = \{s_1, \dots, s_N\} $  
+- Observations: $ O = (o_1, \dots, o_T) $ from alphabet $ V $
+- Transition probabilities:  
+  $ A = [a_{ij}] = P(q_{t+1}=s_j \mid q_t=s_i) $
+- Emission probabilities:  
+  $ B = [b_j(k)] = P(\text{obs}=v_k \mid q_t=s_j) $
+- Initial distribution:  
+  $ \pi = [\pi_i] = P(q_1 = s_i) $
+
+**Interpretive framing**
+
+HMMs encode both **temporal structure** (via transitions) and **signal generation** (via emissions). Inference therefore answers: *which hidden path through time most plausibly produced what we observed?*
+
+---
+
+## Numerical Example: Weather and Umbrellas
+
+### Hidden states:
+- $ s_1 = \text{Sunny} $
+- $ s_2 = \text{Rainy} $
+
+### Observations:
+- `Umbrella`  
+- `NoUmbrella`
+
+### Transition matrix
+$$
+A = 
+\begin{bmatrix}
+0.7 & 0.3 \\
 0.4 & 0.6
 \end{bmatrix}
 $$
 
-Emission matrix:
-
+### Emission matrix
 $$
-B = \begin{bmatrix}
-0.1 & 0.9 \\\\
+B = 
+\begin{bmatrix}
+0.1 & 0.9 \\
 0.8 & 0.2
 \end{bmatrix}
 $$
 
 Interpretation:
-- When Sunny: 10% umbrella, 90% no umbrella  
-- When Rainy: 80% umbrella, 20% no umbrella  
 
----
+- When **Sunny**, umbrellas appear only 10% of the time.  
+- When **Rainy**, umbrellas appear 80% of the time.  
+- Rain persists with probability 0.6, while sun persists with probability 0.7.
 
-## 3. Viterbi Algorithm (Step‑by‑Step Example)
+### Observation sequence
 
-Goal: Given observations  
 $$
 O = (\text{Umbrella},\ \text{Umbrella},\ \text{NoUmbrella})
 $$
-find the **most likely hidden state sequence**.
 
-Viterbi computes:
-
-$$
-\delta_t(i) = \max_{q_1,\dots,q_{t-1}} \Pr(q_1,\dots,q_t=i,\ O_1,\dots,O_t)
-$$
-
-and stores backpointers:
-
-$$
-\psi_t(i) = \arg\max_j \delta_{t-1}(j)\,a_{ji}.
-$$
-
-We compute everything explicitly (omitted in this brief version, but would include full arithmetic in a longer deck).
+Goal: infer the most likely weather pattern behind these umbrella sightings.
 
 ---
 
-## 4. Full Python Implementation (Viterbi)
+## Mathematical Foundations: The Viterbi Algorithm
+
+The **Viterbi algorithm** solves:
+
+$$
+\arg\max_{q_1,\ldots,q_T} \Pr(q_1,\ldots,q_T,\ O_1,\ldots,O_T)
+$$
+
+It does so by dynamic programming:
+
+### Recurrence
+
+Define  
+$$
+\delta_t(j) = \max_{q_1,\dots,q_{t-1}}
+\Pr(q_1,\dots,q_t=s_j,\ O_1,\dots,O_t)
+$$
+
+and the backpointer  
+$$
+\psi_t(j) = \arg\max_i \ \delta_{t-1}(i)\, a_{ij}.
+$$
+
+Then:
+
+- **Initialization**
+  $$
+  \delta_1(j) = \pi_j \, b_j(O_1)
+  $$
+
+- **Recursion**
+  $$
+  \delta_t(j) = \Big( \max_i \delta_{t-1}(i)\, a_{ij} \Big) b_j(O_t)
+  $$
+
+- **Termination**
+  $$
+  q_T^* = \arg\max_j \delta_T(j)
+  $$
+
+- **Backtrace**
+  $$
+  q_t^* = \psi_{t+1}(q_{t+1}^*) \quad \text{for} \ t=T-1,\dots,1
+  $$
+
+This converts an exponential search over all paths into a polynomial-time algorithm.
+
+---
+
+## Worked Viterbi Example (First Two Steps)
+
+Let us compute the first steps explicitly for intuition.
+
+### Step 1: Initialization
+
+Observation $O_1 = \text{Umbrella}$.
+
+$$
+\delta_1(\text{Sunny}) = \pi_{\text{S}}\,b_{\text{S}}(U) = 0.5 \cdot 0.1 = 0.05
+$$
+$$
+\delta_1(\text{Rainy}) = \pi_{\text{R}}\,b_{\text{R}}(U) = 0.5 \cdot 0.8 = 0.40
+$$
+
+Rain is already more plausible given an umbrella.
+
+### Step 2: Second Observation $O_2=\text{Umbrella}$
+
+For Sunny at $t=2$:
+
+$$
+\delta_2(S) = \max
+\begin{cases}
+\delta_1(S)\cdot a_{SS} = 0.05\cdot0.7 = 0.035 \\
+\delta_1(R)\cdot a_{RS} = 0.40\cdot0.4 = 0.16
+\end{cases}
+\cdot\ b_S(U)=0.1
+$$
+
+Thus  
+$$
+\delta_2(S) = 0.16\cdot0.1=0.016
+\quad(\text{backpointer} = R)
+$$
+
+For Rainy at $t=2$:
+
+$$
+\delta_2(R) = \max
+\begin{cases}
+0.05\cdot0.3 = 0.015 \\
+0.40\cdot0.6 = 0.24
+\end{cases}
+\cdot b_R(U)=0.8
+$$
+
+Thus  
+$$
+\delta_2(R) = 0.24\cdot0.8 = 0.192
+\quad(\text{backpointer}=R)
+$$
+
+Rain continues to dominate.
+
+---
+
+## Python Implementation
 
 ```python
 import numpy as np
 
+# Transition probabilities
 A = np.array([[0.7, 0.3],
               [0.4, 0.6]])
 
-B = np.array([[0.1, 0.9],
-              [0.8, 0.2]])
+# Emission probabilities
+B = np.array([[0.1, 0.9],   # Sunny emits (Umbrella, NoUmbrella)
+              [0.8, 0.2]])  # Rainy emits (Umbrella, NoUmbrella)
 
+# Initial distribution
 pi = np.array([0.5, 0.5])
 
-obs_map = {"Umbrella":0, "NoUmbrella":1}
-O = ["Umbrella","Umbrella","NoUmbrella"]
+obs_map = {"Umbrella": 0, "NoUmbrella": 1}
+O = ["Umbrella", "Umbrella", "NoUmbrella"]
 Oidx = [obs_map[o] for o in O]
+```
 
+---
+
+## Viterbi Function
+
+```python
 def viterbi(A, B, pi, O):
     T = len(O)
     N = A.shape[0]
+
     delta = np.zeros((T, N))
     psi = np.zeros((T, N), dtype=int)
 
-    # init
+    # Initialization
     delta[0] = pi * B[:, O[0]]
 
-    # recurrence
+    # Dynamic programming recursion
     for t in range(1, T):
         for j in range(N):
             probs = delta[t-1] * A[:, j]
             psi[t, j] = np.argmax(probs)
             delta[t, j] = probs[psi[t, j]] * B[j, O[t]]
 
-    # termination
+    # Backtrace
     path = np.zeros(T, dtype=int)
     path[-1] = np.argmax(delta[-1])
     for t in range(T-2, -1, -1):
@@ -370,17 +653,16 @@ def viterbi(A, B, pi, O):
     return path, delta
 
 path, delta = viterbi(A, B, pi, Oidx)
-print(\"Most likely state sequence:\", path)
+print("Most likely state sequence indices:", path)
 ```
 
 ---
 
-## 5. Summary
+# Summary
 
-- Markov Chains model observable state transitions.  
-- Hidden Markov Models extend this to hidden states.  
-- Viterbi algorithm finds the most probable hidden state sequence.  
-- PageRank is a Markov chain steady‑state application.
+- HMMs model sequential processes with hidden structure and observable outputs.  
+- The Viterbi algorithm provides an efficient method for decoding the most likely hidden trajectory.  
+- The weather/umbrella example illustrates how HMMs combine temporal dynamics with probabilistic emissions to infer underlying causes.  
 
 ---
 
