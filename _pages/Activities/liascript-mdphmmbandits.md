@@ -100,6 +100,7 @@ This is called the **Markov Property**.
 
 ### Example Context
 You want to model the weather:
+
 - States: `Sunny`, `Cloudy`, `Rainy`.
 - Each day, the weather transitions to another state with a certain probability.
 
@@ -564,37 +565,56 @@ $$
 ## Worked Example: Umbrella World
 
 We have two weather states: Sunny (S) and Rainy (R).  
-Observation: Umbrella (U).
+Observation symbols: Umbrella ($U$) and No Umbrella ($\bar U$).
 
 Initial probabilities: $\pi_S = 0.5$, $\pi_R = 0.5$.  
-Emissions: $b_S(U)=0.1$, $b_R(U)=0.8$.
 
-## Step 1: Initialization
+Emissions (now forming proper distributions that sum to 1):
+
+- For Sunny:
+  - $b_S(U) = 0.1$
+  - $b_S(\bar U) = 0.9$
+
+- For Rainy:
+  - $b_R(U) = 0.8$
+  - $b_R(\bar U) = 0.2$
+
+In this worked example, we will only consider the case where the actual observations are umbrellas, i.e., $O_1 = U$ and $O_2 = U$. That is why only $b_S(U)$ and $b_R(U)$ appear in the Viterbi calculations below.
+
+### Step 1: Initialization
 
 $$
-\delta_1(S) = 0.5 \cdot 0.1 = 0.05
+\delta_1(S) = \pi_S \cdot b_S(U) = 0.5 \cdot 0.1 = 0.05
 $$
+
 $$
-\delta_1(R) = 0.5 \cdot 0.8 = 0.40
+\delta_1(R) = \pi_R \cdot b_R(U) = 0.5 \cdot 0.8 = 0.40
 $$
 
 > **Conceptual narrative:**  
-> Seeing an umbrella makes Rain more plausible at $t=1$.
+> At time $t=1$, we see an umbrella. Umbrellas are more common when it is rainy than when it is sunny, so the “Rainy” story starts out much more plausible.
 
-## Step 2: Second Observation
+### Step 2: Second Observation
 
 Observation $O_2 = U$.  
-Transitions: $a_{SS}=0.7$, $a_{SR}=0.3$, $a_{RS}=0.4$, $a_{RR}=0.6$.
 
-## Computing $\delta_2(S)$
+Transitions:
+- $a_{SS} = 0.7$, $a_{SR} = 0.3$
+- $a_{RS} = 0.4$, $a_{RR} = 0.6$
+
+#### Computing $\delta_2(S)$
+
+We consider all ways to end in $S$ at $t=2$, then pick the best one and multiply by the emission probability of seeing $U$ in $S$:
 
 $$
-\delta_2(S) = \max
+\delta_2(S) = 
+\max
 \begin{cases}
-0.05\cdot0.7 = 0.035 \\
-0.40\cdot0.4 = 0.16
+\delta_1(S)\cdot a_{SS} = 0.05\cdot 0.7 = 0.035 \\
+\delta_1(R)\cdot a_{RS} = 0.40\cdot 0.4 = 0.16
 \end{cases}
-\cdot 0.1
+\cdot b_S(U)
+= 0.16 \cdot 0.1
 $$
 
 Thus:
@@ -604,17 +624,21 @@ $$
 $$
 
 > **Conceptual narrative:**  
-> The best way to end sunny at $t=2$ is to have been rainy at $t=1$.
+> To end up sunny at $t=2$, the strongest story is: it was rainy at $t=1$ (which already fit the first umbrella well) and then switched to sunny. Even so, the final probability is modest, because umbrellas are rare when it is sunny.
 
-## Computing $\delta_2(R)$
+#### Computing $\delta_2(R)$
+
+Similarly, for ending in $R$ at $t=2$:
 
 $$
-\delta_2(R) = \max
+\delta_2(R) = 
+\max
 \begin{cases}
-0.05\cdot0.3 = 0.015 \\
-0.40\cdot0.6 = 0.24
+\delta_1(S)\cdot a_{SR} = 0.05\cdot 0.3 = 0.015 \\
+\delta_1(R)\cdot a_{RR} = 0.40\cdot 0.6 = 0.24
 \end{cases}
-\cdot 0.8
+\cdot b_R(U)
+= 0.24 \cdot 0.8
 $$
 
 Thus:
@@ -624,15 +648,15 @@ $$
 $$
 
 > **Conceptual narrative:**  
-> Staying rainy yields a much stronger story.
+> The strongest story is that it was rainy at $t=1$ and stays rainy at $t=2$. That story both explains the first umbrella and makes the second umbrella very likely.
 
-## Interpretation After Two Steps
+### Interpretation After Two Steps
 
 - $\delta_2(S) = 0.016$  
 - $\delta_2(R) = 0.192$
 
 > **Conceptual narrative:**  
-> Two umbrellas make Rain the overwhelmingly likely hidden state.
+> After seeing two umbrellas in a row, the “always rainy so far” path dominates. Rain is overwhelmingly the most plausible hidden state at $t=2$ in this model.
 
 ---
 
