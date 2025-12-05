@@ -1,4 +1,3 @@
-# Markov Decision Processes, Hidden Markov Models, and Multi‑Armed Bandits
 <!--
 author:   William M. Mongan
 language: en
@@ -448,6 +447,192 @@ A Hidden Markov Model formalizes situations where:
 **Interpretive framing**
 
 HMMs encode both **temporal structure** (via transitions) and **signal generation** (via emissions). Inference therefore answers: *which hidden path through time most plausibly produced what we observed?*
+
+---
+
+## The Viterbi Algorithm – A Conceptual Walkthrough
+
+The **Viterbi algorithm** solves the problem:
+
+$$
+\arg\max_{q_1,\ldots,q_T} \Pr(q_1,\ldots,q_T,\ O_1,\ldots,O_T)
+$$
+
+> **Conceptual narrative:**  
+> Imagine you see a sequence of *clues* (the observations $O_1, \dots, O_T$), and you believe those clues were produced by some hidden process (the hidden states $q_1, \dots, q_T$).  
+>   
+> The question is:  
+> **“Among all possible hidden stories that could have produced these clues, which single story is most plausible?”**  
+>   
+> The expression above says: “Pick the sequence of hidden states $q_1, \dots, q_T$ that maximizes the joint probability of *both* the hidden states and the observed data.”  
+> We are not just guessing each state separately; we are finding the *best overall path* through time.
+
+## Why We Need Dynamic Programming
+
+Naively, to solve
+
+$$
+\arg\max_{q_1,\ldots,q_T} \Pr(q_1,\ldots,q_T,\ O_1,\ldots,O_T),
+$$
+
+we would have to consider **every possible sequence** of hidden states of length $T$. If there are $N$ states, that is $N^T$ possible paths — exponential in $T$.
+
+> **Conceptual narrative:**  
+> Exponential search is like trying to read every book in a huge library just to answer a single question.  
+>   
+> The key idea of dynamic programming (and of Viterbi) is:  
+> - **Do not re-solve the same subproblem repeatedly.**  
+> - Instead, **store the “best so far” partial answers** and extend them step by step.  
+>   
+> We want a method that says: “At time $t$, what is the best way to have arrived at each possible state, given what we have seen so far?”
+
+## The Core Quantity $\delta_t(j)$
+
+We define:
+
+$$
+\delta_t(j) = \max_{q_1,\dots,q_{t-1}}
+\Pr(q_1,\dots,q_t=s_j,\ O_1,\dots,O_t)
+$$
+
+> **Conceptual narrative:**  
+> Think of $\delta_t(j)$ as the **score of the best story so far** that:
+> 1. Ends in state $s_j$ at time $t$, and  
+> 2. Is consistent with the first $t$ observations $O_1, \dots, O_t$.  
+>   
+> Intuitively: for each time step $t$ and each state $s_j$, $\delta_t(j)$ tells you **how likely the most plausible story is if we *force* the story to currently be in state $s_j$**.
+
+## The Backpointer $\psi_t(j)$
+
+We define:
+
+$$
+\psi_t(j) = \arg\max_i \ \delta_{t-1}(i)\, a_{ij}.
+$$
+
+> **Conceptual narrative:**  
+> The backpointer answers:  
+> **“If the best story at time $t$ ends in state $s_j$, which previous state $s_i$ did we come from?”**  
+>   
+> Later, we reconstruct the most likely full path by following these backpointers backward like arrows left on a trail.
+
+## Initialization Step
+
+$$
+\delta_1(j) = \pi_j \, b_j(O_1)
+$$
+
+> **Conceptual narrative:**  
+> At $t=1$, there is no past.  
+> $\pi_j$ is the probability of starting in $s_j$, and $b_j(O_1)$ is the probability of producing the first observation.  
+> This forms the **initial scores**.
+
+## Recursion: Extending the Best Paths
+
+$$
+\delta_t(j) = \Big( \max_i \delta_{t-1}(i)\, a_{ij} \Big) b_j(O_t)
+$$
+
+> **Conceptual narrative:**  
+> To end in $s_j$ at time $t$, we consider all possible predecessor states $s_i$.  
+> We choose the best one, extend that story into $s_j$, then weight it by the probability of emitting $O_t$.
+
+## Termination
+
+$$
+q_T^* = \arg\max_j \delta_T(j)
+$$
+
+> **Conceptual narrative:**  
+> After processing all observations, pick the state with the highest final score as the endpoint of the best story.
+
+## Backtrace: Recovering the Whole Path
+
+$$
+q_t^* = \psi_{t+1}(q_{t+1}^*) \quad t=T-1,\dots,1
+$$
+
+> **Conceptual narrative:**  
+> Follow the backpointers backward to reconstruct the entire most-likely hidden sequence.
+
+## Why This Is Efficient
+
+> **Conceptual narrative:**  
+> Instead of enumerating $N^T$ paths, we compute only $N$ scores per time step.  
+> The algorithm runs in $O(N^2 T)$ time.
+
+## Worked Example: Umbrella World
+
+We have two weather states: Sunny (S) and Rainy (R).  
+Observation: Umbrella (U).
+
+Initial probabilities: $\pi_S = 0.5$, $\pi_R = 0.5$.  
+Emissions: $b_S(U)=0.1$, $b_R(U)=0.8$.
+
+## Step 1: Initialization
+
+$$
+\delta_1(S) = 0.5 \cdot 0.1 = 0.05
+$$
+$$
+\delta_1(R) = 0.5 \cdot 0.8 = 0.40
+$$
+
+> **Conceptual narrative:**  
+> Seeing an umbrella makes Rain more plausible at $t=1$.
+
+## Step 2: Second Observation
+
+Observation $O_2 = U$.  
+Transitions: $a_{SS}=0.7$, $a_{SR}=0.3$, $a_{RS}=0.4$, $a_{RR}=0.6$.
+
+## Computing $\delta_2(S)$
+
+$$
+\delta_2(S) = \max
+\begin{cases}
+0.05\cdot0.7 = 0.035 \\
+0.40\cdot0.4 = 0.16
+\end{cases}
+\cdot 0.1
+$$
+
+Thus:
+
+$$
+\delta_2(S) = 0.016
+$$
+
+> **Conceptual narrative:**  
+> The best way to end sunny at $t=2$ is to have been rainy at $t=1$.
+
+## Computing $\delta_2(R)$
+
+$$
+\delta_2(R) = \max
+\begin{cases}
+0.05\cdot0.3 = 0.015 \\
+0.40\cdot0.6 = 0.24
+\end{cases}
+\cdot 0.8
+$$
+
+Thus:
+
+$$
+\delta_2(R) = 0.192
+$$
+
+> **Conceptual narrative:**  
+> Staying rainy yields a much stronger story.
+
+## Interpretation After Two Steps
+
+- $\delta_2(S) = 0.016$  
+- $\delta_2(R) = 0.192$
+
+> **Conceptual narrative:**  
+> Two umbrellas make Rain the overwhelmingly likely hidden state.
 
 ---
 
