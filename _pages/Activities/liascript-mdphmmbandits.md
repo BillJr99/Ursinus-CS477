@@ -89,6 +89,300 @@ print("Utilities ready.")
 
 ---
 
+# Markov Chains: Overview
+
+## 1. Conceptual Introduction
+
+A **Markov Chain** is a mathematical model for situations where something moves between states over time, and the key assumption is:
+
+> **The future depends only on the present, not the past.**
+
+This is called the **Markov Property**.
+
+### Example Context
+You want to model the weather:
+- States: `Sunny`, `Cloudy`, `Rainy`.
+- Each day, the weather transitions to another state with a certain probability.
+
+We write these probabilities in a **transition matrix**:
+
+$$
+P = \begin{bmatrix}
+0.6 & 0.3 & 0.1 \\\\
+0.4 & 0.4 & 0.2 \\\\
+0.2 & 0.6 & 0.2
+\end{bmatrix}
+$$
+
+Each row corresponds to “today”, each column to “tomorrow”.
+
+---
+
+## 2. Numerical Example (Exact Arithmetic)
+
+Suppose today is **Sunny**. Represent this as a probability vector:
+
+$$
+\mathbf{x}_0 = [1, 0, 0].
+$$
+
+To find tomorrow’s distribution:
+
+$$
+\mathbf{x}_1 = \mathbf{x}_0 P
+$$
+
+Compute:
+
+$$
+\mathbf{x}_1
+= [1, 0, 0]
+\begin{bmatrix}
+0.6 & 0.3 & 0.1 \\\\
+0.4 & 0.4 & 0.2 \\\\
+0.2 & 0.6 & 0.2
+\end{bmatrix}
+= [0.6,\; 0.3,\; 0.1].
+$$
+
+After two days:
+
+$$
+\mathbf{x}_2 = \mathbf{x}_1 P.
+$$
+
+We compute this explicitly:
+
+\[
+\mathbf{x}_2 =
+[0.6, 0.3, 0.1]
+\begin{bmatrix}
+0.6 & 0.3 & 0.1 \\\\
+0.4 & 0.4 & 0.2 \\\\
+0.2 & 0.6 & 0.2
+\end{bmatrix}
+\]
+
+Compute each component:
+
+- Sunny:
+  $$
+  0.6(0.6)+0.3(0.4)+0.1(0.2)=0.36+0.12+0.02=0.50
+  $$
+- Cloudy:
+  $$
+  0.6(0.3)+0.3(0.4)+0.1(0.6)=0.18+0.12+0.06=0.36
+  $$
+- Rainy:
+  $$
+  0.6(0.1)+0.3(0.2)+0.1(0.2)=0.06+0.06+0.02=0.14
+  $$
+
+Thus:
+
+$$
+\mathbf{x}_2 = [0.50, 0.36, 0.14].
+$$
+
+---
+
+## 3. Theory: Regular Markov Chains and Steady-State
+
+A Markov chain is **regular** if some power of its transition matrix has **all positive entries**.
+
+If a chain is regular:
+
+> It has a unique **steady‑state distribution** \( \pi \) such that  
+> \( \pi P = \pi \).
+
+We solve the equation:
+
+$$
+\pi P = \pi, \qquad \pi_1 + \pi_2 + \pi_3 = 1.
+$$
+
+This is equivalent to finding the eigenvector of \( P^T \) with eigenvalue 1.
+
+---
+
+## 4. Code Example (Python)
+
+```python
+import numpy as np
+
+P = np.array([
+    [0.6, 0.3, 0.1],
+    [0.4, 0.4, 0.2],
+    [0.2, 0.6, 0.2]
+])
+
+x0 = np.array([1,0,0])
+
+# evolve for 10 steps
+x = x0
+for _ in range(10):
+    x = x @ P
+
+print("After 10 days:", x)
+
+# steady state via eigenvector method
+vals, vecs = np.linalg.eig(P.T)
+idx = np.argmin(np.abs(vals - 1))
+pi = vecs[:, idx].real
+pi = pi / pi.sum()
+print("Steady state:", pi)
+```
+
+---
+
+## 5. PageRank as a Markov Chain
+
+Google PageRank views the web as a Markov chain:
+- Pages = states  
+- Links = transition probabilities  
+
+Basic PageRank formula:
+
+$$
+P = dA + (1-d)\frac{1}{n}\mathbf{1}\mathbf{1}^T
+$$
+
+with damping factor \( d \approx 0.85 \).
+
+The steady state of this Markov chain gives the **PageRank** scores.
+
+---
+
+# Hidden Markov Models (HMMs): Overview
+
+## 1. Conceptual Introduction
+
+A Hidden Markov Model has:
+1. **Hidden states** — not directly observable  
+2. **Observations** — what we see  
+3. **Transition matrix** \( A \)  
+4. **Emission matrix** \( B \)  
+5. **Initial distribution** \( \pi \)
+
+Example:  
+Weather is hidden; whether someone carries an umbrella is visible.
+
+---
+
+## 2. Weather/Umbrella Example
+
+States (hidden):
+- `Sunny`
+- `Rainy`
+
+Observations:
+- `Umbrella`
+- `NoUmbrella`
+
+Transition matrix:
+
+$$
+A = \begin{bmatrix}
+0.7 & 0.3 \\\\
+0.4 & 0.6
+\end{bmatrix}
+$$
+
+Emission matrix:
+
+$$
+B = \begin{bmatrix}
+0.1 & 0.9 \\\\
+0.8 & 0.2
+\end{bmatrix}
+$$
+
+Interpretation:
+- When Sunny: 10% umbrella, 90% no umbrella  
+- When Rainy: 80% umbrella, 20% no umbrella  
+
+---
+
+## 3. Viterbi Algorithm (Step‑by‑Step Example)
+
+Goal: Given observations  
+\[
+O = (\text{Umbrella},\ \text{Umbrella},\ \text{NoUmbrella})
+\]
+find the **most likely hidden state sequence**.
+
+Viterbi computes:
+
+$$
+\delta_t(i) = \max_{q_1,\dots,q_{t-1}} \Pr(q_1,\dots,q_t=i,\ O_1,\dots,O_t)
+$$
+
+and stores backpointers:
+
+$$
+\psi_t(i) = \arg\max_j \delta_{t-1}(j)\,a_{ji}.
+$$
+
+We compute everything explicitly (omitted in this brief version, but would include full arithmetic in a longer deck).
+
+---
+
+## 4. Full Python Implementation (Viterbi)
+
+```python
+import numpy as np
+
+A = np.array([[0.7, 0.3],
+              [0.4, 0.6]])
+
+B = np.array([[0.1, 0.9],
+              [0.8, 0.2]])
+
+pi = np.array([0.5, 0.5])
+
+obs_map = {"Umbrella":0, "NoUmbrella":1}
+O = ["Umbrella","Umbrella","NoUmbrella"]
+Oidx = [obs_map[o] for o in O]
+
+def viterbi(A, B, pi, O):
+    T = len(O)
+    N = A.shape[0]
+    delta = np.zeros((T, N))
+    psi = np.zeros((T, N), dtype=int)
+
+    # init
+    delta[0] = pi * B[:, O[0]]
+
+    # recurrence
+    for t in range(1, T):
+        for j in range(N):
+            probs = delta[t-1] * A[:, j]
+            psi[t, j] = np.argmax(probs)
+            delta[t, j] = probs[psi[t, j]] * B[j, O[t]]
+
+    # termination
+    path = np.zeros(T, dtype=int)
+    path[-1] = np.argmax(delta[-1])
+    for t in range(T-2, -1, -1):
+        path[t] = psi[t+1, path[t+1]]
+
+    return path, delta
+
+path, delta = viterbi(A, B, pi, Oidx)
+print(\"Most likely state sequence:\", path)
+```
+
+---
+
+## 5. Summary
+
+- Markov Chains model observable state transitions.  
+- Hidden Markov Models extend this to hidden states.  
+- Viterbi algorithm finds the most probable hidden state sequence.  
+- PageRank is a Markov chain steady‑state application.
+
+---
+
 # Part I — Markov Chains and MDPs
 
 ## 1. Markov Chains (Recap)
@@ -180,6 +474,7 @@ $$
 \lVert T[V]-T[W]\rVert_\infty \le \gamma \lVert V-W\rVert_\infty.
 $$
 Hence value iteration converges to $V^*$ from any initial $V_0$. Complexity per sweep is $O(|\mathcal{S}|^2 |\mathcal{A}|)$ for dense $P$.
+
 
 ---
 
@@ -388,25 +683,3 @@ Bandits optimize **regret** while MDPs optimize **discounted return**. In episod
 2. **HMM smoothing:** implement forward–backward and verify that smoothed marginals dominate filtered ones in information (entropy reduction).  
 3. **Bandit comparison:** simulate Bernoulli arms with gaps $\Delta \in \{0.05,0.1,0.2\}$; compare regret of $\varepsilon$‑decreasing, UCB1, and Thompson.  
 4. **POMDP bridge:** implement a tiny POMDP as an HMM with actions by augmenting the transition matrix per action and performing belief updates.
-
----
-
-## 15. Further Reading
-
-- Puterman, *Markov Decision Processes*.  
-- Rabiner, “A Tutorial on Hidden Markov Models.”  
-- Lattimore & Szepesvári, *Bandit Algorithms*.  
-- Kaelbling, Littman, Cassandra, “Planning and acting in partially observable stochastic domains.”
-
----
-
-## Open Colab Links (again for convenience)
-
-- Markov Chains (Foundations): [Open in Colab](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/Markov_Chain_Tutorial.ipynb)
-- HMM – Viterbi/Forward–Backward (Core): [Open in Colab](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/HMM_Viterbi_Colab.ipynb)
-- HMM – Robot Localization (Filtering): [Open in Colab](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/HMM_Robot_Localization_Heatmaps_From_Scratch.ipynb)
-- HMM – Speech Commands (Tiny/Fast): [Open in Colab](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/HMM_Speech_Commands_Tiny_Fast.ipynb)
-- HMM – Image Recognition (From Scratch): [Open in Colab](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/HMM_Image_Recognition_From_Scratch.ipynb)
-- HMM – ECG Artifact Detector (From Scratch): [Open in Colab](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/HMM_ECG_Artifact_Detector_From_Scratch.ipynb)
-- HMM – Bull/Bear Market Detection (From Scratch): [Open in Colab](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/HMM_Bull_Bear_Detection_From_Scratch.ipynb)
-- Multi‑Armed Bandits – Project Funding (From Scratch): [Open in Colab](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/ProjectFunding_MultiArmedBandit_FromScratch.ipynb)
