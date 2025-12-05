@@ -238,6 +238,7 @@ print("Steady state:", pi)
 ## 5. PageRank as a Markov Chain
 
 Google PageRank views the web as a Markov chain:
+
 - Pages = states  
 - Links = transition probabilities  
 
