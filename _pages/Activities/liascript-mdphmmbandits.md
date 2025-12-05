@@ -192,8 +192,8 @@ A Markov chain is **regular** if some power of its transition matrix has **all p
 
 If a chain is regular:
 
-> It has a unique **steady‑state distribution** $ \pi \) such that  
-> $ \pi P = \pi \).
+> It has a unique **steady‑state distribution** $ \pi $ such that  
+> $ \pi P = \pi $.
 
 We solve the equation:
 
@@ -201,7 +201,7 @@ $$
 \pi P = \pi, \qquad \pi_1 + \pi_2 + \pi_3 = 1.
 $$
 
-This is equivalent to finding the eigenvector of $ P^T \) with eigenvalue 1.
+This is equivalent to finding the eigenvector of $ P^T $ with eigenvalue 1.
 
 ---
 
@@ -247,7 +247,7 @@ $$
 P = dA + (1-d)\frac{1}{n}\mathbf{1}\mathbf{1}^T
 $$
 
-with damping factor $ d \approx 0.85 \).
+with damping factor $ d \approx 0.85 $.
 
 The steady state of this Markov chain gives the **PageRank** scores.
 
@@ -260,9 +260,9 @@ The steady state of this Markov chain gives the **PageRank** scores.
 A Hidden Markov Model has:
 1. **Hidden states** — not directly observable  
 2. **Observations** — what we see  
-3. **Transition matrix** $ A \)  
-4. **Emission matrix** $ B \)  
-5. **Initial distribution** $ \pi \)
+3. **Transition matrix** $ A $  
+4. **Emission matrix** $ B $  
+5. **Initial distribution** $ \pi $
 
 Example:  
 Weather is hidden; whether someone carries an umbrella is visible.
