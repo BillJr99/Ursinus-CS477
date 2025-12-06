@@ -43,6 +43,12 @@ Finally, we analyze the **Iris** dataset with a simple **linear regression One-v
 
 ---
 
+## Open Colab: PCA
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/PCA_From_Scratch_and_Sklearn.ipynb)
+
+---
+
 ## 1. Motivation: Why PCA?
 
 **Problem:** Many datasets have features that are redundant or noisy. Models trained on all features may:

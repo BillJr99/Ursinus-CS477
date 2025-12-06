@@ -723,3 +723,899 @@ These integrated slides tie each conceptual block directly to its corresponding 
 - Code-level insight
 - Interactive learning checks
 
+# Part VI Supplement - Bayesian Code Examples
+
+---
+
+## Example 1 — Beta–Binomial Coin Updating (Functional Style)
+
+In this example we encode the classic **coin-flip** Bayesian update:
+
+- The unknown coin bias is a parameter $\theta = P(\text{Heads})$.
+- Our **prior belief** about $\theta$ is modeled as a $\text{Beta}(\alpha, \beta)$ distribution.
+- Each flip is a Bernoulli observation $X_i \in \{\text{H}, \text{T}\}$.
+- After seeing more flips, we **update** $(\alpha, \beta)$ and track the posterior mean
+  $$
+  \mathbb{E}[\theta \mid \text{data}] = \frac{\alpha}{\alpha + \beta}.
+  $$
+
+This code organizes the computations into small, reusable functions and then runs a
+short sequence of flips.
+
+---
+
+### Code: `bayesian_coin.py`
+
+```python
+# Bayesian updating for a coin's bias using a Beta prior
+
+from typing import List, Tuple
+
+def beta_posterior_mean(alpha: float, beta: float) -> float:
+    """Return the mean of a Beta(alpha, beta) distribution."""
+    return alpha / (alpha + beta)
+
+
+def update_beta_after_flip(
+    alpha: float,
+    beta: float,
+    outcome: str
+) -> Tuple[float, float]:
+    """
+    Update Beta(alpha, beta) parameters after a single coin flip.
+
+    outcome: 'H' for heads, 'T' for tails.
+    """
+    if outcome.upper() == 'H':
+        alpha += 1
+    elif outcome.upper() == 'T':
+        beta += 1
+    else:
+        raise ValueError(f"Invalid outcome '{outcome}'. Use 'H' or 'T'.")
+
+    return alpha, beta
+
+
+def run_bayesian_coin_example():
+    # Initial prior: Beta(2, 2)
+    alpha, beta = 2.0, 2.0
+
+    # Sequence of observed flips
+    flips: List[str] = ['H', 'T', 'H', 'H', 'H']
+
+    print("Bayesian updating for a coin with Beta prior")
+    print("Initial prior: Beta(alpha=2, beta=2)")
+    print()
+
+    # Header for the table
+    print(f"{'Step':<5} {'Flip':<6} {'Alpha':<8} {'Beta':<8} {'Mean p(H)':<10}")
+    print("-" * 40)
+
+    # Step 0: before seeing any data
+    step = 0
+    mean_p = beta_posterior_mean(alpha, beta)
+    print(f"{step:<5} {'-':<6} {alpha:<8.2f} {beta:<8.2f} {mean_p:<10.3f}")
+
+    # Sequentially update after each flip
+    for flip in flips:
+        step += 1
+        alpha, beta = update_beta_after_flip(alpha, beta, flip)
+        mean_p = beta_posterior_mean(alpha, beta)
+        print(f"{step:<5} {flip:<6} {alpha:<8.2f} {beta:<8.2f} {mean_p:<10.3f}")
+
+
+if __name__ == "__main__":
+    run_bayesian_coin_example()
+```
+
+---
+
+### Conceptual Walkthrough (Beginner-Friendly)
+
+1. **State of belief as $(\alpha, \beta)$**
+
+   - We never store the full continuous posterior distribution explicitly.
+   - Instead, we keep track of the **shape parameters** $(\alpha, \beta)$ of the $\text{Beta}$ distribution.
+   - These two numbers summarize *all* past flips under the Beta–Binomial conjugate model.
+
+2. **Likelihood and conjugate prior**
+
+   - Each flip $X_i$ is modeled as:
+     $$
+     X_i \sim \text{Bernoulli}(\theta), \quad \theta \in (0,1).
+     $$
+   - The prior is $\theta \sim \text{Beta}(\alpha, \beta)$.
+   - After observing data with $k$ heads and $n-k$ tails, the posterior is
+     $$
+     \theta \mid \text{data} \sim \text{Beta}(\alpha + k, \beta + (n-k)).
+     $$
+   - In this script we integrate observations **one at a time**, updating the parameters sequentially:
+     - On heads: $\alpha \leftarrow \alpha + 1$.
+     - On tails: $\beta \leftarrow \beta + 1$.
+
+3. **Posterior mean as a point estimate**
+
+   - The function `beta_posterior_mean` returns
+     $$
+     \mathbb{E}[\theta] = \frac{\alpha}{\alpha + \beta}.
+     $$
+   - This is a **Bayes estimator** under squared-error loss: it gives the
+     action (here, an estimate of $P(\text{Heads})$) that minimizes expected
+     squared error with respect to the posterior.
+
+4. **Sequential updating as data arrive**
+
+   - `run_bayesian_coin_example` prints a table with one row per flip:
+     - `Step` number.
+     - The observed `Flip` (`H` or `T`).
+     - The updated $(\alpha, \beta)$.
+     - The **current mean** belief $P(\text{Heads})$.
+   - You can imagine this as an *online learning* process where each new
+     observation refines your belief about $\theta$.
+
+5. **Interpreting the numbers**
+
+   - Starting from $\text{Beta}(2,2)$ (a slightly “U-shaped” but fairly diffuse prior),
+     each head increases $\alpha$ and pushes the mean upward.
+   - Each tail increases $\beta$ and drags the mean downward.
+   - Over many flips, the mean stabilizes near the true bias (if the model is well-specified).
+
+---
+
+## Example 2 — Inferring Coin Bias from Simulated Data
+
+This example uses the same Beta–Binomial ideas but now:
+
+- There is a **hidden true bias** $\theta^\star = P(\text{Heads})$ that generates data.
+- We start with an uninformative prior $\text{Beta}(1,1)$, i.e., a uniform prior over $[0,1]$.
+- We simulate many flips from the *true* coin and watch our posterior mean converge.
+
+Mathematically:
+
+- Prior: $\theta \sim \text{Beta}(\alpha_0, \beta_0)$ with $(\alpha_0,\beta_0)=(1,1)$.
+- Data: $X_i \mid \theta \sim \text{Bernoulli}(\theta)$, independent.
+- Posterior after $n$ flips with $k$ heads:
+  $$
+  \theta \mid X_{1:n} \sim \text{Beta}(\alpha_0 + k, \beta_0 + n - k).
+  $$
+
+---
+
+### Code: `bayesian_coin_determine.py`
+
+```python
+import random
+
+# True bias of the coin (unknown to the Bayesian learner)
+TRUE_P_HEADS = 0.7
+
+# Prior: Beta(α, β)
+alpha = 1.0
+beta  = 1.0
+
+# Number of flips to simulate
+num_flips = 70
+
+print(f"{'Flip #':<7} {'Outcome':<8} {'α':<8} {'β':<8} {'Mean belief P(H)':<18}")
+print("-" * 60)
+
+for flip_num in range(1, num_flips + 1):
+    # Simulated outcome from the real (biased) coin
+    outcome = 'H' if random.random() < TRUE_P_HEADS else 'T'
+
+    # Bayesian update
+    if outcome == 'H':
+        alpha += 1
+    else:
+        beta += 1
+
+    mean_belief = alpha / (alpha + beta)
+    print(f"{flip_num:<7} {outcome:<8} {alpha:<8.2f} {beta:<8.2f} {mean_belief:<18.3f}")
+
+print("\nFinal inference:")
+print(f"Posterior Beta(α={alpha:.2f}, β={beta:.2f})")
+print(f"Estimated probability of heads: {alpha/(alpha+beta):.3f}")
+print(f"True probability of heads:      {TRUE_P_HEADS:.3f}")
+```
+
+---
+
+### Conceptual Walkthrough
+
+1. **True generative process**
+
+   - The line `TRUE_P_HEADS = 0.7` encodes the *ground truth*:
+     $$
+     P_{\text{true}}(\text{Heads}) = 0.7.
+     $$
+   - The learner does **not** know this number; it will try to infer it from data.
+
+2. **Prior and posterior parameters**
+
+   - We begin with $\alpha = 1,\ \beta = 1$, i.e., $\text{Beta}(1,1)$.
+   - This prior is uniform: it does not favor any value of $\theta$ over another.
+   - Each time we see a head, we do $\alpha \leftarrow \alpha + 1$.
+   - Each time we see a tail, we do $\beta \leftarrow \beta + 1$.
+
+3. **Posterior mean as running estimate**
+
+   - After each flip, the mean belief is
+     $$
+     \hat{\theta}_{\text{mean}} = \frac{\alpha}{\alpha + \beta}.
+     $$
+   - This quantity is printed in the table as `"Mean belief P(H)"`.
+
+4. **Law of large numbers meets Bayesian updating**
+
+   - As `num_flips` grows large, the posterior distribution $\text{Beta}(\alpha,\beta)$
+     concentrates around $\theta^\star = 0.7$.
+   - The final lines print:
+     - The posterior parameters: $\text{Beta}(\alpha_{\text{final}}, \beta_{\text{final}})$.
+     - The estimated probability of heads (posterior mean).
+     - The true probability of heads used to generate data.
+
+5. **What to look for when running the script**
+
+   - Early on, the mean belief will move around considerably (because the data
+     are small and the prior is diffuse).
+   - Later, the updates become **incremental**: each new flip only slightly
+     nudges the mean.
+   - This captures a general Bayesian phenomenon: early data have more influence,
+     and as data accumulate, the posterior becomes more concentrated.
+
+---
+
+## Example 3 — Bayesian Disease Testing (Sensitivity, Specificity, and Priors)
+
+This example applies Bayes’ rule to **diagnostic testing**:
+
+- Hidden variable $D \in \{0,1\}$: disease absent/present.
+- Observable test result $T \in \{+,-\}$.
+- Known test characteristics:
+  - Sensitivity: $\text{Se} = P(T{=}+ \mid D{=}1)$.
+  - Specificity: $\text{Sp} = P(T{=}- \mid D{=}0)$.
+- Prior probability of disease: $\pi = P(D{=}1)$.
+
+Bayes’ rule for a **positive** test result is:
+$$
+P(D{=}1 \mid T{=}+) = \frac{\text{Se}\,\pi}{\text{Se}\,\pi + (1-\text{Sp})(1-\pi)}.
+$$
+
+This code wraps those formulas in a clear API and demonstrates **sequential**
+updates across multiple test results.
+
+---
+
+### Code: `bayesian_disease.py`
+
+```python
+from dataclasses import dataclass
+from typing import List
+
+
+@dataclass
+class TestCharacteristics:
+    """
+    Characteristics of a diagnostic test.
+
+    sensitivity = P(test is positive | disease is present)
+    specificity = P(test is negative | disease is absent)
+    """
+    sensitivity: float  # True positive rate
+    specificity: float  # True negative rate
+
+
+def update_disease_probability(
+    prior_disease: float,
+    result: str,
+    test: TestCharacteristics
+) -> float:
+    """
+    Update the probability of disease given a new test result.
+
+    prior_disease: P(D) before seeing this test
+    result: 'P' or '+' for positive, 'N' or '-' for negative
+    test: TestCharacteristics(sensitivity, specificity)
+
+    Returns:
+        posterior_disease: P(D | result)
+    """
+    sens = test.sensitivity
+    spec = test.specificity
+
+    if not (0.0 <= prior_disease <= 1.0):
+        raise ValueError(f"Invalid prior_disease={prior_disease}. Must be in [0, 1].")
+
+    if result.upper() in ['P', '+']:
+        # Positive test
+        # P(+ | D) = sensitivity
+        # P(+ | ¬D) = 1 - specificity
+        p_pos_given_d = sens
+        p_pos_given_not_d = 1.0 - spec
+
+        # Total probability of a positive test:
+        # P(+) = P(+|D)P(D) + P(+|¬D)P(¬D)
+        p_pos = p_pos_given_d * prior_disease + p_pos_given_not_d * (1.0 - prior_disease)
+
+        if p_pos == 0.0:
+            raise ZeroDivisionError("P(positive) = 0; cannot update.")
+
+        # Bayes:
+        # P(D | +) = P(+|D)P(D) / P(+)
+        posterior = (p_pos_given_d * prior_disease) / p_pos
+
+    elif result.upper() in ['N', '-']:
+        # Negative test
+        # P(- | D) = 1 - sensitivity  (false negative rate)
+        # P(- | ¬D) = specificity
+        p_neg_given_d = 1.0 - sens
+        p_neg_given_not_d = spec
+
+        # Total probability of a negative test:
+        # P(-) = P(-|D)P(D) + P(-|¬D)P(¬D)
+        p_neg = p_neg_given_d * prior_disease + p_neg_given_not_d * (1.0 - prior_disease)
+
+        if p_neg == 0.0:
+            raise ZeroDivisionError("P(negative) = 0; cannot update.")
+
+        # Bayes:
+        # P(D | -) = P(-|D)P(D) / P(-)
+        posterior = (p_neg_given_d * prior_disease) / p_neg
+
+    else:
+        raise ValueError(f"Invalid test result '{result}'. Use 'P', '+', 'N', or '-'.")
+
+    return posterior
+
+
+def run_disease_testing_example():
+    """
+    Demonstrate Bayesian updating for disease testing over multiple test results.
+    """
+
+    # --- Model setup ---
+
+    # Suppose the disease is relatively rare in the population:
+    # prior P(D) = 1%
+    prior_disease = 0.01
+
+    # A single type of test with given sensitivity and specificity.
+    # Example: sensitivity = 95%, specificity = 98%.
+    test = TestCharacteristics(
+        sensitivity=0.95,
+        specificity=0.98
+    )
+
+    # Sequence of test results over time: positive, positive, negative, ...
+    # (You can modify this sequence to explore different patterns.)
+    test_results: List[str] = ['+', '+', '-']
+
+    # --- Print header and initial state ---
+    print("Bayesian Updating for Disease Testing")
+    print("------------------------------------")
+    print(f"Initial prior probability of disease: {prior_disease:.4f}")
+    print(f"Test sensitivity: {test.sensitivity:.2f}")
+    print(f"Test specificity: {test.specificity:.2f}")
+    print()
+
+    print(f"{'Step':<5} {'Result':<8} {'Posterior P(Disease)':<22}")
+    print("-" * 40)
+
+    # Step 0: before any tests
+    step = 0
+    print(f"{step:<5} {'(prior)':<8} {prior_disease:<22.6f}")
+
+    # --- Sequentially update as each new test result arrives ---
+    current_prob = prior_disease
+    for result in test_results:
+        step += 1
+        current_prob = update_disease_probability(current_prob, result, test)
+        print(f"{step:<5} {result:<8} {current_prob:<22.6f}")
+
+
+if __name__ == "__main__":
+    run_disease_testing_example()
+```
+
+---
+
+### Conceptual Walkthrough
+
+1. **Encoding test characteristics**
+
+   - The `TestCharacteristics` dataclass simply bundles:
+     - `sensitivity = P(T{=}+ \mid D{=}1)$
+     - `specificity = P(T{=}- \mid D{=}0)$
+   - These numbers are **properties of the test**, not of the patient.
+
+2. **Positive vs. negative test updates**
+
+   - For a positive result:
+     $$
+     P(D{=}1 \mid T{=}+) = \frac{P(T{=}+ \mid D{=}1) P(D{=}1)}
+                                {P(T{=}+ \mid D{=}1) P(D{=}1) + P(T{=}+ \mid D{=}0) P(D{=}0)}.
+     $$
+   - For a negative result:
+     $$
+     P(D{=}1 \mid T{=}-) = \frac{P(T{=}- \mid D{=}1) P(D{=}1)}
+                                {P(T{=}- \mid D{=}1) P(D{=}1) + P(T{=}- \mid D{=}0) P(D{=}0)}.
+     $$
+   - The function `update_disease_probability` implements these formulas case-by-case.
+
+3. **Base-rate (prior) matters**
+
+   - Even with high sensitivity and specificity, a **rare** disease (small prior $\pi$)
+     will usually have a relatively small posterior probability after *one* positive test.
+   - Two positive tests in a row may push the posterior quite high.
+   - The example sequence `['+', '+', '-']` shows how the posterior climbs and then
+     drops after a negative test.
+
+4. **Sequential reasoning**
+
+   - After processing the first test, the resulting posterior becomes the new **prior**
+     for the second test, and so on.
+   - This mirrors realistic use: each new test refines our belief, rather than “starting over”.
+
+5. **Practical interpretation**
+
+   - The printed table lets you see the **posterior probability of disease** after each step.
+   - You can experiment by changing:
+     - The prior `prior_disease`.
+     - The test accuracy `(sensitivity, specificity)`.
+     - The order and type of test results.
+
+---
+
+## Example 4 — Bayesian Pursuit / Stealth Game (Gridworld Belief Tracking)
+
+This larger example (`bayesian_chase.py`) implements an interactive **gridworld game**:
+
+- A **player** moves around a 2D grid using WASD keys.
+- An **enemy** tries to find the player but cannot directly observe their position
+  except when the player is within a certain **vision radius**.
+- Otherwise, the enemy gets **noisy sound cues** about the *direction* of the player.
+- The enemy maintains a **belief distribution** over all grid cells:
+  $$
+  b_t(x) = P(X_t = x \mid \text{observations up to time } t),
+  $$
+  and updates this belief using a discrete **Bayes filter**.
+
+This is a concrete, game-like illustration of the **Hidden Markov Model / Bayesian filter**
+recursion:
+
+- **Predict (motion model)**:
+  $$
+  \tilde{b}_t(x) = \sum_{x'} P(x \mid x')\, b_{t-1}(x').
+  $$
+- **Update (observation model)**:
+  $$
+  b_t(x) \propto P(z_t \mid x)\, \tilde{b}_t(x).
+  $$
+
+---
+
+### Code: Core of `bayesian_chase.py` (Bayesian Filter + Game Loop)
+
+For slides, you may wish to show only selected pieces in class; here is a cohesive,
+runnable version of the core script that emphasizes the **Bayesian state estimation**
+and the enemy’s decision logic.
+
+```python
+"""
+Real-time grid-based stealth / pursuit demo with Bayesian state estimation.
+
+- Player moves with WASD.
+- Enemy maintains a belief distribution over player positions.
+- Enemy updates belief using a motion model plus noisy directional sound
+  and occasional perfect vision within a radius.
+"""
+
+import curses
+import random
+import time
+import math
+
+# ----------------- CONFIGURATION -----------------
+
+WIDTH = 10
+HEIGHT = 10
+
+HEARING_RADIUS = 5     # Manhattan distance for hearing
+VISION_RADIUS = 4      # Manhattan distance for vision
+P_CORRECT_DIR = 0.75   # P(sound direction matches true direction)
+RANDOM_MOVE_PROB = 0.1 # Chance enemy moves randomly instead of greedily
+
+TICK_SECONDS = 0.35    # Simulation time step
+
+DIRECTIONS = {
+    'w': (-1, 0),  # up
+    's': (1, 0),   # down
+    'a': (0, -1),  # left
+    'd': (0, 1),   # right
+}
+
+# ----------------- UTILITY FUNCTIONS -----------------
+
+def in_bounds(r, c):
+    """Check whether (r,c) lies inside the grid."""
+    return 0 <= r < HEIGHT and 0 <= c < WIDTH
+
+
+def manhattan(p1, p2):
+    """Manhattan (L1) distance between two grid cells."""
+    return abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])
+
+
+def normalize(belief):
+    """
+    Normalize a 2D belief grid so entries sum to 1.
+    If the total is 0, fall back to uniform.
+    """
+    total = sum(sum(row) for row in belief)
+    if total == 0:
+        val = 1.0 / (WIDTH * HEIGHT)
+        return [[val for _ in range(WIDTH)] for _ in range(HEIGHT)]
+    return [[cell / total for cell in row] for row in belief]
+
+
+def make_uniform_belief():
+    """Return a uniform prior over all grid cells."""
+    val = 1.0 / (WIDTH * HEIGHT)
+    return [[val for _ in range(WIDTH)] for _ in range(HEIGHT)]
+
+
+def motion_update(belief):
+    """
+    Prediction step: from each cell, the player can
+    stay put or move N/S/E/W with equal probability,
+    respecting boundaries.
+    """
+    new_belief = [[0.0 for _ in range(WIDTH)] for _ in range(HEIGHT)]
+    for r in range(HEIGHT):
+        for c in range(WIDTH):
+            moves = [(r, c)]
+            for dr, dc in [(-1,0), (1,0), (0,-1), (0,1)]:
+                nr, nc = r + dr, c + dc
+                if in_bounds(nr, nc):
+                    moves.append((nr, nc))
+            p_move = belief[r][c] / len(moves)
+            for nr, nc in moves:
+                new_belief[nr][nc] += p_move
+    return new_belief
+
+
+def direction_bucket(from_pos, to_pos):
+    """
+    Map the vector from 'from_pos' to 'to_pos' into
+    a coarse direction: 'N', 'S', 'E', or 'W'.
+    Return None if positions coincide.
+    """
+    fr, fc = from_pos
+    tr, tc = to_pos
+    dr = tr - fr
+    dc = tc - fc
+    if dr == 0 and dc == 0:
+        return None
+    if abs(dr) >= abs(dc):
+        return 'S' if dr > 0 else 'N'
+    else:
+        return 'E' if dc > 0 else 'W'
+
+
+def sample_observed_dir(true_dir):
+    """
+    Sample a noisy observed direction given the true
+    coarse direction. With probability P_CORRECT_DIR
+    we return true_dir; otherwise pick a random
+    different direction.
+    """
+    dirs = ['N', 'S', 'E', 'W']
+    if true_dir is None:
+        return random.choice(dirs)
+    if random.random() < P_CORRECT_DIR:
+        return true_dir
+    others = [d for d in dirs if d != true_dir]
+    return random.choice(others)
+
+
+def sound_update(belief, enemy_pos, observed_dir):
+    """
+    Correction step: given a directional sound observation,
+    update the belief via Bayes:
+        posterior(x) ∝ P(observed_dir | x) * prior(x).
+    """
+    if observed_dir is None:
+        return belief
+
+    dirs = ['N', 'S', 'E', 'W']
+    n_dirs = len(dirs)
+    p_correct = P_CORRECT_DIR
+    p_incorrect = (1.0 - P_CORRECT_DIR) / (n_dirs - 1)
+
+    new_belief = [[0.0 for _ in range(WIDTH)] for _ in range(HEIGHT)]
+    for r in range(HEIGHT):
+        for c in range(WIDTH):
+            dir_to_cell = direction_bucket(enemy_pos, (r, c))
+            if dir_to_cell is None:
+                likelihood = 0.0
+            elif dir_to_cell == observed_dir:
+                likelihood = p_correct
+            else:
+                likelihood = p_incorrect
+            new_belief[r][c] = belief[r][c] * likelihood
+
+    return normalize(new_belief)
+
+
+def choose_enemy_move(enemy_pos, target_pos):
+    """
+    Choose a one-step move for the enemy toward a target cell.
+    With probability RANDOM_MOVE_PROB, move randomly instead.
+    """
+    er, ec = enemy_pos
+    if enemy_pos == target_pos:
+        return enemy_pos
+
+    # Occasional random move
+    if random.random() < RANDOM_MOVE_PROB:
+        candidates = []
+        for dr, dc in [(-1,0), (1,0), (0,-1), (0,1)]:
+            nr, nc = er + dr, ec + dc
+            if in_bounds(nr, nc):
+                candidates.append((nr, nc))
+        return random.choice(candidates) if candidates else enemy_pos
+
+    # Greedy move to reduce Manhattan distance
+    best_pos = enemy_pos
+    best_dist = manhattan(enemy_pos, target_pos)
+    for dr, dc in [(-1,0), (1,0), (0,-1), (0,1)]:
+        nr, nc = er + dr, ec + dc
+        if in_bounds(nr, nc):
+            d = manhattan((nr, nc), target_pos)
+            if d < best_dist:
+                best_dist = d
+                best_pos = (nr, nc)
+    return best_pos
+
+
+def find_belief_peak(belief):
+    """Return (cell, probability) of the maximum-belief cell."""
+    best_cell = (0, 0)
+    best_prob = -1.0
+    for r in range(HEIGHT):
+        for c in range(WIDTH):
+            if belief[r][c] > best_prob:
+                best_prob = belief[r][c]
+                best_cell = (r, c)
+    return best_cell, best_prob
+
+# ----------------- RENDERING WITH CURSES -----------------
+
+def draw_state(stdscr, player_pos, enemy_pos, belief, step, paused):
+    """Draw the actual grid and the belief heatmap side-by-side."""
+    stdscr.clear()
+
+    peak_cell, peak_prob = find_belief_peak(belief)
+
+    status_line = f"Step: {step}   PAUSED: {'YES' if paused else 'NO'}   q=quit, p=pause"
+    stdscr.addstr(0, 0, status_line)
+
+    # Actual world on the left
+    start_row = 2
+    start_col_left = 0
+    stdscr.addstr(start_row - 1, start_col_left,
+                  "Actual world (P=player, E=enemy, X=both):")
+    for r in range(HEIGHT):
+        row_chars = []
+        for c in range(WIDTH):
+            if (r, c) == player_pos and (r, c) == enemy_pos:
+                ch = 'X'
+            elif (r, c) == player_pos:
+                ch = 'P'
+            elif (r, c) == enemy_pos:
+                ch = 'E'
+            else:
+                ch = '.'
+            row_chars.append(ch)
+        stdscr.addstr(start_row + r, start_col_left, " ".join(row_chars))
+
+    # Belief heatmap on the right
+    shades = " .:-=+*#%@"  # low -> high
+    start_col_right = 3 + 2 * WIDTH
+    stdscr.addstr(start_row - 1, start_col_right,
+                  "Enemy belief (heatmap, @ = highest):")
+
+    peak_r, peak_c = peak_cell
+    max_prob = peak_prob if peak_prob > 0 else 1e-9
+
+    for r in range(HEIGHT):
+        row_chars = []
+        for c in range(WIDTH):
+            p = belief[r][c]
+            level = int((p / max_prob) * (len(shades) - 1))
+            level = max(0, min(level, len(shades) - 1))
+            ch = shades[level]
+            if (r, c) == peak_cell:
+                ch = '@'
+            row_chars.append(ch)
+        stdscr.addstr(start_row + r, start_col_right, " ".join(row_chars))
+
+    bottom_row = start_row + HEIGHT + 1
+    stdscr.addstr(bottom_row, 0,
+                  f"Player at {player_pos}, Enemy at {enemy_pos}, "
+                  f"Belief peak at {peak_cell} (prob ≈ {peak_prob:.3f})")
+    stdscr.addstr(bottom_row + 1, 0,
+                  "Use WASD to move. Enemy moves each tick based on belief or vision.")
+    stdscr.addstr(bottom_row + 2, 0,
+                  "If enemy sees you (within vision radius), it chases directly.")
+
+    stdscr.refresh()
+
+# ----------------- MAIN GAME LOOP -----------------
+
+def game_loop(stdscr):
+    """Main real-time control loop for the game."""
+    curses.curs_set(0)
+    stdscr.nodelay(True)
+    stdscr.timeout(50)
+
+    # Random initial positions
+    player_pos = (random.randrange(HEIGHT), random.randrange(WIDTH))
+    enemy_pos = (random.randrange(HEIGHT), random.randrange(WIDTH))
+    while enemy_pos == player_pos:
+        enemy_pos = (random.randrange(HEIGHT), random.randrange(WIDTH))
+
+    belief = make_uniform_belief()
+
+    step = 0
+    paused = False
+    caught = False
+    last_time = time.time()
+    game_loop.prev_player_pos = player_pos
+
+    while True:
+        # Handle keyboard input (player movement and commands)
+        ch = stdscr.getch()
+        if ch != -1:
+            key = chr(ch)
+            if key in DIRECTIONS:
+                dr, dc = DIRECTIONS[key]
+                nr, nc = player_pos[0] + dr, player_pos[1] + dc
+                if in_bounds(nr, nc):
+                    player_pos = (nr, nc)
+            elif key == 'p':
+                paused = not paused
+            elif key == 'q':
+                break
+
+        now = time.time()
+
+        # Simulation tick
+        if not paused and not caught and (now - last_time) >= TICK_SECONDS:
+            last_time = now
+            step += 1
+
+            old_player_pos = game_loop.prev_player_pos
+            player_moved = (player_pos != old_player_pos)
+            game_loop.prev_player_pos = player_pos
+
+            # 1. Predict: motion model
+            belief = motion_update(belief)
+
+            # 2. Observation: vision or sound
+            visible = manhattan(enemy_pos, player_pos) <= VISION_RADIUS
+
+            if visible:
+                # Perfect observation: collapse belief to delta at player_pos
+                belief = [[0.0 for _ in range(WIDTH)] for _ in range(HEIGHT)]
+                pr, pc = player_pos
+                belief[pr][pc] = 1.0
+                enemy_pos = choose_enemy_move(enemy_pos, player_pos)
+            else:
+                # No vision: maybe receive directional sound
+                if player_moved and manhattan(enemy_pos, player_pos) <= HEARING_RADIUS:
+                    true_dir = direction_bucket(enemy_pos, player_pos)
+                    observed_dir = sample_observed_dir(true_dir)
+                    belief = sound_update(belief, enemy_pos, observed_dir)
+                else:
+                    belief = normalize(belief)
+
+                # Move towards MAP estimate (belief peak)
+                peak_cell, _ = find_belief_peak(belief)
+                enemy_pos = choose_enemy_move(enemy_pos, peak_cell)
+
+            # Capture check
+            if enemy_pos == player_pos:
+                caught = True
+
+        draw_state(stdscr, player_pos, enemy_pos, belief, step, paused)
+
+        # Small sleep to avoid a busy loop
+        time.sleep(0.01)
+
+
+def main():
+    curses.wrapper(game_loop)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+---
+
+### Conceptual Walkthrough
+
+1. **Hidden state and belief**
+
+   - Hidden state: $X_t = (r_t, c_t)$, the player’s grid position at time $t$.
+   - Belief grid: `belief[r][c]` represents $P(X_t = (r,c) \mid \text{observations up to } t)$.
+   - At the start, we use a **uniform prior**:
+     $$
+     b_0(x) = \frac{1}{\text{WIDTH} \times \text{HEIGHT}}.
+     $$
+
+2. **Prediction step (motion model)**
+
+   - The function `motion_update` implements
+     $$
+     \tilde{b}_t(x) = \sum_{x'} P(x \mid x')\, b_{t-1}(x').
+     $$
+   - From each cell $x'$, the player can:
+     - Stay put, or
+     - Move N/S/E/W (subject to bounds),
+     all with equal probability.
+   - Probabilities are redistributed accordingly.
+
+3. **Observation step: vision vs. sound**
+
+   - **Vision**:
+     - If `manhattan(enemy_pos, player_pos) <= VISION_RADIUS`, the enemy “sees” the player.
+     - Then $P(z_t \mid x)$ is $1$ if $x$ is the true player position and $0$ otherwise.
+     - The belief collapses to a **delta** at the true location.
+
+   - **Sound**:
+     - If the player moves and is within `HEARING_RADIUS`, we compute the **true direction**
+       from enemy to player (`direction_bucket`).
+     - We then sample a noisy observation `observed_dir` from this direction.
+     - The likelihood model:
+       $$
+       P(z_t = d_{\text{obs}} \mid X_t = x) =
+       \begin{cases}
+       P_{\text{correct}} & \text{if direction\_bucket(enemy, x) = d_{\text{obs}},} \\
+       \dfrac{1 - P_{\text{correct}}}{3} & \text{if direction\_bucket(enemy, x) \neq d_{\text{obs}}}, \\
+       0 & \text{if positions coincide and no direction is defined.}
+       \end{cases}
+       $$
+     - The function `sound_update` implements:
+       $$
+       b_t(x) \propto P(z_t \mid x) \tilde{b}_t(x).
+       $$
+
+4. **Decision-making from belief**
+
+   - When no vision is available, the enemy chooses an action by:
+     - Finding the **belief peak** (MAP estimate): `peak_cell = argmax_x b_t(x)`.
+     - Moving one step greedily toward `peak_cell`.
+   - When vision is available, the enemy simply moves toward the **true** player position.
+   - This illustrates a key idea: actions can be based on **beliefs** over hidden states,
+     not only on fully observed states.
+
+5. **Visualization**
+
+   - The left grid shows the **true** positions:
+     - `P` for player, `E` for enemy, `X` if both occupy the same cell.
+   - The right grid shows a coarse **heatmap** of the belief:
+     - Darker characters encode higher probabilities.
+     - The cell with the highest probability is marked `@`.
+
+6. **Connections to theory**
+
+   - This is an instance of a **discrete Bayes filter** or **Hidden Markov Model**:
+     - State transition model: $P(X_t \mid X_{t-1})$ encoded in `motion_update`.
+     - Observation model: $P(Z_t \mid X_t)$ encoded in `sound_update` and the vision check.
+   - The game loop continuously applies:
+     - Predict $\to$ Update $\to$ Act,
+     providing a rich, hands-on example of probabilistic reasoning over time.
+
+---

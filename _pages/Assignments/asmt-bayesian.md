@@ -88,7 +88,7 @@ np.set_printoptions(precision=4, suppress=True)
 
 ## Stage 1 — Beta–Binomial: Derivation and Implementation (From Scratch)
 
-We model binary outcomes $X_i \sim \mathrm{Bernoulli}(\theta)$ with prior $\theta \sim \mathrm{Beta}(\alpha, \beta)$. Given $k$ successes in $n$ trials, the posterior is
+We model binary outcomes <span>\\(X_i \sim \mathrm{Bernoulli}(\theta)\\)</span> with prior <span>\\(\theta \sim \mathrm{Beta}(\alpha, \beta)\\)</span>. Given <span>\\(k\\)</span> successes in <span>\\(n\\)</span> trials, the posterior is
 $$
 \theta \mid k,n \sim \mathrm{Beta}(\alpha + k,\; \beta + n - k).
 $$
@@ -135,13 +135,13 @@ print("MAP:", bb.map_estimate())
 print("p(X_{n+1}=1 | data):", bb.posterior_predictive_next())
 ```
 
-**Checkpoint:** Vary the prior $(\alpha,\beta)$ to see how posteriors shift with small $n$ (prior sensitivity).
+**Checkpoint:** Vary the prior <span>\\((\alpha,\beta)\\)</span> to see how posteriors shift with small <span>\\(n\\)</span> (prior sensitivity).
 
 ---
 
 ## Stage 2 — Gaussian Mean with Known Variance (From Scratch)
 
-Assume $X_i \sim \mathcal{N}(\mu, \sigma^2)$ with known $\sigma^2$, and prior $\mu \sim \mathcal{N}(\mu_0, \tau_0^2)$. For $n$ observations with mean $\bar{x}$, the posterior is
+Assume <span>\\(X_i \sim \mathcal{N}(\mu, \sigma^2)\\)</span> with known <span>\\(\sigma^2\\)</span>, and prior <span>\\(\mu \sim \mathcal{N}(\mu_0, \tau_0^2)\\)</span>. For <span>\\(n\\)</span> observations with mean <span>\\(\bar{x}\\)</span>, the posterior is
 $$
 \mu \mid \mathbf{x} \sim \mathcal{N}\!\left(\frac{\mu_0/\tau_0^2 + n\bar{x}/\sigma^2}{1/\tau_0^2 + n/\sigma^2},\; \frac{1}{1/\tau_0^2 + n/\sigma^2}\right).
 $$
@@ -167,7 +167,7 @@ print("Posterior mean:", mu_post, "Posterior var:", var_post)
 # Posterior predictive variance = sigma^2 + var_post
 ```
 
-**Checkpoint:** Show how the posterior mean moves from $\mu_0$ toward $\bar{x}$ as $n$ grows (precision-weighted average).
+**Checkpoint:** Show how the posterior mean moves from <span>\\(\mu_0\\)</span> toward <span>\\(\bar{x}\\)</span> as <span>\\(n\\)</span> grows (precision-weighted average).
 
 ---
 
@@ -198,12 +198,12 @@ print("PPC p-values (mean, var):", (pval_mean, pval_var))
 
 ## Stage 4 — Naïve Bayes (From Scratch and scikit-learn)
 
-We study **Multinomial Naïve Bayes** for text classification. Under class $y \in \{0,1\}$ and word counts $\mathbf{x}$, the class-conditional is
+We study **Multinomial Naïve Bayes** for text classification. Under class <span>\\(y \in \{0,1\}\\)</span> and word counts <span>\\(\mathbf{x}\\)</span>, the class-conditional is
 $$
 p(\mathbf{x}\mid y) \propto \prod_{j=1}^d \phi_{jy}^{\,x_j}, \quad \sum_j \phi_{jy}=1.
 $$
 
-With a Dirichlet prior $\boldsymbol{\phi}_y \sim \mathrm{Dir}(\alpha,\dots,\alpha)$, the MAP estimate yields **add-$\alpha$ smoothing**:
+With a Dirichlet prior <span>\\(\boldsymbol{\phi}_y \sim \mathrm{Dir}(\alpha,\dots,\alpha)\\)</span>, the MAP estimate yields **add-<span>\\(\alpha\\)</span> smoothing**:
 $$
 \hat{\phi}_{jy} = \frac{N_{jy} + \alpha}{\sum_{k=1}^d (N_{ky} + \alpha)}.
 $$
@@ -284,7 +284,7 @@ yhat_sms = np.array([predict_nb_sms(x) for x in X_sms])
 print("From-scratch SMS spam/ham accuracy:", (yhat_sms == y_sms).mean())
 ```
 
-**Checkpoint:** Vary the smoothing parameter $\\alpha \\in \\{0.1, 1.0, 2.0\\}$ and identify which class benefits most (spam often hinges on rare tokens like “win”, “free”, “prize”). Discuss the impact on **precision/recall** for the spam class.
+**Checkpoint:** Vary the smoothing parameter <span>\\(\\alpha \\in \\{0.1, 1.0, 2.0\\}\\)</span> and identify which class benefits most (spam often hinges on rare tokens like “win”, “free”, “prize”). Discuss the impact on **precision/recall** for the spam class.
 ### 4.2 scikit-learn NB and Comparison
 
 ```python
@@ -305,14 +305,14 @@ plt.title("Naïve Bayes — Confusion Matrix")
 plt.show()
 ```
 
-**Checkpoint:** Vary $\alpha \in \{0.1, 1.0, 2.0\}$ and discuss the bias–variance trade-off and rare-word handling.
+**Checkpoint:** Vary <span>\\(\alpha \in \{0.1, 1.0, 2.0\}\\)</span> and discuss the bias–variance trade-off and rare-word handling.
 
 
 #### 4.2b Medical Test Scenario with scikit-learn (**Breast Cancer**)
 
 We illustrate **base-rate effects** and calibration on a medical dataset using `load_breast_cancer` from scikit-learn.
 
-Let the positive class be $Y{=}1$ (malignant). The **base rate** $\\pi = \\Pr(Y{=}1)$ influences post-test probabilities even with strong likelihood evidence.
+Let the positive class be <span>\\(Y{=}1\\)</span> (malignant). The **base rate** <span>\\(\\pi = \\Pr(Y{=}1)\\)</span> influences post-test probabilities even with strong likelihood evidence.
 
 ```python
 from sklearn.datasets import load_breast_cancer
@@ -342,9 +342,9 @@ print("Base rate (train) π:", ytr_m.mean())
 print("Predicted P(Y=1) mean:", probs.mean())
 ```
 
-**Interpretation:** Even with strong evidence (high or low scores), the **posterior** depends on the **prior/base rate** $\\pi = \\Pr(Y{=}1)$. Plotting a **reliability curve** or comparing predicted probabilities by deciles checks calibration.
+**Interpretation:** Even with strong evidence (high or low scores), the **posterior** depends on the **prior/base rate** <span>\\(\\pi = \\Pr(Y{=}1)\\)</span>. Plotting a **reliability curve** or comparing predicted probabilities by deciles checks calibration.
 
-**Optional:** Compute **PPV/NPV** at different thresholds $\\tau$ and show how changing $\\pi$ (via class weighting or sample rebalancing) shifts operating points.
+**Optional:** Compute **PPV/NPV** at different thresholds <span>\\(\\tau\\)</span> and show how changing <span>\\(\\pi\\)</span> (via class weighting or sample rebalancing) shifts operating points.
 
 ---
 
@@ -356,9 +356,9 @@ For decision support, scores should be calibrated. While MultinomialNB outputs l
 
 ## Stage 6 — Sensitivity & Robustness
 
-1. **Prior sensitivity (Beta–Binomial):** Compare posteriors for $(\alpha,\beta) \in \{(1,1), (2,2), (5,5)\}$ when $n$ is small (e.g., $n=10$).  
+1. **Prior sensitivity (Beta–Binomial):** Compare posteriors for <span>\\((\alpha,\beta) \in \{(1,1), (2,2), (5,5)\}\\)</span> when <span>\\(n\\)</span> is small (e.g., <span>\\(n=10\\)</span>).  
 2. **Model misspecification (Gaussian):** Re-simulate from a heavy-tailed distribution and repeat PPCs. What changes?  
-3. **NB smoothing:** Grid over $\alpha$ and evaluate accuracy; report the best value and discuss overfitting vs. underfitting.
+3. **NB smoothing:** Grid over <span>\\(\alpha\\)</span> and evaluate accuracy; report the best value and discuss overfitting vs. underfitting.
 
 ---
 
@@ -374,16 +374,16 @@ In this stage, you will **define and solve your own Bayesian inference problem**
 
 ### Option A — Bayesian A/B Testing with Sequential Stopping
 
-We compare two conversion rates $\\theta_A, \\theta_B$ with independent Beta priors and Bernoulli likelihoods.
+We compare two conversion rates <span>\\(\\theta_A, \\theta_B\\)</span> with independent Beta priors and Bernoulli likelihoods.
 
 **Model.**
-- Prior: $\\theta_A, \\theta_B \\sim \\mathrm{Beta}(\\alpha_0, \\beta_0)$  
-- Data: $X_{i}^{(g)} \\sim \\mathrm{Bernoulli}(\\theta_g)$ for group $g\\in\\{A,B\\}$
+- Prior: <span>\\(\\theta_A, \\theta_B \\sim \\mathrm{Beta}(\\alpha_0, \\beta_0)\\)</span>  
+- Data: <span>\\(X_{i}^{(g)} \\sim \\mathrm{Bernoulli}(\\theta_g)\\)</span> for group <span>\\(g\\in\\{A,B\\}\\)</span>
 
 **Posterior.**
-- $\\theta_g \\mid \\text{data} \\sim \\mathrm{Beta}(\\alpha_0 + k_g,\\; \\beta_0 + n_g - k_g)$
+- <span>\\(\\theta_g \\mid \\text{data} \\sim \\mathrm{Beta}(\\alpha_0 + k_g,\\; \\beta_0 + n_g - k_g)\\)</span>
 
-**Decision question.** Compute $\\Pr(\\theta_A > \\theta_B \\mid \\text{data})$ and recommend the better variant if the probability exceeds a threshold (e.g., $0.95$). Include **sequential stopping** logic.
+**Decision question.** Compute <span>\\(\\Pr(\\theta_A > \\theta_B \\mid \\text{data})\\)</span> and recommend the better variant if the probability exceeds a threshold (e.g., <span>\\(0.95\\)</span>). Include **sequential stopping** logic.
 
 ```python
 import numpy as np
@@ -413,26 +413,24 @@ print("Pr(theta_A > theta_B | data) =", round(p, 4))
 **PPC.** Simulate posterior predictive conversions and verify observed lifts are plausible under the joint posterior.
 
 **Questions.**
-1. How sensitive is the recommendation to the prior $(\\alpha_0,\\beta_0)$?  
-2. Under asymmetric loss (e.g., false-win cost $\\lambda$), how would you change the stopping threshold?
+1. How sensitive is the recommendation to the prior <span>\\((\\alpha_0,\\beta_0)\\)</span>?  
+2. Under asymmetric loss (e.g., false-win cost <span>\\(\\lambda\\)</span>), how would you change the stopping threshold?
 
 ---
 
 ### Option B — Gaussian Mean **Change-Point** Detection (Conjugate Inference)
 
-Detect a single change point $\\tau$ in a sequence of Gaussian observations with known variance $\\sigma^2$:
+Detect a single change point <span>\\(\\tau\\)</span> in a sequence of Gaussian observations with known variance <span>\\(\\sigma^2\\)</span>:
 $$
-X_t \\sim
-\\begin{cases}
-\\mathcal{N}(\\mu_1, \\sigma^2), & t \\le \\tau,\\\\
-\\mathcal{N}(\\mu_2, \\sigma^2), & t > \\tau,
-\\end{cases}
-\\qquad
-\\mu_1,\\mu_2 \\sim \\mathcal{N}(\\mu_0, \\tau_0^2),\\quad
-\\tau \\sim \\text{Uniform}\\{1,\\ldots,T-1\\}.
+X_t \sim \mathcal{N}(\mu_1, \sigma^2) \quad \text{for } t \le \tau,
+\qquad
+X_t \sim \mathcal{N}(\mu_2, \sigma^2) \quad \text{for } t > \tau,
+\qquad
+\mu_1,\mu_2 \sim \mathcal{N}(\mu_0, \tau_0^2),\quad
+\tau \sim \text{Uniform}\{1,\ldots,T-1\}.
 $$
 
-**Scaffold.** Use conjugate Gaussian updates to compute the **marginal likelihood** for each proposed $\\tau$ by integrating out $\\mu_1,\\mu_2$, then evaluate the posterior over $\\tau$.
+**Scaffold.** Use conjugate Gaussian updates to compute the **marginal likelihood** for each proposed <span>\\(\\tau\\)</span> by integrating out <span>\\(\\mu_1,\\mu_2\\)</span>, then evaluate the posterior over <span>\\(\\tau\\)</span>.
 
 ```python
 import numpy as np
@@ -463,23 +461,23 @@ p_tau = posterior_tau(x, mu0=0.0, tau0_sq=10.0, sigma_sq=1.0)
 print("MAP tau (1..T-1) =", int(np.argmax(p_tau)+1))
 ```
 
-**PPC.** Sample $\\tau, \\mu_1, \\mu_2$ from their posteriors and simulate sequences; compare mean shifts to observed.
+**PPC.** Sample <span>\\(\\tau, \\mu_1, \\mu_2\\)</span> from their posteriors and simulate sequences; compare mean shifts to observed.
 
 **Questions.**
-1. How does uncertainty in $\\sigma^2$ affect results? Extend with an **Inverse-Gamma** prior if time permits.  
-2. Compare MAP $\\tau$ to a frequentist CUSUM or two-sample $t$ test baseline.
+1. How does uncertainty in <span>\\(\\sigma^2\\)</span> affect results? Extend with an **Inverse-Gamma** prior if time permits.  
+2. Compare MAP <span>\\(\\tau\\)</span> to a frequentist CUSUM or two-sample <span>\\(t\\)</span> test baseline.
 
 ---
 
 ### Option C — Hierarchical Beta–Binomial **Partial Pooling** (Multi-Group)
 
 Pool information across groups (e.g., small clinics’ success rates) using a hierarchical prior:
-$$
-\\theta_i \\mid \\alpha,\\beta \\sim \\mathrm{Beta}(\\alpha,\\beta),\\quad k_i \\mid \\theta_i \\sim \\mathrm{Binomial}(n_i, \\theta_i),
-$$
-with hyperprior on $(\\alpha,\\beta)$ (or empirical Bayes).
 
-**Scaffold (Empirical Bayes).** Estimate $(\\alpha,\\beta)$ by matching moments across groups, then compute group posteriors.
+<span>\\(\\theta_i \\mid \\alpha,\\beta \\sim \\mathrm{Beta}(\\alpha,\\beta),\\quad k_i \\mid \\theta_i \\sim \\mathrm{Binomial}(n_i, \\theta_i)\\)</span>,
+
+with hyperprior on <span>\\((\\alpha,\\beta)\\)</span> (or empirical Bayes).
+
+**Scaffold (Empirical Bayes).** Estimate <span>\\((\\alpha,\\beta)\\)</span> by matching moments across groups, then compute group posteriors.
 
 ```python
 import numpy as np
@@ -510,11 +508,11 @@ print("Posterior means:", np.round(theta_post_mean, 3))
 
 ### Option D — Naïve Bayes with **Asymmetric Loss** and **Calibration**
 
-Extend your Naïve Bayes to a deployment setting with asymmetric misclassification costs $(C_{\\text{FP}}, C_{\\text{FN}})$. Choose a validation set and a decision threshold
-$$
-\\tau^* = \\frac{C_{\\text{FP}}}{C_{\\text{FP}} + C_{\\text{FN}}}
-$$
-for classifying $\\Pr(Y{=}1\\mid x) \\ge \\tau^*$. Calibrate scores (e.g., isotonic regression) and report **cost-sensitive metrics**.
+Extend your Naïve Bayes to a deployment setting with asymmetric misclassification costs <span>\\((C_{\\text{FP}}, C_{\\text{FN}})\\)</span>. Choose a validation set and a decision threshold
+
+<span>\\(\\tau^* = \\frac{C_{\\text{FP}}}{C_{\\text{FP}} + C_{\\text{FN}}}\\)</span>
+
+for classifying <span>\\(\\Pr(Y{=}1\\mid x) \\ge \\tau^*\\)</span>. Calibrate scores (e.g., isotonic regression) and report **cost-sensitive metrics**.
 
 **Scaffold.**
 ```python
@@ -536,8 +534,8 @@ print("Threshold tau*", round(tau,3), "Confusion:\n", cm)
 ```
 
 **Questions.**
-1. How does calibration change your **expected cost** under $(C_{\\text{FP}}, C_{\\text{FN}})$?  
-2. Report a **decision curve** by sweeping $\\tau$; where is your operating point?
+1. How does calibration change your **expected cost** under <span>\\((C_{\\text{FP}}, C_{\\text{FN}})\\)</span>?  
+2. Report a **decision curve** by sweeping <span>\\(\\tau\\)</span>; where is your operating point?
 
 ---
 
