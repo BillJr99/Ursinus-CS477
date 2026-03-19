@@ -68,6 +68,11 @@ info:
       progressing: Analyzes the impact of regularization strength (<span>\\(\lambda\\)</span>) with empirical comparisons between ridge and lasso.
       proficient: Provides a detailed quantitative and qualitative analysis of ridge and lasso behavior, discussing bias-variance trade-offs and theoretical implications.
     - weight: 15
+      description: Reflection on Generalization
+      preemerging: Offers minimal commentary on generalization or overfitting.
+      beginning: Compares training and testing results with basic observations.
+      progressing: Discusses overfitting and underfitting trends supported by data-driven reasoning.
+      proficient: Provides a deep reflection on generalization, integrating quantitative evidence and theoretical rationale to explain observed performance differences.
 
 tags:
   - regression
