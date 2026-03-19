@@ -36,43 +36,38 @@ info:
     - "Analyze the effect of regularization (L2 penalty) and hyperparameters (learning rate, max iterations) on convergence, training stability, and overfitting versus underfitting trends."
     - "Write a reflective summary comparing train/test outcomes, relating λ and learning rate to generalization and convergence behavior, and integrating theoretical justifications for observed phenomena."
     - "Submit a complete, reproducible notebook containing clean code, markdown explanations, and plots, along with a two-page report summarizing datasets, modeling choices, evaluation results, and key insights."
-rubric:
-  - weight: 10
-    description: Data Selection and Description
-    preemerging: Selects a dataset with minimal consideration for relevance or scale; provides limited description.
-    beginning: Chooses an appropriate dataset with brief discussion of size and complexity.
-    progressing: Selects a well-justified dataset with clear explanation of its properties, scope, and relevance to the task.
-    proficient: Provides a thorough justification of data choice, discussing representativeness, complexity, and preprocessing considerations with precise documentation.
-  - weight: 25
-    description: From-Scratch Implementations
-    preemerging: Provides partial or minimally functional code with limited explanation.
-    beginning: Implements key algorithmic components correctly with basic verification of results.
-    progressing: Produces complete, correct, and clear implementations that converge appropriately, with evidence of testing and debugging.
-    proficient: Demonstrates robust, efficient, and well-documented implementations with convergence analysis, error checks, and design justification.
-  - weight: 15
-    description: Library Implementations
-    preemerging: Uses libraries without clear rationale or explanation of parameters.
-    beginning: Appropriately applies standard APIs for modeling and evaluation.
-    progressing: Demonstrates proper use of libraries with suitable preprocessing and parameterization, validating expected behavior.
-    proficient: Employs library APIs effectively and thoughtfully, explaining preprocessing, hyperparameter tuning, and implementation decisions with clarity.
-  - weight: 20
-    description: Evaluation and Plots
-    preemerging: Provides limited or incorrect evaluation; few or unclear plots.
-    beginning: Reports standard metrics and generates basic plots.
-    progressing: Includes well-structured metrics, clear visualizations (e.g., residuals, ROC), and relevant parameter sweeps.
-    proficient: Delivers comprehensive evaluations with insightful plots, interprets metrics rigorously, and discusses the implications of model behavior across hyperparameter variations.
-  - weight: 15
-    description: Regularization Analysis
-    preemerging: Mentions regularization without concrete analysis or results.
-    beginning: Demonstrates basic understanding of ridge and lasso effects on coefficients.
-    progressing: Analyzes the impact of regularization strength (<span>\\(\lambda\\)</span>) with empirical comparisons between ridge and lasso.
-    proficient: Provides a detailed quantitative and qualitative analysis of ridge and lasso behavior, discussing bias-variance trade-offs and theoretical implications.
-  - weight: 15
-    description: Reflection on Generalization
-    preemerging: Offers minimal commentary on generalization or overfitting.
-    beginning: Compares training and testing results with basic observations.
-    progressing: Discusses overfitting and underfitting trends supported by data-driven reasoning.
-    proficient: Provides a deep reflection on generalization, integrating quantitative evidence and theoretical rationale to explain observed performance differences.
+  rubric:
+    - weight: 10
+      description: Data Selection and Description
+      preemerging: Selects a dataset with minimal consideration for relevance or scale; provides limited description.
+      beginning: Chooses an appropriate dataset with brief discussion of size and complexity.
+      progressing: Selects a well-justified dataset with clear explanation of its properties, scope, and relevance to the task.
+      proficient: Provides a thorough justification of data choice, discussing representativeness, complexity, and preprocessing considerations with precise documentation.
+    - weight: 25
+      description: From-Scratch Implementations
+      preemerging: Provides partial or minimally functional code with limited explanation.
+      beginning: Implements key algorithmic components correctly with basic verification of results.
+      progressing: Produces complete, correct, and clear implementations that converge appropriately, with evidence of testing and debugging.
+      proficient: Demonstrates robust, efficient, and well-documented implementations with convergence analysis, error checks, and design justification.
+    - weight: 15
+      description: Library Implementations
+      preemerging: Uses libraries without clear rationale or explanation of parameters.
+      beginning: Appropriately applies standard APIs for modeling and evaluation.
+      progressing: Demonstrates proper use of libraries with suitable preprocessing and parameterization, validating expected behavior.
+      proficient: Employs library APIs effectively and thoughtfully, explaining preprocessing, hyperparameter tuning, and implementation decisions with clarity.
+    - weight: 20
+      description: Evaluation and Plots
+      preemerging: Provides limited or incorrect evaluation; few or unclear plots.
+      beginning: Reports standard metrics and generates basic plots.
+      progressing: Includes well-structured metrics, clear visualizations (e.g., residuals, ROC), and relevant parameter sweeps.
+      proficient: Delivers comprehensive evaluations with insightful plots, interprets metrics rigorously, and discusses the implications of model behavior across hyperparameter variations.
+    - weight: 15
+      description: Regularization Analysis
+      preemerging: Mentions regularization without concrete analysis or results.
+      beginning: Demonstrates basic understanding of ridge and lasso effects on coefficients.
+      progressing: Analyzes the impact of regularization strength (<span>\\(\lambda\\)</span>) with empirical comparisons between ridge and lasso.
+      proficient: Provides a detailed quantitative and qualitative analysis of ridge and lasso behavior, discussing bias-variance trade-offs and theoretical implications.
+    - weight: 15
 
 tags:
   - regression
