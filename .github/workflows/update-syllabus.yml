@@ -9,29 +9,32 @@ on:
     paths:
       - "_pages/syllabus.md"
       - "files/*.ics"
-      
-permissions:
-  contents: write  # required by stefanzweifel/git-auto-commit-action      
 
 jobs:
   update_ical:
     name: Update ical
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: "pip"
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install python-frontmatter python-dateutil
-      - name: Build updated ical output file
+          python -m pip install --upgrade python-frontmatter python-dateutil
+
+      - name: Build updated research output file
         run: curl -k https://raw.githubusercontent.com/BillJr99/Ursinus-Boilerplate-Code/main/course/syllabus2ical.py | python
+
       - name: Commit new ical file
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
           file_pattern: "files/*.ics"
           commit_message: "Update ical from syllabus"
