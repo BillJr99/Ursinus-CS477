@@ -103,14 +103,14 @@ Note that the W1 weights are two-fold because there are two input features to W1
   Pros: sparse activations, efficient; Cons: “dead” units if gradients vanish for $z<0$.
 
 <br>  
-<a title="Ringdongdang, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:ReLU_and_GELU.svg"><img width="256" alt="A depiction of the Rectified Linear Unit and the Gaussian Error Linear Unit" src="https://upload.wikimedia.org/wikipedia/commons/4/42/ReLU_and_GELU.svg"></a>
+<a title="Ringdongdang, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:ReLU_and_GELU.svg"><img width="256" alt="A depiction of the Rectified Linear Unit and the Gaussian Error Linear Unit" src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/ReLU_and_GELU.svg"></a>
 <br>
   
 - **$\tanh$:** $\tanh(z)\in(-1,1)$  
   Pros: zero-centered, smooth; Cons: saturation at $\pm1$ → small gradients.
 
 <br>  
-<a title="Fylwind at English Wikipedia, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Sinh_cosh_tanh.svg"><img width="256" alt="Sinh cosh tanh" src="https://upload.wikimedia.org/wikipedia/commons/7/76/Sinh_cosh_tanh.svg"></a>
+<a title="Fylwind at English Wikipedia, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Sinh_cosh_tanh.svg"><img width="256" alt="Sinh cosh tanh" src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Sinh_cosh_tanh.svg"></a>
 <br>
 
 - **Sigmoid:** $\sigma(z)=\frac{1}{1+e^{-z}}$  
@@ -118,7 +118,7 @@ Note that the W1 weights are two-fold because there are two input features to W1
 - (Modern variants) **Leaky-ReLU/Parametric-ReLU, GELU**: mitigate dead ReLUs, smoother gradient flow.
 
 <br>
-<a title="Qef, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Logistic-curve.svg"><img width="512" alt="Sigmoid Function Plot / Logistic Curve" src="https://upload.wikimedia.org/wikipedia/commons/8/88/Logistic-curve.svg"></a>
+<a title="Qef, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Logistic-curve.svg"><img width="512" alt="Sigmoid Function Plot / Logistic Curve" src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Logistic-curve.svg"></a>
 <br>
 
 **Universal Approximation (intuition):** With a non-polynomial activation (e.g., ReLU, $\tanh$), a single hidden layer can approximate any continuous function on a compact set to arbitrary accuracy.

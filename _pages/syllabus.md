@@ -54,14 +54,14 @@ info:
     <div style="width: 100%; display: table; border-collapse:separate; border-spacing:5px;">
     <div style="width: 100%; display: table-row;">
         <div style="display: table-cell; padding:5px; width:33%;">
-            <a title="Lwneal, CC0, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Discriminative_vs_Generative_Neural_Networks.png"><img width="100%" alt="Above: Schematic example of a discriminative neural network performing image recognition. Below: Example of a generative neural network performing text-to-image generation" src="https://upload.wikimedia.org/wikipedia/commons/9/9c/Discriminative_vs_Generative_Neural_Networks.png"></a>
+            <a title="Lwneal, CC0, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Discriminative_vs_Generative_Neural_Networks.png"><img width="100%" alt="Above: Schematic example of a discriminative neural network performing image recognition. Below: Example of a generative neural network performing text-to-image generation" src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Discriminative_vs_Generative_Neural_Networks.png"></a>
         </div>
         <div style="display: table-cell; padding:5px; width:33%;">
             <img src="https://encompass.mathematicalthinking.org/assets/images/workspaces_feedback-27ffa61b958051049ac3a8493c09c849.png" alt="An AI assisted feedback generator web frontend" width="100%"></img>
         </div>
         <div style="display: table-cell; padding:5px; width:33%;">
             <a title="Midjourney
-            , Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Th%C3%A9%C3%A2tre_D%E2%80%99op%C3%A9ra_Spatial.png"><img width="100%" alt="&#039;&#039;Théâtre D&#039;opéra Spatial&#039;&#039;, an image made using generative artificial intelligence" src="https://upload.wikimedia.org/wikipedia/commons/6/69/Th%C3%A9%C3%A2tre_D%E2%80%99op%C3%A9ra_Spatial.png"></a>
+            , Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Th%C3%A9%C3%A2tre_D%E2%80%99op%C3%A9ra_Spatial.png"><img width="100%" alt="&#039;&#039;Théâtre D&#039;opéra Spatial&#039;&#039;, an image made using generative artificial intelligence" src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Th%C3%A9%C3%A2tre_D%E2%80%99op%C3%A9ra_Spatial.png"></a>
         </div>
     </div>
     </div>
