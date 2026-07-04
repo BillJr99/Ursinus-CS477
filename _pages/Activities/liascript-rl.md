@@ -49,6 +49,16 @@ $$
 G_t = \sum_{k=0}^{\infty} \gamma^k R_{t+k+1}, \quad 0 \leq \gamma < 1
 $$
 
+**Two complementary on-ramps before the math:**
+
+[![Reinforcement Learning from scratch](https://img.youtube.com/vi/vXtfdGphr3c/0.jpg)](https://www.youtube.com/watch?v=vXtfdGphr3c)
+
+*Video summary (text equivalent):* a short animated cartoon that builds RL intuition with no equations — an agent tries actions, gets rewards, and gradually prefers what worked — ending with how the same trial-and-error loop, scaled up, trained AlphaGo.
+
+[![Reinforcement Learning, by the Book (Mutual Information)](https://img.youtube.com/vi/NFo9v_yKQXA/0.jpg)](https://www.youtube.com/watch?v=NFo9v_yKQXA)
+
+*Video summary (text equivalent):* a visual walkthrough of the standard (Sutton & Barto) formalism — states, actions, rewards, returns, policies, and value functions — matching the notation used throughout this module, with gridworld animations for each definition.
+
 ---
 
 # 2. Value Functions and Optimality
@@ -165,6 +175,16 @@ Key innovations:
 - Experience replay buffer
 - Target network for stability
 - ε-decay schedules for exploration
+
+**Deep dives on combining RL with neural networks:**
+
+[![Reinforcement Learning with Neural Networks: Essential Concepts (StatQuest)](https://img.youtube.com/vi/9hbQieQh7-o/0.jpg)](https://www.youtube.com/watch?v=9hbQieQh7-o)
+
+*Video summary (text equivalent):* StatQuest explains, at the concept level, how a neural network can serve as a policy — mapping states to action probabilities — and how rewards tell us *which direction* to nudge the network's weights, the idea behind policy-gradient methods.
+
+[![Reinforcement Learning with Neural Networks: Mathematical Details (StatQuest)](https://img.youtube.com/vi/DVGmsnxB2UQ/0.jpg)](https://www.youtube.com/watch?v=DVGmsnxB2UQ)
+
+*Video summary (text equivalent):* the companion video works one weight update end to end — backpropagating through the policy network exactly as in our Neural Networks module, but with the reward signal standing in for a supervised label. Watch it after the Essential Concepts video.
 
 ---
 

@@ -132,6 +132,10 @@ print('CV RMSE (5-fold):  ', f'{scores_rmse.mean():.3f} ± {scores_rmse.std():.3
 - Use **regularization**, fewer features, or **more data**.
 - Tune hyperparameters using **CV**, not the test set.
 
+[![Machine Learning Fundamentals: Bias and Variance (StatQuest)](https://img.youtube.com/vi/EuBBz3bI-aA/0.jpg)](https://www.youtube.com/watch?v=EuBBz3bI-aA)
+
+*Video summary (text equivalent):* StatQuest illustrates bias (a model too rigid to capture the true pattern) and variance (a model that changes wildly across training sets) with a simple curve-fitting example, and shows why the best test-set performance lives at the sweet spot between the two.
+
 ---
 
 # Part II — Linear Regression Metrics
@@ -362,6 +366,20 @@ roc_auc = auc(fpr, tpr)
 ## Open Colab: SVM From Scratch (Linear & Kernel)
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/SVM_From_Scratch_Linear_and_Kernel.ipynb)
+
+---
+
+## Warm-Up Demo: Logistic Regression as the SVM's Baseline
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/linear_logistic_regression_demo.ipynb)
+
+Before studying max-margin classifiers, re-run the linear/logistic regression demo notebook with SVM questions in mind:
+
+- **Logistic-regression cells:** the fitted boundary is a straight line — but *which* straight line? Logistic regression places it to maximize the likelihood of *all* points, so it can be swayed by points far from the boundary.
+- **Boundary plots:** the SVM below chooses its line using **only the points nearest the boundary** (the support vectors) and pushes the margin as wide as possible. On well-separated data the two lines nearly coincide; on noisy, overlapping data they diverge — add noise in the demo's data cell and predict which model moves more.
+- **Loss connection:** logistic regression's log-loss decays smoothly and never quite reaches zero, while the SVM's **hinge loss** (Section 2 below) is exactly zero beyond the margin — this is *why* distant points cannot influence an SVM.
+
+**What to look for:** both models predict with $\mathrm{sign}(\mathbf{w}^\top \mathbf{x} + b)$. Everything that differs — margins, support vectors, kernels — comes from the *training objective*, not the decision rule.
 
 ---
 

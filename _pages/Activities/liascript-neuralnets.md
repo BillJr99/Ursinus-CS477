@@ -49,6 +49,10 @@ where $\sigma$ is an activation function applied elementwise. Key ideas:
 
 [![Gradient descent, how neural networks learn, by 3blue1brown](https://img.youtube.com/vi/IHZwWFHWa-w/0.jpg)](https://www.youtube.com/watch?v=IHZwWFHWa-w)
 
+[![Tensors for Neural Networks, Clearly Explained!!! (StatQuest)](https://img.youtube.com/vi/L35fFDpwIM4/0.jpg)](https://www.youtube.com/watch?v=L35fFDpwIM4)
+
+*Video summary (text equivalent):* StatQuest demystifies the word "tensor": in deep learning it simply means an $n$-dimensional array (scalar, vector, matrix, and up) together with the GPU-accelerated storage and automatic-differentiation machinery frameworks attach to it — bookkeeping, not exotic mathematics.
+
 ---
 
 ## Decision Boundary (Epoch snapshots)
@@ -2443,6 +2447,10 @@ which reduces to the outer products shown above.
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/CNN_Tutorial.ipynb)
 
+[![Neural Networks Part 8: Image Classification with Convolutional Neural Networks (StatQuest)](https://img.youtube.com/vi/HGwBXDKFk9I/0.jpg)](https://www.youtube.com/watch?v=HGwBXDKFk9I)
+
+*Video summary (text equivalent):* StatQuest builds a tiny CNN by hand — sliding a filter over an image to make a feature map, pooling to shrink it, and feeding the result to a small dense network — showing why convolution gives translation tolerance and drastically fewer parameters than a fully connected layer.
+
 ---
 
 ### 1. Motivation & Intuition
@@ -2624,6 +2632,10 @@ CNNs are particularly effective in vision, audio, and spatiotemporal tasks where
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/RNN_Tutorial.ipynb)
 
+[![Recurrent Neural Networks (RNNs), Clearly Explained!!! (StatQuest)](https://img.youtube.com/vi/AsNTP8Kwu80/0.jpg)](https://www.youtube.com/watch?v=AsNTP8Kwu80)
+
+*Video summary (text equivalent):* StatQuest shows how a recurrent connection lets one network handle inputs of any length (stock histories, sentences) by reusing the same weights at every time step — and demonstrates, with concrete numbers, how repeatedly multiplying by that shared weight makes gradients vanish or explode.
+
 ---
 
 ### 1. Motivation & Intuition
@@ -2705,6 +2717,10 @@ This product can **explode** (become huge) or **vanish** (approach zero), making
 ---
 
 ### 6. LSTM (Long Short-Term Memory)
+
+[![Long Short-Term Memory (LSTM), Clearly Explained (StatQuest)](https://img.youtube.com/vi/YCzL96nL7j0/0.jpg)](https://www.youtube.com/watch?v=YCzL96nL7j0)
+
+*Video summary (text equivalent):* StatQuest walks through the LSTM cell gate by gate — forget, input, and output — showing how separate long-term (cell state) and short-term (hidden state) memory paths let gradients flow across many time steps, solving the vanishing-gradient problem of plain RNNs.
 
 LSTMs introduce a **cell state** $c_t$ and **gates** to regulate information:
 

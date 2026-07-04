@@ -35,6 +35,21 @@ link:   https://cdn.jsdelivr.net/gh/BillJr99/Ursinus-Boilerplate-Assets@main/css
 
 ---
 
+## Guided Demo: Linear & Logistic Regression, Cell by Cell
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/linear_logistic_regression_demo.ipynb)
+
+This compact demo notebook is the fastest end-to-end tour of both models in this module. Use it as a *map* before diving into the derivations below — each of its stages corresponds to a numbered section of this page:
+
+- **Data-generation cells** → Section 1 (Intuition and Problem Setup): notice the synthetic data is "truth + noise," so you know the answer the model *should* recover.
+- **Line-fitting / loss cells** → Sections 2–3 (MSE and the Closed-Form Solution): watch the fitted coefficients approach the true slope and intercept.
+- **Gradient-descent cells** → Section 4: compare the iterative path to the closed-form answer — same destination, different route.
+- **Sigmoid / classification cells** → Part II (Logistic Regression): the decision boundary is where the predicted probability crosses 0.5; try shifting the classes closer together and watch the boundary become less certain.
+
+**What to look for:** the same `X @ w + b` prediction machinery serves both models — only the output squashing (identity vs. sigmoid) and the loss (MSE vs. cross-entropy) change. This demo returns in the SVM, Decision Trees, and Bayesian Inference modules as a shared baseline for comparing classifiers.
+
+---
+
 
 
 
