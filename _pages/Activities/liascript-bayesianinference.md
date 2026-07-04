@@ -195,7 +195,7 @@ At game start the enemy knows nothing, so every one of the 100 cells gets $P = 1
 
 You might move each tick, so the enemy's belief must *blur* accordingly. The model: from any cell you either stay or step N/S/E/W, all equally likely (respecting walls).
 
-```python
+```pseudocode
 def motion_update(belief):
     new_belief = zeros(HEIGHT, WIDTH)
     for r, c in all_cells:
@@ -233,7 +233,7 @@ Note carefully what a likelihood is: for a **fixed observation** ("I heard somet
 
 ### Step 4 — The Posterior: Bayes' Rule, One Cell at a Time
 
-```python
+```pseudocode
 def sound_update(belief, enemy_pos, observed_dir):
     for r, c in all_cells:
         likelihood        = 0.75 if direction_to((r,c)) == observed_dir else 0.25/3
