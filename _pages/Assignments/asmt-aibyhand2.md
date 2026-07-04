@@ -6,6 +6,11 @@ title: "Written Assignment: AI By Hand - Part 2"
 info:
   points: 100
   submission: "Please submit all files as a ZIP file on the Course Learning Management System."
+  purpose: "This assignment strengthens your command of the algorithms behind modern AI by working them out by hand before trusting a library to do them for you. Tracing search, optimization, probability, and reasoning procedures on paper — and then validating each trace in code — builds the step-by-step mechanical understanding you will need to debug, explain, and critique AI systems throughout the rest of the course and beyond."
+  tasks:
+    - Complete Problems 2, 5, 7, 8, 10, 11, 12, and 13 from AI by Hand Vol. 1 by hand, showing every intermediate step.
+    - Implement each hand-solved exercise in Python and confirm that the program reproduces your manual results.
+    - Write a short synthesis connecting the hand calculations, the code, and the computational and ethical implications of running these algorithms at scale.
   goals:
     - Deepen understanding of advanced AI algorithms through manual derivations.
     - Practice step-by-step reasoning with more complex problem scenarios (search, optimization, probability, and reasoning).

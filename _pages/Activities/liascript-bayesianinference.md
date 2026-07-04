@@ -167,6 +167,114 @@ $$
 
 ---
 
+## Likelihoods in Action: The Bayesian Chase Game (`bayesian_chase.py`)
+
+Everything in this Part becomes tangible in a playable program: [`files/bayesian_chase.py`](https://github.com/BillJr99/Ursinus-CS477/blob/gh-pages/files/bayesian_chase.py) — a terminal stealth game in which **you** (WASD keys) evade an enemy whose entire "mind" is a Bayes filter. Download it and run `python3 bayesian_chase.py` in a terminal (it uses `curses`, so run it locally rather than in Colab).
+
+**The setup.** A $10 \times 10$ grid. The enemy cannot usually see you; instead it maintains a **belief** — a probability for every cell:
+
+$$
+\texttt{belief[r][c]} = P(\text{player at } (r,c)), \qquad \sum_{r,c} \texttt{belief[r][c]} = 1.
+$$
+
+The screen renders this belief as a live heatmap, so you can *watch* a posterior evolve as you play. Each game tick performs one full Bayes-filter cycle:
+
+$$
+\underbrace{\text{prior}}_{\text{last tick's belief}} \xrightarrow{\ \text{motion model}\ } \underbrace{\text{prediction}}_{\texttt{motion\_update}} \xrightarrow{\ \text{sound likelihood}\ } \underbrace{\text{posterior}}_{\texttt{sound\_update}}
+$$
+
+---
+
+### Step 1 — The Prior: Maximum Ignorance
+
+At game start the enemy knows nothing, so every one of the 100 cells gets $P = 1/100 = 0.01$ — a **uniform prior**. (Section 1's axioms in action: nonnegative, sums to 1.)
+
+---
+
+### Step 2 — Prediction: the Motion Model Spreads Belief
+
+You might move each tick, so the enemy's belief must *blur* accordingly. The model: from any cell you either stay or step N/S/E/W, all equally likely (respecting walls).
+
+```pseudocode
+def motion_update(belief):
+    new_belief = zeros(HEIGHT, WIDTH)
+    for r, c in all_cells:
+        moves = [(r, c)] + in_bounds_neighbors(r, c)   # stay + N/S/E/W
+        p_move = belief[r][c] / len(moves)             # split the mass equally
+        for nr, nc in moves:
+            new_belief[nr][nc] += p_move               # total probability!
+    return new_belief
+```
+
+This is the **law of total probability** (Section 1) as code: $P(x_t) = \sum_{x'} P(x_t \mid x') P(x')$.
+
+**Micro-example** on a $1 \times 3$ corridor with belief $[1, 0, 0]$:
+
+1. Cell 0 has 2 legal destinations (stay, or move right): each receives $1/2$.
+2. New belief: $[0.5, 0.5, 0]$ — certainty has *diffused*. Run `motion_update` again: $[0.375, 0.4375, 0.1875]$. Without observations, belief drifts toward uniform — uncertainty only grows under prediction.
+
+---
+
+### Step 3 — The Likelihood: What Would a Sound Mean?
+
+When you move within earshot (`HEARING_RADIUS = 5`), the enemy hears a **noisy direction** $d_{\text{obs}} \in \{N, S, E, W\}$. The observation model, with `P_CORRECT_DIR = 0.75`:
+
+$$
+P(d_{\text{obs}} \mid \text{player at } x) =
+\begin{cases}
+0.75 & \text{if the true bucketed direction to } x \text{ equals } d_{\text{obs}} \\
+\frac{1 - 0.75}{3} \approx 0.0833 & \text{otherwise}
+\end{cases}
+$$
+
+Note carefully what a likelihood is: for a **fixed observation** ("I heard something to the East"), it scores **every hypothesis** ("how consistent is each cell with that sound?"). It is a function of the *hypothesis*, not a distribution over observations — the central idea of this Part.
+
+---
+
+### Step 4 — The Posterior: Bayes' Rule, One Cell at a Time
+
+```pseudocode
+def sound_update(belief, enemy_pos, observed_dir):
+    for r, c in all_cells:
+        likelihood        = 0.75 if direction_to((r,c)) == observed_dir else 0.25/3
+        new_belief[r][c]  = belief[r][c] * likelihood     # posterior ∝ likelihood × prior
+    return normalize(new_belief)                          # divide by the evidence
+```
+
+**Fully worked numbers** on a $2 \times 2$ grid. Enemy sits at $(0,0)$ and hears $d_{\text{obs}} = E$. Prior (after motion) is uniform, $0.25$ per cell.
+
+1. **Likelihood per cell** (using the game's direction bucketing):
+   - $(0,0)$: same cell → no direction → likelihood $0$.
+   - $(0,1)$: due East → matches → $0.75$.
+   - $(1,0)$: due South → mismatch → $0.0833$.
+   - $(1,1)$: diagonal, bucketed South → mismatch → $0.0833$.
+2. **Multiply by the prior** (unnormalized posterior): $0, \; 0.1875, \; 0.0208, \; 0.0208$.
+3. **Evidence** $P(E) = 0 + 0.1875 + 0.0208 + 0.0208 = 0.2292$ — total probability again.
+4. **Normalize**: posterior $= 0, \; \mathbf{0.818}, \; 0.091, \; 0.091$.
+
+One noisy sound moved the enemy's belief in the Eastern cell from 25% to **82%** — and left 18% hedged elsewhere, exactly proportional to how well each cell *explains* the sound. Compare the Beta–Binomial updates of Section 3: same arithmetic, different likelihood.
+
+Two boundary behaviors worth noticing in the code:
+
+- **Vision** (within `VISION_RADIUS = 4`): sight is treated as a *perfect* observation, so the posterior collapses to a single cell — a likelihood of the form "1 here, 0 everywhere else."
+- **Zero-mass rescue:** if an unlikely observation drives the belief's total mass to (numerically) zero, `normalize` resets to uniform — a graceful admission that the model was wrong somewhere.
+
+---
+
+### Step 5 — Acting on the Posterior
+
+The enemy chases the **MAP estimate** — the belief's peak (`find_belief_peak`) — stepping greedily to reduce Manhattan distance (with a little randomness via `RANDOM_MOVE_PROB`). This is Part III's **Bayesian decision theory** in miniature: infer first, then act to minimize expected cost under the posterior.
+
+**Play with the parameters** and predict before you run:
+
+1. Set `P_CORRECT_DIR = 0.25` (pure noise, since $1/4$ of directions are right by chance). *Prediction: sound updates multiply every cell by the same constant → normalization erases them → the enemy learns nothing from sound.*
+2. Set `P_CORRECT_DIR = 1.0`. *Prediction: each sound zeroes out three-quarters of the grid — the belief collapses along direction cones and the chase becomes ruthless.*
+3. Widen `HEARING_RADIUS`. *More frequent updates: watch how quickly diffusion (Step 2) is beaten back by evidence (Step 4).*
+
+This predict–update loop is precisely the **discrete Bayes filter** formalized in Part V (HMMs and localization) — the chase game is your intuition pump for it.
+
+---
+
 # Part III — Bayesian Decision Theory
 
 ## 5. Loss, Risk, and Bayes Estimators
@@ -277,6 +385,23 @@ print(log_score("policy debate"))
 
 Naïve Bayes is Bayesian when priors over likelihood parameters (Dirichlet/Beta/Gaussian–Inverse-Gamma) are used and predictions marginalize parameters. The common MLE-with-smoothing view corresponds to **MAP** estimation under conjugate priors.
 
+---
+
+### 6.7 Guided Demo: Naïve Bayes vs. Logistic Regression (Generative vs. Discriminative)
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/linear_logistic_regression_demo.ipynb)
+
+The linear/logistic regression demo notebook (familiar from the Regression and SVM modules) makes an ideal foil for Naïve Bayes, because the two classifiers answer the *same question from opposite directions*:
+
+- **Naïve Bayes is generative:** it models how each class *produces* features, $p(\mathbf{x} \mid y)\,p(y)$, then inverts with Bayes' rule to get $p(y \mid \mathbf{x})$.
+- **Logistic regression is discriminative:** it models $p(y \mid \mathbf{x})$ directly as $\sigma(\mathbf{w}^\top \mathbf{x} + b)$ and never asks how the data arose.
+
+**What to look for as you run the demo's classification cells:**
+
+- **The sigmoid cells:** Gaussian Naïve Bayes with shared class variances produces *exactly* a sigmoid posterior in $\mathbf{w}^\top\mathbf{x}+b$ — the two models can express the same boundary; they differ in how they *estimate* it.
+- **The fitted boundary:** logistic regression tunes its line only to separate classes; Naïve Bayes places it wherever its per-class feature model dictates — misspecify that model (correlated features!) and the boundary shifts even if separation suffers.
+- **Sample-efficiency trade:** with few training points, the generative model's stronger assumptions act like a prior and help; with abundant data, the discriminative model's fewer assumptions win. Shrink the demo's training-set size and watch the crossover.
+- **Probability quality:** compare predicted probabilities, not just labels — Naïve Bayes' independence assumption tends to push posteriors overconfidently toward 0 or 1 (the calibration issue of §6.4).
 
 ---
 
