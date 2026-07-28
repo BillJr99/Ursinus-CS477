@@ -50,6 +50,20 @@ This compact demo notebook is the fastest end-to-end tour of both models in this
 
 ---
 
+## Where Gradient Descent Comes From: micrograd
+
+Section 4 below computes $\partial \mathcal{L}/\partial \theta$ for one specific loss and one specific model. It is worth seeing the *general* machine behind that derivative once, because every model in the rest of this course is optimized the same way. The first half of Lecture 1 of Andrej Karpathy's [*Neural Networks: Zero to Hero*](https://github.com/karpathy/nn-zero-to-hero) (MIT licensed, vendored in this repository at `files/nn-zero-to-hero`) does exactly that, starting from the definition of a derivative.
+
+[![The spelled-out intro to neural networks and backpropagation: building micrograd (Andrej Karpathy)](https://img.youtube.com/vi/VMj-3S1tku0/0.jpg)](https://www.youtube.com/watch?v=VMj-3S1tku0)
+
+*Video summary (text equivalent):* The opening stretch of this lecture is pure calculus made concrete. Karpathy nudges an input by a tiny $h$, measures how the output moves, and recovers the derivative numerically — then builds an object that tracks the operations used to compute a value so the same derivative can be obtained *analytically* by walking the computation backward. The payoff for this module: the "nudge the parameter downhill and repeat" loop you will implement in Section 4 is not specific to squared error or to lines; it is the chain rule applied to whatever expression you happened to write.
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/karpathy/nn-zero-to-hero/blob/master/lectures/micrograd/micrograd_lecture_first_half_roughly.ipynb)
+
+The full series, including the second half of this lecture that builds a neural network on this foundation, is linked from the Neural Networks module.
+
+---
+
 
 
 

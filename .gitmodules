@@ -16,3 +16,6 @@
 [submodule "files/ml_animated"]
 	path = files/ml_animated
 	url = https://github.com/markhliu/ml_animated.git
+[submodule "files/nn-zero-to-hero"]
+	path = files/nn-zero-to-hero
+	url = https://github.com/karpathy/nn-zero-to-hero.git

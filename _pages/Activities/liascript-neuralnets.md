@@ -53,6 +53,26 @@ where $\sigma$ is an activation function applied elementwise. Key ideas:
 
 *Video summary (text equivalent):* StatQuest demystifies the word "tensor": in deep learning it simply means an $n$-dimensional array (scalar, vector, matrix, and up) together with the GPU-accelerated storage and automatic-differentiation machinery frameworks attach to it — bookkeeping, not exotic mathematics.
 
+### Build It Yourself: *Neural Networks: Zero to Hero*
+
+The videos below are from Andrej Karpathy's [*Neural Networks: Zero to Hero*](https://github.com/karpathy/nn-zero-to-hero) series (MIT licensed), vendored into this repository at `files/nn-zero-to-hero`. Where the sections above *derive* backpropagation, these *build* it — every line typed out, no framework magic. Lecture 1 is the single best companion to this module; watch it alongside Section 5 (Backpropagation) and the XOR estimator assignment.
+
+[![The spelled-out intro to neural networks and backpropagation: building micrograd (Andrej Karpathy)](https://img.youtube.com/vi/VMj-3S1tku0/0.jpg)](https://www.youtube.com/watch?v=VMj-3S1tku0)
+
+*Video summary (text equivalent):* Karpathy builds a scalar-valued automatic-differentiation engine from nothing. A `Value` object remembers which operation produced it and which values fed into it, so the expression graph records itself as you compute; each node then knows its own local derivative, and the chain rule is applied backward through the graph in topological order. Having built that machinery, he wires the same `Value` objects into a small multilayer perceptron and trains it — demonstrating that "backpropagation" is precisely the bookkeeping our $\delta^{(\ell)}$ recursion describes, and that PyTorch's `.backward()` is this same idea at scale.
+
+[![Building makemore Part 2: MLP (Andrej Karpathy)](https://img.youtube.com/vi/TCH_1BHY58I/0.jpg)](https://youtu.be/TCH_1BHY58I)
+
+*Video summary (text equivalent):* Implements the Bengio et al. (2003) character-level MLP: an embedding lookup table, a hidden `tanh` layer, and a softmax output trained on cross-entropy. Along the way it covers the practical machinery this module's assignments need — minibatching, finding a workable learning rate by sweeping it, and splitting data into train/dev/test to tell overfitting from underfitting.
+
+[![Building makemore Part 3: Activations & Gradients, BatchNorm (Andrej Karpathy)](https://img.youtube.com/vi/P6sfmUTpUmc/0.jpg)](https://youtu.be/P6sfmUTpUmc)
+
+*Video summary (text equivalent):* Shows *why* a badly initialized network fails to train: oversized initial weights saturate `tanh`, the local derivative $\phi'(z)$ goes to zero, and gradients die on the way back. Karpathy diagnoses this by plotting histograms of activations and gradients layer by layer, fixes it with Kaiming-style initialization scaling, and then introduces batch normalization as a way to keep each layer's pre-activations well-conditioned during training.
+
+[![Building makemore Part 4: Becoming a Backprop Ninja (Andrej Karpathy)](https://img.youtube.com/vi/q8SA3rM6ckI/0.jpg)](https://youtu.be/q8SA3rM6ckI)
+
+*Video summary (text equivalent):* Deletes `loss.backward()` and backpropagates the entire two-layer MLP by hand — through cross-entropy, batch normalization, the matrix multiplies, `tanh`, and the embedding lookup — checking each hand-derived gradient against the framework's. This is the same exercise as the shape-matching derivations in Section 5, done end-to-end on a real network, and it is the fastest way to make the $(B, k)$ bookkeeping stop feeling arbitrary.
+
 ---
 
 ## Decision Boundary (Epoch snapshots)
@@ -2425,6 +2445,34 @@ which reduces to the outer products shown above.
 ## Open Colab: Credit Score Feature Weight Estimator
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/CreditScoreFeatureWeightEstimator.ipynb)
+
+---
+
+## Open Colab: Neural Networks: Zero to Hero (Andrej Karpathy)
+
+These are Karpathy's own lecture notebooks from [nn-zero-to-hero](https://github.com/karpathy/nn-zero-to-hero) (MIT licensed), vendored in this repository at `files/nn-zero-to-hero` and opened here directly from the upstream repository so you always get the canonical version. Work through them in order alongside the videos above.
+
+**Lecture 1 — micrograd (first half): derivatives and the expression graph**
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/karpathy/nn-zero-to-hero/blob/master/lectures/micrograd/micrograd_lecture_first_half_roughly.ipynb)
+
+**Lecture 1 — micrograd (second half): a neural net on top of the autograd engine**
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/karpathy/nn-zero-to-hero/blob/master/lectures/micrograd/micrograd_lecture_second_half_roughly.ipynb)
+
+**Lecture 3 — a multilayer perceptron, embeddings, and minibatch training**
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/karpathy/nn-zero-to-hero/blob/master/lectures/makemore/makemore_part2_mlp.ipynb)
+
+**Lecture 4 — activations, gradients, initialization, and BatchNorm**
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/karpathy/nn-zero-to-hero/blob/master/lectures/makemore/makemore_part3_bn.ipynb)
+
+**Lecture 5 — manual backpropagation through the whole network**
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/karpathy/nn-zero-to-hero/blob/master/lectures/makemore/makemore_part4_backprop.ipynb)
+
+There is also a [companion exercise notebook for Lecture 5](https://colab.research.google.com/drive/1WV2oi2fh9XXyldh02wupFQX0wh5ZC-z-?usp=sharing) with the gradients blanked out for you to fill in — excellent preparation for the *Implementing a Neural Network* assignment.
 
 ---
 

@@ -150,6 +150,24 @@ The 2017 transformer removes the RNN entirely and keeps only attention:
 
 *Video summary (text equivalent):* StatQuest explains how BERT-style models read a whole passage at once to produce context-aware embeddings, and why that makes them the natural engine for finding relevant documents in retrieval-augmented generation.
 
+### Build It Yourself: A GPT From Scratch
+
+The explanations above are top-down. If you would rather see a decoder-only transformer assembled line by line — and you have followed the micrograd and makemore lectures from the Neural Networks and Markov Models modules — the last two lectures of Andrej Karpathy's [*Neural Networks: Zero to Hero*](https://github.com/karpathy/nn-zero-to-hero) (MIT licensed, vendored in this repository at `files/nn-zero-to-hero`) close the loop from the bigram model of week 12 to a working GPT. This is optional and beyond what the course assesses, but it is the most direct path from this module's diagrams to running code.
+
+[![Let's build GPT: from scratch, in code, spelled out (Andrej Karpathy)](https://img.youtube.com/vi/kCc8FmEb1nY/0.jpg)](https://www.youtube.com/watch?v=kCc8FmEb1nY)
+
+*Video summary (text equivalent):* Starting from the same bigram character model used in the Markov Models module and a corpus of Shakespeare, Karpathy builds a decoder-only transformer one component at a time. Self-attention arrives not as a formula but as a problem to solve: a token needs a weighted average of the tokens before it, the weights should be *learned* rather than uniform, and masking the future with $-\infty$ before the softmax is what keeps the model causal. He then adds multi-head attention, positional embeddings, the feed-forward block, residual connections, and layer normalization — arriving at the architecture in the table above, with every design choice motivated by a training curve that improved when he added it. Note the distinction he draws at the end between this pretrained next-token predictor and an aligned assistant, which is Step 6a.
+
+The code for this lecture lives in [karpathy/nanoGPT](https://github.com/karpathy/nanoGPT) rather than in the vendored lecture repository.
+
+[![Let's build the GPT Tokenizer (Andrej Karpathy)](https://img.youtube.com/vi/zduSFxRajkE/0.jpg)](https://www.youtube.com/watch?v=zduSFxRajkE)
+
+*Video summary (text equivalent):* Step 4 above treated tokenization as a preprocessing detail; this lecture shows it is anything but. Karpathy implements byte pair encoding from scratch: text becomes UTF-8 bytes, the most frequent adjacent byte pair is repeatedly merged into a new token, and the resulting merge table *is* the vocabulary. He then traces a surprising number of well-known LLM failures back to this one component — trouble spelling words and reversing strings, uneven quality across languages, weakness at arithmetic, and the odd behavior triggered by rare "glitch tokens" — because the model never sees characters, only these merged fragments.
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1y0KnCFZvGVf_odSfcNAws6kcDD7HsI0L?usp=sharing)
+
+The finished tokenizer is available as [karpathy/minbpe](https://github.com/karpathy/minbpe).
+
 ---
 
 ## Step 6a — RLHF: Teaching the Model to Be Helpful

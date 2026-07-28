@@ -29,6 +29,30 @@ We proceed from **formalism $\to$ algorithms $\to$ guarantees $\to$ practice**, 
 
 ---
 
+## Open Colab: A Bigram Markov Model of Language (Andrej Karpathy)
+
+Lecture 2 of Andrej Karpathy's [*Neural Networks: Zero to Hero*](https://github.com/karpathy/nn-zero-to-hero) (MIT licensed, vendored in this repository at `files/nn-zero-to-hero`) is a Markov chain over characters, built twice.
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/karpathy/nn-zero-to-hero/blob/master/lectures/makemore/makemore_part1_bigrams.ipynb)
+
+[![The spelled-out intro to language modeling: building makemore (Andrej Karpathy)](https://img.youtube.com/vi/PaCmpygFfXo/0.jpg)](https://www.youtube.com/watch?v=PaCmpygFfXo)
+
+*Video summary (text equivalent):* Karpathy trains a character-level model of names in two ways that turn out to be the same model. First he counts every character pair in the dataset into a 27×27 matrix and normalizes each row — this is a Markov chain transition matrix estimated by maximum likelihood, exactly the object in Section 1 below, just with letters instead of weather. He samples new names from it with a multinomial draw and scores the model by negative log likelihood. Then he rebuilds the identical distribution as a single-layer neural network trained by gradient descent, and shows the learned weights converge on the counts. The lesson for this module: an estimated transition matrix and a trained model are two routes to the same probability table, and NLL is how you tell whether either one fits.
+
+---
+
+## Open Colab: Beyond the Markov Assumption — WaveNet (Andrej Karpathy)
+
+A bigram model conditions on one previous symbol; an HMM conditions on one hidden state. What if you need more context than that without the transition table exploding? Lecture 6 of *Neural Networks: Zero to Hero* answers with a hierarchy of dilated causal convolutions, and is useful background for the **Convolutional and Recurrent Neural Networks** assignment handed out with this module.
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/karpathy/nn-zero-to-hero/blob/master/lectures/makemore/makemore_part5_cnn1.ipynb)
+
+[![Building makemore Part 5: Building a WaveNet (Andrej Karpathy)](https://img.youtube.com/vi/t3YJ5hKiMQ0/0.jpg)](https://youtu.be/t3YJ5hKiMQ0)
+
+*Video summary (text equivalent):* Karpathy widens the model's context window from a couple of characters to eight, and rather than flattening all eight into one wide layer he fuses them in pairs, then pairs of pairs — a tree-shaped stack of dilated causal convolutions in the style of DeepMind's WaveNet (2016). "Causal" is the key word for this module: each position may only look at earlier positions, the same one-directional constraint that makes forward–backward inference on an HMM well defined. Much of the video is spent on the unglamorous but essential skill of reading and debugging tensor shapes as they move through a deep stack.
+
+---
+
 ## Open Colab: HMM – Viterbi/Forward–Backward (Core)
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/HMM_Viterbi_Colab.ipynb)
