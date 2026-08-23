@@ -14,25 +14,26 @@ description: "Artificial Intelligence and Machine Learning"
 url                      : https://BillJr99.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "/Ursinus-CS477-Fall2025" # the subpath of your site, e.g. "/blog"
 
-# Where LiaScript decks are fetched from.
-#
-# Usable only in page BODIES ({{ site.activity_url }}liascript-introai.md).
-# Jekyll does not evaluate Liquid inside front matter, and the deck files
-# themselves are not Jekyll-processed at all -- LiaScript fetches them straight
-# from GitHub raw -- so links in those two places name THIS repository on
-# purpose: hardcoding a semester in a link is what this variable exists to
-# avoid, and this repo is the semester-free target.
-#
-# This points at the parent rather than the Fall2025 child because the child
-# carries only 12 of this repo's 20 Activities decks; the parent has all 20 and
-# is already where every deck link in syllabus.md front matter points.
-#
-# baseurl above is the only place a semester may appear.
-activity_url             : "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/"
 
 # Reading Files
 include:
   - .htaccess
   - _pages
   - files
+
+# Where raw course pages are fetched from, and the viewer that renders decks.
+#
+# Front matter can reach these through the `liapage: true` flag, which the
+# syllabus and assignment layouts expand:
+#
+#   link: "Activities/liascript-example.md"
+#   liapage: true
+#
+# Page bodies use them directly:
+#
+#   {{ site.lia_viewer_url }}{{ site.raw_pages_url }}Activities/liascript-example.md
+#
+# These two lines and baseurl above are the only places a semester may appear.
+raw_pages_url            : "https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/"
+lia_viewer_url           : "https://www.billmongan.com/LiaScript/?"
 

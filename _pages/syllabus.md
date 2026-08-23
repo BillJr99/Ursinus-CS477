@@ -173,7 +173,8 @@ schedule:
   - week: "1"
     date: "0"
     title: "What Is Artificial Intelligence? History, Paradigms, and the Course Roadmap"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-introai.md"
+    link: "Activities/liascript-introai.md"
+    liapage: true
     readings:
     - rtitle: "Machine Learning Systems: Introduction"
       rlink: "https://www.mlsysbook.ai/assets/downloads/Machine-Learning-Systems.pdf"
@@ -184,22 +185,26 @@ schedule:
   - week: "1"
     date: "1"
     title: "Course Tools: Python, NumPy, Jupyter, and Colab; Rational Agents"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-introai.md"
+    link: "Activities/liascript-introai.md"
+    liapage: true
   - week: "2"
     date: "0"
     title: "Intelligent Agents and State-Space Problem Formulation"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-uninformedsearch.md"
+    link: "Activities/liascript-uninformedsearch.md"
+    liapage: true
   - week: "2"
     date: "1"
     title: "Uninformed Search: Breadth-First, Depth-First, Iterative Deepening, and Uniform-Cost Search"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-uninformedsearch.md"
+    link: "Activities/liascript-uninformedsearch.md"
+    liapage: true
     readings:
     - rtitle: "CS 477 Lecture Video Playlist by Christopher Tralie: Search Lectures"
       rlink: "https://youtube.com/playlist?list=PLxGzv4uunL66am0572y8wLxVwQY67wZL_"
   - week: "3"
     date: "0"
     title: "Optimization and Local Search: Objective Functions, Landscapes, and Hill Climbing"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-optimizationga.md"
+    link: "Activities/liascript-optimizationga.md"
+    liapage: true
     deliverables:
     - dtitle: "Programming Assignment: Optimization with Genetic Algorithms Handed Out"
       dlink: "Assignments/GeneticAlgorithm"
@@ -208,15 +213,18 @@ schedule:
   - week: "3"
     date: "1"
     title: "Genetic Algorithms: Encodings, Selection, Crossover, and Mutation"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-optimizationga.md"
+    link: "Activities/liascript-optimizationga.md"
+    liapage: true
   - week: "4"
     date: "0"
     title: "Knowledge Representation and Propositional Logic: Entailment and Model Checking"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-knowledgelogic.md"
+    link: "Activities/liascript-knowledgelogic.md"
+    liapage: true
   - week: "4"
     date: "1"
     title: "First-Order Logic, Forward Chaining, and Expert Systems"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-knowledgelogic.md"
+    link: "Activities/liascript-knowledgelogic.md"
+    liapage: true
     deliverables:
     - dtitle: "Programming Assignment: Optimization with Genetic Algorithms Due"
       dlink: "Assignments/GeneticAlgorithm"
@@ -225,15 +233,18 @@ schedule:
   - week: "5"
     date: "0"
     title: "Probability Foundations: Axioms, Conditional Probability, and Independence"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-probabilityfoundations.md"
+    link: "Activities/liascript-probabilityfoundations.md"
+    liapage: true
   - week: "5"
     date: "1"
     title: "Bayes' Rule Intuition: Priors, Likelihoods, Posteriors, and Base Rates"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-probabilityfoundations.md"
+    link: "Activities/liascript-probabilityfoundations.md"
+    liapage: true
   - week: "6"
     date: "0"
     title: "Thinking in Data and Features: The Machine Learning Landscape and Generalization"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-datafeatures.md"
+    link: "Activities/liascript-datafeatures.md"
+    liapage: true
     readings:
     - rtitle: "Machine Learning Systems: AI Workflow"
       rlink: "https://www.mlsysbook.ai/assets/downloads/Machine-Learning-Systems.pdf"
@@ -242,14 +253,16 @@ schedule:
   - week: "6"
     date: "1"
     title: "Decision Trees: Entropy, Information Gain, Pruning, and Random Forests"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-trees.md"
+    link: "Activities/liascript-trees.md"
+    liapage: true
     readings:
     - rtitle: "Machine Learning for Engineers Chapter 4 (Ensemble Learning)"
       rlink: "https://ml-course.github.io/master/notebooks/04%20-%20Ensemble%20Learning.html"
   - week: "7"
     date: "1"
     title: "Introduction to Machine Learning and Linear Regression with Polynomial Regression and Regularization"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-regression.md"
+    link: "Activities/liascript-regression.md"
+    liapage: true
     deliverables:
     - dtitle: "Programming Assignment: Regression Handed Out"
       dlink: "Assignments/Regression"
@@ -277,11 +290,13 @@ schedule:
   - week: "8"
     date: "1"
     title: "Unsupervised Learning: Clustering, Density Estimation, and Feature Discovery"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-unsupervised.md"
+    link: "Activities/liascript-unsupervised.md"
+    liapage: true
   - week: "9"
     date: "0"
     title: "Perceptrons and Linear Separability with Model Evaluation, Support Vector Machines"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-perceptronsmodelevaluation.md"
+    link: "Activities/liascript-perceptronsmodelevaluation.md"
+    liapage: true
     readings:
     - rtitle: "Machine Learning for Engineers Chapter 3"
       rlink: "https://ml-course.github.io/master/notebooks/03%20-%20Model%20Evaluation.html"
@@ -293,7 +308,8 @@ schedule:
   - week: "9"
     date: "1"
     title: "Neural Networks: Multilayer Perceptrons and Backpropagation"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-neuralnets.md"
+    link: "Activities/liascript-neuralnets.md"
+    liapage: true
     readings:
     - rtitle: "Machine Learning for Engineers Chapter 6 (Neural Networks)"
       rlink: "https://ml-course.github.io/master/notebooks/06%20-%20Neural%20Networks.html"
@@ -319,7 +335,8 @@ schedule:
   - week: "10"
     date: "0"
     title: "Dimensionality Reduction: Principal Component Analysis (PCA) and Latent Representations"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-pca.md"
+    link: "Activities/liascript-pca.md"
+    liapage: true
     deliverables: 
     - dtitle: "Programming Assignment: Implementing a Neural Network Handed Out"
       dlink: "Assignments/NeuralNet"
@@ -343,7 +360,8 @@ schedule:
   - week: "10"
     date: "1"
     title: "Heuristic Search: Hill Climbing and Minimax"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-heuristicsearch.md"
+    link: "Activities/liascript-heuristicsearch.md"
+    liapage: true
     deliverables:
     - dtitle: "Final Project: Final Project Handed Out"
       dlink: "Projects/Project"
@@ -356,7 +374,8 @@ schedule:
   - week: "11"
     date: "0"
     title: "Informed Search: A* and Admissible Heuristics"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-informedsearch.md"
+    link: "Activities/liascript-informedsearch.md"
+    liapage: true
     deliverables:
     - dtitle: "Programming Assignment: AI by Hand Part 1 Due"
       dlink: "Assignments/AIByHand1"
@@ -369,7 +388,8 @@ schedule:
   - week: "11"
     date: "1"
     title: "Bayesian Inference and Probabilistic Reasoning with Kalman Filtering"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-bayesianinference.md"
+    link: "Activities/liascript-bayesianinference.md"
+    liapage: true
     deliverables: 
     - dtitle: "Programming Assignment: Implementing a Neural Network Due"
       dlink: "Assignments/NeuralNet"
@@ -382,7 +402,8 @@ schedule:
   - week: "12"
     date: "0"
     title: "Markov Decision Processes including Hidden Markov Models and Multi-Armed Bandit Problems"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-mdphmmbandits.md"  
+    link: "Activities/liascript-mdphmmbandits.md"
+    liapage: true
     readings:
     - rtitle: "CS 477 Lecture Video Playlist by Christopher Tralie: HMM Lectures"
       rlink: "https://youtube.com/playlist?list=PLxGzv4uunL66am0572y8wLxVwQY67wZL_"
@@ -412,7 +433,8 @@ schedule:
   - week: "12"
     date: "1"
     title: "Generative Adversarial Networks (GAN)"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-gan.md"
+    link: "Activities/liascript-gan.md"
+    liapage: true
     deliverables:
     - dtitle: "Programming Assignment: Support Vector Machines Due"
       dlink: "Assignments/SupportVectorMachines"
@@ -425,7 +447,8 @@ schedule:
   - week: "13"
     date: "0"
     title: "Reinforcement Learning: Value Iteration, Q-Learning, and Genetic Algorithms"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-rl.md"
+    link: "Activities/liascript-rl.md"
+    liapage: true
     readings:
     - rtitle: "ml_animated Chapter 13"
       rlink: "https://ipynb.js.org/?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmarkhliu%2Fml_animated%2Frefs%2Fheads%2Fmain%2FCh13IntroRL.ipynb"
@@ -447,7 +470,8 @@ schedule:
   - week: "14"
     date: "0"
     title: "Explainable and Responsible AI"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-explainable.md"
+    link: "Activities/liascript-explainable.md"
+    liapage: true
     readings:
     - rtitle: "Machine Learning Systems: Responsible AI"
       rlink: "https://www.mlsysbook.ai/assets/downloads/Machine-Learning-Systems.pdf"
@@ -475,7 +499,8 @@ schedule:
   - week: "15"
     date: "0"
     title: "Course Wrap-Up — From Sequence Models to Transformers, LLMs, and Retrieval-Augmented Generation"
-    link: "https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-llms.md"
+    link: "Activities/liascript-llms.md"
+    liapage: true
     readings:
     - rtitle: "Machine Learning for Engineers Chapter 8 (Transformers)"
       rlink: "https://ml-course.github.io/master/notebooks/08%20-%20Transformers.html"
