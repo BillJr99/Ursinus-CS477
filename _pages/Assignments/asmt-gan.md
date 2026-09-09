@@ -221,7 +221,7 @@ Design and train a GAN for a **new creative purpose**. Choose one of the options
 
 ### Option A — 2D Shape Generator
 
-Generate simple geometric shapes (circles, triangles, squares) as $28\times28$ binary images. Train a small GAN to reproduce the dataset distribution.
+Generate simple geometric shapes (circles, triangles, squares) as $$28\times28$$ binary images. Train a small GAN to reproduce the dataset distribution.
 
 **Scaffold:**
 ```python
@@ -244,7 +244,7 @@ shape_data = make_shape_dataset()
 ```
 
 **Tasks:**
-1. Implement generator and discriminator suitable for $28\times28$ grayscale images.
+1. Implement generator and discriminator suitable for $$28\times28$$ grayscale images.
 2. Train your GAN to reproduce the shape dataset.
 3. Visualize real vs. generated samples.
 4. Measure diversity (e.g., mode count, variety).

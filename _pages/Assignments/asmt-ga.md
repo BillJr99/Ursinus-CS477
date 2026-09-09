@@ -64,7 +64,7 @@ tags:
 
 In this assignment, you will implement a **Genetic Algorithm (GA)** to optimize a small but meaningful problem and compare it to a library-based GA solution. You will study the effects of representation, selection pressure, crossover, mutation, and elitism on solution quality and convergence.
 
-We use **$K$-item knapsack** as a running example: select items with values $v_i$ and weights $w_i$ to maximize total value subject to capacity $W$. The binary decision vector is $x \in \{0,1\}^n$.
+We use **$K$-item knapsack** as a running example: select items with values $v_i$ and weights $w_i$ to maximize total value subject to capacity $W$. The binary decision vector is $$x \in \{0,1\}^n$$.
 
 **Objective (penalized form):**
 $$
@@ -96,7 +96,7 @@ except Exception as e:
 
 ## Stage 1 — Problem Instance & Fitness
 
-We create a toy knapsack with $n=40$ items; values and weights are positive integers; capacity $W$ controls feasibility. The fitness uses a penalty coefficient $\lambda$ for overweight solutions.
+We create a toy knapsack with $$n=40$$ items; values and weights are positive integers; capacity $W$ controls feasibility. The fitness uses a penalty coefficient $$\lambda$$ for overweight solutions.
 
 ```python
 n = 40
@@ -112,7 +112,7 @@ def fitness(x):
     return total_v - lam * overflow
 ```
 
-**Checkpoint:** What happens to solutions if you set $\lambda=0$? Explain why a positive penalty is required for constraint satisfaction.
+**Checkpoint:** What happens to solutions if you set $$\lambda=0$$? Explain why a positive penalty is required for constraint satisfaction.
 
 ---
 
@@ -202,7 +202,7 @@ print("Best fitness:", fitness(best))
 print("Weight used:", (weights*best).sum(), "/ capacity", W)
 ```
 
-**Checkpoint:** Report final constraint satisfaction $\sum_i w_i x_i \le W$ and total value $\sum_i v_i x_i$ of your best individual.
+**Checkpoint:** Report final constraint satisfaction $$\sum_i w_i x_i \le W$$ and total value $$\sum_i v_i x_i$$ of your best individual.
 
 ---
 
@@ -258,7 +258,7 @@ We extend the GA to a classic **combinatorial optimization** task: the **Traveli
 
 ### Problem Definition
 
-Given $N$ cities with coordinates $\{(x_i, y_i)\}_{i=1}^N$, find a permutation $\pi$ of $\{1,\dots,N\}$ minimizing the closed tour length:
+Given $N$ cities with coordinates $$\{(x_i, y_i)\}_{i=1}^N$$, find a permutation $$\pi$$ of $$\{1,\dots,N\}$$ minimizing the closed tour length:
 $$
 L(\pi) \;=\; \sum_{k=1}^{N} d\big(\pi_k,\, \pi_{k+1}\big), \quad \text{with } \pi_{N+1} \equiv \pi_1,
 $$
@@ -437,10 +437,10 @@ If DEAP is available, you may implement a permutation GA using `tools.cxOrdered`
 
 Conduct **at least two** of the following ablations, plotting best/mean fitness per generation:
 
-1. **Population size:** $N \in \{40, 80, 160\}$  
-2. **Mutation rate:** $p_m \in \{0.005, 0.01, 0.05\}$  
-3. **Tournament size:** $k \in \{2, 3, 5\}$  
-4. **Crossover prob:** $p_c \in \{0.6, 0.9\}$  
+1. **Population size:** $$N \in \{40, 80, 160\}$$  
+2. **Mutation rate:** $$p_m \in \{0.005, 0.01, 0.05\}$$  
+3. **Tournament size:** $$k \in \{2, 3, 5\}$$  
+4. **Crossover prob:** $$p_c \in \{0.6, 0.9\}$$  
 5. **Elitism:** Enable vs. disable (set elite\_k to 0)
 
 Discuss effects on **diversity**, **convergence speed**, and **solution quality**. Explain any observed **premature convergence**.

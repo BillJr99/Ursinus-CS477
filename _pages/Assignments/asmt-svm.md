@@ -90,7 +90,7 @@ $$
 \end{aligned}
 $$
 
-For non-separable data, introduce **slack variables** $\xi_i \ge 0$ and penalty parameter $C$:
+For non-separable data, introduce **slack variables** $$\xi_i \ge 0$$ and penalty parameter $C$:
 
 $$
 \min_{\mathbf{w},b,\xi} \frac{1}{2}\lVert \mathbf{w} \rVert^2 + C\sum_i \xi_i
@@ -203,7 +203,7 @@ We now move beyond toy datasets to a more meaningful but tractable task. You wil
 1. Implement preprocessing (scaling, splitting, optionally PCA).  
 2. Compare linear vs. RBF kernel SVMs.  
 3. Evaluate confusion matrix and per-class precision/recall.  
-4. Optimize hyperparameters ($C$, $\gamma$) using a small grid search.
+4. Optimize hyperparameters ($C$, $$\gamma$$) using a small grid search.
 
 ```python
 from sklearn.datasets import load_digits

@@ -91,14 +91,14 @@ except Exception as e:
 
 ## Stage 1 — From Scratch: Value Iteration on a Toy Gridworld
 
-Let an MDP be $(\mathcal{S}, \mathcal{A}, P, R, \gamma)$ with discount $\gamma\in[0,1)$. The **Bellman optimality** update is
+Let an MDP be $$(\mathcal{S}, \mathcal{A}, P, R, \gamma)$$ with discount $$\gamma\in[0,1)$$. The **Bellman optimality** update is
 $$
 V_{k+1}(s) \leftarrow \max_{a\in\mathcal{A}} \Big[ R(s,a) + \gamma \sum_{s'} P(s'\mid s,a) V_k(s') \Big].
 $$
 
 ### 1.1 Gridworld Definition
 
-We define a $4\times4$ grid with terminal states and a step cost.
+We define a $$4\times4$$ grid with terminal states and a step cost.
 
 ```python
 @dataclass
@@ -162,7 +162,7 @@ print("V* (reshape):\n", V_star.reshape(env.H, env.W))
 print("π* (0=U,1=R,2=D,3=L):\n", pi_star.reshape(env.H, env.W))
 ```
 
-**Checkpoint:** Verify $\lVert V_{k+1}-V_k \rVert_\infty$ decreases and the policy arrows point toward terminal rewards.
+**Checkpoint:** Verify $$\lVert V_{k+1}-V_k \rVert_\infty$$ decreases and the policy arrows point toward terminal rewards.
 
 ---
 
@@ -205,7 +205,7 @@ print("Policy from Q-Learning (reshaped):\n", pi_q.reshape(env.H, env.W))
 plt.plot(ret, alpha=0.6); plt.title("Episode Return (Q-Learning)"); plt.xlabel("Episode"); plt.ylabel("Return"); plt.show()
 ```
 
-**Checkpoint:** Compare $\pi^*$ from Value Iteration to the learned policy from Q-Learning. How many episodes are needed for near-optimal returns?
+**Checkpoint:** Compare $$\pi^*$$ from Value Iteration to the learned policy from Q-Learning. How many episodes are needed for near-optimal returns?
 
 ---
 
@@ -360,7 +360,7 @@ plt.xlabel("Episode"); plt.ylabel("Avg Return"); plt.show()
 
 1. **Shaping & Hazards.** Adjust rewards (pickup/drop/penalty) and hazard motion to improve sample efficiency without reward hacking.  
 2. **Exploration.** Compare \(\epsilon\)-greedy vs. softmax exploration; plot state visitation heatmaps.  
-3. **Ablation.** Vary $\alpha$, $\gamma$, and hazard dynamics; quantify effects on convergence and final policy quality.  
+3. **Ablation.** Vary $$\alpha$$, $$\gamma$$, and hazard dynamics; quantify effects on convergence and final policy quality.  
 4. **Policy Visualization.** Render the greedy policy over the grid for carrying/not-carrying.  
 5. **Stretch.** Replace Q-Learning with **SARSA** and compare stability.
 

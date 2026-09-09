@@ -296,7 +296,7 @@ for idx in [0, 1, 2]:
 
 **Questions.**
 1. What **semantics** do you assign to each state (e.g., “blank/light/heavy”)?  
-2. Compare **$K=2$ vs. $K=4$**: which yields more interpretable segmentation?  
+2. Compare **$$K=2$$ vs. $$K=4$$**: which yields more interpretable segmentation?  
 3. Compute sequence log-likelihoods and report **average per-time-step log-likelihood** by digit class; does the HMM capture class-specific structure?
 
 ---
@@ -306,8 +306,8 @@ for idx in [0, 1, 2]:
 Treat a character stream as observations; hidden states represent **latent writing modes** (e.g., vowel-heavy vs. consonant-heavy). Create a **two-state** HMM with **categorical emissions** over characters.
 
 **Mathematics.**
-- Hidden states $Z_t \in \{1,2\}$ with transition matrix $A$ and initial distribution $\pi$.
-- Emissions are categorical: $X_t \mid Z_t=k \sim \mathrm{Cat}(\boldsymbol{\phi}_k)$ over an alphabet $\mathcal{V}$.
+- Hidden states $$Z_t \in \{1,2\}$$ with transition matrix $A$ and initial distribution $$\pi$$.
+- Emissions are categorical: $$X_t \mid Z_t=k \sim \mathrm{Cat}(\boldsymbol{\phi}_k)$$ over an alphabet $$\mathcal{V}$$.
 - Train with Baum–Welch (EM) or compare to your from-scratch forward–backward + M-step updates.
 
 ```python
@@ -336,8 +336,8 @@ for k in range(K):
 
 **Questions.**
 1. Do the two states separate **space/vowels vs. consonants**, or capture another structure?  
-2. If you **remove spaces** or **lowercase vowels**, how does $\boldsymbol{\phi}_k$ change?  
-3. Try $K=3$ and interpret each state’s character distribution.
+2. If you **remove spaces** or **lowercase vowels**, how does $$\boldsymbol{\phi}_k$$ change?  
+3. Try $$K=3$$ and interpret each state’s character distribution.
 
 ---
 
