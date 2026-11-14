@@ -1,0 +1,25 @@
+Observation sequence (labels): ['Umbrella', 'Umbrella', 'No Umbrella', 'Umbrella', 'Umbrella']
+Observation count vectors:
+ [[1 0]
+ [1 0]
+ [0 1]
+ [1 0]
+ [1 0]]
+
+Most likely hidden state sequence (indices): [0, 0, 0, 0, 0]
+Most likely hidden state sequence (labels):
+  Day 1: Rainy
+  Day 2: Rainy
+  Day 3: Rainy
+  Day 4: Rainy
+  Day 5: Rainy
+
+Log-probability of best path: -4.8438741119402255
+Probability of best path: 0.007876480500000001
+
+Summary alignment:
+Day 1: Obs=Umbrella     -> State=Rainy
+Day 2: Obs=Umbrella     -> State=Rainy
+Day 3: Obs=No Umbrella  -> State=Rainy
+Day 4: Obs=Umbrella     -> State=Rainy
+Day 5: Obs=Umbrella     -> State=Rainy

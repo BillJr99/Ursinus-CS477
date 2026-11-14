@@ -1,0 +1,13 @@
+Google matrix G:
+ [[0.0375 0.4625 0.4625 0.0375]
+ [0.0375 0.0375 0.8875 0.0375]
+ [0.4625 0.0375 0.0375 0.4625]
+ [0.25   0.25   0.25   0.25  ]]
+
+PageRank vector (stationary distribution):
+Page 0: 0.2340
+Page 1: 0.1867
+Page 2: 0.3453
+Page 3: 0.2340
+
+Converged in 28 iterations; sum(pi) = 1.0000000000000009

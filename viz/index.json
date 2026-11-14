@@ -1,7 +1,7 @@
 {
  "course": "cs477",
  "site": "https://billjr99.github.io/Ursinus-CS477",
- "built": "2026-11-14 17:54",
+ "built": "2026-11-14 23:43",
  "examples": [
   {
    "id": "cs477-liascript-bayesianinference-1",
@@ -138,7 +138,7 @@
    "viz": "env",
    "lang": "python",
    "page": "_pages/Activities/liascript-datafeatures.md",
-   "line": 128,
+   "line": 130,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-datafeatures",
    "error": null,
    "steps": 14
@@ -834,6 +834,26 @@
    "steps": 6
   },
   {
+   "id": "cs477-nb-creditscorefeatureweightestimator-7",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/CreditScoreFeatureWeightEstimator.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 800
+  },
+  {
+   "id": "cs477-nb-creditscorefeatureweightestimator-9",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/CreditScoreFeatureWeightEstimator.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 31
+  },
+  {
    "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-1",
    "viz": "env",
    "lang": "python",
@@ -1244,6 +1264,66 @@
    "steps": 800
   },
   {
+   "id": "cs477-nb-hmm-image-recognition-from-scratch-5",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Image_Recognition_From_Scratch.ipynb",
+   "line": 5,
+   "page_url": "",
+   "error": null,
+   "steps": 800
+  },
+  {
+   "id": "cs477-nb-hmm-image-recognition-from-scratch-8",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Image_Recognition_From_Scratch.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 0
+  },
+  {
+   "id": "cs477-nb-hmm-image-recognition-from-scratch-9",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Image_Recognition_From_Scratch.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 0
+  },
+  {
+   "id": "cs477-nb-hmm-image-recognition-from-scratch-10",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Image_Recognition_From_Scratch.ipynb",
+   "line": 10,
+   "page_url": "",
+   "error": null,
+   "steps": 0
+  },
+  {
+   "id": "cs477-nb-hmm-image-recognition-from-scratch-11",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Image_Recognition_From_Scratch.ipynb",
+   "line": 11,
+   "page_url": "",
+   "error": null,
+   "steps": 71
+  },
+  {
+   "id": "cs477-nb-hmm-image-recognition-from-scratch-12",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Image_Recognition_From_Scratch.ipynb",
+   "line": 12,
+   "page_url": "",
+   "error": null,
+   "steps": 0
+  },
+  {
    "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-1",
    "viz": "env",
    "lang": "python",
@@ -1409,6 +1489,16 @@
    "lang": "python",
    "page": "files/notebooks/HMM_Viterbi_Colab.ipynb",
    "line": 12,
+   "page_url": "",
+   "error": null,
+   "steps": 0
+  },
+  {
+   "id": "cs477-nb-hmm-viterbi-colab-13",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Viterbi_Colab.ipynb",
+   "line": 13,
    "page_url": "",
    "error": null,
    "steps": 0
@@ -2074,6 +2164,16 @@
    "steps": 14
   },
   {
+   "id": "cs477-nb-mle-from-first-principles-worked-examples-9",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/MLE_From_First_Principles_Worked_Examples.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 800
+  },
+  {
    "id": "cs477-nb-mle-from-first-principles-worked-examples-10",
    "viz": "env",
    "lang": "python",
@@ -2184,6 +2284,16 @@
    "steps": 0
   },
   {
+   "id": "cs477-nb-markov-chain-tutorial-12",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Markov_Chain_Tutorial.ipynb",
+   "line": 12,
+   "page_url": "",
+   "error": null,
+   "steps": 0
+  },
+  {
    "id": "cs477-nb-minimax-tutorial-2",
    "viz": "env",
    "lang": "python",
@@ -2222,6 +2332,16 @@
    "page_url": "",
    "error": null,
    "steps": 0
+  },
+  {
+   "id": "cs477-nb-nonlinearfunctionestimatormultilayernn-6",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/NonLinearFunctionEstimatorMultiLayerNN.ipynb",
+   "line": 6,
+   "page_url": "",
+   "error": null,
+   "steps": 800
   },
   {
    "id": "cs477-nb-nonlinearfunctionestimatormultilayernn-7",
@@ -2502,6 +2622,46 @@
    "page_url": "",
    "error": null,
    "steps": 5
+  },
+  {
+   "id": "cs477-nb-rl-fromscratch-toygridworld-6",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/RL_FromScratch_ToyGridworld.ipynb",
+   "line": 6,
+   "page_url": "",
+   "error": null,
+   "steps": 0
+  },
+  {
+   "id": "cs477-nb-rl-fromscratch-toygridworld-7",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/RL_FromScratch_ToyGridworld.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 0
+  },
+  {
+   "id": "cs477-nb-rl-fromscratch-toygridworld-8",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/RL_FromScratch_ToyGridworld.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 0
+  },
+  {
+   "id": "cs477-nb-rl-fromscratch-toygridworld-9",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/RL_FromScratch_ToyGridworld.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 0
   },
   {
    "id": "cs477-nb-svm-from-scratch-linear-and-kernel-1",

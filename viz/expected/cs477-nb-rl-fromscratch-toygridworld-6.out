@@ -1,0 +1,10 @@
+Ep  200 | return=-12.00 | eps=0.367
+Ep  400 | return=-12.00 | eps=0.135
+Ep  600 | return=-12.00 | eps=0.050
+Ep  800 | return=-13.00 | eps=0.050
+Ep 1000 | return=-13.00 | eps=0.050
+Ep 1200 | return=-14.00 | eps=0.050
+Ep 1400 | return=-12.00 | eps=0.050
+Ep 1600 | return=-13.00 | eps=0.050
+Ep 1800 | return=-21.00 | eps=0.050
+Ep 2000 | return=-13.00 | eps=0.050
