@@ -124,6 +124,7 @@ The *Machine Learning Systems* readings for this session expand each of these in
 
 ## 7. Runnable Code: The Whole Workflow in Miniature
 
+<!-- run: id=cs477-liascript-datafeatures-1 viz=env -->
 ```python
 import numpy as np
 rng = np.random.default_rng(477)
@@ -147,6 +148,7 @@ pred = Xb[test] @ w
 rmse = np.sqrt(np.mean((pred - y[test]) ** 2))
 print("test RMSE:", round(rmse, 2), " (noise floor was 4)")
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-datafeatures-1) <!-- code-viz link -->
 
 **What to look for:** the learned weights land near the true $[3, 20]$, and test RMSE approaches the noise level $\sigma = 4$ — the best any model could do. When week 7 opens with regression, you will study *why* `lstsq` finds those weights (spoiler: calculus + linear algebra).
 

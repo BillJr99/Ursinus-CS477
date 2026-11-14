@@ -26,6 +26,8 @@ link:   https://cdn.jsdelivr.net/gh/BillJr99/Ursinus-Boilerplate-Assets@main/css
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/Linear_and_Logistic_Regression_Tutorial.ipynb)
 
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-and-logistic-regression-tutorial-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-and-logistic-regression-tutorial-1) [cell 2](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-and-logistic-regression-tutorial-2) [cell 3](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-and-logistic-regression-tutorial-3) [cell 4](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-and-logistic-regression-tutorial-4) [cell 5](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-and-logistic-regression-tutorial-5) [cell 6](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-and-logistic-regression-tutorial-6) [cell 7](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-and-logistic-regression-tutorial-7) [cell 8](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-and-logistic-regression-tutorial-8) [cell 9](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-and-logistic-regression-tutorial-9) [cell 10](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-and-logistic-regression-tutorial-10) [cell 11](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-and-logistic-regression-tutorial-11) [cell 12](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-and-logistic-regression-tutorial-12) [cell 13](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-and-logistic-regression-tutorial-13) [cell 14](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-and-logistic-regression-tutorial-14) [cell 15](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-and-logistic-regression-tutorial-15) <!-- code-viz link -->
+
 
 ---
 
@@ -76,6 +78,7 @@ This section imports the libraries used throughout. No internet access is requir
 
 
 ## Code Cell
+<!-- run: id=cs477-liascript-regression-1 viz=plain -->
 ```python
 
 # Core libraries
@@ -101,6 +104,7 @@ plt.rcParams["axes.grid"] = True
 
 print("Environment ready.")
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-regression-1) <!-- code-viz link -->
 
 ---
 
@@ -169,6 +173,7 @@ We will begin with a **single feature** example to build intuition.
 
 
 ## Code Cell
+<!-- run: id=cs477-liascript-regression-2 viz=plain setup=cs477-liascript-regression-1 -->
 ```python
 
 # Generate a simple 1D synthetic dataset: y = 3x + 5 + noise
@@ -188,6 +193,7 @@ plt.title("Synthetic data: approximately y = 3x + 5 + noise")
 plt.legend()
 plt.show()
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-regression-2) <!-- code-viz link -->
 
 ---
 
@@ -1348,6 +1354,7 @@ We fit parameters by **maximizing the (log-)likelihood**, equivalently minimizin
 
 
 ## Code Cell
+<!-- run: id=cs477-liascript-regression-9 viz=plain setup=cs477-liascript-regression-1 -->
 ```python
 
 # Visualize the sigmoid
@@ -1359,6 +1366,7 @@ plt.ylabel("sigma(z)")
 plt.title("Sigmoid Function")
 plt.show()
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-regression-9) <!-- code-viz link -->
 
 
 ---
@@ -1744,6 +1752,7 @@ $ z = x^\top\boldsymbol{\theta} $ is converted into the predicted probability of
 
 
 ## Code Cell
+<!-- run: id=cs477-liascript-regression-10 viz=plain setup=cs477-liascript-regression-1 -->
 ```python
 
 # Synthetic binary classification data
@@ -1804,6 +1813,7 @@ plt.colorbar(label="P(y=1 | x)")
 plt.legend(); plt.title("Decision Boundary (from scratch)")
 plt.show()
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-regression-10) <!-- code-viz link -->
 
 
 
@@ -1882,6 +1892,7 @@ This plot provides a geometric and probabilistic picture of how logistic regress
 
 
 ## Code Cell
+<!-- run: id=cs477-liascript-regression-11 viz=plain setup=cs477-liascript-regression-1,cs477-liascript-regression-10 -->
 ```python
 # Assumes from Step 10:
 # - X_bin: shape (n, 2), the 2D synthetic features
@@ -1930,6 +1941,7 @@ eq_terms = [f"{theta[j]:.3f}*x{j}" for j in range(1, len(theta))]
 equation = f"log( p / (1 - p) ) = {theta[0]:.3f} + " + " + ".join(eq_terms)
 print("\nEstimated logistic model:\n", equation)
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-regression-11) <!-- code-viz link -->
 
 ---
 

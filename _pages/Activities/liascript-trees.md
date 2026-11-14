@@ -133,6 +133,7 @@ Intuition: averaging $T$ nearly-independent estimators divides variance by rough
 
 ## 7. Runnable Code: Trees vs. Forests
 
+<!-- run: id=cs477-liascript-trees-1 viz=env -->
 ```python
 import numpy as np
 from sklearn.datasets import make_moons
@@ -153,6 +154,7 @@ print(f"forest    : train={rf.score(Xtr, ytr):.2f}  test={rf.score(Xte, yte):.2f
 print(export_text(DecisionTreeClassifier(max_depth=2, random_state=0).fit(Xtr, ytr),
                   feature_names=["x1", "x2"]))
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-trees-1) <!-- code-viz link -->
 
 **What to look for:**
 

@@ -22,11 +22,15 @@ This module develops **informed search** with a focus on **A\***, admissible and
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/A_star_step_by_step.ipynb)
 
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-a-star-step-by-step-3): [cell 3](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-a-star-step-by-step-3) [cell 4](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-a-star-step-by-step-4) [cell 5](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-a-star-step-by-step-5) [cell 6](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-a-star-step-by-step-6) [cell 7](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-a-star-step-by-step-7) [cell 9](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-a-star-step-by-step-9) [cell 10](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-a-star-step-by-step-10) <!-- code-viz link -->
+
 ---
 
 ## Open Colab: A* With Graphics
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/AStar_Search_With_Graphics.ipynb)
+
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-astar-search-with-graphics-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-astar-search-with-graphics-1) [cell 5](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-astar-search-with-graphics-5) [cell 6](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-astar-search-with-graphics-6) [cell 7](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-astar-search-with-graphics-7) [cell 8](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-astar-search-with-graphics-8) [cell 9](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-astar-search-with-graphics-9) <!-- code-viz link -->
 
 ---
 
@@ -37,12 +41,14 @@ We will use small Python fragments to match the algorithmic descriptions. The Co
 ---
 
 ## Code Cell
+<!-- run: id=cs477-liascript-informedsearch-1 viz=env -->
 ```python
 import heapq
 from typing import Dict, Tuple, Callable, List
 
 print("A* utilities ready.")
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-informedsearch-1) <!-- code-viz link -->
 
 ---
 

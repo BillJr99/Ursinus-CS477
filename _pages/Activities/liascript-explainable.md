@@ -21,6 +21,8 @@ We proceed from **theory $\to$ algorithms $\to$ diagnostics $\to$ policy**, with
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/ExplainableAI_Shapley_From_Scratch_CreditNN.ipynb)
 
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-explainableai-shapley-from-scratch-creditnn-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-explainableai-shapley-from-scratch-creditnn-1) [cell 3](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-explainableai-shapley-from-scratch-creditnn-3) [cell 5](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-explainableai-shapley-from-scratch-creditnn-5) [cell 6](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-explainableai-shapley-from-scratch-creditnn-6) [cell 7](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-explainableai-shapley-from-scratch-creditnn-7) [cell 8](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-explainableai-shapley-from-scratch-creditnn-8) [cell 9](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-explainableai-shapley-from-scratch-creditnn-9) [cell 10](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-explainableai-shapley-from-scratch-creditnn-10) [cell 11](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-explainableai-shapley-from-scratch-creditnn-11) [cell 12](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-explainableai-shapley-from-scratch-creditnn-12) <!-- code-viz link -->
+
 ---
 
 ## 0. Setup & Conventions
@@ -32,11 +34,13 @@ We proceed from **theory $\to$ algorithms $\to$ diagnostics $\to$ policy**, with
 ---
 
 ## Code Cell
+<!-- run: id=cs477-liascript-explainable-1 viz=env -->
 ```python
 import numpy as np
 np.set_printoptions(precision=4, suppress=True)
 print("Explainability utilities loaded.")
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-explainable-1) <!-- code-viz link -->
 
 ---
 
@@ -101,6 +105,7 @@ Exact Shapley requires $O(2^d)$ evaluations. Approximations:
 
 ## Code Cell — Monte Carlo Shapley (Didactic)
 
+<!-- run: id=cs477-liascript-explainable-2 viz=env -->
 ```python
 import itertools, math, numpy as np
 
@@ -128,6 +133,7 @@ baseline = np.zeros_like(x)
 phi = monte_carlo_shapley(f_relu, x, baseline, M=1000, rng=0)
 print("Approx Shapley:", np.round(phi,3), "Sum:", np.round(phi.sum(),3), "Output shift:", f_relu(x)-f_relu(baseline))
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-explainable-2) <!-- code-viz link -->
 
 ---
 

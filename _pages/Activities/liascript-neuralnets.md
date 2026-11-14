@@ -217,6 +217,7 @@ Let's code a neural network with a single hidden layer, as follows:
 
 You can run this code to visualize linear inseparability and a neural net with a sigmoid activation function that fixes it.
 
+<!-- run: id=cs477-liascript-neuralnets-1 viz=plain -->
 ```python
 # XOR neural network demo (manual 2-layer NN + decision boundary plot)
 
@@ -346,6 +347,7 @@ for x in test_inputs:
     pred = predict(x.reshape(1,-1))
     print(f"Input {x} -> Predicted {pred[0,0]:.3f}")
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-neuralnets-1) <!-- code-viz link -->
 
 **Notes:**  
 The two classes are now linearly separable in (h1, h2) space.  Notice how these tie back to "affine + nonlinearity" layers.
@@ -1167,6 +1169,7 @@ $$
 
 Compute numbers to see the **$\tfrac{1}{2}$ cancellation** realized as the simple $(\hat{y}-y)$ factor.
 
+<!-- run: id=cs477-liascript-neuralnets-2 viz=env -->
 ```python
 # Tiny numeric check for the scalar case
 import numpy as np
@@ -1197,6 +1200,7 @@ fd = (L_plus - L_minus) / (2 * eps)
 print("Analytic dL/dw:", dL_dw)
 print("Finite diff   :", fd)
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-neuralnets-2) <!-- code-viz link -->
 
 ---
 
@@ -2329,6 +2333,8 @@ which reduces to the outer products shown above.
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/LinearFunctionEstimatorNN.ipynb)
 
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linearfunctionestimatornn-6): [cell 6](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linearfunctionestimatornn-6) [cell 7](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linearfunctionestimatornn-7) <!-- code-viz link -->
+
 ---
 
 ## Notebook Overview: Linear Function Estimator (Multi-Layer)
@@ -2362,6 +2368,8 @@ which reduces to the outer products shown above.
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/LinearFunctionEstimatorMultiLayerNN.ipynb)
 
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linearfunctionestimatormultilayernn-6): [cell 6](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linearfunctionestimatormultilayernn-6) [cell 7](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linearfunctionestimatormultilayernn-7) [cell 8](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linearfunctionestimatormultilayernn-8) [cell 9](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linearfunctionestimatormultilayernn-9) <!-- code-viz link -->
+
 ---
 
 ## Notebook Overview: Nonlinear Function Estimator (MLP)
@@ -2388,6 +2396,8 @@ which reduces to the outer products shown above.
 ## Open Colab: Nonlinear Function Estimator (MLP)
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/NonLinearFunctionEstimatorMultiLayerNN.ipynb)
+
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-nonlinearfunctionestimatormultilayernn-7): [cell 7](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-nonlinearfunctionestimatormultilayernn-7) [cell 8](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-nonlinearfunctionestimatormultilayernn-8) [cell 9](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-nonlinearfunctionestimatormultilayernn-9) [cell 10](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-nonlinearfunctionestimatormultilayernn-10) <!-- code-viz link -->
 
 ---
 
@@ -2418,6 +2428,8 @@ which reduces to the outer products shown above.
 ## Open Colab: MNIST NN from Scratch
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/Simple_MNIST_NN_from_scratch.ipynb)
+
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-simple-mnist-nn-from-scratch-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-simple-mnist-nn-from-scratch-1) <!-- code-viz link -->
 
 ---
 

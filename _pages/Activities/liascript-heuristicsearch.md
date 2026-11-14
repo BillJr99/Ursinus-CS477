@@ -27,11 +27,15 @@ We will move from **intuition → formal models → algorithms → complexity �
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/HillClimbing_Pacman_From_Scratch.ipynb)
 
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hillclimbing-pacman-from-scratch-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hillclimbing-pacman-from-scratch-1) <!-- code-viz link -->
+
 ---
 
 ## Open Colab: Minimax Tutorial
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/Minimax_Tutorial.ipynb)
+
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-minimax-tutorial-2): [cell 2](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-minimax-tutorial-2) [cell 3](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-minimax-tutorial-3) [cell 4](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-minimax-tutorial-4) [cell 5](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-minimax-tutorial-5) <!-- code-viz link -->
 
 ---
 
@@ -41,6 +45,8 @@ We will move from **intuition → formal models → algorithms → complexity �
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/Connect4_Minimax_AlphaBeta_From_Scratch.ipynb)
 
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-connect4-minimax-alphabeta-from-scratch-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-connect4-minimax-alphabeta-from-scratch-1) <!-- code-viz link -->
+
 
 ## 0. Environment & Utilities
 
@@ -49,6 +55,7 @@ We will use plain Python for pseudocode-like demonstrations. No internet access 
 ---
 
 ## Code Cell
+<!-- run: id=cs477-liascript-heuristicsearch-1 viz=env -->
 ```python
 import math
 import random
@@ -57,6 +64,7 @@ from typing import Callable, Iterable, Tuple, Optional, List
 random.seed(42)
 print("Utilities ready.")
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-heuristicsearch-1) <!-- code-viz link -->
 
 ---
 
@@ -102,6 +110,7 @@ function HILL-CLIMB(s, f, N):
 
 ## Code Cell — Generic Hill Climber
 
+<!-- run: id=cs477-liascript-heuristicsearch-2 viz=env setup=cs477-liascript-heuristicsearch-1 -->
 ```python
 def hill_climb(s0, f: Callable, neighbors: Callable) -> Tuple:
     s = s0
@@ -125,6 +134,7 @@ def N_int(x: int) -> Iterable[int]:
 sol = hill_climb(0, f_int, N_int)
 print("Local optimum:", sol, "value:", f_int(sol))
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-heuristicsearch-2) <!-- code-viz link -->
 
 ---
 
@@ -140,6 +150,7 @@ print("Local optimum:", sol, "value:", f_int(sol))
 
 ## Code Cell — First-Choice and Random-Restart
 
+<!-- run: id=cs477-liascript-heuristicsearch-3 viz=env setup=cs477-liascript-heuristicsearch-1,cs477-liascript-heuristicsearch-2 -->
 ```python
 def first_choice_hc(s0, f, neighbors, max_checks=1000):
     s = s0
@@ -167,6 +178,7 @@ mk_state = lambda: random.randint(-50, 50)
 best = random_restart_hc(mk_state, f_int, N_int, restarts=25)
 print("RR-HC best:", best, "value:", f_int(best))
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-heuristicsearch-3) <!-- code-viz link -->
 
 ---
 
@@ -323,6 +335,7 @@ Final value at root: max(3,2) = 3.
 
 ## Code Cell — Tiny Minimax Engine (for experimentation)
 
+<!-- run: id=cs477-liascript-heuristicsearch-4 viz=env -->
 ```python
 INF = float("inf")
 
@@ -372,6 +385,7 @@ eval_leaf = lambda s: s["val"]
 print("Minimax:", minimax(tree, depth=2, eval_fn=eval_leaf, max_turn=True))
 print("AlphaBeta:", alphabeta(tree, depth=2, eval_fn=eval_leaf, max_turn=True))
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-heuristicsearch-4) <!-- code-viz link -->
 
 ---
 

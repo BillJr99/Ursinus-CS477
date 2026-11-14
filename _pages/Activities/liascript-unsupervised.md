@@ -144,6 +144,7 @@ Shapes:
 
 Let’s compute distances from 3 points to 2 centroids in 2D:
 
+<!-- run: id=cs477-liascript-unsupervised-1 viz=env -->
 ```python
 import numpy as np
 
@@ -170,6 +171,7 @@ print(D)
 #    [25.,  8.],
 #    [61., 20.]]
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-unsupervised-1) <!-- code-viz link -->
 
 Explanation for row 0 (`[1,2]`):
 - to `[0,0]`: `(1-0)^2 + (2-0)^2 = 1 + 4 = 5`

@@ -385,6 +385,7 @@ We compare two conversion rates <span>\\(\\theta_A, \\theta_B\\)</span> with ind
 
 **Decision question.** Compute <span>\\(\\Pr(\\theta_A > \\theta_B \\mid \\text{data})\\)</span> and recommend the better variant if the probability exceeds a threshold (e.g., <span>\\(0.95\\)</span>). Include **sequential stopping** logic.
 
+<!-- run: id=cs477-asmt-bayesian-9 viz=env -->
 ```python
 import numpy as np
 from numpy.random import default_rng
@@ -409,6 +410,7 @@ p = prob_A_better(aA, bA, aB, bB)
 print("Pr(theta_A > theta_B | data) =", round(p, 4))
 # Add: sequential data accumulation and stopping rule at p > 0.95.
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-asmt-bayesian-9) <!-- code-viz link -->
 
 **PPC.** Simulate posterior predictive conversions and verify observed lifts are plausible under the joint posterior.
 
@@ -432,6 +434,7 @@ $$
 
 **Scaffold.** Use conjugate Gaussian updates to compute the **marginal likelihood** for each proposed <span>\\(\\tau\\)</span> by integrating out <span>\\(\\mu_1,\\mu_2\\)</span>, then evaluate the posterior over <span>\\(\\tau\\)</span>.
 
+<!-- run: id=cs477-asmt-bayesian-10 viz=env -->
 ```python
 import numpy as np
 
@@ -460,6 +463,7 @@ x = np.r_[rng.normal(0.0, 1.0, 60), rng.normal(1.0, 1.0, 40)]
 p_tau = posterior_tau(x, mu0=0.0, tau0_sq=10.0, sigma_sq=1.0)
 print("MAP tau (1..T-1) =", int(np.argmax(p_tau)+1))
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-asmt-bayesian-10) <!-- code-viz link -->
 
 **PPC.** Sample <span>\\(\\tau, \\mu_1, \\mu_2\\)</span> from their posteriors and simulate sequences; compare mean shifts to observed.
 
@@ -479,6 +483,7 @@ with hyperprior on <span>\\((\\alpha,\\beta)\\)</span> (or empirical Bayes).
 
 **Scaffold (Empirical Bayes).** Estimate <span>\\((\\alpha,\\beta)\\)</span> by matching moments across groups, then compute group posteriors.
 
+<!-- run: id=cs477-asmt-bayesian-11 viz=env -->
 ```python
 import numpy as np
 
@@ -499,6 +504,7 @@ beta_post  = beta_hat + (n - k)
 theta_post_mean = alpha_post / (alpha_post + beta_post)
 print("Posterior means:", np.round(theta_post_mean, 3))
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-asmt-bayesian-11) <!-- code-viz link -->
 
 **Questions.**
 1. Compare **no pooling** (independent Beta priors with weak hyperparameters) vs. **partial pooling** above.  

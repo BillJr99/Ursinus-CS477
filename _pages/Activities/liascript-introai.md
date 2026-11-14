@@ -94,6 +94,7 @@ All of our activities use **Python 3** with **NumPy** and **Matplotlib**, delive
 
 Try it right here — this page's code cells are runnable too:
 
+<!-- run: id=cs477-liascript-introai-1 viz=env -->
 ```python
 import math
 
@@ -112,6 +113,7 @@ def distance(p, q):
 
 print("Distance from (0,0) to (3,4):", distance((0, 0), (3, 4)))
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-introai-1) <!-- code-viz link -->
 
 **What to look for:** the third snippet computes $\sqrt{(3-0)^2 + (4-0)^2} = \sqrt{9+16} = \sqrt{25} = 5$. Distances like this quietly power much of machine learning (nearest neighbors, clustering, and more).
 
@@ -121,6 +123,7 @@ print("Distance from (0,0) to (3,4):", distance((0, 0), (3, 4)))
 
 NumPy gives us fast arrays — the data structure underneath every model we will build.
 
+<!-- run: id=cs477-liascript-introai-2 viz=env -->
 ```python
 import numpy as np
 
@@ -134,6 +137,7 @@ print("x * w =", x * w)
 # Move 3: the dot product — the single most important operation in ML
 print("x . w =", x @ w)   # 1*0.5 + 2*(-1) + 3*2 = 4.5
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-introai-2) <!-- code-viz link -->
 
 Step by step, that dot product is:
 

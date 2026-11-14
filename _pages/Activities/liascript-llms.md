@@ -39,6 +39,7 @@ A neural network eats numbers, not words. The naive fix — one-hot vectors — 
 
 *Video summary (text equivalent):* StatQuest shows how a small neural network trained to predict neighboring words ends up assigning each word a vector of weights, why similar words receive similar vectors, and how negative sampling makes training tractable.
 
+<!-- run: id=cs477-liascript-llms-1 viz=env -->
 ```python
 import numpy as np
 
@@ -55,6 +56,7 @@ sims = {w: float(v @ analogy / (np.linalg.norm(v) * np.linalg.norm(analogy)))
 print("king - man + woman is closest to:",
       max(sims, key=sims.get), " (cosine sims:", {k: round(s,2) for k,s in sims.items()}, ")")
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-llms-1) <!-- code-viz link -->
 
 ---
 
@@ -103,6 +105,7 @@ The $\sqrt{d_k}$ merely keeps dot products from saturating the softmax.
 
 *Video summary (text equivalent):* StatQuest adds attention to the seq2seq model, showing how similarity scores between decoder and encoder states become softmax weights that let each output word draw directly on the most relevant input words, fixing the long-sentence bottleneck.
 
+<!-- run: id=cs477-liascript-llms-2 viz=env -->
 ```python
 import numpy as np
 
@@ -119,6 +122,7 @@ weights = softmax(scores)
 print("attention weights over ['the','black','cat']:", np.round(weights, 2))
 print("context vector:", np.round(weights @ V, 2))
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-llms-2) <!-- code-viz link -->
 
 **What to look for:** the query most resembles the third key, so ~70% of the attention lands on "cat" — the mechanism *learned nothing yet*, this is pure geometry. Training shapes the queries/keys so the right geometry emerges.
 

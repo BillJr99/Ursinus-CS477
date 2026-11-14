@@ -19,11 +19,15 @@ This module explores three pillars of **Reinforcement Learning (RL)** — **dyna
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/RL_FromScratch_ToyGridworld.ipynb)
 
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-rl-fromscratch-toygridworld-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-rl-fromscratch-toygridworld-1) <!-- code-viz link -->
+
 ---
 
 ## Open Colab: Q-Learning vs. Value Iteration (Gridworld)
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/QLearning_vs_ValueIteration_Gridworld.ipynb)
+
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-qlearning-vs-valueiteration-gridworld-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-qlearning-vs-valueiteration-gridworld-1) [cell 8](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-qlearning-vs-valueiteration-gridworld-8) [cell 9](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-qlearning-vs-valueiteration-gridworld-9) [cell 10](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-qlearning-vs-valueiteration-gridworld-10) [cell 11](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-qlearning-vs-valueiteration-gridworld-11) [cell 12](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-qlearning-vs-valueiteration-gridworld-12) <!-- code-viz link -->
 
 ---
 

@@ -25,6 +25,8 @@ Last week we searched for a **path**. This week we search for a **thing**: the b
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/GeneticAlgorithm_FromScratch_ToyExample.ipynb)
 
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-geneticalgorithm-fromscratch-toyexample-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-geneticalgorithm-fromscratch-toyexample-1) [cell 5](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-geneticalgorithm-fromscratch-toyexample-5) [cell 6](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-geneticalgorithm-fromscratch-toyexample-6) [cell 7](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-geneticalgorithm-fromscratch-toyexample-7) [cell 8](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-geneticalgorithm-fromscratch-toyexample-8) [cell 9](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-geneticalgorithm-fromscratch-toyexample-9) [cell 10](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-geneticalgorithm-fromscratch-toyexample-10) <!-- code-viz link -->
+
 ---
 
 ## 1. Intuition First: Fog on the Mountain
@@ -115,6 +117,7 @@ This is the magic of crossover: it can assemble the *high-order bits* of one par
 
 ## 5. Runnable Code: A Tiny GA
 
+<!-- run: id=cs477-liascript-optimizationga-1 viz=env -->
 ```python
 import random
 random.seed(477)
@@ -145,6 +148,7 @@ for gen in range(GENS):
                    for _ in range(POP - 1)]
 print("final best:", max(pop, key=fitness), "fitness", fitness(max(pop, key=fitness)))
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-optimizationga-1) <!-- code-viz link -->
 
 **What to look for:** best fitness climbs quickly at first (easy gains from selection + crossover), then crawls — the classic **exploration/exploitation** tension. Try raising `P_MUT` to 0.2: too much mutation destroys good solutions faster than selection can keep them.
 

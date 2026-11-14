@@ -47,6 +47,8 @@ Finally, we analyze the **Iris** dataset with a simple **linear regression One-v
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/PCA_From_Scratch_and_Sklearn.ipynb)
 
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-pca-from-scratch-and-sklearn-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-pca-from-scratch-and-sklearn-1) [cell 3](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-pca-from-scratch-and-sklearn-3) [cell 4](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-pca-from-scratch-and-sklearn-4) [cell 6](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-pca-from-scratch-and-sklearn-6) [cell 8](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-pca-from-scratch-and-sklearn-8) [cell 9](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-pca-from-scratch-and-sklearn-9) [cell 10](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-pca-from-scratch-and-sklearn-10) <!-- code-viz link -->
+
 ---
 
 ## 1. Motivation: Why PCA?

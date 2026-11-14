@@ -1,0 +1,1319 @@
+{
+ "notebooks": [
+  {
+   "file": "files/notebooks/AStar_Search_With_Graphics.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-astar-search-with-graphics-1",
+     "cell": 1,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-astar-search-with-graphics-5",
+     "cell": 5,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-astar-search-with-graphics-6",
+     "cell": 6,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-astar-search-with-graphics-7",
+     "cell": 7,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-astar-search-with-graphics-8",
+     "cell": 8,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-astar-search-with-graphics-9",
+     "cell": 9,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/A_star_step_by_step.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-a-star-step-by-step-3",
+     "cell": 3,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-a-star-step-by-step-4",
+     "cell": 4,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-a-star-step-by-step-5",
+     "cell": 5,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-a-star-step-by-step-6",
+     "cell": 6,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-a-star-step-by-step-7",
+     "cell": 7,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-a-star-step-by-step-9",
+     "cell": 9,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-a-star-step-by-step-10",
+     "cell": 10,
+     "viz": "env"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/Bayesian_Diagnostic_Test_Belief_Updating.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-bayesian-diagnostic-test-belief-updating-1",
+     "cell": 1,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-bayesian-diagnostic-test-belief-updating-3",
+     "cell": 3,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-bayesian-diagnostic-test-belief-updating-4",
+     "cell": 4,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-bayesian-diagnostic-test-belief-updating-6",
+     "cell": 6,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-bayesian-diagnostic-test-belief-updating-7",
+     "cell": 7,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-bayesian-diagnostic-test-belief-updating-8",
+     "cell": 8,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-bayesian-diagnostic-test-belief-updating-9",
+     "cell": 9,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/Bayesian_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-1",
+     "cell": 1,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-3",
+     "cell": 3,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-7",
+     "cell": 7,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-8",
+     "cell": 8,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-10",
+     "cell": 10,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-11",
+     "cell": 11,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-12",
+     "cell": 12,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/Connect4_Minimax_AlphaBeta_From_Scratch.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-connect4-minimax-alphabeta-from-scratch-1",
+     "cell": 1,
+     "viz": "env"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/DensityEstimation_and_FeatureDiscovery_FromScratch.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-1",
+     "cell": 1,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-3",
+     "cell": 3,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-4",
+     "cell": 4,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-5",
+     "cell": 5,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-6",
+     "cell": 6,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-7",
+     "cell": 7,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-8",
+     "cell": 8,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-9",
+     "cell": 9,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-10",
+     "cell": 10,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/ExplainableAI_Shapley_From_Scratch_CreditNN.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-1",
+     "cell": 1,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-3",
+     "cell": 3,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-5",
+     "cell": 5,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-6",
+     "cell": 6,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-7",
+     "cell": 7,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-8",
+     "cell": 8,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-9",
+     "cell": 9,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-10",
+     "cell": 10,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-11",
+     "cell": 11,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-12",
+     "cell": 12,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/GeneticAlgorithm_FromScratch_ToyExample.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-geneticalgorithm-fromscratch-toyexample-1",
+     "cell": 1,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-geneticalgorithm-fromscratch-toyexample-5",
+     "cell": 5,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-geneticalgorithm-fromscratch-toyexample-6",
+     "cell": 6,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-geneticalgorithm-fromscratch-toyexample-7",
+     "cell": 7,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-geneticalgorithm-fromscratch-toyexample-8",
+     "cell": 8,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-geneticalgorithm-fromscratch-toyexample-9",
+     "cell": 9,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-geneticalgorithm-fromscratch-toyexample-10",
+     "cell": 10,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/HMM_Bull_Bear_Detection_From_Scratch.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-hmm-bull-bear-detection-from-scratch-1",
+     "cell": 1,
+     "viz": "env"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/HMM_ECG_Artifact_Detector_From_Scratch.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-1",
+     "cell": 1,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-2",
+     "cell": 2,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-3",
+     "cell": 3,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-5",
+     "cell": 5,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-7",
+     "cell": 7,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-8",
+     "cell": 8,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-10",
+     "cell": 10,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-11",
+     "cell": 11,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-12",
+     "cell": 12,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-13",
+     "cell": 13,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-14",
+     "cell": 14,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/HMM_Image_Recognition_From_Scratch.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-hmm-image-recognition-from-scratch-1",
+     "cell": 1,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-hmm-image-recognition-from-scratch-3",
+     "cell": 3,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-hmm-image-recognition-from-scratch-4",
+     "cell": 4,
+     "viz": "env"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/HMM_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-1",
+     "cell": 1,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-4",
+     "cell": 4,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-5",
+     "cell": 5,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-6",
+     "cell": 6,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-10",
+     "cell": 10,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-11",
+     "cell": 11,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-13",
+     "cell": 13,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-14",
+     "cell": 14,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-15",
+     "cell": 15,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-16",
+     "cell": 16,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/HMM_Viterbi_Colab.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-hmm-viterbi-colab-5",
+     "cell": 5,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-hmm-viterbi-colab-6",
+     "cell": 6,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-hmm-viterbi-colab-7",
+     "cell": 7,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-hmm-viterbi-colab-8",
+     "cell": 8,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-hmm-viterbi-colab-9",
+     "cell": 9,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-hmm-viterbi-colab-11",
+     "cell": 11,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-hmm-viterbi-colab-12",
+     "cell": 12,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/HillClimbing_Pacman_From_Scratch.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-hillclimbing-pacman-from-scratch-1",
+     "cell": 1,
+     "viz": "env"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/KMeans_Clustering_Iris_From_Scratch.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-kmeans-clustering-iris-from-scratch-1",
+     "cell": 1,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-kmeans-clustering-iris-from-scratch-3",
+     "cell": 3,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-kmeans-clustering-iris-from-scratch-5",
+     "cell": 5,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-kmeans-clustering-iris-from-scratch-6",
+     "cell": 6,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-kmeans-clustering-iris-from-scratch-7",
+     "cell": 7,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-kmeans-clustering-iris-from-scratch-8",
+     "cell": 8,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-kmeans-clustering-iris-from-scratch-9",
+     "cell": 9,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-kmeans-clustering-iris-from-scratch-10",
+     "cell": 10,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-kmeans-clustering-iris-from-scratch-11",
+     "cell": 11,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-kmeans-clustering-iris-from-scratch-12",
+     "cell": 12,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/K_Means_Clustering_and_Nearest_Neighbors.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-k-means-clustering-and-nearest-neighbors-2",
+     "cell": 2,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/Kalman_Filter_Robot_Localization_Maze_Heatmaps.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-1",
+     "cell": 1,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-3",
+     "cell": 3,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-6",
+     "cell": 6,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-7",
+     "cell": 7,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-8",
+     "cell": 8,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-9",
+     "cell": 9,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-10",
+     "cell": 10,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/LDA_and_FisherScore_FromScratch.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-lda-and-fisherscore-fromscratch-1",
+     "cell": 1,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-lda-and-fisherscore-fromscratch-3",
+     "cell": 3,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-lda-and-fisherscore-fromscratch-4",
+     "cell": 4,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-lda-and-fisherscore-fromscratch-5",
+     "cell": 5,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-lda-and-fisherscore-fromscratch-6",
+     "cell": 6,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-lda-and-fisherscore-fromscratch-7",
+     "cell": 7,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-lda-and-fisherscore-fromscratch-8",
+     "cell": 8,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-lda-and-fisherscore-fromscratch-9",
+     "cell": 9,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-lda-and-fisherscore-fromscratch-10",
+     "cell": 10,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-lda-and-fisherscore-fromscratch-11",
+     "cell": 11,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-lda-and-fisherscore-fromscratch-12",
+     "cell": 12,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/LinearFunctionEstimatorMultiLayerNN.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-linearfunctionestimatormultilayernn-6",
+     "cell": 6,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-linearfunctionestimatormultilayernn-7",
+     "cell": 7,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-linearfunctionestimatormultilayernn-8",
+     "cell": 8,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-linearfunctionestimatormultilayernn-9",
+     "cell": 9,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/LinearFunctionEstimatorNN.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-linearfunctionestimatornn-6",
+     "cell": 6,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-linearfunctionestimatornn-7",
+     "cell": 7,
+     "viz": "env"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/Linear_and_Logistic_Regression_Tutorial.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-linear-and-logistic-regression-tutorial-1",
+     "cell": 1,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-linear-and-logistic-regression-tutorial-2",
+     "cell": 2,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-linear-and-logistic-regression-tutorial-3",
+     "cell": 3,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-linear-and-logistic-regression-tutorial-4",
+     "cell": 4,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-linear-and-logistic-regression-tutorial-5",
+     "cell": 5,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-linear-and-logistic-regression-tutorial-6",
+     "cell": 6,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-linear-and-logistic-regression-tutorial-7",
+     "cell": 7,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-linear-and-logistic-regression-tutorial-8",
+     "cell": 8,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-linear-and-logistic-regression-tutorial-9",
+     "cell": 9,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-linear-and-logistic-regression-tutorial-10",
+     "cell": 10,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-linear-and-logistic-regression-tutorial-11",
+     "cell": 11,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-linear-and-logistic-regression-tutorial-12",
+     "cell": 12,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-linear-and-logistic-regression-tutorial-13",
+     "cell": 13,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-linear-and-logistic-regression-tutorial-14",
+     "cell": 14,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-linear-and-logistic-regression-tutorial-15",
+     "cell": 15,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/Logistic_Regression_MLE_From_Scratch.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-logistic-regression-mle-from-scratch-1",
+     "cell": 1,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-logistic-regression-mle-from-scratch-3",
+     "cell": 3,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-logistic-regression-mle-from-scratch-4",
+     "cell": 4,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-logistic-regression-mle-from-scratch-7",
+     "cell": 7,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-logistic-regression-mle-from-scratch-8",
+     "cell": 8,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-logistic-regression-mle-from-scratch-9",
+     "cell": 9,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-logistic-regression-mle-from-scratch-10",
+     "cell": 10,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-logistic-regression-mle-from-scratch-11",
+     "cell": 11,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/MLE_From_First_Principles_Worked_Examples.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-mle-from-first-principles-worked-examples-1",
+     "cell": 1,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-mle-from-first-principles-worked-examples-3",
+     "cell": 3,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-mle-from-first-principles-worked-examples-4",
+     "cell": 4,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-mle-from-first-principles-worked-examples-5",
+     "cell": 5,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-mle-from-first-principles-worked-examples-6",
+     "cell": 6,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-mle-from-first-principles-worked-examples-7",
+     "cell": 7,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-mle-from-first-principles-worked-examples-8",
+     "cell": 8,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-mle-from-first-principles-worked-examples-10",
+     "cell": 10,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-mle-from-first-principles-worked-examples-11",
+     "cell": 11,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/Markov_Chain_Tutorial.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-markov-chain-tutorial-3",
+     "cell": 3,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-markov-chain-tutorial-4",
+     "cell": 4,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-markov-chain-tutorial-5",
+     "cell": 5,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-markov-chain-tutorial-6",
+     "cell": 6,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-markov-chain-tutorial-7",
+     "cell": 7,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-markov-chain-tutorial-8",
+     "cell": 8,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-markov-chain-tutorial-9",
+     "cell": 9,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-markov-chain-tutorial-10",
+     "cell": 10,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-markov-chain-tutorial-11",
+     "cell": 11,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/Minimax_Tutorial.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-minimax-tutorial-2",
+     "cell": 2,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-minimax-tutorial-3",
+     "cell": 3,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-minimax-tutorial-4",
+     "cell": 4,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-minimax-tutorial-5",
+     "cell": 5,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/NonLinearFunctionEstimatorMultiLayerNN.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-nonlinearfunctionestimatormultilayernn-7",
+     "cell": 7,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-nonlinearfunctionestimatormultilayernn-8",
+     "cell": 8,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-nonlinearfunctionestimatormultilayernn-9",
+     "cell": 9,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-nonlinearfunctionestimatormultilayernn-10",
+     "cell": 10,
+     "viz": "env"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/PCA_From_Scratch_and_Sklearn.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-pca-from-scratch-and-sklearn-1",
+     "cell": 1,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-pca-from-scratch-and-sklearn-3",
+     "cell": 3,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-pca-from-scratch-and-sklearn-4",
+     "cell": 4,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-pca-from-scratch-and-sklearn-6",
+     "cell": 6,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-pca-from-scratch-and-sklearn-8",
+     "cell": 8,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-pca-from-scratch-and-sklearn-9",
+     "cell": 9,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-pca-from-scratch-and-sklearn-10",
+     "cell": 10,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/ProjectFunding_MultiArmedBandit_FromScratch.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-1",
+     "cell": 1,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-3",
+     "cell": 3,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-9",
+     "cell": 9,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-10",
+     "cell": 10,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-11",
+     "cell": 11,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-12",
+     "cell": 12,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-13",
+     "cell": 13,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-14",
+     "cell": 14,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-15",
+     "cell": 15,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-16",
+     "cell": 16,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/QLearning_vs_ValueIteration_Gridworld.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-qlearning-vs-valueiteration-gridworld-1",
+     "cell": 1,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-qlearning-vs-valueiteration-gridworld-8",
+     "cell": 8,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-qlearning-vs-valueiteration-gridworld-9",
+     "cell": 9,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-qlearning-vs-valueiteration-gridworld-10",
+     "cell": 10,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-qlearning-vs-valueiteration-gridworld-11",
+     "cell": 11,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-qlearning-vs-valueiteration-gridworld-12",
+     "cell": 12,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/RL_FromScratch_ToyGridworld.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-rl-fromscratch-toygridworld-1",
+     "cell": 1,
+     "viz": "env"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/SVM_From_Scratch_Linear_and_Kernel.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-svm-from-scratch-linear-and-kernel-1",
+     "cell": 1,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-svm-from-scratch-linear-and-kernel-3",
+     "cell": 3,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-svm-from-scratch-linear-and-kernel-4",
+     "cell": 4,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-svm-from-scratch-linear-and-kernel-8",
+     "cell": 8,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-svm-from-scratch-linear-and-kernel-9",
+     "cell": 9,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-svm-from-scratch-linear-and-kernel-10",
+     "cell": 10,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-svm-from-scratch-linear-and-kernel-11",
+     "cell": 11,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-svm-from-scratch-linear-and-kernel-12",
+     "cell": 12,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-svm-from-scratch-linear-and-kernel-13",
+     "cell": 13,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-svm-from-scratch-linear-and-kernel-14",
+     "cell": 14,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/Simple_MNIST_NN_from_scratch.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-simple-mnist-nn-from-scratch-1",
+     "cell": 1,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/Unsupervised_Learning_Colab.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-unsupervised-learning-colab-2",
+     "cell": 2,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-unsupervised-learning-colab-3",
+     "cell": 3,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-unsupervised-learning-colab-4",
+     "cell": 4,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-unsupervised-learning-colab-5",
+     "cell": 5,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-unsupervised-learning-colab-6",
+     "cell": 6,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-unsupervised-learning-colab-7",
+     "cell": 7,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-unsupervised-learning-colab-8",
+     "cell": 8,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/linear_logistic_regression_demo.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-linear-logistic-regression-demo-1",
+     "cell": 1,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-linear-logistic-regression-demo-2",
+     "cell": 2,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-linear-logistic-regression-demo-5",
+     "cell": 5,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-linear-logistic-regression-demo-6",
+     "cell": 6,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-linear-logistic-regression-demo-7",
+     "cell": 7,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-linear-logistic-regression-demo-8",
+     "cell": 8,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-linear-logistic-regression-demo-9",
+     "cell": 9,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-linear-logistic-regression-demo-13",
+     "cell": 13,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-linear-logistic-regression-demo-14",
+     "cell": 14,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-linear-logistic-regression-demo-15",
+     "cell": 15,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-linear-logistic-regression-demo-17",
+     "cell": 17,
+     "viz": "plain"
+    }
+   ]
+  },
+  {
+   "file": "files/notebooks/naive_bayes_step_by_step.ipynb",
+   "examples": [
+    {
+     "id": "cs477-nb-naive-bayes-step-by-step-3",
+     "cell": 3,
+     "viz": "plain"
+    },
+    {
+     "id": "cs477-nb-naive-bayes-step-by-step-4",
+     "cell": 4,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-naive-bayes-step-by-step-8",
+     "cell": 8,
+     "viz": "env"
+    },
+    {
+     "id": "cs477-nb-naive-bayes-step-by-step-9",
+     "cell": 9,
+     "viz": "env"
+    }
+   ]
+  }
+ ]
+}

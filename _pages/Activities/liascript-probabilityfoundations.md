@@ -25,6 +25,8 @@ Logic breaks the moment the world gets noisy: sensors lie, patients present ambi
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/MLE_From_First_Principles_Worked_Examples.ipynb)
 
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-mle-from-first-principles-worked-examples-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-mle-from-first-principles-worked-examples-1) [cell 3](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-mle-from-first-principles-worked-examples-3) [cell 4](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-mle-from-first-principles-worked-examples-4) [cell 5](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-mle-from-first-principles-worked-examples-5) [cell 6](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-mle-from-first-principles-worked-examples-6) [cell 7](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-mle-from-first-principles-worked-examples-7) [cell 8](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-mle-from-first-principles-worked-examples-8) [cell 10](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-mle-from-first-principles-worked-examples-10) [cell 11](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-mle-from-first-principles-worked-examples-11) <!-- code-viz link -->
+
 ---
 
 ## 1. Intuition First: Probability as Calibrated Belief
@@ -121,6 +123,7 @@ $$
 
 A positive result from a "90% accurate" test leaves only a **15%** chance of disease — because the prior was so small. Ignoring the prior is the **base-rate fallacy**, and it has real consequences in medicine, security screening, and any ML classifier applied to rare events.
 
+<!-- run: id=cs477-liascript-probabilityfoundations-1 viz=env -->
 ```python
 prior = 0.01          # P(D)
 sens  = 0.90          # P(+|D)
@@ -136,6 +139,7 @@ prior2 = posterior
 evidence2  = sens * prior2 + fpr * (1 - prior2)
 print(f"P(D | ++) = {sens * prior2 / evidence2:.4f}")   # ~0.7657
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-probabilityfoundations-1) <!-- code-viz link -->
 
 **What to look for:** yesterday's posterior becomes today's prior — beliefs update *sequentially*. That loop, run once per sensor reading, is exactly the Bayes filter we will build for robot localization and the pursuit game in the **Bayesian Inference** module.
 

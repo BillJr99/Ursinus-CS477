@@ -28,6 +28,7 @@ link:   https://cdn.jsdelivr.net/gh/BillJr99/Ursinus-Boilerplate-Assets@main/css
 
 We will use only built-in datasets or synthetic data (no internet needed).
 
+<!-- run: id=cs477-liascript-perceptronsmodelevaluation-1 viz=plain -->
 ```python
 # Core
 import math
@@ -53,6 +54,7 @@ plt.rcParams['axes.grid'] = True
 
 print('Environment ready.')
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-perceptronsmodelevaluation-1) <!-- code-viz link -->
 
 ---
 
@@ -62,6 +64,7 @@ print('Environment ready.')
 
 **Goal:** estimate generalization by holding out data the model has **never** seen.
 
+<!-- run: id=cs477-liascript-perceptronsmodelevaluation-2 viz=env setup=cs477-liascript-perceptronsmodelevaluation-1 -->
 ```python
 # Synthetic regression data
 X, y = make_regression(n_samples=600, n_features=5, noise=15.0, random_state=0)
@@ -80,6 +83,7 @@ rmse = math.sqrt(mean_squared_error(y_test, y_pred))
 r2   = r2_score(y_test, y_pred)
 print(f'Test RMSE: {rmse:.3f}, Test R^2: {r2:.3f}')
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-perceptronsmodelevaluation-2) <!-- code-viz link -->
 
 ### Why split?
 
@@ -96,6 +100,7 @@ print(f'Test RMSE: {rmse:.3f}, Test R^2: {r2:.3f}')
 - For each fold $k$: train on the other $K-1$ folds and evaluate on fold $k$.
 - Report the **mean ± std** across folds.
 
+<!-- run: id=cs477-liascript-perceptronsmodelevaluation-3 viz=env setup=cs477-liascript-perceptronsmodelevaluation-1,cs477-liascript-perceptronsmodelevaluation-2 -->
 ```python
 kf = KFold(n_splits=5, shuffle=True, random_state=42)
 scores_r2   = cross_val_score(reg, X, y, cv=kf, scoring='r2')
@@ -104,6 +109,7 @@ scores_rmse = -cross_val_score(reg, X, y, cv=kf, scoring='neg_root_mean_squared_
 print('CV R^2 (5-fold):   ', f'{scores_r2.mean():.3f} ± {scores_r2.std():.3f}')
 print('CV RMSE (5-fold):  ', f'{scores_rmse.mean():.3f} ± {scores_rmse.std():.3f}')
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-perceptronsmodelevaluation-3) <!-- code-viz link -->
 
 > **When to use StratifiedKFold?** For **classification** to preserve label proportions in each fold.
 
@@ -176,6 +182,7 @@ print('R^2 (again):', r2_score(y_test, y_pred))
 
 We now switch to a **binary** classification dataset.
 
+<!-- run: id=cs477-liascript-perceptronsmodelevaluation-4 viz=env setup=cs477-liascript-perceptronsmodelevaluation-1 -->
 ```python
 data = load_breast_cancer()
 X_clf = data.data
@@ -193,6 +200,7 @@ y_pred = clf.predict(Xc_test)        # hard labels at threshold 0.5
 y_prob = clf.predict_proba(Xc_test)[:, 1]  # P(y=1|x)
 print(classification_report(yc_test, y_pred, target_names=data.target_names))
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-perceptronsmodelevaluation-4) <!-- code-viz link -->
 
 ---
 
@@ -200,6 +208,7 @@ print(classification_report(yc_test, y_pred, target_names=data.target_names))
 
 Counts of True/False Positives/Negatives at a fixed threshold (default 0.5).
 
+<!-- run: id=cs477-liascript-perceptronsmodelevaluation-5 viz=plain setup=cs477-liascript-perceptronsmodelevaluation-1,cs477-liascript-perceptronsmodelevaluation-4 -->
 ```python
 cm = confusion_matrix(yc_test, y_pred, labels=[0,1])
 disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=['malignant','benign'])
@@ -207,6 +216,7 @@ disp.plot()
 plt.title('Confusion Matrix')
 plt.show()
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-perceptronsmodelevaluation-5) <!-- code-viz link -->
 
 Let the positive class be **benign** ($y=1$). Then:
 
@@ -242,6 +252,7 @@ print(f'Precision: {prec:.3f}, Recall: {rec:.3f}, F1: {f1:.3f}')
 **ROC** plots Recall (TPR) vs. FPR as you vary the threshold on $p=\Pr(y=1\mid x)$.  
 **AUC** is the area under ROC: probability that a randomly chosen positive ranks above a randomly chosen negative.
 
+<!-- run: id=cs477-liascript-perceptronsmodelevaluation-6 viz=plain setup=cs477-liascript-perceptronsmodelevaluation-1,cs477-liascript-perceptronsmodelevaluation-4 -->
 ```python
 fpr, tpr, thr = roc_curve(yc_test, y_prob)
 roc_auc = auc(fpr, tpr)
@@ -250,6 +261,7 @@ RocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=roc_auc, estimator_name='LogisticRegre
 plt.title(f'ROC Curve (AUC = {roc_auc:.3f})')
 plt.show()
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-perceptronsmodelevaluation-6) <!-- code-viz link -->
 
 **Why AUC?**
 
@@ -263,6 +275,7 @@ plt.show()
 
 Use **StratifiedKFold** to preserve label ratios.
 
+<!-- run: id=cs477-liascript-perceptronsmodelevaluation-7 viz=env setup=cs477-liascript-perceptronsmodelevaluation-1,cs477-liascript-perceptronsmodelevaluation-4 -->
 ```python
 skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
 
@@ -273,6 +286,7 @@ f1_cv  = cross_val_score(clf, X_clf, y_clf, cv=skf, scoring='f1')
 print('CV AUC (5-fold): ', f'{auc_cv.mean():.3f} ± {auc_cv.std():.3f}')
 print('CV F1  (5-fold): ', f'{f1_cv.mean():.3f} ± {f1_cv.std():.3f}')
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-perceptronsmodelevaluation-7) <!-- code-viz link -->
 
 ---
 
@@ -280,6 +294,7 @@ print('CV F1  (5-fold): ', f'{f1_cv.mean():.3f} ± {f1_cv.std():.3f}')
 
 Shifting the decision threshold changes precision & recall.
 
+<!-- run: id=cs477-liascript-perceptronsmodelevaluation-8 viz=plain setup=cs477-liascript-perceptronsmodelevaluation-1,cs477-liascript-perceptronsmodelevaluation-4 -->
 ```python
 # Sweep thresholds and compute precision/recall pairs
 thresholds = np.linspace(0.0, 1.0, 21)
@@ -298,6 +313,7 @@ plt.plot(pr[:,1], pr[:,2], marker='o')  # Recall (x) vs Precision (y)
 plt.xlabel('Precision'); plt.ylabel('Recall'); plt.title('Precision–Recall tradeoff (varying threshold)')
 plt.show()
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-perceptronsmodelevaluation-8) <!-- code-viz link -->
 
 > In safety‑critical tasks (e.g., medical screening), prefer **high recall** (few false negatives) even if precision drops; in filtering spam, you may prioritize **precision**.
 
@@ -367,6 +383,8 @@ roc_auc = auc(fpr, tpr)
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/SVM_From_Scratch_Linear_and_Kernel.ipynb)
 
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-svm-from-scratch-linear-and-kernel-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-svm-from-scratch-linear-and-kernel-1) [cell 3](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-svm-from-scratch-linear-and-kernel-3) [cell 4](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-svm-from-scratch-linear-and-kernel-4) [cell 8](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-svm-from-scratch-linear-and-kernel-8) [cell 9](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-svm-from-scratch-linear-and-kernel-9) [cell 10](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-svm-from-scratch-linear-and-kernel-10) [cell 11](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-svm-from-scratch-linear-and-kernel-11) [cell 12](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-svm-from-scratch-linear-and-kernel-12) [cell 13](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-svm-from-scratch-linear-and-kernel-13) [cell 14](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-svm-from-scratch-linear-and-kernel-14) <!-- code-viz link -->
+
 ---
 
 ## Warm-Up Demo: Logistic Regression as the SVM's Baseline
@@ -434,6 +452,7 @@ Support vectors are the training points with non-zero dual weights; they define 
 
 We will compare **linear** and **RBF** SVMs on a non-linear toy dataset and report evaluation metrics consistent with earlier sections.
 
+<!-- run: id=cs477-liascript-perceptronsmodelevaluation-9 viz=plain -->
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
@@ -481,6 +500,7 @@ y_score = rbf_clf.predict_proba(Xte)[:,1]
 fpr, tpr, thr = roc_curve(yte, y_score)
 print("AUC:", auc(fpr, tpr))
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-perceptronsmodelevaluation-9) <!-- code-viz link -->
 
 **Notes**
 - Always **scale features** for SVMs.  
@@ -492,6 +512,7 @@ print("AUC:", auc(fpr, tpr))
 
 The following illustrates a **didactic** (not production-grade) linear SVM using subgradient updates on the hinge loss.
 
+<!-- run: id=cs477-liascript-perceptronsmodelevaluation-10 viz=env -->
 ```python
 import numpy as np
 
@@ -521,6 +542,7 @@ y_toy = np.hstack([np.ones(50), -np.ones(50)])
 w, b = sgd_linear_svm(X_toy, y_toy, C=1.0, lr=1e-2, epochs=20)
 print("w:", w, "b:", b)
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-perceptronsmodelevaluation-10) <!-- code-viz link -->
 
 ---
 
@@ -528,6 +550,7 @@ print("w:", w, "b:", b)
 
 Use **StratifiedKFold** and grid search to optimize generalization performance.
 
+<!-- run: id=cs477-liascript-perceptronsmodelevaluation-11 viz=env setup=cs477-liascript-perceptronsmodelevaluation-9,cs477-liascript-perceptronsmodelevaluation-10 -->
 ```python
 from sklearn.model_selection import GridSearchCV
 
@@ -547,6 +570,7 @@ grid.fit(X, y)
 print("Best AUC:", grid.best_score_)
 print("Best params:", grid.best_params_)
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-perceptronsmodelevaluation-11) <!-- code-viz link -->
 
 **Interpretation**
 - $C$ controls the **margin–violation trade-off** (regularization strength).

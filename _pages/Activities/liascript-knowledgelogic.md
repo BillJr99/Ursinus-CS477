@@ -86,6 +86,7 @@ For KBs of **Horn clauses** (rules with at most one positive conclusion, like $A
 2. Known: $\{A, B, C\}$. Rule 2 fires → add $D$.
 3. Known: $\{A, B, C, D\}$. Rule 3 fires → add $E$. Fixpoint reached.
 
+<!-- run: id=cs477-liascript-knowledgelogic-1 viz=env -->
 ```python
 facts = {"A", "B"}
 rules = [({"A", "B"}, "C"),
@@ -102,6 +103,7 @@ while changed:
             changed = True
 print("Derived knowledge base:", sorted(facts))
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-knowledgelogic-1) <!-- code-viz link -->
 
 **What to look for:** the loop is *data-driven* — each pass scans the rules and fires any whose premises are all known. This is exactly the engine inside classic **expert systems**.
 

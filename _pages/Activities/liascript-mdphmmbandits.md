@@ -27,6 +27,8 @@ We proceed from **formalism $\to$ algorithms $\to$ guarantees $\to$ practice**, 
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/Markov_Chain_Tutorial.ipynb)
 
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-markov-chain-tutorial-3): [cell 3](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-markov-chain-tutorial-3) [cell 4](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-markov-chain-tutorial-4) [cell 5](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-markov-chain-tutorial-5) [cell 6](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-markov-chain-tutorial-6) [cell 7](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-markov-chain-tutorial-7) [cell 8](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-markov-chain-tutorial-8) [cell 9](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-markov-chain-tutorial-9) [cell 10](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-markov-chain-tutorial-10) [cell 11](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-markov-chain-tutorial-11) <!-- code-viz link -->
+
 ---
 
 ## Open Colab: A Bigram Markov Model of Language (Andrej Karpathy)
@@ -57,11 +59,15 @@ A bigram model conditions on one previous symbol; an HMM conditions on one hidde
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/HMM_Viterbi_Colab.ipynb)
 
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-viterbi-colab-5): [cell 5](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-viterbi-colab-5) [cell 6](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-viterbi-colab-6) [cell 7](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-viterbi-colab-7) [cell 8](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-viterbi-colab-8) [cell 9](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-viterbi-colab-9) [cell 11](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-viterbi-colab-11) [cell 12](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-viterbi-colab-12) <!-- code-viz link -->
+
 ---
 
 ## Open Colab: HMM – Robot Localization Heatmaps (Filtering)
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/HMM_Robot_Localization_Heatmaps_From_Scratch.ipynb)
+
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-robot-localization-heatmaps-from-scratch-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-robot-localization-heatmaps-from-scratch-1) [cell 4](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-robot-localization-heatmaps-from-scratch-4) [cell 5](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-robot-localization-heatmaps-from-scratch-5) [cell 6](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-robot-localization-heatmaps-from-scratch-6) [cell 10](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-robot-localization-heatmaps-from-scratch-10) [cell 11](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-robot-localization-heatmaps-from-scratch-11) [cell 13](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-robot-localization-heatmaps-from-scratch-13) [cell 14](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-robot-localization-heatmaps-from-scratch-14) [cell 15](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-robot-localization-heatmaps-from-scratch-15) [cell 16](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-robot-localization-heatmaps-from-scratch-16) <!-- code-viz link -->
 
 ---
 
@@ -75,11 +81,15 @@ A bigram model conditions on one previous symbol; an HMM conditions on one hidde
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/HMM_Image_Recognition_From_Scratch.ipynb)
 
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-image-recognition-from-scratch-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-image-recognition-from-scratch-1) [cell 3](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-image-recognition-from-scratch-3) [cell 4](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-image-recognition-from-scratch-4) <!-- code-viz link -->
+
 ---
 
 ## Open Colab: HMM – ECG Artifact Detector (From Scratch)
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/HMM_ECG_Artifact_Detector_From_Scratch.ipynb)
+
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-ecg-artifact-detector-from-scratch-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-ecg-artifact-detector-from-scratch-1) [cell 2](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-ecg-artifact-detector-from-scratch-2) [cell 3](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-ecg-artifact-detector-from-scratch-3) [cell 5](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-ecg-artifact-detector-from-scratch-5) [cell 7](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-ecg-artifact-detector-from-scratch-7) [cell 8](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-ecg-artifact-detector-from-scratch-8) [cell 10](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-ecg-artifact-detector-from-scratch-10) [cell 11](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-ecg-artifact-detector-from-scratch-11) [cell 12](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-ecg-artifact-detector-from-scratch-12) [cell 13](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-ecg-artifact-detector-from-scratch-13) [cell 14](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-ecg-artifact-detector-from-scratch-14) <!-- code-viz link -->
 
 ---
 
@@ -87,11 +97,15 @@ A bigram model conditions on one previous symbol; an HMM conditions on one hidde
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/HMM_Bull_Bear_Detection_From_Scratch.ipynb)
 
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-bull-bear-detection-from-scratch-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-hmm-bull-bear-detection-from-scratch-1) <!-- code-viz link -->
+
 ---
 
 ## Open Colab: Multi‑Armed Bandits – Project Funding (From Scratch)
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/ProjectFunding_MultiArmedBandit_FromScratch.ipynb)
+
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-projectfunding-multiarmedbandit-fromscratch-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-projectfunding-multiarmedbandit-fromscratch-1) [cell 3](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-projectfunding-multiarmedbandit-fromscratch-3) [cell 9](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-projectfunding-multiarmedbandit-fromscratch-9) [cell 10](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-projectfunding-multiarmedbandit-fromscratch-10) [cell 11](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-projectfunding-multiarmedbandit-fromscratch-11) [cell 12](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-projectfunding-multiarmedbandit-fromscratch-12) [cell 13](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-projectfunding-multiarmedbandit-fromscratch-13) [cell 14](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-projectfunding-multiarmedbandit-fromscratch-14) [cell 15](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-projectfunding-multiarmedbandit-fromscratch-15) [cell 16](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-projectfunding-multiarmedbandit-fromscratch-16) <!-- code-viz link -->
 
 ---
 
@@ -104,11 +118,13 @@ A bigram model conditions on one previous symbol; an HMM conditions on one hidde
 ---
 
 ## Code Cell
+<!-- run: id=cs477-liascript-mdphmmbandits-1 viz=env -->
 ```python
 import numpy as np
 np.set_printoptions(precision=4, suppress=True)
 print("Utilities ready.")
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-mdphmmbandits-1) <!-- code-viz link -->
 
 ---
 
@@ -231,6 +247,7 @@ This is equivalent to finding the eigenvector of $ P^T $ with eigenvalue 1.
 
 ## 4. Code Example (Python)
 
+<!-- run: id=cs477-liascript-mdphmmbandits-2 viz=env -->
 ```python
 import numpy as np
 
@@ -256,6 +273,7 @@ pi = vecs[:, idx].real
 pi = pi / pi.sum()
 print("Steady state:", pi)
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-mdphmmbandits-2) <!-- code-viz link -->
 
 ---
 
@@ -408,6 +426,7 @@ This eigenvector equation gives the PageRank.
 
 ### Code Example
 
+<!-- run: id=cs477-liascript-mdphmmbandits-3 viz=env -->
 ```python
 import numpy as np
 
@@ -433,6 +452,7 @@ def pagerank(A, d=0.85, tol=1e-8, max_iter=100):
 
 print("PageRank:", pagerank(A))
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-mdphmmbandits-3) <!-- code-viz link -->
 
 ---
 

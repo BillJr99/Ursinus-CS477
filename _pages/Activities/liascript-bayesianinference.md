@@ -22,11 +22,15 @@ This module provides a complete, first-principles introduction to **Bayesian inf
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/Bayesian_Diagnostic_Test_Belief_Updating.ipynb)
 
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-diagnostic-test-belief-updating-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-diagnostic-test-belief-updating-1) [cell 3](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-diagnostic-test-belief-updating-3) [cell 4](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-diagnostic-test-belief-updating-4) [cell 6](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-diagnostic-test-belief-updating-6) [cell 7](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-diagnostic-test-belief-updating-7) [cell 8](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-diagnostic-test-belief-updating-8) [cell 9](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-diagnostic-test-belief-updating-9) <!-- code-viz link -->
+
 ---
 
 ## Open Colab: Robot Localization Heatmaps (From Scratch)
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/gh-pages/files/notebooks/Bayesian_Robot_Localization_Heatmaps_From_Scratch.ipynb)
+
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-1) [cell 3](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-3) [cell 7](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-7) [cell 8](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-8) [cell 10](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-10) [cell 11](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-11) [cell 12](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-12) <!-- code-viz link -->
 
 ---
 
@@ -34,12 +38,16 @@ This module provides a complete, first-principles introduction to **Bayesian inf
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/Kalman_Filter_Robot_Localization_Maze_Heatmaps.ipynb)
 
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-kalman-filter-robot-localization-maze-heatmaps-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-kalman-filter-robot-localization-maze-heatmaps-1) [cell 3](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-kalman-filter-robot-localization-maze-heatmaps-3) [cell 6](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-kalman-filter-robot-localization-maze-heatmaps-6) [cell 7](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-kalman-filter-robot-localization-maze-heatmaps-7) [cell 8](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-kalman-filter-robot-localization-maze-heatmaps-8) [cell 9](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-kalman-filter-robot-localization-maze-heatmaps-9) [cell 10](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-kalman-filter-robot-localization-maze-heatmaps-10) <!-- code-viz link -->
+
 ---
 
 
 ## Open Colab: Naïve Bayes (Step-by-Step)
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/naive_bayes_step_by_step.ipynb)
+
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-naive-bayes-step-by-step-3): [cell 3](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-naive-bayes-step-by-step-3) [cell 4](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-naive-bayes-step-by-step-4) [cell 8](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-naive-bayes-step-by-step-8) [cell 9](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-naive-bayes-step-by-step-9) <!-- code-viz link -->
 
 ---
 
@@ -55,6 +63,7 @@ We adopt the following notation:
 ---
 
 ## Code Cell
+<!-- run: id=cs477-liascript-bayesianinference-1 viz=env -->
 ```python
 import math
 import numpy as np
@@ -63,6 +72,7 @@ from typing import Dict, Callable
 np.set_printoptions(precision=4, suppress=True)
 print("NumPy ready for small demonstrations.")
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-bayesianinference-1) <!-- code-viz link -->
 
 ---
 
@@ -100,6 +110,7 @@ $$
 
 ## Code Cell — Positive Predictive Value (PPV) and Negative Predictive Value (NPV)
 
+<!-- run: id=cs477-liascript-bayesianinference-2 viz=env -->
 ```python
 def ppv(pi: float, Se: float, Sp: float) -> float:
     return (Se*pi) / (Se*pi + (1-Sp)*(1-pi))
@@ -112,6 +123,7 @@ Se, Sp = 0.95, 0.95
 for p0 in priors:
     print(f"Prior={p0:.2f}  PPV={ppv(p0,Se,Sp):.3f}  NPV={npv(p0,Se,Sp):.3f}")
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-bayesianinference-2) <!-- code-viz link -->
 
 *Interpretation.* PPV is strongly affected by the **base rate** $\pi$; even excellent tests can have modest PPV in low-prevalence populations (the base-rate effect).
 
@@ -136,6 +148,7 @@ $$
 
 ## Code Cell — Beta–Binomial Updates and Posterior Predictive
 
+<!-- run: id=cs477-liascript-bayesianinference-3 viz=env -->
 ```python
 import scipy.stats as st
 
@@ -153,6 +166,7 @@ print("Posterior Beta(alpha, beta):", a_post, b_post)
 print("Posterior mean:", a_post/(a_post+b_post))
 print("Posterior predictive mean for next trial:", posterior_predictive(a_post, b_post))
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-bayesianinference-3) <!-- code-viz link -->
 
 ---
 
@@ -341,6 +355,7 @@ $$
 
 ### 6.5 Code Cell — Multinomial Naïve Bayes (Toy Example)
 
+<!-- run: id=cs477-liascript-bayesianinference-4 viz=env -->
 ```python
 from collections import Counter
 import math
@@ -380,6 +395,7 @@ def log_score(text):
 print(log_score("team win goal"))
 print(log_score("policy debate"))
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-bayesianinference-4) <!-- code-viz link -->
 
 ### 6.6 Connections to Bayesian Inference
 
@@ -390,6 +406,8 @@ Naïve Bayes is Bayesian when priors over likelihood parameters (Dirichlet/Beta/
 ### 6.7 Guided Demo: Naïve Bayes vs. Logistic Regression (Generative vs. Discriminative)
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/linear_logistic_regression_demo.ipynb)
+
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-logistic-regression-demo-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-logistic-regression-demo-1) [cell 2](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-logistic-regression-demo-2) [cell 5](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-logistic-regression-demo-5) [cell 6](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-logistic-regression-demo-6) [cell 7](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-logistic-regression-demo-7) [cell 8](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-logistic-regression-demo-8) [cell 9](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-logistic-regression-demo-9) [cell 13](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-logistic-regression-demo-13) [cell 14](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-logistic-regression-demo-14) [cell 15](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-logistic-regression-demo-15) [cell 17](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-linear-logistic-regression-demo-17) <!-- code-viz link -->
 
 The linear/logistic regression demo notebook (familiar from the Regression and SVM modules) makes an ideal foil for Naïve Bayes, because the two classifiers answer the *same question from opposite directions*:
 
@@ -438,6 +456,7 @@ This underlies **robot localization** with grid maps and sensor models, as demon
 
 ## Code Cell — Discrete Bayes Filter (Gridworld)
 
+<!-- run: id=cs477-liascript-bayesianinference-5 viz=env setup=cs477-liascript-bayesianinference-1 -->
 ```python
 # 1D ring grid with wrap-around motion and noisy sensor
 N = 10
@@ -467,6 +486,7 @@ belief = update(belief, z=True)
 print("Belief sums to:", belief.sum())
 print("Argmax state:", np.argmax(belief))
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-bayesianinference-5) <!-- code-viz link -->
 
 ---
 
@@ -503,6 +523,7 @@ $$
 
 ## Code Cell — Minimal 1D Kalman Filter
 
+<!-- run: id=cs477-liascript-bayesianinference-6 viz=env -->
 ```python
 import numpy as np
 
@@ -523,6 +544,7 @@ for z in zs:
     P = (1 - K*H)*P
     print(f"z={z:.2f}  xhat={xhat:.3f}  P={P:.3f}")
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-bayesianinference-6) <!-- code-viz link -->
 
 ---
 
@@ -582,6 +604,7 @@ $$
 
 ## Code Cell — Sequential Evidence Accumulation (Log-Odds)
 
+<!-- run: id=cs477-liascript-bayesianinference-7 viz=env setup=cs477-liascript-bayesianinference-4 -->
 ```python
 def update_log_odds(lg_prior, log_lr):
     return lg_prior + log_lr
@@ -596,6 +619,7 @@ for r in log_lrs:
 post = math.exp(lg_post) / (1 + math.exp(lg_post))
 print("Posterior probability:", round(post,4))
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-bayesianinference-7) <!-- code-viz link -->
 
 ---
 
@@ -692,12 +716,14 @@ This notebook explores:
 
 ## Code Snippet Example
 
+<!-- run: id=cs477-liascript-bayesianinference-8 viz=env -->
 ```python
 pi = 0.01  # prior disease probability
 Se, Sp = 0.95, 0.95
 post = (Se*pi) / (Se*pi + (1-Sp)*(1-pi))
 print(f"Posterior probability given positive test: {post:.3f}")
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-bayesianinference-8) <!-- code-viz link -->
 
 ---
 
@@ -744,6 +770,7 @@ In this Colab:
 
 ## Implementation Highlights
 
+<!-- run: id=cs477-liascript-bayesianinference-9 viz=env -->
 ```python
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import CountVectorizer
@@ -756,6 +783,7 @@ nb = MultinomialNB()
 nb.fit(X, y)
 print(nb.predict(vec.transform(["goal win team"])))
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-bayesianinference-9) <!-- code-viz link -->
 
 ---
 
@@ -811,6 +839,7 @@ The notebook simulates:
 
 ## Code Example (1D Localization)
 
+<!-- run: id=cs477-liascript-bayesianinference-10 viz=env -->
 ```python
 import numpy as np
 belief = np.ones(10) / 10
@@ -820,6 +849,7 @@ belief = sensor * motion
 belief /= belief.sum()
 print("Most probable location:", np.argmax(belief))
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-bayesianinference-10) <!-- code-viz link -->
 
 ---
 
@@ -871,6 +901,7 @@ short sequence of flips.
 
 ### Code: `bayesian_coin.py`
 
+<!-- run: id=cs477-liascript-bayesianinference-11 viz=env -->
 ```python
 # Bayesian updating for a coin's bias using a Beta prior
 
@@ -932,6 +963,7 @@ def run_bayesian_coin_example():
 if __name__ == "__main__":
     run_bayesian_coin_example()
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-bayesianinference-11) <!-- code-viz link -->
 
 ---
 
@@ -1008,6 +1040,7 @@ Mathematically:
 
 ### Code: `bayesian_coin_determine.py`
 
+<!-- run: id=cs477-liascript-bayesianinference-12 viz=env -->
 ```python
 import random
 
@@ -1042,6 +1075,7 @@ print(f"Posterior Beta(α={alpha:.2f}, β={beta:.2f})")
 print(f"Estimated probability of heads: {alpha/(alpha+beta):.3f}")
 print(f"True probability of heads:      {TRUE_P_HEADS:.3f}")
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-bayesianinference-12) <!-- code-viz link -->
 
 ---
 
@@ -1113,6 +1147,7 @@ updates across multiple test results.
 
 ### Code: `bayesian_disease.py`
 
+<!-- run: id=cs477-liascript-bayesianinference-13 viz=env -->
 ```python
 from dataclasses import dataclass
 from typing import List
@@ -1241,6 +1276,7 @@ def run_disease_testing_example():
 if __name__ == "__main__":
     run_disease_testing_example()
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-bayesianinference-13) <!-- code-viz link -->
 
 ---
 

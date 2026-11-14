@@ -131,6 +131,7 @@ Note the subtle rule: UCS applies the goal test **when a node is expanded**, not
 
 ## 7. Runnable Code: All Three Searches in 40 Lines
 
+<!-- run: id=cs477-liascript-uninformedsearch-1 viz=env -->
 ```python
 from collections import deque
 import heapq
@@ -181,6 +182,7 @@ print("BFS:", bfs('S', 'G'))   # fewest edges: S->G
 print("DFS:", dfs('S', 'G'))
 print("UCS:", ucs('S', 'G'))   # cheapest: (2, S->A->G)
 ```
+[Visualize this example](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-liascript-uninformedsearch-1) <!-- code-viz link -->
 
 **What to look for:** BFS returns the *fewest-edges* path `S→G`, while UCS returns the *cheapest* path `S→A→G`. Same skeleton, different frontier, different guarantee.
 
