@@ -19,6 +19,8 @@ We now cross the bridge from *programmed* intelligence (search, logic) to *learn
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/CreditScoreFeatureWeightEstimator.ipynb)
 
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-creditscorefeatureweightestimator-7): [cell 7](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-creditscorefeatureweightestimator-7) [cell 9](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-creditscorefeatureweightestimator-9) <!-- code-viz link -->
+
 ---
 
 ## 1. Intuition First: Programs That Write Themselves

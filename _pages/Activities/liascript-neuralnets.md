@@ -2397,7 +2397,7 @@ which reduces to the outer products shown above.
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/NonLinearFunctionEstimatorMultiLayerNN.ipynb)
 
-[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-nonlinearfunctionestimatormultilayernn-7): [cell 7](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-nonlinearfunctionestimatormultilayernn-7) [cell 8](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-nonlinearfunctionestimatormultilayernn-8) [cell 9](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-nonlinearfunctionestimatormultilayernn-9) [cell 10](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-nonlinearfunctionestimatormultilayernn-10) <!-- code-viz link -->
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-nonlinearfunctionestimatormultilayernn-6): [cell 6](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-nonlinearfunctionestimatormultilayernn-6) [cell 7](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-nonlinearfunctionestimatormultilayernn-7) [cell 8](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-nonlinearfunctionestimatormultilayernn-8) [cell 9](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-nonlinearfunctionestimatormultilayernn-9) [cell 10](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-nonlinearfunctionestimatormultilayernn-10) <!-- code-viz link -->
 
 ---
 

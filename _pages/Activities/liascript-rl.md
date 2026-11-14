@@ -19,7 +19,7 @@ This module explores three pillars of **Reinforcement Learning (RL)** — **dyna
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/RL_FromScratch_ToyGridworld.ipynb)
 
-[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-rl-fromscratch-toygridworld-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-rl-fromscratch-toygridworld-1) <!-- code-viz link -->
+[Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-rl-fromscratch-toygridworld-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-rl-fromscratch-toygridworld-1) [cell 6](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-rl-fromscratch-toygridworld-6) [cell 7](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-rl-fromscratch-toygridworld-7) [cell 8](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-rl-fromscratch-toygridworld-8) [cell 9](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-rl-fromscratch-toygridworld-9) <!-- code-viz link -->
 
 ---
 
