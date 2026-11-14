@@ -1,0 +1,2 @@
+Could not save MP4 animation (ffmpeg likely missing or environment-limited): unknown file extension: .mp4
+Artifacts: ['astar_run.npz', 'astar_tmid.png', 'astar_tlast.png', 'astar_t0.png']

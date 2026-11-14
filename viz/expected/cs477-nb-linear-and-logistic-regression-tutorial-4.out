@@ -1,0 +1,4 @@
+Closed-form solution: theta0=5.172, theta1=2.816
+Estimated model equation: y = 2.816 x + 5.172
+True equation: y = 3.000 x + 5.000
+MSE (closed form): 0.5162141209389142

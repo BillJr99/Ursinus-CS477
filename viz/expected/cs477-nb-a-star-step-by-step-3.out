@@ -1,0 +1,25 @@
+=== A* with Euclidean heuristic ===
+[pop] A with f=7.280, g=0.000, h=7.280
+  [relax yes] A -> B  g=2.300, h=6.000, f=8.300
+  [relax yes] A -> C  g=3.200, h=4.123, f=7.323
+[pop] C with f=7.323, g=3.200, h=4.123
+  [relax? no] C -> A (g'=6.400 >= g[m]=0.000)
+  [relax? no] C -> B (g'=5.200 >= g[m]=2.300)
+  [relax yes] C -> D  g=5.600, h=3.162, f=8.762
+  [relax yes] C -> E  g=6.300, h=2.236, f=8.536
+[pop] B with f=8.300, g=2.300, h=6.000
+  [relax? no] B -> A (g'=4.600 >= g[m]=0.000)
+  [relax? no] B -> C (g'=4.300 >= g[m]=3.200)
+  [relax yes] B -> D  g=4.500, h=3.162, f=7.662
+[pop] D with f=7.662, g=4.500, h=3.162
+  [relax? no] D -> B (g'=6.700 >= g[m]=2.300)
+  [relax? no] D -> C (g'=6.900 >= g[m]=3.200)
+  [relax yes] D -> F  g=6.600, h=0.000, f=6.600
+[pop] F with f=6.600, g=6.600, h=0.000
+
+Path: ['A', 'B', 'D', 'F'] 
+Info: {'expanded': 4, 'pushed': 7, 'time_sec': 5.3871000034177996e-05, 'cost': 6.6, 'closed_size': 4}
+
+=== Dijkstra (A* with h=0) ===
+Path: ['A', 'B', 'D', 'F'] 
+Info: {'expanded': 5, 'pushed': 6, 'time_sec': 9.674000011727912e-06, 'cost': 6.6, 'closed_size': 5}

@@ -1,0 +1,38 @@
+From‑scratch MultinomialNB accuracy: 0.667
+Confusion matrix:
+[[3 1]
+ [1 1]]
+Classification report:
+              precision    recall  f1-score   support
+
+         ham       0.75      0.75      0.75         4
+        spam       0.50      0.50      0.50         2
+
+    accuracy                           0.67         6
+   macro avg       0.62      0.62      0.62         6
+weighted avg       0.67      0.67      0.67         6
+
+
+Top indicative words for SPAM:
+  act              log-odds=0.862
+  now              log-odds=0.862
+  apply            log-odds=0.456
+  account          log-odds=0.456
+  been             log-odds=0.456
+  avoid            log-odds=0.456
+  cash             log-odds=0.456
+  approved         log-odds=0.456
+  click            log-odds=0.456
+  cheap            log-odds=0.456
+
+Top indicative words for HAM:
+  at               log-odds=-1.623
+  the              log-odds=-1.336
+  catch            log-odds=-0.930
+  airport          log-odds=-0.930
+  conference       log-odds=-0.930
+  later            log-odds=-0.930
+  let              log-odds=-0.930
+  booked           log-odds=-0.930
+  help             log-odds=-0.930
+  project          log-odds=-0.930

@@ -1,0 +1,2 @@
+X shape: (150, 4) | classes: [np.str_('setosa'), np.str_('versicolor'), np.str_('virginica')]
+PCA EVR (first two): [0.7296 0.2285]

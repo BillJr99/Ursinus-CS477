@@ -1,0 +1,19 @@
+Epoch 0, loss=0.2514
+Epoch 2000, loss=0.2497
+Epoch 4000, loss=0.0145
+Epoch 6000, loss=0.0025
+Epoch 8000, loss=0.0013
+
+Final predictions on training data:
+[[0.03 ]
+ [0.972]
+ [0.966]
+ [0.027]]
+
+Testing some inputs:
+Input [0. 0.] -> Predicted 0.030
+Input [0. 1.] -> Predicted 0.972
+Input [1. 0.] -> Predicted 0.966
+Input [1. 1.] -> Predicted 0.027
+Input [0.2 0.8] -> Predicted 0.624
+Input [0.9 0.9] -> Predicted 0.027

@@ -1,0 +1,2 @@
+Best AUC: 0.9536875
+Best params: {'svm__C': 10, 'svm__gamma': 0.1}

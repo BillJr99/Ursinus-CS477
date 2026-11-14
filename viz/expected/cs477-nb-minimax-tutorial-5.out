@@ -1,0 +1,10 @@
+Start position (X to play):
+X O X
+O X .
+. O .
+Minimax value (X perspective): 1.0
+Best move index: 6
+Resulting board:
+X O X
+O X .
+X O .

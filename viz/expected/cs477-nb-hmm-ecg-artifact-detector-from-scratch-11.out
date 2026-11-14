@@ -1,0 +1,2 @@
+Accuracy=0.9833  Precision=0.8649  Recall=1.0000  F1=0.9275
+Confusion (tp, fp, fn, tn): 960 150 0 7890

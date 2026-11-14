@@ -1,0 +1,14 @@
+PC1 top 6 loadings:
+  flavanoids                -0.423
+  total_phenols             -0.395
+  od280/od315_of_diluted_wines -0.376
+  proanthocyanins           -0.313
+  nonflavanoid_phenols      +0.299
+  hue                       -0.297
+PC2 top 6 loadings:
+  color_intensity           -0.530
+  alcohol                   -0.484
+  proline                   -0.365
+  ash                       -0.316
+  magnesium                 -0.300
+  hue                       +0.279

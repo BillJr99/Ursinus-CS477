@@ -1,0 +1,2 @@
+CV (no PCA): {'r2_macro': (0.5631, 0.0718), 'f1_macro': (0.8029, 0.0509), 'precision_macro': (0.818, 0.0453), 'recall_macro': (0.8067, 0.049), 'roc_auc_macro': (0.9207, 0.0336)}
+CV (with PCA): {'r2_macro': (0.5472, 0.0481), 'f1_macro': (0.8098, 0.0572), 'precision_macro': (0.8311, 0.0683), 'recall_macro': (0.8133, 0.0581), 'roc_auc_macro': (0.916, 0.0255)}

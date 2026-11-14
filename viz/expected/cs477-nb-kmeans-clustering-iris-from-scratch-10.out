@@ -1,0 +1,2 @@
+Purity (majority mapping): 0.833
+Cluster → species mapping: {0: np.str_('versicolor'), 1: np.str_('setosa'), 2: np.str_('virginica')}

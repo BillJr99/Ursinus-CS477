@@ -1,0 +1,8 @@
+P(D=1 | T=+):
+  mean=0.2715  median=0.2494  95% CI=(0.0123, 0.6442)
+  point-estimate (at mean params) = 0.3242
+
+P(D=1 | T=-):
+  mean=0.0005  median=0.0004  95% CI=(0.0000, 0.0019)
+  point-estimate (at mean params) = 0.0005
+

@@ -1,0 +1,36 @@
+Observation sequence (labels): ['Umbrella', 'Umbrella', 'No Umbrella', 'Umbrella', 'Umbrella']
+Observation sequence (indices): [0, 0, 1, 0, 0]
+
+Most likely hidden state sequence (indices): [np.int64(0), np.int64(0), np.int64(0), np.int64(0), np.int64(0)]
+Most likely hidden state sequence (labels):
+  Day 1: Rainy
+  Day 2: Rainy
+  Day 3: Rainy
+  Day 4: Rainy
+  Day 5: Rainy
+
+Log-probability of best path: -4.843874111940225
+Probability of best path: 0.007876480500000008
+
+--- Viterbi delta_log table (log probabilities) ---
+Rows = time t (0-based), Columns = states [Rainy, Sunny]
+[[-0.7985 -2.3026]
+ [-1.2605 -3.6119]
+ [-3.9198 -2.6877]
+ [-4.3818 -4.5202]
+ [-4.8439 -6.3528]]
+
+--- Backpointer table psi ---
+Rows = time t (0-based), Columns = states [Rainy, Sunny]
+[[-1 -1]
+ [ 0  0]
+ [ 0  0]
+ [ 0  1]
+ [ 0  1]]
+
+Summary:
+Day 1: Obs=Umbrella     -> State=Rainy
+Day 2: Obs=Umbrella     -> State=Rainy
+Day 3: Obs=No Umbrella  -> State=Rainy
+Day 4: Obs=Umbrella     -> State=Rainy
+Day 5: Obs=Umbrella     -> State=Rainy

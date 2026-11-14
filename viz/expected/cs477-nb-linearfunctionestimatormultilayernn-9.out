@@ -1,0 +1,5 @@
+Final parameters:
+  v1=0.088981, v2=1.323627, w1=-0.030957, w2=1.513081, b1=0.999013, b2=0.840102, c=-0.200875
+
+Trained equation with weights/biases baked in:
+y_pred = 0.088981 * ReLU(-0.030957 * x + 0.999013) + 1.323627 * ReLU(1.513081 * x + 0.840102) + -0.200875

@@ -1,0 +1,2 @@
+Gaussian: n=250, true μ=2.000, MLE μ̂=1.983, SE≈0.0942, 95% CI=(1.798, 2.168)
+Gaussian: MLE σ̂^2=2.221 (compare true σ^2=2.250)

@@ -1,0 +1,2 @@
+Train: (105, 4)  Test: (45, 4)
+Classes: ['setosa' 'versicolor' 'virginica']

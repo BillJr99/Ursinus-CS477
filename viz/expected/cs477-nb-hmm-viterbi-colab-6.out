@@ -1,0 +1,9 @@
+Forward (normal) likelihood: 0.033611999999999996
+Forward (log)   log-likelihood: -3.3928721329161653
+Forward (log)   likelihood via exp: 0.033611999999999996
+Alpha (normal domain): [[0.06   0.24  ]
+ [0.0552 0.0486]
+ [0.029  0.0046]]
+Log-Alpha (log domain): [[-2.8134 -1.4271]
+ [-2.8968 -3.0241]
+ [-3.5391 -5.3878]]

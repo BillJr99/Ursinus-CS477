@@ -1,0 +1,12 @@
+Bayesian Updating for Disease Testing
+------------------------------------
+Initial prior probability of disease: 0.0100
+Test sensitivity: 0.95
+Test specificity: 0.98
+
+Step  Result   Posterior P(Disease)  
+----------------------------------------
+0     (prior)  0.010000              
+1     +        0.324232              
+2     +        0.957966              
+3     -        0.537631              

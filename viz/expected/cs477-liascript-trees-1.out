@@ -1,0 +1,15 @@
+depth=   1: train=0.81  test=0.81
+depth=   3: train=0.92  test=0.89
+depth=None: train=1.00  test=0.87
+forest    : train=1.00  test=0.90
+|--- x2 <= 0.08
+|   |--- x1 <= -0.64
+|   |   |--- class: 0
+|   |--- x1 >  -0.64
+|   |   |--- class: 1
+|--- x2 >  0.08
+|   |--- x1 <= 1.46
+|   |   |--- class: 0
+|   |--- x1 >  1.46
+|   |   |--- class: 1
+

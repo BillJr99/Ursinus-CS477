@@ -1,0 +1,11 @@
+Bayesian updating for a coin with Beta prior
+Initial prior: Beta(alpha=2, beta=2)
+
+Step  Flip   Alpha    Beta     Mean p(H) 
+----------------------------------------
+0     -      2.00     2.00     0.500     
+1     H      3.00     2.00     0.600     
+2     T      3.00     3.00     0.500     
+3     H      4.00     3.00     0.571     
+4     H      5.00     3.00     0.625     
+5     H      6.00     3.00     0.667     

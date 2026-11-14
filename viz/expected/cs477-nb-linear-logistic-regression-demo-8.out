@@ -1,0 +1,4 @@
+Best SVR parameters: {'svr__C': 50, 'svr__epsilon': 5, 'svr__gamma': 0.01, 'svr__kernel': 'rbf'}
+Best SVR CV score: 0.37156527104957887
+SVR Test R²: 0.32929905724021014
+SVR Test MSE: 3553.4753726145136

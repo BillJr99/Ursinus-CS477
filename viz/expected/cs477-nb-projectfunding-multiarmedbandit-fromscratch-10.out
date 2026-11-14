@@ -1,0 +1,3 @@
+ε‑greedy: final cum. reward = 14965.00 | final regret = 3035.00
+UCB1: final cum. reward = 9985.00 | final regret = 8015.00
+Thompson: final cum. reward = 14062.00 | final regret = 3938.00

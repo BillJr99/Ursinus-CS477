@@ -1,0 +1,5 @@
+sklearn explained variance: [6.89695399 0.01555874]
+sklearn explained variance ratio: [0.99774919 0.00225081]
+Scratch PC1 (unit): [0.45113454 0.89245595]
+SK PC1 (unit):      [0.45113454 0.89245595]
+Cosine similarity: 1.0

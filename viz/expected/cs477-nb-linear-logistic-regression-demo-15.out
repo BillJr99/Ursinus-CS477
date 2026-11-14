@@ -1,0 +1,14 @@
+Accuracy: 0.8771929824561403
+F1 Score: 0.9054054054054054
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.87      0.79      0.82        42
+           1       0.88      0.93      0.91        72
+
+    accuracy                           0.88       114
+   macro avg       0.88      0.86      0.87       114
+weighted avg       0.88      0.88      0.88       114
+
+  ROC AUC: 0.953

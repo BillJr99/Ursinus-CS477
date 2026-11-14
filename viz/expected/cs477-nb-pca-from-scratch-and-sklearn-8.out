@@ -1,0 +1,16 @@
+
+=== Baseline (Scaler → OVR Linear Regression) ===
+Train:  R2 macro = 0.6275 | F1 macro = 0.8642 | Precision macro = 0.8686 | Recall macro = 0.8649 | ROC AUC macro = 0.9482
+Train (weighted): F1 = 0.8655 Precision = 0.8697 Recall = 0.8661
+Per-class R2 (train): [0.911, 0.3171, 0.6545]
+Test:   R2 macro = 0.4957 | F1 macro = 0.7432 | Precision macro = 0.7538 | Recall macro = 0.7415 | ROC AUC macro = 0.8923
+Test (weighted):  F1 = 0.7376 Precision = 0.7473 Recall = 0.7368
+Per-class R2 (test): [0.8959, 0.0837, 0.5074]
+
+=== With PCA (Scaler → PCA(2) → OVR Linear Regression) ===
+Train:  R2 macro = 0.574 | F1 macro = 0.8177 | Precision macro = 0.8273 | Recall macro = 0.8198 | ROC AUC macro = 0.9288
+Train (weighted): F1 = 0.8193 Precision = 0.8289 Recall = 0.8214
+Per-class R2 (train): [0.9017, 0.2496, 0.5706]
+Test:   R2 macro = 0.4785 | F1 macro = 0.7939 | Precision macro = 0.8049 | Recall macro = 0.7927 | ROC AUC macro = 0.8862
+Test (weighted):  F1 = 0.7897 Precision = 0.7998 Recall = 0.7895
+Per-class R2 (test): [0.8651, 0.0861, 0.4843]

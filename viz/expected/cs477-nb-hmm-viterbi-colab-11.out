@@ -1,0 +1,3 @@
+Random HMM forward log-likelihood: -7.208744719411338
+Random HMM Viterbi best path: [1, 2, 2, 1, 2]
+Random HMM Viterbi log-prob: -9.116604614143792
