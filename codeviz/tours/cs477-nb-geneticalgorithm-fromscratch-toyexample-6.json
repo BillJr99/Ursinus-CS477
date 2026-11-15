@@ -1,15 +1,1 @@
-{
- "version": 1,
- "example": "cs477-nb-geneticalgorithm-fromscratch-toyexample-6",
- "title": "Notebook GeneticAlgorithm_FromScratch_ToyExample.ipynb",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
- "reviewed": false,
- "source": "skeleton",
- "steps": [
-  {
-   "kind": "reveal",
-   "lines": "1-6",
-   "description": "Lines 1-6 run the main code."
-  }
- ]
-}
+{"version":1,"example":"cs477-nb-geneticalgorithm-fromscratch-toyexample-6","title":"Compare best and mean fitness","description":"You display two stored fitness histories across generations.","reviewed":false,"source":"draft: codex free model","steps":[{"kind":"reveal","lines":"1-2","description":"You create a figure and plot best_hist with the label best. Each history entry supplies one plotted generation value."},{"kind":"reveal","lines":"3","description":"You add mean_hist on the same axes with the label mean. Both curves share the fitness scale."},{"kind":"predict","lines":"4","question":"Does a higher or lower plotted value represent better fitness on this chart?","answer":"The vertical label says Fitness (maximize), so higher values represent better fitness."},{"kind":"reveal","lines":"4-6","description":"You label the horizontal axis Generation and identify the objective as negative Rastrigin in two dimensions. The legend distinguishes the two histories when the chart is displayed."}]}

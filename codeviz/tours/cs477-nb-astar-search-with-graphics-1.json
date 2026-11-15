@@ -1,31 +1,43 @@
 {
- "version": 1,
- "example": "cs477-nb-astar-search-with-graphics-1",
- "title": "Notebook AStar_Search_With_Graphics.ipynb",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
- "reviewed": false,
- "source": "skeleton",
- "steps": [
-  {
-   "kind": "reveal",
-   "lines": "1",
-   "description": "Line 1 imports `sys`, `platform` and `subprocess`."
-  },
-  {
-   "kind": "reveal",
-   "lines": "2-7",
-   "description": "Lines 2-7 define `_sh(cmd)`."
-  },
-  {
-   "kind": "reveal",
-   "lines": "9-11",
-   "description": "Lines 9-11 run the main code and print the results."
-  },
-  {
-   "kind": "run",
-   "trace_step": 5,
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "lines": "11"
-  }
- ]
+  "version": 1,
+  "example": "cs477-nb-astar-search-with-graphics-1",
+  "title": "Inspecting the Python Runtime and Notebook Environment",
+  "description": "Import sys, platform, and subprocess, define a shell helper _sh(cmd), and print the Python version, OS platform, and whether google.colab is loaded.",
+  "reviewed": false,
+  "source": "draft: agy free model",
+  "steps": [
+    {
+      "kind": "reveal",
+      "lines": "1-7",
+      "description": "Import `sys`, `platform`, and `subprocess` and define `_sh(cmd)` to run a shell command with `subprocess.check_output` inside a `try/except` block."
+    },
+    {
+      "kind": "reveal",
+      "lines": "9-14",
+      "description": "Print `sys.version`, `platform.platform()`, and `\"google.colab\" in sys.modules` to report the runtime environment."
+    },
+    {
+      "kind": "focus",
+      "lines": "9-11",
+      "description": "Look at line 11 (`\"google.colab\" in sys.modules`): checking `sys.modules` tests whether the `google.colab` package has been imported in the current Python session, returning a boolean."
+    },
+    {
+      "kind": "predict",
+      "question": "Does `_sh(cmd)` on lines 2-7 execute during this cell, and what boolean does `\"google.colab\" in sys.modules` print when running outside Google Colab?",
+      "answer": "`_sh(cmd)` is only defined and never called in this cell, and `\"google.colab\" in sys.modules` evaluates to `False` outside Colab.",
+      "lines": "2-11"
+    },
+    {
+      "kind": "run",
+      "trace_step": 2,
+      "lines": "9",
+      "description": "Line 9 prints the active `sys.version` string."
+    },
+    {
+      "kind": "run",
+      "trace_step": 4,
+      "lines": "11",
+      "description": "Line 11 checks `\"google.colab\" in sys.modules` and prints `In Colab: False`."
+    }
+  ]
 }

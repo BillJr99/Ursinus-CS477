@@ -1,15 +1,1 @@
-{
- "version": 1,
- "example": "cs477-nb-lda-and-fisherscore-fromscratch-6",
- "title": "Notebook LDA_and_FisherScore_FromScratch.ipynb",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
- "reviewed": false,
- "source": "skeleton",
- "steps": [
-  {
-   "kind": "reveal",
-   "lines": "1-7",
-   "description": "Lines 1-7 run the main code."
-  }
- ]
-}
+{"version":1,"example":"cs477-nb-lda-and-fisherscore-fromscratch-6","title":"Display discriminative eigenvalue proportions","description":"You turn nonnegative eigenvalues into component proportions.","reviewed":false,"source":"draft: codex free model","steps":[{"kind":"reveal","lines":"1","description":"You replace negative evals entries with zero. lam therefore contains only nonnegative values."},{"kind":"predict","lines":"2","question":"What happens when the sum of lam is zero?","answer":"The conditional expression keeps lam as prop. It divides by the sum only when that sum is positive."},{"kind":"reveal","lines":"2-4","description":"You plot prop as a bar for each component. The component positions start at one."},{"kind":"reveal","lines":"5-7","description":"You label the chart as discriminative power measured by eigenvalue proportions. The supplied output contains no numeric proportions to compare."}]}

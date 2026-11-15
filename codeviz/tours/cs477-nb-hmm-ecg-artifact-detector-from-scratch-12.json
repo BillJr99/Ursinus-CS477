@@ -1,15 +1,1 @@
-{
- "version": 1,
- "example": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-12",
- "title": "Notebook HMM_ECG_Artifact_Detector_From_Scratch.ipynb",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
- "reviewed": false,
- "source": "skeleton",
- "steps": [
-  {
-   "kind": "reveal",
-   "lines": "1-5",
-   "description": "Lines 1-5 run the main code."
-  }
- ]
-}
+{"version":1,"example":"cs477-nb-hmm-ecg-artifact-detector-from-scratch-12","title":"Display the model fitting history","description":"You plot the stored log likelihood values across iterations.","reviewed":false,"source":"draft: codex free model","steps":[{"kind":"reveal","lines":"1-2","description":"You create a figure and plot model[ll_history]. Each stored value becomes one point in the plotted sequence."},{"kind":"reveal","lines":"3","description":"You title the chart EM Log-Likelihood. EM names the expectation-maximization fitting procedure whose history the model stores."},{"kind":"predict","lines":"4","question":"What quantity does the vertical axis show?","answer":"It shows log likelihood. The horizontal axis identifies iteration positions in the stored history."},{"kind":"reveal","lines":"4-5","description":"You label the axes and display the chart. The supplied output includes no numeric history values from which to describe its shape."}]}

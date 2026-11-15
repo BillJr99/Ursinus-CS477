@@ -1,31 +1,43 @@
 {
- "version": 1,
- "example": "cs477-nb-bayesian-diagnostic-test-belief-updating-1",
- "title": "Notebook Bayesian_Diagnostic_Test_Belief_Updating.ipynb",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
- "reviewed": false,
- "source": "skeleton",
- "steps": [
-  {
-   "kind": "reveal",
-   "lines": "1",
-   "description": "Line 1 imports `sys`, `platform` and `subprocess`."
-  },
-  {
-   "kind": "reveal",
-   "lines": "2-7",
-   "description": "Lines 2-7 define `_sh(cmd)`."
-  },
-  {
-   "kind": "reveal",
-   "lines": "9-11",
-   "description": "Lines 9-11 run the main code and print the results."
-  },
-  {
-   "kind": "run",
-   "trace_step": 5,
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "lines": "11"
-  }
- ]
+  "version": 1,
+  "example": "cs477-nb-bayesian-diagnostic-test-belief-updating-1",
+  "title": "Checking Python Version and Runtime Environment",
+  "description": "Import sys, platform, and subprocess, define _sh(cmd), and print sys.version.split()[0], platform.platform(), and whether google.colab is loaded.",
+  "reviewed": false,
+  "source": "draft: agy free model",
+  "steps": [
+    {
+      "kind": "reveal",
+      "lines": "1-7",
+      "description": "Import `sys`, `platform`, and `subprocess` and define `_sh(cmd)` to run a shell command with `subprocess.check_output` inside a `try/except` block."
+    },
+    {
+      "kind": "reveal",
+      "lines": "9-14",
+      "description": "Print the short Python version `sys.version.split()[0]`, the OS string `platform.platform()`, and the boolean `\"google.colab\" in sys.modules`."
+    },
+    {
+      "kind": "focus",
+      "lines": "9-11",
+      "description": "Look at line 9 (`sys.version.split()[0]`): splitting the full `sys.version` string on whitespace and taking index `0` extracts just the version number (`3.12.16`) without the build date and compiler info."
+    },
+    {
+      "kind": "predict",
+      "question": "What does `sys.version.split()[0]` on line 9 return compared to `sys.version`, and what does line 11 print when `google.colab` is not imported?",
+      "answer": "`sys.version.split()[0]` returns just the version token (`3.12.16`), and line 11 prints `In Colab: False`.",
+      "lines": "9-11"
+    },
+    {
+      "kind": "run",
+      "trace_step": 2,
+      "lines": "9",
+      "description": "Line 9 prints `Python: 3.12.16`."
+    },
+    {
+      "kind": "run",
+      "trace_step": 4,
+      "lines": "11",
+      "description": "Line 11 evaluates `\"google.colab\" in sys.modules` and prints `In Colab: False`."
+    }
+  ]
 }

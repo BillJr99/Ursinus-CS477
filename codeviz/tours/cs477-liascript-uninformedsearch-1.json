@@ -1,90 +1,48 @@
 {
- "version": 1,
- "example": "cs477-liascript-uninformedsearch-1",
- "title": "7. Runnable Code: All Three Searches in 40 Lines",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
- "reviewed": false,
- "source": "skeleton",
- "steps": [
-  {
-   "kind": "reveal",
-   "lines": "1-2",
-   "description": "Lines 1-2 import `collections` and `heapq`."
-  },
-  {
-   "kind": "reveal",
-   "lines": "4-8",
-   "description": "Lines 4-8 run the main code."
-  },
-  {
-   "kind": "reveal",
-   "lines": "10-20",
-   "description": "Lines 10-20 define `bfs(start, goal)`."
-  },
-  {
-   "kind": "focus",
-   "lines": "13",
-   "description": "Line 13 repeats while `frontier` is true."
-  },
-  {
-   "kind": "focus",
-   "lines": "17",
-   "description": "Line 17 checks `node in explored`."
-  },
-  {
-   "kind": "reveal",
-   "lines": "22-32",
-   "description": "Lines 22-32 define `dfs(start, goal)`."
-  },
-  {
-   "kind": "focus",
-   "lines": "28",
-   "description": "Line 28 returns `path`."
-  },
-  {
-   "kind": "reveal",
-   "lines": "34-44",
-   "description": "Lines 34-44 define `ucs(start, goal)`."
-  },
-  {
-   "kind": "focus",
-   "lines": "40",
-   "description": "Line 40 checks `node == goal`."
-  },
-  {
-   "kind": "reveal",
-   "lines": "46-48",
-   "description": "Lines 46-48 continue the main code and print the results."
-  },
-  {
-   "kind": "run",
-   "trace_step": 10,
-   "lines": "11",
-   "description": "Here `bfs` is called for the first time; its frame appears on the right."
-  },
-  {
-   "kind": "run",
-   "trace_step": 36,
-   "lines": "16",
-   "description": "Here `bfs` returns, the first time it does."
-  },
-  {
-   "kind": "run",
-   "trace_step": 38,
-   "lines": "23",
-   "description": "Here `dfs` is called for the first time; its frame appears on the right."
-  },
-  {
-   "kind": "run",
-   "trace_step": 55,
-   "lines": "28",
-   "description": "Here `dfs` returns, the first time it does."
-  },
-  {
-   "kind": "run",
-   "trace_step": 84,
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "lines": "48"
-  }
- ]
+  "version": 1,
+  "example": "cs477-liascript-uninformedsearch-1",
+  "title": "BFS, DFS, and Uniform-Cost Search on a Weighted Graph",
+  "description": "Compare how a FIFO queue (bfs), a LIFO stack (dfs), and a g(n) min-heap (ucs) explore the same 3-node graph from 'S' to 'G'.",
+  "reviewed": false,
+  "source": "draft: agy free model",
+  "steps": [
+    {
+      "kind": "reveal",
+      "lines": "1-8",
+      "description": "Import `deque` and `heapq` and define `graph`, where `'S'` connects to `('A', 1)` and `('G', 3)`, and `'A'` connects to `('G', 1)`."
+    },
+    {
+      "kind": "reveal",
+      "lines": "10-33",
+      "description": "Define `bfs(start, goal)` using a `deque` with `frontier.popleft()` (FIFO) and `dfs(start, goal)` using a list with `frontier.pop()` (LIFO)."
+    },
+    {
+      "kind": "reveal",
+      "lines": "34-48",
+      "description": "Define `ucs(start, goal)` using a min-heap ordered by cumulative edge cost `cost + c` (`heapq.heappop` and `heapq.heappush`), then run all three searches from `'S'` to `'G'`."
+    },
+    {
+      "kind": "focus",
+      "lines": "14,26,38,44",
+      "description": "Compare lines 14, 26, and 38: all three algorithms share the exact same graph-search loop, differing only in how `frontier` removes and orders candidate paths."
+    },
+    {
+      "kind": "predict",
+      "question": "In `graph`, the direct edge `'S' -> 'G'` costs `3`, while the two-edge path `'S' -> 'A' -> 'G'` costs `1 + 1 = 2`. Which path does `bfs('S', 'G')` return, and which path does `ucs('S', 'G')` return?",
+      "answer": "`bfs` ignores edge weights and returns the 1-edge path `['S', 'G']`, while `ucs` pops lowest cumulative cost first and returns `(2, ['S', 'A', 'G'])`.",
+      "lines": "4-7,14-20,38-44,46-48"
+    },
+    {
+      "kind": "run",
+      "trace_step": 37,
+      "lines": "47",
+      "description": "`bfs('S', 'G')` has returned `['S', 'G']`, and line 47 now calls `dfs('S', 'G')`."
+    },
+    {
+      "kind": "run",
+      "trace_step": 60,
+      "lines": "38",
+      "description": "Inside `ucs('S', 'G')`, `heapq.heappop(frontier)` pops `(1, ['S', 'A'])` before `(3, ['S', 'G'])`, leading to `(2, ['S', 'A', 'G'])`."
+    }
+  ]
 }

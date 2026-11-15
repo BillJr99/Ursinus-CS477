@@ -1,25 +1,31 @@
 {
- "version": 1,
- "example": "cs477-nb-astar-search-with-graphics-9",
- "title": "Notebook AStar_Search_With_Graphics.ipynb",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
- "reviewed": false,
- "source": "skeleton",
- "steps": [
-  {
-   "kind": "reveal",
-   "lines": "2-3",
-   "description": "Lines 2-3 import `shutil` and `pathlib`."
-  },
-  {
-   "kind": "reveal",
-   "lines": "4-12",
-   "description": "Lines 4-12 run the main code and print the results."
-  },
-  {
-   "kind": "focus",
-   "lines": "6",
-   "description": "Line 6 checks `Path('artifacts').exists()`."
-  }
- ]
+  "version": 1,
+  "example": "cs477-nb-astar-search-with-graphics-9",
+  "title": "Zipping and Downloading Saved Artifacts in Colab",
+  "description": "Import shutil and Path, check whether the artifacts directory exists, zip it into artifacts.zip, and call google.colab.files.download inside a try/except block.",
+  "reviewed": false,
+  "source": "draft: agy free model",
+  "steps": [
+    {
+      "kind": "reveal",
+      "lines": "1-8",
+      "description": "Import `shutil` and `Path`, then inside a `try` block import `files` from `google.colab`, check `if Path('artifacts').exists():`, create `'artifacts.zip'` with `shutil.make_archive('artifacts', 'zip', 'artifacts')`, and call `files.download('artifacts.zip')`."
+    },
+    {
+      "kind": "reveal",
+      "lines": "9-12",
+      "description": "Handle the missing-folder case in `else:` and catch any import or download error in `except Exception as e:` on lines 11-12."
+    },
+    {
+      "kind": "focus",
+      "lines": "4-8,11-12",
+      "description": "Look at how the `try/except` block wraps both `from google.colab import files` and `files.download('artifacts.zip')`: when the cell runs outside Google Colab, the `except` branch catches the exception and prints a status message."
+    },
+    {
+      "kind": "predict",
+      "question": "When this cell runs in a non-Colab environment where `google.colab.files.download` is unavailable, which line prints the output?",
+      "answer": "Line 12 inside the `except Exception as e:` block prints `Colab download helper not available in this environment:` followed by the exception message.",
+      "lines": "4-12"
+    }
+  ]
 }
