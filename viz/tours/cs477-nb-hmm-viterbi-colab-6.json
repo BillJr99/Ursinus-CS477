@@ -1,23 +1,33 @@
 {
  "code": "\nlik_normal, alpha = forward_normal(hmm, obs_seq)\nloglik, log_alpha = forward_log(hmm, obs_seq)\n\nprint(\"Forward (normal) likelihood:\", lik_normal)\nprint(\"Forward (log)   log-likelihood:\", loglik)\nprint(\"Forward (log)   likelihood via exp:\", float(np.exp(loglik)))\n\nprint(\"Alpha (normal domain):\", alpha)\nprint(\"Log-Alpha (log domain):\", log_alpha)\n",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You check two representations of the same observation likelihood.",
  "example": "cs477-nb-hmm-viterbi-colab-6",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 2-10 run the main code and print the results.",
+   "description": "You pass the same model and observations to forward_normal and forward_log. Each call returns a likelihood representation and its forward table.",
    "kind": "reveal",
-   "lines": "2-10"
+   "lines": "2-3"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "10",
-   "trace_step": 7
+   "answer": "Exponentiate loglik. In the recording, np.exp(loglik) and lik_normal both print 0.033611999999999996.",
+   "kind": "predict",
+   "lines": "5-7",
+   "question": "How can you compare loglik with the ordinary-domain likelihood?"
+  },
+  {
+   "description": "You print the matching likelihoods beside loglik=-3.3928721329161653. The numeric scales differ while representing the same sequence likelihood.",
+   "kind": "reveal",
+   "lines": "5-7"
+  },
+  {
+   "description": "You print alpha and log_alpha for inspection. Both recorded tables have three rows and two columns, one row per observation position.",
+   "kind": "reveal",
+   "lines": "9-10"
   }
  ],
- "title": "Notebook HMM_Viterbi_Colab.ipynb",
+ "title": "Compare ordinary and log-domain forward results",
  "version": 1
 }

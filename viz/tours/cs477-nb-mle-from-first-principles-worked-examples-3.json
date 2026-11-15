@@ -1,28 +1,33 @@
 {
  "code": "# Simulate data\nn = 200\np_true = 0.63\nx = rng.binomial(1, p_true, size=n)\np_hat = x.mean()\n\n# Observed information (exact for Bernoulli at MLE): I = n / [p(1-p)]\nI_obs = n / (p_hat*(1-p_hat) + 1e-12)\nci_lo, ci_hi, se = wald_ci(p_hat, I_obs)\n\nprint(f\"Bernoulli: n={n}, true p={p_true:.3f}, MLE p̂={p_hat:.3f}, SE≈{se:.4f}, 95% CI=({ci_lo:.3f}, {ci_hi:.3f})\")\n\n# Visualize log-likelihood\ngrid = np.linspace(0.01, 0.99, 300)\nll = x.sum()*np.log(grid) + (n - x.sum())*np.log(1-grid)\nplot_ll(grid, ll, p_hat, true_theta=p_true, xlabel=r\"$p$\", title=\"Bernoulli log-likelihood\")",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You connect the sample mean, information estimate, and likelihood curve.",
  "example": "cs477-nb-mle-from-first-principles-worked-examples-3",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 2-14 run the main code and print the results.",
+   "description": "You sample 200 binary outcomes with success probability 0.63. Their mean p_hat is the maximum-likelihood estimate.",
    "kind": "reveal",
-   "lines": "2-14"
+   "lines": "1-5"
   },
   {
-   "description": "Lines 15-16 continue the main code.",
+   "description": "You compute observed information at p_hat and pass it to wald_ci. The recording reports p_hat=0.670 with standard error about 0.0332.",
    "kind": "reveal",
-   "lines": "15-16"
+   "lines": "7-11"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "16",
-   "trace_step": 10
+   "answer": "x.sum() weights log(p) for successes. n-x.sum() weights log(1-p) for failures.",
+   "kind": "predict",
+   "lines": "15",
+   "question": "Which counts weight the two log terms in this likelihood?"
+  },
+  {
+   "description": "You evaluate the likelihood on 300 candidate probabilities and mark the estimate and true probability. The recorded interval is (0.605,0.735).",
+   "kind": "reveal",
+   "lines": "13-16"
   }
  ],
- "title": "Notebook MLE_From_First_Principles_Worked_Examples.ipynb",
+ "title": "Estimate a Bernoulli success probability",
  "version": 1
 }

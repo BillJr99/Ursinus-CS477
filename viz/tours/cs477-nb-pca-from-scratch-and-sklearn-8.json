@@ -1,47 +1,38 @@
 {
  "code": "\nfrom sklearn.decomposition import PCA as SKPCA\n\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25,\n                                                    random_state=42, stratify=y)\n\ndef fit_pipeline(use_pca=False, n_components=2):\n    scaler = StandardScaler()\n    Xtr = scaler.fit_transform(X_train)\n    Xte = scaler.transform(X_test)\n    if use_pca:\n        pca = SKPCA(n_components=n_components, random_state=42)\n        Xtr = pca.fit_transform(Xtr)\n        Xte = pca.transform(Xte)\n    else:\n        pca = None\n    clf = OVRLinearRegression().fit(Xtr, y_train)\n    return scaler, pca, clf, Xtr, Xte\n\ndef evaluate_pipeline(name, scaler, pca, clf, Xtr, Xte):\n    # Train\n    yhat_tr = clf.predict(Xtr)\n    scores_tr = clf.decision_function(Xtr)\n    r2s_tr, r2_macro_tr = clf.score_individual_r2(Xtr, y_train)\n    pr_tr, rc_tr, f1_tr, _ = precision_recall_fscore_support(y_train, yhat_tr, average=\"macro\", zero_division=0)\n    prw_tr, rcw_tr, f1w_tr, _ = precision_recall_fscore_support(y_train, yhat_tr, average=\"weighted\", zero_division=0)\n    auc_tr = roc_auc_score(y_train, scores_tr, multi_class=\"ovr\", average=\"macro\")\n    cm_tr = confusion_matrix(y_train, yhat_tr)\n\n    # Test\n    yhat_te = clf.predict(Xte)\n    scores_te = clf.decision_function(Xte)\n    r2s_te, r2_macro_te = clf.score_individual_r2(Xte, y_test)\n    pr_te, rc_te, f1_te, _ = precision_recall_fscore_support(y_test, yhat_te, average=\"macro\", zero_division=0)\n    prw_te, rcw_te, f1w_te, _ = precision_recall_fscore_support(y_test, yhat_te, average=\"weighted\", zero_division=0)\n    auc_te = roc_auc_score(y_test, scores_te, multi_class=\"ovr\", average=\"macro\")\n    cm_te = confusion_matrix(y_test, yhat_te)\n\n    print(f\"\\n=== {name} ===\")\n    print(\"Train:  R2 macro =\", round(r2_macro_tr, 4), \"| F1 macro =\", round(f1_tr, 4), \"| Precision macro =\", round(pr_tr,4), \"| Recall macro =\", round(rc_tr,4), \"| ROC AUC macro =\", round(auc_tr,4))\n    print(\"Train (weighted): F1 =\", round(f1w_tr,4), \"Precision =\", round(prw_tr,4), \"Recall =\", round(rcw_tr,4))\n    print(\"Per-class R2 (train):\", [round(v,4) for v in r2s_tr])\n    print(\"Test:   R2 macro =\", round(r2_macro_te, 4), \"| F1 macro =\", round(f1_te, 4), \"| Precision macro =\", round(pr_te,4), \"| Recall macro =\", round(rc_te,4), \"| ROC AUC macro =\", round(auc_te,4))\n    print(\"Test (weighted):  F1 =\", round(f1w_te,4), \"Precision =\", round(prw_te,4), \"Recall =\", round(rcw_te,4))\n    print(\"Per-class R2 (test):\", [round(v,4) for v in r2s_te])\n\n    fig, ax = plt.subplots()\n    ConfusionMatrixDisplay(cm_tr, display_labels=iris.target_names).plot(ax=ax, colorbar=False)\n    ax.set_title(f\"{name} — Train Confusion Matrix\")\n    plt.show()\n\n    fig, ax = plt.subplots()\n    ConfusionMatrixDisplay(cm_te, display_labels=iris.target_names).plot(ax=ax, colorbar=False)\n    ax.set_title(f\"{name} — Test Confusion Matrix\")\n    plt.show()\n\nsc1, pc1, clf1, Xtr1, Xte1 = fit_pipeline(use_pca=False)\nevaluate_pipeline(\"Baseline (Scaler → OVR Linear Regression)\", sc1, pc1, clf1, Xtr1, Xte1)\n\nsc2, pc2, clf2, Xtr2, Xte2 = fit_pipeline(use_pca=True, n_components=2)\nevaluate_pipeline(\"With PCA (Scaler → PCA(2) → OVR Linear Regression)\", sc2, pc2, clf2, Xtr2, Xte2)\n",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You inspect training-only preprocessing and compare recorded evaluation metrics.",
  "example": "cs477-nb-pca-from-scratch-and-sklearn-8",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Line 2 imports `sklearn.decomposition`.",
+   "description": "You split the data with stratification and fit the scaler on training rows. Test rows use that fitted scaler's transform.",
    "kind": "reveal",
-   "lines": "2"
+   "lines": "2-10"
   },
   {
-   "description": "Lines 4-5 run the main code.",
+   "description": "You optionally fit two-component PCA on the scaled training rows and transform test rows with it. Both branches fit the same one-versus-rest linear regression classifier.",
    "kind": "reveal",
-   "lines": "4-5"
+   "lines": "11-18"
   },
   {
-   "description": "Lines 7-18 define `fit_pipeline(use_pca, n_components)`.",
+   "description": "You evaluate training and test predictions separately. The report includes macro averages across classes and weighted averages that account for class support.",
    "kind": "reveal",
-   "lines": "7-18"
+   "lines": "20-45"
   },
   {
-   "description": "Line 11 checks `use_pca`.",
-   "kind": "focus",
-   "lines": "11"
+   "answer": "Test macro F1 rises from 0.7432 to 0.7939, while macro ROC AUC falls from 0.8923 to 0.8862. The metrics change in different directions.",
+   "kind": "predict",
+   "lines": "57-61",
+   "question": "Does the recorded PCA version improve every test metric?"
   },
   {
-   "description": "Line 18 returns `scaler, pca, clf, Xtr, Xte`.",
-   "kind": "focus",
-   "lines": "18"
-  },
-  {
-   "description": "Lines 20-55 define `evaluate_pipeline(name, scaler, pca, clf, Xtr, Xte)`.",
+   "description": "You display train and test confusion matrices for each branch and print both reports. Each comparison uses the same initial train-test split.",
    "kind": "reveal",
-   "lines": "20-55"
-  },
-  {
-   "description": "Lines 57-61 continue the main code.",
-   "kind": "reveal",
-   "lines": "57-61"
+   "lines": "47-61"
   }
  ],
- "title": "Notebook PCA_From_Scratch_and_Sklearn.ipynb",
+ "title": "Compare classifiers with and without PCA",
  "version": 1
 }

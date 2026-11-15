@@ -1,23 +1,33 @@
 {
  "code": "k = 3\nC, labels, inertia, hist = kmeans(X_std, k=k, max_iter=300, tol=1e-7, n_init=20, seed=SEED)\nprint(f\"k={k} | inertia={inertia:.4f} | iterations={len(hist)}\")",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You inspect the clustering call and its recorded return values.",
  "example": "cs477-nb-kmeans-clustering-iris-from-scratch-5",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 1-3 run the main code and print the results.",
+   "description": "You set k to three. The next call uses that value as its cluster count.",
    "kind": "reveal",
-   "lines": "1-3"
+   "lines": "1"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "3",
-   "trace_step": 3
+   "answer": "It receives X_std, the standardized features. The call also requests 20 initializations and supplies SEED.",
+   "kind": "predict",
+   "lines": "2",
+   "question": "Which feature representation does the clustering call receive?"
+  },
+  {
+   "description": "You collect centroids C, labels, inertia, and hist from the call. max_iter=300 and tol=1e-7 are the supplied iteration and tolerance settings.",
+   "kind": "reveal",
+   "lines": "2"
+  },
+  {
+   "description": "You print the cluster count, inertia, and history length. The recording reports k=3, inertia=139.8205, and five history entries.",
+   "kind": "reveal",
+   "lines": "3"
   }
  ],
- "title": "Notebook KMeans_Clustering_Iris_From_Scratch.ipynb",
+ "title": "Fit three clusters to standardized Iris data",
  "version": 1
 }

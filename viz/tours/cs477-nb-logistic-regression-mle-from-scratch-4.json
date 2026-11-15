@@ -1,23 +1,33 @@
 {
  "code": "X_std, mu, sigma = standardize(X)\nX_tr, X_te, y_tr, y_te = train_test_split(X_std, y, test_size=0.25, rng=rng)\nprint(\"Train size:\", X_tr.shape, \"Test size:\", X_te.shape)\n\n# Add intercept\nPhi_tr = add_intercept(X_tr)\nPhi_te = add_intercept(X_te)",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You standardize features, split rows, and add intercept columns.",
  "example": "cs477-nb-logistic-regression-mle-from-scratch-4",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 1-7 run the main code and print the results.",
+   "description": "You standardize the complete X matrix and retain mu and sigma. This happens before splitting the rows.",
    "kind": "reveal",
-   "lines": "1-7"
+   "lines": "1"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "7",
-   "trace_step": 5
+   "answer": "It uses X_std with test_size=0.25. Both feature splits therefore come from the standardized matrix.",
+   "kind": "predict",
+   "lines": "2",
+   "question": "Does the split use raw X or standardized X_std?"
+  },
+  {
+   "description": "You print the split dimensions. The recording reports 450 training rows and 150 test rows, each with two features.",
+   "kind": "reveal",
+   "lines": "2-3"
+  },
+  {
+   "description": "You call add_intercept separately on training and test features. Phi_tr and Phi_te become the design matrices used by later model calls.",
+   "kind": "reveal",
+   "lines": "5-7"
   }
  ],
- "title": "Notebook Logistic_Regression_MLE_From_Scratch.ipynb",
+ "title": "Prepare logistic regression design matrices",
  "version": 1
 }

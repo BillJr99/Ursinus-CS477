@@ -1,32 +1,33 @@
 {
  "code": "import os, json\nos.makedirs(\"artifacts\", exist_ok=True)\n\n# Save arrays\nnp.savez(\"artifacts/run_data.npz\",\n         actions=np.array(actions, dtype='<U1'),\n         observations=np.array(observations, dtype=int),\n         true_states=np.array(true_states, dtype=int),\n         beliefs=np.array(beliefs),\n         smoothed=np.array(smoothed),\n         viterbi=np.array(path, dtype=int),\n         grid=maze.grid,\n         colors=maze.colors)\n\n# Save a few heatmaps as images (first, middle, last)\ndef save_heatmap_img(grid_b, fname, title):\n    fig = plt.figure(figsize=(4,4))\n    plt.imshow(grid_b, interpolation='nearest')\n    plt.title(title)\n    plt.axis('off')\n    plt.tight_layout()\n    fig.savefig(fname, dpi=120)\n    plt.close(fig)\n\nsave_heatmap_img(belief_to_grid(beliefs[0], maze), \"artifacts/belief_t0.png\", \"Belief t=0\")\nmid = len(beliefs)//2\nsave_heatmap_img(belief_to_grid(beliefs[mid], maze), f\"artifacts/belief_t{mid}.png\", f\"Belief t={mid}\")\nsave_heatmap_img(belief_to_grid(beliefs[-1], maze), \"artifacts/belief_tT.png\", \"Belief t=T\")\n\nprint(\"Saved artifacts:\", os.listdir(\"artifacts\"))",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You inspect the archive entries and three selected belief images.",
  "example": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-15",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Line 1 imports `os` and `json`.",
+   "description": "You create artifacts and save run_data.npz. Named entries include actions, observations, true states, beliefs, smoothed beliefs, the decoded path, and maze arrays.",
    "kind": "reveal",
-   "lines": "1"
+   "lines": "1-13"
   },
   {
-   "description": "Lines 2-13 run the main code.",
+   "description": "You define an image helper that draws the belief grid, saves the figure, and closes it. The helper hides the axes before saving.",
    "kind": "reveal",
-   "lines": "2-13"
+   "lines": "15-23"
   },
   {
-   "description": "Lines 16-23 define `save_heatmap_img(grid_b, fname, title)`.",
-   "kind": "reveal",
-   "lines": "16-23"
+   "answer": "It saves only the first, middle, and last beliefs. The middle index is len(beliefs)//2.",
+   "kind": "predict",
+   "lines": "25-28",
+   "question": "Does this block save every belief as an image?"
   },
   {
-   "description": "Lines 25-30 continue the main code and print the results.",
+   "description": "You see run_data.npz and three PNG names in the recorded listing. belief_t8.png is the selected middle image in this run.",
    "kind": "reveal",
    "lines": "25-30"
   }
  ],
- "title": "Notebook HMM_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+ "title": "Save localization arrays and heatmaps",
  "version": 1
 }

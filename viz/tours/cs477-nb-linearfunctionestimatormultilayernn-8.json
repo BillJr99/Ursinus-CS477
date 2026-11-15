@@ -1,23 +1,33 @@
 {
  "code": "# Plug in values\nx_example = 10\ny_example = v1 * relu(w1 * x_example + b1) + v2 * relu(w2 * x_example + b2) + c\nprint(f\"For x = {x_example}, y = {y_example:.4f}\")",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You substitute a scalar into the stored network expression.",
  "example": "cs477-nb-linearfunctionestimatormultilayernn-8",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 2-4 run the main code and print the results.",
+   "description": "You set x_example to 10. This value becomes the input to both hidden neurons.",
    "kind": "reveal",
-   "lines": "2-4"
+   "lines": "1-2"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "4",
-   "trace_step": 3
+   "answer": "It is added once after both weighted ReLU outputs. Each hidden neuron has its own input weight and bias inside relu.",
+   "kind": "predict",
+   "lines": "3",
+   "question": "Where does the output bias c enter this prediction?"
+  },
+  {
+   "description": "You compute y_example from the stored parameters in one expression. This block evaluates the network without updating its weights.",
+   "kind": "reveal",
+   "lines": "3"
+  },
+  {
+   "description": "You print the prediction with four decimal places. The recording reports y=7.0000 for x=10.",
+   "kind": "reveal",
+   "lines": "4"
   }
  ],
- "title": "Notebook LinearFunctionEstimatorMultiLayerNN.ipynb",
+ "title": "Evaluate the two-neuron network at one input",
  "version": 1
 }

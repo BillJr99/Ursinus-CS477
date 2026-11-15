@@ -1,55 +1,33 @@
 {
  "code": "def cluster_purity(y_true, labels, k):\n    purity_sum = 0\n    mapping = {}\n    for j in range(k):\n        idx = np.where(labels==j)[0]\n        if len(idx)==0:\n            mapping[j] = None\n            continue\n        vals, counts = np.unique(y_true[idx], return_counts=True)\n        maj = vals[np.argmax(counts)]\n        purity_sum += np.max(counts)\n        mapping[j] = int(maj)\n    purity = purity_sum / len(y_true)\n    return purity, mapping\n\npurity, mapping = cluster_purity(y, labels, k)\nprint(f\"Purity (majority mapping): {purity:.3f}\")\nprint(\"Cluster → species mapping:\", {j: (mapping[j] if mapping[j] is None else target_names[mapping[j]]) for j in range(k)})",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You label clusters by their majority species and count majority members.",
  "example": "cs477-nb-kmeans-clustering-iris-from-scratch-10",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 1-14 define `cluster_purity(y_true, labels, k)`.",
+   "description": "You visit each cluster and collect its assigned row indices. Empty clusters receive None in mapping and contribute no count.",
    "kind": "reveal",
-   "lines": "1-14"
+   "lines": "1-8"
   },
   {
-   "description": "Line 4 loops over `range(k)`.",
-   "kind": "focus",
-   "lines": "4"
+   "description": "You find the most frequent true label in each populated cluster. Purity divides the sum of those majority counts by the total number of rows.",
+   "kind": "reveal",
+   "lines": "9-14"
   },
   {
-   "description": "Line 6 checks `len(idx)==0`.",
-   "kind": "focus",
-   "lines": "6"
+   "answer": "Each cluster chooses independently. The code imposes no one-to-one restriction on mapping.",
+   "kind": "predict",
+   "lines": "9-12",
+   "question": "Does choosing a majority label for one cluster prevent another cluster from choosing it?"
   },
   {
-   "description": "Line 14 returns `purity, mapping`.",
-   "kind": "focus",
-   "lines": "14"
-  },
-  {
-   "description": "Lines 16-18 run the main code and print the results.",
+   "description": "You print purity 0.833 for the recorded assignments. The mapping names cluster 0 versicolor, cluster 1 setosa, and cluster 2 virginica.",
    "kind": "reveal",
    "lines": "16-18"
-  },
-  {
-   "description": "Here `cluster_purity` is called for the first time; its frame appears on the right.",
-   "kind": "run",
-   "lines": "2",
-   "trace_step": 2
-  },
-  {
-   "description": "Here `cluster_purity` returns, the first time it does.",
-   "kind": "run",
-   "lines": "14",
-   "trace_step": 28
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "18",
-   "trace_step": 34
   }
  ],
- "title": "Notebook KMeans_Clustering_Iris_From_Scratch.ipynb",
+ "title": "Measure cluster purity",
  "version": 1
 }

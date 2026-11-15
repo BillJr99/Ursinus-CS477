@@ -1,23 +1,33 @@
 {
  "code": "iris = datasets.load_iris()\nX = iris.data.astype(float)\ny = iris.target\ntarget_names = iris.target_names\nfeature_names = iris.feature_names\n\nprint(\"X shape:\", X.shape, \"| classes:\", list(target_names))\nX_std, mu, sd = standardize(X)\nZ, comps, evr = pca_svd(X_std, n_components=2)\nprint(\"PCA EVR (first two):\", evr)",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You load the feature matrix and compute a two-component view.",
  "example": "cs477-nb-kmeans-clustering-iris-from-scratch-3",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 1-10 run the main code and print the results.",
+   "description": "You load Iris features, target labels, and their names. X holds floating-point measurements, while y holds the class labels.",
    "kind": "reveal",
-   "lines": "1-10"
+   "lines": "1-5"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "10",
-   "trace_step": 9
+   "description": "You print the dataset shape and standardize X. The recording reports 150 rows, four features, and three named species.",
+   "kind": "reveal",
+   "lines": "7-8"
+  },
+  {
+   "answer": "It receives X_std and requests two components. Z stores the projected observations.",
+   "kind": "predict",
+   "lines": "9",
+   "question": "Does the principal-component call use the raw features or standardized features?"
+  },
+  {
+   "description": "You print the explained variance ratios, the fractions of variance associated with those components. The recorded values are 0.7296 and 0.2285.",
+   "kind": "reveal",
+   "lines": "9-10"
   }
  ],
- "title": "Notebook KMeans_Clustering_Iris_From_Scratch.ipynb",
+ "title": "Prepare Iris features for projection",
  "version": 1
 }

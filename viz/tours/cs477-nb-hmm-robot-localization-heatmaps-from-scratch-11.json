@@ -1,23 +1,33 @@
 {
  "code": "# Initial belief: uniform over free cells\nb0 = np.zeros(N, dtype=float)\nb0[free_states] = 1.0 / len(free_states)\n\n# Use the same T_by_action as in simulation (known model)\nbeliefs = forward_filter(actions, observations, maze, T_by_action_sim, b0, sensor_correct=sensor_correct)\nprint(\"Computed beliefs for T+1 =\", len(beliefs))",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You initialize free-cell probabilities and compute the belief sequence.",
  "example": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-11",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 2-7 run the main code and print the results.",
+   "description": "You allocate one zero probability for each of the N grid positions. This creates the initial belief vector b0.",
    "kind": "reveal",
-   "lines": "2-7"
+   "lines": "1-2"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "7",
-   "trace_step": 4
+   "answer": "Only free_states receive 1 divided by the number of free states. Every free cell receives the same probability.",
+   "kind": "predict",
+   "lines": "3",
+   "question": "Which positions receive positive initial probability?"
+  },
+  {
+   "description": "You pass b0 into forward_filter with the actions and observations. The call uses the simulation's transition matrices and the supplied sensor_correct value.",
+   "kind": "reveal",
+   "lines": "3-6"
+  },
+  {
+   "description": "You print the length of the returned belief sequence. The recording reports T+1 = 17.",
+   "kind": "reveal",
+   "lines": "7"
   }
  ],
- "title": "Notebook HMM_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+ "title": "Filter from a uniform prior",
  "version": 1
 }

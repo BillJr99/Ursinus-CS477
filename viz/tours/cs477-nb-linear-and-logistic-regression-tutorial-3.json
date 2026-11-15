@@ -1,45 +1,45 @@
 {
  "code": "\ndef mse(theta0, theta1, X, y):\n    y_hat = theta0 + theta1 * X[:, 0]\n    return np.mean((y_hat - y)**2)\n\nprint(\"MSE at theta0=0, theta1=0:\", mse(0, 0, X, y))\n",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "Define mse(theta0, theta1, X, y) to compute y_hat = theta0 + theta1 * X[:, 0] and np.mean((y_hat - y)**2), then evaluate it at theta0 = 0, theta1 = 0.",
  "example": "cs477-nb-linear-and-logistic-regression-tutorial-3",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: agy free model",
  "steps": [
   {
-   "description": "Lines 2-4 define `mse(theta0, theta1, X, y)`.",
+   "description": "Define `mse(theta0, theta1, X, y)` to compute linear predictions `y_hat = theta0 + theta1 * X[:, 0]` and return the average squared residual `np.mean((y_hat - y)**2)`.",
    "kind": "reveal",
    "lines": "2-4"
   },
   {
-   "description": "Line 4 returns `np.mean((y_hat - y)**2)`.",
-   "kind": "focus",
-   "lines": "4"
-  },
-  {
-   "description": "Line 6 runs the main code and print the results.",
+   "description": "Call `mse(0, 0, X, y)` and print the baseline mean squared error when both intercept and slope are zero.",
    "kind": "reveal",
    "lines": "6"
   },
   {
-   "description": "Here `mse` is called for the first time; its frame appears on the right.",
+   "description": "Look at lines 3-4: `y_hat - y` forms the vector of residuals for all `n` points, squaring `(y_hat - y)**2` makes every residual non-negative, and `np.mean(...)` averages them.",
+   "kind": "focus",
+   "lines": "3-4"
+  },
+  {
+   "answer": "`y_hat` is a vector of all zeros, so `np.mean((0 - y)**2)` simplifies to `np.mean(y**2)` (`64.45133245844147`).",
+   "kind": "predict",
+   "lines": "3-6",
+   "question": "When `theta0 = 0` and `theta1 = 0` in `mse(0, 0, X, y)`, what is `y_hat` on line 3, and what does `np.mean((y_hat - y)**2)` simplify to?"
+  },
+  {
+   "description": "Inside `mse(0, 0, X, y)`, line 3 computes `y_hat = 0 + 0 * X[:, 0]` (an array of 100 zeros).",
    "kind": "run",
    "lines": "3",
    "trace_step": 2
   },
   {
-   "description": "Here `mse` returns, the first time it does.",
+   "description": "Line 4 returns `np.mean((y_hat - y)**2)` (`64.45133245844147`), which line 6 prints.",
    "kind": "run",
    "lines": "4",
-   "trace_step": 4
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "6",
-   "trace_step": 5
+   "trace_step": 3
   }
  ],
- "title": "Notebook Linear_and_Logistic_Regression_Tutorial.ipynb",
+ "title": "Computing Mean Squared Error (MSE) for 1D Linear Regression",
  "version": 1
 }

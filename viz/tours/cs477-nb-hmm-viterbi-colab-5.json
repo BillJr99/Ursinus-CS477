@@ -1,28 +1,33 @@
 {
  "code": "\n# Define the toy HMM\nstates = [\"Rainy\", \"Sunny\"]\nobservations = [\"walk\", \"shop\", \"clean\"]\nA = np.array([[0.7, 0.3],\n              [0.4, 0.6]], dtype=float)\nB = np.array([[0.1, 0.4, 0.5],\n              [0.6, 0.3, 0.1]], dtype=float)\npi = np.array([0.6, 0.4], dtype=float)\n\nhmm = HMM(states=states, observations=observations, A=A, B=B, pi=pi)\n\n# Observation sequence: walk, shop, clean\nobs_seq_names = [\"walk\", \"shop\", \"clean\"]\nobs_seq = [hmm.obs_to_idx[o] for o in obs_seq_names]\n\nprint(\"Observation indices:\", obs_seq)\nprint(\"Observation names:\", obs_seq_names)\n",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You connect named states and observations to the model's numeric arrays.",
  "example": "cs477-nb-hmm-viterbi-colab-5",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 3-14 run the main code.",
+   "description": "You define Rainy and Sunny states and three observation names. A stores transitions, B stores observation probabilities, and pi stores initial state probabilities.",
    "kind": "reveal",
-   "lines": "3-14"
+   "lines": "2-9"
   },
   {
-   "description": "Lines 15-18 continue the main code and print the results.",
+   "description": "You construct HMM from these arrays and names. The selected observation sequence is walk, shop, clean.",
+   "kind": "reveal",
+   "lines": "11-14"
+  },
+  {
+   "answer": "The lookup produces [0,1,2], following the observation names' defined order.",
+   "kind": "predict",
+   "lines": "15",
+   "question": "Which numeric sequence represents walk, shop, clean in this model?"
+  },
+  {
+   "description": "You print the numeric sequence beside its original names. The recorded output confirms both representations in the same order.",
    "kind": "reveal",
    "lines": "15-18"
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "18",
-   "trace_step": 21
   }
  ],
- "title": "Notebook HMM_Viterbi_Colab.ipynb",
+ "title": "Define the weather model and observations",
  "version": 1
 }

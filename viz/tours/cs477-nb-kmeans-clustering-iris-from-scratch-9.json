@@ -1,47 +1,33 @@
 {
  "code": "def pairwise_distances(X):\n    X2 = np.sum(X*X, axis=1, keepdims=True)\n    D2 = X2 + X2.T - 2*X@X.T\n    D2[D2<0] = 0.0\n    return np.sqrt(D2)\n\ndef silhouette_score_labels(X, labels):\n    n = len(labels)\n    D = pairwise_distances(X)\n    sil = np.zeros(n)\n    for i in range(n):\n        ci = labels[i]\n        mask_same = (labels == ci)\n        mask_same[i] = False\n        if np.any(mask_same):\n            a = np.mean(D[i, mask_same])\n        else:\n            a = 0.0\n        b = np.inf\n        for c in np.unique(labels):\n            if c == ci: continue\n            mask_c = (labels == c)\n            if np.any(mask_c):\n                b = min(b, np.mean(D[i, mask_c]))\n        denom = max(a, b) if max(a,b) > 0 else 1.0\n        sil[i] = (b - a) / denom\n    return float(np.mean(sil)), sil\n\nsil_mean, sil_all = silhouette_score_labels(X_std, labels)\nprint(f\"Silhouette score (k={k}): {sil_mean:.3f}\")",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You follow the silhouette calculation for the existing labels.",
  "example": "cs477-nb-kmeans-clustering-iris-from-scratch-9",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 1-5 define `pairwise_distances(X)`.",
+   "description": "You build squared pairwise distances from dot products and squared norms. Negative roundoff values are set to zero before taking square roots.",
    "kind": "reveal",
    "lines": "1-5"
   },
   {
-   "description": "Line 5 returns `np.sqrt(D2)`.",
-   "kind": "focus",
-   "lines": "5"
-  },
-  {
-   "description": "Lines 7-27 define `silhouette_score_labels(X, labels)`.",
+   "description": "You compute a as the mean distance to other points with the same label. Removing index i excludes the point's self-distance.",
    "kind": "reveal",
-   "lines": "7-27"
+   "lines": "7-18"
   },
   {
-   "description": "Line 11 loops over `range(n)`.",
-   "kind": "focus",
-   "lines": "11"
+   "answer": "It takes the smallest of the separate other-cluster mean distances. Each candidate mean uses only one other label.",
+   "kind": "predict",
+   "lines": "19-24",
+   "question": "Does b average distances to all other clusters together?"
   },
   {
-   "description": "Line 20 loops over `np.unique(labels)`.",
-   "kind": "focus",
-   "lines": "20"
-  },
-  {
-   "description": "Line 23 checks `np.any(mask_c)`.",
-   "kind": "focus",
-   "lines": "23"
-  },
-  {
-   "description": "Lines 29-30 run the main code and print the results.",
+   "description": "You calculate (b-a)/max(a,b) for each point and average the results. The recorded mean silhouette score for k=3 is 0.460.",
    "kind": "reveal",
-   "lines": "29-30"
+   "lines": "25-30"
   }
  ],
- "title": "Notebook KMeans_Clustering_Iris_From_Scratch.ipynb",
+ "title": "Compare within-cluster and other-cluster distances",
  "version": 1
 }

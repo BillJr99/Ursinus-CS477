@@ -1,27 +1,33 @@
 {
  "code": "# Colab download helper\nimport shutil\nfrom pathlib import Path\ntry:\n    from google.colab import files  # type: ignore\n    if Path('artifacts').exists():\n        shutil.make_archive('artifacts', 'zip', 'artifacts')\n        files.download('artifacts.zip')\n    else:\n        print('No artifacts folder found.')\nexcept Exception as e:\n    print('Colab download helper not available in this environment:', e)",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You inspect the archive request and its recorded fallback message.",
  "example": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-10",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 2-3 import `shutil` and `pathlib`.",
+   "description": "You import archive and path tools before trying the Colab files import. Exceptions within the try block reach the handler below.",
    "kind": "reveal",
-   "lines": "2-3"
+   "lines": "1-5"
   },
   {
-   "description": "Lines 4-12 run the main code and print the results.",
+   "description": "You archive artifacts and request artifacts.zip when the directory exists. The other branch prints No artifacts folder found.",
    "kind": "reveal",
-   "lines": "4-12"
+   "lines": "6-10"
   },
   {
-   "description": "Line 6 checks `Path('artifacts').exists()`.",
-   "kind": "focus",
-   "lines": "6"
+   "answer": "Yes. files.download sits inside the try block, so the handler prints its helper-unavailable message and exception text.",
+   "kind": "predict",
+   "lines": "11-12",
+   "question": "Does an exception from the download call reach this handler?"
+  },
+  {
+   "description": "You see that fallback in the recording. Its exception reports google.colab.files.download unavailable in code-viz.",
+   "kind": "reveal",
+   "lines": "11-12"
   }
  ],
- "title": "Notebook Kalman_Filter_Robot_Localization_Maze_Heatmaps.ipynb",
+ "title": "Follow the localization download helper",
  "version": 1
 }

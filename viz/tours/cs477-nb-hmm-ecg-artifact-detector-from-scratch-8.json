@@ -1,38 +1,33 @@
 {
  "code": "logB = emission_loglik_sequence(Xs, model[\"means\"], model[\"vars\"])\nalpha, beta, gamma, xi, ll = forward_backward_scaled(logB, model[\"pi\"], model[\"A\"])\npath = viterbi(Xs, model)\n\nfeat_ix_hf = 3  # HF bandpower\nfeat_ix_der = 1 # abs-derivative\nscores = []\nfor k in range(K):\n    idx = np.where(path == k)[0]\n    if len(idx)==0:\n        scores.append(-np.inf)\n    else:\n        scores.append(X[idx, feat_ix_hf].mean() + X[idx, feat_ix_der].mean())\nartifact_state = int(np.argmax(scores))\nclean_state = 1 - artifact_state if K==2 else int(np.argmin(scores))\nprint(f\"Assigned labels: artifact_state={artifact_state}, clean_state={clean_state}\")\n",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You score decoded states using signal features to choose the artifact label.",
  "example": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-8",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 1-13 run the main code.",
+   "description": "You compute emission log likelihoods and forward-backward results from Xs. Viterbi separately returns the decoded state path.",
    "kind": "reveal",
-   "lines": "1-13"
+   "lines": "1-3"
   },
   {
-   "description": "Line 8 loops over `range(K)`.",
-   "kind": "focus",
-   "lines": "8"
+   "description": "You group windows by decoded state. Each state's score adds mean high-frequency band power to mean absolute derivative using the original features X.",
+   "kind": "reveal",
+   "lines": "5-13"
   },
   {
-   "description": "Line 10 checks `len(idx)==0`.",
-   "kind": "focus",
-   "lines": "10"
+   "answer": "It receives negative infinity. A state with assigned windows instead receives the two-feature mean sum.",
+   "kind": "predict",
+   "lines": "10-14",
+   "question": "What score does a state receive if the decoded path assigns it no windows?"
   },
   {
-   "description": "Lines 14-16 continue the main code and print the results.",
+   "description": "You label the highest-scoring state artifact. For K=2, the other state becomes clean; the recording assigns artifact_state=0 and clean_state=1.",
    "kind": "reveal",
    "lines": "14-16"
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "16",
-   "trace_step": 18
   }
  ],
- "title": "Notebook HMM_ECG_Artifact_Detector_From_Scratch.ipynb",
+ "title": "Assign meanings to the hidden states",
  "version": 1
 }

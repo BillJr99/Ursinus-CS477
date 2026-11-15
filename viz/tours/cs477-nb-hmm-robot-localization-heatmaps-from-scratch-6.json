@@ -1,52 +1,38 @@
 {
  "code": "ACTIONS = ['N','E','S','W']\ndelta = {'N':(-1,0), 'E':(0,1), 'S':(1,0), 'W':(0,-1)}\n\ndef neighbors(i, j, maze):\n    nbrs = {}\n    for a in ACTIONS:\n        di, dj = delta[a]\n        ni, nj = i+di, j+dj\n        if 0 <= ni < H and 0 <= nj < W and maze.grid[ni,nj]==0:\n            nbrs[a] = (ni, nj)\n    return nbrs\n\ndef transition_matrix_for_action(action, maze, p_success=0.8, p_slip=0.15):\n    # Create T of shape (N,N) with rows = prev state i, cols = next state j\n    # We fill only for free states; walls remain zero and self-loop\n    T = np.zeros((N,N), dtype=float)\n    for s in range(N):\n        i, j = ij(s, W)\n        if maze.grid[i,j]==1:\n            T[s,s] = 1.0\n            continue\n        nbrs = neighbors(i, j, maze)  # dict action->(ni,nj)\n        stay_prob = 1.0\n        # success move\n        if action in nbrs:\n            t = idx(*nbrs[action], W)\n            T[s, t] += p_success\n            stay_prob -= p_success\n        # slips to other directions\n        other_dirs = [a for a in ACTIONS if a != action and a in nbrs]\n        if len(other_dirs) > 0:\n            slip_each = p_slip / len(other_dirs)\n            for a in other_dirs:\n                t = idx(*nbrs[a], W)\n                T[s, t] += slip_each\n            stay_prob -= p_slip\n        # remaining probability stays\n        T[s, s] += max(0.0, stay_prob)\n        # normalize numerical noise\n        row_sum = T[s].sum()\n        if row_sum > 0:\n            T[s] /= row_sum\n        else:\n            T[s, s] = 1.0\n    return T\n\n# Precompute T for each action\nT_by_action = {a: transition_matrix_for_action(a, maze) for a in ACTIONS}\nprint(\"Built transition matrices for actions:\", list(T_by_action.keys()))",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You assign movement, slip, and stay probabilities for each maze state.",
  "example": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-6",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 1-2 run the main code.",
+   "description": "You map each action to a row-column offset. neighbors keeps destinations that lie inside the grid and occupy free cells.",
    "kind": "reveal",
-   "lines": "1-2"
+   "lines": "1-11"
   },
   {
-   "description": "Lines 4-11 define `neighbors(i, j, maze)`.",
+   "description": "You create a matrix with previous states in rows and next states in columns. Walls transition to themselves; a legal intended move receives p_success.",
    "kind": "reveal",
-   "lines": "4-11"
+   "lines": "13-28"
   },
   {
-   "description": "Line 6 loops over `ACTIONS`.",
-   "kind": "focus",
-   "lines": "6"
+   "answer": "It remains in stay_prob because the success branch is skipped. Legal slips still receive their share, and the remaining probability goes to the current state.",
+   "kind": "predict",
+   "lines": "23-28,30-38",
+   "question": "Where does the intended-move probability go when that move is blocked?"
   },
   {
-   "description": "Line 11 returns `nbrs`.",
-   "kind": "focus",
-   "lines": "11"
-  },
-  {
-   "description": "Lines 13-45 define `transition_matrix_for_action(action, maze, p_success, p_slip)`.",
+   "description": "You divide p_slip among legal directions other than the requested action. You then add the stay probability and normalize the row.",
    "kind": "reveal",
-   "lines": "13-45"
+   "lines": "29-45"
   },
   {
-   "description": "Line 25 checks `action in nbrs`.",
-   "kind": "focus",
-   "lines": "25"
-  },
-  {
-   "description": "Line 33 loops over `other_dirs`.",
-   "kind": "focus",
-   "lines": "33"
-  },
-  {
-   "description": "Lines 48-49 continue the main code and print the results.",
+   "description": "You build one matrix per action. The recording lists N, E, S, and W as the dictionary keys.",
    "kind": "reveal",
-   "lines": "48-49"
+   "lines": "47-49"
   }
  ],
- "title": "Notebook HMM_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+ "title": "Build action transition matrices",
  "version": 1
 }

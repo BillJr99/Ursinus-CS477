@@ -1,28 +1,33 @@
 {
  "code": "import os\nos.makedirs(\"artifacts\", exist_ok=True)\n\nnp.savez(\"artifacts/logreg_run.npz\",\n         w_gd=w_gd, w_nt=w_nt,\n         hist_gd=hist_gd, hist_nt=hist_nt,\n         mu=mu, sigma=sigma,\n         X_te=X_te, y_te=y_te,\n         p_te_gd=predict_proba(Phi_te, w_gd),\n         p_te_nt=predict_proba(Phi_te, w_nt))\n\nprint(\"Artifacts:\", os.listdir(\"artifacts\"))",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You follow two fitted models and their test probabilities into one artifact.",
  "example": "cs477-nb-logistic-regression-mle-from-scratch-10",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Line 1 imports `os`.",
+   "description": "You create artifacts and begin logreg_run.npz. The archive stores gradient-descent and Newton weights with their optimization histories.",
    "kind": "reveal",
-   "lines": "1"
+   "lines": "1-6"
   },
   {
-   "description": "Lines 2-12 run the main code and print the results.",
+   "description": "You include mu and sigma alongside test features and labels. These entries preserve scaling values and the test split.",
    "kind": "reveal",
-   "lines": "2-12"
+   "lines": "7-8"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "12",
-   "trace_step": 11
+   "answer": "Both use Phi_te. The first uses w_gd and the second uses w_nt.",
+   "kind": "predict",
+   "lines": "9-10",
+   "question": "Do the two probability entries use the same test design matrix?"
+  },
+  {
+   "description": "You save both sets of test probabilities and list artifacts. The recorded directory contains logreg_run.npz.",
+   "kind": "reveal",
+   "lines": "9-12"
   }
  ],
- "title": "Notebook Logistic_Regression_MLE_From_Scratch.ipynb",
+ "title": "Inspect the logistic regression archive",
  "version": 1
 }

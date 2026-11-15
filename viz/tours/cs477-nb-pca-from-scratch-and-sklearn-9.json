@@ -1,42 +1,33 @@
 {
  "code": "\nfrom sklearn.model_selection import StratifiedKFold\n\ndef cross_val_ovr_linearreg(X, y, use_pca=False, n_components=2, n_splits=5):\n    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)\n    metrics = {\"r2_macro\": [], \"f1_macro\": [], \"precision_macro\": [], \"recall_macro\": [], \"roc_auc_macro\": []}\n    for tr, te in skf.split(X, y):\n        Xtr, Xte = X[tr], X[te]\n        ytr, yte = y[tr], y[te]\n        scaler = StandardScaler().fit(Xtr)\n        Xtr_s = scaler.transform(Xtr)\n        Xte_s = scaler.transform(Xte)\n        if use_pca:\n            pca = SKPCA(n_components=n_components, random_state=42).fit(Xtr_s)\n            Xtr_s = pca.transform(Xtr_s)\n            Xte_s = pca.transform(Xte_s)\n        clf = OVRLinearRegression().fit(Xtr_s, ytr)\n        yhat = clf.predict(Xte_s)\n        scores = clf.decision_function(Xte_s)\n        r2s, r2m = clf.score_individual_r2(Xte_s, yte)\n        pr, rc, f1, _ = precision_recall_fscore_support(yte, yhat, average=\"macro\", zero_division=0)\n        auc = roc_auc_score(yte, scores, multi_class=\"ovr\", average=\"macro\")\n        metrics[\"r2_macro\"].append(r2m)\n        metrics[\"f1_macro\"].append(f1)\n        metrics[\"precision_macro\"].append(pr)\n        metrics[\"recall_macro\"].append(rc)\n        metrics[\"roc_auc_macro\"].append(auc)\n    return {k: (float(np.mean(v)), float(np.std(v))) for k, v in metrics.items()}\n\ncv_no_pca = cross_val_ovr_linearreg(X, y, use_pca=False, n_components=2, n_splits=5)\ncv_pca    = cross_val_ovr_linearreg(X, y, use_pca=True,  n_components=2, n_splits=5)\nprint(\"CV (no PCA):\", {k: (round(m,4), round(s,4)) for k,(m,s) in cv_no_pca.items()})\nprint(\"CV (with PCA):\", {k: (round(m,4), round(s,4)) for k,(m,s) in cv_pca.items()})\n",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You inspect fold-specific preprocessing and aggregate evaluation metrics.",
  "example": "cs477-nb-pca-from-scratch-and-sklearn-9",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Line 2 imports `sklearn.model_selection`.",
+   "description": "You create shuffled stratified folds and select training and held-out rows for each. Each scaler fits only that fold's training features.",
    "kind": "reveal",
-   "lines": "2"
+   "lines": "2-12"
   },
   {
-   "description": "Lines 4-28 define `cross_val_ovr_linearreg(X, y, use_pca, n_components, n_splits)`.",
+   "description": "You optionally fit PCA on the scaled training fold before fitting the classifier. You compute every reported metric on that fold's held-out rows.",
    "kind": "reveal",
-   "lines": "4-28"
+   "lines": "13-22"
   },
   {
-   "description": "Line 7 loops over `skf.split(X, y)`.",
-   "kind": "focus",
-   "lines": "7"
+   "answer": "It contains the mean and standard deviation of that metric's fold scores. Each list receives one value per fold.",
+   "kind": "predict",
+   "lines": "23-28",
+   "question": "What does each pair in the returned metrics dictionary contain?"
   },
   {
-   "description": "Line 13 checks `use_pca`.",
-   "kind": "focus",
-   "lines": "13"
-  },
-  {
-   "description": "Line 28 returns a value.",
-   "kind": "focus",
-   "lines": "28"
-  },
-  {
-   "description": "Lines 30-33 run the main code and print the results.",
+   "description": "You compare five-fold results with and without two-component PCA. The recorded macro F1 means are 0.8029 without PCA and 0.8098 with PCA, while ROC AUC means are 0.9207 and 0.9160.",
    "kind": "reveal",
    "lines": "30-33"
   }
  ],
- "title": "Notebook PCA_From_Scratch_and_Sklearn.ipynb",
+ "title": "Compare pipelines across stratified folds",
  "version": 1
 }

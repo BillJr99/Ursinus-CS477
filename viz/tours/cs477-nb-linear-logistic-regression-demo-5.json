@@ -1,23 +1,33 @@
 {
  "code": "# Example: create a new sample (remember: diabetes features are standardized)\n# Shape must be (1, n_features)\n# Keep the same order as the features we trained on\nnew_sample = np.array([[0.03, 0.05, 0.05, 0.01]])\n\n# Predict disease progression for this new point\nnew_pred = reg_pipeline.predict(new_sample)\n\nprint(\"New BMI sample (standardized):\", new_sample)\nprint(\"Predicted disease progression:\", new_pred[0])",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You preserve the expected feature layout and read the pipeline's recorded output.",
  "example": "cs477-nb-linear-logistic-regression-demo-5",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 4-10 run the main code and print the results.",
+   "description": "You create one row with four standardized feature values. The comment requires the same feature order used during training.",
    "kind": "reveal",
-   "lines": "4-10"
+   "lines": "1-4"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "10",
-   "trace_step": 4
+   "answer": "new_sample has shape (1,4), so predict receives one row with four features.",
+   "kind": "predict",
+   "lines": "7",
+   "question": "Does predict receive a one-dimensional list or a two-dimensional feature matrix?"
+  },
+  {
+   "description": "You send the row to reg_pipeline.predict. new_pred holds the returned predictions.",
+   "kind": "reveal",
+   "lines": "6-7"
+  },
+  {
+   "description": "You print the row and its first prediction. The recorded prediction is -80100656422018.62; this snippet provides no explanation for that large negative value.",
+   "kind": "reveal",
+   "lines": "9-10"
   }
  ],
- "title": "Notebook linear_logistic_regression_demo.ipynb",
+ "title": "Inspect a new-row regression prediction",
  "version": 1
 }

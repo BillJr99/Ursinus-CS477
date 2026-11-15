@@ -1,92 +1,50 @@
 {
  "code": "from collections import deque\nimport heapq\n\ngraph = {  # (neighbor, cost)\n    'S': [('A', 1), ('G', 3)],\n    'A': [('G', 1)],\n    'G': [],\n}\n\ndef bfs(start, goal):\n    frontier = deque([[start]])\n    explored = set()\n    while frontier:\n        path = frontier.popleft()          # FIFO\n        node = path[-1]\n        if node == goal: return path\n        if node in explored: continue\n        explored.add(node)\n        for nbr, _ in graph[node]:\n            frontier.append(path + [nbr])\n\ndef dfs(start, goal):\n    frontier = [[start]]\n    explored = set()\n    while frontier:\n        path = frontier.pop()              # LIFO — the only change!\n        node = path[-1]\n        if node == goal: return path\n        if node in explored: continue\n        explored.add(node)\n        for nbr, _ in graph[node]:\n            frontier.append(path + [nbr])\n\ndef ucs(start, goal):\n    frontier = [(0, [start])]              # priority queue on g(n)\n    explored = set()\n    while frontier:\n        cost, path = heapq.heappop(frontier)\n        node = path[-1]\n        if node == goal: return cost, path\n        if node in explored: continue\n        explored.add(node)\n        for nbr, c in graph[node]:\n            heapq.heappush(frontier, (cost + c, path + [nbr]))\n\nprint(\"BFS:\", bfs('S', 'G'))   # fewest edges: S->G\nprint(\"DFS:\", dfs('S', 'G'))\nprint(\"UCS:\", ucs('S', 'G'))   # cheapest: (2, S->A->G)",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "Compare how a FIFO queue (bfs), a LIFO stack (dfs), and a g(n) min-heap (ucs) explore the same 3-node graph from 'S' to 'G'.",
  "example": "cs477-liascript-uninformedsearch-1",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: agy free model",
  "steps": [
   {
-   "description": "Lines 1-2 import `collections` and `heapq`.",
+   "description": "Import `deque` and `heapq` and define `graph`, where `'S'` connects to `('A', 1)` and `('G', 3)`, and `'A'` connects to `('G', 1)`.",
    "kind": "reveal",
-   "lines": "1-2"
+   "lines": "1-8"
   },
   {
-   "description": "Lines 4-8 run the main code.",
+   "description": "Define `bfs(start, goal)` using a `deque` with `frontier.popleft()` (FIFO) and `dfs(start, goal)` using a list with `frontier.pop()` (LIFO).",
    "kind": "reveal",
-   "lines": "4-8"
+   "lines": "10-33"
   },
   {
-   "description": "Lines 10-20 define `bfs(start, goal)`.",
+   "description": "Define `ucs(start, goal)` using a min-heap ordered by cumulative edge cost `cost + c` (`heapq.heappop` and `heapq.heappush`), then run all three searches from `'S'` to `'G'`.",
    "kind": "reveal",
-   "lines": "10-20"
+   "lines": "34-48"
   },
   {
-   "description": "Line 13 repeats while `frontier` is true.",
+   "description": "Compare lines 14, 26, and 38: all three algorithms share the exact same graph-search loop, differing only in how `frontier` removes and orders candidate paths.",
    "kind": "focus",
-   "lines": "13"
+   "lines": "14,26,38,44"
   },
   {
-   "description": "Line 17 checks `node in explored`.",
-   "kind": "focus",
-   "lines": "17"
+   "answer": "`bfs` ignores edge weights and returns the 1-edge path `['S', 'G']`, while `ucs` pops lowest cumulative cost first and returns `(2, ['S', 'A', 'G'])`.",
+   "kind": "predict",
+   "lines": "4-7,14-20,38-44,46-48",
+   "question": "In `graph`, the direct edge `'S' -> 'G'` costs `3`, while the two-edge path `'S' -> 'A' -> 'G'` costs `1 + 1 = 2`. Which path does `bfs('S', 'G')` return, and which path does `ucs('S', 'G')` return?"
   },
   {
-   "description": "Lines 22-32 define `dfs(start, goal)`.",
-   "kind": "reveal",
-   "lines": "22-32"
-  },
-  {
-   "description": "Line 28 returns `path`.",
-   "kind": "focus",
-   "lines": "28"
-  },
-  {
-   "description": "Lines 34-44 define `ucs(start, goal)`.",
-   "kind": "reveal",
-   "lines": "34-44"
-  },
-  {
-   "description": "Line 40 checks `node == goal`.",
-   "kind": "focus",
-   "lines": "40"
-  },
-  {
-   "description": "Lines 46-48 continue the main code and print the results.",
-   "kind": "reveal",
-   "lines": "46-48"
-  },
-  {
-   "description": "Here `bfs` is called for the first time; its frame appears on the right.",
+   "description": "`bfs('S', 'G')` has returned `['S', 'G']`, and line 47 now calls `dfs('S', 'G')`.",
    "kind": "run",
-   "lines": "11",
-   "trace_step": 10
+   "lines": "47",
+   "trace_step": 37
   },
   {
-   "description": "Here `bfs` returns, the first time it does.",
+   "description": "Inside `ucs('S', 'G')`, `heapq.heappop(frontier)` pops `(1, ['S', 'A'])` before `(3, ['S', 'G'])`, leading to `(2, ['S', 'A', 'G'])`.",
    "kind": "run",
-   "lines": "16",
-   "trace_step": 36
-  },
-  {
-   "description": "Here `dfs` is called for the first time; its frame appears on the right.",
-   "kind": "run",
-   "lines": "23",
-   "trace_step": 38
-  },
-  {
-   "description": "Here `dfs` returns, the first time it does.",
-   "kind": "run",
-   "lines": "28",
-   "trace_step": 55
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "48",
-   "trace_step": 84
+   "lines": "38",
+   "trace_step": 60
   }
  ],
- "title": "7. Runnable Code: All Three Searches in 40 Lines",
+ "title": "BFS, DFS, and Uniform-Cost Search on a Weighted Graph",
  "version": 1
 }

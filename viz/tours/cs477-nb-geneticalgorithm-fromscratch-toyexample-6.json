@@ -1,17 +1,33 @@
 {
  "code": "fig = plt.figure(figsize=(6,4))\nplt.plot(best_hist, label=\"best\")\nplt.plot(mean_hist, label=\"mean\")\nplt.xlabel(\"Generation\"); plt.ylabel(\"Fitness (maximize)\")\nplt.title(\"GA Convergence on -Rastrigin (2D)\")\nplt.legend(); plt.tight_layout(); plt.show()",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You display two stored fitness histories across generations.",
  "example": "cs477-nb-geneticalgorithm-fromscratch-toyexample-6",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 1-6 run the main code.",
+   "description": "You create a figure and plot best_hist with the label best. Each history entry supplies one plotted generation value.",
    "kind": "reveal",
-   "lines": "1-6"
+   "lines": "1-2"
+  },
+  {
+   "description": "You add mean_hist on the same axes with the label mean. Both curves share the fitness scale.",
+   "kind": "reveal",
+   "lines": "3"
+  },
+  {
+   "answer": "The vertical label says Fitness (maximize), so higher values represent better fitness.",
+   "kind": "predict",
+   "lines": "4",
+   "question": "Does a higher or lower plotted value represent better fitness on this chart?"
+  },
+  {
+   "description": "You label the horizontal axis Generation and identify the objective as negative Rastrigin in two dimensions. The legend distinguishes the two histories when the chart is displayed.",
+   "kind": "reveal",
+   "lines": "4-6"
   }
  ],
- "title": "Notebook GeneticAlgorithm_FromScratch_ToyExample.ipynb",
+ "title": "Compare best and mean fitness",
  "version": 1
 }

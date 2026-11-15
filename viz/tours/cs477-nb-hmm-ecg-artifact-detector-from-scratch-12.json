@@ -1,17 +1,33 @@
 {
  "code": "fig = plt.figure(figsize=(6,3))\nplt.plot(model[\"ll_history\"])\nplt.title(\"EM Log-Likelihood\")\nplt.xlabel(\"Iteration\"); plt.ylabel(\"Log-likelihood\")\nplt.tight_layout(); plt.show()\n",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You plot the stored log likelihood values across iterations.",
  "example": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-12",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 1-5 run the main code.",
+   "description": "You create a figure and plot model[ll_history]. Each stored value becomes one point in the plotted sequence.",
    "kind": "reveal",
-   "lines": "1-5"
+   "lines": "1-2"
+  },
+  {
+   "description": "You title the chart EM Log-Likelihood. EM names the expectation-maximization fitting procedure whose history the model stores.",
+   "kind": "reveal",
+   "lines": "3"
+  },
+  {
+   "answer": "It shows log likelihood. The horizontal axis identifies iteration positions in the stored history.",
+   "kind": "predict",
+   "lines": "4",
+   "question": "What quantity does the vertical axis show?"
+  },
+  {
+   "description": "You label the axes and display the chart. The supplied output includes no numeric history values from which to describe its shape.",
+   "kind": "reveal",
+   "lines": "4-5"
   }
  ],
- "title": "Notebook HMM_ECG_Artifact_Detector_From_Scratch.ipynb",
+ "title": "Display the model fitting history",
  "version": 1
 }

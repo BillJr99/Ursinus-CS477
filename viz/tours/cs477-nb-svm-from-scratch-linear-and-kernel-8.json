@@ -1,87 +1,33 @@
 {
  "code": "LAM = 1e-2\nw_pg, b_pg = fit_linear_svm_pegasos(X_tr, y_tr, lam=LAM, iters=40_000)\nw_bs, b_bs = batch_subgrad(X_tr, y_tr, lam=LAM, steps=2500, step0=0.7)\n\ndef dec_lin_pg(Z): return decision_linear(Z, w_pg, b_pg)\ndef dec_lin_bs(Z): return decision_linear(Z, w_bs, b_bs)\n\nyhat_pg = np.where(dec_lin_pg(X_te) >= 0, 1.0, -1.0)\nyhat_bs = np.where(dec_lin_bs(X_te) >= 0, 1.0, -1.0)\n\ndef hinge_loss(X, y, w, b):\n    margins = y*(X@w + b)\n    return float(np.mean(np.maximum(0.0, 1.0 - margins)))\n\nacc_pg, prec_pg, rec_pg, *_ = metrics(y_te, yhat_pg)\nacc_bs, prec_bs, rec_bs, *_ = metrics(y_te, yhat_bs)\nprint(f\"Pegasos: acc={acc_pg:.3f} prec={prec_pg:.3f} rec={rec_pg:.3f} hinge={hinge_loss(X_te,y_te,w_pg,b_pg):.3f}\")\nprint(f\"Batch  : acc={acc_bs:.3f} prec={prec_bs:.3f} rec={rec_bs:.3f} hinge={hinge_loss(X_te,y_te,w_bs,b_bs):.3f}\")",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You compare test labels and hinge losses for Pegasos and batch subgradient fits.",
  "example": "cs477-nb-svm-from-scratch-linear-and-kernel-8",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 1-3 run the main code.",
+   "description": "You fit both models with regularization strength 0.01. Each decision helper uses its own fitted weights and bias.",
    "kind": "reveal",
-   "lines": "1-3"
+   "lines": "1-6"
   },
   {
-   "description": "Line 5 defines `dec_lin_pg(Z)`.",
+   "answer": "It receives +1 because the comparison uses greater than or equal to zero. Negative scores receive -1.",
+   "kind": "predict",
+   "lines": "8-9",
+   "question": "Which label does a decision score of zero receive?"
+  },
+  {
+   "description": "You compute signed margins y*(X@w+b). Hinge loss averages max(0,1-margin), while metrics evaluates the thresholded labels.",
    "kind": "reveal",
-   "lines": "5"
+   "lines": "11-16"
   },
   {
-   "description": "Line 5 returns `decision_linear(Z, w_pg, b_pg)`.",
-   "kind": "focus",
-   "lines": "5"
-  },
-  {
-   "description": "Line 6 defines `dec_lin_bs(Z)`.",
+   "description": "You print Pegasos accuracy 0.775 and hinge loss 0.477 in the recording. Batch accuracy is 0.770 and hinge loss 0.478.",
    "kind": "reveal",
-   "lines": "6"
-  },
-  {
-   "description": "Line 6 returns `decision_linear(Z, w_bs, b_bs)`.",
-   "kind": "focus",
-   "lines": "6"
-  },
-  {
-   "description": "Lines 8-9 continue the main code.",
-   "kind": "reveal",
-   "lines": "8-9"
-  },
-  {
-   "description": "Lines 11-13 define `hinge_loss(X, y, w, b)`.",
-   "kind": "reveal",
-   "lines": "11-13"
-  },
-  {
-   "description": "Line 13 returns a value.",
-   "kind": "focus",
-   "lines": "13"
-  },
-  {
-   "description": "Lines 15-18 continue the main code and print the results.",
-   "kind": "reveal",
-   "lines": "15-18"
-  },
-  {
-   "description": "Here `dec_lin_pg` is called for the first time; its frame appears on the right.",
-   "kind": "run",
-   "lines": "5",
-   "trace_step": 6
-  },
-  {
-   "description": "Here `dec_lin_pg` returns, the first time it does.",
-   "kind": "run",
-   "lines": "5",
-   "trace_step": 7
-  },
-  {
-   "description": "Here `dec_lin_bs` is called for the first time; its frame appears on the right.",
-   "kind": "run",
-   "lines": "6",
-   "trace_step": 9
-  },
-  {
-   "description": "Here `dec_lin_bs` returns, the first time it does.",
-   "kind": "run",
-   "lines": "6",
-   "trace_step": 10
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "18",
-   "trace_step": 22
+   "lines": "17-18"
   }
  ],
- "title": "Notebook SVM_From_Scratch_Linear_and_Kernel.ipynb",
+ "title": "Compare two linear SVM fits",
  "version": 1
 }

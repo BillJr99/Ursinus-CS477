@@ -1,33 +1,33 @@
 {
  "code": "import os, json as _json\nos.makedirs(\"artifacts\", exist_ok=True)\n\nsummary = {\n    \"best_x\": best_x.tolist(),\n    \"best_fitness\": float(best_f),\n    \"config\": {k: (int(v) if isinstance(v, (np.integer,)) else float(v) if isinstance(v, (np.floating,)) else v)\n               for k,v in CFG.__dict__.items()}\n}\nwith open(\"artifacts/ga_summary.json\",\"w\") as f:\n    _json.dump(summary, f, indent=2)\n\nnp.savez(\"artifacts/ga_logs_and_population.npz\",\n         best_hist=best_hist, mean_hist=mean_hist,\n         final_pop=pop, final_fit=fit)\n\nprint(\"Artifacts:\", os.listdir(\"artifacts\"))",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You distinguish the JSON summary from the array archive.",
  "example": "cs477-nb-geneticalgorithm-fromscratch-toyexample-9",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Line 1 imports `os` and `json`.",
+   "description": "You create artifacts and build a summary of best_x, best_fitness, and configuration. Array and NumPy scalar conversions prepare those values for JSON.",
    "kind": "reveal",
-   "lines": "1"
+   "lines": "1-9"
   },
   {
-   "description": "Lines 2-15 run the main code.",
+   "description": "You serialize summary to ga_summary.json. indent=2 formats the object for reading.",
    "kind": "reveal",
-   "lines": "2-15"
+   "lines": "10-11"
   },
   {
-   "description": "Line 17 continues the main code and print the results.",
-   "kind": "reveal",
-   "lines": "17"
+   "answer": "It saves pop under final_pop in ga_logs_and_population.npz. The same archive includes final fitness and both histories.",
+   "kind": "predict",
+   "lines": "13-15",
+   "question": "Where does this example save the full final population?"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "17",
-   "trace_step": 33
+   "description": "You finish by listing the artifacts directory. The recording names ga_logs_and_population.npz and ga_summary.json.",
+   "kind": "reveal",
+   "lines": "13-17"
   }
  ],
- "title": "Notebook GeneticAlgorithm_FromScratch_ToyExample.ipynb",
+ "title": "Export the genetic algorithm results",
  "version": 1
 }

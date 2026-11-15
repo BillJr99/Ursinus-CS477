@@ -1,53 +1,33 @@
 {
  "code": "def idx(i, j, W):  # 2D -> 1D\n    return i*W + j\n\ndef ij(s, W):      # 1D -> 2D\n    return divmod(s, W)\n\n# Mask for free cells\nfree_mask = (maze.grid == 0)          # (H,W) True for free\nfree_states = np.where(free_mask.reshape(-1))[0]  # flattened indices of free cells\nnum_free = len(free_states)\nprint(\"Free cells:\", num_free, \"of\", N)\n\n# Helper to render a belief vector (over N) into an (H,W) image, zeroing walls.\ndef belief_to_grid(b, maze):\n    img = np.zeros((H,W), dtype=float)\n    img[free_mask] = b[free_mask.reshape(-1)]\n    return img",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You connect flat state indices to free cells in a grid image.",
  "example": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-5",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 1-2 define `idx(i, j, W)`.",
+   "description": "You flatten row i and column j with i*W+j. divmod reverses that mapping into a row and column.",
    "kind": "reveal",
-   "lines": "1-2"
+   "lines": "1-5"
   },
   {
-   "description": "Line 2 returns `i*W + j`.",
-   "kind": "focus",
-   "lines": "2"
-  },
-  {
-   "description": "Lines 4-5 define `ij(s, W)`.",
+   "description": "You mark zero-valued grid cells as free and extract their flat indices. The recording reports 28 free cells out of 35 positions.",
    "kind": "reveal",
-   "lines": "4-5"
+   "lines": "7-11"
   },
   {
-   "description": "Line 5 returns `divmod(s, W)`.",
-   "kind": "focus",
-   "lines": "5"
+   "answer": "They remain zero. The assignment copies belief entries only where free_mask is true.",
+   "kind": "predict",
+   "lines": "14-16",
+   "question": "What values appear at wall positions in the returned belief image?"
   },
   {
-   "description": "Lines 8-11 run the main code and print the results.",
+   "description": "You return an H by W image containing the free-cell beliefs. The helper uses the existing H, W, and free_mask to place those values.",
    "kind": "reveal",
-   "lines": "8-11"
-  },
-  {
-   "description": "Lines 14-17 define `belief_to_grid(b, maze)`.",
-   "kind": "reveal",
-   "lines": "14-17"
-  },
-  {
-   "description": "Line 17 returns `img`.",
-   "kind": "focus",
-   "lines": "17"
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "14",
-   "trace_step": 7
+   "lines": "13-17"
   }
  ],
- "title": "Notebook HMM_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+ "title": "Map belief indices onto the maze",
  "version": 1
 }

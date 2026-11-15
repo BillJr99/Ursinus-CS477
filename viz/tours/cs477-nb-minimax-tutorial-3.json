@@ -1,60 +1,33 @@
 {
  "code": "\ndef solve_row_minimax(A):\n    # Solve Row player's minimax mixed strategy for a zero-sum game with payoff A.\n    # Returns (x, v) where x is Row's mixed strategy, v is game value.\n    m, n = A.shape\n    # Decision vars: [x_1,...,x_m, v]; objective: minimize -v\n    c = np.zeros(m + 1); c[-1] = -1.0\n\n    # Constraints: A^T x >= v*1  <=>  -A^T x + 1*v <= 0\n    A_ub = np.zeros((n, m + 1)); b_ub = np.zeros(n)\n    for j in range(n):\n        A_ub[j, :m] = -A[:, j]\n        A_ub[j, -1] = 1.0\n\n    # Sum-to-one: sum x_i = 1\n    A_eq = np.zeros((1, m + 1)); A_eq[0, :m] = 1.0\n    b_eq = np.array([1.0])\n\n    # Bounds\n    bounds = [(0, 1)] * m + [(-1e9, 1e9)]\n\n    res = linprog(c, A_ub=A_ub, b_ub=b_ub, A_eq=A_eq, b_eq=b_eq, bounds=bounds, method=\"highs\")\n    if not res.success:\n        raise RuntimeError(\"LP failed: \" + res.message)\n    x = res.x[:m]; v = res.x[-1]\n    return x, v\n\nx, v = solve_row_minimax(A)\n\nprint(\"Row mixed strategy x:\", np.round(x, 4), \" (sum=\", np.round(x.sum(),4), \")\")\nprint(\"Guaranteed value v (expected leads/day):\", np.round(v, 4))\n\n# Sanity: expected payoff vs each Column pure action\nexpected_vs_cols = A.T @ x\nfor lbl, val in zip(col_labels, expected_vs_cols):\n    print(f\"Expected payoff vs Column={lbl:7s}: {val:.4f}\")\nprint(\"All should be >= v up to numerical tolerance.\")\n",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You encode a mixed strategy as a constrained optimization problem.",
  "example": "cs477-nb-minimax-tutorial-3",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 2-26 define `solve_row_minimax(A)`.",
+   "description": "You choose probabilities x and a guaranteed value v. Minimizing -v maximizes v, while each inequality requires a column action's expected payoff to reach v.",
    "kind": "reveal",
-   "lines": "2-26"
+   "lines": "2-13"
   },
   {
-   "description": "Line 11 loops over `range(n)`.",
-   "kind": "focus",
-   "lines": "11"
+   "description": "You constrain x to sum to one and bound each probability between zero and one. The value variable receives separate wide bounds.",
+   "kind": "reveal",
+   "lines": "15-20"
   },
   {
-   "description": "Line 23 checks `not res.success`.",
-   "kind": "focus",
-   "lines": "23"
+   "answer": "The function raises RuntimeError with the solver message. It returns x and v only after a successful result.",
+   "kind": "predict",
+   "lines": "22-26",
+   "question": "What happens if the linear program reports failure?"
   },
   {
-   "description": "Line 26 returns `x, v`.",
-   "kind": "focus",
-   "lines": "26"
-  },
-  {
-   "description": "Lines 28-37 run the main code and print the results.",
+   "description": "You print the recorded strategy [0.1228,0.4649,0.4123] and guaranteed value 3.8333. The checks against Search, Social, and Video each print expected payoff 3.8333.",
    "kind": "reveal",
    "lines": "28-37"
-  },
-  {
-   "description": "Line 35 loops over `zip(col_labels, expected_vs_cols)`.",
-   "kind": "focus",
-   "lines": "35"
-  },
-  {
-   "description": "Here `solve_row_minimax` is called for the first time; its frame appears on the right.",
-   "kind": "run",
-   "lines": "5",
-   "trace_step": 2
-  },
-  {
-   "description": "Here `solve_row_minimax` returns, the first time it does.",
-   "kind": "run",
-   "lines": "26",
-   "trace_step": 22
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "37",
-   "trace_step": 34
   }
  ],
- "title": "Notebook Minimax_Tutorial.ipynb",
+ "title": "Solve Row's guaranteed-payoff strategy",
  "version": 1
 }

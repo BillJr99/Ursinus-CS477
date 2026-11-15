@@ -1,27 +1,33 @@
 {
  "code": "# Colab download helper\nimport shutil\nfrom pathlib import Path\ntry:\n    from google.colab import files  # type: ignore\n    if Path('artifacts').exists():\n        shutil.make_archive('artifacts', 'zip', 'artifacts')\n        files.download('artifacts.zip')\n    else:\n        print('No artifacts folder found.')\nexcept Exception as e:\n    print('Colab download helper not available in this environment:', e)",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You inspect the archive branch and its recorded fallback.",
  "example": "cs477-nb-logistic-regression-mle-from-scratch-11",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 2-3 import `shutil` and `pathlib`.",
+   "description": "You import archive and path tools, then try the Colab files import. Archive creation and download also sit inside the try block.",
    "kind": "reveal",
-   "lines": "2-3"
+   "lines": "1-5"
   },
   {
-   "description": "Lines 4-12 run the main code and print the results.",
+   "description": "You create artifacts.zip and request its download when artifacts exists. The other branch prints a missing-folder message.",
    "kind": "reveal",
-   "lines": "4-12"
+   "lines": "6-10"
   },
   {
-   "description": "Line 6 checks `Path('artifacts').exists()`.",
-   "kind": "focus",
-   "lines": "6"
+   "answer": "The except block prints the helper-unavailable message with its exception text.",
+   "kind": "predict",
+   "lines": "11-12",
+   "question": "Where does an exception from files.download go?"
+  },
+  {
+   "description": "You see that handler's message in the recording. It reports google.colab.files.download unavailable in code-viz.",
+   "kind": "reveal",
+   "lines": "11-12"
   }
  ],
- "title": "Notebook Logistic_Regression_MLE_From_Scratch.ipynb",
+ "title": "Read the optional download helper",
  "version": 1
 }

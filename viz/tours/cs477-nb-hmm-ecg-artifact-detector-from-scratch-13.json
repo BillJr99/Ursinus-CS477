@@ -1,37 +1,33 @@
 {
  "code": "import os, json\nos.makedirs(\"artifacts\", exist_ok=True)\n\nnp.savez(\"artifacts/hmm_ecg_artifact_model_and_results.npz\",\n         pi=model[\"pi\"], A=model[\"A\"], means=model[\"means\"], vars=model[\"vars\"],\n         gamma=gamma, path=path, artifact_state=np.array([artifact_state]),\n         win_idxs=np.array(win_idxs, dtype=int), scaler_mean=scaler.mean_, scaler_std=scaler.std_,\n         time=time, p_artifact=p_artifact, ecg=ecg, fs=np.array([fs]))\n\n# Save quick PNGs\ndef save_plot(series, ttl, fname, x=None):\n    fig = plt.figure(figsize=(10,3))\n    if x is None: x = np.arange(len(series))\n    plt.plot(x, series); plt.title(ttl); plt.tight_layout()\n    fig.savefig(f\"artifacts/{fname}\", dpi=120); plt.close(fig)\n\nsave_plot(ecg, \"ECG\", \"ecg.png\", x=time)\nsave_plot(p_artifact, \"P(artifact)\", \"p_artifact.png\", x=time)\n\nprint(\"Saved artifacts:\", os.listdir(\"artifacts\"))\n",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You follow model parameters and result arrays into the example's artifacts.",
  "example": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-13",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Line 1 imports `os` and `json`.",
+   "description": "You create artifacts and save one NumPy archive. Its entries include model parameters, state results, window indices, scaling parameters, and the signal arrays.",
    "kind": "reveal",
-   "lines": "1"
+   "lines": "1-8"
   },
   {
-   "description": "Lines 2-8 run the main code.",
+   "description": "You define save_plot to draw a series, save its figure, and close it. When x is omitted, the helper uses sample indices.",
    "kind": "reveal",
-   "lines": "2-8"
+   "lines": "10-15"
   },
   {
-   "description": "Lines 11-15 define `save_plot(series, ttl, fname, x)`.",
-   "kind": "reveal",
-   "lines": "11-15"
+   "answer": "Both calls pass x=time, so the helper uses the supplied time array.",
+   "kind": "predict",
+   "lines": "17-18",
+   "question": "Do these two saved plots use sample indices or the supplied time array?"
   },
   {
-   "description": "Line 13 checks `x is None`.",
-   "kind": "focus",
-   "lines": "13"
-  },
-  {
-   "description": "Lines 17-20 continue the main code and print the results.",
+   "description": "You save ecg.png and p_artifact.png. The recorded listing contains both images and hmm_ecg_artifact_model_and_results.npz.",
    "kind": "reveal",
    "lines": "17-20"
   }
  ],
- "title": "Notebook HMM_ECG_Artifact_Detector_From_Scratch.ipynb",
+ "title": "Inspect the ECG result exports",
  "version": 1
 }

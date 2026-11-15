@@ -1,45 +1,33 @@
 {
  "code": "import sys, platform, subprocess\n\ndef _sh(cmd):\n    try:\n        out = subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT, text=True)\n    except Exception as e:\n        out = f\"[command failed] {e}\"\n    print(out)\n\nprint(\"Python:\", sys.version)\nprint(\"Platform:\", platform.platform())\nprint(\"In Colab:\", \"google.colab\" in sys.modules)\nprint(\"\\nNVIDIA SMI (if present):\")\n_sh(\"nvidia-smi || true\")",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You inspect version information and an optional shell diagnostic.",
  "example": "cs477-nb-hmm-image-recognition-from-scratch-1",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Line 1 imports `sys`, `platform` and `subprocess`.",
+   "description": "You define _sh to capture shell output as text and print it. Standard error joins standard output in the captured result.",
    "kind": "reveal",
-   "lines": "1"
+   "lines": "1-8"
   },
   {
-   "description": "Lines 3-8 define `_sh(cmd)`.",
+   "description": "You print Python, platform, and Colab information. The recording shows Python 3.12.16 on Linux with the Colab check False.",
    "kind": "reveal",
-   "lines": "3-8"
+   "lines": "10-12"
   },
   {
-   "description": "Lines 10-14 run the main code and print the results.",
+   "answer": "It prints the captured nvidia-smi: not found diagnostic. The shell command includes || true, so it finishes with a successful status.",
+   "kind": "predict",
+   "lines": "13-14",
+   "question": "What does _sh print when the recorded shell cannot find nvidia-smi?"
+  },
+  {
+   "description": "You see the NVIDIA heading followed by the shell diagnostic. Those lines complete the supplied environment report.",
    "kind": "reveal",
-   "lines": "10-14"
-  },
-  {
-   "description": "Here `_sh` is called for the first time; its frame appears on the right.",
-   "kind": "run",
-   "lines": "4",
-   "trace_step": 7
-  },
-  {
-   "description": "Here `_sh` returns, the first time it does.",
-   "kind": "run",
-   "lines": "8",
-   "trace_step": 10
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "14",
-   "trace_step": 11
+   "lines": "13-14"
   }
  ],
- "title": "Notebook HMM_Image_Recognition_From_Scratch.ipynb",
+ "title": "Read the image notebook environment report",
  "version": 1
 }

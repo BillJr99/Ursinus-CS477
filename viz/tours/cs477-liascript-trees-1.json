@@ -1,33 +1,50 @@
 {
  "code": "import numpy as np\nfrom sklearn.datasets import make_moons\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.tree import DecisionTreeClassifier, export_text\nfrom sklearn.ensemble import RandomForestClassifier\n\nX, y = make_moons(n_samples=400, noise=0.3, random_state=477)\nXtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.5, random_state=477)\n\nfor depth in [1, 3, None]:\n    t = DecisionTreeClassifier(max_depth=depth, random_state=0).fit(Xtr, ytr)\n    print(f\"depth={str(depth):>4}: train={t.score(Xtr, ytr):.2f}  test={t.score(Xte, yte):.2f}\")\n\nrf = RandomForestClassifier(n_estimators=200, random_state=0).fit(Xtr, ytr)\nprint(f\"forest    : train={rf.score(Xtr, ytr):.2f}  test={rf.score(Xte, yte):.2f}\")\n\nprint(export_text(DecisionTreeClassifier(max_depth=2, random_state=0).fit(Xtr, ytr),\n                  feature_names=[\"x1\", \"x2\"]))",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "Compare train and test accuracy on make_moons for DecisionTreeClassifier at depths 1, 3, and None against a 200-tree RandomForestClassifier, then print a depth-2 tree with export_text.",
  "example": "cs477-liascript-trees-1",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: agy free model",
  "steps": [
   {
-   "description": "Lines 1-5 import `numpy`, `sklearn.datasets`, `sklearn.model_selection`, `sklearn.tree` and `sklearn.ensemble`.",
+   "description": "Import `DecisionTreeClassifier`, `export_text`, and `RandomForestClassifier`, generate 400 noisy two-moons points (`noise=0.3`), and split them 50/50 into `(Xtr, ytr)` and `(Xte, yte)`.",
    "kind": "reveal",
-   "lines": "1-5"
+   "lines": "1-8"
   },
   {
-   "description": "Lines 7-18 run the main code and print the results.",
+   "description": "Loop over `depth in [1, 3, None]` to fit a `DecisionTreeClassifier(max_depth=depth)` and print its `train` and `test` accuracy, then fit a 200-tree `RandomForestClassifier` on lines 14-15.",
    "kind": "reveal",
-   "lines": "7-18"
+   "lines": "10-15"
   },
   {
-   "description": "Line 10 loops over `[1, 3, None]`.",
+   "description": "Fit a `DecisionTreeClassifier(max_depth=2)` and pass it to `export_text(..., feature_names=[\"x1\", \"x2\"])` to print the axis-aligned threshold rules.",
+   "kind": "reveal",
+   "lines": "17-18"
+  },
+  {
+   "description": "Compare `max_depth=1`, `max_depth=3`, `max_depth=None`, and `RandomForestClassifier(n_estimators=200)`: `max_depth=None` grows until every training leaf is pure, whereas averaging 200 bootstrap trees reduces variance on `Xte`.",
    "kind": "focus",
-   "lines": "10"
+   "lines": "10-15"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
+   "answer": "`train` accuracy rises from `0.92` to `1.00` (memorizing the training set), while `test` accuracy drops from `0.89` to `0.87` due to overfitting; the 200-tree random forest achieves `train=1.00` and `test=0.90`.",
+   "kind": "predict",
+   "lines": "10-15",
+   "question": "When `depth` changes from `3` to `None` (unrestricted depth), what happens to `train` accuracy and what happens to `test` accuracy?"
+  },
+  {
+   "description": "After printing the three single-tree rows (`test=0.81`, `0.89`, `0.87`), line 15 prints `forest    : train=1.00  test=0.90`.",
    "kind": "run",
-   "lines": "17",
-   "trace_step": 22
+   "lines": "15",
+   "trace_step": 18
+  },
+  {
+   "description": "`export_text` prints the depth-2 decision tree splits (`x2 <= 0.08`, followed by `x1 <= -0.64` and `x1 <= 1.46`).",
+   "kind": "run",
+   "lines": "18",
+   "trace_step": 20
   }
  ],
- "title": "7. Runnable Code: Trees vs. Forests",
+ "title": "Decision Tree Depth vs. Random Forest on Two Moons",
  "version": 1
 }
