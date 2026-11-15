@@ -1,15 +1,1 @@
-{
- "version": 1,
- "example": "cs477-nb-explainableai-shapley-from-scratch-creditnn-6",
- "title": "Notebook ExplainableAI_Shapley_From_Scratch_CreditNN.ipynb",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
- "reviewed": false,
- "source": "skeleton",
- "steps": [
-  {
-   "kind": "reveal",
-   "lines": "1-5",
-   "description": "Lines 1-5 run the main code."
-  }
- ]
-}
+{"version":1,"example":"cs477-nb-explainableai-shapley-from-scratch-creditnn-6","title":"Plot training progress","description":"You display the stored training loss and validation AUC histories.","reviewed":false,"source":"draft: codex free model","steps":[{"kind":"reveal","lines":"1-2","description":"You create a figure and plot hist[loss] with the label train BCE. BCE means binary cross-entropy loss."},{"kind":"reveal","lines":"3","description":"You add hist[vauc] with the label val AUC. AUC means area under the receiver operating characteristic curve."},{"kind":"predict","lines":"4","question":"How does the chart identify the two plotted histories?","answer":"The legend uses train BCE and val AUC from the plot calls. The horizontal axis is labeled Epoch."},{"kind":"reveal","lines":"4-5","description":"You title the chart Training progress and display it. The supplied output contains no numeric history values."}]}

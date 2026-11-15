@@ -1,26 +1,43 @@
 {
- "version": 1,
- "example": "cs477-liascript-perceptronsmodelevaluation-2",
- "title": "1. Train/Test Split",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
- "reviewed": false,
- "source": "skeleton",
- "steps": [
-  {
-   "kind": "reveal",
-   "lines": "2-13",
-   "description": "Lines 2-13 run the main code."
-  },
-  {
-   "kind": "reveal",
-   "lines": "14-16",
-   "description": "Lines 14-16 continue the main code and print the results."
-  },
-  {
-   "kind": "run",
-   "trace_step": 10,
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "lines": "16"
-  }
- ]
+  "version": 1,
+  "example": "cs477-liascript-perceptronsmodelevaluation-2",
+  "title": "Evaluating a Regression Pipeline on an 80/20 Train/Test Split",
+  "description": "Split 600 synthetic regression samples 80/20 with train_test_split, fit a StandardScaler + LinearRegression pipeline on X_train, and compute RMSE and R^2 on X_test.",
+  "reviewed": false,
+  "source": "draft: agy free model",
+  "steps": [
+    {
+      "kind": "reveal",
+      "lines": "1-7",
+      "description": "Generate 600 synthetic regression samples with 5 features and `noise=15.0` using `make_regression`, then split `(X, y)` into `(X_train, y_train)` and `(X_test, y_test)` with `test_size=0.2`."
+    },
+    {
+      "kind": "reveal",
+      "lines": "9-16",
+      "description": "Build `reg = Pipeline([('scaler', StandardScaler()), ('linreg', LinearRegression())])`, fit it on `(X_train, y_train)`, predict on `X_test`, and compute `rmse` and `r2` against `y_test`."
+    },
+    {
+      "kind": "focus",
+      "lines": "5-7,10-13",
+      "description": "Trace where `X_train` and `X_test` are used: `reg.fit(X_train, y_train)` learns the scaler means/stds and regression weights exclusively from the training split, and `reg.predict(X_test)` applies them to the held-out test split."
+    },
+    {
+      "kind": "predict",
+      "question": "With `n_samples=600` and `test_size=0.2`, how many samples go into `X_train` and how many into `X_test`, and what scale should `Test RMSE` be near given `noise=15.0`?",
+      "answer": "`X_train` gets 480 samples (`80%` of 600), `X_test` gets 120 samples (`20%` of 600), and `Test RMSE` is near the noise standard deviation `15.0` (`14.000`, with `Test R^2: 0.990`).",
+      "lines": "2,5-7,14-16"
+    },
+    {
+      "kind": "run",
+      "trace_step": 5,
+      "lines": "11",
+      "description": "`reg.fit(X_train, y_train)` fits `StandardScaler` and `LinearRegression` on the 480 training rows."
+    },
+    {
+      "kind": "run",
+      "trace_step": 9,
+      "lines": "16",
+      "description": "Evaluating `y_pred` against the 120 held-out test targets prints `Test RMSE: 14.000, Test R^2: 0.990`."
+    }
+  ]
 }
