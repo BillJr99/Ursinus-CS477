@@ -1,30 +1,30 @@
 {
- "version": 1,
- "example": "cs477-liascript-perceptronsmodelevaluation-9",
- "title": "4. scikit-learn Demo (Linear vs. RBF) — Classification Metrics",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
- "reviewed": false,
- "source": "skeleton",
- "steps": [
-  {
-   "kind": "reveal",
-   "lines": "1-11",
-   "description": "Lines 1-11 import `numpy`, `matplotlib.pyplot`, `sklearn.datasets`, `sklearn.model_selection`, `sklearn.preprocessing`, `sklearn.pipeline`, `sklearn.svm` and `sklearn.metrics`."
-  },
-  {
-   "kind": "reveal",
-   "lines": "13-26",
-   "description": "Lines 13-26 run the main code."
-  },
-  {
-   "kind": "reveal",
-   "lines": "28-39",
-   "description": "Lines 28-39 continue the main code and print the results."
-  },
-  {
-   "kind": "reveal",
-   "lines": "40-45",
-   "description": "Lines 40-45 continue the main code and print the results."
-  }
- ]
+  "version": 1,
+  "example": "cs477-liascript-perceptronsmodelevaluation-9",
+  "title": "4. scikit-learn Demo (Linear vs. RBF) - Classification Metrics",
+  "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+  "reviewed": false,
+  "source": "skeleton",
+  "steps": [
+    {
+      "kind": "reveal",
+      "lines": "1-11",
+      "description": "Lines 1-11 import `numpy`, `matplotlib.pyplot`, `sklearn.datasets`, `sklearn.model_selection`, `sklearn.preprocessing`, `sklearn.pipeline`, `sklearn.svm` and `sklearn.metrics`."
+    },
+    {
+      "kind": "reveal",
+      "lines": "13-26",
+      "description": "Lines 13-26 run the main code."
+    },
+    {
+      "kind": "reveal",
+      "lines": "28-39",
+      "description": "Lines 28-39 continue the main code and print the results."
+    },
+    {
+      "kind": "reveal",
+      "lines": "40-45",
+      "description": "Lines 40-45 continue the main code and print the results."
+    }
+  ]
 }
