@@ -1,48 +1,48 @@
 {
-  "version": 1,
-  "example": "cs477-liascript-llms-2",
-  "title": "Step 4 - Attention: Look Where It Matters",
-  "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
-  "reviewed": false,
-  "source": "skeleton",
-  "steps": [
-    {
-      "kind": "reveal",
-      "lines": "1",
-      "description": "Line 1 imports `numpy`."
-    },
-    {
-      "kind": "reveal",
-      "lines": "3",
-      "description": "Line 3 defines `softmax(x)`."
-    },
-    {
-      "kind": "focus",
-      "lines": "3",
-      "description": "Line 3 returns `e / e.sum()`."
-    },
-    {
-      "kind": "reveal",
-      "lines": "6-14",
-      "description": "Lines 6-14 run the main code and print the results."
-    },
-    {
-      "kind": "run",
-      "trace_step": 9,
-      "lines": "3",
-      "description": "Here `softmax` is called for the first time; its frame appears on the right."
-    },
-    {
-      "kind": "run",
-      "trace_step": 10,
-      "lines": "3",
-      "description": "Here `softmax` returns, the first time it does."
-    },
-    {
-      "kind": "run",
-      "trace_step": 13,
-      "description": "This is the end of the run: the final state, and all of the output.",
-      "lines": "14"
-    }
-  ]
+ "version": 1,
+ "example": "cs477-liascript-llms-2",
+ "title": "Step 4: Attention: Look Where It Matters",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1",
+   "description": "Line 1 imports `numpy`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "3",
+   "description": "Line 3 defines `softmax(x)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "3",
+   "description": "Line 3 returns `e / e.sum()`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "6-14",
+   "description": "Lines 6-14 run the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 9,
+   "lines": "3",
+   "description": "Here `softmax` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 10,
+   "lines": "3",
+   "description": "Here `softmax` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 13,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "14"
+  }
+ ]
 }

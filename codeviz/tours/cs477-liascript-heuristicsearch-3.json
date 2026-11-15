@@ -1,63 +1,63 @@
 {
-  "version": 1,
-  "example": "cs477-liascript-heuristicsearch-3",
-  "title": "Code Cell - First-Choice and Random-Restart",
-  "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
-  "reviewed": false,
-  "source": "skeleton",
-  "steps": [
-    {
-      "kind": "reveal",
-      "lines": "1-11",
-      "description": "Lines 1-11 define `first_choice_hc(s0, f, neighbors, max_checks)`."
-    },
-    {
-      "kind": "focus",
-      "lines": "3",
-      "description": "Line 3 loops over `range(max_checks)`."
-    },
-    {
-      "kind": "focus",
-      "lines": "6",
-      "description": "Line 6 checks `f(s2) > f(s)`."
-    },
-    {
-      "kind": "focus",
-      "lines": "11",
-      "description": "Line 11 returns `s`."
-    },
-    {
-      "kind": "reveal",
-      "lines": "13-20",
-      "description": "Lines 13-20 define `random_restart_hc(mk_random_state, f, neighbors, restarts)`."
-    },
-    {
-      "kind": "focus",
-      "lines": "18",
-      "description": "Line 18 checks `best is None or f(sol) > f(best)`."
-    },
-    {
-      "kind": "reveal",
-      "lines": "23-25",
-      "description": "Lines 23-25 run the main code and print the results."
-    },
-    {
-      "kind": "run",
-      "trace_step": 4,
-      "lines": "14",
-      "description": "Here `random_restart_hc` is called for the first time; its frame appears on the right."
-    },
-    {
-      "kind": "run",
-      "trace_step": 158,
-      "lines": "20",
-      "description": "Here `random_restart_hc` returns, the first time it does."
-    },
-    {
-      "kind": "run",
-      "trace_step": 160,
-      "description": "This is the end of the run: the final state, and all of the output.",
-      "lines": "25"
-    }
-  ]
+ "version": 1,
+ "example": "cs477-liascript-heuristicsearch-3",
+ "title": "Code Cell: First-Choice and Random-Restart",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-11",
+   "description": "Lines 1-11 define `first_choice_hc(s0, f, neighbors, max_checks)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "3",
+   "description": "Line 3 loops over `range(max_checks)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "6",
+   "description": "Line 6 checks `f(s2) > f(s)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "11",
+   "description": "Line 11 returns `s`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "13-20",
+   "description": "Lines 13-20 define `random_restart_hc(mk_random_state, f, neighbors, restarts)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "18",
+   "description": "Line 18 checks `best is None or f(sol) > f(best)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "23-25",
+   "description": "Lines 23-25 run the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 4,
+   "lines": "14",
+   "description": "Here `random_restart_hc` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 158,
+   "lines": "20",
+   "description": "Here `random_restart_hc` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 160,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "25"
+  }
+ ]
 }

@@ -1,70 +1,70 @@
 {
-  "version": 1,
-  "example": "cs477-liascript-bayesianinference-3",
-  "title": "Code Cell - Beta - Binomial Updates and Posterior Predictive",
-  "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
-  "reviewed": false,
-  "source": "skeleton",
-  "steps": [
-    {
-      "kind": "reveal",
-      "lines": "1",
-      "description": "Line 1 imports `scipy.stats`."
-    },
-    {
-      "kind": "reveal",
-      "lines": "3-4",
-      "description": "Lines 3-4 define `beta_posterior(alpha, beta, k, n)`."
-    },
-    {
-      "kind": "focus",
-      "lines": "4",
-      "description": "Line 4 returns `alpha + k, beta + (n - k)`."
-    },
-    {
-      "kind": "reveal",
-      "lines": "6-8",
-      "description": "Lines 6-8 define `posterior_predictive(alpha, beta, m)`."
-    },
-    {
-      "kind": "focus",
-      "lines": "8",
-      "description": "Line 8 returns `(alpha) / (alpha + beta)`."
-    },
-    {
-      "kind": "reveal",
-      "lines": "10-15",
-      "description": "Lines 10-15 run the main code and print the results."
-    },
-    {
-      "kind": "run",
-      "trace_step": 6,
-      "lines": "4",
-      "description": "Here `beta_posterior` is called for the first time; its frame appears on the right."
-    },
-    {
-      "kind": "run",
-      "trace_step": 7,
-      "lines": "4",
-      "description": "Here `beta_posterior` returns, the first time it does."
-    },
-    {
-      "kind": "run",
-      "trace_step": 11,
-      "lines": "8",
-      "description": "Here `posterior_predictive` is called for the first time; its frame appears on the right."
-    },
-    {
-      "kind": "run",
-      "trace_step": 12,
-      "lines": "8",
-      "description": "Here `posterior_predictive` returns, the first time it does."
-    },
-    {
-      "kind": "run",
-      "trace_step": 13,
-      "description": "This is the end of the run: the final state, and all of the output.",
-      "lines": "15"
-    }
-  ]
+ "version": 1,
+ "example": "cs477-liascript-bayesianinference-3",
+ "title": "Code Cell: Beta-Binomial Updates and Posterior Predictive",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1",
+   "description": "Line 1 imports `scipy.stats`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "3-4",
+   "description": "Lines 3-4 define `beta_posterior(alpha, beta, k, n)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "4",
+   "description": "Line 4 returns `alpha + k, beta + (n - k)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "6-8",
+   "description": "Lines 6-8 define `posterior_predictive(alpha, beta, m)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "8",
+   "description": "Line 8 returns `(alpha) / (alpha + beta)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "10-15",
+   "description": "Lines 10-15 run the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 6,
+   "lines": "4",
+   "description": "Here `beta_posterior` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 7,
+   "lines": "4",
+   "description": "Here `beta_posterior` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 11,
+   "lines": "8",
+   "description": "Here `posterior_predictive` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 12,
+   "lines": "8",
+   "description": "Here `posterior_predictive` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 13,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "15"
+  }
+ ]
 }
