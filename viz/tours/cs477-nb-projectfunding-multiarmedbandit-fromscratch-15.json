@@ -1,48 +1,33 @@
 {
  "code": "import os\nos.makedirs(\"artifacts\", exist_ok=True)\n\n# Save the configuration and a single-run trace for reproducibility\nsingle_trace = {\n    \"names\": names,\n    \"p_true\": p_true.tolist(),\n    \"R\": R.tolist(),\n    \"C\": C.tolist(),\n    \"past_successes\": past_successes.tolist(),\n    \"past_failures\": past_failures.tolist(),\n    \"T\": int(T),\n}\n\n# Include single-run outputs\nfor lab, out in res.items():\n    single_trace[f\"{lab}_cum_reward\"] = np.cumsum(out[\"rewards\"]).tolist()\n    single_trace[f\"{lab}_choices\"] = out[\"choices\"].tolist()\n\nimport json as _json\nwith open(\"artifacts/bandit_single_run.json\", \"w\") as f:\n    _json.dump(single_trace, f, indent=2)\n\n# Save multi-run averages\nnp.savez(\"artifacts/bandit_multirun_cum_rewards.npz\",\n         labels=np.array(list(cum_rewards.keys()), dtype=object),\n         **{f\"CR_{lab}\": cum_rewards[lab] for lab in cum_rewards})\n\nprint(\"Artifacts:\", os.listdir(\"artifacts\"))",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You inspect the single-run JSON and multi-run array archive.",
  "example": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-15",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Line 1 imports `os`.",
+   "description": "You create artifacts and collect names, probabilities, rewards, costs, prior outcomes, and T. Array-to-list conversions prepare these configuration values for JSON.",
    "kind": "reveal",
-   "lines": "1"
+   "lines": "1-13"
   },
   {
-   "description": "Lines 2-13 run the main code.",
+   "description": "You add cumulative rewards and choices for each result label. np.cumsum converts each reward sequence to its running total.",
    "kind": "reveal",
-   "lines": "2-13"
+   "lines": "15-18"
   },
   {
-   "description": "Lines 16-18 continue the main code.",
+   "answer": "bandit_single_run.json receives single_trace, including each label's choices. The NPZ file receives the cum_rewards arrays separately.",
+   "kind": "predict",
+   "lines": "21-27",
+   "question": "Which file holds the labeled single-run choice sequences?"
+  },
+  {
+   "description": "You write the JSON and save labels with the multi-run cumulative reward arrays. The recording lists bandit_single_run.json and bandit_multirun_cum_rewards.npz.",
    "kind": "reveal",
-   "lines": "16-18"
-  },
-  {
-   "description": "Line 16 loops over `res.items()`.",
-   "kind": "focus",
-   "lines": "16"
-  },
-  {
-   "description": "Line 20 imports `json`.",
-   "kind": "reveal",
-   "lines": "20"
-  },
-  {
-   "description": "Lines 21-29 continue the main code and print the results.",
-   "kind": "reveal",
-   "lines": "21-29"
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "29",
-   "trace_step": 33
+   "lines": "20-29"
   }
  ],
- "title": "Notebook ProjectFunding_MultiArmedBandit_FromScratch.ipynb",
+ "title": "Export bandit configuration and traces",
  "version": 1
 }

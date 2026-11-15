@@ -1,22 +1,33 @@
 {
  "code": "# === PCA (scikit-learn) ===\nif SKLEARN_AVAILABLE:\n    pca = SKPCA(n_components=2)\n    X_proj_skl = pca.fit_transform(X_pca)\n    evr = pca.explained_variance_ratio_\n\n    plt.figure()\n    plt.scatter(X_proj_skl[:, 0], X_proj_skl[:, 1], s=12)\n    plt.title(\"PCA (scikit-learn): First 2 PCs\")\n    plt.xlabel(\"PC1\")\n    plt.ylabel(\"PC2\")\n    plt.show()\n\n    plt.figure()\n    plt.bar([1, 2], evr[:2])\n    plt.title(\"PCA (scikit-learn): Explained Variance Ratio (First 2 PCs)\")\n    plt.xlabel(\"Principal Component\")\n    plt.ylabel(\"Explained Variance Ratio\")\n    plt.show()\nelse:\n    print(\"scikit-learn not available; skipping PCA (scikit-learn).\")\n",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You display projected coordinates and their explained variance ratios when the library is available.",
  "example": "cs477-nb-unsupervised-learning-colab-5",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 2-21 run the main code and print the results.",
+   "description": "You guard the library branch with SKLEARN_AVAILABLE. When it passes, fit_transform creates two projected coordinates per row and evr stores their variance fractions.",
    "kind": "reveal",
-   "lines": "2-21"
+   "lines": "1-5"
   },
   {
-   "description": "Line 2 checks `SKLEARN_AVAILABLE`.",
-   "kind": "focus",
-   "lines": "2"
+   "description": "You scatter the first two projected columns. The axes identify PC1 and PC2.",
+   "kind": "reveal",
+   "lines": "7-12"
+  },
+  {
+   "answer": "evr[:2] supplies the explained variance ratios. The horizontal positions are component numbers one and two.",
+   "kind": "predict",
+   "lines": "15",
+   "question": "What values set the two bar heights in the next figure?"
+  },
+  {
+   "description": "You display the variance-ratio bars when the library branch runs. Otherwise, the code prints its skip message; the supplied recording contains no printed numeric ratios.",
+   "kind": "reveal",
+   "lines": "14-21"
   }
  ],
- "title": "Notebook Unsupervised_Learning_Colab.ipynb",
+ "title": "Inspect library PCA outputs",
  "version": 1
 }

@@ -1,28 +1,33 @@
 {
  "code": "import os\nos.makedirs(\"artifacts\", exist_ok=True)\nnp.savez(\"artifacts/svm_run.npz\",\n         dataset=np.array([DATASET], dtype=object),\n         mu=mu, sigma=sigma,\n         w_pg=w_pg, b_pg=b_pg,\n         w_bs=w_bs, b_bs=b_bs,\n         C=np.array([C]), gamma=np.array([GAMMA]),\n         ksvm_alphas=ksvm.alphas, ksvm_b=np.array([ksvm.b]), ksvm_sv_idx=ksvm.sv_idx,\n         X_te=X_te, y_te=y_te)\n\nprint(\"Artifacts:\", os.listdir(\"artifacts\"))",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You follow linear and kernel model parameters into one NumPy file.",
  "example": "cs477-nb-svm-from-scratch-linear-and-kernel-13",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Line 1 imports `os`.",
+   "description": "You create artifacts and begin svm_run.npz. Its first entries identify the dataset and store scaling values mu and sigma.",
    "kind": "reveal",
-   "lines": "1"
+   "lines": "1-5"
   },
   {
-   "description": "Lines 2-12 run the main code and print the results.",
+   "description": "You include both linear models' weights and biases. C and GAMMA become separate array entries for the kernel model settings.",
    "kind": "reveal",
-   "lines": "2-12"
+   "lines": "6-8"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "12",
-   "trace_step": 12
+   "answer": "ksvm_sv_idx stores ksvm.sv_idx. The same line stores kernel alphas and bias under separate names.",
+   "kind": "predict",
+   "lines": "9",
+   "question": "Which archive entry identifies the selected support-vector row indices?"
+  },
+  {
+   "description": "You add the test features and labels, then list artifacts. The recorded listing contains svm_run.npz.",
+   "kind": "reveal",
+   "lines": "9-12"
   }
  ],
- "title": "Notebook SVM_From_Scratch_Linear_and_Kernel.ipynb",
+ "title": "Inspect the SVM result archive",
  "version": 1
 }

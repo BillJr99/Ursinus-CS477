@@ -1,27 +1,33 @@
 {
  "code": "# Colab download helper\nimport shutil\nfrom pathlib import Path\ntry:\n    from google.colab import files  # type: ignore\n    if Path('artifacts').exists():\n        shutil.make_archive('artifacts', 'zip', 'artifacts')\n        files.download('artifacts.zip')\n    else:\n        print('No artifacts folder found.')\nexcept Exception as e:\n    print('Colab download helper not available in this environment:', e)",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You inspect the artifact check and the recorded exception path.",
  "example": "cs477-nb-qlearning-vs-valueiteration-gridworld-12",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 2-3 import `shutil` and `pathlib`.",
+   "description": "You import shutil and Path before trying the Colab files import. Archive creation and download share that protected block.",
    "kind": "reveal",
-   "lines": "2-3"
+   "lines": "1-5"
   },
   {
-   "description": "Lines 4-12 run the main code and print the results.",
+   "description": "You create artifacts.zip and request its download when artifacts exists. Otherwise, the helper prints its missing-folder message.",
    "kind": "reveal",
-   "lines": "4-12"
+   "lines": "6-10"
   },
   {
-   "description": "Line 6 checks `Path('artifacts').exists()`.",
-   "kind": "focus",
-   "lines": "6"
+   "answer": "The except block prints Colab download helper not available in this environment, followed by the exception text.",
+   "kind": "predict",
+   "lines": "11-12",
+   "question": "What message handles a download exception?"
+  },
+  {
+   "description": "You see that fallback in the recording. The exception identifies google.colab.files.download as unavailable in code-viz.",
+   "kind": "reveal",
+   "lines": "11-12"
   }
  ],
- "title": "Notebook QLearning_vs_ValueIteration_Gridworld.ipynb",
+ "title": "Follow the gridworld download fallback",
  "version": 1
 }

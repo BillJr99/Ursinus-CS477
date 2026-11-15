@@ -1,32 +1,33 @@
 {
  "code": "fig = plt.figure(figsize=(5,4.5))\nax = plt.gca()\ndef sign_k(Z): return ksvm.decision(Z)\nplot_data_and_boundary(ax, X_tr, y_tr, predict_fn=sign_k, title=\"Kernel SVM (RBF) — Train\")\n# Mark support vectors\nsv = X_tr[ksvm.sv_idx]\nax.scatter(sv[:,0], sv[:,1], s=60, facecolors='none', edgecolors='k')\nplt.tight_layout(); plt.show()",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You overlay selected training rows on the model's decision display.",
  "example": "cs477-nb-svm-from-scratch-linear-and-kernel-11",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 1-2 run the main code.",
+   "description": "You create axes and define sign_k to return ksvm.decision(Z). The wrapper forwards the model's decision values.",
    "kind": "reveal",
-   "lines": "1-2"
+   "lines": "1-3"
   },
   {
-   "description": "Line 3 defines `sign_k(Z)`.",
+   "description": "You pass the training features, labels, and decision helper to plot_data_and_boundary. Its title identifies the radial-basis-function kernel model.",
    "kind": "reveal",
-   "lines": "3"
+   "lines": "4"
   },
   {
-   "description": "Line 3 returns `ksvm.decision(Z)`.",
-   "kind": "focus",
-   "lines": "3"
+   "answer": "They are rows of X_tr selected by ksvm.sv_idx. The code uses the training feature coordinates directly.",
+   "kind": "predict",
+   "lines": "6",
+   "question": "Where do the highlighted support-vector coordinates come from?"
   },
   {
-   "description": "Lines 4-8 continue the main code.",
+   "description": "You overlay those rows with unfilled markers and black edges. The final display distinguishes support vectors from the underlying training scatter.",
    "kind": "reveal",
-   "lines": "4-8"
+   "lines": "6-8"
   }
  ],
- "title": "Notebook SVM_From_Scratch_Linear_and_Kernel.ipynb",
+ "title": "Mark support vectors on the kernel boundary plot",
  "version": 1
 }
