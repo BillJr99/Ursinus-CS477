@@ -1,15 +1,1 @@
-{
- "version": 1,
- "example": "cs477-liascript-regression-9",
- "title": "Code Cell",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
- "reviewed": false,
- "source": "skeleton",
- "steps": [
-  {
-   "kind": "reveal",
-   "lines": "3-9",
-   "description": "Lines 3-9 run the main code."
-  }
- ]
-}
+{"version":1,"example":"cs477-liascript-regression-9","title":"Computing and Plotting the Logistic Sigmoid Curve","description":"Evaluate the logistic sigmoid across the supplied evenly spaced z values and plot the resulting S-curve.","reviewed":false,"source":"draft: agy free model + edit: codex","steps":[{"kind":"reveal","lines":"2-4","description":"Create evenly spaced z values across the supplied interval and evaluate the logistic sigmoid formula elementwise."},{"kind":"reveal","lines":"5-9","description":"Plot `z` on the horizontal axis against `sig` on the vertical axis, label the axes `\"z\"` and `\"sigma(z)\"`, set the title `\"Sigmoid Function\"`, and call `plt.show()`."},{"kind":"focus","lines":"3-4","description":"Look at the sigmoid formula on line 4. `np.exp(-z)` is always positive, so adding it to one gives a denominator greater than one. This maps any real number `z` into the open interval `(0, 1)`."},{"kind":"predict","question":"What values does the sigmoid take at `z = 0`, at the supplied large negative z, and at `z = 8` (large positive)?","answer":"At `z = 0`, `np.exp(0) = 1`, so the sigmoid is one half. For the large negative z, the exponential is large, so the sigmoid is near zero. At `z = 8`, the exponential is near zero, so the sigmoid is near one.","lines":"3-5"}]}

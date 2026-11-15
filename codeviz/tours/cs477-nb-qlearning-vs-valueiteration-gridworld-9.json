@@ -1,15 +1,1 @@
-{
- "version": 1,
- "example": "cs477-nb-qlearning-vs-valueiteration-gridworld-9",
- "title": "Notebook QLearning_vs_ValueIteration_Gridworld.ipynb",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
- "reviewed": false,
- "source": "skeleton",
- "steps": [
-  {
-   "kind": "reveal",
-   "lines": "1-8",
-   "description": "Lines 1-8 run the main code."
-  }
- ]
-}
+{"version":1,"example":"cs477-nb-qlearning-vs-valueiteration-gridworld-9","title":"Plot episode returns and their moving average","description":"You display raw learning returns alongside a smoothed series.","reviewed":false,"source":"draft: codex free model + edit: codex","steps":[{"kind":"reveal","lines":"1-2","description":"You plot returns with partial transparency and label the series episode return. Each entry supplies one plotted episode value."},{"kind":"predict","lines":"4-5","question":"What weight does each entry of the smoothing kernel receive?","answer":"Each kernel entry receives one divided by the supplied window width. np.convolve applies that equal-weight kernel with mode=same."},{"kind":"reveal","lines":"4-6","description":"You compute ma and plot it over the raw returns. Its legend label includes the window width."},{"kind":"reveal","lines":"7-8","description":"You label the axes Episode and Return and display the Q-learning curve. The supplied output includes no numeric series from which to assess improvement."}]}

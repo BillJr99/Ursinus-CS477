@@ -1,15 +1,1 @@
-{
- "version": 1,
- "example": "cs477-nb-linear-and-logistic-regression-tutorial-9",
- "title": "Notebook Linear_and_Logistic_Regression_Tutorial.ipynb",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
- "reviewed": false,
- "source": "skeleton",
- "steps": [
-  {
-   "kind": "reveal",
-   "lines": "3-9",
-   "description": "Lines 3-9 run the main code."
-  }
- ]
-}
+{"version":1,"example":"cs477-nb-linear-and-logistic-regression-tutorial-9","title":"Plot the sigmoid function","description":"You evaluate the sigmoid on a grid of input scores.","reviewed":false,"source":"draft: codex free model + edit: codex","steps":[{"kind":"reveal","lines":"2-3","description":"You create z values across the supplied interval. These values become the horizontal coordinates."},{"kind":"predict","lines":"4","question":"What value does the displayed formula assign to z=0?","answer":"It gives 1/(1+exp(0)), or one half."},{"kind":"reveal","lines":"4-5","description":"You compute the sigmoid, 1/(1+exp(-z)), at every grid value. The plot pairs each input score with its transformed value."},{"kind":"reveal","lines":"6-9","description":"You label the axes z and sigma(z) and display the chart. The title identifies the transformation as the sigmoid function."}]}

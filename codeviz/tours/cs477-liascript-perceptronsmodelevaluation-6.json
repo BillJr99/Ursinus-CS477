@@ -1,15 +1,1 @@
-{
- "version": 1,
- "example": "cs477-liascript-perceptronsmodelevaluation-6",
- "title": "8. ROC Curve & AUC",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
- "reviewed": false,
- "source": "skeleton",
- "steps": [
-  {
-   "kind": "reveal",
-   "lines": "1-6",
-   "description": "Lines 1-6 run the main code."
-  }
- ]
-}
+{"version":1,"example":"cs477-liascript-perceptronsmodelevaluation-6","title":"Plotting the ROC Curve and Computing AUC","description":"Sweep decision thresholds over y_prob with roc_curve(yc_test, y_prob), integrate the area under the curve with auc(fpr, tpr), and plot the ROC curve.","reviewed":false,"source":"draft: agy free model + edit: codex","steps":[{"kind":"reveal","lines":"1-2","description":"Compute false positive rates `fpr`, true positive rates `tpr`, and thresholds `thr` from `(yc_test, y_prob)` using `roc_curve`, then compute the area under that curve with `roc_auc = auc(fpr, tpr)`."},{"kind":"reveal","lines":"4-6","description":"Pass `fpr`, `tpr`, and `roc_auc` to `RocCurveDisplay(...).plot()`, format `roc_auc` to 3 decimal places in the title, and call `plt.show()`."},{"kind":"focus","lines":"1-2","description":"Notice that `roc_curve` takes the continuous probabilities `y_prob` rather than the hard 0/1 predictions `y_pred` so it can evaluate `(fpr, tpr)` across all possible decision thresholds `thr`."},{"kind":"predict","question":"Why does `roc_curve(yc_test, y_prob)` require `y_prob` (`P(y=1|x)`) instead of `y_pred`?","answer":"Building the ROC curve requires varying the decision threshold across continuous predicted probabilities `y_prob` to get a full sequence of `(fpr, tpr)` pairs. `y_pred` is already fixed at a single threshold.","lines":"1-2"}]}

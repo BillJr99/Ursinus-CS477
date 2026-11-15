@@ -1,15 +1,1 @@
-{
- "version": 1,
- "example": "cs477-nb-bayesian-diagnostic-test-belief-updating-7",
- "title": "Notebook Bayesian_Diagnostic_Test_Belief_Updating.ipynb",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
- "reviewed": false,
- "source": "skeleton",
- "steps": [
-  {
-   "kind": "reveal",
-   "lines": "1-10",
-   "description": "Lines 1-10 run the main code."
-  }
- ]
-}
+{"version":1,"example":"cs477-nb-bayesian-diagnostic-test-belief-updating-7","title":"Compare posterior curves","description":"You vary prevalence while keeping s_mean and c_mean fixed.","reviewed":false,"source":"draft: codex free model + edit: codex","steps":[{"kind":"reveal","lines":"1","description":"You create prevalence values across the supplied interval. These values supply the horizontal axis."},{"kind":"reveal","lines":"2-3","description":"You compute disease probabilities after a positive test and after a negative test. Both calls receive the same prevalence values and the same s_mean and c_mean."},{"kind":"predict","lines":"6-8","question":"What does the negative-test curve represent?","answer":"Its label is P(D=1 | T=-), the probability of disease given a negative test."},{"kind":"reveal","lines":"5-10","description":"You display both posterior curves on one set of axes. The legend identifies the test result associated with each curve."}]}
