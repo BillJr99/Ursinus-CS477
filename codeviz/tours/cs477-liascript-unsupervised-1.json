@@ -1,31 +1,43 @@
 {
- "version": 1,
- "example": "cs477-liascript-unsupervised-1",
- "title": "Concrete Example (Small Numbers)",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
- "reviewed": false,
- "source": "skeleton",
- "steps": [
-  {
-   "kind": "reveal",
-   "lines": "1",
-   "description": "Line 1 imports `numpy`."
-  },
-  {
-   "kind": "reveal",
-   "lines": "3-14",
-   "description": "Lines 3-14 run the main code."
-  },
-  {
-   "kind": "reveal",
-   "lines": "15",
-   "description": "Line 15 continues the main code and print the results."
-  },
-  {
-   "kind": "run",
-   "trace_step": 12,
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "lines": "15"
-  }
- ]
+  "version": 1,
+  "example": "cs477-liascript-unsupervised-1",
+  "title": "Pairwise Squared Distances via NumPy Broadcasting",
+  "description": "Use 3D broadcasting ((X[:, None, :] - centers[None, :, :]) ** 2).sum(axis=2) to compute squared Euclidean distances from 3 points to 2 centroids.",
+  "reviewed": false,
+  "source": "draft: agy free model + edit: codex + split: claude",
+  "steps": [
+    {
+      "kind": "reveal",
+      "lines": "1-12",
+      "description": "Import `numpy as np` and define `X` with shape `(3, 2)` for 3 points: `[1., 2.]`, `[3., 4.]`, and `[5., 6.]`. Define `centers` with shape `(2, 2)` for 2 centroids: `[0., 0.]` and `[1., 1.]`."
+    },
+    {
+      "kind": "reveal",
+      "lines": "14-24",
+      "description": "Broadcast `X[:, None, :]` (shape `(3, 1, 2)`) against `centers[None, :, :]` (shape `(1, 2, 2)`). Square the coordinate differences, sum over `axis=2`, and print the resulting `(3, 2)` squared-distance matrix `D`."
+    },
+    {
+      "kind": "focus",
+      "lines": "14",
+      "description": "Trace the shapes on line 14. Subtracting `(1, 2, 2)` from `(3, 1, 2)` produces a `(3, 2, 2)` tensor of `(x, y)` differences for every `(point, centroid)` pair. `.sum(axis=2)` collapses the last axis of length 2."
+    },
+    {
+      "kind": "predict",
+      "question": "Point 1 is `[3., 4.]` (line 5). What are its two squared distances in row 1 of `D`, `(3 - 0)**2 + (4 - 0)**2` and `(3 - 1)**2 + (4 - 1)**2`?",
+      "answer": "To centroid `[0., 0.]`, the squared distance is `25.`; to centroid `[1., 1.]`, it is `4 + 9 = 13.`. Thus, row 1 of `D` is `[25., 13.]`.",
+      "lines": "5,10-11,14-15"
+    },
+    {
+      "kind": "run",
+      "trace_step": 10,
+      "lines": "14",
+      "description": "Line 14 computes the `(3, 2)` squared-distance matrix `D = [[5., 1.], [25., 13.], [61., 41.]]` in a single vectorized expression."
+    },
+    {
+      "kind": "run",
+      "trace_step": 11,
+      "lines": "15",
+      "description": "Line 15 prints `D`, showing each point's squared Euclidean distance to centroid A (column 0) and centroid B (column 1)."
+    }
+  ]
 }
