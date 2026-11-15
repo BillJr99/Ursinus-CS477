@@ -1,45 +1,33 @@
 {
  "code": "\ndef time_average_distribution(P, n_steps=200000, rng=None):\n    rng = np.random.default_rng() if rng is None else rng\n    X = simulate_markov(P, n_steps=n_steps, rng=rng)\n    m = P.shape[0]\n    counts = np.bincount(X, minlength=m)\n    return counts / counts.sum()\n\navg_est = time_average_distribution(P, rng=rng)\nprint(\"Time-average distribution:\", avg_est)\nprint(\"||time-avg - pi*||_1 =\", np.abs(avg_est - pi_star).sum())\n",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You count simulated visits and compare their distribution with pi_star.",
  "example": "cs477-nb-markov-chain-tutorial-10",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 2-7 define `time_average_distribution(P, n_steps, rng)`.",
+   "description": "You use the supplied random generator or create one, then simulate a path. The default call requests 200000 transitions.",
    "kind": "reveal",
-   "lines": "2-7"
+   "lines": "2-4"
   },
   {
-   "description": "Line 7 returns `counts / counts.sum()`.",
-   "kind": "focus",
-   "lines": "7"
+   "description": "You count visits to each state with bincount. Dividing by the count total produces the path's empirical distribution.",
+   "kind": "reveal",
+   "lines": "5-7"
   },
   {
-   "description": "Lines 9-11 run the main code and print the results.",
+   "answer": "It sums the absolute differences between corresponding probabilities. This is the L1 distance.",
+   "kind": "predict",
+   "lines": "11",
+   "question": "How does the final expression measure disagreement with pi_star?"
+  },
+  {
+   "description": "You print the empirical frequencies and their L1 difference from pi_star.",
    "kind": "reveal",
    "lines": "9-11"
-  },
-  {
-   "description": "Here `time_average_distribution` is called for the first time; its frame appears on the right.",
-   "kind": "run",
-   "lines": "3",
-   "trace_step": 2
-  },
-  {
-   "description": "Here `time_average_distribution` returns, the first time it does.",
-   "kind": "run",
-   "lines": "7",
-   "trace_step": 7
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "11",
-   "trace_step": 10
   }
  ],
- "title": "Notebook Markov_Chain_Tutorial.ipynb",
+ "title": "Estimate state frequencies from one path",
  "version": 1
 }

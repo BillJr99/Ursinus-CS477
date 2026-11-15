@@ -1,27 +1,33 @@
 {
  "code": "def kde_2d_pdf(X, points, h):\n    # X: (n,2) standardized; points: (m,2); bandwidth scalar h (isotropic)\n    X = np.asarray(X, float)\n    P = np.asarray(points, float)\n    n = X.shape[0]\n    D2 = np.sum((P[:,None,:] - X[None,:,:])**2, axis=2)\n    val = np.exp(-0.5*D2/(h*h)).sum(axis=1) / (n * (2*np.pi*(h*h)))\n    return val\n\nn = len(X2s); d = 2\nh2 = (n**(-1.0/(d+4)))  # isotropic bandwidth on standardized data\nxx, yy = np.meshgrid(np.linspace(X2s[:,0].min()-3, X2s[:,0].max()+3, 150),\n                     np.linspace(X2s[:,1].min()-3, X2s[:,1].max()+3, 150))\npts = np.c_[xx.ravel(), yy.ravel()]\nden = kde_2d_pdf(X2s, pts, h=h2).reshape(xx.shape)\n\nfig = plt.figure(figsize=(6,5))\nplt.contourf(xx, yy, den, levels=20)\nplt.scatter(X2s[:,0], X2s[:,1], s=8, alpha=0.5, c='k')\nplt.title(f\"2D KDE (isotropic) with h≈{h2:.3f}\"); plt.tight_layout(); plt.show()",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You evaluate a kernel density estimate on a grid around standardized observations.",
  "example": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-5",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 1-8 define `kde_2d_pdf(X, points, h)`.",
+   "description": "You compute squared distances from every evaluation point to every observation. Gaussian contributions are summed and normalized to produce one density value per point.",
    "kind": "reveal",
    "lines": "1-8"
   },
   {
-   "description": "Line 8 returns `val`.",
-   "kind": "focus",
-   "lines": "8"
+   "description": "You choose bandwidth h2 from the sample count and d=2. The mesh uses the supplied positions per axis and extends three units beyond the observed range on each side.",
+   "kind": "reveal",
+   "lines": "10-14"
   },
   {
-   "description": "Lines 10-20 run the main code.",
+   "answer": "pts holds the grid as a flat list of coordinate pairs. Reshaping restores the two-dimensional layout used by the contour plot.",
+   "kind": "predict",
+   "lines": "15",
+   "question": "Why does the density result need reshape(xx.shape)?"
+  },
+  {
+   "description": "You display the density as filled contours and overlay the observations. The title labels the estimate isotropic, meaning it uses the same bandwidth in both directions.",
    "kind": "reveal",
-   "lines": "10-20"
+   "lines": "15-20"
   }
  ],
- "title": "Notebook DensityEstimation_and_FeatureDiscovery_FromScratch.ipynb",
+ "title": "Build a two-dimensional density map",
  "version": 1
 }

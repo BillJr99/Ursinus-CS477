@@ -1,23 +1,33 @@
 {
  "code": "iris = datasets.load_iris()\nX = iris.data.astype(float)\ny = iris.target.astype(int)\nfeature_names = iris.feature_names\nclass_names = iris.target_names\n\nX_std, mu, sigma = standardize(X)\nX_tr, X_te, y_tr, y_te = train_test_split(X_std, y, test_size=0.3, rng=rng)\n\nprint(\"Train:\", X_tr.shape, \" Test:\", X_te.shape)\nprint(\"Classes:\", class_names)",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You load features and labels, standardize them, and inspect the split sizes.",
  "example": "cs477-nb-lda-and-fisherscore-fromscratch-3",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 1-11 run the main code and print the results.",
+   "description": "You load Iris measurements as floats and labels as integers. Feature and class names remain available for later displays.",
    "kind": "reveal",
-   "lines": "1-11"
+   "lines": "1-5"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "11",
-   "trace_step": 9
+   "description": "You standardize the full X matrix and retain its mean and scale. This call happens before the train-test split.",
+   "kind": "reveal",
+   "lines": "7"
+  },
+  {
+   "answer": "It receives X_std and y, with test_size=0.3 and rng. Both returned feature splits therefore come from the already standardized matrix.",
+   "kind": "predict",
+   "lines": "8",
+   "question": "Does train_test_split receive raw X or X_std?"
+  },
+  {
+   "description": "You print the training and test shapes. The recorded class names are setosa, versicolor, and virginica.",
+   "kind": "reveal",
+   "lines": "8-11"
   }
  ],
- "title": "Notebook LDA_and_FisherScore_FromScratch.ipynb",
+ "title": "Prepare the Iris classification split",
  "version": 1
 }

@@ -1,33 +1,33 @@
 {
  "code": "# Training the neural network\nfor epoch in range(epochs):\n    # Forward pass: calculate the predictions\n    y_pred = m * x + b\n\n    # Calculate the Mean Squared Error (MSE) Loss\n    loss = (1 / n) * np.sum((y - y_pred) ** 2)\n\n    # Compute gradients (derivatives of loss with respect to m and b)\n    # these are effectively the weight and bias of a single layer neuron - a linear function!\n    dm = -(2 / n) * np.sum(x * (y - y_pred))  # Gradient with respect to m\n    db = -(2 / n) * np.sum(y - y_pred)        # Gradient with respect to b\n\n    # Update parameters using the gradients\n    m = m - learning_rate * dm\n    b = b - learning_rate * db\n\n    # Print loss every 1 iterations\n    if epoch % 1 == 0:\n        print(f\"Epoch {epoch}: Loss = {loss:.4f}, m = {m:.4f}, b = {b:.4f}\")",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You connect predictions, squared error, and slope and bias updates.",
  "example": "cs477-nb-linearfunctionestimatornn-6",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 2-20 run the main code and print the results.",
+   "description": "You predict y with m*x+b each epoch. The loss averages squared residuals across n examples.",
    "kind": "reveal",
-   "lines": "2-20"
+   "lines": "1-7"
   },
   {
-   "description": "Line 2 loops over `range(epochs)`.",
-   "kind": "focus",
-   "lines": "2"
+   "description": "You compute gradients for slope m and bias b from the same residuals. The slope gradient also weights each residual by x.",
+   "kind": "reveal",
+   "lines": "9-12"
   },
   {
-   "description": "Line 19 checks `epoch % 1 == 0`.",
-   "kind": "focus",
-   "lines": "19"
+   "answer": "The loss uses parameters from before the update. The print statement shows m and b after subtracting their gradient steps.",
+   "kind": "predict",
+   "lines": "15-20",
+   "question": "Does each printed loss use the same parameter values as the printed m and b?"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "19",
-   "trace_step": 799
+   "description": "You update both parameters and print every epoch because epoch % 1 is always zero. The supplied output shows the loss falling through epoch 30.",
+   "kind": "reveal",
+   "lines": "15-20"
   }
  ],
- "title": "Notebook LinearFunctionEstimatorNN.ipynb",
+ "title": "Update a line with gradient descent",
  "version": 1
 }

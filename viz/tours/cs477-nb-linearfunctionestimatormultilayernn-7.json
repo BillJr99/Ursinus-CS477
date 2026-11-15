@@ -1,23 +1,33 @@
 {
  "code": "# Final output\nprint(f\"Final parameters: v1 = {v1:.4f}, v2 = {v2:.4f}, w1 = {w1:.4f}, w2 = {w2:.4f}, b1 = {b1:.4f}, b2 = {b2:.4f}, c = {c:.4f}\")",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You inspect the stored weights and biases in one formatted report.",
  "example": "cs477-nb-linearfunctionestimatormultilayernn-7",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model + edit: codex",
  "steps": [
   {
-   "description": "Line 2 runs the main code and print the results.",
+   "description": "You reach the network's final output report. The next statement reads the current parameter values.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "answer": "It prints seven values: v1, v2, w1, w2, b1, b2, and c. Each uses four digits after the decimal point.",
+   "kind": "predict",
+   "lines": "2",
+   "question": "How many parameter values does this report print?"
+  },
+  {
+   "description": "You see the recorded values for v1, v2, w1, and w2. The labels identify each printed weight.",
    "kind": "reveal",
    "lines": "2"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "2",
-   "trace_step": 1
+   "description": "You also see the recorded values for b1, b2, and c. This statement reports the stored network parameters without changing them.",
+   "kind": "focus",
+   "lines": "2"
   }
  ],
- "title": "Notebook LinearFunctionEstimatorMultiLayerNN.ipynb",
+ "title": "Read the network's final parameters",
  "version": 1
 }

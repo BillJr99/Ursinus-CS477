@@ -1,28 +1,50 @@
 {
  "code": "prior = 0.01          # P(D)\nsens  = 0.90          # P(+|D)\nfpr   = 0.05          # P(+|~D)\n\nevidence  = sens * prior + fpr * (1 - prior)      # P(+), total probability\nposterior = sens * prior / evidence               # Bayes' rule\nprint(f\"P(+)      = {evidence:.4f}\")\nprint(f\"P(D | +)  = {posterior:.4f}\")             # ~0.1538\n\n# Evidence compounds: a SECOND independent positive test?\nprior2 = posterior\nevidence2  = sens * prior2 + fpr * (1 - prior2)\nprint(f\"P(D | ++) = {sens * prior2 / evidence2:.4f}\")   # ~0.7657",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "Compute P(+) and P(D | +) from prior = 0.01, sens = 0.90, and fpr = 0.05 using Bayes' rule, then use that posterior as prior2 for a second positive test.",
  "example": "cs477-liascript-probabilityfoundations-1",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: agy free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 1-12 run the main code and print the results.",
+   "description": "Set the initial disease prevalence `prior = 0.01` ($P(D)$), test sensitivity `sens = 0.90` ($P(+ \\mid D)$), and false-positive rate `fpr = 0.05` ($P(+ \\mid \\lnot D)$).",
    "kind": "reveal",
-   "lines": "1-12"
+   "lines": "1-3"
   },
   {
-   "description": "Line 13 continues the main code and print the results.",
+   "description": "Compute total probability `evidence = sens * prior + fpr * (1 - prior)` ($P(+)$). Apply Bayes' rule `posterior = sens * prior / evidence` ($P(D \\mid +)$), then print both to 4 decimal places.",
    "kind": "reveal",
-   "lines": "13"
+   "lines": "5-8"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
+   "description": "For a second independent positive test, set `prior2 = posterior`. Recompute `evidence2 = sens * prior2 + fpr * (1 - prior2)`. Print the updated posterior `sens * prior2 / evidence2` ($P(D \\mid ++)$).",
+   "kind": "reveal",
+   "lines": "10-13"
+  },
+  {
+   "description": "Look at line 11 (`prior2 = posterior`): sequential Bayesian updating takes the posterior from the first observation (`0.1538`) and uses it as the prior entering the second observation.",
+   "kind": "focus",
+   "lines": "5-6,11-13"
+  },
+  {
+   "answer": "The second test starts from `prior2 = 0.1538` instead of `0.01`. Thus, `sens * prior2` (`0.90 * 0.1538`) is now much larger than the false-positive term `fpr * (1 - prior2)`.",
+   "kind": "predict",
+   "lines": "5-8,11-13",
+   "question": "Why does `P(D | ++)` on line 13 jump to `0.7660` when the first positive test only reached `P(D | +) = 0.1538`?"
+  },
+  {
+   "description": "After the first positive test, `posterior` is `sens * prior / evidence`, printing `P(D | +)  = 0.1538`.",
+   "kind": "run",
+   "lines": "8",
+   "trace_step": 6
+  },
+  {
+   "description": "Using the first posterior as `prior2` for the second positive test prints `P(D | ++) = 0.7660`.",
    "kind": "run",
    "lines": "13",
-   "trace_step": 10
+   "trace_step": 9
   }
  ],
- "title": "6. Bayes' Rule, Intuition First",
+ "title": "Sequential Bayesian Updating across Two Positive Tests",
  "version": 1
 }

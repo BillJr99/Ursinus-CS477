@@ -1,22 +1,38 @@
 {
  "code": "\n# Build polynomial features up to degree 3\npoly = PolynomialFeatures(degree=3, include_bias=False)\nX_poly = poly.fit_transform(X)  # [x, x^2, x^3]\n\n# Train/test split\nX_train, X_test, y_train, y_test = train_test_split(X_poly, y, test_size=0.25, random_state=42)\n\n# Pipeline: Standardize -> Linear Regression\nmodel = Pipeline([\n    (\"scaler\", StandardScaler()),\n    (\"linreg\", LinearRegression())\n])\nmodel.fit(X_train, y_train)\ny_pred = model.predict(X_test)\n\nprint(\"Test RMSE:\", math.sqrt(mean_squared_error(y_test, y_pred)))\nprint(\"Test R^2:\", r2_score(y_test, y_pred))\n\n# Plot predictions against ground truth on test set\nplt.scatter(y_test, y_pred, alpha=0.7)\nplt.xlabel(\"True y\")\nplt.ylabel(\"Predicted y\")\nplt.title(\"Polynomial Linear Regression: Predictions vs True\")\nplt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()])  # y=x line\nplt.show()\n",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "Expand X into [x, x^2, x^3] with PolynomialFeatures(degree=3, include_bias=False), split using the supplied ratio, fit a StandardScaler + LinearRegression pipeline, and plot y_pred vs. y_test.",
  "example": "cs477-nb-linear-and-logistic-regression-tutorial-6",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: agy free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 3-14 run the main code.",
+   "description": "Create `poly = PolynomialFeatures(degree=3, include_bias=False)` and transform the single-column feature matrix `X` into `X_poly` with columns `[x, x^2, x^3]`. Split `(X_poly, y)` into train and test sets using the supplied ratio.",
    "kind": "reveal",
-   "lines": "3-14"
+   "lines": "2-8"
   },
   {
-   "description": "Lines 15-26 continue the main code and print the results.",
+   "description": "Build `model = Pipeline([(\"scaler\", StandardScaler()), (\"linreg\", LinearRegression())])`, fit on `(X_train, y_train)`, predict `y_pred = model.predict(X_test)`, and print `Test RMSE: 0.6429365959079092` and `Test R^2: 0.8985803002973695`.",
    "kind": "reveal",
-   "lines": "15-26"
+   "lines": "9-18"
+  },
+  {
+   "description": "Look at lines 3-4 and 10-13: `include_bias=False` omits the constant `1` column from `X_poly` because `LinearRegression()` fits its own intercept, and `StandardScaler()` normalizes `x`, `x^2`, and `x^3` onto comparable scales.",
+   "kind": "focus",
+   "lines": "3-4,10-13"
+  },
+  {
+   "answer": "It draws the diagonal identity line `Predicted y = True y`, where every point with zero prediction error (`y_pred == y_test`) would lie.",
+   "kind": "predict",
+   "lines": "21-25",
+   "question": "On line 25, what reference line does `plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()])` draw on the `True y` vs. `Predicted y` scatter plot?"
+  },
+  {
+   "description": "Scatter-plot `(y_test, y_pred)`, overlay the diagonal `y = x` line from `y_test.min()` to `y_test.max()`, and display the figure.",
+   "kind": "reveal",
+   "lines": "20-26"
   }
  ],
- "title": "Notebook Linear_and_Logistic_Regression_Tutorial.ipynb",
+ "title": "Degree-3 Polynomial Features with a Scaled Linear Regression Pipeline",
  "version": 1
 }

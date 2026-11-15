@@ -1,37 +1,33 @@
 {
  "code": "def batch_shapley_summary(model, X, M=120, bg=None, rng=rng):\n    if bg is None: bg = X.mean(axis=0)\n    Phi = np.zeros((len(X), X.shape[1]))\n    for i in range(len(X)):\n        ph, f0i, fxi = shapley_permutation(model.predict_proba, X[i], bg, M=M, rng=rng)\n        Phi[i] = ph\n    return Phi\n\nsubset = rng.choice(len(X_te), size=60, replace=False)\nPhi = batch_shapley_summary(mlp, X_te[subset], M=160, bg=background, rng=rng)\nimp = np.mean(np.abs(Phi), axis=0)\n\nfig = plt.figure(figsize=(6,4))\nordg = np.argsort(imp)[::-1]\nplt.bar(range(len(imp)), imp[ordg])\nplt.xticks(range(len(imp)), names[ordg], rotation=30)\nplt.ylabel(\"Mean |Shapley|\"); plt.title(\"Global feature importance (approx)\")\nplt.tight_layout(); plt.show()",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You can follow per-row explanations into a feature ordering.",
  "example": "cs477-nb-explainableai-shapley-from-scratch-creditnn-9",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 1-7 define `batch_shapley_summary(model, X, M, bg, rng)`.",
+   "description": "batch_shapley_summary allocates one attribution row per input row. You call the existing permutation helper for each input and store ph in Phi.",
    "kind": "reveal",
    "lines": "1-7"
   },
   {
-   "description": "Line 2 checks `bg is None`.",
-   "kind": "focus",
-   "lines": "2"
-  },
-  {
-   "description": "Line 4 loops over `range(len(X))`.",
-   "kind": "focus",
-   "lines": "4"
-  },
-  {
-   "description": "Line 7 returns `Phi`.",
-   "kind": "focus",
-   "lines": "7"
-  },
-  {
-   "description": "Lines 9-18 run the main code.",
+   "description": "You sample test indices without replacement. The batch call uses the supplied background and permutation sample count per explanation.",
    "kind": "reveal",
-   "lines": "9-18"
+   "lines": "9-10"
+  },
+  {
+   "answer": "No. abs converts contributions to magnitudes before the mean across rows.",
+   "kind": "predict",
+   "lines": "11",
+   "question": "Can positive and negative attributions cancel in this importance calculation?"
+  },
+  {
+   "description": "You sort importance in descending order and draw matching feature labels. The recording supplies no chart or numeric ranking to inspect.",
+   "kind": "reveal",
+   "lines": "13-18"
   }
  ],
- "title": "Notebook ExplainableAI_Shapley_From_Scratch_CreditNN.ipynb",
+ "title": "Summarizing attribution magnitudes",
  "version": 1
 }

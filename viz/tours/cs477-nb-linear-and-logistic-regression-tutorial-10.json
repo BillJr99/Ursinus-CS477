@@ -1,62 +1,38 @@
 {
  "code": "\n# Synthetic binary classification data\nn = 300\nmean0, mean1 = np.array([0, 0]), np.array([2, 2])\ncov = np.array([[1.0, 0.2],[0.2, 1.0]])\nX0 = np.random.multivariate_normal(mean0, cov, size=n//2)\nX1 = np.random.multivariate_normal(mean1, cov, size=n//2)\nX_bin = np.vstack([X0, X1])\ny_bin = np.hstack([np.zeros(n//2, dtype=int), np.ones(n//2, dtype=int)])\n\n# Shuffle\nperm = np.random.permutation(n)\nX_bin, y_bin = X_bin[perm], y_bin[perm]\n\ndef sigmoid(z):\n    return 1.0 / (1.0 + np.exp(-z))\n\ndef logistic_loss(theta, X, y):\n    z = X @ theta\n    p = sigmoid(z)\n    eps = 1e-12\n    return -np.mean(y * np.log(p + eps) + (1-y)*np.log(1 - p + eps))\n\ndef logistic_gd(X, y, lr=0.1, steps=500):\n    theta = np.zeros(X.shape[1])\n    history = []\n    for t in range(steps):\n        z = X @ theta\n        p = sigmoid(z)\n        grad = X.T @ (p - y) / len(y)\n        theta -= lr * grad\n        history.append(logistic_loss(theta, X, y))\n    return theta, np.array(history)\n\n# Add intercept term\nX_aug = np.c_[np.ones((n, 1)), X_bin]\ntheta, hist = logistic_gd(X_aug, y_bin, lr=0.2, steps=500)\n\nprint(\"Final loss:\", hist[-1])\n\nplt.plot(hist)\nplt.xlabel(\"Iteration\")\nplt.ylabel(\"Log loss\")\nplt.title(\"Logistic Regression (from scratch) — Convergence\")\nplt.show()\n\n# Visualize decision boundary\nxx, yy = np.meshgrid(np.linspace(X_bin[:,0].min()-1, X_bin[:,0].max()+1, 200),\n                     np.linspace(X_bin[:,1].min()-1, X_bin[:,1].max()+1, 200))\ngrid = np.c_[np.ones((xx.size, 1)), xx.ravel(), yy.ravel()]\nprobs = sigmoid(grid @ theta).reshape(xx.shape)\n\nplt.contourf(xx, yy, probs, levels=np.linspace(0,1,11), alpha=0.6)\nplt.scatter(X_bin[y_bin==0,0], X_bin[y_bin==0,1], label=\"class 0\", alpha=0.8)\nplt.scatter(X_bin[y_bin==1,0], X_bin[y_bin==1,1], label=\"class 1\", alpha=0.8)\nplt.colorbar(label=\"P(y=1 | x)\")\nplt.legend(); plt.title(\"Decision Boundary (from scratch)\")\nplt.show()\n",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "Generate two 2D Gaussian clusters, minimize binary cross-entropy loss with logistic_gd on X_aug, and plot the log-loss convergence curve and probability contour map.",
  "example": "cs477-nb-linear-and-logistic-regression-tutorial-10",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: agy free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 3-13 run the main code.",
+   "description": "Sample points from `mean0 = [0, 0]` (`class 0`) and `mean1 = [2, 2]` (`class 1`) using the supplied counts and shared covariance `cov`. Stack them into `X_bin` and `y_bin`, and shuffle with `np.random.permutation(n)`.",
    "kind": "reveal",
-   "lines": "3-13"
+   "lines": "2-13"
   },
   {
-   "description": "Lines 15-16 define `sigmoid(z)`.",
+   "description": "Define `sigmoid(z)`, `logistic_loss(theta, X, y)`, and `logistic_gd` with the supplied defaults. Each gradient step computes `grad = X.T @ (p - y) / len(y)` and updates `theta -= lr * grad`.",
    "kind": "reveal",
-   "lines": "15-16"
+   "lines": "15-33"
   },
   {
-   "description": "Line 16 returns `1.0 / (1.0 + np.exp(-z))`.",
+   "description": "Look at lines 28-32: each gradient descent step computes predicted probabilities `p = sigmoid(X @ theta)` and forms the residual vector `p - y`. It projects that vector onto `X.T / len(y)` and appends the updated `logistic_loss` to `history`.",
    "kind": "focus",
-   "lines": "16"
+   "lines": "28-32"
   },
   {
-   "description": "Lines 18-22 define `logistic_loss(theta, X, y)`.",
+   "answer": "Adding eps prevents `np.log(0)` (`-inf` or `nan`) if a predicted probability `p` ever rounds to zero or one.",
+   "kind": "predict",
+   "lines": "18-22",
+   "question": "Why does line 22 add the supplied eps inside `np.log(p + eps)` and `np.log(1 - p + eps)`?"
+  },
+  {
+   "description": "Prepend a column of ones to form `X_aug`. Run `logistic_gd` on `X_aug` and `y_bin` with the supplied settings to reach `Final loss: 0.28075158713736514`. Plot both `hist` and the 2D probability contours `probs = sigmoid(grid @ theta).reshape(xx.shape)`.",
    "kind": "reveal",
-   "lines": "18-22"
-  },
-  {
-   "description": "Line 22 returns a value.",
-   "kind": "focus",
-   "lines": "22"
-  },
-  {
-   "description": "Lines 24-33 define `logistic_gd(X, y, lr, steps)`.",
-   "kind": "reveal",
-   "lines": "24-33"
-  },
-  {
-   "description": "Line 27 loops over `range(steps)`.",
-   "kind": "focus",
-   "lines": "27"
-  },
-  {
-   "description": "Line 33 returns `theta, np.array(history)`.",
-   "kind": "focus",
-   "lines": "33"
-  },
-  {
-   "description": "Lines 36-49 continue the main code and print the results.",
-   "kind": "reveal",
-   "lines": "36-49"
-  },
-  {
-   "description": "Lines 50-58 continue the main code.",
-   "kind": "reveal",
-   "lines": "50-58"
+   "lines": "35-58"
   }
  ],
- "title": "Notebook Linear_and_Logistic_Regression_Tutorial.ipynb",
+ "title": "Binary Logistic Regression from Scratch via Batch Gradient Descent",
  "version": 1
 }

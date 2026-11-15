@@ -1,23 +1,33 @@
 {
  "code": "diabetes = load_diabetes()\nX_full = diabetes.data\ny_full = diabetes.target\nprint(X_full.shape, y_full.shape)\ndiabetes.feature_names, X_full",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You separate feature measurements from target values and check their dimensions.",
  "example": "cs477-nb-linear-logistic-regression-demo-2",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 1-5 run the main code and print the results.",
+   "description": "You load the diabetes dataset and store its data array as X_full. This array holds the feature measurements.",
    "kind": "reveal",
-   "lines": "1-5"
+   "lines": "1-2"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "5",
-   "trace_step": 5
+   "answer": "Their first dimensions should match because every feature row has a target. The recording shows 442 in both shapes.",
+   "kind": "predict",
+   "lines": "3-4",
+   "question": "What should match between the feature and target shapes?"
+  },
+  {
+   "description": "You store the target vector as y_full and print both shapes. X_full is the feature matrix, while y_full has shape (442,).",
+   "kind": "reveal",
+   "lines": "3-4"
+  },
+  {
+   "description": "You leave feature_names and X_full as the final expression for notebook inspection. The supplied recording prints only the array shapes.",
+   "kind": "reveal",
+   "lines": "5"
   }
  ],
- "title": "Notebook linear_logistic_regression_demo.ipynb",
+ "title": "Inspect the diabetes dataset arrays",
  "version": 1
 }

@@ -1,77 +1,43 @@
 {
  "code": "# Robust MNIST downloader with mirror fallbacks → Kaggle-style train.csv\n# Mirrors tried (in order): CVDF (GCS) → LeCun → GitHub fgnt\n# Produces: /kaggle/input/digit-recognizer/train.csv\n#\n# After this, your original loader works:\n#   data = pd.read_csv('/kaggle/input/digit-recognizer/train.csv')\n\nimport os, gzip, urllib.request, urllib.error, struct, traceback\nfrom urllib.parse import urljoin\nimport numpy as np\nimport pandas as pd\n\nMIRRORS = [\n    \"https://storage.googleapis.com/cvdf-datasets/mnist/\",  # CVDF mirror\n    \"https://yann.lecun.com/exdb/mnist/\",                   # LeCun site\n    \"https://raw.githubusercontent.com/fgnt/mnist/master/\", # GitHub mirror\n]\n\nFILES = {\n    \"train_images\": \"train-images-idx3-ubyte.gz\",\n    \"train_labels\": \"train-labels-idx1-ubyte.gz\",\n    \"test_images\":  \"t10k-images-idx3-ubyte.gz\",\n    \"test_labels\":  \"t10k-labels-idx1-ubyte.gz\",\n}\n\nRAW_DIR = \"./mnist_data\"\nos.makedirs(RAW_DIR, exist_ok=True)\n\nKAGGLE_INPUT_DIR = \"./kaggle/input/digit-recognizer\"\nos.makedirs(KAGGLE_INPUT_DIR, exist_ok=True)\nTRAIN_CSV_PATH = os.path.join(KAGGLE_INPUT_DIR, \"train.csv\")\n# If you want a Kaggle-style test.csv (pixels only), set this:\nTEST_CSV_PATH  = os.path.join(KAGGLE_INPUT_DIR, \"test.csv\")  # optional\n\ndef _download_with_fallbacks(filename: str, mirrors=MIRRORS, out_dir: str = RAW_DIR, timeout: int = 30) -> str:\n    \"\"\"Try to download filename from a list of mirrors. Returns local path or raises.\"\"\"\n    last_err = None\n    dest = os.path.join(out_dir, filename)\n    if os.path.exists(dest):\n        print(f\"[MNIST-DL] Using cached: {dest}\")\n        return dest\n    for base in mirrors:\n        url = urljoin(base, filename)\n        try:\n            print(f\"[MNIST-DL] Fetching {url} ...\")\n            urllib.request.urlretrieve(url, dest)  # simple & robust\n            print(f\"[MNIST-DL] Saved to {dest}\")\n            return dest\n        except Exception as e:\n            last_err = e\n            print(f\"[MNIST-DL] Mirror failed {url} :: {e}\")\n            traceback.print_exc()\n    raise RuntimeError(f\"[MNIST-DL] All mirrors failed for {filename}: {last_err}\")\n\ndef _read_idx_images_gz(path_gz: str) -> np.ndarray:\n    \"\"\"Read IDX images (gz) -> uint8 array (N, 28, 28).\"\"\"\n    with gzip.open(path_gz, 'rb') as f:\n        magic, num, rows, cols = struct.unpack(\">IIII\", f.read(16))\n        if magic != 2051:\n            raise ValueError(f\"[MNIST-PARSE] Unexpected magic for images: {magic}\")\n        buf = f.read()\n        arr = np.frombuffer(buf, dtype=np.uint8).reshape(num, rows, cols)\n        return arr\n\ndef _read_idx_labels_gz(path_gz: str) -> np.ndarray:\n    \"\"\"Read IDX labels (gz) -> uint8 array (N,).\"\"\"\n    with gzip.open(path_gz, 'rb') as f:\n        magic, num = struct.unpack(\">II\", f.read(8))\n        if magic != 2049:\n            raise ValueError(f\"[MNIST-PARSE] Unexpected magic for labels: {magic}\")\n        buf = f.read()\n        labels = np.frombuffer(buf, dtype=np.uint8)\n        return labels\n\ndef _write_kaggle_train_csv(train_images: np.ndarray, train_labels: np.ndarray, out_csv: str) -> None:\n    \"\"\"Write Kaggle 'digit-recognizer' style CSV: label,pixel0,...,pixel783.\"\"\"\n    try:\n        assert train_images.shape[0] == train_labels.shape[0]\n        N = train_images.shape[0]\n        X = train_images.reshape(N, -1).astype(np.uint8)\n        y = train_labels.astype(np.uint8)\n        pixel_cols = [f\"pixel{i}\" for i in range(X.shape[1])]\n        df = pd.DataFrame(X, columns=pixel_cols)\n        df.insert(0, \"label\", y)\n        df.to_csv(out_csv, index=False)\n        print(f\"[MNIST-WRITE] Wrote {out_csv} (rows={N})\")\n    except Exception as e:\n        print(f\"[MNIST-WRITE] Error writing train CSV: {e}\")\n        traceback.print_exc()\n        raise\n\ndef _write_kaggle_test_csv(test_images: np.ndarray, out_csv: str) -> None:\n    \"\"\"Optional: Write Kaggle-style test.csv with pixels only (no labels).\"\"\"\n    try:\n        X = test_images.reshape(test_images.shape[0], -1).astype(np.uint8)\n        df = pd.DataFrame(X, columns=[f\"pixel{i}\" for i in range(X.shape[1])])\n        df.to_csv(out_csv, index=False)\n        print(f\"[MNIST-WRITE] Wrote {out_csv} (rows={X.shape[0]})\")\n    except Exception as e:\n        print(f\"[MNIST-WRITE] Error writing test CSV: {e}\")\n        traceback.print_exc()\n        raise\n\ntry:\n    paths = {k: _download_with_fallbacks(v) for k, v in FILES.items()}\n    train_images = _read_idx_images_gz(paths[\"train_images\"])\n    train_labels = _read_idx_labels_gz(paths[\"train_labels\"])\n    _write_kaggle_train_csv(train_images, train_labels, TRAIN_CSV_PATH)\n\n    # Optional: also emit test.csv (unlabeled), useful for parity with Kaggle's digit-recognizer\n    test_images = _read_idx_images_gz(paths[\"test_images\"])\n    _write_kaggle_test_csv(test_images, TEST_CSV_PATH)\n\nexcept Exception as e:\n    print(f\"[MNIST-SETUP] Error: {e}\")\n    traceback.print_exc()\n",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You inspect mirror fallbacks, binary readers, and the recorded setup failure.",
  "example": "cs477-nb-simple-mnist-nn-from-scratch-1",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 8-11 import `os`, `gzip`, `urllib.request`, `urllib.error`, `struct`, `traceback`, `urllib.parse`, `numpy` and `pandas`.",
+   "description": "You define three download mirrors and four compressed MNIST filenames. The active output paths are relative directories under ./mnist_data and ./kaggle/input/digit-recognizer.",
    "kind": "reveal",
-   "lines": "8-11"
+   "lines": "8-33"
   },
   {
-   "description": "Lines 13-24 run the main code.",
-   "kind": "reveal",
-   "lines": "13-24"
-  },
-  {
-   "description": "Lines 26-33 continue the main code.",
-   "kind": "reveal",
-   "lines": "26-33"
-  },
-  {
-   "description": "Lines 35-53 define `_download_with_fallbacks(filename, mirrors, out_dir, timeout)`.",
+   "description": "You reuse an existing destination or try the mirrors in order. Each failed request records its exception; exhausting the list raises RuntimeError.",
    "kind": "reveal",
    "lines": "35-53"
   },
   {
-   "description": "Line 39 checks `os.path.exists(dest)`.",
-   "kind": "focus",
-   "lines": "39"
-  },
-  {
-   "description": "Line 42 loops over `mirrors`.",
-   "kind": "focus",
-   "lines": "42"
-  },
-  {
-   "description": "Lines 55-63 define `_read_idx_images_gz(path_gz)`.",
+   "description": "You define compressed IDX readers for images and labels. Their header checks require the respective format's magic number.",
    "kind": "reveal",
-   "lines": "55-63"
+   "lines": "55-73"
   },
   {
-   "description": "Line 59 checks `magic != 2051`.",
-   "kind": "focus",
-   "lines": "59"
-  },
-  {
-   "description": "Lines 65-73 define `_read_idx_labels_gz(path_gz)`.",
+   "description": "You flatten image arrays into pixel columns for CSV writing. The training writer inserts a label column, while the test writer includes pixels only.",
    "kind": "reveal",
-   "lines": "65-73"
+   "lines": "75-102"
   },
   {
-   "description": "Line 69 checks `magic != 2049`.",
-   "kind": "focus",
-   "lines": "69"
+   "answer": "All mirrors fail for the first image file with name-resolution errors. The raised exception reaches the outer handler before the readers and writers run.",
+   "kind": "predict",
+   "lines": "104-116",
+   "question": "Does the recorded setup reach the training CSV writer?"
   },
   {
-   "description": "Lines 75-90 define `_write_kaggle_train_csv(train_images, train_labels, out_csv)`.",
-   "kind": "reveal",
-   "lines": "75-90"
-  },
-  {
-   "description": "Lines 92-102 define `_write_kaggle_test_csv(test_images, out_csv)`.",
-   "kind": "reveal",
-   "lines": "92-102"
-  },
-  {
-   "description": "Lines 104-116 continue the main code and print the results.",
+   "description": "You see three mirror-failure messages followed by the MNIST-SETUP error. The supplied recording reports a failed download rather than a completed CSV export.",
    "kind": "reveal",
    "lines": "104-116"
   }
  ],
- "title": "Notebook Simple_MNIST_NN_from_scratch.ipynb",
+ "title": "Trace MNIST download and CSV preparation",
  "version": 1
 }

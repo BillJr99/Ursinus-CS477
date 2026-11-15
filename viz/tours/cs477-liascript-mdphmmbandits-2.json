@@ -1,38 +1,50 @@
 {
  "code": "import numpy as np\n\nP = np.array([\n    [0.6, 0.3, 0.1],\n    [0.4, 0.4, 0.2],\n    [0.2, 0.6, 0.2]\n])\n\nx0 = np.array([1,0,0])\n\n# evolve for 10 steps\nx = x0\nfor _ in range(10):\n    x = x @ P\n\nprint(\"After 10 days:\", x)\n\n# steady state via eigenvector method\nvals, vecs = np.linalg.eig(P.T)\nidx = np.argmin(np.abs(vals - 1))\npi = vecs[:, idx].real\npi = pi / pi.sum()\nprint(\"Steady state:\", pi)",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "Multiply an initial state distribution x0 by a 3x3 transition matrix P ten times and compare with the normalized eigenvalue-1 eigenvector of P.T.",
  "example": "cs477-liascript-mdphmmbandits-2",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: agy free model + edit: codex",
  "steps": [
   {
-   "description": "Line 1 imports `numpy`.",
+   "description": "Import `numpy as np`, define the `3 x 3` row-stochastic transition matrix `P` where each row sums to `1.0`, and set the initial state distribution `x0 = np.array([1, 0, 0])`.",
    "kind": "reveal",
-   "lines": "1"
+   "lines": "1-9"
   },
   {
-   "description": "Lines 3-14 run the main code.",
+   "description": "Start with `x = x0` and multiply `x = x @ P` inside a 10-step loop, then print the state distribution after 10 days.",
    "kind": "reveal",
-   "lines": "3-14"
+   "lines": "11-16"
   },
   {
-   "description": "Line 13 loops over `range(10)`.",
+   "description": "Compute eigenvalues and eigenvectors of `P.T` with `np.linalg.eig(P.T)`, select the eigenvector whose eigenvalue is closest to `1`, normalize `pi` so its entries sum to 1, and print the steady state.",
+   "kind": "reveal",
+   "lines": "18-23"
+  },
+  {
+   "description": "Compare the two ways of finding the stationary distribution. Repeated matrix multiplication `x = x @ P` approaches the steady state step by step. `np.linalg.eig(P.T)` solves `pi @ P = pi` (`P.T @ pi = 1 * pi`) directly.",
    "kind": "focus",
-   "lines": "13"
+   "lines": "13-14,19-22"
   },
   {
-   "description": "Lines 16-23 continue the main code and print the results.",
-   "kind": "reveal",
-   "lines": "16-23"
+   "answer": "After 1 step `x` equals the first row of `P` (`[0.6, 0.3, 0.1]`), and after 10 steps `x` (`[0.46153965, 0.38461463, 0.15384572]`) matches `pi` (`[0.46153846, 0.38461538, 0.15384615]`) to five decimal places.",
+   "kind": "predict",
+   "lines": "3-9,13-16,19-23",
+   "question": "After just one step (`x0 @ P`) from `x0 = [1, 0, 0]`, what is `x`, and how close is `x` after 10 steps to the eigenvector steady state `pi`?"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
+   "description": "On the first iteration of the loop, `x = x @ P` updates `x` from `[1, 0, 0]` to `[0.6, 0.3, 0.1]`.",
+   "kind": "run",
+   "lines": "14",
+   "trace_step": 9
+  },
+  {
+   "description": "Line 23 prints the normalized eigenvector steady state `[0.46153846 0.38461538 0.15384615]`, matching the 10-day distribution.",
    "kind": "run",
    "lines": "23",
-   "trace_step": 35
+   "trace_step": 34
   }
  ],
- "title": "4. Code Example (Python)",
+ "title": "Markov Chain Evolution and Steady State via Eigenvectors",
  "version": 1
 }

@@ -1,23 +1,33 @@
 {
  "code": "# Example new tumor measurement:\n# Features are [mean radius, mean texture] (same order as training X_two)\n# Shape must be (1, n_features) -> here n_features = 2\nnew_tumor_sample = np.array([[14.5, 20.1]])  # replace with realistic values or values from your data\n\n# Predict class (0 = malignant/benign depending on your dataset's target_names ordering)\nnew_tumor_pred_label = pipe.predict(new_tumor_sample)[0]\n\n# Predict probability of class 1 (usually 'benign')\nnew_tumor_pred_proba = pipe.predict_proba(new_tumor_sample)[0, 1]\n\nprint(\"New tumor sample:\", new_tumor_sample)\nprint(\"Predicted class label:\", new_tumor_pred_label)\nprint(\"Predicted P(class = 1):\", new_tumor_pred_proba)",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You preserve feature order while requesting a label and class probability.",
  "example": "cs477-nb-linear-logistic-regression-demo-13",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 4-14 run the main code and print the results.",
+   "description": "You create one feature row containing mean radius 14.5 and mean texture 20.1. The nested brackets give the required shape (1,2).",
    "kind": "reveal",
-   "lines": "4-14"
+   "lines": "1-4"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "14",
-   "trace_step": 6
+   "description": "You pass the row to the fitted pipe and select its first predicted label. The recording returns label 1.",
+   "kind": "reveal",
+   "lines": "6-7"
+  },
+  {
+   "answer": "It selects the first sample's second probability column, used here for class 1.",
+   "kind": "predict",
+   "lines": "9-10",
+   "question": "Which probability does index [0,1] select from this call?"
+  },
+  {
+   "description": "You print the row, label, and class-1 probability together. The label's meaning follows the dataset's class ordering.",
+   "kind": "reveal",
+   "lines": "12-14"
   }
  ],
- "title": "Notebook linear_logistic_regression_demo.ipynb",
+ "title": "Inspect a pipeline prediction for one row",
  "version": 1
 }

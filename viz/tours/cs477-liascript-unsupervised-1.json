@@ -1,33 +1,45 @@
 {
  "code": "import numpy as np\n\nX = np.array([\n    [1., 2.],   # point 0\n    [3., 4.],   # point 1\n    [5., 6.]    # point 2\n])  # shape (3, 2) -> n=3, f=2\n\ncenters = np.array([\n    [0., 0.],   # centroid A\n    [1., 1.]    # centroid B\n])  # shape (2, 2) -> k=2, f=2\n\nD = ((X[:, None, :] - centers[None, :, :]) ** 2).sum(axis=2)\nprint(D)\n# Expected:\n# [\n#   [(1-0)^2 + (2-0)^2,  (1-1)^2 + (2-1)^2],   # point 0 to A, B\n#   [(3-0)^2 + (4-0)^2,  (3-1)^2 + (4-1)^2],   # point 1 to A, B\n#   [(5-0)^2 + (6-0)^2,  (5-1)^2 + (6-1)^2]    # point 2 to A, B\n# ]\n# → [[ 5.,  1.],\n#    [25.,  8.],\n#    [61., 20.]]",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "Use 3D broadcasting ((X[:, None, :] - centers[None, :, :]) ** 2).sum(axis=2) to compute squared Euclidean distances from 3 points to 2 centroids.",
  "example": "cs477-liascript-unsupervised-1",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: agy free model + edit: codex + split: claude",
  "steps": [
   {
-   "description": "Line 1 imports `numpy`.",
+   "description": "Import `numpy as np` and define `X` with shape `(3, 2)` for 3 points: `[1., 2.]`, `[3., 4.]`, and `[5., 6.]`. Define `centers` with shape `(2, 2)` for 2 centroids: `[0., 0.]` and `[1., 1.]`.",
    "kind": "reveal",
-   "lines": "1"
+   "lines": "1-12"
   },
   {
-   "description": "Lines 3-14 run the main code.",
+   "description": "Broadcast `X[:, None, :]` (shape `(3, 1, 2)`) against `centers[None, :, :]` (shape `(1, 2, 2)`). Square the coordinate differences, sum over `axis=2`, and print the resulting `(3, 2)` squared-distance matrix `D`.",
    "kind": "reveal",
-   "lines": "3-14"
+   "lines": "14-24"
   },
   {
-   "description": "Line 15 continues the main code and print the results.",
-   "kind": "reveal",
-   "lines": "15"
+   "description": "Trace the shapes on line 14. Subtracting `(1, 2, 2)` from `(3, 1, 2)` produces a `(3, 2, 2)` tensor of `(x, y)` differences for every `(point, centroid)` pair. `.sum(axis=2)` collapses the last axis of length 2.",
+   "kind": "focus",
+   "lines": "14"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
+   "answer": "To centroid `[0., 0.]`, the squared distance is `25.`; to centroid `[1., 1.]`, it is `4 + 9 = 13.`. Thus, row 1 of `D` is `[25., 13.]`.",
+   "kind": "predict",
+   "lines": "5,10-11,14-15",
+   "question": "Point 1 is `[3., 4.]` (line 5). What are its two squared distances in row 1 of `D`, `(3 - 0)**2 + (4 - 0)**2` and `(3 - 1)**2 + (4 - 1)**2`?"
+  },
+  {
+   "description": "Line 14 computes the `(3, 2)` squared-distance matrix `D = [[5., 1.], [25., 13.], [61., 41.]]` in a single vectorized expression.",
+   "kind": "run",
+   "lines": "14",
+   "trace_step": 10
+  },
+  {
+   "description": "Line 15 prints `D`, showing each point's squared Euclidean distance to centroid A (column 0) and centroid B (column 1).",
    "kind": "run",
    "lines": "15",
-   "trace_step": 12
+   "trace_step": 11
   }
  ],
- "title": "Concrete Example (Small Numbers)",
+ "title": "Pairwise Squared Distances via NumPy Broadcasting",
  "version": 1
 }

@@ -1,77 +1,38 @@
 {
  "code": "def predict_proba(Phi, w):\n    return sigmoid(Phi @ w)\n\ndef predict_label(Phi, w, threshold=0.5):\n    return (predict_proba(Phi, w) >= threshold).astype(float)\n\ndef confusion(y_true, y_pred):\n    tp = np.sum((y_true==1) & (y_pred==1))\n    tn = np.sum((y_true==0) & (y_pred==0))\n    fp = np.sum((y_true==0) & (y_pred==1))\n    fn = np.sum((y_true==1) & (y_pred==0))\n    return int(tp), int(fp), int(tn), int(fn)\n\ndef precision_recall(tp, fp, tn, fn):\n    prec = tp/(tp+fp+1e-12)\n    rec  = tp/(tp+fn+1e-12)\n    return prec, rec\n\ndef roc_curve_manual(y_true, scores):\n    # thresholds from sorted unique scores\n    idx = np.argsort(scores)[::-1]\n    y = y_true[idx]; s = scores[idx]\n    thresholds = np.r_[np.inf, s, -np.inf]\n    tpr = []; fpr = []\n    P = np.sum(y==1); N = np.sum(y==0)\n    tp = fp = 0; last = np.inf\n    for th in thresholds[1:]:\n        # update tp/fp at each score (step-wise)\n        mask = s >= th\n        tp = int(np.sum(y[mask]==1))\n        fp = int(np.sum(y[mask]==0))\n        tpr.append(tp/(P+1e-12))\n        fpr.append(fp/(N+1e-12))\n    return np.array(fpr), np.array(tpr), thresholds[1:]\n\ndef auc_trapezoid(x, y):\n    # assumes x increasing\n    order = np.argsort(x)\n    x = x[order]; y = y[order]\n    return np.trapz(y, x)\n\ndef brier_score(y_true, p_hat):\n    return np.mean((p_hat - y_true)**2)\n\n# Evaluate both models\nfor name, w in [(\"GD\", w_gd), (\"Newton\", w_nt)]:\n    p_tr = predict_proba(Phi_tr, w); yhat_tr = (p_tr>=0.5).astype(float)\n    p_te = predict_proba(Phi_te, w); yhat_te = (p_te>=0.5).astype(float)\n    tp, fp, tn, fn = confusion(y_te, yhat_te)\n    prec, rec = precision_recall(tp, fp, tn, fn)\n    fpr, tpr, thr = roc_curve_manual(y_te, p_te)\n    auc = auc_trapezoid(fpr, tpr)\n    br = brier_score(y_te, p_te)\n    print(f\"[{name}] Test acc={np.mean(yhat_te==y_te):.3f}  precision={prec:.3f}  recall={rec:.3f}  AUC={auc:.3f}  Brier={br:.4f}\")\n\n# Plots: ROC and calibration\nfig = plt.figure(figsize=(10,4))\nax1 = plt.subplot(1,2,1)\nfor name, w in [(\"GD\", w_gd), (\"Newton\", w_nt)]:\n    fpr, tpr, thr = roc_curve_manual(y_te, predict_proba(Phi_te, w))\n    plt.plot(fpr, tpr, label=f\"{name}\")\nplt.plot([0,1],[0,1], linestyle=\"--\")\nplt.xlabel(\"FPR\"); plt.ylabel(\"TPR\"); plt.title(\"ROC\"); plt.legend()\n\nax2 = plt.subplot(1,2,2)\nfor name, w in [(\"GD\", w_gd), (\"Newton\", w_nt)]:\n    p = predict_proba(Phi_te, w)\n    # reliability curve (binning)\n    bins = np.linspace(0,1,11)\n    idx = np.digitize(p, bins)-1\n    bin_centers = 0.5*(bins[:-1]+bins[1:])\n    rel = []\n    for b in range(len(bin_centers)):\n        mask = (idx==b)\n        if np.any(mask):\n            rel.append(np.mean(y_te[mask]))\n        else:\n            rel.append(np.nan)\n    plt.plot(bin_centers, rel, marker='o', label=name)\nplt.plot([0,1],[0,1], linestyle=\"--\")\nplt.xlabel(\"Predicted probability\"); plt.ylabel(\"Empirical frequency\")\nplt.title(\"Calibration (Reliability)\"); plt.legend()\nplt.tight_layout(); plt.show()",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You evaluate two logistic models and inspect ROC and reliability plots.",
  "example": "cs477-nb-logistic-regression-mle-from-scratch-8",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 1-5 define `predict_proba` and `predict_label`.",
+   "description": "You convert linear scores to probabilities with sigmoid and apply the supplied threshold for labels. The confusion counts provide precision and recall.",
    "kind": "reveal",
-   "lines": "1-5"
+   "lines": "1-17"
   },
   {
-   "description": "Line 2 returns `sigmoid(Phi @ w)`.",
-   "kind": "focus",
-   "lines": "2"
-  },
-  {
-   "description": "Lines 7-12 define `confusion(y_true, y_pred)`.",
+   "description": "You vary score thresholds to build false-positive and true-positive rates. Trapezoidal integration gives AUC, while the Brier score averages squared probability errors.",
    "kind": "reveal",
-   "lines": "7-12"
+   "lines": "19-43"
   },
   {
-   "description": "Lines 14-17 define `precision_recall(tp, fp, tn, fn)`.",
+   "answer": "Both accuracies are 0.900, but GD prints AUC 0.949 and Newton prints 0.948. Both Brier scores print as 0.0829.",
+   "kind": "predict",
+   "lines": "45-54",
+   "question": "Do the recorded models have the same printed AUC when their printed accuracies match?"
+  },
+  {
+   "description": "You draw both receiver operating characteristic curves with a diagonal reference. Their axes show false-positive rate and true-positive rate.",
    "kind": "reveal",
-   "lines": "14-17"
+   "lines": "56-63"
   },
   {
-   "description": "Line 17 returns `prec, rec`.",
-   "kind": "focus",
-   "lines": "17"
-  },
-  {
-   "description": "Lines 19-34 define `roc_curve_manual(y_true, scores)`.",
+   "description": "You group predicted probabilities into bins and plot each populated bin's observed positive frequency. Empty bins receive NaN in the reliability plot.",
    "kind": "reveal",
-   "lines": "19-34"
-  },
-  {
-   "description": "Lines 36-40 define `auc_trapezoid(x, y)`.",
-   "kind": "reveal",
-   "lines": "36-40"
-  },
-  {
-   "description": "Line 40 returns `np.trapz(y, x)`.",
-   "kind": "focus",
-   "lines": "40"
-  },
-  {
-   "description": "Lines 42-43 define `brier_score(y_true, p_hat)`.",
-   "kind": "reveal",
-   "lines": "42-43"
-  },
-  {
-   "description": "Lines 46-57 run the main code and print the results.",
-   "kind": "reveal",
-   "lines": "46-57"
-  },
-  {
-   "description": "Lines 58-79 continue the main code.",
-   "kind": "reveal",
-   "lines": "58-79"
-  },
-  {
-   "description": "Line 59 loops over `[(\"GD\", w_gd), (\"Newton\", w_nt)]`.",
-   "kind": "focus",
-   "lines": "59"
-  },
-  {
-   "description": "Lines 80-83 continue the main code.",
-   "kind": "reveal",
-   "lines": "80-83"
+   "lines": "65-83"
   }
  ],
- "title": "Notebook Logistic_Regression_MLE_From_Scratch.ipynb",
+ "title": "Compare classification and probability metrics",
  "version": 1
 }

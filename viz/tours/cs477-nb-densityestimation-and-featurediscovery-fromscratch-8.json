@@ -1,52 +1,38 @@
 {
  "code": "def fastica(X, n_components, max_iter=500, tol=1e-5, seed=SEED):\n    Xc = X - X.mean(axis=0, keepdims=True)\n    U, S, Vt = np.linalg.svd(Xc, full_matrices=False)\n    Xw = Xc @ Vt[:n_components].T\n    Xw /= S[:n_components]\n    rng_local = np.random.default_rng(seed)\n    W = rng_local.normal(0,1,size=(n_components, n_components))\n    def decorrelate(W):\n        U2, S2, V2 = np.linalg.svd(W, full_matrices=False)\n        return (U2 @ V2)\n    W = decorrelate(W)\n    for it in range(max_iter):\n        Y = Xw @ W.T\n        gY = np.tanh(Y)\n        gYp = 1 - gY**2\n        W_new = (gY.T @ Xw)/Xw.shape[0] - np.diag(gYp.mean(axis=0)) * W\n        W_new = decorrelate(W_new)\n        if np.max(np.abs(np.abs(np.diag(W_new @ W.T)) - 1.0)) < tol:\n            W = W_new; break\n        W = W_new\n    S_est = Xw @ W.T\n    A_est = np.linalg.pinv(W)\n    return S_est, W, A_est\n\nSica, Wica, Aica = fastica(Xws, n_components=5, max_iter=800, tol=1e-6, seed=SEED)\nfig = plt.figure(figsize=(7,4))\nfor i in range(5):\n    plt.plot(Sica[:200,i] + 3*i, label=f\"IC{i+1}\")\nplt.title(\"First 5 Independent Components (first 200 samples, offset)\")\nplt.tight_layout(); plt.show()\n\nprint(\"ICA component directions (approx, top contributing features):\")\ndef pca_components_all(X):\n    Xc = X - X.mean(axis=0, keepdims=True)\n    U,S,Vt = np.linalg.svd(Xc, full_matrices=False)\n    return Vt\nC_all = pca_components_all(Xws)\nfeature_dir = C_all[:Sica.shape[1]].T @ Wica.T\nfor i in range(min(5, feature_dir.shape[1])):\n    w = feature_dir[:,i]\n    order = np.argsort(np.abs(w))[::-1][:6]\n    print(f\"IC{i+1} top features:\")\n    for j in order:\n        print(f\"  {wine.feature_names[j]:25s} {w[j]:+.3f}\")",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You follow the component update and inspect approximate feature directions.",
  "example": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-8",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 1-23 define `fastica(X, n_components, max_iter, tol, seed)`.",
+   "description": "You center X and use singular value decomposition to project and scale it. A second decomposition turns the initial random W into U2 @ V2.",
    "kind": "reveal",
-   "lines": "1-23"
+   "lines": "1-11"
   },
   {
-   "description": "Line 10 returns `U2 @ V2`.",
-   "kind": "focus",
-   "lines": "10"
-  },
-  {
-   "description": "Line 18 makes a decision.",
-   "kind": "focus",
-   "lines": "18"
-  },
-  {
-   "description": "Lines 25-32 run the main code and print the results.",
+   "description": "You update W using tanh-transformed projections and apply decorrelate again. The convergence check compares the new and previous directions through absolute diagonal values.",
    "kind": "reveal",
-   "lines": "25-32"
+   "lines": "12-23"
   },
   {
-   "description": "Line 27 loops over `range(5)`.",
-   "kind": "focus",
-   "lines": "27"
-  },
-  {
-   "description": "Lines 33-36 define `pca_components_all(X)`.",
+   "description": "You request five components and plot up to the supplied number of initial samples. Adding 3*i offsets each plotted component vertically.",
    "kind": "reveal",
-   "lines": "33-36"
+   "lines": "25-30"
   },
   {
-   "description": "Lines 37-44 continue the main code and print the results.",
+   "answer": "It sorts absolute weights in descending order and keeps six features. The printed values retain their signs.",
+   "kind": "predict",
+   "lines": "37-44",
+   "question": "Does the feature ranking use signed weights or their magnitudes?"
+  },
+  {
+   "description": "You inspect the directions labeled approximate by the print heading. The recorded IC1 list starts with flavanoids at -0.423, while IC2 starts with color_intensity at +0.530.",
    "kind": "reveal",
-   "lines": "37-44"
-  },
-  {
-   "description": "Line 39 loops over `range(min(5, feature_dir.shape[1]))`.",
-   "kind": "focus",
-   "lines": "39"
+   "lines": "32-44"
   }
  ],
- "title": "Notebook DensityEstimation_and_FeatureDiscovery_FromScratch.ipynb",
+ "title": "Inspect independent components",
  "version": 1
 }

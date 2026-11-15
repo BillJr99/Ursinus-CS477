@@ -1,28 +1,50 @@
 {
  "code": "# --- Prior over prevalence π ~ Beta(A,B) ---\n# Example: a rare disease with mean prevalence ≈ 1% and moderate uncertainty.\nA, B = 1.0, 99.0   # mean = A/(A+B) = 0.01\n\n# --- Sensitivity & Specificity ---\n# You can specify fixed values or Beta priors for uncertainty.\n# Fixed example:\nS_FIXED = 0.95     # sensitivity\nC_FIXED = 0.98     # specificity\n\n# Or, use Beta priors to reflect uncertainty (set to None to use fixed):\nS_BETA = None      # e.g., (95, 5) centers ~0.95 with moderate confidence\nC_BETA = None      # e.g., (98, 2) centers ~0.98 with high confidence\n\n# Monte Carlo samples\nN_SAMPLES = 100_000\nprint(\"Configured. E[π] =\", A/(A+B))",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "Set Beta prior hyperparameters A = 1.0, B = 99.0 for disease prevalence, fixed sensitivity S_FIXED = 0.95 and specificity C_FIXED = 0.98, and N_SAMPLES = 100_000.",
  "example": "cs477-nb-bayesian-diagnostic-test-belief-updating-3",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: agy free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 3-16 run the main code.",
+   "description": "Set the Beta prior shape parameters `A, B = 1.0, 99.0` for disease prevalence $\\pi \\sim \\mathrm{Beta}(A, B)$.",
    "kind": "reveal",
-   "lines": "3-16"
+   "lines": "1-4"
   },
   {
-   "description": "Line 17 continues the main code and print the results.",
+   "description": "Set fixed test sensitivity `S_FIXED = 0.95` and specificity `C_FIXED = 0.98`, and set `S_BETA = None` and `C_BETA = None` so the simulation uses the fixed values.",
    "kind": "reveal",
-   "lines": "17"
+   "lines": "5-14"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
+   "description": "Set the Monte Carlo sample count `N_SAMPLES = 100_000` and print the prior mean prevalence `A / (A + B)`.",
+   "kind": "reveal",
+   "lines": "15-17"
+  },
+  {
+   "description": "Look at lines 3 and 17: a $\\mathrm{Beta}(A, B)$ distribution has expected value $E[\\pi] = A / (A + B)$. Thus, `A = 1.0` and `B = 99.0` encode a prior mean prevalence of `1 / 100 = 0.01`.",
+   "kind": "focus",
+   "lines": "3,17"
+  },
+  {
+   "answer": "`1.0 / (1.0 + 99.0) = 0.01`, so line 17 prints `Configured. E[π] = 0.01`.",
+   "kind": "predict",
+   "lines": "3,17",
+   "question": "What value does `A / (A + B)` evaluate to on line 17 when `A = 1.0` and `B = 99.0`?"
+  },
+  {
+   "description": "Line 3 binds `A = 1.0` and `B = 99.0`.",
+   "kind": "run",
+   "lines": "3",
+   "trace_step": 0
+  },
+  {
+   "description": "Line 17 computes `A / (A + B)` and prints `Configured. E[π] = 0.01`.",
    "kind": "run",
    "lines": "17",
-   "trace_step": 7
+   "trace_step": 6
   }
  ],
- "title": "Notebook Bayesian_Diagnostic_Test_Belief_Updating.ipynb",
+ "title": "Configuring Beta Prior Parameters, Sensitivity, Specificity, and Monte Carlo Samples",
  "version": 1
 }

@@ -1,70 +1,50 @@
 {
  "code": "import numpy as np\n\n# Transition matrix from the example\nA = np.array([\n    [0,   1/2, 1/2],\n    [0,   0,   1  ],\n    [1,   0,   0  ]\n])\n\ndef pagerank(A, d=0.85, tol=1e-8, max_iter=100):\n    n = A.shape[0]\n    teleport = np.ones((n, n)) / n\n    P = d * A + (1 - d) * teleport\n\n    x = np.ones(n) / n  # start uniformly\n    for _ in range(max_iter):\n        x_new = x @ P\n        if np.linalg.norm(x_new - x, 1) < tol:\n            return x_new\n        x = x_new\n    return x\n\nprint(\"PageRank:\", pagerank(A))",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "Combine a 3x3 link matrix A with a uniform teleportation matrix using damping factor d = 0.85, then iterate x_new = x @ P until convergence.",
  "example": "cs477-liascript-mdphmmbandits-3",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: agy free model + edit: codex",
  "steps": [
   {
-   "description": "Line 1 imports `numpy`.",
+   "description": "Import `numpy as np` and define the `3 x 3` link transition matrix `A` for three web pages.",
    "kind": "reveal",
-   "lines": "1"
+   "lines": "1-8"
   },
   {
-   "description": "Lines 4-8 run the main code.",
+   "description": "Inside `pagerank(A, d=0.85, tol=1e-8, max_iter=100)`, build `teleport = np.ones((n, n)) / n` and blend it with `A` via `P = d * A + (1 - d) * teleport`.",
    "kind": "reveal",
-   "lines": "4-8"
+   "lines": "10-14"
   },
   {
-   "description": "Lines 10-21 define `pagerank(A, d, tol, max_iter)`.",
+   "description": "Start from the uniform vector `x = np.ones(n) / n` and repeatedly multiply `x_new = x @ P`. Stop when the L1 change `np.linalg.norm(x_new - x, 1)` drops below `tol`, and print the final PageRank vector.",
    "kind": "reveal",
-   "lines": "10-21"
+   "lines": "15-23"
   },
   {
-   "description": "Line 16 loops over `range(max_iter)`.",
+   "description": "Look at lines 12-13 and 17-19. `P` gives every state at least `(1 - d) / n` transition probability to every other state. Power iteration stops as soon as `x_new` and `x` differ by less than `1e-8` in L1 norm.",
    "kind": "focus",
-   "lines": "16"
+   "lines": "12-13,17-19"
   },
   {
-   "description": "Line 18 checks `np.linalg.norm(x_new - x, 1) < tol`.",
-   "kind": "focus",
-   "lines": "18"
+   "answer": "Page 2 (the third entry) gets the highest PageRank score (`0.39739966`), followed closely by page 0 (`0.38778971`, which receives all of page 2's outgoing link weight).",
+   "kind": "predict",
+   "lines": "4-8,17-23",
+   "question": "Look at the columns of `A`: page 2 (column index 2) receives half of page 0's link weight and all of page 1's link weight. Which of the three pages ends up with the highest PageRank score?"
   },
   {
-   "description": "Line 19 returns `x_new`.",
-   "kind": "focus",
-   "lines": "19"
-  },
-  {
-   "description": "Line 21 returns `x`.",
-   "kind": "focus",
-   "lines": "21"
-  },
-  {
-   "description": "Line 23 continues the main code and print the results.",
-   "kind": "reveal",
-   "lines": "23"
-  },
-  {
-   "description": "Here `pagerank` is called for the first time; its frame appears on the right.",
+   "description": "Line 13 constructs the Google matrix `P = 0.85 * A + (1 - d) * teleport`.",
    "kind": "run",
-   "lines": "11",
-   "trace_step": 8
+   "lines": "13",
+   "trace_step": 10
   },
   {
-   "description": "Here `pagerank` returns, the first time it does.",
+   "description": "Once `np.linalg.norm(x_new - x, 1) < tol`, line 19 returns `x_new` (`[0.38778971, 0.21481063, 0.39739966]`).",
    "kind": "run",
    "lines": "19",
-   "trace_step": 156
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "23",
-   "trace_step": 157
+   "trace_step": 155
   }
  ],
- "title": "Code Example",
+ "title": "Computing PageRank with Damping and Power Iteration",
  "version": 1
 }

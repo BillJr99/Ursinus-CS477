@@ -1,27 +1,38 @@
 {
  "code": "\ndata = load_breast_cancer()\nX = data.data\ny = data.target\n\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42, stratify=y)\n\npipe = Pipeline([\n    (\"scaler\", StandardScaler(with_mean=True)),\n    (\"logreg\", LogisticRegression(max_iter=500, C=1.0)) # C is inverse regularization strength\n])\npipe.fit(X_train, y_train)\ny_pred = pipe.predict(X_test)\ny_prob = pipe.predict_proba(X_test)[:,1]\n\nprint(\"Classification Report:\\n\")\nprint(classification_report(y_test, y_pred, target_names=data.target_names))\n\n# Confusion Matrix\ncm = confusion_matrix(y_test, y_pred, labels=[0,1])\ndisp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=[\"malignant\",\"benign\"])\ndisp.plot()\nplt.title(\"Confusion Matrix\")\nplt.show()\n\n# ROC Curve\nfpr, tpr, _ = roc_curve(y_test, y_prob)\nroc_auc = auc(fpr, tpr)\nRocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=roc_auc, estimator_name=\"LogisticRegression\").plot()\nplt.title(f\"ROC Curve (AUC = {roc_auc:.3f})\")\nplt.show()\n",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "Split load_breast_cancer() using the supplied ratio with stratify=y, fit a StandardScaler + LogisticRegression pipeline, and evaluate with classification_report, ConfusionMatrixDisplay, and RocCurveDisplay.",
  "example": "cs477-nb-linear-and-logistic-regression-tutorial-12",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: agy free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 2-13 run the main code.",
+   "description": "Load `data = load_breast_cancer()`, extract `X = data.data` and `y = data.target`, and split into train and test sets using the supplied ratio with `stratify=y`.",
    "kind": "reveal",
-   "lines": "2-13"
+   "lines": "2-7"
   },
   {
-   "description": "Lines 14-27 continue the main code and print the results.",
+   "description": "Build `pipe` with `StandardScaler(with_mean=True)` and `LogisticRegression` using the supplied iteration limit and C. Fit it on `(X_train, y_train)`, compute `y_pred` and `y_prob = pipe.predict_proba(X_test)[:, 1]`, and print `classification_report`.",
    "kind": "reveal",
-   "lines": "14-27"
+   "lines": "8-18"
   },
   {
-   "description": "Lines 28-31 continue the main code.",
+   "description": "Compare how `y_pred` and `y_prob` are used downstream: `confusion_matrix(y_test, y_pred, ...)` on line 20 counts thresholded 0/1 decisions, while `roc_curve(y_test, y_prob)` on line 27 sweeps across the continuous class-1 probabilities.",
+   "kind": "focus",
+   "lines": "13-14,20,27"
+  },
+  {
+   "answer": "There are `53` `malignant` samples and `90` `benign` samples (`143` total in `y_test`), and `pipe` achieves `0.99` accuracy (`0.98` F1 on `malignant`, `0.99` F1 on `benign`).",
+   "kind": "predict",
+   "lines": "6,16-17",
+   "question": "In the classification report on lines 16-17, how many test samples belong to each class (`support`), and what overall test accuracy does `pipe` reach?"
+  },
+  {
+   "description": "Plot the `2 x 2` confusion matrix with `ConfusionMatrixDisplay` and plot the ROC curve with `RocCurveDisplay` and `roc_auc = auc(fpr, tpr)`.",
    "kind": "reveal",
-   "lines": "28-31"
+   "lines": "19-31"
   }
  ],
- "title": "Notebook Linear_and_Logistic_Regression_Tutorial.ipynb",
+ "title": "Scikit-Learn Logistic Regression Pipeline on the Breast Cancer Dataset",
  "version": 1
 }

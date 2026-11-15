@@ -1,32 +1,33 @@
 {
  "code": "def plot_allocation(label, choices, k, w=100):\n    fig = plt.figure(figsize=(7,4))\n    for a in range(k):\n        sel = (choices == a).astype(float)\n        rm = running_mean(sel, w=w)\n        plt.plot(rm, label=names[a])\n    plt.xlabel(\"Round\"); plt.ylabel(f\"Share in last ~{w} rounds\")\n    plt.title(f\"Allocation (running share) — {label}\")\n    plt.legend(); plt.tight_layout(); plt.show()\n\nfor label, out in res.items():\n    plot_allocation(label, out[\"choices\"], k, w=150)",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You turn choice indices into project-specific selection indicators.",
  "example": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-12",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 1-9 define `plot_allocation(label, choices, k, w)`.",
+   "description": "You create a figure and visit every project index. sel becomes one when the chosen project equals a and zero otherwise.",
    "kind": "reveal",
-   "lines": "1-9"
+   "lines": "1-4"
   },
   {
-   "description": "Line 3 loops over `range(k)`.",
-   "kind": "focus",
-   "lines": "3"
-  },
-  {
-   "description": "Lines 11-12 run the main code.",
+   "description": "You pass each indicator sequence to running_mean and plot the result. The legend labels each curve with names[a].",
    "kind": "reveal",
-   "lines": "11-12"
+   "lines": "5-6"
   },
   {
-   "description": "Line 11 loops over `res.items()`.",
-   "kind": "focus",
-   "lines": "11"
+   "answer": "They explicitly pass w, overriding the default for every result label.",
+   "kind": "predict",
+   "lines": "11-12",
+   "question": "Do these calls use the helper's default window?"
+  },
+  {
+   "description": "You display a separate running-share chart for each stored strategy. The vertical label identifies the share in the recent window of rounds.",
+   "kind": "reveal",
+   "lines": "7-12"
   }
  ],
- "title": "Notebook ProjectFunding_MultiArmedBandit_FromScratch.ipynb",
+ "title": "Display each project's running allocation share",
  "version": 1
 }

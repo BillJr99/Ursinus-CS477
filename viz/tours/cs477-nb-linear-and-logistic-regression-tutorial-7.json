@@ -1,27 +1,38 @@
 {
  "code": "\nalphas = [0.0, 0.01, 0.1, 1.0, 10.0]\nrmse_ridge = []\nrmse_lasso = []\n\nfor a in alphas:\n    ridge = Pipeline([(\"scaler\", StandardScaler()), (\"ridge\", Ridge(alpha=a))])\n    ridge.fit(X_train, y_train)\n    ypr = ridge.predict(X_test)\n    rmse_ridge.append(math.sqrt(mean_squared_error(y_test, ypr)))\n\n    lasso = Pipeline([(\"scaler\", StandardScaler()), (\"lasso\", Lasso(alpha=a, max_iter=10000))])\n    lasso.fit(X_train, y_train)\n    ypl = lasso.predict(X_test)\n    rmse_lasso.append(math.sqrt(mean_squared_error(y_test, ypl)))\n\nplt.plot(alphas, rmse_ridge, marker=\"o\", label=\"Ridge RMSE\")\nplt.plot(alphas, rmse_lasso, marker=\"o\", label=\"Lasso RMSE\")\nplt.xscale(\"log\")\nplt.xlabel(\"alpha (regularization strength)\")\nplt.ylabel(\"RMSE (test)\")\nplt.title(\"Effect of Regularization on Test Error\")\nplt.legend()\nplt.show()\n",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "Evaluate and plot test RMSE for Ridge and Lasso models across several values of alpha.",
  "example": "cs477-nb-linear-and-logistic-regression-tutorial-7",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: agy free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 2-15 run the main code.",
+   "description": "Define a grid of candidate regularization strengths across the supplied range and initialize lists to store test RMSE values for Ridge and Lasso.",
    "kind": "reveal",
-   "lines": "2-15"
+   "lines": "1-4"
   },
   {
-   "description": "Line 6 loops over `alphas`.",
+   "description": "For each alpha, standardize the features, fit a Ridge regression model, predict on the test set, and record the resulting test RMSE.",
+   "kind": "reveal",
+   "lines": "6-10"
+  },
+  {
+   "description": "Fit a standardized Lasso model with the same alpha and the supplied maximum iterations, then record its test RMSE.",
+   "kind": "reveal",
+   "lines": "12-15"
+  },
+  {
+   "answer": "The positive candidate alphas span several orders of magnitude, so a logarithmic horizontal axis spaces them evenly.",
+   "kind": "predict",
+   "lines": "17-20",
+   "question": "Why does the plot call plt.xscale(\"log\")?"
+  },
+  {
+   "description": "Plot the Ridge and Lasso test RMSE curves against alpha on a log scale, label the axes and title, and display the chart.",
    "kind": "focus",
-   "lines": "6"
-  },
-  {
-   "description": "Lines 17-24 continue the main code.",
-   "kind": "reveal",
-   "lines": "17-24"
+   "lines": "17-25"
   }
  ],
- "title": "Notebook Linear_and_Logistic_Regression_Tutorial.ipynb",
+ "title": "Sweeping Regularization Strength Alpha",
  "version": 1
 }

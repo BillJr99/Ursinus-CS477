@@ -1,67 +1,38 @@
 {
  "code": "def gaussian_kernel(u):\n    return np.exp(-0.5*u*u)/np.sqrt(2*np.pi)\n\ndef kde_1d_fit(X):\n    return X.ravel().astype(float)\n\ndef kde_1d_pdf(model, x, h):\n    X = model\n    n = len(X)\n    x = np.atleast_1d(x).astype(float)\n    U = (x[None,:] - X[:,None]) / h\n    K = gaussian_kernel(U)\n    return np.mean(K, axis=0) / h\n\ndef silverman_bandwidth_1d(X):\n    X = np.ravel(X).astype(float)\n    n = len(X); s = np.std(X, ddof=1)\n    iqr = np.subtract(*np.percentile(X, [75, 25]))\n    a = min(s, iqr/1.349) if iqr>0 else s\n    return 0.9*a*(n**(-1/5))\n\ndef cv_loglik_kde_1d(X, h_values):\n    X = np.ravel(X).astype(float)\n    n = len(X)\n    ll = []\n    for h in h_values:\n        U = (X[:,None] - X[None,:]) / h\n        K = gaussian_kernel(U)\n        diag = np.diag_indices(n)\n        K[diag] = 0.0\n        denom = (np.sum(K, axis=1) / (n-1)) / h + 1e-300\n        ll.append(np.mean(np.log(denom)))\n    return np.array(ll)\n\nx1 = X2s[:,0]\nh0 = silverman_bandwidth_1d(x1)\ngrid = np.linspace(x1.min()-3, x1.max()+3, 400)\nh_candidates = np.linspace(0.2*h0, 2.5*h0, 25)\nll = cv_loglik_kde_1d(x1, h_candidates)\nh_best = float(h_candidates[np.argmax(ll)])\n\nmodel1d = kde_1d_fit(x1)\np_grid = kde_1d_pdf(model1d, grid, h_best)\n\nfig = plt.figure(figsize=(7,4))\nplt.plot(grid, p_grid, label=f\"KDE 1D (h={h_best:.3f})\")\nplt.hist(x1, bins=30, density=True, alpha=0.3, label=\"data hist\")\nplt.title(\"1D KDE on standardized x₁\"); plt.legend(); plt.tight_layout(); plt.show()",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You compare bandwidths with held-out density scores and plot the selected estimate.",
  "example": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-4",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 1-2 define `gaussian_kernel(u)`.",
+   "description": "You keep the observations as the fitted model. To estimate density, you average Gaussian kernel values at distances scaled by bandwidth h, then divide by h.",
    "kind": "reveal",
-   "lines": "1-2"
+   "lines": "1-13"
   },
   {
-   "description": "Line 2 returns `np.exp(-0.5*u*u)/np.sqrt(2*np.pi)`.",
-   "kind": "focus",
-   "lines": "2"
-  },
-  {
-   "description": "Lines 4-5 define `kde_1d_fit(X)`.",
-   "kind": "reveal",
-   "lines": "4-5"
-  },
-  {
-   "description": "Line 5 returns `X.ravel().astype(float)`.",
-   "kind": "focus",
-   "lines": "5"
-  },
-  {
-   "description": "Lines 7-13 define `kde_1d_pdf(model, x, h)`.",
-   "kind": "reveal",
-   "lines": "7-13"
-  },
-  {
-   "description": "Lines 15-20 define `silverman_bandwidth_1d(X)`.",
+   "description": "You compute an initial bandwidth from the sample count and a spread estimate. The spread uses the smaller of standard deviation and the scaled interquartile range when that range is positive.",
    "kind": "reveal",
    "lines": "15-20"
   },
   {
-   "description": "Line 20 returns `0.9*a*(n**(-1/5))`.",
-   "kind": "focus",
-   "lines": "20"
+   "answer": "Each diagonal entry compares a sample with itself. Setting it to zero makes each density score use the other n-1 samples.",
+   "kind": "predict",
+   "lines": "27-32",
+   "question": "Why does the bandwidth scoring code set the kernel matrix diagonal to zero?"
   },
   {
-   "description": "Lines 22-33 define `cv_loglik_kde_1d(X, h_values)`.",
+   "description": "You score the supplied bandwidth candidates using mean log density. np.argmax selects the candidate with the highest score.",
    "kind": "reveal",
-   "lines": "22-33"
+   "lines": "22-40"
   },
   {
-   "description": "Line 26 loops over `h_values`.",
-   "kind": "focus",
-   "lines": "26"
-  },
-  {
-   "description": "Lines 35-46 run the main code.",
+   "description": "You evaluate the selected estimate on the supplied grid positions. The final chart overlays the density curve and a normalized histogram of the first standardized feature.",
    "kind": "reveal",
-   "lines": "35-46"
-  },
-  {
-   "description": "Lines 47-48 continue the main code.",
-   "kind": "reveal",
-   "lines": "47-48"
+   "lines": "42-48"
   }
  ],
- "title": "Notebook DensityEstimation_and_FeatureDiscovery_FromScratch.ipynb",
+ "title": "Choose a kernel bandwidth",
  "version": 1
 }

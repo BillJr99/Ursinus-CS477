@@ -1,42 +1,38 @@
 {
  "code": "# === K-Means (From Scratch) ===\nnp.random.seed(1)\n\n# 1) Generate a 2D dataset with 3 clusters\ntrue_centers = np.array([[0, 0], [5, 0], [2.5, 4]])\npoints_per_cluster = 120\nA = np.random.randn(points_per_cluster, 2) + true_centers[0]\nB = np.random.randn(points_per_cluster, 2) + true_centers[1]\nC = np.random.randn(points_per_cluster, 2) + true_centers[2]\nX_km = np.vstack([A, B, C])\n\n# 2) K-means via Lloyd's algorithm\ndef kmeans_from_scratch(X, K=3, max_iters=100, seed=0):\n    # Randomly pick K points as initial centroids\n    rng = np.random.default_rng(seed)\n    n = X.shape[0]\n    centers = X[rng.choice(n, size=K, replace=False)]\n\n    for _ in range(max_iters):\n        # Compute squared distances to each center -> (n, K)\n        sq_dists = ((X[:, None, :] - centers[None, :, :]) ** 2).sum(axis=2)\n\n        # Assign to nearest center\n        labels = np.argmin(sq_dists, axis=1)\n\n        # Update centers as mean of assigned points (if cluster empty, keep old center)\n        new_centers = np.array([\n            X[labels == k].mean(axis=0) if np.any(labels == k) else centers[k]\n            for k in range(K)\n        ])\n\n        # If centers did not move much, stop\n        if np.allclose(centers, new_centers):\n            centers = new_centers\n            break\n\n        centers = new_centers\n\n    return centers, labels\n\ncenters, labels = kmeans_from_scratch(X_km, K=3, max_iters=100, seed=123)\n\nplt.figure()\nplt.scatter(X_km[:, 0], X_km[:, 1], c=labels, s=12)\nplt.scatter(centers[:, 0], centers[:, 1], marker='x', s=120)\nplt.title(\"K-Means (From Scratch): Cluster Assignments\")\nplt.xlabel(\"Feature 1\")\nplt.ylabel(\"Feature 2\")\nplt.show()\n",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You trace scratch K-means from sampled observations to its cluster display.",
  "example": "cs477-nb-unsupervised-learning-colab-6",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 2-10 run the main code.",
+   "description": "You generate two-dimensional observations around each of three specified centers using the supplied group size. Stacking A, B, and C creates X_km.",
    "kind": "reveal",
-   "lines": "2-10"
+   "lines": "1-10"
   },
   {
-   "description": "Lines 13-39 define `kmeans_from_scratch(X, K, max_iters, seed)`.",
+   "description": "You choose K distinct data rows as initial centers. Each iteration computes squared distances and assigns every row to its nearest center.",
    "kind": "reveal",
-   "lines": "13-39"
+   "lines": "12-24"
   },
   {
-   "description": "Line 19 loops over `range(max_iters)`.",
-   "kind": "focus",
-   "lines": "19"
+   "answer": "Its new center remains centers[k]. A populated cluster instead receives the mean of its assigned rows.",
+   "kind": "predict",
+   "lines": "27-30",
+   "question": "What happens when a cluster receives no observations?"
   },
   {
-   "description": "Line 33 checks `np.allclose(centers, new_centers)`.",
-   "kind": "focus",
-   "lines": "33"
-  },
-  {
-   "description": "Line 39 returns `centers, labels`.",
-   "kind": "focus",
-   "lines": "39"
-  },
-  {
-   "description": "Lines 41-49 continue the main code.",
+   "description": "You stop when the new centers are close to the old centers or the iteration limit ends. The call requests three clusters with the supplied seed.",
    "kind": "reveal",
-   "lines": "41-49"
+   "lines": "32-41"
+  },
+  {
+   "description": "You color observations by their returned labels and overlay the returned centers as large x markers. Both axes use the original feature coordinates.",
+   "kind": "reveal",
+   "lines": "43-49"
   }
  ],
- "title": "Notebook Unsupervised_Learning_Colab.ipynb",
+ "title": "Follow nearest-center assignments and mean updates",
  "version": 1
 }

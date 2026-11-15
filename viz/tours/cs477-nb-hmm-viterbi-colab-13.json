@@ -1,72 +1,38 @@
 {
  "code": "# (notebook only) !pip install hmmlearn --quiet\n\nimport numpy as np\nfrom hmmlearn import hmm\n\n# -----------------------------\n# 1. Model specification\n# -----------------------------\n\n# Hidden states\nstates = [\"Rainy\", \"Sunny\"]\nn_states = len(states)\n\n# Observation categories\nobservations = [\"Umbrella\", \"No Umbrella\"]\nn_obs = len(observations)\n\n# Indices for convenience (not used directly in the model now)\nU, NO = 0, 1  # Umbrella, No Umbrella\n\n# Initial distribution π\npi = np.array([0.5, 0.5])\n\n# Transition matrix A\nA = np.array([\n    [0.7, 0.3],  # from Rainy to [Rainy, Sunny]\n    [0.2, 0.8],  # from Sunny to [Rainy, Sunny]\n])\n\n# Emission matrix B\n# Rows = states [Rainy, Sunny], columns = categories [Umbrella, No Umbrella]\nB = np.array([\n    [0.9, 0.1],  # Rainy: P(Umbrella)=0.9, P(No Umbrella)=0.1\n    [0.2, 0.8],  # Sunny: P(Umbrella)=0.2, P(No Umbrella)=0.8\n])\n\n# -----------------------------\n# 2. Observation sequence (categorical → count vectors)\n# -----------------------------\nobs_seq_labels = [\"Umbrella\", \"Umbrella\", \"No Umbrella\", \"Umbrella\", \"Umbrella\"]\nT = len(obs_seq_labels)\n\n# In the new MultinomialHMM, each row is a count vector over categories.\n# With n_trials = 1, this is just a 1-of-K (one-hot) vector.\nobs_seq_counts = []\nfor label in obs_seq_labels:\n    if label == \"Umbrella\":\n        obs_seq_counts.append([1, 0])   # 1 Umbrella, 0 No-Umbrella\n    else:\n        obs_seq_counts.append([0, 1])   # 0 Umbrella, 1 No-Umbrella\n\nobs_seq_counts = np.array(obs_seq_counts, dtype=int)  # shape (T, n_obs)\n\nprint(\"Observation sequence (labels):\", obs_seq_labels)\nprint(\"Observation count vectors:\\n\", obs_seq_counts)\nprint()\n\n# -----------------------------\n# 3. Build MultinomialHMM\n# -----------------------------\n# init_params=\"\" prevents hmmlearn from overriding the parameters we set.\nmodel = hmm.MultinomialHMM(\n    n_components=n_states,\n    n_iter=1,\n    init_params=\"\"  # do NOT reinitialize startprob_, transmat_, emissionprob_\n)\n\n# Set parameters manually\nmodel.startprob_ = pi\nmodel.transmat_ = A\nmodel.emissionprob_ = B\n\n# For categorical (1-of-K) observations, we set n_trials = 1\nmodel.n_trials = 1\n\n# -----------------------------\n# 4. Viterbi decoding\n# -----------------------------\nlogprob, state_sequence = model.decode(obs_seq_counts, algorithm=\"viterbi\")\n\nbest_path_labels = [states[i] for i in state_sequence]\n\nprint(\"Most likely hidden state sequence (indices):\", state_sequence.tolist())\nprint(\"Most likely hidden state sequence (labels):\")\nfor t, s in enumerate(best_path_labels, start=1):\n    print(f\"  Day {t}: {s}\")\n\nprint()\nprint(\"Log-probability of best path:\", float(logprob))\nprint(\"Probability of best path:\", float(np.exp(logprob)))\n\n# -----------------------------\n# 5. Alignment summary\n# -----------------------------\nprint(\"\\nSummary alignment:\")\nfor t in range(T):\n    print(f\"Day {t+1}: Obs={obs_seq_labels[t]:12s} -> State={best_path_labels[t]}\")",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You configure a hidden Markov model manually and align its decoded states with observations.",
  "example": "cs477-nb-hmm-viterbi-colab-13",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 3-4 import `numpy` and `hmmlearn`.",
+   "description": "You define hidden states, observation categories, initial probabilities, transitions, and emissions. The emission rows follow the state order, and their columns follow observation order.",
    "kind": "reveal",
-   "lines": "3-4"
+   "lines": "3-35"
   },
   {
-   "description": "Lines 11-22 run the main code.",
+   "description": "You encode each observation as a count vector with one active category. The resulting array has one row per observation.",
    "kind": "reveal",
-   "lines": "11-22"
+   "lines": "40-55"
   },
   {
-   "description": "Lines 25-40 continue the main code.",
+   "description": "You construct MultinomialHMM and assign its probability arrays directly. init_params is empty, and n_trials is set for the single-category observations.",
    "kind": "reveal",
-   "lines": "25-40"
+   "lines": "61-74"
   },
   {
-   "description": "Lines 41-52 continue the main code.",
+   "answer": "It calls decode on the manually configured model. The returned state indices are mapped through states to obtain labels.",
+   "kind": "predict",
+   "lines": "79-81",
+   "question": "Does this block fit model parameters before decoding?"
+  },
+  {
+   "description": "You print the path, its probability, and its alignment with observations. The recorded best path labels every position Rainy, including the No Umbrella observation.",
    "kind": "reveal",
-   "lines": "41-52"
-  },
-  {
-   "description": "Line 46 loops over `obs_seq_labels`.",
-   "kind": "focus",
-   "lines": "46"
-  },
-  {
-   "description": "Line 47 checks `label == \"Umbrella\"`.",
-   "kind": "focus",
-   "lines": "47"
-  },
-  {
-   "description": "Lines 54-66 continue the main code and print the results.",
-   "kind": "reveal",
-   "lines": "54-66"
-  },
-  {
-   "description": "Lines 69-81 continue the main code.",
-   "kind": "reveal",
-   "lines": "69-81"
-  },
-  {
-   "description": "Lines 83-95 continue the main code and print the results.",
-   "kind": "reveal",
-   "lines": "83-95"
-  },
-  {
-   "description": "Line 85 loops over `enumerate(best_path_labels, start=1)`.",
-   "kind": "focus",
-   "lines": "85"
-  },
-  {
-   "description": "Lines 96-97 continue the main code and print the results.",
-   "kind": "reveal",
-   "lines": "96-97"
-  },
-  {
-   "description": "Line 96 loops over `range(T)`.",
-   "kind": "focus",
-   "lines": "96"
+   "lines": "79-97"
   }
  ],
- "title": "Notebook HMM_Viterbi_Colab.ipynb",
+ "title": "Decode weather from observation count vectors",
  "version": 1
 }

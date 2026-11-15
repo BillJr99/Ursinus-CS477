@@ -1,60 +1,45 @@
 {
  "code": "\n# Reset graph goal; avoid clash with grid's 'goal' tuple.\ngoal = \"F\"\ndef is_goal_graph(n): return n == goal\ndef h_euclid(n):\n    (x, y) = coords[n]\n    (gx, gy) = coords[goal]\n    return math.hypot(x - gx, y - gy)\n\nph, ih = path_h, info_h\np0, i0 = astar(\"A\", is_goal_graph, neighbors_graph, cost_graph, h_zero, debug=False)\nprint(\"Costs equal?\", abs(ih[\"cost\"] - i0[\"cost\"]) < 1e-9, \" | cost(A*,h):\", ih[\"cost\"], \" cost(Dijkstra):\", i0[\"cost\"])\n",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "Define the graph goal \"F\" and Euclidean heuristic h_euclid, run astar with h_zero (Dijkstra), and verify that ih[\"cost\"] and i0[\"cost\"] are equal.",
  "example": "cs477-nb-a-star-step-by-step-10",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: agy free model + edit: codex",
  "steps": [
   {
-   "description": "Line 3 runs the main code.",
+   "description": "Set `goal = \"F\"`, define `is_goal_graph(n)` to test `n == goal`, and define `h_euclid(n)` to compute the straight-line Euclidean distance `math.hypot(x - gx, y - gy)` between `coords[n]` and `coords[goal]`.",
    "kind": "reveal",
-   "lines": "3"
+   "lines": "2-8"
   },
   {
-   "description": "Line 4 defines `is_goal_graph(n)`.",
-   "kind": "reveal",
-   "lines": "4"
-  },
-  {
-   "description": "Line 4 returns `n == goal`.",
-   "kind": "focus",
-   "lines": "4"
-  },
-  {
-   "description": "Lines 5-8 define `h_euclid(n)`.",
-   "kind": "reveal",
-   "lines": "5-8"
-  },
-  {
-   "description": "Line 8 returns `math.hypot(x - gx, y - gy)`.",
-   "kind": "focus",
-   "lines": "8"
-  },
-  {
-   "description": "Lines 10-12 continue the main code and print the results.",
+   "description": "Store the A* result `(path_h, info_h)` in `(ph, ih)`, run `astar(\"A\", ..., h_zero, debug=False)` to get the zero-heuristic (Dijkstra) result `(p0, i0)`, and check whether their path costs match within `1e-9`.",
    "kind": "reveal",
    "lines": "10-12"
   },
   {
-   "description": "Here `is_goal_graph` is called for the first time; its frame appears on the right.",
-   "kind": "run",
-   "lines": "4",
-   "trace_step": 5
+   "description": "Compare `ih` (using straight-line heuristic `h_euclid`) with `i0` (using `h_zero`). `math.hypot(x - gx, y - gy)` never overestimates road distance on the graph. Both searches must therefore find a path of the same optimal cost.",
+   "kind": "focus",
+   "lines": "5-8,11-12"
   },
   {
-   "description": "Here `is_goal_graph` returns, the first time it does.",
-   "kind": "run",
-   "lines": "4",
-   "trace_step": 6
+   "answer": "It evaluates to `True`, because both A* with `h_euclid` and A* with `h_zero` (Dijkstra) find the optimal cost `6.6`.",
+   "kind": "predict",
+   "lines": "10-12",
+   "question": "Does `abs(ih[\"cost\"] - i0[\"cost\"]) < 1e-9` evaluate to `True` or `False`, and what optimal path cost do both A* and Dijkstra find from `\"A\"` to `\"F\"`?"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
+   "description": "Line 11 runs `astar` from `\"A\"` to `\"F\"` with heuristic `h_zero`.",
+   "kind": "run",
+   "lines": "11",
+   "trace_step": 4
+  },
+  {
+   "description": "Line 12 prints `Costs equal? True  | cost(A*,h): 6.6  cost(Dijkstra): 6.6`.",
    "kind": "run",
    "lines": "12",
-   "trace_step": 18
+   "trace_step": 17
   }
  ],
- "title": "Notebook A_star_step_by_step.ipynb",
+ "title": "Verifying That A* with an Admissible Heuristic Matches Dijkstra's Cost",
  "version": 1
 }

@@ -1,22 +1,33 @@
 {
  "code": "import numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import load_diabetes, load_breast_cancer\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, PolynomialFeatures\nfrom sklearn.linear_model import LinearRegression, LogisticRegression\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.metrics import (\n    mean_squared_error,\n    r2_score,\n    confusion_matrix,\n    ConfusionMatrixDisplay,\n    classification_report,\n    accuracy_score,\n    f1_score,\n    roc_auc_score,\n    roc_curve\n)\nfrom sklearn.linear_model import Ridge, Lasso\nfrom sklearn.model_selection import GridSearchCV\nfrom sklearn.svm import SVR\nfrom sklearn.ensemble import GradientBoostingRegressor\nfrom sklearn.naive_bayes import GaussianNB\n\nnp.random.seed(42)\nplt.rcParams['figure.figsize'] = (6, 4)\nplt.rcParams['axes.grid'] = True\nprint('Environment ready.')",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You inspect imports and defaults used by later examples.",
  "example": "cs477-nb-linear-logistic-regression-demo-1",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 1-23 import `numpy`, `matplotlib.pyplot`, `sklearn.datasets`, `sklearn.model_selection`, `sklearn.preprocessing`, `sklearn.linear_model`, `sklearn.pipeline`, `sklearn.metrics`, `sklearn.linear_model`, `sklearn.model_selection`, `sklearn.svm`, `sklearn.ensemble` and `sklearn.naive_bayes`.",
+   "description": "You import arrays, plotting, datasets, preprocessing, pipelines, and evaluation metrics. These names support later regression and classification examples.",
    "kind": "reveal",
-   "lines": "1-23"
+   "lines": "1-18"
   },
   {
-   "description": "Lines 25-28 run the main code and print the results.",
+   "description": "You add Ridge, Lasso, grid search, support vector regression, gradient boosting, and Gaussian Naive Bayes tools. This block imports the estimators without fitting them.",
+   "kind": "reveal",
+   "lines": "19-23"
+  },
+  {
+   "answer": "It sets the default figure size to six by four and enables axes grids. The separate NumPy call sets the supplied seed.",
+   "kind": "predict",
+   "lines": "25-27",
+   "question": "Which plotting defaults does the setup change?"
+  },
+  {
+   "description": "You apply the defaults and print Environment ready. That message is the complete supplied output.",
    "kind": "reveal",
    "lines": "25-28"
   }
  ],
- "title": "Notebook linear_logistic_regression_demo.ipynb",
+ "title": "Prepare regression and classification tools",
  "version": 1
 }

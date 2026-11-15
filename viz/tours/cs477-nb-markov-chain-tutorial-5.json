@@ -1,45 +1,33 @@
 {
  "code": "\ndef stationary_distribution(P, atol=1e-12):\n    try:\n        P = np.asarray(P, dtype=float)\n        m = P.shape[0]\n        A = P.T - np.eye(m)\n        # Replace last equation with sum-to-1\n        A[-1, :] = np.ones(m)\n        b = np.zeros(m); b[-1] = 1.0\n        pi = nla.lstsq(A, b, rcond=None)[0]\n        pi = np.clip(pi, 0.0, 1.0)\n        return normalize_distribution(pi, atol=atol)\n    except Exception as e:\n        _err(\"stationary_distribution\", e)\n        raise\n\npi_star = stationary_distribution(P)\nprint(\"Stationary distribution:\", pi_star)\nprint(\"Check pi* P:\", pi_star @ P)\n",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You enforce the stationary equations and check one transition update.",
  "example": "cs477-nb-markov-chain-tutorial-5",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 2-15 define `stationary_distribution(P, atol)`.",
+   "description": "You form P.T minus the identity matrix. This encodes the stationary equation for a probability vector unchanged by transitions.",
    "kind": "reveal",
-   "lines": "2-15"
+   "lines": "2-6"
   },
   {
-   "description": "Line 12 returns `normalize_distribution(pi, atol=atol)`.",
-   "kind": "focus",
-   "lines": "12"
+   "answer": "The row of ones with final right-hand value one requires the entries of pi to sum to one.",
+   "kind": "predict",
+   "lines": "7-9",
+   "question": "What does replacing the last equation enforce?"
   },
   {
-   "description": "Lines 17-19 run the main code and print the results.",
+   "description": "You solve the system by least squares, clip entries into [0,1], and normalize the result. Exceptions are reported through _err and raised again.",
+   "kind": "reveal",
+   "lines": "10-15"
+  },
+  {
+   "description": "You print pi_star and its product with P. Both recorded vectors are approximately equal, showing the distribution stays unchanged under that update.",
    "kind": "reveal",
    "lines": "17-19"
-  },
-  {
-   "description": "Here `stationary_distribution` is called for the first time; its frame appears on the right.",
-   "kind": "run",
-   "lines": "3",
-   "trace_step": 2
-  },
-  {
-   "description": "Here `stationary_distribution` returns, the first time it does.",
-   "kind": "run",
-   "lines": "12",
-   "trace_step": 11
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "19",
-   "trace_step": 14
   }
  ],
- "title": "Notebook Markov_Chain_Tutorial.ipynb",
+ "title": "Solve for a stationary distribution",
  "version": 1
 }

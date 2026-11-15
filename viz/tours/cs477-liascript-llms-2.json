@@ -1,50 +1,50 @@
 {
  "code": "import numpy as np\n\ndef softmax(x): e = np.exp(x - x.max()); return e / e.sum()\n\n# 3 encoder positions (\"the\", \"black\", \"cat\"), d=4\nK = V = np.array([[1., 0., 0., 1.],\n                  [0., 1., 0., 1.],\n                  [0., 0., 1., 1.]])\nq = np.array([0.1, 0.2, 2.0, 1.0])       # decoder is about to say \"gato\" -> should attend to \"cat\"\n\nscores  = K @ q / np.sqrt(4)\nweights = softmax(scores)\nprint(\"attention weights over ['the','black','cat']:\", np.round(weights, 2))\nprint(\"context vector:\", np.round(weights @ V, 2))",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "Score a decoder query q against three encoder keys K, normalize with softmax to get attention weights, and compute the weighted sum of values V.",
  "example": "cs477-liascript-llms-2",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: agy free model + edit: codex",
  "steps": [
   {
-   "description": "Line 1 imports `numpy`.",
+   "description": "Import `numpy as np` and define `softmax(x)` to exponentiate `x - x.max()` and divide by the sum so the output weights are positive and add to 1.",
    "kind": "reveal",
-   "lines": "1"
+   "lines": "1-3"
   },
   {
-   "description": "Line 3 defines `softmax(x)`.",
+   "description": "Set `K` and `V` to the same `3 x 4` matrix of encoder vectors for `['the', 'black', 'cat']`, and define the 4-element decoder query `q = np.array([0.1, 0.2, 2.0, 1.0])`.",
    "kind": "reveal",
-   "lines": "3"
+   "lines": "5-9"
   },
   {
-   "description": "Line 3 returns `e / e.sum()`.",
+   "description": "Compute scaled dot-product `scores = K @ q / np.sqrt(4)`, convert them into `weights = softmax(scores)`, and print both `weights` and the blended `context vector` (`weights @ V`).",
+   "kind": "reveal",
+   "lines": "11-14"
+  },
+  {
+   "description": "Trace the three attention steps in lines 11-14. `K @ q / np.sqrt(4)` scores `q` against each row of `K`, and `softmax(scores)` turns those scores into weights. `weights @ V` takes that weighted average of the rows of `V`.",
    "kind": "focus",
-   "lines": "3"
+   "lines": "11-14"
   },
   {
-   "description": "Lines 6-14 run the main code and print the results.",
-   "kind": "reveal",
-   "lines": "6-14"
+   "answer": "Row 2 (`[0., 0., 1., 1.]`, corresponding to `'cat'`), whose dot product with `q` is `2.0 + 1.0 = 3.0`, giving it the largest attention weight (`0.56`).",
+   "kind": "predict",
+   "lines": "6-12",
+   "question": "Which row of `K` has the largest dot product with `q = [0.1, 0.2, 2.0, 1.0]`, and therefore receives the largest softmax weight?"
   },
   {
-   "description": "Here `softmax` is called for the first time; its frame appears on the right.",
+   "description": "Line 13 prints the rounded softmax attention weights `[0.22 0.23 0.56]`, placing the highest weight on `'cat'`.",
    "kind": "run",
-   "lines": "3",
-   "trace_step": 9
+   "lines": "13",
+   "trace_step": 11
   },
   {
-   "description": "Here `softmax` returns, the first time it does.",
-   "kind": "run",
-   "lines": "3",
-   "trace_step": 10
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
+   "description": "Line 14 multiplies `weights @ V` and prints `context vector: [0.22 0.23 0.56 1.  ]`.",
    "kind": "run",
    "lines": "14",
-   "trace_step": 13
+   "trace_step": 12
   }
  ],
- "title": "Step 4: Attention: Look Where It Matters",
+ "title": "Scaled Dot-Product Attention in NumPy",
  "version": 1
 }

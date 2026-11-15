@@ -1,50 +1,38 @@
 {
  "code": "def kalman_filter(F, Q, H, R, zs, x0, P0):\n    T = zs.shape[0]\n    xs = np.zeros((T, x0.shape[0]))\n    Ps = np.zeros((T, x0.shape[0], x0.shape[0]))\n    x = x0.copy(); P = P0.copy()\n    I = np.eye(P.shape[0])\n    for t in range(T):\n        # Predict\n        x = F @ x\n        P = F @ P @ F.T + Q\n        # Update\n        z = zs[t]\n        y = z - H @ x\n        S = H @ P @ H.T + R\n        K = P @ H.T @ np.linalg.inv(S)\n        x = x + K @ y\n        P = (I - K @ H) @ P\n        # Symmetrize for numerical stability\n        P = 0.5*(P + P.T)\n        xs[t] = x; Ps[t] = P\n    return xs, Ps\n\nF, Q, H, R = build_models(dt=dt, sigma_acc=0.5, sigma_gps=sigma_gps, sigma_odo=sigma_odo)\n\n# Prior\nx0 = np.array([1.0, 1.0, 0.0, 0.0], dtype=float)\nP0 = np.diag([2.0, 2.0, 1.0, 1.0])\n\nxs, Ps = kalman_filter(F, Q, H, R, zs, x0, P0)\nprint(\"KF finished. Shapes:\", xs.shape, Ps.shape)",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You trace each measurement into a stored state estimate and covariance.",
  "example": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-6",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 1-21 define `kalman_filter(F, Q, H, R, zs, x0, P0)`.",
+   "description": "You copy the prior state and covariance and allocate result arrays. Each loop first predicts x with F and propagates P with added process covariance Q.",
    "kind": "reveal",
-   "lines": "1-21"
+   "lines": "1-10"
   },
   {
-   "description": "Line 7 loops over `range(T)`.",
-   "kind": "focus",
-   "lines": "7"
-  },
-  {
-   "description": "Line 21 returns `xs, Ps`.",
-   "kind": "focus",
-   "lines": "21"
-  },
-  {
-   "description": "Lines 23-30 run the main code and print the results.",
+   "description": "You compute y, the measurement residual, and S, its covariance. The gain K weights that residual when updating x and P.",
    "kind": "reveal",
-   "lines": "23-30"
+   "lines": "11-17"
   },
   {
-   "description": "Here `kalman_filter` is called for the first time; its frame appears on the right.",
-   "kind": "run",
-   "lines": "2",
-   "trace_step": 5
+   "answer": "They store the updated estimates. The covariance is symmetrized immediately before storage.",
+   "kind": "predict",
+   "lines": "19-20",
+   "question": "Do xs and Ps store predictions before the measurement update or estimates afterward?"
   },
   {
-   "description": "Here `kalman_filter` returns, the first time it does.",
-   "kind": "run",
-   "lines": "21",
-   "trace_step": 342
+   "description": "You initialize a four-entry state and diagonal prior covariance, then call the filter. The function returns one updated state and covariance per measurement row.",
+   "kind": "reveal",
+   "lines": "19-29"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "30",
-   "trace_step": 344
+   "description": "You print the shapes of the state and covariance arrays. The recorded result contains 30 four-entry state estimates with their covariance matrices.",
+   "kind": "reveal",
+   "lines": "30"
   }
  ],
- "title": "Notebook Kalman_Filter_Robot_Localization_Maze_Heatmaps.ipynb",
+ "title": "Follow Kalman prediction and update",
  "version": 1
 }

@@ -1,22 +1,33 @@
 {
  "code": "LAM = 1e-2  # L2 regularization strength\n\nw_gd, hist_gd = fit_gd(Phi_tr, y_tr, lam=LAM, max_iter=600, tol=1e-7, alpha0=1.0, verbose=False)\nw_nt, hist_nt = fit_newton(Phi_tr, y_tr, lam=LAM, max_iter=50, tol=1e-9, verbose=False)\n\nprint(\"GD weights:\", w_gd)\nprint(\"NT weights:\", w_nt)\n\nfig = plt.figure(figsize=(6,4))\nplt.plot(hist_gd, label=\"GD NLL\")\nplt.plot(hist_nt, label=\"Newton NLL\")\nplt.xlabel(\"Iteration\"); plt.ylabel(\"Negative log-likelihood\")\nplt.title(\"Convergence\")\nplt.legend(); plt.tight_layout(); plt.show()",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You fit the same training design matrix with gradient descent and Newton updates.",
  "example": "cs477-nb-logistic-regression-mle-from-scratch-7",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 1-12 run the main code and print the results.",
+   "description": "You set L2 regularization strength to the supplied value. The gradient-descent call uses Phi_tr and y_tr with its stated iteration limit and tolerance.",
    "kind": "reveal",
-   "lines": "1-12"
+   "lines": "1-3"
   },
   {
-   "description": "Lines 12-14 continue the main code.",
+   "description": "You fit Newton's method on the same inputs and regularization strength. It receives its own iteration limit and tolerance.",
    "kind": "reveal",
-   "lines": "12-14"
+   "lines": "4"
+  },
+  {
+   "answer": "They are close but differ. GD prints [-0.0202,3.0446,-2.9820], while Newton prints [-0.0201,3.0427,-2.9809].",
+   "kind": "predict",
+   "lines": "6-7",
+   "question": "Are the recorded weight vectors identical at the printed precision?"
+  },
+  {
+   "description": "You plot both histories on the same iteration axis. The legend and vertical label identify them as negative log-likelihood histories.",
+   "kind": "reveal",
+   "lines": "9-14"
   }
  ],
- "title": "Notebook Logistic_Regression_MLE_From_Scratch.ipynb",
+ "title": "Compare two logistic optimizers",
  "version": 1
 }

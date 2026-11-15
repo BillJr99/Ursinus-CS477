@@ -1,47 +1,33 @@
 {
  "code": "\ndef tiny_pagerank_transition(adj, alpha=0.85):\n    try:\n        n = len(adj)\n        P = np.zeros((n, n))\n        for i in range(n):\n            if len(adj[i]) == 0:\n                P[i, :] = 1.0 / n\n            else:\n                for j in adj[i]:\n                    P[i, j] = 1.0 / len(adj[i])\n        J = np.ones((n, n)) / n\n        return alpha * P + (1 - alpha) * J\n    except Exception as e:\n        _err(\"tiny_pagerank_transition\", e)\n        raise\n\nadj = [\n    [1, 2],\n    [2],\n    [0, 3, 4],\n    [2],\n    []\n]\nP_pr = tiny_pagerank_transition(adj, alpha=0.85)\nprint(\"Row sums (should be 1):\", P_pr.sum(axis=1))\n\npi_pr = stationary_distribution(P_pr)\nprint(\"PageRank-like stationary distribution:\", pi_pr)\n\nplt.figure(figsize=(6, 4))\nplt.bar(range(len(pi_pr)), pi_pr)\nplt.xlabel(\"Node\")\nplt.ylabel(\"Stationary Probability\")\nplt.title(\"Tiny PageRank-Style Stationary Distribution\")\nplt.show()\n",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You combine link transitions with uniform jumps and inspect stationary probabilities.",
  "example": "cs477-nb-markov-chain-tutorial-11",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 2-16 define `tiny_pagerank_transition(adj, alpha)`.",
+   "description": "You distribute each node's transition probability over its outgoing links. A node with no outgoing links instead receives a uniform transition row.",
    "kind": "reveal",
-   "lines": "2-16"
+   "lines": "2-11"
   },
   {
-   "description": "Line 6 loops over `range(n)`.",
-   "kind": "focus",
-   "lines": "6"
-  },
-  {
-   "description": "Line 7 checks `len(adj[i]) == 0`.",
-   "kind": "focus",
-   "lines": "7"
-  },
-  {
-   "description": "Line 10 loops over `adj[i]`.",
-   "kind": "focus",
-   "lines": "10"
-  },
-  {
-   "description": "Line 13 returns `alpha * P + (1 - alpha) * J`.",
-   "kind": "focus",
-   "lines": "13"
-  },
-  {
-   "description": "Lines 18-29 run the main code and print the results.",
+   "description": "You mix the link matrix with uniform matrix J. alpha gives the link matrix its weight, and J receives the remaining weight.",
    "kind": "reveal",
-   "lines": "18-29"
+   "lines": "12-16"
   },
   {
-   "description": "Lines 31-36 continue the main code.",
+   "answer": "Node 4 has an empty adjacency list. Its link transition row is uniform over all five nodes.",
+   "kind": "predict",
+   "lines": "18-26",
+   "question": "Which supplied node takes the no-outgoing-links branch?"
+  },
+  {
+   "description": "You confirm that all row sums are one and compute the stationary distribution. The recording assigns node 2 the largest probability, which the final bar chart displays.",
    "kind": "reveal",
-   "lines": "31-36"
+   "lines": "25-36"
   }
  ],
- "title": "Notebook Markov_Chain_Tutorial.ipynb",
+ "title": "Build a tiny PageRank-style chain",
  "version": 1
 }

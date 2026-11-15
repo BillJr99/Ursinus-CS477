@@ -1,17 +1,33 @@
 {
  "code": "means = np.linspace(1e-4, 0.2, 60)  # from 0.01% to 20%\nppv_curve = posterior_prob_positive(means, s_mean, c_mean)\nneg_curve = posterior_prob_negative(means, s_mean, c_mean)\n\nfig = plt.figure(figsize=(6,4))\nplt.plot(means, ppv_curve, label=\"P(D=1 | T=+)\")\nplt.plot(means, neg_curve, label=\"P(D=1 | T=-)\")\nplt.xlabel(\"Mean prevalence π\"); plt.ylabel(\"Posterior probability\")\nplt.title(\"Effect of Prevalence on Posterior Probabilities\")\nplt.legend(); plt.tight_layout(); plt.show()",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You vary prevalence while keeping s_mean and c_mean fixed.",
  "example": "cs477-nb-bayesian-diagnostic-test-belief-updating-7",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 1-10 run the main code.",
+   "description": "You create prevalence values across the supplied interval. These values supply the horizontal axis.",
    "kind": "reveal",
-   "lines": "1-10"
+   "lines": "1"
+  },
+  {
+   "description": "You compute disease probabilities after a positive test and after a negative test. Both calls receive the same prevalence values and the same s_mean and c_mean.",
+   "kind": "reveal",
+   "lines": "2-3"
+  },
+  {
+   "answer": "Its label is P(D=1 | T=-), the probability of disease given a negative test.",
+   "kind": "predict",
+   "lines": "6-8",
+   "question": "What does the negative-test curve represent?"
+  },
+  {
+   "description": "You display both posterior curves on one set of axes. The legend identifies the test result associated with each curve.",
+   "kind": "reveal",
+   "lines": "5-10"
   }
  ],
- "title": "Notebook Bayesian_Diagnostic_Test_Belief_Updating.ipynb",
+ "title": "Compare posterior curves",
  "version": 1
 }

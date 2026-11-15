@@ -1,43 +1,45 @@
 {
  "code": "facts = {\"A\", \"B\"}\nrules = [({\"A\", \"B\"}, \"C\"),\n         ({\"C\"}, \"D\"),\n         ({\"D\", \"B\"}, \"E\")]\n\nchanged = True\nwhile changed:\n    changed = False\n    for premises, conclusion in rules:\n        if premises <= facts and conclusion not in facts:\n            print(f\"{' AND '.join(sorted(premises))} => {conclusion}\")\n            facts.add(conclusion)\n            changed = True\nprint(\"Derived knowledge base:\", sorted(facts))",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "Repeatedly scan a list of Horn rules and add derived conclusions to the facts set until a pass adds nothing new.",
  "example": "cs477-liascript-knowledgelogic-1",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: agy free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 1-13 run the main code and print the results.",
+   "description": "Initialize `facts = {\"A\", \"B\"}` and represent each Horn clause in `rules` as a `(premises_set, conclusion)` pair.",
    "kind": "reveal",
-   "lines": "1-13"
+   "lines": "1-4"
   },
   {
-   "description": "Line 7 repeats while `changed` is true.",
-   "kind": "focus",
-   "lines": "7"
-  },
-  {
-   "description": "Line 9 loops over `rules`.",
-   "kind": "focus",
-   "lines": "9"
-  },
-  {
-   "description": "Line 10 makes a decision.",
-   "kind": "focus",
-   "lines": "10"
-  },
-  {
-   "description": "Line 14 continues the main code and print the results.",
+   "description": "Use a `while changed:` loop that resets `changed = False` and tests every rule with `premises <= facts and conclusion not in facts`. Add any new `conclusion` to `facts` and set `changed = True`. Print the sorted `facts` when the loop terminates.",
    "kind": "reveal",
-   "lines": "14"
+   "lines": "6-14"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
+   "description": "Look at line 10: `premises <= facts` uses Python set inclusion to check whether every premise of the rule is already in `facts`. `conclusion not in facts` ensures each rule fires at most once.",
+   "kind": "focus",
+   "lines": "10-13"
+  },
+  {
+   "answer": "The first pass adds `'C'`, `'D'`, and `'E'` and sets `changed = True`. The second pass checks all three rules again and finds no new conclusions to add. It leaves `changed = False` and stops at the fixpoint.",
+   "kind": "predict",
+   "lines": "7-14",
+   "question": "Why does the `while changed:` loop run a second pass after the first `for` loop finishes?"
+  },
+  {
+   "description": "When `premises <= facts` holds for `({\"A\", \"B\"}, \"C\")`, line 12 adds `\"C\"` to `facts` so later rules can use it.",
+   "kind": "run",
+   "lines": "12",
+   "trace_step": 11
+  },
+  {
+   "description": "Once a full pass over `rules` leaves `changed == False`, line 14 prints `Derived knowledge base: ['A', 'B', 'C', 'D', 'E']`.",
    "kind": "run",
    "lines": "14",
-   "trace_step": 35
+   "trace_step": 34
   }
  ],
- "title": "4. Inference Rules and Forward Chaining",
+ "title": "Forward Chaining over Horn Clauses",
  "version": 1
 }

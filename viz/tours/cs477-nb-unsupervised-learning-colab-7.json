@@ -1,22 +1,33 @@
 {
  "code": "# === K-Means (scikit-learn) ===\nif SKLEARN_AVAILABLE:\n    km = SKKMeans(n_clusters=3, n_init=10, random_state=42).fit(X_km)\n    labs = km.labels_\n    centers_skl = km.cluster_centers_\n\n    plt.figure()\n    plt.scatter(X_km[:, 0], X_km[:, 1], c=labs, s=12)\n    plt.scatter(centers_skl[:, 0], centers_skl[:, 1], marker='x', s=120)\n    plt.title(\"K-Means (scikit-learn): Cluster Assignments\")\n    plt.xlabel(\"Feature 1\")\n    plt.ylabel(\"Feature 2\")\n    plt.show()\nelse:\n    print(\"scikit-learn not available; skipping K-Means (scikit-learn).\")\n",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You inspect the optional fit and plot its assignments and centers.",
  "example": "cs477-nb-unsupervised-learning-colab-7",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 2-15 run the main code and print the results.",
+   "description": "You fit three clusters when SKLEARN_AVAILABLE is true. The constructor requests ten initializations and the supplied random_state, then exposes labels and centers.",
    "kind": "reveal",
-   "lines": "2-15"
+   "lines": "1-5"
   },
   {
-   "description": "Line 2 checks `SKLEARN_AVAILABLE`.",
-   "kind": "focus",
-   "lines": "2"
+   "answer": "labs determines observation colors. centers_skl supplies the coordinates drawn with large x markers.",
+   "kind": "predict",
+   "lines": "8-9",
+   "question": "Which values determine point colors and which determine the large x markers?"
+  },
+  {
+   "description": "You plot observations and centers in the first two feature coordinates. The title identifies the library K-means assignments.",
+   "kind": "reveal",
+   "lines": "7-13"
+  },
+  {
+   "description": "You print a skip message when the availability guard fails. The supplied output contains no numeric centers or assignments.",
+   "kind": "reveal",
+   "lines": "14-15"
   }
  ],
- "title": "Notebook Unsupervised_Learning_Colab.ipynb",
+ "title": "Display library K-means assignments",
  "version": 1
 }

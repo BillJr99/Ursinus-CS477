@@ -1,27 +1,33 @@
 {
  "code": "# Colab download helper\nimport shutil\nfrom pathlib import Path\ntry:\n    from google.colab import files  # type: ignore\n    if Path('artifacts').exists():\n        shutil.make_archive('artifacts', 'zip', 'artifacts')\n        files.download('artifacts.zip')\n    else:\n        print('No artifacts folder found.')\nexcept Exception as e:\n    print('Colab download helper not available in this environment:', e)",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You follow the folder check and exception handler around a Colab download.",
  "example": "cs477-nb-hmm-image-recognition-from-scratch-12",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 2-3 import `shutil` and `pathlib`.",
+   "description": "You import archive and path tools, then try to import the Colab files helper. The try block includes the later download call.",
    "kind": "reveal",
-   "lines": "2-3"
+   "lines": "1-5"
   },
   {
-   "description": "Lines 4-12 run the main code and print the results.",
+   "description": "You check for the artifacts folder before making a ZIP archive. The other branch prints a missing-folder message.",
    "kind": "reveal",
-   "lines": "4-12"
+   "lines": "6-10"
   },
   {
-   "description": "Line 6 checks `Path('artifacts').exists()`.",
-   "kind": "focus",
-   "lines": "6"
+   "answer": "The surrounding except catches it and prints the helper-unavailable message with the exception.",
+   "kind": "predict",
+   "lines": "11-12",
+   "question": "Where does an exception raised by files.download go?"
+  },
+  {
+   "description": "You inspect the recorded result. It reports that google.colab.files.download is unavailable in code-viz.",
+   "kind": "reveal",
+   "lines": "11-12"
   }
  ],
- "title": "Notebook HMM_Image_Recognition_From_Scratch.ipynb",
+ "title": "Read an optional artifact download helper",
  "version": 1
 }

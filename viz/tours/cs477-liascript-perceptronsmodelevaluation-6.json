@@ -1,17 +1,33 @@
 {
  "code": "fpr, tpr, thr = roc_curve(yc_test, y_prob)\nroc_auc = auc(fpr, tpr)\n\nRocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=roc_auc, estimator_name='LogisticRegression').plot()\nplt.title(f'ROC Curve (AUC = {roc_auc:.3f})')\nplt.show()",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "Sweep decision thresholds over y_prob with roc_curve(yc_test, y_prob), integrate the area under the curve with auc(fpr, tpr), and plot the ROC curve.",
  "example": "cs477-liascript-perceptronsmodelevaluation-6",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: agy free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 1-6 run the main code.",
+   "description": "Compute false positive rates `fpr`, true positive rates `tpr`, and thresholds `thr` from `(yc_test, y_prob)` using `roc_curve`, then compute the area under that curve with `roc_auc = auc(fpr, tpr)`.",
    "kind": "reveal",
-   "lines": "1-6"
+   "lines": "1-2"
+  },
+  {
+   "description": "Pass `fpr`, `tpr`, and `roc_auc` to `RocCurveDisplay(...).plot()`, format `roc_auc` to 3 decimal places in the title, and call `plt.show()`.",
+   "kind": "reveal",
+   "lines": "4-6"
+  },
+  {
+   "description": "Notice that `roc_curve` takes the continuous probabilities `y_prob` rather than the hard 0/1 predictions `y_pred` so it can evaluate `(fpr, tpr)` across all possible decision thresholds `thr`.",
+   "kind": "focus",
+   "lines": "1-2"
+  },
+  {
+   "answer": "Building the ROC curve requires varying the decision threshold across continuous predicted probabilities `y_prob` to get a full sequence of `(fpr, tpr)` pairs. `y_pred` is already fixed at a single threshold.",
+   "kind": "predict",
+   "lines": "1-2",
+   "question": "Why does `roc_curve(yc_test, y_prob)` require `y_prob` (`P(y=1|x)`) instead of `y_pred`?"
   }
  ],
- "title": "8. ROC Curve & AUC",
+ "title": "Plotting the ROC Curve and Computing AUC",
  "version": 1
 }

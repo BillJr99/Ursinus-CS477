@@ -1,45 +1,33 @@
 {
  "code": "def lda_directions(X, y, reg=1e-6):\n    Sw, Sb, means, counts, mu = scatter_matrices(X, y)\n    # Regularize Sw for numerical stability\n    d = Sw.shape[0]\n    Sw_reg = Sw + reg*np.eye(d)\n    # Solve Sw^{-1} Sb v = λ v  via symmetric reduction\n    # Use eigh on the symmetric matrix\n    M = np.linalg.solve(Sw_reg, Sb)\n    evals, evecs = np.linalg.eig(M)\n    # Sort by descending eigenvalue (real parts)\n    order = np.argsort(-np.real(evals))\n    evals = np.real(evals[order])\n    W = np.real(evecs[:, order])\n    # Keep first C-1 components\n    k = len(np.unique(y)) - 1\n    return W[:, :k], evals[:k], means, counts, mu, Sw_reg\n\nW, evals, means_tr, counts_tr, mu_tr, Sw_reg = lda_directions(X_tr, y_tr, reg=1e-6)\nprint(\"Top eigenvalues:\", evals)\nZ_tr = X_tr @ W\nZ_te = X_te @ W\nprint(\"Projected dims:\", Z_tr.shape)",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You solve for directions from the class scatter matrices and project both splits.",
  "example": "cs477-nb-lda-and-fisherscore-fromscratch-5",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model + edit: codex",
  "steps": [
   {
-   "description": "Lines 1-16 define `lda_directions(X, y, reg)`.",
+   "description": "You compute scatter matrices and add reg to Sw's diagonal. The active code solves Sw_reg against Sb and calls np.linalg.eig on the resulting matrix.",
    "kind": "reveal",
-   "lines": "1-16"
+   "lines": "1-9"
   },
   {
-   "description": "Line 16 returns a value.",
-   "kind": "focus",
-   "lines": "16"
+   "description": "You sort eigenvalues by descending real part. The same ordering selects the corresponding eigenvector columns.",
+   "kind": "reveal",
+   "lines": "10-13"
   },
   {
-   "description": "Lines 18-22 run the main code and print the results.",
+   "answer": "It retains C-1 columns and their eigenvalues. The recorded call returns two directions.",
+   "kind": "predict",
+   "lines": "14-16",
+   "question": "How many projection directions does the function retain for C classes?"
+  },
+  {
+   "description": "You use the same W to project training and test features. The recorded eigenvalues are 30.47025 and 0.43653, and the output reports the training projection's shape.",
    "kind": "reveal",
    "lines": "18-22"
-  },
-  {
-   "description": "Here `lda_directions` is called for the first time; its frame appears on the right.",
-   "kind": "run",
-   "lines": "2",
-   "trace_step": 2
-  },
-  {
-   "description": "Here `lda_directions` returns, the first time it does.",
-   "kind": "run",
-   "lines": "16",
-   "trace_step": 12
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "22",
-   "trace_step": 17
   }
  ],
- "title": "Notebook LDA_and_FisherScore_FromScratch.ipynb",
+ "title": "Compute discriminant projection directions",
  "version": 1
 }

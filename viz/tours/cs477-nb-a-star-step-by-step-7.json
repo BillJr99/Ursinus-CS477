@@ -1,50 +1,45 @@
 {
  "code": "\n# Build explicit edge iterator for a consistency check on a subset of nodes (for speed)\nH, W = grid.shape\ndef out_edges(cell):\n    for nbr in grid_neighbors(grid, cell):\n        yield (nbr, 1.0)\n\n# Sample nodes set (all free cells) — this can be large; we subsample for speed\nfree_cells = [(y, x) for y in range(H) for x in range(W) if grid[y, x] == 0]\nsample = free_cells[::max(1, len(free_cells)//1000)]  # at most ~1000 cells\n\nconsistent, violations = check_consistency(sample, out_edges, h=lambda c: manhattan(c, goal))\nprint(\"Manhattan heuristic consistent on sample subset?\", consistent)\nprint(\"Number of violations found:\", len(violations))\n",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "Collect free grid cells, yield unit-cost 4-connected edges from out_edges(cell), and run check_consistency on the Manhattan distance heuristic.",
  "example": "cs477-nb-a-star-step-by-step-7",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: agy free model + edit: codex",
  "steps": [
   {
-   "description": "Line 3 runs the main code.",
+   "description": "Unpack `H, W = grid.shape` and define `out_edges(cell)` to yield `(nbr, 1.0)` for every 4-connected neighbor returned by `grid_neighbors(grid, cell)`.",
    "kind": "reveal",
-   "lines": "3"
+   "lines": "2-6"
   },
   {
-   "description": "Lines 4-6 define the generator `out_edges(cell)`.",
+   "description": "Collect all non-obstacle cells `free_cells` where `grid[y, x] == 0`, subsample `sample`, and call `check_consistency(sample, out_edges, h=lambda c: manhattan(c, goal))` to print `consistent` and `len(violations)`.",
    "kind": "reveal",
-   "lines": "4-6"
+   "lines": "8-14"
   },
   {
-   "description": "Line 5 loops over `grid_neighbors(grid, cell)`.",
+   "description": "Look at how `out_edges(cell)` pairs with `manhattan(c, goal)` on line 12. Moving one step horizontally or vertically changes `manhattan(c, goal)` by `+1` or `-1`. This never exceeds the step cost `1.0` (`h(u) <= 1.0 + h(v)`).",
    "kind": "focus",
-   "lines": "5"
+   "lines": "4-6,12"
   },
   {
-   "description": "Lines 9-14 continue the main code and print the results.",
-   "kind": "reveal",
-   "lines": "9-14"
+   "answer": "`consistent` is `True` and `len(violations)` is `0`, because the Manhattan distance changes by at most `1` across any single 4-connected move.",
+   "kind": "predict",
+   "lines": "4-6,12-14",
+   "question": "For a 4-connected grid with unit step cost `1.0` and `h(c) = manhattan(c, goal)`, what values will `consistent` and `len(violations)` have on lines 13-14?"
   },
   {
-   "description": "Here `out_edges` is called for the first time; its frame appears on the right.",
+   "description": "After scanning all `(y, x)` positions in the `18 x 28` grid to build `free_cells`, line 10 constructs `sample`.",
    "kind": "run",
-   "lines": "5",
-   "trace_step": 529
+   "lines": "10",
+   "trace_step": 525
   },
   {
-   "description": "Here `out_edges` returns, the first time it does.",
+   "description": "Inside `check_consistency`, `out_edges(cell)` yields `(nbr, 1.0)` for each free 4-connected neighbor so `h(u) <= c(u, v) + h(v)` can be verified.",
    "kind": "run",
    "lines": "6",
-   "trace_step": 531
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "12",
-   "trace_step": 799
+   "trace_step": 530
   }
  ],
- "title": "Notebook A_star_step_by_step.ipynb",
+ "title": "Checking Consistency of the Manhattan Heuristic on a 4-Connected Grid",
  "version": 1
 }
