@@ -1,0 +1,48 @@
+{
+ "version": 1,
+ "example": "cs477-nb-mle-from-first-principles-worked-examples-7",
+ "title": "Notebook MLE_From_First_Principles_Worked_Examples.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "2-5",
+   "description": "Lines 2-5 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "7-8",
+   "description": "Lines 7-8 define `cauchy_loglik(theta, x, gamma)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "8",
+   "description": "Line 8 returns a value."
+  },
+  {
+   "kind": "reveal",
+   "lines": "11-22",
+   "description": "Lines 11-22 continue the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 7,
+   "lines": "8",
+   "description": "Here `cauchy_loglik` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 8,
+   "lines": "8",
+   "description": "Here `cauchy_loglik` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 799,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "8"
+  }
+ ]
+}

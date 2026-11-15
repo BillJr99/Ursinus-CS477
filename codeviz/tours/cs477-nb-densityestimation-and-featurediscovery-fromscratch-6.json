@@ -1,0 +1,65 @@
+{
+ "version": 1,
+ "example": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-6",
+ "title": "Notebook DensityEstimation_and_FeatureDiscovery_FromScratch.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-38",
+   "description": "Lines 1-38 define `gmm_em(X, k, max_iter, tol, seed, n_init, reg)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "7",
+   "description": "Line 7 loops over `range(n_init)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "14",
+   "description": "Line 14 loops over `range(k)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "35",
+   "description": "Line 35 checks `ll > best_ll`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "40-45",
+   "description": "Lines 40-45 define `gmm_bic(model, X)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "45",
+   "description": "Line 45 returns `-2*logL + p*np.log(n)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "47-59",
+   "description": "Lines 47-59 run the main code and print the results."
+  },
+  {
+   "kind": "reveal",
+   "lines": "60",
+   "description": "Line 60 continues the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "61-66",
+   "description": "Lines 61-66 define `mvn_pdf(P, m, S)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "67-78",
+   "description": "Lines 67-78 continue the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "78",
+   "description": "Line 78 continues the main code."
+  }
+ ]
+}

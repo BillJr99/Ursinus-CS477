@@ -1,0 +1,26 @@
+{
+ "version": 1,
+ "example": "cs477-liascript-introai-2",
+ "title": "6. NumPy in Three Moves",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1",
+   "description": "Line 1 imports `numpy`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "4-11",
+   "description": "Lines 4-11 run the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 5,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "11"
+  }
+ ]
+}

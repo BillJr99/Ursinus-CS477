@@ -1,0 +1,43 @@
+{
+ "version": 1,
+ "example": "cs477-nb-lda-and-fisherscore-fromscratch-5",
+ "title": "Notebook LDA_and_FisherScore_FromScratch.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-16",
+   "description": "Lines 1-16 define `lda_directions(X, y, reg)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "16",
+   "description": "Line 16 returns a value."
+  },
+  {
+   "kind": "reveal",
+   "lines": "18-22",
+   "description": "Lines 18-22 run the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 2,
+   "lines": "2",
+   "description": "Here `lda_directions` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 12,
+   "lines": "16",
+   "description": "Here `lda_directions` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 17,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "22"
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "version": 1,
+ "example": "cs477-nb-bayesian-diagnostic-test-belief-updating-4",
+ "title": "Notebook Bayesian_Diagnostic_Test_Belief_Updating.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-2",
+   "description": "Lines 1-2 define `sample_prevalence(a, b, n, rng)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "2",
+   "description": "Line 2 returns `rng.beta(a, b, size=n)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "4-9",
+   "description": "Lines 4-9 define `sample_param_fixed_or_beta(fixed, beta_params, n, rng)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "5",
+   "description": "Line 5 checks `beta_params is None`."
+  },
+  {
+   "kind": "focus",
+   "lines": "9",
+   "description": "Line 9 returns `rng.beta(a, b, size=n)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "11-15",
+   "description": "Lines 11-15 define `posterior_prob_positive(pi, sens, spec)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "15",
+   "description": "Line 15 returns `num / np.maximum(den, 1e-15)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "17-21",
+   "description": "Lines 17-21 define `posterior_prob_negative(pi, sens, spec)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "24-35",
+   "description": "Lines 24-35 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "36-39",
+   "description": "Lines 36-39 continue the main code and print the results."
+  }
+ ]
+}

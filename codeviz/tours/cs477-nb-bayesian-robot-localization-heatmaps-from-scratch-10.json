@@ -1,0 +1,43 @@
+{
+ "version": 1,
+ "example": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-10",
+ "title": "Notebook Bayesian_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-2",
+   "description": "Lines 1-2 define `argmax_cell(b)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "2",
+   "description": "Line 2 returns `int(np.argmax(b))`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "4-8",
+   "description": "Lines 4-8 run the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 20,
+   "lines": "2",
+   "description": "Here `argmax_cell` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 21,
+   "lines": "2",
+   "description": "Here `argmax_cell` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 91,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "8"
+  }
+ ]
+}

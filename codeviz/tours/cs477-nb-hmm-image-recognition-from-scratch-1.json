@@ -1,0 +1,43 @@
+{
+ "version": 1,
+ "example": "cs477-nb-hmm-image-recognition-from-scratch-1",
+ "title": "Notebook HMM_Image_Recognition_From_Scratch.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1",
+   "description": "Line 1 imports `sys`, `platform` and `subprocess`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "3-8",
+   "description": "Lines 3-8 define `_sh(cmd)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "10-14",
+   "description": "Lines 10-14 run the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 7,
+   "lines": "4",
+   "description": "Here `_sh` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 10,
+   "lines": "8",
+   "description": "Here `_sh` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 11,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "14"
+  }
+ ]
+}

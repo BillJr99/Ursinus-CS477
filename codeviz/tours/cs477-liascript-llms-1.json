@@ -1,0 +1,26 @@
+{
+ "version": 1,
+ "example": "cs477-liascript-llms-1",
+ "title": "Step 1 — Word Embeddings: Words as Vectors",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1",
+   "description": "Line 1 imports `numpy`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "4-14",
+   "description": "Lines 4-14 run the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 26,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "13"
+  }
+ ]
+}

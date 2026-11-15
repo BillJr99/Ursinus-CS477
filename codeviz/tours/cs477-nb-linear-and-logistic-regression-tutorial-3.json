@@ -1,0 +1,43 @@
+{
+ "version": 1,
+ "example": "cs477-nb-linear-and-logistic-regression-tutorial-3",
+ "title": "Notebook Linear_and_Logistic_Regression_Tutorial.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "2-4",
+   "description": "Lines 2-4 define `mse(theta0, theta1, X, y)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "4",
+   "description": "Line 4 returns `np.mean((y_hat - y)**2)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "6",
+   "description": "Line 6 runs the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 2,
+   "lines": "3",
+   "description": "Here `mse` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 4,
+   "lines": "4",
+   "description": "Here `mse` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 5,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "6"
+  }
+ ]
+}

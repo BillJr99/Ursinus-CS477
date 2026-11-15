@@ -1,0 +1,48 @@
+{
+ "version": 1,
+ "example": "cs477-nb-geneticalgorithm-fromscratch-toyexample-8",
+ "title": "Notebook GeneticAlgorithm_FromScratch_ToyExample.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-7",
+   "description": "Lines 1-7 define `run_seeds(n)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "3",
+   "description": "Line 3 loops over `range(n)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "7",
+   "description": "Line 7 returns `np.array(bests)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "9-10",
+   "description": "Lines 9-10 run the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 2,
+   "lines": "2",
+   "description": "Here `run_seeds` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 25,
+   "lines": "7",
+   "description": "Here `run_seeds` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 27,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "10"
+  }
+ ]
+}

@@ -1,0 +1,75 @@
+{
+ "version": 1,
+ "example": "cs477-nb-logistic-regression-mle-from-scratch-8",
+ "title": "Notebook Logistic_Regression_MLE_From_Scratch.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-5",
+   "description": "Lines 1-5 define `predict_proba` and `predict_label`."
+  },
+  {
+   "kind": "focus",
+   "lines": "2",
+   "description": "Line 2 returns `sigmoid(Phi @ w)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "7-12",
+   "description": "Lines 7-12 define `confusion(y_true, y_pred)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "14-17",
+   "description": "Lines 14-17 define `precision_recall(tp, fp, tn, fn)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "17",
+   "description": "Line 17 returns `prec, rec`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "19-34",
+   "description": "Lines 19-34 define `roc_curve_manual(y_true, scores)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "36-40",
+   "description": "Lines 36-40 define `auc_trapezoid(x, y)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "40",
+   "description": "Line 40 returns `np.trapz(y, x)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "42-43",
+   "description": "Lines 42-43 define `brier_score(y_true, p_hat)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "46-57",
+   "description": "Lines 46-57 run the main code and print the results."
+  },
+  {
+   "kind": "reveal",
+   "lines": "58-79",
+   "description": "Lines 58-79 continue the main code."
+  },
+  {
+   "kind": "focus",
+   "lines": "59",
+   "description": "Line 59 loops over `[(\"GD\", w_gd), (\"Newton\", w_nt)]`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "80-83",
+   "description": "Lines 80-83 continue the main code."
+  }
+ ]
+}

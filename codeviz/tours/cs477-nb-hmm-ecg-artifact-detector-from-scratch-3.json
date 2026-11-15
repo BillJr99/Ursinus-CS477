@@ -1,0 +1,40 @@
+{
+ "version": 1,
+ "example": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-3",
+ "title": "Notebook HMM_ECG_Artifact_Detector_From_Scratch.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "13-52",
+   "description": "Lines 13-52 define `synthetic_ecg(T, fs, heart_rate, noise_std, baseline_amp, baseline_freq, artifact_bursts, artifact_amp, artifact_bw)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "20",
+   "description": "Line 20 checks `artifact_bursts is None`."
+  },
+  {
+   "kind": "focus",
+   "lines": "30",
+   "description": "Line 30 loops over `range(1, int(T*heart_rate/60)+1)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "45",
+   "description": "Line 45 returns a value."
+  },
+  {
+   "kind": "focus",
+   "lines": "46",
+   "description": "Line 46 loops over `artifact_bursts`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "54-56",
+   "description": "Lines 54-56 run the main code and print the results."
+  }
+ ]
+}

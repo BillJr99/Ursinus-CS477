@@ -1,0 +1,65 @@
+{
+ "version": 1,
+ "example": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-4",
+ "title": "Notebook DensityEstimation_and_FeatureDiscovery_FromScratch.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-2",
+   "description": "Lines 1-2 define `gaussian_kernel(u)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "2",
+   "description": "Line 2 returns `np.exp(-0.5*u*u)/np.sqrt(2*np.pi)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "4-5",
+   "description": "Lines 4-5 define `kde_1d_fit(X)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "5",
+   "description": "Line 5 returns `X.ravel().astype(float)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "7-13",
+   "description": "Lines 7-13 define `kde_1d_pdf(model, x, h)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "15-20",
+   "description": "Lines 15-20 define `silverman_bandwidth_1d(X)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "20",
+   "description": "Line 20 returns `0.9*a*(n**(-1/5))`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "22-33",
+   "description": "Lines 22-33 define `cv_loglik_kde_1d(X, h_values)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "26",
+   "description": "Line 26 loops over `h_values`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "35-46",
+   "description": "Lines 35-46 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "47-48",
+   "description": "Lines 47-48 continue the main code."
+  }
+ ]
+}

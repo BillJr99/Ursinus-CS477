@@ -1,0 +1,75 @@
+{
+ "version": 1,
+ "example": "cs477-liascript-neuralnets-1",
+ "title": "Example Neural Network Classifier: XOR",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "3-4",
+   "description": "Lines 3-4 import `numpy` and `matplotlib.pyplot`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "9-20",
+   "description": "Lines 9-20 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "21-31",
+   "description": "Lines 21-31 continue the example."
+  },
+  {
+   "kind": "focus",
+   "lines": "27",
+   "description": "Line 27 returns `1 / (1 + np.exp(-z))`."
+  },
+  {
+   "kind": "focus",
+   "lines": "31",
+   "description": "Line 31 returns `s * (1 - s)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "33-75",
+   "description": "Lines 33-75 continue the main code and print the results."
+  },
+  {
+   "kind": "focus",
+   "lines": "74",
+   "description": "Line 74 checks `epoch % 2000 == 0`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "77-88",
+   "description": "Lines 77-88 continue the main code and print the results."
+  },
+  {
+   "kind": "reveal",
+   "lines": "89-100",
+   "description": "Lines 89-100 continue the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "101-103",
+   "description": "Lines 101-103 continue the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "108-113",
+   "description": "Lines 108-113 define `predict(Xtest)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "113",
+   "description": "Line 113 returns `a2t`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "115-127",
+   "description": "Lines 115-127 continue the main code and print the results."
+  }
+ ]
+}

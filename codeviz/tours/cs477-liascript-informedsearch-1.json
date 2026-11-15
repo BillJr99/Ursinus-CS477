@@ -1,0 +1,26 @@
+{
+ "version": 1,
+ "example": "cs477-liascript-informedsearch-1",
+ "title": "Code Cell",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-2",
+   "description": "Lines 1-2 import `heapq` and `typing`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "4",
+   "description": "Line 4 runs the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 3,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "4"
+  }
+ ]
+}

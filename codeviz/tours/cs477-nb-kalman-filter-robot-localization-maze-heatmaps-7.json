@@ -1,0 +1,55 @@
+{
+ "version": 1,
+ "example": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-7",
+ "title": "Notebook Kalman_Filter_Robot_Localization_Maze_Heatmaps.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-8",
+   "description": "Lines 1-8 define `_as_int_scalar(x, name)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "4",
+   "description": "Line 4 checks `xa.ndim == 0`."
+  },
+  {
+   "kind": "focus",
+   "lines": "7",
+   "description": "Line 7 returns `int(xa.ravel()[0])`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "10-68",
+   "description": "Lines 10-68 define `gaussian_pdf_grid(mu, Sigma, H, W, scale, wall_mask, normalize, eps)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "55",
+   "description": "Line 55 checks `wall_mask is not None`."
+  },
+  {
+   "kind": "focus",
+   "lines": "65",
+   "description": "Line 65 checks `np.isfinite(m) and m > 0`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "70",
+   "description": "Line 70 imports `matplotlib.pyplot`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "72-104",
+   "description": "Lines 72-104 define `show_heatmap(grid_img, true_pos, maze, title)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "106-117",
+   "description": "Lines 106-117 run the main code."
+  }
+ ]
+}

@@ -1,0 +1,85 @@
+{
+ "version": 1,
+ "example": "cs477-nb-svm-from-scratch-linear-and-kernel-8",
+ "title": "Notebook SVM_From_Scratch_Linear_and_Kernel.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-3",
+   "description": "Lines 1-3 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "5",
+   "description": "Line 5 defines `dec_lin_pg(Z)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "5",
+   "description": "Line 5 returns `decision_linear(Z, w_pg, b_pg)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "6",
+   "description": "Line 6 defines `dec_lin_bs(Z)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "6",
+   "description": "Line 6 returns `decision_linear(Z, w_bs, b_bs)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "8-9",
+   "description": "Lines 8-9 continue the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "11-13",
+   "description": "Lines 11-13 define `hinge_loss(X, y, w, b)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "13",
+   "description": "Line 13 returns a value."
+  },
+  {
+   "kind": "reveal",
+   "lines": "15-18",
+   "description": "Lines 15-18 continue the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 6,
+   "lines": "5",
+   "description": "Here `dec_lin_pg` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 7,
+   "lines": "5",
+   "description": "Here `dec_lin_pg` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 9,
+   "lines": "6",
+   "description": "Here `dec_lin_bs` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 10,
+   "lines": "6",
+   "description": "Here `dec_lin_bs` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 22,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "18"
+  }
+ ]
+}

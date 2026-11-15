@@ -1,0 +1,75 @@
+{
+ "version": 1,
+ "example": "cs477-nb-a-star-step-by-step-3",
+ "title": "Notebook A_star_step_by_step.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "3",
+   "description": "Line 3 imports `math`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "5-20",
+   "description": "Lines 5-20 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "22-23",
+   "description": "Lines 22-23 define `neighbors_graph(u)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "23",
+   "description": "Line 23 returns `edges_undirected[u].keys()`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "25-26",
+   "description": "Lines 25-26 define `cost_graph(u, v)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "26",
+   "description": "Line 26 returns `edges_undirected[u][v]`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "28",
+   "description": "Line 28 continues the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "29",
+   "description": "Line 29 defines `is_goal_graph(n)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "29",
+   "description": "Line 29 returns `n == goal`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "31-34",
+   "description": "Lines 31-34 define `h_euclid(n)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "34",
+   "description": "Line 34 returns `math.hypot(x - gx, y - gy)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "36",
+   "description": "Line 36 defines `h_zero(_)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "38-44",
+   "description": "Lines 38-44 continue the main code and print the results."
+  }
+ ]
+}

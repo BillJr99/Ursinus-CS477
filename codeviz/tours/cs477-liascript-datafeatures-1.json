@@ -1,0 +1,31 @@
+{
+ "version": 1,
+ "example": "cs477-liascript-datafeatures-1",
+ "title": "7. Runnable Code: The Whole Workflow in Miniature",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1",
+   "description": "Line 1 imports `numpy`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "2-14",
+   "description": "Lines 2-14 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "15-21",
+   "description": "Lines 15-21 continue the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 13,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "21"
+  }
+ ]
+}

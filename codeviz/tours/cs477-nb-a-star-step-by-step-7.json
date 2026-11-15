@@ -1,0 +1,48 @@
+{
+ "version": 1,
+ "example": "cs477-nb-a-star-step-by-step-7",
+ "title": "Notebook A_star_step_by_step.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "3",
+   "description": "Line 3 runs the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "4-6",
+   "description": "Lines 4-6 define the generator `out_edges(cell)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "5",
+   "description": "Line 5 loops over `grid_neighbors(grid, cell)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "9-14",
+   "description": "Lines 9-14 continue the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 529,
+   "lines": "5",
+   "description": "Here `out_edges` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 531,
+   "lines": "6",
+   "description": "Here `out_edges` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 799,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "12"
+  }
+ ]
+}

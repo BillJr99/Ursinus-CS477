@@ -1,0 +1,30 @@
+{
+ "version": 1,
+ "example": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-15",
+ "title": "Notebook HMM_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1",
+   "description": "Line 1 imports `os` and `json`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "2-13",
+   "description": "Lines 2-13 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "16-23",
+   "description": "Lines 16-23 define `save_heatmap_img(grid_b, fname, title)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "25-30",
+   "description": "Lines 25-30 continue the main code and print the results."
+  }
+ ]
+}

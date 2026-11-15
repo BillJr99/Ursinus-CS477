@@ -1,0 +1,45 @@
+{
+ "version": 1,
+ "example": "cs477-nb-pca-from-scratch-and-sklearn-8",
+ "title": "Notebook PCA_From_Scratch_and_Sklearn.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "2",
+   "description": "Line 2 imports `sklearn.decomposition`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "4-5",
+   "description": "Lines 4-5 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "7-18",
+   "description": "Lines 7-18 define `fit_pipeline(use_pca, n_components)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "11",
+   "description": "Line 11 checks `use_pca`."
+  },
+  {
+   "kind": "focus",
+   "lines": "18",
+   "description": "Line 18 returns `scaler, pca, clf, Xtr, Xte`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "20-55",
+   "description": "Lines 20-55 define `evaluate_pipeline(name, scaler, pca, clf, Xtr, Xte)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "57-61",
+   "description": "Lines 57-61 continue the main code."
+  }
+ ]
+}

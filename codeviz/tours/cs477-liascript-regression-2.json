@@ -1,0 +1,20 @@
+{
+ "version": 1,
+ "example": "cs477-liascript-regression-2",
+ "title": "Code Cell",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "3-14",
+   "description": "Lines 3-14 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "15-17",
+   "description": "Lines 15-17 continue the main code."
+  }
+ ]
+}

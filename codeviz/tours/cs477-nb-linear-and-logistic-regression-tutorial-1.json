@@ -1,0 +1,25 @@
+{
+ "version": 1,
+ "example": "cs477-nb-linear-and-logistic-regression-tutorial-1",
+ "title": "Notebook Linear_and_Logistic_Regression_Tutorial.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "3-5",
+   "description": "Lines 3-5 import `math`, `numpy` and `matplotlib.pyplot`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "8-14",
+   "description": "Lines 8-14 import `sklearn.model_selection`, `sklearn.preprocessing`, `sklearn.linear_model`, `sklearn.pipeline`, `sklearn.metrics`, `sklearn.metrics` and `sklearn.datasets`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "17-23",
+   "description": "Lines 17-23 run the main code and print the results."
+  }
+ ]
+}

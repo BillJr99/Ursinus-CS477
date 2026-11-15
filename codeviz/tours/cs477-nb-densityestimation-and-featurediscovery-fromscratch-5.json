@@ -1,0 +1,25 @@
+{
+ "version": 1,
+ "example": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-5",
+ "title": "Notebook DensityEstimation_and_FeatureDiscovery_FromScratch.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-8",
+   "description": "Lines 1-8 define `kde_2d_pdf(X, points, h)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "8",
+   "description": "Line 8 returns `val`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "10-20",
+   "description": "Lines 10-20 run the main code."
+  }
+ ]
+}

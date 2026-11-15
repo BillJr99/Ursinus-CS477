@@ -1,0 +1,25 @@
+{
+ "version": 1,
+ "example": "cs477-nb-linear-and-logistic-regression-tutorial-12",
+ "title": "Notebook Linear_and_Logistic_Regression_Tutorial.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "2-13",
+   "description": "Lines 2-13 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "14-27",
+   "description": "Lines 14-27 continue the main code and print the results."
+  },
+  {
+   "kind": "reveal",
+   "lines": "28-31",
+   "description": "Lines 28-31 continue the main code."
+  }
+ ]
+}

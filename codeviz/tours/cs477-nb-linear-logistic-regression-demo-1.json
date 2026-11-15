@@ -1,0 +1,20 @@
+{
+ "version": 1,
+ "example": "cs477-nb-linear-logistic-regression-demo-1",
+ "title": "Notebook linear_logistic_regression_demo.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-23",
+   "description": "Lines 1-23 import `numpy`, `matplotlib.pyplot`, `sklearn.datasets`, `sklearn.model_selection`, `sklearn.preprocessing`, `sklearn.linear_model`, `sklearn.pipeline`, `sklearn.metrics`, `sklearn.linear_model`, `sklearn.model_selection`, `sklearn.svm`, `sklearn.ensemble` and `sklearn.naive_bayes`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "25-28",
+   "description": "Lines 25-28 run the main code and print the results."
+  }
+ ]
+}

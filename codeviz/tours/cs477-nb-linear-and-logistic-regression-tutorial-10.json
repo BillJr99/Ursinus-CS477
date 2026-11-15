@@ -1,0 +1,60 @@
+{
+ "version": 1,
+ "example": "cs477-nb-linear-and-logistic-regression-tutorial-10",
+ "title": "Notebook Linear_and_Logistic_Regression_Tutorial.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "3-13",
+   "description": "Lines 3-13 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "15-16",
+   "description": "Lines 15-16 define `sigmoid(z)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "16",
+   "description": "Line 16 returns `1.0 / (1.0 + np.exp(-z))`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "18-22",
+   "description": "Lines 18-22 define `logistic_loss(theta, X, y)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "22",
+   "description": "Line 22 returns a value."
+  },
+  {
+   "kind": "reveal",
+   "lines": "24-33",
+   "description": "Lines 24-33 define `logistic_gd(X, y, lr, steps)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "27",
+   "description": "Line 27 loops over `range(steps)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "33",
+   "description": "Line 33 returns `theta, np.array(history)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "36-49",
+   "description": "Lines 36-49 continue the main code and print the results."
+  },
+  {
+   "kind": "reveal",
+   "lines": "50-58",
+   "description": "Lines 50-58 continue the main code."
+  }
+ ]
+}

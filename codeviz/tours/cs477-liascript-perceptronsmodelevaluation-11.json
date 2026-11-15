@@ -1,0 +1,31 @@
+{
+ "version": 1,
+ "example": "cs477-liascript-perceptronsmodelevaluation-11",
+ "title": "6. Hyperparameter Tuning (C, $\\gamma$) with Cross-Validation",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1",
+   "description": "Line 1 imports `sklearn.model_selection`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "3-14",
+   "description": "Lines 3-14 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "15-17",
+   "description": "Lines 15-17 continue the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 14,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "17"
+  }
+ ]
+}

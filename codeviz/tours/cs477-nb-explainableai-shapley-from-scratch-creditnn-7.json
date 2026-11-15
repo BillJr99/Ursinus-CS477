@@ -1,0 +1,47 @@
+{
+ "version": 1,
+ "example": "cs477-nb-explainableai-shapley-from-scratch-creditnn-7",
+ "title": "Notebook ExplainableAI_Shapley_From_Scratch_CreditNN.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-16",
+   "description": "Lines 1-16 define `shapley_permutation(f_predict, x, background, M, rng)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "6",
+   "description": "Line 6 loops over `range(M)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "10",
+   "description": "Line 10 loops over `perm`."
+  },
+  {
+   "kind": "focus",
+   "lines": "16",
+   "description": "Line 16 returns `phi, base_value, fx`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "19-26",
+   "description": "Lines 19-26 run the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 7,
+   "lines": "2",
+   "description": "Here `shapley_permutation` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 799,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "14"
+  }
+ ]
+}

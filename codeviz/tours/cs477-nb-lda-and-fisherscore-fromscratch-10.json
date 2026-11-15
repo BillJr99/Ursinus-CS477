@@ -1,0 +1,85 @@
+{
+ "version": 1,
+ "example": "cs477-nb-lda-and-fisherscore-fromscratch-10",
+ "title": "Notebook LDA_and_FisherScore_FromScratch.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-3",
+   "description": "Lines 1-3 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "5",
+   "description": "Line 5 starts the class `Naive1D`, which has methods `fit` and `predict`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "6-13",
+   "description": "Lines 6-13 define the method `fit(self, X, y)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "9",
+   "description": "Line 9 loops over `classes`."
+  },
+  {
+   "kind": "focus",
+   "lines": "13",
+   "description": "Line 13 returns `self`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "14-20",
+   "description": "Lines 14-20 define the method `predict(self, X)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "17",
+   "description": "Line 17 loops over `zip(self.means, self.vars, self.priors)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "20",
+   "description": "Line 20 returns `np.argmax(np.vstack(g).T, axis=1)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "22-26",
+   "description": "Lines 22-26 continue the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 9,
+   "lines": "7",
+   "description": "Here `fit` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 23,
+   "lines": "13",
+   "description": "Here `fit` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 25,
+   "lines": "16",
+   "description": "Here `predict` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 37,
+   "lines": "20",
+   "description": "Here `predict` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 41,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "26"
+  }
+ ]
+}

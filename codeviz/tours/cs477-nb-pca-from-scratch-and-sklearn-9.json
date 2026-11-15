@@ -1,0 +1,40 @@
+{
+ "version": 1,
+ "example": "cs477-nb-pca-from-scratch-and-sklearn-9",
+ "title": "Notebook PCA_From_Scratch_and_Sklearn.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "2",
+   "description": "Line 2 imports `sklearn.model_selection`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "4-28",
+   "description": "Lines 4-28 define `cross_val_ovr_linearreg(X, y, use_pca, n_components, n_splits)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "7",
+   "description": "Line 7 loops over `skf.split(X, y)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "13",
+   "description": "Line 13 checks `use_pca`."
+  },
+  {
+   "kind": "focus",
+   "lines": "28",
+   "description": "Line 28 returns a value."
+  },
+  {
+   "kind": "reveal",
+   "lines": "30-33",
+   "description": "Lines 30-33 run the main code and print the results."
+  }
+ ]
+}

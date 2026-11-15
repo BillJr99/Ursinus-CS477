@@ -1,0 +1,45 @@
+{
+ "version": 1,
+ "example": "cs477-nb-svm-from-scratch-linear-and-kernel-9",
+ "title": "Notebook SVM_From_Scratch_Linear_and_Kernel.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-2",
+   "description": "Lines 1-2 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "3",
+   "description": "Line 3 defines `sign_pg(Z)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "3",
+   "description": "Line 3 returns `dec_lin_pg(Z)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "4-6",
+   "description": "Lines 4-6 continue the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "7",
+   "description": "Line 7 defines `sign_bs(Z)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "7",
+   "description": "Line 7 returns `dec_lin_bs(Z)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "8-9",
+   "description": "Lines 8-9 continue the main code."
+  }
+ ]
+}

@@ -1,0 +1,45 @@
+{
+ "version": 1,
+ "example": "cs477-nb-astar-search-with-graphics-7",
+ "title": "Notebook AStar_Search_With_Graphics.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1",
+   "description": "Line 1 imports `matplotlib`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "3-32",
+   "description": "Lines 3-32 define `animate_search(grid, start, goal, snapshots, path, interval)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "18",
+   "description": "Line 18 loops over `closed_k`."
+  },
+  {
+   "kind": "focus",
+   "lines": "20",
+   "description": "Line 20 loops over `open_k`."
+  },
+  {
+   "kind": "focus",
+   "lines": "23",
+   "description": "Line 23 loops over `path`."
+  },
+  {
+   "kind": "focus",
+   "lines": "28",
+   "description": "Line 28 returns `[im, scat_start, scat_goal, scat_cur]`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "34-40",
+   "description": "Lines 34-40 run the main code and print the results."
+  }
+ ]
+}

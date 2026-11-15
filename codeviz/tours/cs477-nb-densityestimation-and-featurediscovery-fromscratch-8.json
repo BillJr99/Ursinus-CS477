@@ -1,0 +1,50 @@
+{
+ "version": 1,
+ "example": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-8",
+ "title": "Notebook DensityEstimation_and_FeatureDiscovery_FromScratch.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-23",
+   "description": "Lines 1-23 define `fastica(X, n_components, max_iter, tol, seed)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "10",
+   "description": "Line 10 returns `U2 @ V2`."
+  },
+  {
+   "kind": "focus",
+   "lines": "18",
+   "description": "Line 18 makes a decision."
+  },
+  {
+   "kind": "reveal",
+   "lines": "25-32",
+   "description": "Lines 25-32 run the main code and print the results."
+  },
+  {
+   "kind": "focus",
+   "lines": "27",
+   "description": "Line 27 loops over `range(5)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "33-36",
+   "description": "Lines 33-36 define `pca_components_all(X)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "37-44",
+   "description": "Lines 37-44 continue the main code and print the results."
+  },
+  {
+   "kind": "focus",
+   "lines": "39",
+   "description": "Line 39 loops over `range(min(5, feature_dir.shape[1]))`."
+  }
+ ]
+}

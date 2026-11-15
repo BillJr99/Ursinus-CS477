@@ -1,0 +1,30 @@
+{
+ "version": 1,
+ "example": "cs477-nb-linearfunctionestimatormultilayernn-9",
+ "title": "Notebook LinearFunctionEstimatorMultiLayerNN.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-2",
+   "description": "Lines 1-2 define `r(v)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "2",
+   "description": "Line 2 returns `float(np.round(v, 6))`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "4-15",
+   "description": "Lines 4-15 run the main code and print the results."
+  },
+  {
+   "kind": "reveal",
+   "lines": "16-26",
+   "description": "Lines 16-26 continue the main code."
+  }
+ ]
+}

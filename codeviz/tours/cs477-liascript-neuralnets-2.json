@@ -1,0 +1,58 @@
+{
+ "version": 1,
+ "example": "cs477-liascript-neuralnets-2",
+ "title": "Calculus of Error: Worked Example",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "2",
+   "description": "Line 2 imports `numpy`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "4-6",
+   "description": "Lines 4-6 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "8-13",
+   "description": "Lines 8-13 define `forward(w, b, v, c)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "13",
+   "description": "Line 13 returns `L, z1, h, yhat`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "16-27",
+   "description": "Lines 16-27 continue the main code and print the results."
+  },
+  {
+   "kind": "reveal",
+   "lines": "28",
+   "description": "Line 28 continues the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 6,
+   "lines": "9",
+   "description": "Here `forward` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 11,
+   "lines": "13",
+   "description": "Here `forward` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 33,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "28"
+  }
+ ]
+}

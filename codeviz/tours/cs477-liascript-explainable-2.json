@@ -1,0 +1,79 @@
+{
+ "version": 1,
+ "example": "cs477-liascript-explainable-2",
+ "title": "Code Cell — Monte Carlo Shapley (Didactic)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1",
+   "description": "Line 1 imports `itertools`, `math` and `numpy`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "3-17",
+   "description": "Lines 3-17 define `monte_carlo_shapley(f, x, baseline, M, rng)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "7",
+   "description": "Line 7 loops over `range(M)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "11",
+   "description": "Line 11 loops over `pi`."
+  },
+  {
+   "kind": "focus",
+   "lines": "17",
+   "description": "Line 17 returns `phi / M`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "20",
+   "description": "Line 20 runs the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "21",
+   "description": "Line 21 defines `f_relu(x)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "21",
+   "description": "Line 21 returns `np.maximum(0, w @ x)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "22-25",
+   "description": "Lines 22-25 continue the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 7,
+   "lines": "4",
+   "description": "Here `monte_carlo_shapley` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 14,
+   "lines": "21",
+   "description": "Here `f_relu` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 15,
+   "lines": "21",
+   "description": "Here `f_relu` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 799,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "14"
+  }
+ ]
+}

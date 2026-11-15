@@ -1,0 +1,20 @@
+{
+ "version": 1,
+ "example": "cs477-nb-linear-logistic-regression-demo-17",
+ "title": "Notebook linear_logistic_regression_demo.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-12",
+   "description": "Lines 1-12 run the main code and print the results."
+  },
+  {
+   "kind": "reveal",
+   "lines": "13-16",
+   "description": "Lines 13-16 continue the main code."
+  }
+ ]
+}

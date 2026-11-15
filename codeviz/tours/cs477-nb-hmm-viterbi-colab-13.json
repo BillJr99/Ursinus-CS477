@@ -1,0 +1,70 @@
+{
+ "version": 1,
+ "example": "cs477-nb-hmm-viterbi-colab-13",
+ "title": "Notebook HMM_Viterbi_Colab.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "3-4",
+   "description": "Lines 3-4 import `numpy` and `hmmlearn`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "11-22",
+   "description": "Lines 11-22 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "25-40",
+   "description": "Lines 25-40 continue the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "41-52",
+   "description": "Lines 41-52 continue the main code."
+  },
+  {
+   "kind": "focus",
+   "lines": "46",
+   "description": "Line 46 loops over `obs_seq_labels`."
+  },
+  {
+   "kind": "focus",
+   "lines": "47",
+   "description": "Line 47 checks `label == \"Umbrella\"`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "54-66",
+   "description": "Lines 54-66 continue the main code and print the results."
+  },
+  {
+   "kind": "reveal",
+   "lines": "69-81",
+   "description": "Lines 69-81 continue the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "83-95",
+   "description": "Lines 83-95 continue the main code and print the results."
+  },
+  {
+   "kind": "focus",
+   "lines": "85",
+   "description": "Line 85 loops over `enumerate(best_path_labels, start=1)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "96-97",
+   "description": "Lines 96-97 continue the main code and print the results."
+  },
+  {
+   "kind": "focus",
+   "lines": "96",
+   "description": "Line 96 loops over `range(T)`."
+  }
+ ]
+}

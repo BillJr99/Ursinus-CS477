@@ -1,0 +1,21 @@
+{
+ "version": 1,
+ "example": "cs477-liascript-perceptronsmodelevaluation-3",
+ "title": "2. K-Fold Cross-Validation (CV)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-6",
+   "description": "Lines 1-6 run the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 5,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "6"
+  }
+ ]
+}

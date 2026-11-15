@@ -1,0 +1,25 @@
+{
+ "version": 1,
+ "example": "cs477-nb-kmeans-clustering-iris-from-scratch-8",
+ "title": "Notebook KMeans_Clustering_Iris_From_Scratch.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-12",
+   "description": "Lines 1-12 run the main code."
+  },
+  {
+   "kind": "focus",
+   "lines": "3",
+   "description": "Line 3 loops over `ks`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "12-14",
+   "description": "Lines 12-14 continue the main code and print the results."
+  }
+ ]
+}

@@ -1,0 +1,75 @@
+{
+ "version": 1,
+ "example": "cs477-nb-lda-and-fisherscore-fromscratch-4",
+ "title": "Notebook LDA_and_FisherScore_FromScratch.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-9",
+   "description": "Lines 1-9 define `class_stats(X, y)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "5",
+   "description": "Line 5 loops over `classes`."
+  },
+  {
+   "kind": "focus",
+   "lines": "9",
+   "description": "Line 9 returns `np.array(means), np.array(counts)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "11-25",
+   "description": "Lines 11-25 define `scatter_matrices(X, y)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "16",
+   "description": "Line 16 loops over `np.unique(y)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "22",
+   "description": "Line 22 loops over `np.unique(y)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "27-28",
+   "description": "Lines 27-28 run the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 4,
+   "lines": "2",
+   "description": "Here `class_stats` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 21,
+   "lines": "9",
+   "description": "Here `class_stats` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 3,
+   "lines": "12",
+   "description": "Here `scatter_matrices` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 49,
+   "lines": "25",
+   "description": "Here `scatter_matrices` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 51,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "28"
+  }
+ ]
+}

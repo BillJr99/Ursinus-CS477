@@ -1,0 +1,30 @@
+{
+ "version": 1,
+ "example": "cs477-nb-naive-bayes-step-by-step-3",
+ "title": "Notebook naive_bayes_step_by_step.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-12",
+   "description": "Lines 1-12 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "14-26",
+   "description": "Lines 14-26 continue the main code and print the results."
+  },
+  {
+   "kind": "focus",
+   "lines": "25",
+   "description": "Line 25 loops over `np.ndenumerate(cm)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "27-28",
+   "description": "Lines 27-28 continue the main code."
+  }
+ ]
+}

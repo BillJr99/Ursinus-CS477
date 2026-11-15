@@ -1,0 +1,35 @@
+{
+ "version": 1,
+ "example": "cs477-nb-rl-fromscratch-toygridworld-7",
+ "title": "Notebook RL_FromScratch_ToyGridworld.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-18",
+   "description": "Lines 1-18 define `sarsa(cfg)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "5",
+   "description": "Line 5 loops over `range(cfg.episodes)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "9",
+   "description": "Line 9 loops over `range(cfg.max_steps)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "15",
+   "description": "Line 15 checks `done`."
+  },
+  {
+   "kind": "focus",
+   "lines": "18",
+   "description": "Line 18 returns `Q, np.array(returns)`."
+  }
+ ]
+}

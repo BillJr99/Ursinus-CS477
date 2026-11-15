@@ -1,0 +1,36 @@
+{
+ "version": 1,
+ "example": "cs477-nb-bayesian-diagnostic-test-belief-updating-8",
+ "title": "Notebook Bayesian_Diagnostic_Test_Belief_Updating.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1",
+   "description": "Line 1 imports `os` and `json`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "2-19",
+   "description": "Lines 2-19 run the main code."
+  },
+  {
+   "kind": "focus",
+   "lines": "11",
+   "description": "Line 11 starts a loop."
+  },
+  {
+   "kind": "reveal",
+   "lines": "20-23",
+   "description": "Lines 20-23 continue the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 29,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "23"
+  }
+ ]
+}

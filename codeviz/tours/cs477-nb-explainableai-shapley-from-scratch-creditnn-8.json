@@ -1,0 +1,25 @@
+{
+ "version": 1,
+ "example": "cs477-nb-explainableai-shapley-from-scratch-creditnn-8",
+ "title": "Notebook ExplainableAI_Shapley_From_Scratch_CreditNN.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-13",
+   "description": "Lines 1-13 run the main code and print the results."
+  },
+  {
+   "kind": "reveal",
+   "lines": "14-15",
+   "description": "Lines 14-15 continue the main code and print the results."
+  },
+  {
+   "kind": "focus",
+   "lines": "14",
+   "description": "Line 14 loops over `zip(names_ord, phi_ord)`."
+  }
+ ]
+}

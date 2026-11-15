@@ -1,0 +1,48 @@
+{
+ "version": 1,
+ "example": "cs477-nb-hmm-image-recognition-from-scratch-5",
+ "title": "Notebook HMM_Image_Recognition_From_Scratch.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-12",
+   "description": "Lines 1-12 define `stratified_split_indices(y, test_size, seed)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "6",
+   "description": "Line 6 loops over `classes`."
+  },
+  {
+   "kind": "focus",
+   "lines": "12",
+   "description": "Line 12 returns `np.array(train_idx), np.array(test_idx)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "14-20",
+   "description": "Lines 14-20 run the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 2,
+   "lines": "2",
+   "description": "Here `stratified_split_indices` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 68,
+   "lines": "12",
+   "description": "Here `stratified_split_indices` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 799,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "15"
+  }
+ ]
+}

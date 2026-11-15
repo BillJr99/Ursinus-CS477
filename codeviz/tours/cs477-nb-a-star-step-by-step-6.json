@@ -1,0 +1,35 @@
+{
+ "version": 1,
+ "example": "cs477-nb-a-star-step-by-step-6",
+ "title": "Notebook A_star_step_by_step.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "2-19",
+   "description": "Lines 2-19 define `show_grid_path(grid, path, start, goal, title)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "7",
+   "description": "Line 7 checks `path`."
+  },
+  {
+   "kind": "focus",
+   "lines": "11",
+   "description": "Line 11 checks `start`."
+  },
+  {
+   "kind": "focus",
+   "lines": "14",
+   "description": "Line 14 checks `goal`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "21",
+   "description": "Line 21 runs the main code."
+  }
+ ]
+}

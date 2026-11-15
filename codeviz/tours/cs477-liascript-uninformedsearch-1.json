@@ -1,0 +1,90 @@
+{
+ "version": 1,
+ "example": "cs477-liascript-uninformedsearch-1",
+ "title": "7. Runnable Code: All Three Searches in 40 Lines",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-2",
+   "description": "Lines 1-2 import `collections` and `heapq`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "4-8",
+   "description": "Lines 4-8 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "10-20",
+   "description": "Lines 10-20 define `bfs(start, goal)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "13",
+   "description": "Line 13 repeats while `frontier` is true."
+  },
+  {
+   "kind": "focus",
+   "lines": "17",
+   "description": "Line 17 checks `node in explored`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "22-32",
+   "description": "Lines 22-32 define `dfs(start, goal)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "28",
+   "description": "Line 28 returns `path`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "34-44",
+   "description": "Lines 34-44 define `ucs(start, goal)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "40",
+   "description": "Line 40 checks `node == goal`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "46-48",
+   "description": "Lines 46-48 continue the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 10,
+   "lines": "11",
+   "description": "Here `bfs` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 36,
+   "lines": "16",
+   "description": "Here `bfs` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 38,
+   "lines": "23",
+   "description": "Here `dfs` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 55,
+   "lines": "28",
+   "description": "Here `dfs` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 84,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "48"
+  }
+ ]
+}

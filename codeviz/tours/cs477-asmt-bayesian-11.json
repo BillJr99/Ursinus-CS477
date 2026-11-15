@@ -1,0 +1,31 @@
+{
+ "version": 1,
+ "example": "cs477-asmt-bayesian-11",
+ "title": "Option C — Hierarchical Beta–Binomial Partial Pooling (Multi-Group)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1",
+   "description": "Line 1 imports `numpy`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "4-15",
+   "description": "Lines 4-15 run the main code and print the results."
+  },
+  {
+   "kind": "reveal",
+   "lines": "16-18",
+   "description": "Lines 16-18 continue the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 12,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "18"
+  }
+ ]
+}

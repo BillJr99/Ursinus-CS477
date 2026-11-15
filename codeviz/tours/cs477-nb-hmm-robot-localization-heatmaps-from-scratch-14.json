@@ -1,0 +1,21 @@
+{
+ "version": 1,
+ "example": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-14",
+ "title": "Notebook HMM_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-3",
+   "description": "Lines 1-3 run the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 20,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "3"
+  }
+ ]
+}

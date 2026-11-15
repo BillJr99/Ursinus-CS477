@@ -1,0 +1,40 @@
+{
+ "version": 1,
+ "example": "cs477-nb-astar-search-with-graphics-6",
+ "title": "Notebook AStar_Search_With_Graphics.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-28",
+   "description": "Lines 1-28 define `draw_state(grid, start, goal, open_set, closed_set, current, path, title)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "8",
+   "description": "Line 8 loops over `closed_set`."
+  },
+  {
+   "kind": "focus",
+   "lines": "11",
+   "description": "Line 11 loops over `open_set`."
+  },
+  {
+   "kind": "focus",
+   "lines": "15",
+   "description": "Line 15 checks `path`."
+  },
+  {
+   "kind": "focus",
+   "lines": "24",
+   "description": "Line 24 checks `current is not None`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "31-38",
+   "description": "Lines 31-38 run the main code."
+  }
+ ]
+}

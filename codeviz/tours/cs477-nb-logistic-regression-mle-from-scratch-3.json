@@ -1,0 +1,55 @@
+{
+ "version": 1,
+ "example": "cs477-nb-logistic-regression-mle-from-scratch-3",
+ "title": "Notebook Logistic_Regression_MLE_From_Scratch.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "2-10",
+   "description": "Lines 2-10 define `make_linear(n)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "10",
+   "description": "Line 10 returns `X[idx], y[idx]`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "12-22",
+   "description": "Lines 12-22 define `make_overlap(n)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "25-40",
+   "description": "Lines 25-40 run the main code."
+  },
+  {
+   "kind": "focus",
+   "lines": "26",
+   "description": "Line 26 checks `DATASET == \"linear\"`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "42-76",
+   "description": "Lines 42-76 continue the main code and print the results."
+  },
+  {
+   "kind": "focus",
+   "lines": "60",
+   "description": "Line 60 checks `LABEL_COL is None`."
+  },
+  {
+   "kind": "focus",
+   "lines": "67",
+   "description": "Line 67 returns `float(x)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "78",
+   "description": "Line 78 continues the main code and print the results."
+  }
+ ]
+}

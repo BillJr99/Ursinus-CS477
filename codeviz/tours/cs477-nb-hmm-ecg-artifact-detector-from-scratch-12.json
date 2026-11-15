@@ -1,0 +1,15 @@
+{
+ "version": 1,
+ "example": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-12",
+ "title": "Notebook HMM_ECG_Artifact_Detector_From_Scratch.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-5",
+   "description": "Lines 1-5 run the main code."
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+{
+ "version": 1,
+ "example": "cs477-nb-hmm-image-recognition-from-scratch-3",
+ "title": "Notebook HMM_Image_Recognition_From_Scratch.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-4",
+   "description": "Lines 1-4 import `numpy`, `matplotlib.pyplot`, `sklearn.datasets` and `sklearn.metrics`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "6-9",
+   "description": "Lines 6-9 run the main code and print the results."
+  }
+ ]
+}

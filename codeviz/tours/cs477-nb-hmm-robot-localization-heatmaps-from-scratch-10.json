@@ -1,0 +1,50 @@
+{
+ "version": 1,
+ "example": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-10",
+ "title": "Notebook HMM_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-4",
+   "description": "Lines 1-4 define `random_free_cell(maze)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "4",
+   "description": "Line 4 returns `int(i), int(j)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "7-13",
+   "description": "Lines 7-13 define `generate_actions(T)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "9",
+   "description": "Line 9 checks `len(base) >= T`."
+  },
+  {
+   "kind": "focus",
+   "lines": "13",
+   "description": "Line 13 returns `base + extra`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "15-38",
+   "description": "Lines 15-38 define `simulate(maze, actions, sensor_correct, p_success, p_slip)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "31",
+   "description": "Line 31 checks `rng.random() < sensor_correct`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "41-51",
+   "description": "Lines 41-51 run the main code and print the results."
+  }
+ ]
+}

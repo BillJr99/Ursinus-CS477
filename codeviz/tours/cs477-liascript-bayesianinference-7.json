@@ -1,0 +1,48 @@
+{
+ "version": 1,
+ "example": "cs477-liascript-bayesianinference-7",
+ "title": "Code Cell — Sequential Evidence Accumulation (Log-Odds)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-2",
+   "description": "Lines 1-2 define `update_log_odds(lg_prior, log_lr)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "2",
+   "description": "Line 2 returns `lg_prior + log_lr`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "5-12",
+   "description": "Lines 5-12 run the main code and print the results."
+  },
+  {
+   "kind": "focus",
+   "lines": "9",
+   "description": "Line 9 loops over `log_lrs`."
+  },
+  {
+   "kind": "run",
+   "trace_step": 7,
+   "lines": "2",
+   "description": "Here `update_log_odds` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 8,
+   "lines": "2",
+   "description": "Here `update_log_odds` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 20,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "12"
+  }
+ ]
+}

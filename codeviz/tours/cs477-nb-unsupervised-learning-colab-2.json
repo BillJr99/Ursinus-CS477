@@ -1,0 +1,55 @@
+{
+ "version": 1,
+ "example": "cs477-nb-unsupervised-learning-colab-2",
+ "title": "Notebook Unsupervised_Learning_Colab.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "2-13",
+   "description": "Lines 2-13 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "16-23",
+   "description": "Lines 16-23 define `multivariate_normal_pdf(x_matrix, mean_vector, covariance_matrix)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "23",
+   "description": "Line 23 returns `np.exp(exponent) / normalizer`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "26-56",
+   "description": "Lines 26-56 define `gmm_em_from_scratch(x_matrix, num_components, num_iterations, seed)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "34",
+   "description": "Line 34 loops over `range(num_iterations)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "36",
+   "description": "Line 36 loops over `range(num_components)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "48",
+   "description": "Line 48 loops over `range(num_components)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "58-69",
+   "description": "Lines 58-69 continue the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "70",
+   "description": "Line 70 continues the main code."
+  }
+ ]
+}

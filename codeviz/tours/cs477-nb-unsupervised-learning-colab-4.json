@@ -1,0 +1,25 @@
+{
+ "version": 1,
+ "example": "cs477-nb-unsupervised-learning-colab-4",
+ "title": "Notebook Unsupervised_Learning_Colab.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "2-15",
+   "description": "Lines 2-15 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "16-27",
+   "description": "Lines 16-27 continue the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "28-30",
+   "description": "Lines 28-30 continue the main code."
+  }
+ ]
+}

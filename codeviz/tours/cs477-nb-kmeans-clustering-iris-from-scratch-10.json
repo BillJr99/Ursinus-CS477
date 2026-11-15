@@ -1,0 +1,53 @@
+{
+ "version": 1,
+ "example": "cs477-nb-kmeans-clustering-iris-from-scratch-10",
+ "title": "Notebook KMeans_Clustering_Iris_From_Scratch.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-14",
+   "description": "Lines 1-14 define `cluster_purity(y_true, labels, k)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "4",
+   "description": "Line 4 loops over `range(k)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "6",
+   "description": "Line 6 checks `len(idx)==0`."
+  },
+  {
+   "kind": "focus",
+   "lines": "14",
+   "description": "Line 14 returns `purity, mapping`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "16-18",
+   "description": "Lines 16-18 run the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 2,
+   "lines": "2",
+   "description": "Here `cluster_purity` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 28,
+   "lines": "14",
+   "description": "Here `cluster_purity` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 34,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "18"
+  }
+ ]
+}

@@ -1,0 +1,55 @@
+{
+ "version": 1,
+ "example": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-5",
+ "title": "Notebook HMM_ECG_Artifact_Detector_From_Scratch.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1",
+   "description": "Line 1 imports `scipy.stats`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "3-17",
+   "description": "Lines 3-17 define `windowed_features(x, fs, win_sec, stride_sec)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "6",
+   "description": "Line 6 loops over `range(0, len(x)-win+1, stride)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "17",
+   "description": "Line 17 returns `np.array(feats, dtype=float), idxs`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "19-21",
+   "description": "Lines 19-21 run the main code and print the results."
+  },
+  {
+   "kind": "reveal",
+   "lines": "23-34",
+   "description": "Lines 23-34 define the class `StandardScalerNP`, with methods `__init__`, `fit`, `transform` and `fit_transform`."
+  },
+  {
+   "kind": "focus",
+   "lines": "30",
+   "description": "Line 30 returns `self`."
+  },
+  {
+   "kind": "focus",
+   "lines": "32",
+   "description": "Line 32 returns `(X - self.mean_) / self.std_`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "36-37",
+   "description": "Lines 36-37 continue the main code."
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "version": 1,
+ "example": "cs477-nb-svm-from-scratch-linear-and-kernel-12",
+ "title": "Notebook SVM_From_Scratch_Linear_and_Kernel.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-2",
+   "description": "Lines 1-2 define `margin_width(w)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "2",
+   "description": "Line 2 returns a value."
+  },
+  {
+   "kind": "reveal",
+   "lines": "3",
+   "description": "Line 3 runs the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 2,
+   "lines": "2",
+   "description": "Here `margin_width` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 3,
+   "lines": "2",
+   "description": "Here `margin_width` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 4,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "3"
+  }
+ ]
+}

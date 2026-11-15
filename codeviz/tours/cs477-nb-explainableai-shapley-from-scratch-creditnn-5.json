@@ -1,0 +1,45 @@
+{
+ "version": 1,
+ "example": "cs477-nb-explainableai-shapley-from-scratch-creditnn-5",
+ "title": "Notebook ExplainableAI_Shapley_From_Scratch_CreditNN.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-14",
+   "description": "Lines 1-14 define `roc_auc(y_true, scores)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "5",
+   "description": "Line 5 checks `P==0 or N==0`."
+  },
+  {
+   "kind": "focus",
+   "lines": "8",
+   "description": "Line 8 loops over `t`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "16-30",
+   "description": "Lines 16-30 define `train(model, X, y, Xv, yv, lr, epochs, batch)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "19",
+   "description": "Line 19 loops over `range(1, epochs+1)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "28",
+   "description": "Line 28 checks `ep%10==0`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "32-36",
+   "description": "Lines 32-36 run the main code and print the results."
+  }
+ ]
+}

@@ -1,0 +1,75 @@
+{
+ "version": 1,
+ "example": "cs477-nb-simple-mnist-nn-from-scratch-1",
+ "title": "Notebook Simple_MNIST_NN_from_scratch.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "8-11",
+   "description": "Lines 8-11 import `os`, `gzip`, `urllib.request`, `urllib.error`, `struct`, `traceback`, `urllib.parse`, `numpy` and `pandas`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "13-24",
+   "description": "Lines 13-24 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "26-33",
+   "description": "Lines 26-33 continue the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "35-53",
+   "description": "Lines 35-53 define `_download_with_fallbacks(filename, mirrors, out_dir, timeout)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "39",
+   "description": "Line 39 checks `os.path.exists(dest)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "42",
+   "description": "Line 42 loops over `mirrors`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "55-63",
+   "description": "Lines 55-63 define `_read_idx_images_gz(path_gz)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "59",
+   "description": "Line 59 checks `magic != 2051`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "65-73",
+   "description": "Lines 65-73 define `_read_idx_labels_gz(path_gz)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "69",
+   "description": "Line 69 checks `magic != 2049`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "75-90",
+   "description": "Lines 75-90 define `_write_kaggle_train_csv(train_images, train_labels, out_csv)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "92-102",
+   "description": "Lines 92-102 define `_write_kaggle_test_csv(test_images, out_csv)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "104-116",
+   "description": "Lines 104-116 continue the main code and print the results."
+  }
+ ]
+}

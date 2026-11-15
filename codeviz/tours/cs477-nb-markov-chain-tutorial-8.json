@@ -1,0 +1,45 @@
+{
+ "version": 1,
+ "example": "cs477-nb-markov-chain-tutorial-8",
+ "title": "Notebook Markov_Chain_Tutorial.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "2-12",
+   "description": "Lines 2-12 define `estimate_hitting_time(P, target, start, trials, rng, max_steps)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "5",
+   "description": "Line 5 loops over `range(trials)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "7",
+   "description": "Line 7 loops over `range(max_steps)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "12",
+   "description": "Line 12 returns `np.mean(hits) if hits else np.inf`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "14-27",
+   "description": "Lines 14-27 define `hitting_time_linear_system(P, target)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "23",
+   "description": "Line 23 checks `i == target`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "29-33",
+   "description": "Lines 29-33 run the main code and print the results."
+  }
+ ]
+}

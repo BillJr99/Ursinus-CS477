@@ -1,0 +1,55 @@
+{
+ "version": 1,
+ "example": "cs477-nb-svm-from-scratch-linear-and-kernel-3",
+ "title": "Notebook SVM_From_Scratch_Linear_and_Kernel.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-8",
+   "description": "Lines 1-8 define `make_linear(n)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "8",
+   "description": "Line 8 returns `X[idx], y[idx]`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "10-17",
+   "description": "Lines 10-17 define `make_moons(n, noise)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "19-35",
+   "description": "Lines 19-35 run the main code."
+  },
+  {
+   "kind": "focus",
+   "lines": "21",
+   "description": "Line 21 checks `DATASET == \"linear\"`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "37-61",
+   "description": "Lines 37-61 continue the main code and print the results."
+  },
+  {
+   "kind": "focus",
+   "lines": "47",
+   "description": "Line 47 returns `float(v)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "50",
+   "description": "Line 50 checks `isinstance(LABEL_COL, str)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "63",
+   "description": "Line 63 continues the main code and print the results."
+  }
+ ]
+}

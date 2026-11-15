@@ -1,0 +1,41 @@
+{
+ "version": 1,
+ "example": "cs477-liascript-bayesianinference-12",
+ "title": "Code: bayesiancoindetermine.py",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1",
+   "description": "Line 1 imports `random`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "4-27",
+   "description": "Lines 4-27 run the main code and print the results."
+  },
+  {
+   "kind": "focus",
+   "lines": "16",
+   "description": "Line 16 loops over `range(1, num_flips + 1)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "21",
+   "description": "Line 21 checks `outcome == 'H'`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "29-32",
+   "description": "Lines 29-32 continue the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 432,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "32"
+  }
+ ]
+}

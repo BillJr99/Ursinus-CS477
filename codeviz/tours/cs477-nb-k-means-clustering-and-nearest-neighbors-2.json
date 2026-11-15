@@ -1,0 +1,55 @@
+{
+ "version": 1,
+ "example": "cs477-nb-k-means-clustering-and-nearest-neighbors-2",
+ "title": "Notebook K_Means_Clustering_and_Nearest_Neighbors.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "2-28",
+   "description": "Lines 2-28 define `pairwise_sq_dists_loops(X, centers)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "21",
+   "description": "Line 21 loops over `range(n)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "23",
+   "description": "Line 23 loops over `range(k)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "30-37",
+   "description": "Lines 30-37 define `plot(X, labels, centers)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "40-48",
+   "description": "Lines 40-48 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "51-80",
+   "description": "Lines 51-80 define `kmeans_from_scratch(X, K, max_iters, seed)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "57",
+   "description": "Line 57 loops over `range(max_iters)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "74",
+   "description": "Line 74 checks `np.allclose(centers, new_centers)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "82",
+   "description": "Line 82 continues the main code."
+  }
+ ]
+}

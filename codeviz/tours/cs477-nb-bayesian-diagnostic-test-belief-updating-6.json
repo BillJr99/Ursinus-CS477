@@ -1,0 +1,43 @@
+{
+ "version": 1,
+ "example": "cs477-nb-bayesian-diagnostic-test-belief-updating-6",
+ "title": "Notebook Bayesian_Diagnostic_Test_Belief_Updating.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1-8",
+   "description": "Lines 1-8 define `summarize(name, samples, point)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "6",
+   "description": "Line 6 checks `point is not None`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "10-11",
+   "description": "Lines 10-11 run the main code."
+  },
+  {
+   "kind": "run",
+   "trace_step": 2,
+   "lines": "2",
+   "description": "Here `summarize` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 9,
+   "lines": "8",
+   "description": "Here `summarize` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 19,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "11"
+  }
+ ]
+}

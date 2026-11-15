@@ -1,0 +1,70 @@
+{
+ "version": 1,
+ "example": "cs477-nb-hmm-viterbi-colab-12",
+ "title": "Notebook HMM_Viterbi_Colab.ipynb",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1",
+   "description": "Line 1 imports `numpy`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "8-21",
+   "description": "Lines 8-21 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "25-47",
+   "description": "Lines 25-47 continue the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "48-55",
+   "description": "Lines 48-55 continue the main code and print the results."
+  },
+  {
+   "kind": "reveal",
+   "lines": "61-119",
+   "description": "Lines 61-119 define `viterbi(pi, A, B, obs_seq)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "92",
+   "description": "Line 92 loops over `range(K)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "97",
+   "description": "Line 97 loops over `range(1, T)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "114",
+   "description": "Line 114 loops over `range(T - 1, 0, -1)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "123-134",
+   "description": "Lines 123-134 continue the main code and print the results."
+  },
+  {
+   "kind": "focus",
+   "lines": "130",
+   "description": "Line 130 loops over `enumerate(best_path_labels, start=1)`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "135-146",
+   "description": "Lines 135-146 continue the main code and print the results."
+  },
+  {
+   "kind": "reveal",
+   "lines": "151-153",
+   "description": "Lines 151-153 continue the main code and print the results."
+  }
+ ]
+}

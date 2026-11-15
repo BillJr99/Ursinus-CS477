@@ -1,0 +1,68 @@
+{
+ "version": 1,
+ "example": "cs477-liascript-mdphmmbandits-3",
+ "title": "Code Example",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "kind": "reveal",
+   "lines": "1",
+   "description": "Line 1 imports `numpy`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "4-8",
+   "description": "Lines 4-8 run the main code."
+  },
+  {
+   "kind": "reveal",
+   "lines": "10-21",
+   "description": "Lines 10-21 define `pagerank(A, d, tol, max_iter)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "16",
+   "description": "Line 16 loops over `range(max_iter)`."
+  },
+  {
+   "kind": "focus",
+   "lines": "18",
+   "description": "Line 18 checks `np.linalg.norm(x_new - x, 1) < tol`."
+  },
+  {
+   "kind": "focus",
+   "lines": "19",
+   "description": "Line 19 returns `x_new`."
+  },
+  {
+   "kind": "focus",
+   "lines": "21",
+   "description": "Line 21 returns `x`."
+  },
+  {
+   "kind": "reveal",
+   "lines": "23",
+   "description": "Line 23 continues the main code and print the results."
+  },
+  {
+   "kind": "run",
+   "trace_step": 8,
+   "lines": "11",
+   "description": "Here `pagerank` is called for the first time; its frame appears on the right."
+  },
+  {
+   "kind": "run",
+   "trace_step": 156,
+   "lines": "19",
+   "description": "Here `pagerank` returns, the first time it does."
+  },
+  {
+   "kind": "run",
+   "trace_step": 157,
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "lines": "23"
+  }
+ ]
+}
