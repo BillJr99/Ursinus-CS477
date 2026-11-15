@@ -1,0 +1,57 @@
+{
+ "code": "def make_linear(n=400):\n    m1 = np.array([0.8, 0.8]); m0 = np.array([-0.8, -0.8])\n    X1 = rng.normal(m1, 0.6, size=(n//2, 2))\n    X0 = rng.normal(m0, 0.6, size=(n//2, 2))\n    X = np.vstack([X1, X0])\n    y = np.r_[np.ones(n//2), -np.ones(n//2)]\n    idx = rng.permutation(n)\n    return X[idx], y[idx]\n\ndef make_moons(n=500, noise=0.2):\n    t = rng.random(n)*np.pi\n    x1 = np.c_[np.cos(t), np.sin(t)] + noise*rng.normal(size=(n,2))*0.3\n    x2 = np.c_[1-np.cos(t), 1-np.sin(t)] + noise*rng.normal(size=(n,2))*0.3\n    X = np.vstack([x1, x2])\n    y = np.r_[np.ones(n), -np.ones(n)]\n    idx = rng.permutation(2*n)\n    return X[idx], y[idx]\n\nDATASET = \"moons\"  # \"linear\" or \"moons\"\n\nif DATASET == \"linear\":\n    X, y = make_linear(500)\nelse:\n    X, y = make_moons(400, noise=0.5)\n\n# Optional CSV upload (expects numeric features and a label in {0,1} or {-1,1})\nUSE_CSV = False\nLABEL_COL = None\nFEATURE_COLS = None\n\ntry:\n    from google.colab import files  # type: ignore\n    IN_COLAB = True\nexcept Exception:\n    IN_COLAB = False\n\nif IN_COLAB and USE_CSV:\n    print(\"Upload a CSV file...\")\n    up = files.upload()\n    import io, csv\n    name = list(up.keys())[0]\n    raw = up[name].decode(\"utf-8\", errors=\"ignore\")\n    reader = csv.reader(io.StringIO(raw))\n    rows = list(reader)\n    header = rows[0]; data = rows[1:]\n    def to_num(v):\n        try: return float(v)\n        except: return np.nan\n    M = np.array([[to_num(v) for v in row] for row in data], dtype=float)\n    if isinstance(LABEL_COL, str):\n        y = M[:, header.index(LABEL_COL)]\n    else:\n        y = M[:, LABEL_COL if LABEL_COL is not None else -1]\n    if FEATURE_COLS is None:\n        FEATURE_COLS = [j for j in range(M.shape[1]) if j != (LABEL_COL if isinstance(LABEL_COL, int) else header.index(LABEL_COL))]\n    X = M[:, FEATURE_COLS]\n    # Map labels to {-1, +1}\n    if set(np.unique(y)) == {0.0, 1.0}:\n        y = np.where(y>0.5, 1.0, -1.0)\n    else:\n        y = np.where(y>0, 1.0, -1.0)\n\nprint(\"X shape:\", X.shape, \"| class balance:\", (y==1).mean())",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-svm-from-scratch-linear-and-kernel-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-8 define `make_linear(n)`.",
+   "kind": "reveal",
+   "lines": "1-8"
+  },
+  {
+   "description": "Line 8 returns `X[idx], y[idx]`.",
+   "kind": "focus",
+   "lines": "8"
+  },
+  {
+   "description": "Lines 10-17 define `make_moons(n, noise)`.",
+   "kind": "reveal",
+   "lines": "10-17"
+  },
+  {
+   "description": "Lines 19-35 run the main code.",
+   "kind": "reveal",
+   "lines": "19-35"
+  },
+  {
+   "description": "Line 21 checks `DATASET == \"linear\"`.",
+   "kind": "focus",
+   "lines": "21"
+  },
+  {
+   "description": "Lines 37-61 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "37-61"
+  },
+  {
+   "description": "Line 47 returns `float(v)`.",
+   "kind": "focus",
+   "lines": "47"
+  },
+  {
+   "description": "Line 50 checks `isinstance(LABEL_COL, str)`.",
+   "kind": "focus",
+   "lines": "50"
+  },
+  {
+   "description": "Line 63 continues the main code and print the results.",
+   "kind": "reveal",
+   "lines": "63"
+  }
+ ],
+ "title": "Notebook SVM_From_Scratch_Linear_and_Kernel.ipynb",
+ "version": 1
+}

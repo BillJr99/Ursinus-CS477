@@ -1,0 +1,50 @@
+{
+ "code": "\n# Build explicit edge iterator for a consistency check on a subset of nodes (for speed)\nH, W = grid.shape\ndef out_edges(cell):\n    for nbr in grid_neighbors(grid, cell):\n        yield (nbr, 1.0)\n\n# Sample nodes set (all free cells) — this can be large; we subsample for speed\nfree_cells = [(y, x) for y in range(H) for x in range(W) if grid[y, x] == 0]\nsample = free_cells[::max(1, len(free_cells)//1000)]  # at most ~1000 cells\n\nconsistent, violations = check_consistency(sample, out_edges, h=lambda c: manhattan(c, goal))\nprint(\"Manhattan heuristic consistent on sample subset?\", consistent)\nprint(\"Number of violations found:\", len(violations))\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-a-star-step-by-step-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 3 runs the main code.",
+   "kind": "reveal",
+   "lines": "3"
+  },
+  {
+   "description": "Lines 4-6 define the generator `out_edges(cell)`.",
+   "kind": "reveal",
+   "lines": "4-6"
+  },
+  {
+   "description": "Line 5 loops over `grid_neighbors(grid, cell)`.",
+   "kind": "focus",
+   "lines": "5"
+  },
+  {
+   "description": "Lines 9-14 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "9-14"
+  },
+  {
+   "description": "Here `out_edges` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "5",
+   "trace_step": 529
+  },
+  {
+   "description": "Here `out_edges` returns, the first time it does.",
+   "kind": "run",
+   "lines": "6",
+   "trace_step": 531
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "12",
+   "trace_step": 799
+  }
+ ],
+ "title": "Notebook A_star_step_by_step.ipynb",
+ "version": 1
+}

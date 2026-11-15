@@ -1,0 +1,32 @@
+{
+ "code": "iris = datasets.load_iris()\nX = iris.data\ny = iris.target\ntarget_names = iris.target_names\n\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42, stratify=y)\n\ngnb = GaussianNaiveBayesScratch(var_smoothing=1e-9).fit(X_train, y_train)\ny_pred = gnb.predict(X_test)\n\nacc = accuracy_score(y_test, y_pred)\ncm  = confusion_matrix(y_test, y_pred)\n\nprint(f\"From‑scratch GaussianNB accuracy: {acc:.3f}\")\nprint(\"Confusion matrix:\\n\", cm)\n\n# Visualize confusion matrix\nplt.figure()\nplt.imshow(cm, interpolation='nearest')\nplt.title('Gaussian NB (Scratch) — Confusion Matrix')\nplt.xlabel('Predicted label')\nplt.ylabel('True label')\nplt.xticks(range(len(target_names)), target_names, rotation=45)\nplt.yticks(range(len(target_names)), target_names)\nfor (i, j), v in np.ndenumerate(cm):\n    plt.text(j, i, str(v), ha='center', va='center')\nplt.tight_layout()\nplt.show()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-naive-bayes-step-by-step-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-12 run the main code.",
+   "kind": "reveal",
+   "lines": "1-12"
+  },
+  {
+   "description": "Lines 14-26 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "14-26"
+  },
+  {
+   "description": "Line 25 loops over `np.ndenumerate(cm)`.",
+   "kind": "focus",
+   "lines": "25"
+  },
+  {
+   "description": "Lines 27-28 continue the main code.",
+   "kind": "reveal",
+   "lines": "27-28"
+  }
+ ],
+ "title": "Notebook naive_bayes_step_by_step.ipynb",
+ "version": 1
+}

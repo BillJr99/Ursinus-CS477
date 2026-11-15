@@ -1,0 +1,23 @@
+{
+ "code": "# Initial belief: uniform over free cells\nb0 = np.zeros(N, dtype=float)\nb0[free_states] = 1.0 / len(free_states)\n\n# Use the same T_by_action as in simulation (known model)\nbeliefs = forward_filter(actions, observations, maze, T_by_action_sim, b0, sensor_correct=sensor_correct)\nprint(\"Computed beliefs for T+1 =\", len(beliefs))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-11",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-7 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-7"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "7",
+   "trace_step": 4
+  }
+ ],
+ "title": "Notebook HMM_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+ "version": 1
+}

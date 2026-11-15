@@ -1,0 +1,37 @@
+{
+ "code": "def sarsa(cfg=QLCFG):\n    Q = np.zeros((S, 4), dtype=float)\n    eps = cfg.eps_start\n    returns = []\n    for ep in range(cfg.episodes):\n        s_rc = reset(); s = rc_to_s(*s_rc)\n        a = epsilon_greedy(Q[s], eps)\n        G = 0.0\n        for t in range(cfg.max_steps):\n            (nr,nc), r, done = step(s_rc, a, rng=rng); ns = rc_to_s(nr,nc)\n            an = epsilon_greedy(Q[ns], eps) if not done else 0\n            td_target = r + (0.0 if done else cfg.gamma * Q[ns, an])\n            Q[s,a] += cfg.alpha * (td_target - Q[s,a])\n            s_rc=(nr,nc); s=ns; a=an; G+=r\n            if done: break\n        eps = max(cfg.eps_end, eps*cfg.eps_decay)\n        returns.append(G)\n    return Q, np.array(returns)\n\n# To try SARSA:\n# Qs, ret_sarsa = sarsa(QLCFG)\n# plot_value_and_policy(np.max(Qs,1), np.argmax(Qs,1), title=\"SARSA — V^ and greedy π(Q)\")\n# plt.figure(figsize=(6,4)); plt.plot(ret_sarsa); plt.title(\"SARSA: episodic return\"); plt.show()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-rl-fromscratch-toygridworld-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-18 define `sarsa(cfg)`.",
+   "kind": "reveal",
+   "lines": "1-18"
+  },
+  {
+   "description": "Line 5 loops over `range(cfg.episodes)`.",
+   "kind": "focus",
+   "lines": "5"
+  },
+  {
+   "description": "Line 9 loops over `range(cfg.max_steps)`.",
+   "kind": "focus",
+   "lines": "9"
+  },
+  {
+   "description": "Line 15 checks `done`.",
+   "kind": "focus",
+   "lines": "15"
+  },
+  {
+   "description": "Line 18 returns `Q, np.array(returns)`.",
+   "kind": "focus",
+   "lines": "18"
+  }
+ ],
+ "title": "Notebook RL_FromScratch_ToyGridworld.ipynb",
+ "version": 1
+}

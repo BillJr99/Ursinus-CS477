@@ -1,0 +1,28 @@
+{
+ "code": "k = len(p_true)\n\n# Use past data to set initial empirical means for ε‑greedy (via implied expected reward)\n# We use posterior means for p_i: (s+a)/(s+f+a+b) with default a=b=1 if no past supplied.\nalpha_prior = past_successes + 1.0\nbeta_prior  = past_failures  + 1.0\np_post_mean = alpha_prior / (alpha_prior + beta_prior)\ninit_mean_reward = p_post_mean * R - C\n\neps = 0.1  # exploration rate\neg = EpsilonGreedy(k, R, C, names, epsilon=eps, init_mean=0.0)  # start neutral; it will learn\nucb = UCB1(k, R, C, names)\nts  = ThompsonSampling(k, R, C, names, alpha0=alpha_prior, beta0=beta_prior)\nprint(\"Initial posterior mean expected rewards:\", (p_post_mean*R - C))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-12 run the main code.",
+   "kind": "reveal",
+   "lines": "1-12"
+  },
+  {
+   "description": "Lines 13-14 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "13-14"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "14",
+   "trace_step": 10
+  }
+ ],
+ "title": "Notebook ProjectFunding_MultiArmedBandit_FromScratch.ipynb",
+ "version": 1
+}

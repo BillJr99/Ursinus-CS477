@@ -1,0 +1,22 @@
+{
+ "code": "import os, json as _json, numpy as _np, shutil\nos.makedirs(\"artifacts\", exist_ok=True)\n\nnp.savez(\"artifacts/qlearning_results.npz\",\n         Q=Q, returns=ret_hist, V_hat=np.max(Q,axis=1), Pi_hat=np.argmax(Q,axis=1),\n         V_star=V_star, Pi_star=Pi_star)\n\nwith open(\"artifacts/world_spec.json\",\"w\") as f:\n    _json.dump({\"H\": CFG.H, \"W\": CFG.W, \"p_slip\": CFG.p_slip,\n                \"rewards\":{\"step\":CFG.step_cost, \"goal\":CFG.goal_reward, \"pit\":CFG.pit_reward}}, f, indent=2)\n\ntry:\n    from google.colab import files  # type: ignore\n    shutil.make_archive('artifacts','zip','artifacts'); files.download('artifacts.zip')\nexcept Exception as e:\n    print(\"Colab download helper not available here:\", e)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-rl-fromscratch-toygridworld-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `os`, `json`, `numpy` and `shutil`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 2-16 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-16"
+  }
+ ],
+ "title": "Notebook RL_FromScratch_ToyGridworld.ipynb",
+ "version": 1
+}

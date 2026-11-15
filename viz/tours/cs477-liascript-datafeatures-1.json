@@ -1,0 +1,33 @@
+{
+ "code": "import numpy as np\nrng = np.random.default_rng(477)\n\n# 1. \"Collect\" data: y = 3*x1 + 20*x2 + noise  (n=200, d=2)\nn = 200\nX = np.column_stack([rng.uniform(0, 10, n), rng.integers(1, 5, n)])\ny = 3 * X[:, 0] + 20 * X[:, 1] + rng.normal(0, 4, n)\n\n# 2. Split BEFORE fitting (80/20)\nidx = rng.permutation(n)\ntrain, test = idx[:160], idx[160:]\n\n# 3. Fit a weighted-sum model on TRAINING data only (least squares)\nXb = np.column_stack([X, np.ones(n)])                  # add bias column\nw, *_ = np.linalg.lstsq(Xb[train], y[train], rcond=None)\nprint(\"learned weights:\", np.round(w, 2), \" (true: [3, 20, 0])\")\n\n# 4. Evaluate on the untouched TEST split\npred = Xb[test] @ w\nrmse = np.sqrt(np.mean((pred - y[test]) ** 2))\nprint(\"test RMSE:\", round(rmse, 2), \" (noise floor was 4)\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-datafeatures-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `numpy`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 2-14 run the main code.",
+   "kind": "reveal",
+   "lines": "2-14"
+  },
+  {
+   "description": "Lines 15-21 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "15-21"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "21",
+   "trace_step": 13
+  }
+ ],
+ "title": "7. Runnable Code: The Whole Workflow in Miniature",
+ "version": 1
+}

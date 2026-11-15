@@ -1,0 +1,22 @@
+{
+ "code": "\nbest_path, best_logprob, delta, psi = viterbi_log(hmm, obs_seq)\nbest_path_names = [hmm.states[i] for i in best_path]\n\nprint(\"Viterbi best path (indices):\", best_path)\nprint(\"Viterbi best path (names):\", best_path_names)\nprint(\"Viterbi best path log-prob:\", best_logprob)\nprint(\"Viterbi best path prob:\", float(np.exp(best_logprob)))\n\n# Visualize delta (trellis of scores)\nplt.figure()\nplt.imshow(delta, aspect='auto')\nplt.title(\"Viterbi Trellis (delta: log-scores)\")\nplt.xlabel(\"State index\")\nplt.ylabel(\"Time step\")\nplt.colorbar()\nplt.show()\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-hmm-viterbi-colab-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-13 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-13"
+  },
+  {
+   "description": "Lines 14-17 continue the main code.",
+   "kind": "reveal",
+   "lines": "14-17"
+  }
+ ],
+ "title": "Notebook HMM_Viterbi_Colab.ipynb",
+ "version": 1
+}

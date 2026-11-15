@@ -1,0 +1,67 @@
+{
+ "code": "\ndef random_stochastic_matrix(shape, rng: np.random.Generator) -> np.ndarray:\n    rows, cols = shape\n    X = rng.random((rows, cols))\n    X /= X.sum(axis=1, keepdims=True)\n    return X\n\ndef random_hmm(S: int, O: int, seed: int = 0) -> HMM:\n    rng = np.random.default_rng(seed)\n    A = random_stochastic_matrix((S, S), rng)\n    B = random_stochastic_matrix((S, O), rng)\n    pi = random_stochastic_matrix((1, S), rng).ravel()\n    states = [f\"s{i}\" for i in range(S)]\n    observations = [f\"o{j}\" for j in range(O)]\n    return HMM(states, observations, A, B, pi)\n\n# Quick sanity test\nhmm_r = random_hmm(3, 4, seed=7)\nobs_r = [0, 1, 2, 3, 1]\nll_log, _ = forward_log(hmm_r, obs_r)\nbp, bp_ll, _, _ = viterbi_log(hmm_r, obs_r)\nprint(\"Random HMM forward log-likelihood:\", ll_log)\nprint(\"Random HMM Viterbi best path:\", bp)\nprint(\"Random HMM Viterbi log-prob:\", bp_ll)\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-hmm-viterbi-colab-11",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-6 define `random_stochastic_matrix(shape, rng)`.",
+   "kind": "reveal",
+   "lines": "2-6"
+  },
+  {
+   "description": "Line 6 returns `X`.",
+   "kind": "focus",
+   "lines": "6"
+  },
+  {
+   "description": "Lines 8-15 define `random_hmm(S, O, seed)`.",
+   "kind": "reveal",
+   "lines": "8-15"
+  },
+  {
+   "description": "Line 15 returns `HMM(states, observations, A, B, pi)`.",
+   "kind": "focus",
+   "lines": "15"
+  },
+  {
+   "description": "Lines 18-24 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "18-24"
+  },
+  {
+   "description": "Here `random_stochastic_matrix` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "3",
+   "trace_step": 5
+  },
+  {
+   "description": "Here `random_stochastic_matrix` returns, the first time it does.",
+   "kind": "run",
+   "lines": "6",
+   "trace_step": 9
+  },
+  {
+   "description": "Here `random_hmm` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "9",
+   "trace_step": 3
+  },
+  {
+   "description": "Here `random_hmm` returns, the first time it does.",
+   "kind": "run",
+   "lines": "15",
+   "trace_step": 32
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "24",
+   "trace_step": 39
+  }
+ ],
+ "title": "Notebook HMM_Viterbi_Colab.ipynb",
+ "version": 1
+}

@@ -1,0 +1,82 @@
+{
+ "code": "INF = float(\"inf\")\n\ndef minimax(s, depth, eval_fn, max_turn: bool):\n    if depth == 0 or not s[\"children\"]:\n        return eval_fn(s)\n    if max_turn:\n        v = -INF\n        for c in s[\"children\"]:\n            v = max(v, minimax(c, depth-1, eval_fn, False))\n        return v\n    else:\n        v = INF\n        for c in s[\"children\"]:\n            v = min(v, minimax(c, depth-1, eval_fn, True))\n        return v\n\ndef alphabeta(s, depth, eval_fn, alpha=-INF, beta=INF, max_turn=True):\n    if depth == 0 or not s[\"children\"]:\n        return eval_fn(s)\n    if max_turn:\n        v = -INF\n        for c in s[\"children\"]:\n            v = max(v, alphabeta(c, depth-1, eval_fn, alpha, beta, False))\n            alpha = max(alpha, v)\n            if alpha >= beta:\n                break\n        return v\n    else:\n        v = INF\n        for c in s[\"children\"]:\n            v = min(v, alphabeta(c, depth-1, eval_fn, alpha, beta, True))\n            beta = min(beta, v)\n            if alpha >= beta:\n                break\n        return v\n\nleaf = lambda val: {\"children\": [], \"val\": val}\ntree = {\n    \"children\": [\n        {\"children\": [leaf(3), leaf(12), leaf(8)]},\n        {\"children\": [leaf(2), leaf(14)]}\n    ]\n}\neval_leaf = lambda s: s[\"val\"]\n\nprint(\"Minimax:\", minimax(tree, depth=2, eval_fn=eval_leaf, max_turn=True))\nprint(\"AlphaBeta:\", alphabeta(tree, depth=2, eval_fn=eval_leaf, max_turn=True))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-heuristicsearch-4",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 runs the main code.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 3-15 define `minimax(s, depth, eval_fn, max_turn)`, which calls itself.",
+   "kind": "reveal",
+   "lines": "3-15"
+  },
+  {
+   "description": "Line 4 checks `depth == 0 or not s[\"children\"]`.",
+   "kind": "focus",
+   "lines": "4"
+  },
+  {
+   "description": "Line 10 returns `v`.",
+   "kind": "focus",
+   "lines": "10"
+  },
+  {
+   "description": "Lines 17-35 define `alphabeta(s, depth, eval_fn, alpha, beta, max_turn)`, which calls itself.",
+   "kind": "reveal",
+   "lines": "17-35"
+  },
+  {
+   "description": "Line 19 returns `eval_fn(s)`.",
+   "kind": "focus",
+   "lines": "19"
+  },
+  {
+   "description": "Line 27 returns `v`.",
+   "kind": "focus",
+   "lines": "27"
+  },
+  {
+   "description": "Lines 37-47 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "37-47"
+  },
+  {
+   "description": "Here `minimax` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "4",
+   "trace_step": 21
+  },
+  {
+   "description": "Here `minimax` returns, the first time it does.",
+   "kind": "run",
+   "lines": "5",
+   "trace_step": 35
+  },
+  {
+   "description": "Here `alphabeta` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "18",
+   "trace_step": 79
+  },
+  {
+   "description": "Here `alphabeta` returns, the first time it does.",
+   "kind": "run",
+   "lines": "19",
+   "trace_step": 93
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "47",
+   "trace_step": 141
+  }
+ ],
+ "title": "Code Cell: Tiny Minimax Engine (for experimentation)",
+ "version": 1
+}

@@ -1,0 +1,50 @@
+{
+ "code": "def update_log_odds(lg_prior, log_lr):\n    return lg_prior + log_lr\n\n# Example: three independent pieces of evidence with LRs 3, 0.5, 2\npi = 0.1\nlg_prior = math.log(pi/(1-pi))\nlog_lrs = [math.log(3), math.log(0.5), math.log(2)]\nlg_post = lg_prior\nfor r in log_lrs:\n    lg_post = update_log_odds(lg_post, r)\npost = math.exp(lg_post) / (1 + math.exp(lg_post))\nprint(\"Posterior probability:\", round(post,4))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-bayesianinference-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-2 define `update_log_odds(lg_prior, log_lr)`.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "description": "Line 2 returns `lg_prior + log_lr`.",
+   "kind": "focus",
+   "lines": "2"
+  },
+  {
+   "description": "Lines 5-12 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "5-12"
+  },
+  {
+   "description": "Line 9 loops over `log_lrs`.",
+   "kind": "focus",
+   "lines": "9"
+  },
+  {
+   "description": "Here `update_log_odds` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "2",
+   "trace_step": 7
+  },
+  {
+   "description": "Here `update_log_odds` returns, the first time it does.",
+   "kind": "run",
+   "lines": "2",
+   "trace_step": 8
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "12",
+   "trace_step": 20
+  }
+ ],
+ "title": "Code Cell: Sequential Evidence Accumulation (Log-Odds)",
+ "version": 1
+}

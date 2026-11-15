@@ -1,0 +1,27 @@
+{
+ "code": "\nCs = [0.01, 0.1, 1.0, 10.0, 100.0]\naucs = []\n\nfor C in Cs:\n    clf = Pipeline([(\"scaler\", StandardScaler()), (\"logreg\", LogisticRegression(max_iter=500, C=C))])\n    clf.fit(X_train, y_train)\n    y_prob = clf.predict_proba(X_test)[:,1]\n    fpr, tpr, _ = roc_curve(y_test, y_prob)\n    aucs.append(auc(fpr, tpr))\n\nplt.plot(Cs, aucs, marker=\"o\")\nplt.xscale(\"log\")\nplt.xlabel(\"C (inverse regularization strength)\")\nplt.ylabel(\"AUC on test set\")\nplt.title(\"Effect of Regularization on AUC\")\nplt.show()\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-linear-and-logistic-regression-tutorial-14",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-13 run the main code.",
+   "kind": "reveal",
+   "lines": "2-13"
+  },
+  {
+   "description": "Line 5 loops over `Cs`.",
+   "kind": "focus",
+   "lines": "5"
+  },
+  {
+   "description": "Lines 14-17 continue the main code.",
+   "kind": "reveal",
+   "lines": "14-17"
+  }
+ ],
+ "title": "Notebook Linear_and_Logistic_Regression_Tutorial.ipynb",
+ "version": 1
+}

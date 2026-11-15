@@ -1,0 +1,28 @@
+{
+ "code": "n = 250\nmu_true, sigma_true = 2.0, 1.5\nx = rng.normal(mu_true, sigma_true, size=n)\nmu_hat = x.mean()\nsigma2_hat = np.mean((x - mu_hat)**2)  # ML variance\n\n# Observed information for μ with σ known is n/σ^2. With σ unknown, asymptotically similar using σ̂.\nI_obs_mu = n / (sigma2_hat + 1e-12)\nci_lo, ci_hi, se = wald_ci(mu_hat, I_obs_mu)\nprint(f\"Gaussian: n={n}, true μ={mu_true:.3f}, MLE μ̂={mu_hat:.3f}, SE≈{se:.4f}, 95% CI=({ci_lo:.3f}, {ci_hi:.3f})\")\nprint(f\"Gaussian: MLE σ̂^2={sigma2_hat:.3f} (compare true σ^2={sigma_true**2:.3f})\")\n\ngrid = np.linspace(mu_true-3.0, mu_true+3.0, 300)\nll = -0.5*n*np.log(2*np.pi*sigma2_hat) - 0.5*np.sum((x[:,None] - grid[None,:])**2, axis=0)/sigma2_hat\nplot_ll(grid, ll, mu_hat, true_theta=mu_true, xlabel=r\"$\\mu$\", title=\"Gaussian log-likelihood (profile in μ)\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-mle-from-first-principles-worked-examples-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-13 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "1-13"
+  },
+  {
+   "description": "Lines 14-15 continue the main code.",
+   "kind": "reveal",
+   "lines": "14-15"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "15",
+   "trace_step": 12
+  }
+ ],
+ "title": "Notebook MLE_From_First_Principles_Worked_Examples.ipynb",
+ "version": 1
+}

@@ -1,0 +1,27 @@
+{
+ "code": "# Assumes from Step 10:\n# - X_bin: shape (n, 2), the 2D synthetic features\n# - y_bin: shape (n,), binary labels {0,1}\n# - X_aug: shape (n, 3) with an intercept column: X_aug = np.c_[np.ones((n, 1)), X_bin]\n# - theta: shape (3,), learned by logistic_gd\n# - sigmoid(z) function is already defined\n\n# Compute linear scores z_i and predicted probabilities p_i\nz = X_aug @ theta                 # shape (n,)\np = sigmoid(z)                    # predicted P(y=1 | x)\n\n# Prepare a smooth grid over z to draw the sigmoid curve\nz_grid = np.linspace(z.min() - 2, z.max() + 2, 400)\nsig_grid = sigmoid(z_grid)\n\nplt.figure(figsize=(8, 5))\n\n# 1) Plot the model's sigmoid in (z, sigma(z)) space\nplt.plot(z_grid, sig_grid, linewidth=2, label=\"Sigmoid model: σ(z) = 1/(1+e^{-z})\")\n\n# 2) Plot true labels at their corresponding z positions (with tiny jitter for visibility)\nrng = np.random.default_rng(0)\njitter = (rng.random(len(y_bin)) - 0.5) * 0.04  # small vertical jitter\nplt.scatter(z, y_bin + jitter, s=50, alpha=0.75, edgecolor=\"k\",\n            label=\"True class (0/1) at z_i\", c=y_bin, cmap=\"bwr\")\n\n# 3) Plot predicted probabilities at the same z positions\nplt.scatter(z, p, s=40, marker=\"x\", color=\"black\", label=\"Predicted probability ŷ = σ(z_i)\")\n\n# Formatting\nplt.title(\"Logistic Regression: True Labels and Predicted Probabilities vs Linear Score z\")\nplt.xlabel(\"Linear score z = xᵀθ\")\nplt.ylabel(\"Probability / Class\")\nplt.ylim(-0.1, 1.1)\nplt.legend()\nplt.grid(True)\nplt.show()\n\n# θ includes the intercept θ₀ followed by one weight per feature (θ₁, θ₂, …)\nprint(\"Fitted parameters (theta):\", theta)\n\n# Example equation for the model:\n# log-odds( P(y=1 | x) ) = θ₀ + θ₁*x₁ + θ₂*x₂ + … + θ_d*x_d\neq_terms = [f\"{theta[j]:.3f}*x{j}\" for j in range(1, len(theta))]\nequation = f\"log( p / (1 - p) ) = {theta[0]:.3f} + \" + \" + \".join(eq_terms)\nprint(\"\\nEstimated logistic model:\\n\", equation)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-regression-11",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 9-22 run the main code.",
+   "kind": "reveal",
+   "lines": "9-22"
+  },
+  {
+   "description": "Lines 23-34 continue the main code.",
+   "kind": "reveal",
+   "lines": "23-34"
+  },
+  {
+   "description": "Lines 35-46 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "35-46"
+  }
+ ],
+ "title": "Code Cell",
+ "version": 1
+}

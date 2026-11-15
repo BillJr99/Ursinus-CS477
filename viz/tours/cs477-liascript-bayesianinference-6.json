@@ -1,0 +1,33 @@
+{
+ "code": "import numpy as np\n\nA, H = 1.0, 1.0\nQ, R = 0.01, 0.25\nxhat, P = 0.0, 1.0  # prior mean and variance\nu = 0.0             # no control\n\nzs = [1.2, 0.9, 1.1, 1.0, 0.95]\nfor z in zs:\n    # Predict\n    xhat = A*xhat + 0*u\n    P = A*P*A + Q\n    # Update\n    S = H*P*H + R\n    K = P*H / S\n    xhat = xhat + K*(z - H*xhat)\n    P = (1 - K*H)*P\n    print(f\"z={z:.2f}  xhat={xhat:.3f}  P={P:.3f}\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-bayesianinference-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `numpy`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 3-18 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "3-18"
+  },
+  {
+   "description": "Line 9 loops over `zs`.",
+   "kind": "focus",
+   "lines": "9"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "9",
+   "trace_step": 47
+  }
+ ],
+ "title": "Code Cell: Minimal 1D Kalman Filter",
+ "version": 1
+}

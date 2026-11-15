@@ -1,0 +1,47 @@
+{
+ "code": "def fisher_score_binary(X, y):\n    classes = np.unique(y)\n    assert len(classes)==2\n    c0, c1 = classes\n    X0 = X[y==c0]; X1 = X[y==c1]\n    mu0 = X0.mean(axis=0); mu1 = X1.mean(axis=0)\n    v0 = X0.var(axis=0, ddof=1); v1 = X1.var(axis=0, ddof=1)\n    return (mu1 - mu0)**2 / (v1 + v0 + 1e-12)\n\ndef fisher_score_multiclass(X, y):\n    classes = np.unique(y)\n    means, counts = class_stats(X, y)\n    mu = np.average(means, axis=0, weights=counts)\n    # between (per-feature)\n    num = np.zeros(X.shape[1])\n    den = np.zeros(X.shape[1])\n    for i,c in enumerate(classes):\n        Xc = X[y==c]\n        num += counts[i]*(means[i]-mu)**2\n        den += counts[i]*Xc.var(axis=0, ddof=1)\n    return num / (den + 1e-12)\n\nF_multi = fisher_score_multiclass(X_tr, y_tr)\norder = np.argsort(F_multi)[::-1]\nprint(\"Fisher scores (multiclass) sorted:\")\nfor j in order:\n    print(f\"{feature_names[j]:25s}  F={F_multi[j]:.4f}\")\n\nfig = plt.figure(figsize=(6,3.5))\nplt.bar(range(len(F_multi)), F_multi[order])\nplt.xticks(range(len(F_multi)), [feature_names[j] for j in order], rotation=25, ha='right')\nplt.ylabel(\"Fisher score\"); plt.title(\"Feature ranking (multiclass Fisher)\")\nplt.tight_layout(); plt.show()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-lda-and-fisherscore-fromscratch-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-8 define `fisher_score_binary(X, y)`.",
+   "kind": "reveal",
+   "lines": "1-8"
+  },
+  {
+   "description": "Line 8 returns `(mu1 - mu0)**2 / (v1 + v0 + 1e-12)`.",
+   "kind": "focus",
+   "lines": "8"
+  },
+  {
+   "description": "Lines 10-21 define `fisher_score_multiclass(X, y)`.",
+   "kind": "reveal",
+   "lines": "10-21"
+  },
+  {
+   "description": "Line 17 loops over `enumerate(classes)`.",
+   "kind": "focus",
+   "lines": "17"
+  },
+  {
+   "description": "Line 21 returns `num / (den + 1e-12)`.",
+   "kind": "focus",
+   "lines": "21"
+  },
+  {
+   "description": "Lines 23-33 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "23-33"
+  },
+  {
+   "description": "Line 26 loops over `order`.",
+   "kind": "focus",
+   "lines": "26"
+  }
+ ],
+ "title": "Notebook LDA_and_FisherScore_FromScratch.ipynb",
+ "version": 1
+}

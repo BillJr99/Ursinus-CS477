@@ -1,0 +1,92 @@
+{
+ "code": "from collections import deque\nimport heapq\n\ngraph = {  # (neighbor, cost)\n    'S': [('A', 1), ('G', 3)],\n    'A': [('G', 1)],\n    'G': [],\n}\n\ndef bfs(start, goal):\n    frontier = deque([[start]])\n    explored = set()\n    while frontier:\n        path = frontier.popleft()          # FIFO\n        node = path[-1]\n        if node == goal: return path\n        if node in explored: continue\n        explored.add(node)\n        for nbr, _ in graph[node]:\n            frontier.append(path + [nbr])\n\ndef dfs(start, goal):\n    frontier = [[start]]\n    explored = set()\n    while frontier:\n        path = frontier.pop()              # LIFO — the only change!\n        node = path[-1]\n        if node == goal: return path\n        if node in explored: continue\n        explored.add(node)\n        for nbr, _ in graph[node]:\n            frontier.append(path + [nbr])\n\ndef ucs(start, goal):\n    frontier = [(0, [start])]              # priority queue on g(n)\n    explored = set()\n    while frontier:\n        cost, path = heapq.heappop(frontier)\n        node = path[-1]\n        if node == goal: return cost, path\n        if node in explored: continue\n        explored.add(node)\n        for nbr, c in graph[node]:\n            heapq.heappush(frontier, (cost + c, path + [nbr]))\n\nprint(\"BFS:\", bfs('S', 'G'))   # fewest edges: S->G\nprint(\"DFS:\", dfs('S', 'G'))\nprint(\"UCS:\", ucs('S', 'G'))   # cheapest: (2, S->A->G)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-uninformedsearch-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-2 import `collections` and `heapq`.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "description": "Lines 4-8 run the main code.",
+   "kind": "reveal",
+   "lines": "4-8"
+  },
+  {
+   "description": "Lines 10-20 define `bfs(start, goal)`.",
+   "kind": "reveal",
+   "lines": "10-20"
+  },
+  {
+   "description": "Line 13 repeats while `frontier` is true.",
+   "kind": "focus",
+   "lines": "13"
+  },
+  {
+   "description": "Line 17 checks `node in explored`.",
+   "kind": "focus",
+   "lines": "17"
+  },
+  {
+   "description": "Lines 22-32 define `dfs(start, goal)`.",
+   "kind": "reveal",
+   "lines": "22-32"
+  },
+  {
+   "description": "Line 28 returns `path`.",
+   "kind": "focus",
+   "lines": "28"
+  },
+  {
+   "description": "Lines 34-44 define `ucs(start, goal)`.",
+   "kind": "reveal",
+   "lines": "34-44"
+  },
+  {
+   "description": "Line 40 checks `node == goal`.",
+   "kind": "focus",
+   "lines": "40"
+  },
+  {
+   "description": "Lines 46-48 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "46-48"
+  },
+  {
+   "description": "Here `bfs` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "11",
+   "trace_step": 10
+  },
+  {
+   "description": "Here `bfs` returns, the first time it does.",
+   "kind": "run",
+   "lines": "16",
+   "trace_step": 36
+  },
+  {
+   "description": "Here `dfs` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "23",
+   "trace_step": 38
+  },
+  {
+   "description": "Here `dfs` returns, the first time it does.",
+   "kind": "run",
+   "lines": "28",
+   "trace_step": 55
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "48",
+   "trace_step": 84
+  }
+ ],
+ "title": "7. Runnable Code: All Three Searches in 40 Lines",
+ "version": 1
+}

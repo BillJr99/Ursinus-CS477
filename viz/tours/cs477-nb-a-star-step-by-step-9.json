@@ -1,0 +1,54 @@
+{
+ "code": "\ndef run_trial(W=40, H=28, p=0.22, w=1.0, seed=0):\n    grid = make_grid(W, H, p, seed)\n    start, goal = (1,1), (H-2, W-3)\n    grid[start] = 0; grid[goal] = 0\n    def h_m(c): return manhattan(c, goal)\n    path, info = astar_weighted(\n        start, lambda c: c==goal, lambda c: grid_neighbors(grid, c), grid_cost, h_m, weight=w\n    )\n    return (path is not None), (None if path is None else len(path)-1), info[\"expanded\"], info[\"time_sec\"]\n\nfor p in [0.15, 0.22, 0.30]:\n    for w in [1.0, 1.2, 1.5]:\n        ok, plen, expanded, t = run_trial(p=p, w=w, seed=42)\n        print(f\"p={p:.2f}, w={w:.1f}  ->  solved={ok}, path_len={plen}, expanded={expanded}, time={t*1000:.1f} ms\")\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-a-star-step-by-step-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-10 define `run_trial(W, H, p, w, seed)`.",
+   "kind": "reveal",
+   "lines": "2-10"
+  },
+  {
+   "description": "Line 6 returns `manhattan(c, goal)`.",
+   "kind": "focus",
+   "lines": "6"
+  },
+  {
+   "description": "Line 10 returns a value.",
+   "kind": "focus",
+   "lines": "10"
+  },
+  {
+   "description": "Lines 12-15 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "12-15"
+  },
+  {
+   "description": "Line 12 loops over `[0.15, 0.22, 0.30]`.",
+   "kind": "focus",
+   "lines": "12"
+  },
+  {
+   "description": "Line 13 loops over `[1.0, 1.2, 1.5]`.",
+   "kind": "focus",
+   "lines": "13"
+  },
+  {
+   "description": "Here `run_trial` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "3",
+   "trace_step": 4
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "6",
+   "trace_step": 799
+  }
+ ],
+ "title": "Notebook A_star_step_by_step.ipynb",
+ "version": 1
+}

@@ -1,0 +1,22 @@
+{
+ "code": "fig = plt.figure(figsize=(6,4))\nfor c in range(10):\n    ll = models[c][\"ll_history\"]\n    plt.plot(ll, label=str(c))\nplt.xlabel(\"EM iteration\")\nplt.ylabel(\"Log-likelihood (sum over class sequences)\")\nplt.title(\"EM Convergence per Class HMM\")\nplt.legend(ncol=5, fontsize=8)\nplt.tight_layout()\nplt.show()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-hmm-image-recognition-from-scratch-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-10 run the main code.",
+   "kind": "reveal",
+   "lines": "1-10"
+  },
+  {
+   "description": "Line 2 loops over `range(10)`.",
+   "kind": "focus",
+   "lines": "2"
+  }
+ ],
+ "title": "Notebook HMM_Image_Recognition_From_Scratch.ipynb",
+ "version": 1
+}

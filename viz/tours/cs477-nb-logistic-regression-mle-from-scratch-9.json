@@ -1,0 +1,22 @@
+{
+ "code": "if X.shape[1] == 2:\n    fig = plt.figure(figsize=(10,4))\n    ax1 = plt.subplot(1,2,1)\n    _ = ax1.scatter(X_tr[:,0], X_tr[:,1], c=y_tr, s=14)\n    try:\n        plot_decision_boundary(ax1, w_gd, mu, sigma)\n    except Exception:\n        pass\n    ax1.set_title(\"GD decision boundary (std. space)\"); ax1.set_xlabel(\"x1 (std)\"); ax1.set_ylabel(\"x2 (std)\")\n\n    ax2 = plt.subplot(1,2,2)\n    _ = ax2.scatter(X_tr[:,0], X_tr[:,1], c=y_tr, s=14)\n    try:\n        plot_decision_boundary(ax2, w_nt, mu, sigma)\n    except Exception:\n        pass\n    ax2.set_title(\"Newton decision boundary (std. space)\"); ax2.set_xlabel(\"x1 (std)\"); ax2.set_ylabel(\"x2 (std)\")\n    plt.tight_layout(); plt.show()\nelse:\n    print(\"Skipping 2D decision boundary plot (features are not 2D).\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-logistic-regression-mle-from-scratch-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-20 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "1-20"
+  },
+  {
+   "description": "Line 1 checks `X.shape[1] == 2`.",
+   "kind": "focus",
+   "lines": "1"
+  }
+ ],
+ "title": "Notebook Logistic_Regression_MLE_From_Scratch.ipynb",
+ "version": 1
+}

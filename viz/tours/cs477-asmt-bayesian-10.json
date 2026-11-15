@@ -1,0 +1,71 @@
+{
+ "code": "import numpy as np\n\ndef log_marginal_mean_known_var(x, mu0, tau0_sq, sigma_sq):\n    n = len(x); xbar = x.mean()\n    prec0 = 1.0/tau0_sq; prec = 1.0/sigma_sq\n    post_var = 1.0 / (prec0 + n*prec)\n    # log evidence up to additive constants:\n    return -0.5*np.log(prec0 + n*prec) - 0.5*prec*n*(xbar - mu0)**2 + 0.5*(mu0**2*prec0 + n*prec*xbar**2)*post_var\n\ndef posterior_tau(x, mu0=0.0, tau0_sq=10.0, sigma_sq=1.0):\n    T = len(x)\n    logs = []\n    for tau in range(1, T):  # split at tau\n        l1 = log_marginal_mean_known_var(x[:tau], mu0, tau0_sq, sigma_sq)\n        l2 = log_marginal_mean_known_var(x[tau:], mu0, tau0_sq, sigma_sq)\n        logs.append(l1 + l2)\n    logs = np.array(logs)\n    logs -= logs.max()\n    p = np.exp(logs); p /= p.sum()\n    return p  # length T-1\n\n# Example: synthesize a change\nrng = np.random.default_rng(1)\nx = np.r_[rng.normal(0.0, 1.0, 60), rng.normal(1.0, 1.0, 40)]\np_tau = posterior_tau(x, mu0=0.0, tau0_sq=10.0, sigma_sq=1.0)\nprint(\"MAP tau (1..T-1) =\", int(np.argmax(p_tau)+1))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-asmt-bayesian-10",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `numpy`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 3-8 define `log_marginal_mean_known_var(x, mu0, tau0_sq, sigma_sq)`.",
+   "kind": "reveal",
+   "lines": "3-8"
+  },
+  {
+   "description": "Line 8 returns a value.",
+   "kind": "focus",
+   "lines": "8"
+  },
+  {
+   "description": "Lines 10-20 define `posterior_tau(x, mu0, tau0_sq, sigma_sq)`.",
+   "kind": "reveal",
+   "lines": "10-20"
+  },
+  {
+   "description": "Line 13 loops over `range(1, T)`.",
+   "kind": "focus",
+   "lines": "13"
+  },
+  {
+   "description": "Line 20 returns `p`.",
+   "kind": "focus",
+   "lines": "20"
+  },
+  {
+   "description": "Lines 23-26 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "23-26"
+  },
+  {
+   "description": "Here `log_marginal_mean_known_var` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "4",
+   "trace_step": 10
+  },
+  {
+   "description": "Here `log_marginal_mean_known_var` returns, the first time it does.",
+   "kind": "run",
+   "lines": "8",
+   "trace_step": 14
+  },
+  {
+   "description": "Here `posterior_tau` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "11",
+   "trace_step": 6
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "15",
+   "trace_step": 799
+  }
+ ],
+ "title": "Option B: Gaussian Mean Change-Point Detection (Conjugate Inference)",
+ "version": 1
+}

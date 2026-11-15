@@ -1,0 +1,32 @@
+{
+ "code": "def plot_allocation(label, choices, k, w=100):\n    fig = plt.figure(figsize=(7,4))\n    for a in range(k):\n        sel = (choices == a).astype(float)\n        rm = running_mean(sel, w=w)\n        plt.plot(rm, label=names[a])\n    plt.xlabel(\"Round\"); plt.ylabel(f\"Share in last ~{w} rounds\")\n    plt.title(f\"Allocation (running share) — {label}\")\n    plt.legend(); plt.tight_layout(); plt.show()\n\nfor label, out in res.items():\n    plot_allocation(label, out[\"choices\"], k, w=150)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-12",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-9 define `plot_allocation(label, choices, k, w)`.",
+   "kind": "reveal",
+   "lines": "1-9"
+  },
+  {
+   "description": "Line 3 loops over `range(k)`.",
+   "kind": "focus",
+   "lines": "3"
+  },
+  {
+   "description": "Lines 11-12 run the main code.",
+   "kind": "reveal",
+   "lines": "11-12"
+  },
+  {
+   "description": "Line 11 loops over `res.items()`.",
+   "kind": "focus",
+   "lines": "11"
+  }
+ ],
+ "title": "Notebook ProjectFunding_MultiArmedBandit_FromScratch.ipynb",
+ "version": 1
+}

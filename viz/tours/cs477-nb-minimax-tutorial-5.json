@@ -1,0 +1,72 @@
+{
+ "code": "\nfrom functools import lru_cache\nimport numpy as np\n\nEMPTY, X, O = 0, 1, -1  # X is Max, O is Min\n\ndef check_winner(board):\n    b = np.array(board).reshape(3,3)\n    lines = []\n    lines.extend(list(b))                 # rows\n    lines.extend(list(b.T))               # cols\n    lines.append(b.diagonal())\n    lines.append(np.fliplr(b).diagonal())\n    for ln in lines:\n        s = ln.sum()\n        if s == 3:  return X, True\n        if s == -3: return O, True\n    if not (b == EMPTY).any():\n        return 0, True   # draw\n    return 0, False\n\ndef actions(board):\n    return [i for i, v in enumerate(board) if v == EMPTY]\n\ndef apply(board, a, player):\n    b = list(board); b[a] = player; return tuple(b)\n\n@lru_cache(maxsize=None)\ndef minimax(board, player, alpha=-np.inf, beta=np.inf):\n    winner, terminal = check_winner(board)\n    if terminal:\n        return (float(winner), None)\n\n    if player == X:  # Max node\n        value, best_a = -np.inf, None\n        for a in actions(board):\n            # NEW: if placing X at 'a' wins immediately, take it.\n            next_board = apply(board, a, X)\n            w, t = check_winner(next_board)\n            if t and w == X:\n                return 1.0, a\n\n            v, _ = minimax(next_board, O, alpha, beta)\n            if v > value:\n                value, best_a = v, a\n            alpha = max(alpha, value)\n            if beta <= alpha:\n                break\n        return value, best_a\n    else:            # Min node\n        value, best_a = np.inf, None\n        for a in actions(board):\n            # Symmetric “lose-now avoidance” (optional; not required for your case)\n            next_board = apply(board, a, O)\n            w, t = check_winner(next_board)\n            if t and w == O:\n                return -1.0, a\n\n            v, _ = minimax(next_board, X, alpha, beta)\n            if v < value:\n                value, best_a = v, a\n            beta = min(beta, value)\n            if beta <= alpha:\n                break\n        return value, best_a\n\ndef pretty(board):\n    syms = {X:\"X\", O:\"O\", EMPTY:\".\"}\n    b = np.array([syms[v] for v in board]).reshape(3,3)\n    print(\"\\n\".join(\" \".join(row) for row in b))\n\n# Example state (X to move)\nstart = (X, O, X,\n         O, X, EMPTY,\n         EMPTY, O, EMPTY)\nprint(\"Start position (X to play):\")\npretty(start)\nval, move = minimax(start, X)\nprint(\"Minimax value (X perspective):\", val)\nprint(\"Best move index:\", move)\nprint(\"Resulting board:\")\npretty(apply(start, move, X))\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-minimax-tutorial-5",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-3 import `functools` and `numpy`.",
+   "kind": "reveal",
+   "lines": "2-3"
+  },
+  {
+   "description": "Line 5 runs the main code.",
+   "kind": "reveal",
+   "lines": "5"
+  },
+  {
+   "description": "Lines 7-20 define `check_winner(board)`.",
+   "kind": "reveal",
+   "lines": "7-20"
+  },
+  {
+   "description": "Line 14 loops over `lines`.",
+   "kind": "focus",
+   "lines": "14"
+  },
+  {
+   "description": "Line 19 returns `0, True`.",
+   "kind": "focus",
+   "lines": "19"
+  },
+  {
+   "description": "Lines 22-23 define `actions(board)`.",
+   "kind": "reveal",
+   "lines": "22-23"
+  },
+  {
+   "description": "Lines 25-26 define `apply(board, a, player)`.",
+   "kind": "reveal",
+   "lines": "25-26"
+  },
+  {
+   "description": "Lines 28-65 define `minimax(board, player, alpha, beta)`, which calls itself.",
+   "kind": "reveal",
+   "lines": "28-65"
+  },
+  {
+   "description": "Line 34 checks `player == X`.",
+   "kind": "focus",
+   "lines": "34"
+  },
+  {
+   "description": "Line 49 returns `value, best_a`.",
+   "kind": "focus",
+   "lines": "49"
+  },
+  {
+   "description": "Lines 67-70 define `pretty(board)`.",
+   "kind": "reveal",
+   "lines": "67-70"
+  },
+  {
+   "description": "Lines 73-82 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "73-82"
+  }
+ ],
+ "title": "Notebook Minimax_Tutorial.ipynb",
+ "version": 1
+}

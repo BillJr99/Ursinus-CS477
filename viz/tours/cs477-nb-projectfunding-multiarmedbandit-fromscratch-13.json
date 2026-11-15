@@ -1,0 +1,22 @@
+{
+ "code": "post = res[\"Thompson\"].get(\"post\", None)\nif post is not None:\n    alpha = post[\"alpha\"]; beta = post[\"beta\"]\n    mean_p = alpha / (alpha + beta)\n    fig = plt.figure(figsize=(7,4))\n    plt.bar(np.arange(k), mean_p)\n    plt.xticks(np.arange(k), names)\n    plt.ylabel(\"Posterior mean p_i\")\n    plt.title(\"Thompson Posterior Means of Success Rates\")\n    plt.tight_layout(); plt.show()\n    print(\"Posterior mean E[p]:\", mean_p)\nelse:\n    print(\"No posterior found for Thompson (unexpected).\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-13",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-13 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "1-13"
+  },
+  {
+   "description": "Line 2 checks `post is not None`.",
+   "kind": "focus",
+   "lines": "2"
+  }
+ ],
+ "title": "Notebook ProjectFunding_MultiArmedBandit_FromScratch.ipynb",
+ "version": 1
+}

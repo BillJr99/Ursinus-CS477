@@ -1,0 +1,50 @@
+{
+ "code": "digits = load_digits()\nX_images = digits.images.astype(np.float64)  # shape (N, 8, 8)\ny_labels = digits.target.astype(int)\n\nX_images /= 16.0  # normalize to [0,1]\n\ndef image_to_sequence(img):\n    # img: (8,8). Sequence is list/array of length 8; each obs is (8,)\n    # time t corresponds to column t\n    return img.T  # (8,8): columns become rows (T,D)\n\nsequences = [image_to_sequence(img) for img in X_images]  # list of (T=8, D=8)\n\nprint(\"Total images:\", len(sequences))\nprint(\"Example sequence shape:\", sequences[0].shape)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-hmm-image-recognition-from-scratch-4",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-5 run the main code.",
+   "kind": "reveal",
+   "lines": "1-5"
+  },
+  {
+   "description": "Lines 7-10 define `image_to_sequence(img)`.",
+   "kind": "reveal",
+   "lines": "7-10"
+  },
+  {
+   "description": "Line 10 returns `img.T`.",
+   "kind": "focus",
+   "lines": "10"
+  },
+  {
+   "description": "Lines 12-15 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "12-15"
+  },
+  {
+   "description": "Here `image_to_sequence` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "10",
+   "trace_step": 6
+  },
+  {
+   "description": "Here `image_to_sequence` returns, the first time it does.",
+   "kind": "run",
+   "lines": "10",
+   "trace_step": 7
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "10",
+   "trace_step": 799
+  }
+ ],
+ "title": "Notebook HMM_Image_Recognition_From_Scratch.ipynb",
+ "version": 1
+}

@@ -1,7 +1,7 @@
 {
  "course": "cs477",
  "site": "https://billjr99.github.io/Ursinus-CS477",
- "built": "2026-11-14 23:43",
+ "built": "2026-11-15 01:37",
  "examples": [
   {
    "id": "cs477-liascript-bayesianinference-1",
@@ -11,7 +11,11 @@
    "line": 67,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
    "error": null,
-   "steps": 6
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-bayesianinference-2",
@@ -21,7 +25,11 @@
    "line": 114,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
    "error": null,
-   "steps": 24
+   "steps": 24,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-bayesianinference-3",
@@ -31,7 +39,11 @@
    "line": 152,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
    "error": null,
-   "steps": 14
+   "steps": 14,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-bayesianinference-4",
@@ -41,7 +53,11 @@
    "line": 359,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
    "error": null,
-   "steps": 173
+   "steps": 173,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-bayesianinference-5",
@@ -51,7 +67,11 @@
    "line": 460,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
    "error": null,
-   "steps": 88
+   "steps": 88,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-bayesianinference-6",
@@ -61,7 +81,11 @@
    "line": 527,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
    "error": null,
-   "steps": 48
+   "steps": 48,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-bayesianinference-7",
@@ -71,7 +95,11 @@
    "line": 608,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
    "error": null,
-   "steps": 21
+   "steps": 21,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-bayesianinference-8",
@@ -81,7 +109,11 @@
    "line": 720,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
    "error": null,
-   "steps": 5
+   "steps": 5,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-bayesianinference-9",
@@ -91,7 +123,11 @@
    "line": 774,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
    "error": null,
-   "steps": 10
+   "steps": 10,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-bayesianinference-10",
@@ -101,7 +137,11 @@
    "line": 843,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
    "error": null,
-   "steps": 18
+   "steps": 18,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-bayesianinference-11",
@@ -111,7 +151,11 @@
    "line": 905,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
    "error": null,
-   "steps": 85
+   "steps": 85,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-bayesianinference-12",
@@ -121,7 +165,11 @@
    "line": 1044,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
    "error": null,
-   "steps": 433
+   "steps": 433,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-bayesianinference-13",
@@ -131,7 +179,11 @@
    "line": 1151,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
    "error": null,
-   "steps": 89
+   "steps": 89,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-datafeatures-1",
@@ -141,7 +193,11 @@
    "line": 130,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-datafeatures",
    "error": null,
-   "steps": 14
+   "steps": 14,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-explainable-1",
@@ -151,7 +207,11 @@
    "line": 38,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-explainable",
    "error": null,
-   "steps": 4
+   "steps": 4,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-explainable-2",
@@ -161,7 +221,11 @@
    "line": 109,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-explainable",
    "error": null,
-   "steps": 800
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-heuristicsearch-1",
@@ -171,7 +235,11 @@
    "line": 59,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-heuristicsearch",
    "error": null,
-   "steps": 6
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-heuristicsearch-2",
@@ -181,7 +249,11 @@
    "line": 114,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-heuristicsearch",
    "error": null,
-   "steps": 162
+   "steps": 162,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-heuristicsearch-3",
@@ -191,7 +263,11 @@
    "line": 154,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-heuristicsearch",
    "error": null,
-   "steps": 161
+   "steps": 161,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-heuristicsearch-4",
@@ -201,7 +277,11 @@
    "line": 339,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-heuristicsearch",
    "error": null,
-   "steps": 142
+   "steps": 142,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-informedsearch-1",
@@ -211,7 +291,11 @@
    "line": 45,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-informedsearch",
    "error": null,
-   "steps": 4
+   "steps": 4,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-introai-1",
@@ -221,7 +305,11 @@
    "line": 98,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-introai",
    "error": null,
-   "steps": 24
+   "steps": 24,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-introai-2",
@@ -231,7 +319,11 @@
    "line": 127,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-introai",
    "error": null,
-   "steps": 6
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-knowledgelogic-1",
@@ -241,7 +333,11 @@
    "line": 90,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-knowledgelogic",
    "error": null,
-   "steps": 36
+   "steps": 36,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-llms-1",
@@ -251,7 +347,11 @@
    "line": 43,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-llms",
    "error": null,
-   "steps": 27
+   "steps": 27,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-llms-2",
@@ -261,7 +361,11 @@
    "line": 109,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-llms",
    "error": null,
-   "steps": 14
+   "steps": 14,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-mdphmmbandits-1",
@@ -271,7 +375,11 @@
    "line": 122,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-mdphmmbandits",
    "error": null,
-   "steps": 4
+   "steps": 4,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-mdphmmbandits-2",
@@ -281,7 +389,11 @@
    "line": 251,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-mdphmmbandits",
    "error": null,
-   "steps": 36
+   "steps": 36,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-mdphmmbandits-3",
@@ -291,7 +403,11 @@
    "line": 430,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-mdphmmbandits",
    "error": null,
-   "steps": 158
+   "steps": 158,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-neuralnets-1",
@@ -301,7 +417,11 @@
    "line": 221,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-neuralnets",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-neuralnets-2",
@@ -311,7 +431,11 @@
    "line": 1173,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-neuralnets",
    "error": null,
-   "steps": 34
+   "steps": 34,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-optimizationga-1",
@@ -321,7 +445,11 @@
    "line": 121,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-optimizationga",
    "error": null,
-   "steps": 800
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-perceptronsmodelevaluation-1",
@@ -331,7 +459,11 @@
    "line": 32,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-perceptronsmodelevaluation",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-perceptronsmodelevaluation-2",
@@ -341,7 +473,11 @@
    "line": 68,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-perceptronsmodelevaluation",
    "error": null,
-   "steps": 11
+   "steps": 11,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-perceptronsmodelevaluation-3",
@@ -351,7 +487,11 @@
    "line": 104,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-perceptronsmodelevaluation",
    "error": null,
-   "steps": 6
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-perceptronsmodelevaluation-4",
@@ -361,7 +501,11 @@
    "line": 186,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-perceptronsmodelevaluation",
    "error": null,
-   "steps": 14
+   "steps": 14,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-perceptronsmodelevaluation-5",
@@ -371,7 +515,11 @@
    "line": 212,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-perceptronsmodelevaluation",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-perceptronsmodelevaluation-6",
@@ -381,7 +529,11 @@
    "line": 256,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-perceptronsmodelevaluation",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-perceptronsmodelevaluation-7",
@@ -391,7 +543,11 @@
    "line": 279,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-perceptronsmodelevaluation",
    "error": null,
-   "steps": 6
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-perceptronsmodelevaluation-8",
@@ -401,7 +557,11 @@
    "line": 298,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-perceptronsmodelevaluation",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-perceptronsmodelevaluation-9",
@@ -411,7 +571,11 @@
    "line": 456,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-perceptronsmodelevaluation",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-perceptronsmodelevaluation-10",
@@ -421,7 +585,11 @@
    "line": 516,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-perceptronsmodelevaluation",
    "error": null,
-   "steps": 800
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-perceptronsmodelevaluation-11",
@@ -431,7 +599,11 @@
    "line": 554,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-perceptronsmodelevaluation",
    "error": null,
-   "steps": 15
+   "steps": 15,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-probabilityfoundations-1",
@@ -441,7 +613,11 @@
    "line": 127,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-probabilityfoundations",
    "error": null,
-   "steps": 11
+   "steps": 11,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-regression-1",
@@ -451,7 +627,11 @@
    "line": 82,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-regression",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-regression-2",
@@ -461,7 +641,11 @@
    "line": 177,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-regression",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-regression-9",
@@ -471,7 +655,11 @@
    "line": 1358,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-regression",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-regression-10",
@@ -481,7 +669,11 @@
    "line": 1756,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-regression",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-regression-11",
@@ -491,7 +683,11 @@
    "line": 1896,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-regression",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-trees-1",
@@ -501,7 +697,11 @@
    "line": 137,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-trees",
    "error": null,
-   "steps": 23
+   "steps": 23,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-uninformedsearch-1",
@@ -511,7 +711,11 @@
    "line": 135,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-uninformedsearch",
    "error": null,
-   "steps": 85
+   "steps": 85,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-liascript-unsupervised-1",
@@ -521,7 +725,11 @@
    "line": 148,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-unsupervised",
    "error": null,
-   "steps": 13
+   "steps": 13,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-asmt-bayesian-9",
@@ -531,7 +739,11 @@
    "line": 389,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Assignments/asmt-bayesian",
    "error": null,
-   "steps": 22
+   "steps": 22,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-asmt-bayesian-10",
@@ -541,7 +753,11 @@
    "line": 438,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Assignments/asmt-bayesian",
    "error": null,
-   "steps": 800
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-asmt-bayesian-11",
@@ -551,7 +767,11 @@
    "line": 487,
    "page_url": "https://billjr99.github.io/Ursinus-CS477/Assignments/asmt-bayesian",
    "error": null,
-   "steps": 13
+   "steps": 13,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-astar-search-with-graphics-1",
@@ -561,7 +781,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 6
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-astar-search-with-graphics-5",
@@ -571,7 +795,11 @@
    "line": 5,
    "page_url": "",
    "error": null,
-   "steps": 5
+   "steps": 5,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-astar-search-with-graphics-6",
@@ -581,7 +809,11 @@
    "line": 6,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-astar-search-with-graphics-7",
@@ -591,7 +823,11 @@
    "line": 7,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-astar-search-with-graphics-8",
@@ -601,7 +837,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-astar-search-with-graphics-9",
@@ -611,7 +851,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-a-star-step-by-step-3",
@@ -621,7 +865,11 @@
    "line": 3,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-a-star-step-by-step-4",
@@ -631,7 +879,11 @@
    "line": 4,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-a-star-step-by-step-5",
@@ -641,7 +893,11 @@
    "line": 5,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-a-star-step-by-step-6",
@@ -651,7 +907,11 @@
    "line": 6,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-a-star-step-by-step-7",
@@ -661,7 +921,11 @@
    "line": 7,
    "page_url": "",
    "error": null,
-   "steps": 800
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-a-star-step-by-step-9",
@@ -671,7 +935,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 800
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-a-star-step-by-step-10",
@@ -681,7 +949,11 @@
    "line": 10,
    "page_url": "",
    "error": null,
-   "steps": 19
+   "steps": 19,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-bayesian-diagnostic-test-belief-updating-1",
@@ -691,7 +963,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 6
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-bayesian-diagnostic-test-belief-updating-3",
@@ -701,7 +977,11 @@
    "line": 3,
    "page_url": "",
    "error": null,
-   "steps": 8
+   "steps": 8,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-bayesian-diagnostic-test-belief-updating-4",
@@ -711,7 +991,11 @@
    "line": 4,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-bayesian-diagnostic-test-belief-updating-6",
@@ -721,7 +1005,11 @@
    "line": 6,
    "page_url": "",
    "error": null,
-   "steps": 20
+   "steps": 20,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-bayesian-diagnostic-test-belief-updating-7",
@@ -731,7 +1019,11 @@
    "line": 7,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-bayesian-diagnostic-test-belief-updating-8",
@@ -741,7 +1033,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 30
+   "steps": 30,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-bayesian-diagnostic-test-belief-updating-9",
@@ -751,7 +1047,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-1",
@@ -761,7 +1061,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 12
+   "steps": 12,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-3",
@@ -771,7 +1075,11 @@
    "line": 3,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-7",
@@ -781,7 +1089,11 @@
    "line": 7,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-8",
@@ -791,7 +1103,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 40
+   "steps": 40,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-10",
@@ -801,7 +1117,11 @@
    "line": 10,
    "page_url": "",
    "error": null,
-   "steps": 92
+   "steps": 92,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-11",
@@ -811,7 +1131,11 @@
    "line": 11,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-12",
@@ -821,7 +1145,11 @@
    "line": 12,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-connect4-minimax-alphabeta-from-scratch-1",
@@ -831,7 +1159,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 6
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-creditscorefeatureweightestimator-7",
@@ -841,7 +1173,11 @@
    "line": 7,
    "page_url": "",
    "error": null,
-   "steps": 800
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-creditscorefeatureweightestimator-9",
@@ -851,7 +1187,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 31
+   "steps": 31,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-1",
@@ -861,7 +1201,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 6
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-3",
@@ -871,7 +1215,11 @@
    "line": 3,
    "page_url": "",
    "error": null,
-   "steps": 800
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-4",
@@ -881,7 +1229,11 @@
    "line": 4,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-5",
@@ -891,7 +1243,11 @@
    "line": 5,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-6",
@@ -901,7 +1257,11 @@
    "line": 6,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-7",
@@ -911,7 +1271,11 @@
    "line": 7,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-8",
@@ -921,7 +1285,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-9",
@@ -931,7 +1299,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 25
+   "steps": 25,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-10",
@@ -941,7 +1313,11 @@
    "line": 10,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-1",
@@ -951,7 +1327,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 6
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-3",
@@ -961,7 +1341,11 @@
    "line": 3,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-5",
@@ -971,7 +1355,11 @@
    "line": 5,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-6",
@@ -981,7 +1369,11 @@
    "line": 6,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-7",
@@ -991,7 +1383,11 @@
    "line": 7,
    "page_url": "",
    "error": null,
-   "steps": 800
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-8",
@@ -1001,7 +1397,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-9",
@@ -1011,7 +1411,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-10",
@@ -1021,7 +1425,11 @@
    "line": 10,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-11",
@@ -1031,7 +1439,11 @@
    "line": 11,
    "page_url": "",
    "error": null,
-   "steps": 13
+   "steps": 13,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-12",
@@ -1041,7 +1453,11 @@
    "line": 12,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-geneticalgorithm-fromscratch-toyexample-1",
@@ -1051,7 +1467,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 5
+   "steps": 5,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-geneticalgorithm-fromscratch-toyexample-5",
@@ -1061,7 +1481,11 @@
    "line": 5,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-geneticalgorithm-fromscratch-toyexample-6",
@@ -1071,7 +1495,11 @@
    "line": 6,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-geneticalgorithm-fromscratch-toyexample-7",
@@ -1081,7 +1509,11 @@
    "line": 7,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-geneticalgorithm-fromscratch-toyexample-8",
@@ -1091,7 +1523,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 28
+   "steps": 28,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-geneticalgorithm-fromscratch-toyexample-9",
@@ -1101,7 +1537,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 34
+   "steps": 34,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-geneticalgorithm-fromscratch-toyexample-10",
@@ -1111,7 +1551,11 @@
    "line": 10,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-bull-bear-detection-from-scratch-1",
@@ -1121,7 +1565,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 12
+   "steps": 12,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-1",
@@ -1131,7 +1579,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 12
+   "steps": 12,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-2",
@@ -1141,7 +1593,11 @@
    "line": 2,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-3",
@@ -1151,7 +1607,11 @@
    "line": 3,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-5",
@@ -1161,7 +1621,11 @@
    "line": 5,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-7",
@@ -1171,7 +1635,11 @@
    "line": 7,
    "page_url": "",
    "error": null,
-   "steps": 7
+   "steps": 7,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-8",
@@ -1181,7 +1649,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 19
+   "steps": 19,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-10",
@@ -1191,7 +1663,11 @@
    "line": 10,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-11",
@@ -1201,7 +1677,11 @@
    "line": 11,
    "page_url": "",
    "error": null,
-   "steps": 14
+   "steps": 14,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-12",
@@ -1211,7 +1691,11 @@
    "line": 12,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-13",
@@ -1221,7 +1705,11 @@
    "line": 13,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-14",
@@ -1231,7 +1719,11 @@
    "line": 14,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-image-recognition-from-scratch-1",
@@ -1241,7 +1733,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 12
+   "steps": 12,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-image-recognition-from-scratch-3",
@@ -1251,7 +1747,11 @@
    "line": 3,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-image-recognition-from-scratch-4",
@@ -1261,7 +1761,11 @@
    "line": 4,
    "page_url": "",
    "error": null,
-   "steps": 800
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-image-recognition-from-scratch-5",
@@ -1271,7 +1775,11 @@
    "line": 5,
    "page_url": "",
    "error": null,
-   "steps": 800
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-image-recognition-from-scratch-8",
@@ -1281,7 +1789,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-image-recognition-from-scratch-9",
@@ -1291,7 +1803,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-image-recognition-from-scratch-10",
@@ -1301,7 +1817,11 @@
    "line": 10,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-image-recognition-from-scratch-11",
@@ -1311,7 +1831,11 @@
    "line": 11,
    "page_url": "",
    "error": null,
-   "steps": 71
+   "steps": 71,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-image-recognition-from-scratch-12",
@@ -1321,7 +1845,11 @@
    "line": 12,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-1",
@@ -1331,7 +1859,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 12
+   "steps": 12,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-4",
@@ -1341,7 +1873,11 @@
    "line": 4,
    "page_url": "",
    "error": null,
-   "steps": 138
+   "steps": 138,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-5",
@@ -1351,7 +1887,11 @@
    "line": 5,
    "page_url": "",
    "error": null,
-   "steps": 8
+   "steps": 8,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-6",
@@ -1361,7 +1901,11 @@
    "line": 6,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-10",
@@ -1371,7 +1915,11 @@
    "line": 10,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-11",
@@ -1381,7 +1929,11 @@
    "line": 11,
    "page_url": "",
    "error": null,
-   "steps": 5
+   "steps": 5,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-13",
@@ -1391,7 +1943,11 @@
    "line": 13,
    "page_url": "",
    "error": null,
-   "steps": 26
+   "steps": 26,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-14",
@@ -1401,7 +1957,11 @@
    "line": 14,
    "page_url": "",
    "error": null,
-   "steps": 21
+   "steps": 21,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-15",
@@ -1411,7 +1971,11 @@
    "line": 15,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-16",
@@ -1421,7 +1985,11 @@
    "line": 16,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-viterbi-colab-5",
@@ -1431,7 +1999,11 @@
    "line": 5,
    "page_url": "",
    "error": null,
-   "steps": 22
+   "steps": 22,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-viterbi-colab-6",
@@ -1441,7 +2013,11 @@
    "line": 6,
    "page_url": "",
    "error": null,
-   "steps": 8
+   "steps": 8,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-viterbi-colab-7",
@@ -1451,7 +2027,11 @@
    "line": 7,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-viterbi-colab-8",
@@ -1461,7 +2041,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-viterbi-colab-9",
@@ -1471,7 +2055,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 41
+   "steps": 41,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-viterbi-colab-11",
@@ -1481,7 +2069,11 @@
    "line": 11,
    "page_url": "",
    "error": null,
-   "steps": 40
+   "steps": 40,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-viterbi-colab-12",
@@ -1491,7 +2083,11 @@
    "line": 12,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hmm-viterbi-colab-13",
@@ -1501,7 +2097,11 @@
    "line": 13,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-hillclimbing-pacman-from-scratch-1",
@@ -1511,7 +2111,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 6
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-kmeans-clustering-iris-from-scratch-1",
@@ -1521,7 +2125,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 6
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-kmeans-clustering-iris-from-scratch-3",
@@ -1531,7 +2139,11 @@
    "line": 3,
    "page_url": "",
    "error": null,
-   "steps": 10
+   "steps": 10,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-kmeans-clustering-iris-from-scratch-5",
@@ -1541,7 +2153,11 @@
    "line": 5,
    "page_url": "",
    "error": null,
-   "steps": 4
+   "steps": 4,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-kmeans-clustering-iris-from-scratch-6",
@@ -1551,7 +2167,11 @@
    "line": 6,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-kmeans-clustering-iris-from-scratch-7",
@@ -1561,7 +2181,11 @@
    "line": 7,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-kmeans-clustering-iris-from-scratch-8",
@@ -1571,7 +2195,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-kmeans-clustering-iris-from-scratch-9",
@@ -1581,7 +2209,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-kmeans-clustering-iris-from-scratch-10",
@@ -1591,7 +2223,11 @@
    "line": 10,
    "page_url": "",
    "error": null,
-   "steps": 35
+   "steps": 35,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-kmeans-clustering-iris-from-scratch-11",
@@ -1601,7 +2237,11 @@
    "line": 11,
    "page_url": "",
    "error": null,
-   "steps": 22
+   "steps": 22,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-kmeans-clustering-iris-from-scratch-12",
@@ -1611,7 +2251,11 @@
    "line": 12,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-k-means-clustering-and-nearest-neighbors-2",
@@ -1621,7 +2265,11 @@
    "line": 2,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-1",
@@ -1631,7 +2279,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 12
+   "steps": 12,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-3",
@@ -1641,7 +2293,11 @@
    "line": 3,
    "page_url": "",
    "error": null,
-   "steps": 28
+   "steps": 28,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-6",
@@ -1651,7 +2307,11 @@
    "line": 6,
    "page_url": "",
    "error": null,
-   "steps": 345
+   "steps": 345,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-7",
@@ -1661,7 +2321,11 @@
    "line": 7,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-8",
@@ -1671,7 +2335,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-9",
@@ -1681,7 +2349,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-10",
@@ -1691,7 +2363,11 @@
    "line": 10,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-lda-and-fisherscore-fromscratch-1",
@@ -1701,7 +2377,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 6
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-lda-and-fisherscore-fromscratch-3",
@@ -1711,7 +2391,11 @@
    "line": 3,
    "page_url": "",
    "error": null,
-   "steps": 10
+   "steps": 10,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-lda-and-fisherscore-fromscratch-4",
@@ -1721,7 +2405,11 @@
    "line": 4,
    "page_url": "",
    "error": null,
-   "steps": 52
+   "steps": 52,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-lda-and-fisherscore-fromscratch-5",
@@ -1731,7 +2419,11 @@
    "line": 5,
    "page_url": "",
    "error": null,
-   "steps": 18
+   "steps": 18,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-lda-and-fisherscore-fromscratch-6",
@@ -1741,7 +2433,11 @@
    "line": 6,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-lda-and-fisherscore-fromscratch-7",
@@ -1751,7 +2447,11 @@
    "line": 7,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-lda-and-fisherscore-fromscratch-8",
@@ -1761,7 +2461,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-lda-and-fisherscore-fromscratch-9",
@@ -1771,7 +2475,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-lda-and-fisherscore-fromscratch-10",
@@ -1781,7 +2489,11 @@
    "line": 10,
    "page_url": "",
    "error": null,
-   "steps": 42
+   "steps": 42,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-lda-and-fisherscore-fromscratch-11",
@@ -1791,7 +2503,11 @@
    "line": 11,
    "page_url": "",
    "error": null,
-   "steps": 25
+   "steps": 25,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-lda-and-fisherscore-fromscratch-12",
@@ -1801,7 +2517,11 @@
    "line": 12,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linearfunctionestimatormultilayernn-6",
@@ -1811,7 +2531,11 @@
    "line": 6,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linearfunctionestimatormultilayernn-7",
@@ -1821,7 +2545,11 @@
    "line": 7,
    "page_url": "",
    "error": null,
-   "steps": 2
+   "steps": 2,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linearfunctionestimatormultilayernn-8",
@@ -1831,7 +2559,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 4
+   "steps": 4,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linearfunctionestimatormultilayernn-9",
@@ -1841,7 +2573,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linearfunctionestimatornn-6",
@@ -1851,7 +2587,11 @@
    "line": 6,
    "page_url": "",
    "error": null,
-   "steps": 800
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linearfunctionestimatornn-7",
@@ -1861,7 +2601,11 @@
    "line": 7,
    "page_url": "",
    "error": null,
-   "steps": 2
+   "steps": 2,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-and-logistic-regression-tutorial-1",
@@ -1871,7 +2615,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-and-logistic-regression-tutorial-2",
@@ -1881,7 +2629,11 @@
    "line": 2,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-and-logistic-regression-tutorial-3",
@@ -1891,7 +2643,11 @@
    "line": 3,
    "page_url": "",
    "error": null,
-   "steps": 6
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-and-logistic-regression-tutorial-4",
@@ -1901,7 +2657,11 @@
    "line": 4,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-and-logistic-regression-tutorial-5",
@@ -1911,7 +2671,11 @@
    "line": 5,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-and-logistic-regression-tutorial-6",
@@ -1921,7 +2685,11 @@
    "line": 6,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-and-logistic-regression-tutorial-7",
@@ -1931,7 +2699,11 @@
    "line": 7,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-and-logistic-regression-tutorial-8",
@@ -1941,7 +2713,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-and-logistic-regression-tutorial-9",
@@ -1951,7 +2727,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-and-logistic-regression-tutorial-10",
@@ -1961,7 +2741,11 @@
    "line": 10,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-and-logistic-regression-tutorial-11",
@@ -1971,7 +2755,11 @@
    "line": 11,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-and-logistic-regression-tutorial-12",
@@ -1981,7 +2769,11 @@
    "line": 12,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-and-logistic-regression-tutorial-13",
@@ -1991,7 +2783,11 @@
    "line": 13,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-and-logistic-regression-tutorial-14",
@@ -2001,7 +2797,11 @@
    "line": 14,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-and-logistic-regression-tutorial-15",
@@ -2011,7 +2811,11 @@
    "line": 15,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-logistic-regression-mle-from-scratch-1",
@@ -2021,7 +2825,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 6
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-logistic-regression-mle-from-scratch-3",
@@ -2031,7 +2839,11 @@
    "line": 3,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-logistic-regression-mle-from-scratch-4",
@@ -2041,7 +2853,11 @@
    "line": 4,
    "page_url": "",
    "error": null,
-   "steps": 6
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-logistic-regression-mle-from-scratch-7",
@@ -2051,7 +2867,11 @@
    "line": 7,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-logistic-regression-mle-from-scratch-8",
@@ -2061,7 +2881,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-logistic-regression-mle-from-scratch-9",
@@ -2071,7 +2895,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-logistic-regression-mle-from-scratch-10",
@@ -2081,7 +2909,11 @@
    "line": 10,
    "page_url": "",
    "error": null,
-   "steps": 12
+   "steps": 12,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-logistic-regression-mle-from-scratch-11",
@@ -2091,7 +2923,11 @@
    "line": 11,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-mle-from-first-principles-worked-examples-1",
@@ -2101,7 +2937,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 6
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-mle-from-first-principles-worked-examples-3",
@@ -2111,7 +2951,11 @@
    "line": 3,
    "page_url": "",
    "error": null,
-   "steps": 11
+   "steps": 11,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-mle-from-first-principles-worked-examples-4",
@@ -2121,7 +2965,11 @@
    "line": 4,
    "page_url": "",
    "error": null,
-   "steps": 11
+   "steps": 11,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-mle-from-first-principles-worked-examples-5",
@@ -2131,7 +2979,11 @@
    "line": 5,
    "page_url": "",
    "error": null,
-   "steps": 11
+   "steps": 11,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-mle-from-first-principles-worked-examples-6",
@@ -2141,7 +2993,11 @@
    "line": 6,
    "page_url": "",
    "error": null,
-   "steps": 13
+   "steps": 13,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-mle-from-first-principles-worked-examples-7",
@@ -2151,7 +3007,11 @@
    "line": 7,
    "page_url": "",
    "error": null,
-   "steps": 800
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-mle-from-first-principles-worked-examples-8",
@@ -2161,7 +3021,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 14
+   "steps": 14,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-mle-from-first-principles-worked-examples-9",
@@ -2171,7 +3035,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 800
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-mle-from-first-principles-worked-examples-10",
@@ -2181,7 +3049,11 @@
    "line": 10,
    "page_url": "",
    "error": null,
-   "steps": 14
+   "steps": 14,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-mle-from-first-principles-worked-examples-11",
@@ -2191,7 +3063,11 @@
    "line": 11,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-markov-chain-tutorial-3",
@@ -2201,7 +3077,11 @@
    "line": 3,
    "page_url": "",
    "error": null,
-   "steps": 20
+   "steps": 20,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-markov-chain-tutorial-4",
@@ -2211,7 +3091,11 @@
    "line": 4,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-markov-chain-tutorial-5",
@@ -2221,7 +3105,11 @@
    "line": 5,
    "page_url": "",
    "error": null,
-   "steps": 15
+   "steps": 15,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-markov-chain-tutorial-6",
@@ -2231,7 +3119,11 @@
    "line": 6,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-markov-chain-tutorial-7",
@@ -2241,7 +3133,11 @@
    "line": 7,
    "page_url": "",
    "error": null,
-   "steps": 7
+   "steps": 7,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-markov-chain-tutorial-8",
@@ -2251,7 +3147,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-markov-chain-tutorial-9",
@@ -2261,7 +3161,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 33
+   "steps": 33,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-markov-chain-tutorial-10",
@@ -2271,7 +3175,11 @@
    "line": 10,
    "page_url": "",
    "error": null,
-   "steps": 11
+   "steps": 11,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-markov-chain-tutorial-11",
@@ -2281,7 +3189,11 @@
    "line": 11,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-markov-chain-tutorial-12",
@@ -2291,7 +3203,11 @@
    "line": 12,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-minimax-tutorial-2",
@@ -2301,7 +3217,11 @@
    "line": 2,
    "page_url": "",
    "error": null,
-   "steps": 14
+   "steps": 14,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-minimax-tutorial-3",
@@ -2311,7 +3231,11 @@
    "line": 3,
    "page_url": "",
    "error": null,
-   "steps": 35
+   "steps": 35,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-minimax-tutorial-4",
@@ -2321,7 +3245,11 @@
    "line": 4,
    "page_url": "",
    "error": null,
-   "steps": 36
+   "steps": 36,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-minimax-tutorial-5",
@@ -2331,7 +3259,11 @@
    "line": 5,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-nonlinearfunctionestimatormultilayernn-6",
@@ -2341,7 +3273,11 @@
    "line": 6,
    "page_url": "",
    "error": null,
-   "steps": 800
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-nonlinearfunctionestimatormultilayernn-7",
@@ -2351,7 +3287,11 @@
    "line": 7,
    "page_url": "",
    "error": null,
-   "steps": 18
+   "steps": 18,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-nonlinearfunctionestimatormultilayernn-8",
@@ -2361,7 +3301,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-nonlinearfunctionestimatormultilayernn-9",
@@ -2371,7 +3315,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-nonlinearfunctionestimatormultilayernn-10",
@@ -2381,7 +3329,11 @@
    "line": 10,
    "page_url": "",
    "error": null,
-   "steps": 26
+   "steps": 26,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-pca-from-scratch-and-sklearn-1",
@@ -2391,7 +3343,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-pca-from-scratch-and-sklearn-3",
@@ -2401,7 +3357,11 @@
    "line": 3,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-pca-from-scratch-and-sklearn-4",
@@ -2411,7 +3371,11 @@
    "line": 4,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-pca-from-scratch-and-sklearn-6",
@@ -2421,7 +3385,11 @@
    "line": 6,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-pca-from-scratch-and-sklearn-8",
@@ -2431,7 +3399,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-pca-from-scratch-and-sklearn-9",
@@ -2441,7 +3413,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-pca-from-scratch-and-sklearn-10",
@@ -2451,7 +3427,11 @@
    "line": 10,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-1",
@@ -2461,7 +3441,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 6
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-3",
@@ -2471,7 +3455,11 @@
    "line": 3,
    "page_url": "",
    "error": null,
-   "steps": 18
+   "steps": 18,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-9",
@@ -2481,7 +3469,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 11
+   "steps": 11,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-10",
@@ -2491,7 +3483,11 @@
    "line": 10,
    "page_url": "",
    "error": null,
-   "steps": 21
+   "steps": 21,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-11",
@@ -2501,7 +3497,11 @@
    "line": 11,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-12",
@@ -2511,7 +3511,11 @@
    "line": 12,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-13",
@@ -2521,7 +3525,11 @@
    "line": 13,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-14",
@@ -2531,7 +3539,11 @@
    "line": 14,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-15",
@@ -2541,7 +3553,11 @@
    "line": 15,
    "page_url": "",
    "error": null,
-   "steps": 34
+   "steps": 34,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-16",
@@ -2551,7 +3567,11 @@
    "line": 16,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-qlearning-vs-valueiteration-gridworld-1",
@@ -2561,7 +3581,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 6
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-qlearning-vs-valueiteration-gridworld-8",
@@ -2571,7 +3595,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-qlearning-vs-valueiteration-gridworld-9",
@@ -2581,7 +3609,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-qlearning-vs-valueiteration-gridworld-10",
@@ -2591,7 +3623,11 @@
    "line": 10,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-qlearning-vs-valueiteration-gridworld-11",
@@ -2601,7 +3637,11 @@
    "line": 11,
    "page_url": "",
    "error": null,
-   "steps": 19
+   "steps": 19,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-qlearning-vs-valueiteration-gridworld-12",
@@ -2611,7 +3651,11 @@
    "line": 12,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-rl-fromscratch-toygridworld-1",
@@ -2621,7 +3665,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 5
+   "steps": 5,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-rl-fromscratch-toygridworld-6",
@@ -2631,7 +3679,11 @@
    "line": 6,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-rl-fromscratch-toygridworld-7",
@@ -2641,7 +3693,11 @@
    "line": 7,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-rl-fromscratch-toygridworld-8",
@@ -2651,7 +3707,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-rl-fromscratch-toygridworld-9",
@@ -2661,7 +3721,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-svm-from-scratch-linear-and-kernel-1",
@@ -2671,7 +3735,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 6
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-svm-from-scratch-linear-and-kernel-3",
@@ -2681,7 +3749,11 @@
    "line": 3,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-svm-from-scratch-linear-and-kernel-4",
@@ -2691,7 +3763,11 @@
    "line": 4,
    "page_url": "",
    "error": null,
-   "steps": 4
+   "steps": 4,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-svm-from-scratch-linear-and-kernel-8",
@@ -2701,7 +3777,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 23
+   "steps": 23,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-svm-from-scratch-linear-and-kernel-9",
@@ -2711,7 +3791,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-svm-from-scratch-linear-and-kernel-10",
@@ -2721,7 +3805,11 @@
    "line": 10,
    "page_url": "",
    "error": null,
-   "steps": 7
+   "steps": 7,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-svm-from-scratch-linear-and-kernel-11",
@@ -2731,7 +3819,11 @@
    "line": 11,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-svm-from-scratch-linear-and-kernel-12",
@@ -2741,7 +3833,11 @@
    "line": 12,
    "page_url": "",
    "error": null,
-   "steps": 5
+   "steps": 5,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-svm-from-scratch-linear-and-kernel-13",
@@ -2751,7 +3847,11 @@
    "line": 13,
    "page_url": "",
    "error": null,
-   "steps": 13
+   "steps": 13,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-svm-from-scratch-linear-and-kernel-14",
@@ -2761,7 +3861,11 @@
    "line": 14,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-simple-mnist-nn-from-scratch-1",
@@ -2771,7 +3875,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-unsupervised-learning-colab-2",
@@ -2781,7 +3889,11 @@
    "line": 2,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-unsupervised-learning-colab-3",
@@ -2791,7 +3903,11 @@
    "line": 3,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-unsupervised-learning-colab-4",
@@ -2801,7 +3917,11 @@
    "line": 4,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-unsupervised-learning-colab-5",
@@ -2811,7 +3931,11 @@
    "line": 5,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-unsupervised-learning-colab-6",
@@ -2821,7 +3945,11 @@
    "line": 6,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-unsupervised-learning-colab-7",
@@ -2831,7 +3959,11 @@
    "line": 7,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-unsupervised-learning-colab-8",
@@ -2841,7 +3973,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-logistic-regression-demo-1",
@@ -2851,7 +3987,11 @@
    "line": 1,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-logistic-regression-demo-2",
@@ -2861,7 +4001,11 @@
    "line": 2,
    "page_url": "",
    "error": null,
-   "steps": 6
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-logistic-regression-demo-5",
@@ -2871,7 +4015,11 @@
    "line": 5,
    "page_url": "",
    "error": null,
-   "steps": 5
+   "steps": 5,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-logistic-regression-demo-6",
@@ -2881,7 +4029,11 @@
    "line": 6,
    "page_url": "",
    "error": null,
-   "steps": 12
+   "steps": 12,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-logistic-regression-demo-7",
@@ -2891,7 +4043,11 @@
    "line": 7,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-logistic-regression-demo-8",
@@ -2901,7 +4057,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 23
+   "steps": 23,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-logistic-regression-demo-9",
@@ -2911,7 +4071,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 15
+   "steps": 15,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-logistic-regression-demo-13",
@@ -2921,7 +4085,11 @@
    "line": 13,
    "page_url": "",
    "error": null,
-   "steps": 7
+   "steps": 7,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-logistic-regression-demo-14",
@@ -2931,7 +4099,11 @@
    "line": 14,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-logistic-regression-demo-15",
@@ -2941,7 +4113,11 @@
    "line": 15,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-linear-logistic-regression-demo-17",
@@ -2951,7 +4127,11 @@
    "line": 17,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-naive-bayes-step-by-step-3",
@@ -2961,7 +4141,11 @@
    "line": 3,
    "page_url": "",
    "error": null,
-   "steps": 0
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-naive-bayes-step-by-step-4",
@@ -2971,7 +4155,11 @@
    "line": 4,
    "page_url": "",
    "error": null,
-   "steps": 7
+   "steps": 7,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-naive-bayes-step-by-step-8",
@@ -2981,7 +4169,11 @@
    "line": 8,
    "page_url": "",
    "error": null,
-   "steps": 134
+   "steps": 134,
+   "modes": [
+    "run",
+    "explain"
+   ]
   },
   {
    "id": "cs477-nb-naive-bayes-step-by-step-9",
@@ -2991,7 +4183,11 @@
    "line": 9,
    "page_url": "",
    "error": null,
-   "steps": 7
+   "steps": 7,
+   "modes": [
+    "run",
+    "explain"
+   ]
   }
  ]
 }

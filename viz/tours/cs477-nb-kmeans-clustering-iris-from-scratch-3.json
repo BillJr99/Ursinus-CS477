@@ -1,0 +1,23 @@
+{
+ "code": "iris = datasets.load_iris()\nX = iris.data.astype(float)\ny = iris.target\ntarget_names = iris.target_names\nfeature_names = iris.feature_names\n\nprint(\"X shape:\", X.shape, \"| classes:\", list(target_names))\nX_std, mu, sd = standardize(X)\nZ, comps, evr = pca_svd(X_std, n_components=2)\nprint(\"PCA EVR (first two):\", evr)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-kmeans-clustering-iris-from-scratch-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-10 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "1-10"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "10",
+   "trace_step": 9
+  }
+ ],
+ "title": "Notebook KMeans_Clustering_Iris_From_Scratch.ipynb",
+ "version": 1
+}

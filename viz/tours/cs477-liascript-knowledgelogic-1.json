@@ -1,0 +1,43 @@
+{
+ "code": "facts = {\"A\", \"B\"}\nrules = [({\"A\", \"B\"}, \"C\"),\n         ({\"C\"}, \"D\"),\n         ({\"D\", \"B\"}, \"E\")]\n\nchanged = True\nwhile changed:\n    changed = False\n    for premises, conclusion in rules:\n        if premises <= facts and conclusion not in facts:\n            print(f\"{' AND '.join(sorted(premises))} => {conclusion}\")\n            facts.add(conclusion)\n            changed = True\nprint(\"Derived knowledge base:\", sorted(facts))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-knowledgelogic-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-13 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "1-13"
+  },
+  {
+   "description": "Line 7 repeats while `changed` is true.",
+   "kind": "focus",
+   "lines": "7"
+  },
+  {
+   "description": "Line 9 loops over `rules`.",
+   "kind": "focus",
+   "lines": "9"
+  },
+  {
+   "description": "Line 10 makes a decision.",
+   "kind": "focus",
+   "lines": "10"
+  },
+  {
+   "description": "Line 14 continues the main code and print the results.",
+   "kind": "reveal",
+   "lines": "14"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "14",
+   "trace_step": 35
+  }
+ ],
+ "title": "4. Inference Rules and Forward Chaining",
+ "version": 1
+}

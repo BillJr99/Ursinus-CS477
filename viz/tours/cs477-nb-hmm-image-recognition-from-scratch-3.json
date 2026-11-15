@@ -1,0 +1,22 @@
+{
+ "code": "import numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import load_digits\nfrom sklearn.metrics import accuracy_score, classification_report, confusion_matrix\n\nSEED = 123\nrng = np.random.default_rng(SEED)\nnp.set_printoptions(precision=4, suppress=True)\nprint(\"Seeded.\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-hmm-image-recognition-from-scratch-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-4 import `numpy`, `matplotlib.pyplot`, `sklearn.datasets` and `sklearn.metrics`.",
+   "kind": "reveal",
+   "lines": "1-4"
+  },
+  {
+   "description": "Lines 6-9 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "6-9"
+  }
+ ],
+ "title": "Notebook HMM_Image_Recognition_From_Scratch.ipynb",
+ "version": 1
+}

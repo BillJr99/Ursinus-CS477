@@ -1,0 +1,37 @@
+{
+ "code": "# === Minimal 1-D GAN with stable GradientTape loop ===\nif not TF_AVAILABLE:\n    print(\"TensorFlow not available; install it first (and enable GPU in Colab if desired).\")\nelse:\n    # 1) Data & hyperparameters\n    rng = np.random.default_rng(0)\n    num_real = 4000\n    real_data = rng.normal(0.0, 1.0, size=(num_real, 1)).astype(\"float32\")\n    batch_size = 128\n    epochs = 1000\n    noise_dim = 1\n    lr = 1e-3\n\n    # 2) Generator: z -> x_fake\n    generator = tf.keras.Sequential([\n        layers.Input(shape=(noise_dim,)),\n        layers.Dense(32, activation=\"relu\"),\n        layers.Dense(32, activation=\"relu\"),\n        layers.Dense(1)\n    ], name=\"Generator\")\n\n    # 3) Discriminator: x -> prob_real\n    discriminator = tf.keras.Sequential([\n        layers.Input(shape=(1,)),\n        layers.Dense(32, activation=\"relu\"),\n        layers.Dense(32, activation=\"relu\"),\n        layers.Dense(1, activation=\"sigmoid\")\n    ], name=\"Discriminator\")\n\n    # 4) Optimizers and loss\n    d_optimizer = tf.keras.optimizers.Adam(learning_rate=lr)\n    g_optimizer = tf.keras.optimizers.Adam(learning_rate=lr)\n    bce = tf.keras.losses.BinaryCrossentropy(from_logits=False)\n\n    # 5) Batch samplers\n    def sample_real_batch():\n        idx = rng.integers(0, num_real, size=batch_size)\n        return real_data[idx]\n\n    def sample_noise_batch():\n        return rng.standard_normal(size=(batch_size, noise_dim)).astype(\"float32\")\n\n    # 6) Train discriminator on real and fake\n    @tf.function\n    def train_discriminator_step():\n        x_real = sample_real_batch()\n        y_real = tf.ones((batch_size, 1), dtype=tf.float32)\n        z = sample_noise_batch()\n        x_fake = generator(z, training=True)\n        y_fake = tf.zeros((batch_size, 1), dtype=tf.float32)\n        with tf.GradientTape() as tape:\n            p_real = discriminator(x_real, training=True)\n            p_fake = discriminator(x_fake, training=True)\n            d_loss = bce(y_real, p_real) + bce(y_fake, p_fake)\n        grads = tape.gradient(d_loss, discriminator.trainable_variables)\n        d_optimizer.apply_gradients(zip(grads, discriminator.trainable_variables))\n        return d_loss\n\n    # 7) Train generator to fool discriminator (non-saturating loss)\n    @tf.function\n    def train_generator_step():\n        z = sample_noise_batch()\n        with tf.GradientTape() as tape:\n            x_fake = generator(z, training=True)\n            p_fake = discriminator(x_fake, training=True)\n            y_target = tf.ones((batch_size, 1), dtype=tf.float32)\n            g_loss = bce(y_target, p_fake)\n        grads = tape.gradient(g_loss, generator.trainable_variables)\n        g_optimizer.apply_gradients(zip(grads, generator.trainable_variables))\n        return g_loss\n\n    # 8) Training loop\n    history_d, history_g = [], []\n    for step in range(epochs):\n        d_loss = train_discriminator_step()\n        g_loss = train_generator_step()\n        history_d.append(float(d_loss.numpy()))\n        history_g.append(float(g_loss.numpy()))\n        if step % 100 == 0:\n            print(f\"Step {step:04d} | D loss: {history_d[-1]:.4f} | G loss: {history_g[-1]:.4f}\")\n\n    # 9) Plot losses\n    plt.figure()\n    plt.plot(history_d, label=\"Discriminator loss\")\n    plt.plot(history_g, label=\"Generator loss\")\n    plt.title(\"GAN Training Losses\")\n    plt.xlabel(\"Training step\")\n    plt.ylabel(\"Loss\")\n    plt.legend()\n    plt.show()\n\n    # 10) Compare real vs generated distributions\n    z_many = rng.standard_normal(size=(5000, noise_dim)).astype(\"float32\")\n    gen_many = generator(z_many, training=False).numpy().flatten()\n    plt.figure()\n    plt.hist(real_data.flatten(), bins=40, alpha=0.5, density=True)\n    plt.hist(gen_many, bins=40, alpha=0.5, density=True)\n    plt.title(\"GAN: Real vs Generated (1-D)\")\n    plt.xlabel(\"Value\")\n    plt.ylabel(\"Density\")\n    plt.show()\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-unsupervised-learning-colab-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-101 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-101"
+  },
+  {
+   "description": "Line 2 checks `not TF_AVAILABLE`.",
+   "kind": "focus",
+   "lines": "2"
+  },
+  {
+   "description": "Line 38 returns `real_data[idx]`.",
+   "kind": "focus",
+   "lines": "38"
+  },
+  {
+   "description": "Line 57 returns `d_loss`.",
+   "kind": "focus",
+   "lines": "57"
+  },
+  {
+   "description": "Line 74 loops over `range(epochs)`.",
+   "kind": "focus",
+   "lines": "74"
+  }
+ ],
+ "title": "Notebook Unsupervised_Learning_Colab.ipynb",
+ "version": 1
+}

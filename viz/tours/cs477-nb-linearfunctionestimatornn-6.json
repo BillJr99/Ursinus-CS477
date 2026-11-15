@@ -1,0 +1,33 @@
+{
+ "code": "# Training the neural network\nfor epoch in range(epochs):\n    # Forward pass: calculate the predictions\n    y_pred = m * x + b\n\n    # Calculate the Mean Squared Error (MSE) Loss\n    loss = (1 / n) * np.sum((y - y_pred) ** 2)\n\n    # Compute gradients (derivatives of loss with respect to m and b)\n    # these are effectively the weight and bias of a single layer neuron - a linear function!\n    dm = -(2 / n) * np.sum(x * (y - y_pred))  # Gradient with respect to m\n    db = -(2 / n) * np.sum(y - y_pred)        # Gradient with respect to b\n\n    # Update parameters using the gradients\n    m = m - learning_rate * dm\n    b = b - learning_rate * db\n\n    # Print loss every 1 iterations\n    if epoch % 1 == 0:\n        print(f\"Epoch {epoch}: Loss = {loss:.4f}, m = {m:.4f}, b = {b:.4f}\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-linearfunctionestimatornn-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-20 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-20"
+  },
+  {
+   "description": "Line 2 loops over `range(epochs)`.",
+   "kind": "focus",
+   "lines": "2"
+  },
+  {
+   "description": "Line 19 checks `epoch % 1 == 0`.",
+   "kind": "focus",
+   "lines": "19"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "19",
+   "trace_step": 799
+  }
+ ],
+ "title": "Notebook LinearFunctionEstimatorNN.ipynb",
+ "version": 1
+}

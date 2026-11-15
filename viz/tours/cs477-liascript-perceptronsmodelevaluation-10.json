@@ -1,0 +1,59 @@
+{
+ "code": "import numpy as np\n\ndef sgd_linear_svm(X, y, C=1.0, lr=1e-2, epochs=200):\n    # y in {-1, +1}\n    n, d = X.shape\n    w = np.zeros(d); b = 0.0\n    for _ in range(epochs):\n        for i in np.random.permutation(n):\n            margin = y[i]*(X[i].dot(w) + b)\n            if margin >= 1:\n                # Only regularization term\n                w -= lr * w\n            else:\n                # Regularization + hinge penalty gradient\n                w -= lr * (w - C * y[i] * X[i])\n                b += lr * (C * y[i])\n    return w, b\n\n# Example on a linearly separable toy set\nrng = np.random.default_rng(0)\nX_pos = rng.normal(loc=[2,2], scale=0.5, size=(50,2))\nX_neg = rng.normal(loc=[-2,-2], scale=0.5, size=(50,2))\nX_toy = np.vstack([X_pos, X_neg])\ny_toy = np.hstack([np.ones(50), -np.ones(50)])\n\nw, b = sgd_linear_svm(X_toy, y_toy, C=1.0, lr=1e-2, epochs=20)\nprint(\"w:\", w, \"b:\", b)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-perceptronsmodelevaluation-10",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `numpy`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 3-17 define `sgd_linear_svm(X, y, C, lr, epochs)`.",
+   "kind": "reveal",
+   "lines": "3-17"
+  },
+  {
+   "description": "Line 7 loops over `range(epochs)`.",
+   "kind": "focus",
+   "lines": "7"
+  },
+  {
+   "description": "Line 8 loops over `np.random.permutation(n)`.",
+   "kind": "focus",
+   "lines": "8"
+  },
+  {
+   "description": "Line 10 checks `margin >= 1`.",
+   "kind": "focus",
+   "lines": "10"
+  },
+  {
+   "description": "Line 17 returns `w, b`.",
+   "kind": "focus",
+   "lines": "17"
+  },
+  {
+   "description": "Lines 20-27 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "20-27"
+  },
+  {
+   "description": "Here `sgd_linear_svm` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "5",
+   "trace_step": 8
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "9",
+   "trace_step": 799
+  }
+ ],
+ "title": "5. From Scratch: Linear SVM via Hinge-Loss SGD (Didactic)",
+ "version": 1
+}

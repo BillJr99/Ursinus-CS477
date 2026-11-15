@@ -1,0 +1,102 @@
+{
+ "code": "import random\nrandom.seed(477)\n\nTARGET_LEN = 20                      # maximize number of 1s (\"OneMax\")\nPOP, GENS, P_MUT = 30, 40, 0.02\n\ndef fitness(ind):        return sum(ind)\ndef random_ind():        return [random.randint(0, 1) for _ in range(TARGET_LEN)]\n\ndef tournament(pop, k=3):\n    return max(random.sample(pop, k), key=fitness)\n\ndef crossover(a, b):\n    cut = random.randrange(1, TARGET_LEN)\n    return a[:cut] + b[cut:]\n\ndef mutate(ind):\n    return [1 - g if random.random() < P_MUT else g for g in ind]\n\npop = [random_ind() for _ in range(POP)]\nfor gen in range(GENS):\n    best = max(pop, key=fitness)\n    if gen % 10 == 0:\n        print(f\"gen {gen:3d}  best fitness = {fitness(best)}/{TARGET_LEN}\")\n    elite = [best]                                   # elitism: keep the champion\n    pop = elite + [mutate(crossover(tournament(pop), tournament(pop)))\n                   for _ in range(POP - 1)]\nprint(\"final best:\", max(pop, key=fitness), \"fitness\", fitness(max(pop, key=fitness)))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-optimizationga-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `random`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 2-5 run the main code.",
+   "kind": "reveal",
+   "lines": "2-5"
+  },
+  {
+   "description": "Line 7 defines `fitness(ind)`.",
+   "kind": "reveal",
+   "lines": "7"
+  },
+  {
+   "description": "Line 7 returns `sum(ind)`.",
+   "kind": "focus",
+   "lines": "7"
+  },
+  {
+   "description": "Line 8 defines `random_ind()`.",
+   "kind": "reveal",
+   "lines": "8"
+  },
+  {
+   "description": "Line 8 returns a value.",
+   "kind": "focus",
+   "lines": "8"
+  },
+  {
+   "description": "Lines 10-11 define `tournament(pop, k)`.",
+   "kind": "reveal",
+   "lines": "10-11"
+  },
+  {
+   "description": "Lines 13-15 define `crossover(a, b)`.",
+   "kind": "reveal",
+   "lines": "13-15"
+  },
+  {
+   "description": "Line 15 returns `a[:cut] + b[cut:]`.",
+   "kind": "focus",
+   "lines": "15"
+  },
+  {
+   "description": "Lines 17-18 define `mutate(ind)`.",
+   "kind": "reveal",
+   "lines": "17-18"
+  },
+  {
+   "description": "Lines 20-28 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "20-28"
+  },
+  {
+   "description": "Line 21 loops over `range(GENS)`.",
+   "kind": "focus",
+   "lines": "21"
+  },
+  {
+   "description": "Here `fitness` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "7",
+   "trace_step": 702
+  },
+  {
+   "description": "Here `fitness` returns, the first time it does.",
+   "kind": "run",
+   "lines": "7",
+   "trace_step": 703
+  },
+  {
+   "description": "Here `random_ind` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "8",
+   "trace_step": 10
+  },
+  {
+   "description": "Here `random_ind` returns, the first time it does.",
+   "kind": "run",
+   "lines": "8",
+   "trace_step": 31
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "18",
+   "trace_step": 799
+  }
+ ],
+ "title": "5. Runnable Code: A Tiny GA",
+ "version": 1
+}

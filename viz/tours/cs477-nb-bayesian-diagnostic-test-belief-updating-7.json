@@ -1,0 +1,17 @@
+{
+ "code": "means = np.linspace(1e-4, 0.2, 60)  # from 0.01% to 20%\nppv_curve = posterior_prob_positive(means, s_mean, c_mean)\nneg_curve = posterior_prob_negative(means, s_mean, c_mean)\n\nfig = plt.figure(figsize=(6,4))\nplt.plot(means, ppv_curve, label=\"P(D=1 | T=+)\")\nplt.plot(means, neg_curve, label=\"P(D=1 | T=-)\")\nplt.xlabel(\"Mean prevalence π\"); plt.ylabel(\"Posterior probability\")\nplt.title(\"Effect of Prevalence on Posterior Probabilities\")\nplt.legend(); plt.tight_layout(); plt.show()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-bayesian-diagnostic-test-belief-updating-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-10 run the main code.",
+   "kind": "reveal",
+   "lines": "1-10"
+  }
+ ],
+ "title": "Notebook Bayesian_Diagnostic_Test_Belief_Updating.ipynb",
+ "version": 1
+}

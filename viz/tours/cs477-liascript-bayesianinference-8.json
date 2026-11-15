@@ -1,0 +1,23 @@
+{
+ "code": "pi = 0.01  # prior disease probability\nSe, Sp = 0.95, 0.95\npost = (Se*pi) / (Se*pi + (1-Sp)*(1-pi))\nprint(f\"Posterior probability given positive test: {post:.3f}\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-bayesianinference-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-4 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "1-4"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "4",
+   "trace_step": 4
+  }
+ ],
+ "title": "Code Snippet Example",
+ "version": 1
+}

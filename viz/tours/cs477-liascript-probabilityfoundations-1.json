@@ -1,0 +1,28 @@
+{
+ "code": "prior = 0.01          # P(D)\nsens  = 0.90          # P(+|D)\nfpr   = 0.05          # P(+|~D)\n\nevidence  = sens * prior + fpr * (1 - prior)      # P(+), total probability\nposterior = sens * prior / evidence               # Bayes' rule\nprint(f\"P(+)      = {evidence:.4f}\")\nprint(f\"P(D | +)  = {posterior:.4f}\")             # ~0.1538\n\n# Evidence compounds: a SECOND independent positive test?\nprior2 = posterior\nevidence2  = sens * prior2 + fpr * (1 - prior2)\nprint(f\"P(D | ++) = {sens * prior2 / evidence2:.4f}\")   # ~0.7657",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-probabilityfoundations-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-12 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "1-12"
+  },
+  {
+   "description": "Line 13 continues the main code and print the results.",
+   "kind": "reveal",
+   "lines": "13"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "13",
+   "trace_step": 10
+  }
+ ],
+ "title": "6. Bayes' Rule, Intuition First",
+ "version": 1
+}

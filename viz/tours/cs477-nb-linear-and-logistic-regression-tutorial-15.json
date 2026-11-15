@@ -1,0 +1,22 @@
+{
+ "code": "\niris = load_iris()\nX = iris.data[:, :2]  # use 2 features for visualization\ny = iris.target\n\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42, stratify=y)\n\nclf = Pipeline([(\"scaler\", StandardScaler()),\n                (\"logreg\", LogisticRegression(max_iter=500))])\nclf.fit(X_train, y_train)\nacc = clf.score(X_test, y_test)\nprint(f\"Test accuracy (Iris, 2 features): {acc:.3f}\")\n\n# Plot decision regions\nxx, yy = np.meshgrid(np.linspace(X[:,0].min()-0.5, X[:,0].max()+0.5, 300),\n                     np.linspace(X[:,1].min()-0.5, X[:,1].max()+0.5, 300))\ngrid = np.c_[xx.ravel(), yy.ravel()]\nZ = clf.predict(grid).reshape(xx.shape)\n\nplt.contourf(xx, yy, Z, alpha=0.5, levels=np.arange(4)-0.5)\nplt.scatter(X[:,0], X[:,1], c=y, edgecolor=\"k\")\nplt.xlabel(iris.feature_names[0]); plt.ylabel(iris.feature_names[1])\nplt.title(\"Multiclass Logistic Regression Decision Regions (Iris)\")\nplt.show()\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-linear-and-logistic-regression-tutorial-15",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-16 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-16"
+  },
+  {
+   "description": "Lines 17-24 continue the main code.",
+   "kind": "reveal",
+   "lines": "17-24"
+  }
+ ],
+ "title": "Notebook Linear_and_Logistic_Regression_Tutorial.ipynb",
+ "version": 1
+}

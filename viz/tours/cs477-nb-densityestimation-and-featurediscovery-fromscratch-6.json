@@ -1,0 +1,67 @@
+{
+ "code": "def gmm_em(X, k=3, max_iter=200, tol=1e-6, seed=SEED, n_init=5, reg=1e-6):\n    X = np.asarray(X, float)\n    n, d = X.shape\n    best = None\n    best_ll = -np.inf\n    rng_local = np.random.default_rng(seed)\n    for run in range(n_init):\n        mu = X[rng_local.choice(n, size=k, replace=False)].copy()\n        Sigma = np.array([np.cov(X.T) + reg*np.eye(d) for _ in range(k)])\n        pi = np.ones(k)/k\n        ll_hist = []\n        for it in range(max_iter):\n            log_comp = np.zeros((n,k))\n            for j in range(k):\n                Sj = Sigma[j]\n                det = np.linalg.det(Sj) + 1e-300\n                inv = np.linalg.inv(Sj)\n                diff = X - mu[j]\n                quad = np.sum(diff @ inv * diff, axis=1)\n                log_comp[:,j] = np.log(pi[j]+1e-300) - 0.5*(d*np.log(2*np.pi) + np.log(det) + quad)\n            m = np.max(log_comp, axis=1, keepdims=True)\n            resp = np.exp(log_comp - m)\n            sum_resp = np.sum(resp, axis=1, keepdims=True) + 1e-300\n            gamma = resp / sum_resp\n            ll = float(np.sum(m + np.log(sum_resp)))\n            ll_hist.append(ll)\n            if it>0 and abs(ll_hist[-1] - ll_hist[-2]) < tol:\n                break\n            Nk = gamma.sum(axis=0) + 1e-300\n            pi = Nk / n\n            mu = (gamma.T @ X) / Nk[:,None]\n            for j in range(k):\n                diff = X - mu[j]\n                Sigma[j] = (diff.T @ (diff * gamma[:,j][:,None])) / Nk[j] + reg*np.eye(d)\n        if ll > best_ll:\n            best_ll = ll\n            best = {\"pi\":pi, \"mu\":mu, \"Sigma\":Sigma, \"ll_history\":ll_hist, \"k\":k}\n    return best\n\ndef gmm_bic(model, X):\n    n, d = X.shape\n    k = model[\"k\"]\n    p = (k-1) + k*d + k*(d*(d+1))//2\n    logL = model[\"ll_history\"][-1]\n    return -2*logL + p*np.log(n)\n\nbic_vals = []; models = []\nfor kk in [1,2,3,4,5]:\n    m = gmm_em(X2s, k=kk, n_init=5, max_iter=200, tol=1e-4, reg=1e-5)\n    b = gmm_bic(m, X2s)\n    bic_vals.append(b); models.append(m)\n    print(f\"k={kk}  logL={m['ll_history'][-1]:.2f}  BIC={b:.2f}\")\nk_best = int(np.argmin(bic_vals)+1)\nbest_gmm = models[np.argmin(bic_vals)]\nprint(\"Selected k* by BIC:\", k_best)\n\nmu = best_gmm[\"mu\"]; Sigma = best_gmm[\"Sigma\"]; pi = best_gmm[\"pi\"]\nxx, yy = np.meshgrid(np.linspace(X2s[:,0].min()-3, X2s[:,0].max()+3, 200),\n                     np.linspace(X2s[:,1].min()-3, X2s[:,1].max()+3, 200))\nP = np.c_[xx.ravel(), yy.ravel()]\ndef mvn_pdf(P, m, S):\n    d = P.shape[1]\n    inv = np.linalg.inv(S); det = np.linalg.det(S)+1e-300\n    diff = P - m\n    quad = np.sum(diff @ inv * diff, axis=1)\n    return np.exp(-0.5*(quad + d*np.log(2*np.pi) + np.log(det)))\nmix = sum(pi[j]*mvn_pdf(P, mu[j], Sigma[j]) for j in range(k_best)).reshape(xx.shape)\n\nfig = plt.figure(figsize=(6,5))\nplt.contourf(xx, yy, mix, levels=20)\nplt.scatter(X2s[:,0], X2s[:,1], s=8, alpha=0.5, c='k')\nplt.scatter(mu[:,0], mu[:,1], marker='X', s=120, c='white')\nplt.title(f\"GMM-EM density (k*={k_best} by BIC)\"); plt.tight_layout(); plt.show()\n\nfig = plt.figure(figsize=(6,3.5))\nplt.plot(bic_vals, marker='o'); plt.xticks(range(len(bic_vals)), [1,2,3,4,5])\nplt.xlabel(\"k\"); plt.ylabel(\"BIC\"); plt.title(\"GMM model selection by BIC\")\nplt.tight_layout(); plt.show()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-38 define `gmm_em(X, k, max_iter, tol, seed, n_init, reg)`.",
+   "kind": "reveal",
+   "lines": "1-38"
+  },
+  {
+   "description": "Line 7 loops over `range(n_init)`.",
+   "kind": "focus",
+   "lines": "7"
+  },
+  {
+   "description": "Line 14 loops over `range(k)`.",
+   "kind": "focus",
+   "lines": "14"
+  },
+  {
+   "description": "Line 35 checks `ll > best_ll`.",
+   "kind": "focus",
+   "lines": "35"
+  },
+  {
+   "description": "Lines 40-45 define `gmm_bic(model, X)`.",
+   "kind": "reveal",
+   "lines": "40-45"
+  },
+  {
+   "description": "Line 45 returns `-2*logL + p*np.log(n)`.",
+   "kind": "focus",
+   "lines": "45"
+  },
+  {
+   "description": "Lines 47-59 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "47-59"
+  },
+  {
+   "description": "Line 60 continues the main code.",
+   "kind": "reveal",
+   "lines": "60"
+  },
+  {
+   "description": "Lines 61-66 define `mvn_pdf(P, m, S)`.",
+   "kind": "reveal",
+   "lines": "61-66"
+  },
+  {
+   "description": "Lines 67-78 continue the main code.",
+   "kind": "reveal",
+   "lines": "67-78"
+  },
+  {
+   "description": "Line 78 continues the main code.",
+   "kind": "reveal",
+   "lines": "78"
+  }
+ ],
+ "title": "Notebook DensityEstimation_and_FeatureDiscovery_FromScratch.ipynb",
+ "version": 1
+}

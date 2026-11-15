@@ -1,0 +1,52 @@
+{
+ "code": "\ndef joint_logprob(hmm: HMM, state_path: List[int], obs_seq: List[int]) -> float:\n    \"\"\"Compute log P(s_0:T-1, o_0:T-1) exactly for a concrete state path.\"\"\"\n    logA = np.log(hmm.A + 1e-300)\n    logB = np.log(hmm.B + 1e-300)\n    logpi = np.log(hmm.pi + 1e-300)\n    T = len(obs_seq)\n    lp = logpi[state_path[0]] + logB[state_path[0], obs_seq[0]]\n    for t in range(1, T):\n        i_prev, i_cur = state_path[t-1], state_path[t]\n        lp += logA[i_prev, i_cur] + logB[i_cur, obs_seq[t]]\n    return float(lp)\n\ndef brute_force_best_path(hmm: HMM, obs_seq: List[int]) -> Tuple[List[int], float]:\n    S = len(hmm.states)\n    T = len(obs_seq)\n    best_lp = -np.inf\n    best_path = None\n    for path in itertools.product(range(S), repeat=T):\n        lp = joint_logprob(hmm, list(path), obs_seq)\n        if lp > best_lp:\n            best_lp = lp\n            best_path = list(path)\n    return best_path, best_lp\n\nbf_path, bf_logprob = brute_force_best_path(hmm, obs_seq)\n\nprint(\"Brute force best path (indices):\", bf_path)\nprint(\"Brute force best path (names):\", [hmm.states[i] for i in bf_path])\nprint(\"Brute force best path log-prob:\", bf_logprob)\nprint(\"Viterbi matches brute force? ->\", bf_path == best_path)\n\n# Also validate sequence likelihood by summing over all paths\nS = len(hmm.states)\nT = len(obs_seq)\nall_lp = []\nfor path in itertools.product(range(S), repeat=T):\n    all_lp.append(joint_logprob(hmm, list(path), obs_seq))\nlog_lik_exact = logsumexp(np.array(all_lp, dtype=float))\nprint(\"Forward log-likelihood:\", loglik)\nprint(\"Exact   log-likelihood (sum over all paths):\", log_lik_exact)\nprint(\"Close? ->\", math.isclose(loglik, log_lik_exact, rel_tol=1e-10, abs_tol=1e-10))\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-hmm-viterbi-colab-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-12 define `joint_logprob(hmm, state_path, obs_seq)`.",
+   "kind": "reveal",
+   "lines": "2-12"
+  },
+  {
+   "description": "Line 9 loops over `range(1, T)`.",
+   "kind": "focus",
+   "lines": "9"
+  },
+  {
+   "description": "Line 12 returns `float(lp)`.",
+   "kind": "focus",
+   "lines": "12"
+  },
+  {
+   "description": "Lines 14-24 define `brute_force_best_path(hmm, obs_seq)`.",
+   "kind": "reveal",
+   "lines": "14-24"
+  },
+  {
+   "description": "Line 21 checks `lp > best_lp`.",
+   "kind": "focus",
+   "lines": "21"
+  },
+  {
+   "description": "Line 24 returns `best_path, best_lp`.",
+   "kind": "focus",
+   "lines": "24"
+  },
+  {
+   "description": "Lines 26-38 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "26-38"
+  },
+  {
+   "description": "Lines 39-42 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "39-42"
+  }
+ ],
+ "title": "Notebook HMM_Viterbi_Colab.ipynb",
+ "version": 1
+}

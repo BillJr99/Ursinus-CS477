@@ -1,0 +1,45 @@
+{
+ "code": "def margin_width(w):\n    return 2.0/np.linalg.norm(w) if np.linalg.norm(w)>0 else np.inf\nprint(\"Margin width (Pegasos linear):\", margin_width(w_pg))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-svm-from-scratch-linear-and-kernel-12",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-2 define `margin_width(w)`.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "description": "Line 2 returns a value.",
+   "kind": "focus",
+   "lines": "2"
+  },
+  {
+   "description": "Line 3 runs the main code and print the results.",
+   "kind": "reveal",
+   "lines": "3"
+  },
+  {
+   "description": "Here `margin_width` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "2",
+   "trace_step": 2
+  },
+  {
+   "description": "Here `margin_width` returns, the first time it does.",
+   "kind": "run",
+   "lines": "2",
+   "trace_step": 3
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "3",
+   "trace_step": 4
+  }
+ ],
+ "title": "Notebook SVM_From_Scratch_Linear_and_Kernel.ipynb",
+ "version": 1
+}

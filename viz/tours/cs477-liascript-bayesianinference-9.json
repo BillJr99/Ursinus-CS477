@@ -1,0 +1,28 @@
+{
+ "code": "from sklearn.naive_bayes import MultinomialNB\nfrom sklearn.feature_extraction.text import CountVectorizer\n\ndocs = [\"team wins match\", \"player scores goal\", \"debate election policy\"]\ny = [1, 1, 0]\nvec = CountVectorizer()\nX = vec.fit_transform(docs)\nnb = MultinomialNB()\nnb.fit(X, y)\nprint(nb.predict(vec.transform([\"goal win team\"])))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-bayesianinference-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-2 import `sklearn.naive_bayes` and `sklearn.feature_extraction.text`.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "description": "Lines 4-10 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "4-10"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "10",
+   "trace_step": 9
+  }
+ ],
+ "title": "Implementation Highlights",
+ "version": 1
+}

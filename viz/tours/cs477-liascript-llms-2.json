@@ -1,0 +1,50 @@
+{
+ "code": "import numpy as np\n\ndef softmax(x): e = np.exp(x - x.max()); return e / e.sum()\n\n# 3 encoder positions (\"the\", \"black\", \"cat\"), d=4\nK = V = np.array([[1., 0., 0., 1.],\n                  [0., 1., 0., 1.],\n                  [0., 0., 1., 1.]])\nq = np.array([0.1, 0.2, 2.0, 1.0])       # decoder is about to say \"gato\" -> should attend to \"cat\"\n\nscores  = K @ q / np.sqrt(4)\nweights = softmax(scores)\nprint(\"attention weights over ['the','black','cat']:\", np.round(weights, 2))\nprint(\"context vector:\", np.round(weights @ V, 2))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-llms-2",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `numpy`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Line 3 defines `softmax(x)`.",
+   "kind": "reveal",
+   "lines": "3"
+  },
+  {
+   "description": "Line 3 returns `e / e.sum()`.",
+   "kind": "focus",
+   "lines": "3"
+  },
+  {
+   "description": "Lines 6-14 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "6-14"
+  },
+  {
+   "description": "Here `softmax` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "3",
+   "trace_step": 9
+  },
+  {
+   "description": "Here `softmax` returns, the first time it does.",
+   "kind": "run",
+   "lines": "3",
+   "trace_step": 10
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "14",
+   "trace_step": 13
+  }
+ ],
+ "title": "Step 4: Attention: Look Where It Matters",
+ "version": 1
+}

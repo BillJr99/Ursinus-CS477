@@ -1,0 +1,27 @@
+{
+ "code": "\nalphas = [0.0, 0.01, 0.1, 1.0, 10.0]\nrmse_ridge = []\nrmse_lasso = []\n\nfor a in alphas:\n    ridge = Pipeline([(\"scaler\", StandardScaler()), (\"ridge\", Ridge(alpha=a))])\n    ridge.fit(X_train, y_train)\n    ypr = ridge.predict(X_test)\n    rmse_ridge.append(math.sqrt(mean_squared_error(y_test, ypr)))\n\n    lasso = Pipeline([(\"scaler\", StandardScaler()), (\"lasso\", Lasso(alpha=a, max_iter=10000))])\n    lasso.fit(X_train, y_train)\n    ypl = lasso.predict(X_test)\n    rmse_lasso.append(math.sqrt(mean_squared_error(y_test, ypl)))\n\nplt.plot(alphas, rmse_ridge, marker=\"o\", label=\"Ridge RMSE\")\nplt.plot(alphas, rmse_lasso, marker=\"o\", label=\"Lasso RMSE\")\nplt.xscale(\"log\")\nplt.xlabel(\"alpha (regularization strength)\")\nplt.ylabel(\"RMSE (test)\")\nplt.title(\"Effect of Regularization on Test Error\")\nplt.legend()\nplt.show()\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-linear-and-logistic-regression-tutorial-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-15 run the main code.",
+   "kind": "reveal",
+   "lines": "2-15"
+  },
+  {
+   "description": "Line 6 loops over `alphas`.",
+   "kind": "focus",
+   "lines": "6"
+  },
+  {
+   "description": "Lines 17-24 continue the main code.",
+   "kind": "reveal",
+   "lines": "17-24"
+  }
+ ],
+ "title": "Notebook Linear_and_Logistic_Regression_Tutorial.ipynb",
+ "version": 1
+}

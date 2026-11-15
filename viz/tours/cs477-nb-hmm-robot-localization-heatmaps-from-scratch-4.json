@@ -1,0 +1,65 @@
+{
+ "code": "@dataclass\nclass Maze:\n    grid: np.ndarray        # (H,W) 0=free, 1=wall\n    colors: np.ndarray      # (H,W) integer color labels for free cells; meaningful only where grid==0\n\ndef make_simple_maze():\n    # 0=free, 1=wall\n    grid = np.array([\n        [0,0,0,0,0,0,0],\n        [0,1,1,0,1,1,0],\n        [0,0,0,0,0,0,0],\n        [0,1,0,1,0,1,0],\n        [0,0,0,0,0,0,0]\n    ], dtype=int)\n    H, W = grid.shape\n\n    # assign colors (e.g., 0..3) to free cells deterministically for variability\n    colors = np.zeros_like(grid)\n    c = 0\n    for i in range(H):\n        for j in range(W):\n            if grid[i,j]==0:\n                colors[i,j] = (i + 2*j + c) % 4\n    return Maze(grid=grid, colors=colors)\n\nmaze = make_simple_maze()\nH, W = maze.grid.shape\nN = H*W\nn_colors = int(maze.colors.max() + 1)\nprint(\"Maze size:\", H, \"x\", W, \"| num states:\", N, \"| colors:\", n_colors)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-4",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-4 define the class `Maze`.",
+   "kind": "reveal",
+   "lines": "1-4"
+  },
+  {
+   "description": "Lines 6-24 define `make_simple_maze()`.",
+   "kind": "reveal",
+   "lines": "6-24"
+  },
+  {
+   "description": "Line 20 loops over `range(H)`.",
+   "kind": "focus",
+   "lines": "20"
+  },
+  {
+   "description": "Line 21 loops over `range(W)`.",
+   "kind": "focus",
+   "lines": "21"
+  },
+  {
+   "description": "Line 22 checks `grid[i,j]==0`.",
+   "kind": "focus",
+   "lines": "22"
+  },
+  {
+   "description": "Line 24 returns `Maze(grid=grid, colors=colors)`.",
+   "kind": "focus",
+   "lines": "24"
+  },
+  {
+   "description": "Lines 26-30 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "26-30"
+  },
+  {
+   "description": "Here `make_simple_maze` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "8",
+   "trace_step": 10
+  },
+  {
+   "description": "Here `make_simple_maze` returns, the first time it does.",
+   "kind": "run",
+   "lines": "24",
+   "trace_step": 132
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "30",
+   "trace_step": 137
+  }
+ ],
+ "title": "Notebook HMM_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+ "version": 1
+}

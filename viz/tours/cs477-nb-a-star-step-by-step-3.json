@@ -1,0 +1,77 @@
+{
+ "code": "\n# Define a small graph\nimport math\n\ncoords = {\n    \"A\": (0, 0),\n    \"B\": (1, 2),\n    \"C\": (3, 1),\n    \"D\": (4, 3),\n    \"E\": (6, 0),\n    \"F\": (7, 2),\n}\nedges_undirected = {\n    \"A\": {\"B\": 2.3, \"C\": 3.2},\n    \"B\": {\"A\": 2.3, \"C\": 2.0, \"D\": 2.2},\n    \"C\": {\"A\": 3.2, \"B\": 2.0, \"D\": 2.4, \"E\": 3.1},\n    \"D\": {\"B\": 2.2, \"C\": 2.4, \"F\": 2.1},\n    \"E\": {\"C\": 3.1, \"F\": 2.0},\n    \"F\": {\"D\": 2.1, \"E\": 2.0},\n}\n\ndef neighbors_graph(u):\n    return edges_undirected[u].keys()\n\ndef cost_graph(u, v):\n    return edges_undirected[u][v]\n\ngoal = \"F\"\ndef is_goal_graph(n): return n == goal\n\ndef h_euclid(n):\n    (x, y) = coords[n]\n    (gx, gy) = coords[goal]\n    return math.hypot(x - gx, y - gy)\n\ndef h_zero(_): return 0.0\n\nprint(\"=== A* with Euclidean heuristic ===\")\npath_h, info_h = astar(\"A\", is_goal_graph, neighbors_graph, cost_graph, h_euclid, debug=True)\nprint(\"\\nPath:\", path_h, \"\\nInfo:\", info_h)\n\nprint(\"\\n=== Dijkstra (A* with h=0) ===\")\npath_d, info_d = astar(\"A\", is_goal_graph, neighbors_graph, cost_graph, h_zero, debug=False)\nprint(\"Path:\", path_d, \"\\nInfo:\", info_d)\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-a-star-step-by-step-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 3 imports `math`.",
+   "kind": "reveal",
+   "lines": "3"
+  },
+  {
+   "description": "Lines 5-20 run the main code.",
+   "kind": "reveal",
+   "lines": "5-20"
+  },
+  {
+   "description": "Lines 22-23 define `neighbors_graph(u)`.",
+   "kind": "reveal",
+   "lines": "22-23"
+  },
+  {
+   "description": "Line 23 returns `edges_undirected[u].keys()`.",
+   "kind": "focus",
+   "lines": "23"
+  },
+  {
+   "description": "Lines 25-26 define `cost_graph(u, v)`.",
+   "kind": "reveal",
+   "lines": "25-26"
+  },
+  {
+   "description": "Line 26 returns `edges_undirected[u][v]`.",
+   "kind": "focus",
+   "lines": "26"
+  },
+  {
+   "description": "Line 28 continues the main code.",
+   "kind": "reveal",
+   "lines": "28"
+  },
+  {
+   "description": "Line 29 defines `is_goal_graph(n)`.",
+   "kind": "reveal",
+   "lines": "29"
+  },
+  {
+   "description": "Line 29 returns `n == goal`.",
+   "kind": "focus",
+   "lines": "29"
+  },
+  {
+   "description": "Lines 31-34 define `h_euclid(n)`.",
+   "kind": "reveal",
+   "lines": "31-34"
+  },
+  {
+   "description": "Line 34 returns `math.hypot(x - gx, y - gy)`.",
+   "kind": "focus",
+   "lines": "34"
+  },
+  {
+   "description": "Line 36 defines `h_zero(_)`.",
+   "kind": "reveal",
+   "lines": "36"
+  },
+  {
+   "description": "Lines 38-44 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "38-44"
+  }
+ ],
+ "title": "Notebook A_star_step_by_step.ipynb",
+ "version": 1
+}

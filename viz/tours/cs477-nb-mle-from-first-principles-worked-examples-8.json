@@ -1,0 +1,45 @@
+{
+ "code": "def numeric_second_derivative(f, theta, h=1e-3):\n    return (f(theta+h) - 2*f(theta) + f(theta-h)) / (h*h)\n\nf = lambda th: cauchy_loglik(th, x, gamma)\nI_obs_num = -numeric_second_derivative(f, theta_hat, h=1e-3)\nci_lo, ci_hi, se = wald_ci(theta_hat, I_obs_num)\nprint(f\"Cauchy: θ̂={theta_hat:.3f}, observed I≈{I_obs_num:.3f}, SE≈{se:.4f}, 95% CI=({ci_lo:.3f}, {ci_hi:.3f})\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-mle-from-first-principles-worked-examples-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-2 define `numeric_second_derivative(f, theta, h)`.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "description": "Line 2 returns a value.",
+   "kind": "focus",
+   "lines": "2"
+  },
+  {
+   "description": "Lines 4-7 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "4-7"
+  },
+  {
+   "description": "Here `numeric_second_derivative` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "2",
+   "trace_step": 3
+  },
+  {
+   "description": "Here `numeric_second_derivative` returns, the first time it does.",
+   "kind": "run",
+   "lines": "2",
+   "trace_step": 10
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "7",
+   "trace_step": 13
+  }
+ ],
+ "title": "Notebook MLE_From_First_Principles_Worked_Examples.ipynb",
+ "version": 1
+}

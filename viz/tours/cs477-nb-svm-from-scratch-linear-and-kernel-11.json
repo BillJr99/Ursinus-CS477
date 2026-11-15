@@ -1,0 +1,32 @@
+{
+ "code": "fig = plt.figure(figsize=(5,4.5))\nax = plt.gca()\ndef sign_k(Z): return ksvm.decision(Z)\nplot_data_and_boundary(ax, X_tr, y_tr, predict_fn=sign_k, title=\"Kernel SVM (RBF) — Train\")\n# Mark support vectors\nsv = X_tr[ksvm.sv_idx]\nax.scatter(sv[:,0], sv[:,1], s=60, facecolors='none', edgecolors='k')\nplt.tight_layout(); plt.show()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-svm-from-scratch-linear-and-kernel-11",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-2 run the main code.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "description": "Line 3 defines `sign_k(Z)`.",
+   "kind": "reveal",
+   "lines": "3"
+  },
+  {
+   "description": "Line 3 returns `ksvm.decision(Z)`.",
+   "kind": "focus",
+   "lines": "3"
+  },
+  {
+   "description": "Lines 4-8 continue the main code.",
+   "kind": "reveal",
+   "lines": "4-8"
+  }
+ ],
+ "title": "Notebook SVM_From_Scratch_Linear_and_Kernel.ipynb",
+ "version": 1
+}

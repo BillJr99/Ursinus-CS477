@@ -1,0 +1,23 @@
+{
+ "code": "X_std, mu, sigma = standardize(X)\nX_tr, X_te, y_tr, y_te = train_test_split(X_std, y, test_size=0.25, rng=rng)\nprint(\"Train:\", X_tr.shape, \"Test:\", X_te.shape)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-svm-from-scratch-linear-and-kernel-4",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-3 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "1-3"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "3",
+   "trace_step": 3
+  }
+ ],
+ "title": "Notebook SVM_From_Scratch_Linear_and_Kernel.ipynb",
+ "version": 1
+}

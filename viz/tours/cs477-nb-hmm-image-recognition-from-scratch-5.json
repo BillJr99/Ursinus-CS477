@@ -1,0 +1,50 @@
+{
+ "code": "def stratified_split_indices(y, test_size=0.2, seed=SEED):\n    rng = np.random.default_rng(seed)\n    y = np.asarray(y)\n    classes = np.unique(y)\n    train_idx, test_idx = [], []\n    for c in classes:\n        idx_c = np.where(y == c)[0]\n        rng.shuffle(idx_c)\n        n_test = int(np.floor(test_size * len(idx_c)))\n        test_idx.extend(idx_c[:n_test].tolist())\n        train_idx.extend(idx_c[n_test:].tolist())\n    return np.array(train_idx), np.array(test_idx)\n\ntrain_idx, test_idx = stratified_split_indices(y_labels, test_size=0.2, seed=SEED)\nX_train = [sequences[i] for i in train_idx]\ny_train = y_labels[train_idx]\nX_test  = [sequences[i] for i in test_idx]\ny_test  = y_labels[test_idx]\n\nprint(\"Train:\", len(X_train), \"Test:\", len(X_test))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-hmm-image-recognition-from-scratch-5",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-12 define `stratified_split_indices(y, test_size, seed)`.",
+   "kind": "reveal",
+   "lines": "1-12"
+  },
+  {
+   "description": "Line 6 loops over `classes`.",
+   "kind": "focus",
+   "lines": "6"
+  },
+  {
+   "description": "Line 12 returns `np.array(train_idx), np.array(test_idx)`.",
+   "kind": "focus",
+   "lines": "12"
+  },
+  {
+   "description": "Lines 14-20 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "14-20"
+  },
+  {
+   "description": "Here `stratified_split_indices` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "2",
+   "trace_step": 2
+  },
+  {
+   "description": "Here `stratified_split_indices` returns, the first time it does.",
+   "kind": "run",
+   "lines": "12",
+   "trace_step": 68
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "15",
+   "trace_step": 799
+  }
+ ],
+ "title": "Notebook HMM_Image_Recognition_From_Scratch.ipynb",
+ "version": 1
+}

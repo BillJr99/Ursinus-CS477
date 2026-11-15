@@ -1,0 +1,47 @@
+{
+ "code": "\ndef simulate_markov(P, n_steps, init_state=None, rng=None):\n    try:\n        rng = np.random.default_rng() if rng is None else rng\n        P = np.asarray(P, dtype=float)\n        m = P.shape[0]\n        if init_state is None:\n            init_state = int(rng.integers(low=0, high=m))\n        X = np.empty(n_steps + 1, dtype=int)\n        X[0] = init_state\n        for t in range(n_steps):\n            X[t+1] = rng.choice(m, p=P[X[t]])\n        return X\n    except Exception as e:\n        _err(\"simulate_markov\", e)\n        raise\n\ndef empirical_stationary(P, n_steps=100_000, burn_in=1_000, rng=None):\n    try:\n        X = simulate_markov(P, n_steps=n_steps + burn_in, rng=rng)\n        X = X[burn_in:]\n        m = P.shape[0]\n        counts = np.bincount(X, minlength=m)\n        return counts / counts.sum()\n    except Exception as e:\n        _err(\"empirical_stationary\", e)\n        raise\n\nemp_est = empirical_stationary(P, rng=rng)\nprint(\"Empirical stationary (long run):\", emp_est)\nprint(\"Difference ||emp - pi*||_1:\", np.abs(emp_est - pi_star).sum())\n\npi_norms = [np.linalg.norm(traj[k] - pi_star, ord=1) for k in range(K+1)]\nplt.figure(figsize=(6, 4))\nplt.plot(range(K+1), pi_norms)\nplt.xlabel(\"Step k\")\nplt.ylabel(\"||pi^(k) - pi*||_1\")\nplt.title(\"Convergence in Total Variation (L1)\")\nplt.show()\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-markov-chain-tutorial-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-16 define `simulate_markov(P, n_steps, init_state, rng)`.",
+   "kind": "reveal",
+   "lines": "2-16"
+  },
+  {
+   "description": "Line 7 checks `init_state is None`.",
+   "kind": "focus",
+   "lines": "7"
+  },
+  {
+   "description": "Line 11 loops over `range(n_steps)`.",
+   "kind": "focus",
+   "lines": "11"
+  },
+  {
+   "description": "Line 13 returns `X`.",
+   "kind": "focus",
+   "lines": "13"
+  },
+  {
+   "description": "Lines 18-27 define `empirical_stationary(P, n_steps, burn_in, rng)`.",
+   "kind": "reveal",
+   "lines": "18-27"
+  },
+  {
+   "description": "Line 24 returns `counts / counts.sum()`.",
+   "kind": "focus",
+   "lines": "24"
+  },
+  {
+   "description": "Lines 29-39 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "29-39"
+  }
+ ],
+ "title": "Notebook Markov_Chain_Tutorial.ipynb",
+ "version": 1
+}

@@ -1,0 +1,22 @@
+{
+ "code": "LAM = 1e-2  # L2 regularization strength\n\nw_gd, hist_gd = fit_gd(Phi_tr, y_tr, lam=LAM, max_iter=600, tol=1e-7, alpha0=1.0, verbose=False)\nw_nt, hist_nt = fit_newton(Phi_tr, y_tr, lam=LAM, max_iter=50, tol=1e-9, verbose=False)\n\nprint(\"GD weights:\", w_gd)\nprint(\"NT weights:\", w_nt)\n\nfig = plt.figure(figsize=(6,4))\nplt.plot(hist_gd, label=\"GD NLL\")\nplt.plot(hist_nt, label=\"Newton NLL\")\nplt.xlabel(\"Iteration\"); plt.ylabel(\"Negative log-likelihood\")\nplt.title(\"Convergence\")\nplt.legend(); plt.tight_layout(); plt.show()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-logistic-regression-mle-from-scratch-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-12 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "1-12"
+  },
+  {
+   "description": "Lines 12-14 continue the main code.",
+   "kind": "reveal",
+   "lines": "12-14"
+  }
+ ],
+ "title": "Notebook Logistic_Regression_MLE_From_Scratch.ipynb",
+ "version": 1
+}

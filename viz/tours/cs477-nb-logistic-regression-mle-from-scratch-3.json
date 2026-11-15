@@ -1,0 +1,57 @@
+{
+ "code": "# Synthetic data generators\ndef make_linear(n=400):\n    # 2D, linearly separable-ish with some noise\n    mean1 = np.array([0.5, 0.5]); mean0 = np.array([-0.5, -0.5])\n    X1 = rng.normal(mean1, 0.6, size=(n//2, 2))\n    X0 = rng.normal(mean0, 0.6, size=(n//2, 2))\n    y = np.r_[np.ones(n//2), np.zeros(n//2)]\n    X = np.vstack([X1, X0])\n    idx = rng.permutation(n)\n    return X[idx], y[idx]\n\ndef make_overlap(n=500):\n    # Two Gaussians with stronger overlap\n    mean1 = np.array([1.0, 0.0]); mean0 = np.array([0.0, 1.0])\n    cov = np.array([[1.0, 0.6],[0.6, 1.0]])\n    L = np.linalg.cholesky(cov)\n    X1 = mean1 + rng.normal(size=(n//2, 2)) @ L.T\n    X0 = mean0 + rng.normal(size=(n//2, 2)) @ L.T\n    y = np.r_[np.ones(n//2), np.zeros(n//2)]\n    X = np.vstack([X1, X0])\n    idx = rng.permutation(n)\n    return X[idx], y[idx]\n\n# Pick dataset here:\nDATASET = \"overlap\"   # \"linear\" or \"overlap\"\nif DATASET == \"linear\":\n    X, y = make_linear(400)\nelse:\n    X, y = make_overlap(600)\n\n# Optional: CSV upload (in Colab)\nLABEL_COL = None          # e.g., \"label\" or integer index\nFEATURE_COLS = None       # e.g., [\"x1\",\"x2\",\"x3\"] or [0,1,2]\nUSE_CSV = False\n\ntry:\n    from google.colab import files  # type: ignore\n    IN_COLAB = True\nexcept Exception:\n    IN_COLAB = False\n\nif IN_COLAB and USE_CSV:\n    print(\"Upload a CSV file...\")\n    up = files.upload()\n    import io, csv\n    name = list(up.keys())[0]\n    raw = up[name].decode(\"utf-8\", errors=\"ignore\")\n    # Very lightweight CSV reader (expects header)\n    reader = csv.reader(io.StringIO(raw))\n    rows = list(reader)\n    header = rows[0]\n    data = rows[1:]\n    # Infer numeric columns\n    numeric = []\n    for c in range(len(header)):\n        try:\n            float(data[0][c]); numeric.append(c)\n        except Exception:\n            pass\n    if LABEL_COL is None:\n        print(\"Please set LABEL_COL to a column name or index containing 0/1 labels.\")\n    if FEATURE_COLS is None:\n        print(\"Auto-selecting numeric columns as features (excluding label).\")\n        FEATURE_COLS = [c for c in numeric if (c != LABEL_COL and header[c] != LABEL_COL)]\n    # Map labels to 0/1\n    def as_num(x):\n        try: return float(x)\n        except: return np.nan\n    M = np.array([[as_num(v) for v in row] for row in data], dtype=float)\n    if isinstance(LABEL_COL, str):\n        y = M[:, header.index(LABEL_COL)]\n    else:\n        y = M[:, LABEL_COL if LABEL_COL is not None else -1]\n    X = M[:, FEATURE_COLS]\n    # Attempt to coerce labels to {0,1}\n    y = (y > np.nanmedian(y)).astype(float)\n\nprint(\"X shape:\", X.shape, \"| y mean:\", y.mean())",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-logistic-regression-mle-from-scratch-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-10 define `make_linear(n)`.",
+   "kind": "reveal",
+   "lines": "2-10"
+  },
+  {
+   "description": "Line 10 returns `X[idx], y[idx]`.",
+   "kind": "focus",
+   "lines": "10"
+  },
+  {
+   "description": "Lines 12-22 define `make_overlap(n)`.",
+   "kind": "reveal",
+   "lines": "12-22"
+  },
+  {
+   "description": "Lines 25-40 run the main code.",
+   "kind": "reveal",
+   "lines": "25-40"
+  },
+  {
+   "description": "Line 26 checks `DATASET == \"linear\"`.",
+   "kind": "focus",
+   "lines": "26"
+  },
+  {
+   "description": "Lines 42-76 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "42-76"
+  },
+  {
+   "description": "Line 60 checks `LABEL_COL is None`.",
+   "kind": "focus",
+   "lines": "60"
+  },
+  {
+   "description": "Line 67 returns `float(x)`.",
+   "kind": "focus",
+   "lines": "67"
+  },
+  {
+   "description": "Line 78 continues the main code and print the results.",
+   "kind": "reveal",
+   "lines": "78"
+  }
+ ],
+ "title": "Notebook Logistic_Regression_MLE_From_Scratch.ipynb",
+ "version": 1
+}

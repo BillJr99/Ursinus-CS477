@@ -1,0 +1,23 @@
+{
+ "code": "sk_mnb = MultinomialNB(alpha=1.0)\nsk_mnb.fit(X_train_txt, y_train_txt)\nsk_pred_txt = sk_mnb.predict(X_test_txt)\n\nprint(f\"sklearn MultinomialNB accuracy: {accuracy_score(y_test_txt, sk_pred_txt):.3f}\")\nprint(\"Classification report (sklearn):\")\nprint(classification_report(y_test_txt, sk_pred_txt))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-naive-bayes-step-by-step-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-7 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "1-7"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "7",
+   "trace_step": 6
+  }
+ ],
+ "title": "Notebook naive_bayes_step_by_step.ipynb",
+ "version": 1
+}

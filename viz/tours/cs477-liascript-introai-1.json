@@ -1,0 +1,55 @@
+{
+ "code": "import math\n\n# 1. Variables and f-strings\ncourse = \"CS477\"\nprint(f\"Welcome to {course}!\")\n\n# 2. Lists and loops: score a tiny \"agent\" that cleans 3 rooms\nrooms = [\"dirty\", \"clean\", \"dirty\"]\nscore = sum(1 for r in rooms if r == \"dirty\")  # rooms it can clean\nprint(\"Rooms the agent can clean:\", score)\n\n# 3. Functions: Euclidean distance, our first \"similarity\" measure\ndef distance(p, q):\n    return math.sqrt(sum((a - b) ** 2 for a, b in zip(p, q)))\n\nprint(\"Distance from (0,0) to (3,4):\", distance((0, 0), (3, 4)))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-introai-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `math`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 4-10 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "4-10"
+  },
+  {
+   "description": "Lines 13-14 define `distance(p, q)`.",
+   "kind": "reveal",
+   "lines": "13-14"
+  },
+  {
+   "description": "Line 14 returns a value.",
+   "kind": "focus",
+   "lines": "14"
+  },
+  {
+   "description": "Line 16 continues the main code and print the results.",
+   "kind": "reveal",
+   "lines": "16"
+  },
+  {
+   "description": "Here `distance` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "14",
+   "trace_step": 15
+  },
+  {
+   "description": "Here `distance` returns, the first time it does.",
+   "kind": "run",
+   "lines": "14",
+   "trace_step": 22
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "16",
+   "trace_step": 23
+  }
+ ],
+ "title": "5. Your Toolkit: Python, Jupyter, and Colab",
+ "version": 1
+}

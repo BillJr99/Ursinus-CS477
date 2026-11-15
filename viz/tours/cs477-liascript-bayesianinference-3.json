@@ -1,0 +1,72 @@
+{
+ "code": "import scipy.stats as st\n\ndef beta_posterior(alpha, beta, k, n):\n    return alpha + k, beta + (n - k)\n\ndef posterior_predictive(alpha, beta, m=1):\n    # Predictive for m future Bernoulli trials: mean of Bernoulli is E[theta]\n    return (alpha) / (alpha + beta)\n\nalpha, beta = 2, 2\nk, n = 12, 20\na_post, b_post = beta_posterior(alpha, beta, k, n)\nprint(\"Posterior Beta(alpha, beta):\", a_post, b_post)\nprint(\"Posterior mean:\", a_post/(a_post+b_post))\nprint(\"Posterior predictive mean for next trial:\", posterior_predictive(a_post, b_post))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-bayesianinference-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `scipy.stats`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 3-4 define `beta_posterior(alpha, beta, k, n)`.",
+   "kind": "reveal",
+   "lines": "3-4"
+  },
+  {
+   "description": "Line 4 returns `alpha + k, beta + (n - k)`.",
+   "kind": "focus",
+   "lines": "4"
+  },
+  {
+   "description": "Lines 6-8 define `posterior_predictive(alpha, beta, m)`.",
+   "kind": "reveal",
+   "lines": "6-8"
+  },
+  {
+   "description": "Line 8 returns `(alpha) / (alpha + beta)`.",
+   "kind": "focus",
+   "lines": "8"
+  },
+  {
+   "description": "Lines 10-15 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "10-15"
+  },
+  {
+   "description": "Here `beta_posterior` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "4",
+   "trace_step": 6
+  },
+  {
+   "description": "Here `beta_posterior` returns, the first time it does.",
+   "kind": "run",
+   "lines": "4",
+   "trace_step": 7
+  },
+  {
+   "description": "Here `posterior_predictive` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "8",
+   "trace_step": 11
+  },
+  {
+   "description": "Here `posterior_predictive` returns, the first time it does.",
+   "kind": "run",
+   "lines": "8",
+   "trace_step": 12
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "15",
+   "trace_step": 13
+  }
+ ],
+ "title": "Code Cell: Beta-Binomial Updates and Posterior Predictive",
+ "version": 1
+}

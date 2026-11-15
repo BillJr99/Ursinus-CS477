@@ -1,0 +1,28 @@
+{
+ "code": "# Predict on train and test\ny_train_pred = reg_pipeline.predict(X_train)\ny_test_pred = reg_pipeline.predict(X_test)\n\n# RMSE (train and test)\nrmse_train = np.sqrt(mean_squared_error(y_train, y_train_pred))\nrmse_test = np.sqrt(mean_squared_error(y_test, y_test_pred))\n\n# R^2 (train and test)\nr2_train = r2_score(y_train, y_train_pred)\nr2_test = r2_score(y_test, y_test_pred)\n\nprint(\"Linear Regression metrics:\")\nprint(f\"  Train RMSE: {rmse_train:.3f}\")\nprint(f\"  Test  RMSE: {rmse_test:.3f}\")\nprint(f\"  Train R^2: {r2_train:.3f}\")\nprint(f\"  Test  R^2: {r2_test:.3f}\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-linear-logistic-regression-demo-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-13 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-13"
+  },
+  {
+   "description": "Lines 14-17 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "14-17"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "17",
+   "trace_step": 11
+  }
+ ],
+ "title": "Notebook linear_logistic_regression_demo.ipynb",
+ "version": 1
+}

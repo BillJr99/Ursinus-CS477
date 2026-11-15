@@ -1,0 +1,17 @@
+{
+ "code": "\nols = LinearRegression().fit(X_train, y_train) # ordinary least squares\ny_pred_ols = ols.predict(X_test)\nresiduals = y_test - y_pred_ols\n\nplt.scatter(y_pred_ols, residuals, alpha=0.7)\nplt.axhline(0, linestyle=\"--\")\nplt.xlabel(\"Predicted y (OLS)\")\nplt.ylabel(\"Residual (y - y_hat)\")\nplt.title(\"Residual Plot\")\nplt.show()\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-linear-and-logistic-regression-tutorial-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-11 run the main code.",
+   "kind": "reveal",
+   "lines": "2-11"
+  }
+ ],
+ "title": "Notebook Linear_and_Logistic_Regression_Tutorial.ipynb",
+ "version": 1
+}

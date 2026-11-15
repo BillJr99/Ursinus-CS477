@@ -1,0 +1,28 @@
+{
+ "code": "\n# Define the toy HMM\nstates = [\"Rainy\", \"Sunny\"]\nobservations = [\"walk\", \"shop\", \"clean\"]\nA = np.array([[0.7, 0.3],\n              [0.4, 0.6]], dtype=float)\nB = np.array([[0.1, 0.4, 0.5],\n              [0.6, 0.3, 0.1]], dtype=float)\npi = np.array([0.6, 0.4], dtype=float)\n\nhmm = HMM(states=states, observations=observations, A=A, B=B, pi=pi)\n\n# Observation sequence: walk, shop, clean\nobs_seq_names = [\"walk\", \"shop\", \"clean\"]\nobs_seq = [hmm.obs_to_idx[o] for o in obs_seq_names]\n\nprint(\"Observation indices:\", obs_seq)\nprint(\"Observation names:\", obs_seq_names)\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-hmm-viterbi-colab-5",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 3-14 run the main code.",
+   "kind": "reveal",
+   "lines": "3-14"
+  },
+  {
+   "description": "Lines 15-18 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "15-18"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "18",
+   "trace_step": 21
+  }
+ ],
+ "title": "Notebook HMM_Viterbi_Colab.ipynb",
+ "version": 1
+}

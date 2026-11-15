@@ -1,0 +1,32 @@
+{
+ "code": "import numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import make_circles\nfrom sklearn.model_selection import train_test_split, StratifiedKFold, cross_val_score\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.svm import SVC, LinearSVC\nfrom sklearn.metrics import (\n    classification_report, confusion_matrix, ConfusionMatrixDisplay,\n    roc_curve, auc\n)\n\nX, y = make_circles(n_samples=800, factor=0.4, noise=0.25, random_state=42)\nXtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)\n\n# Linear SVM (hinge) with feature scaling\nlin_clf = Pipeline([\n    (\"scaler\", StandardScaler()),\n    (\"svm\", LinearSVC(C=1.0, max_iter=5000))\n])\n\n# RBF SVM with probability estimates for ROC\nrbf_clf = Pipeline([\n    (\"scaler\", StandardScaler()),\n    (\"svm\", SVC(C=1.0, gamma=\"scale\", kernel=\"rbf\", probability=True))\n])\n\nlin_clf.fit(Xtr, ytr)\nrbf_clf.fit(Xtr, ytr)\n\nprint(\"=== Linear SVM Report ===\")\nprint(classification_report(yte, lin_clf.predict(Xte)))\nprint(\"=== RBF SVM Report ===\")\nprint(classification_report(yte, rbf_clf.predict(Xte)))\n\n# Confusion matrix (RBF)\ncm = confusion_matrix(yte, rbf_clf.predict(Xte))\nConfusionMatrixDisplay(cm, display_labels=[\"class 0\",\"class 1\"]).plot()\nplt.title(\"RBF SVM — Confusion Matrix\")\nplt.show()\n\n# ROC AUC (RBF; use predict_proba for scores)\ny_score = rbf_clf.predict_proba(Xte)[:,1]\nfpr, tpr, thr = roc_curve(yte, y_score)\nprint(\"AUC:\", auc(fpr, tpr))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-perceptronsmodelevaluation-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-11 import `numpy`, `matplotlib.pyplot`, `sklearn.datasets`, `sklearn.model_selection`, `sklearn.preprocessing`, `sklearn.pipeline`, `sklearn.svm` and `sklearn.metrics`.",
+   "kind": "reveal",
+   "lines": "1-11"
+  },
+  {
+   "description": "Lines 13-26 run the main code.",
+   "kind": "reveal",
+   "lines": "13-26"
+  },
+  {
+   "description": "Lines 28-39 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "28-39"
+  },
+  {
+   "description": "Lines 40-45 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "40-45"
+  }
+ ],
+ "title": "4. scikit-learn Demo (Linear vs. RBF): Classification Metrics",
+ "version": 1
+}

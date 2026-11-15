@@ -1,0 +1,37 @@
+{
+ "code": "# Second Plot: Network structure visualization with one hidden layer\nfig, ax = plt.subplots(figsize=(12, 7))\nax.set_xlim(-1, 3)\nax.set_ylim(-1, hidden_size + 1)\n\n# Input layer (1 neuron)\nax.text(-0.1, hidden_size // 2, 'Input', fontsize=12, ha='center')\nax.plot(0, hidden_size // 2, 'bo', markersize=10)  # Input neuron\n\n# Hidden layer neurons\nfor i in range(hidden_size):\n    # Plot the hidden layer neurons\n    ax.plot(1, i, 'go', markersize=10)  # Hidden layer neurons\n\n    # Connect input to hidden with labeled weights (w1 and b1 on left)\n    ax.plot([0, 1], [hidden_size // 2, i], 'k--', lw=0.5)\n    ax.text(0.5, (hidden_size // 2 + i) / 2, f'w1={w1[0, i]:.2f}',\n            fontsize=8, color='gray', ha='center')\n\n    # Label the hidden neuron with b1 value directly next to the neuron\n    ax.text(1.1, i, f'b1={b1[i]:.2f}', fontsize=8, ha='left', va='center')\n\n# Output layer (1 neuron)\nax.plot(2, hidden_size // 2, 'ro', markersize=10)  # Output neuron\nax.text(2.1, hidden_size // 2, 'Output', fontsize=12, ha='left')\n\n# Connect hidden to output with labeled weights (w2 and b2 on right)\nfor i in range(hidden_size):\n    ax.plot([1, 2], [i, hidden_size // 2], 'k-', lw=0.5)\n    ax.text(1.6, (i + hidden_size // 2) / 2, f'w2={w2[i, 0]:.2f}',\n            fontsize=8, ha='center', va='center')\n\n# Label the output neuron bias (b2)\nax.text(2.3, (hidden_size // 2) - 0.3, f'b2={b2[0]:.2f}',\n        fontsize=8, ha='left', va='center')\n\n# Title and display inline\nax.set_title('Neural Network Visualization with Weights and Biases')\nax.axis('off')\nplt.show()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-nonlinearfunctionestimatormultilayernn-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-21 run the main code.",
+   "kind": "reveal",
+   "lines": "2-21"
+  },
+  {
+   "description": "Line 11 loops over `range(hidden_size)`.",
+   "kind": "focus",
+   "lines": "11"
+  },
+  {
+   "description": "Lines 24-35 continue the main code.",
+   "kind": "reveal",
+   "lines": "24-35"
+  },
+  {
+   "description": "Line 28 loops over `range(hidden_size)`.",
+   "kind": "focus",
+   "lines": "28"
+  },
+  {
+   "description": "Lines 38-40 continue the main code.",
+   "kind": "reveal",
+   "lines": "38-40"
+  }
+ ],
+ "title": "Notebook NonLinearFunctionEstimatorMultiLayerNN.ipynb",
+ "version": 1
+}

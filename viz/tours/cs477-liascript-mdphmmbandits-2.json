@@ -1,0 +1,38 @@
+{
+ "code": "import numpy as np\n\nP = np.array([\n    [0.6, 0.3, 0.1],\n    [0.4, 0.4, 0.2],\n    [0.2, 0.6, 0.2]\n])\n\nx0 = np.array([1,0,0])\n\n# evolve for 10 steps\nx = x0\nfor _ in range(10):\n    x = x @ P\n\nprint(\"After 10 days:\", x)\n\n# steady state via eigenvector method\nvals, vecs = np.linalg.eig(P.T)\nidx = np.argmin(np.abs(vals - 1))\npi = vecs[:, idx].real\npi = pi / pi.sum()\nprint(\"Steady state:\", pi)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-mdphmmbandits-2",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `numpy`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 3-14 run the main code.",
+   "kind": "reveal",
+   "lines": "3-14"
+  },
+  {
+   "description": "Line 13 loops over `range(10)`.",
+   "kind": "focus",
+   "lines": "13"
+  },
+  {
+   "description": "Lines 16-23 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "16-23"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "23",
+   "trace_step": 35
+  }
+ ],
+ "title": "4. Code Example (Python)",
+ "version": 1
+}

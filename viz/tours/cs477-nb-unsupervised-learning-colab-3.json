@@ -1,0 +1,22 @@
+{
+ "code": "# === GMM (scikit-learn) ===\nif SKLEARN_AVAILABLE:\n    gmm = GaussianMixture(n_components=2, random_state=42).fit(X_gmm)\n    skl_labels = gmm.predict(X_gmm)\n    skl_means = gmm.means_\n\n    plt.figure()\n    plt.scatter(X_gmm[:, 0], X_gmm[:, 1], c=skl_labels, s=12)\n    plt.scatter(skl_means[:, 0], skl_means[:, 1], marker='x', s=120)\n    plt.title(\"GMM (scikit-learn): Hard Assignments\")\n    plt.xlabel(\"Feature 1\")\n    plt.ylabel(\"Feature 2\")\n    plt.show()\nelse:\n    print(\"scikit-learn not available; skipping GMM (scikit-learn).\")\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-unsupervised-learning-colab-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-15 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-15"
+  },
+  {
+   "description": "Line 2 checks `SKLEARN_AVAILABLE`.",
+   "kind": "focus",
+   "lines": "2"
+  }
+ ],
+ "title": "Notebook Unsupervised_Learning_Colab.ipynb",
+ "version": 1
+}

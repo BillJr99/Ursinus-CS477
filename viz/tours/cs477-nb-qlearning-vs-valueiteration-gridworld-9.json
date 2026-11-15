@@ -1,0 +1,17 @@
+{
+ "code": "fig = plt.figure(figsize=(7,4))\nplt.plot(returns, alpha=0.5, label=\"episode return\")\n# simple moving average\nw = 100\nma = np.convolve(returns, np.ones(w)/w, mode='same')\nplt.plot(ma, label=f\"moving avg (w={w})\")\nplt.xlabel(\"Episode\"); plt.ylabel(\"Return\"); plt.title(\"Q‑Learning Learning Curve\"); plt.legend()\nplt.tight_layout(); plt.show()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-qlearning-vs-valueiteration-gridworld-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-8 run the main code.",
+   "kind": "reveal",
+   "lines": "1-8"
+  }
+ ],
+ "title": "Notebook QLearning_vs_ValueIteration_Gridworld.ipynb",
+ "version": 1
+}

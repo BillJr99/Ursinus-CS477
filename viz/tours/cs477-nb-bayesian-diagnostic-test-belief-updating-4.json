@@ -1,0 +1,62 @@
+{
+ "code": "def sample_prevalence(a, b, n, rng):\n    return rng.beta(a, b, size=n)\n\ndef sample_param_fixed_or_beta(fixed, beta_params, n, rng):\n    if beta_params is None:\n        return np.full(n, fixed, dtype=float)\n    else:\n        a, b = beta_params\n        return rng.beta(a, b, size=n)\n\ndef posterior_prob_positive(pi, sens, spec):\n    # PPV: P(D=1 | T=+) = (sens*pi) / (sens*pi + (1-spec)*(1-pi))\n    num = sens * pi\n    den = sens * pi + (1.0 - spec) * (1.0 - pi)\n    return num / np.maximum(den, 1e-15)\n\ndef posterior_prob_negative(pi, sens, spec):\n    # P(D=1 | T=-) = ((1-sens)*pi) / ((1-sens)*pi + spec*(1-pi))\n    num = (1.0 - sens) * pi\n    den = (1.0 - sens) * pi + spec * (1.0 - pi)\n    return num / np.maximum(den, 1e-15)\n\n# Draw samples\npi_samps   = sample_prevalence(A, B, N_SAMPLES, rng)\ns_samps    = sample_param_fixed_or_beta(S_FIXED, S_BETA, N_SAMPLES, rng)\nc_samps    = sample_param_fixed_or_beta(C_FIXED, C_BETA, N_SAMPLES, rng)\n\nppv_samps  = posterior_prob_positive(pi_samps, s_samps, c_samps)\nneg_samps  = posterior_prob_negative(pi_samps, s_samps, c_samps)\n\n# Point-prevalence comparison (using mean prevalence and mean s,c)\npi_mean = A/(A+B)\ns_mean  = (S_FIXED if S_BETA is None else (S_BETA[0]/(S_BETA[0]+S_BETA[1])))\nc_mean  = (C_FIXED if C_BETA is None else (C_BETA[0]/(C_BETA[0]+C_BETA[1])))\nppv_point = posterior_prob_positive(pi_mean, s_mean, c_mean)\nneg_point = posterior_prob_negative(pi_mean, s_mean, c_mean)\n\nprint(f\"Point estimate PPV at mean params: {ppv_point:.4f}\")\nprint(f\"Point estimate P(D=1 | T=-) at mean params: {neg_point:.4f}\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-bayesian-diagnostic-test-belief-updating-4",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-2 define `sample_prevalence(a, b, n, rng)`.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "description": "Line 2 returns `rng.beta(a, b, size=n)`.",
+   "kind": "focus",
+   "lines": "2"
+  },
+  {
+   "description": "Lines 4-9 define `sample_param_fixed_or_beta(fixed, beta_params, n, rng)`.",
+   "kind": "reveal",
+   "lines": "4-9"
+  },
+  {
+   "description": "Line 5 checks `beta_params is None`.",
+   "kind": "focus",
+   "lines": "5"
+  },
+  {
+   "description": "Line 9 returns `rng.beta(a, b, size=n)`.",
+   "kind": "focus",
+   "lines": "9"
+  },
+  {
+   "description": "Lines 11-15 define `posterior_prob_positive(pi, sens, spec)`.",
+   "kind": "reveal",
+   "lines": "11-15"
+  },
+  {
+   "description": "Line 15 returns `num / np.maximum(den, 1e-15)`.",
+   "kind": "focus",
+   "lines": "15"
+  },
+  {
+   "description": "Lines 17-21 define `posterior_prob_negative(pi, sens, spec)`.",
+   "kind": "reveal",
+   "lines": "17-21"
+  },
+  {
+   "description": "Lines 24-35 run the main code.",
+   "kind": "reveal",
+   "lines": "24-35"
+  },
+  {
+   "description": "Lines 36-39 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "36-39"
+  }
+ ],
+ "title": "Notebook Bayesian_Diagnostic_Test_Belief_Updating.ipynb",
+ "version": 1
+}

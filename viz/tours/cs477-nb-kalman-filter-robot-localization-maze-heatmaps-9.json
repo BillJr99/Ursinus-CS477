@@ -1,0 +1,32 @@
+{
+ "code": "import os\nos.makedirs(\"artifacts\", exist_ok=True)\n\nnp.savez(\"artifacts/kf_localization_run.npz\",\n         maze_grid=maze.grid, maze_scale=np.array([maze.scale]),\n         dt=np.array([dt]),\n         true_traj=true_traj, gps=gps, odo=odo, zs=zs,\n         xs=xs, Ps=Ps)\n\n# Save sample heatmaps\ndef save_heat(img, fname, title):\n    fig = plt.figure(figsize=(4.5,4.5))\n    plt.imshow(img, interpolation='nearest')\n    plt.title(title); plt.axis('off'); plt.tight_layout()\n    fig.savefig(f\"artifacts/{fname}\", dpi=120); plt.close(fig)\n\nsave_heat(heatmaps[0], \"belief_t0.png\", \"Belief t=0\")\nmid = len(heatmaps)//2\nsave_heat(heatmaps[mid], f\"belief_t{mid}.png\", f\"Belief t={mid}\")\nsave_heat(heatmaps[-1], \"belief_tT.png\", \"Belief t=T\")\n\nprint(\"Saved artifacts:\", os.listdir(\"artifacts\"))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `os`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 2-8 run the main code.",
+   "kind": "reveal",
+   "lines": "2-8"
+  },
+  {
+   "description": "Lines 11-15 define `save_heat(img, fname, title)`.",
+   "kind": "reveal",
+   "lines": "11-15"
+  },
+  {
+   "description": "Lines 17-22 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "17-22"
+  }
+ ],
+ "title": "Notebook Kalman_Filter_Robot_Localization_Maze_Heatmaps.ipynb",
+ "version": 1
+}

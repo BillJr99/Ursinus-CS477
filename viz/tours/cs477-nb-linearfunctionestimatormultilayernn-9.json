@@ -1,0 +1,32 @@
+{
+ "code": "def r(v):\n    return float(np.round(v, 6))\n\nprint(\"Final parameters:\")\nprint(f\"  v1={r(v1)}, v2={r(v2)}, w1={r(w1)}, w2={r(w2)}, b1={r(b1)}, b2={r(b2)}, c={r(c)}\")\n\nequation = (\n    f\"y_pred = {r(v1)} * ReLU({r(w1)} * x + {r(b1)}) \"\n    f\"+ {r(v2)} * ReLU({r(w2)} * x + {r(b2)}) + {r(c)}\"\n)\nprint(\"\\nTrained equation with weights/biases baked in:\")\nprint(equation)\n\n# Plot predictions vs x\nx_plot = np.linspace(0, 6, 200)\ny_plot = v1 * relu(w1 * x_plot + b1) + v2 * relu(w2 * x_plot + b2) + c\n\nplt.figure(figsize=(10, 6))\nplt.plot(x_plot, y_plot, label=\"Model prediction\")\nplt.scatter(x, y, label=\"Actual data\", marker='x')\nplt.xlabel(\"x\")\nplt.ylabel(\"y\")\nplt.title(\"Predicted y vs x\")\nplt.legend()\nplt.grid(True)\nplt.show()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-linearfunctionestimatormultilayernn-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-2 define `r(v)`.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "description": "Line 2 returns `float(np.round(v, 6))`.",
+   "kind": "focus",
+   "lines": "2"
+  },
+  {
+   "description": "Lines 4-15 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "4-15"
+  },
+  {
+   "description": "Lines 16-26 continue the main code.",
+   "kind": "reveal",
+   "lines": "16-26"
+  }
+ ],
+ "title": "Notebook LinearFunctionEstimatorMultiLayerNN.ipynb",
+ "version": 1
+}

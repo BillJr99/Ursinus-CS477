@@ -1,0 +1,28 @@
+{
+ "code": "# Example portfolio: 5 projects\np_true = np.array([0.12, 0.20, 0.08, 0.30, 0.18])  # true success probabilities (hidden to algorithms)\nR = np.array([100.0, 60.0, 200.0, 50.0, 80.0])     # ROI per success (known to planner)\nC = np.array([10.0,  8.0,  15.0,  6.0,  9.0])      # per-attempt cost (known)\nnames = [f\"P{i+1}\" for i in range(len(p_true))]\n\n# Prior evidence (can be zeros). These act like pseudo‑counts.\npast_successes = np.array([2, 10, 1, 5, 3], dtype=float)\npast_failures  = np.array([18, 40, 9, 15, 17], dtype=float)\n\n# Horizon and runs\nT = 2000  # number of funding rounds\nprint(\"Configured\", len(p_true), \"projects; horizon T =\", T)\n\n# Oracle for regret baselines: best expected net reward per trial\nmu_true = p_true * R - C\nbest_arm = int(np.argmax(mu_true))\nbest_mu = float(np.max(mu_true))\nprint(\"Oracle best arm:\", names[best_arm], \"with E[reward] =\", best_mu)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-13 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-13"
+  },
+  {
+   "description": "Lines 16-19 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "16-19"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "19",
+   "trace_step": 17
+  }
+ ],
+ "title": "Notebook ProjectFunding_MultiArmedBandit_FromScratch.ipynb",
+ "version": 1
+}

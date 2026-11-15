@@ -1,0 +1,38 @@
+{
+ "code": "import os, json\nos.makedirs(\"artifacts\", exist_ok=True)\n\n# Save models\nfor c in range(10):\n    np.savez(f\"artifacts/hmm_class_{c}.npz\",\n             pi=models[c][\"pi\"], A=models[c][\"A\"],\n             means=models[c][\"means\"], vars=models[c][\"vars\"],\n             ll_history=np.array(models[c][\"ll_history\"], dtype=np.float64))\n\n# Save metrics\nmetrics = {\n    \"accuracy\": float(acc),\n    \"confusion_matrix\": cm.tolist()\n}\nwith open(\"artifacts/metrics.json\", \"w\") as f:\n    json.dump(metrics, f, indent=2)\n\nprint(\"Saved files:\", os.listdir(\"artifacts\"))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-hmm-image-recognition-from-scratch-11",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `os` and `json`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 2-15 run the main code.",
+   "kind": "reveal",
+   "lines": "2-15"
+  },
+  {
+   "description": "Line 5 loops over `range(10)`.",
+   "kind": "focus",
+   "lines": "5"
+  },
+  {
+   "description": "Lines 16-19 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "16-19"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "19",
+   "trace_step": 70
+  }
+ ],
+ "title": "Notebook HMM_Image_Recognition_From_Scratch.ipynb",
+ "version": 1
+}

@@ -1,0 +1,33 @@
+{
+ "code": "import numpy as np\nfrom sklearn.datasets import make_moons\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.tree import DecisionTreeClassifier, export_text\nfrom sklearn.ensemble import RandomForestClassifier\n\nX, y = make_moons(n_samples=400, noise=0.3, random_state=477)\nXtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.5, random_state=477)\n\nfor depth in [1, 3, None]:\n    t = DecisionTreeClassifier(max_depth=depth, random_state=0).fit(Xtr, ytr)\n    print(f\"depth={str(depth):>4}: train={t.score(Xtr, ytr):.2f}  test={t.score(Xte, yte):.2f}\")\n\nrf = RandomForestClassifier(n_estimators=200, random_state=0).fit(Xtr, ytr)\nprint(f\"forest    : train={rf.score(Xtr, ytr):.2f}  test={rf.score(Xte, yte):.2f}\")\n\nprint(export_text(DecisionTreeClassifier(max_depth=2, random_state=0).fit(Xtr, ytr),\n                  feature_names=[\"x1\", \"x2\"]))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-trees-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-5 import `numpy`, `sklearn.datasets`, `sklearn.model_selection`, `sklearn.tree` and `sklearn.ensemble`.",
+   "kind": "reveal",
+   "lines": "1-5"
+  },
+  {
+   "description": "Lines 7-18 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "7-18"
+  },
+  {
+   "description": "Line 10 loops over `[1, 3, None]`.",
+   "kind": "focus",
+   "lines": "10"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "17",
+   "trace_step": 22
+  }
+ ],
+ "title": "7. Runnable Code: Trees vs. Forests",
+ "version": 1
+}

@@ -1,0 +1,28 @@
+{
+ "code": "# Synthetic regression data\nX, y = make_regression(n_samples=600, n_features=5, noise=15.0, random_state=0)\n\n# 80/20 split\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.2, random_state=42\n)\n\n# Simple pipeline: scale → linear regression\nreg = Pipeline([('scaler', StandardScaler()), ('linreg', LinearRegression())])\nreg.fit(X_train, y_train)\n\ny_pred = reg.predict(X_test)\nrmse = math.sqrt(mean_squared_error(y_test, y_pred))\nr2   = r2_score(y_test, y_pred)\nprint(f'Test RMSE: {rmse:.3f}, Test R^2: {r2:.3f}')",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-perceptronsmodelevaluation-2",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-13 run the main code.",
+   "kind": "reveal",
+   "lines": "2-13"
+  },
+  {
+   "description": "Lines 14-16 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "14-16"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "16",
+   "trace_step": 10
+  }
+ ],
+ "title": "1. Train/Test Split",
+ "version": 1
+}

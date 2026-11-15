@@ -1,0 +1,32 @@
+{
+ "code": "\niris = load_iris()\nX = iris.data.copy()\ny = iris.target.copy()\n\nscaler = StandardScaler().fit(X)\nXs = scaler.transform(X)\n\nmu, comps, vals, evr, Z, C = pca_from_scratch(Xs, n_components=4)\n\nfisher_scores = []\nfor k in range(Z.shape[1]):\n    s, _ = fisher_multiclass_1d(Z[:,k], y)\n    fisher_scores.append(s)\n\nprint(\"Eigenvalues:\", vals)\nprint(\"Explained variance ratio:\", evr)\nprint(\"Fisher scores per PC:\", fisher_scores)\n\nfig, ax = plt.subplots()\nax.plot(range(1, len(vals)+1), vals, marker=\"o\")\nax.set_xlabel(\"PC index\")\nax.set_ylabel(\"Eigenvalue\")\nax.set_title(\"PCA Eigenvalues (Iris, scaled)\")\nplt.show()\n\nfig, ax = plt.subplots()\nax.plot(range(1, len(fisher_scores)+1), fisher_scores, marker=\"o\")\nax.set_xlabel(\"PC index\")\nax.set_ylabel(\"Fisher separability (avg over pairs)\")\nax.set_title(\"Fisher Scores per PC\")\nplt.show()\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-pca-from-scratch-and-sklearn-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-14 run the main code.",
+   "kind": "reveal",
+   "lines": "2-14"
+  },
+  {
+   "description": "Line 12 loops over `range(Z.shape[1])`.",
+   "kind": "focus",
+   "lines": "12"
+  },
+  {
+   "description": "Lines 16-27 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "16-27"
+  },
+  {
+   "description": "Lines 28-32 continue the main code.",
+   "kind": "reveal",
+   "lines": "28-32"
+  }
+ ],
+ "title": "Notebook PCA_From_Scratch_and_Sklearn.ipynb",
+ "version": 1
+}

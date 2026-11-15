@@ -1,0 +1,22 @@
+{
+ "code": "fig = plt.figure(figsize=(10,4))\nplt.plot(time, ecg, linewidth=0.8)\nplt.title(\"ECG\")\nplt.xlabel(\"Time (s)\"); plt.ylabel(\"Amplitude\")\nplt.tight_layout(); plt.show()\n\nfig = plt.figure(figsize=(10,3))\nplt.plot(time, p_artifact)\nplt.title(\"Artifact Posterior Probability\")\nplt.xlabel(\"Time (s)\"); plt.ylabel(\"P(artifact)\")\nplt.tight_layout(); plt.show()\n\nif 'labels_true' in globals() and labels_true is not None:\n    fig = plt.figure(figsize=(10,2.5))\n    plt.plot(time, labels_true, linewidth=1.0)\n    plt.title(\"Ground Truth Artifact Mask (Synthetic)\")\n    plt.xlabel(\"Time (s)\"); plt.ylabel(\"Artifact=1\")\n    plt.tight_layout(); plt.show()\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-10",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-18 run the main code.",
+   "kind": "reveal",
+   "lines": "1-18"
+  },
+  {
+   "description": "Line 13 makes a decision.",
+   "kind": "focus",
+   "lines": "13"
+  }
+ ],
+ "title": "Notebook HMM_ECG_Artifact_Detector_From_Scratch.ipynb",
+ "version": 1
+}

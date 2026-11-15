@@ -1,0 +1,27 @@
+{
+ "code": "names = np.array(feature_names)\nx0_raw = x0*sig + mu\norder = np.argsort(np.abs(phi))[::-1]\nnames_ord = names[order]; phi_ord = phi[order]\n\nfig = plt.figure(figsize=(7,4))\nplt.bar(range(len(phi_ord)), phi_ord)\nplt.xticks(range(len(phi_ord)), names_ord, rotation=30)\nplt.ylabel(\"Contribution to output probability\")\nplt.title(\"Local Shapley Contributions (x₀)\")\nplt.tight_layout(); plt.show()\n\nprint(\"Prediction f(x0) =\", fx, \"  Base =\", f0)\nfor n, v in zip(names_ord, phi_ord):\n    print(f\"{n:>10s}: {v:+.4f}\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-explainableai-shapley-from-scratch-creditnn-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-13 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "1-13"
+  },
+  {
+   "description": "Lines 14-15 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "14-15"
+  },
+  {
+   "description": "Line 14 loops over `zip(names_ord, phi_ord)`.",
+   "kind": "focus",
+   "lines": "14"
+  }
+ ],
+ "title": "Notebook ExplainableAI_Shapley_From_Scratch_CreditNN.ipynb",
+ "version": 1
+}

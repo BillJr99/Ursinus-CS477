@@ -1,0 +1,67 @@
+{
+ "code": "from dataclasses import dataclass\n@dataclass\nclass QLConfig:\n    episodes:int=2000\n    alpha:float=0.2\n    gamma:float=0.98\n    eps_start:float=1.0\n    eps_end:float=0.05\n    eps_decay:float=0.995\n    max_steps:int=200\nQLCFG = QLConfig()\n\ndef epsilon_greedy(q_row, eps):\n    if rng.random() < eps:\n        return int(rng.integers(0, 4))\n    return int(np.argmax(q_row))\n\ndef q_learning(cfg=QLCFG):\n    Q = np.zeros((S, 4), dtype=float)\n    eps = cfg.eps_start\n    returns = []\n    for ep in range(cfg.episodes):\n        s_rc = reset()\n        s = rc_to_s(*s_rc)\n        G = 0.0\n        for t in range(cfg.max_steps):\n            a = epsilon_greedy(Q[s], eps) if (WORLD[s_to_rc(s)]!=1) else int(rng.integers(0,4))\n            (nr,nc), r, done = step(s_rc, a, rng=rng)\n            ns = rc_to_s(nr,nc)\n            td_target = r + (0.0 if done else cfg.gamma * np.max(Q[ns]))\n            Q[s,a] += cfg.alpha * (td_target - Q[s,a])\n            s_rc = (nr,nc); s = ns; G += r\n            if done: break\n        eps = max(cfg.eps_end, eps*cfg.eps_decay)\n        returns.append(G)\n        if (ep+1) % 200 == 0:\n            print(f\"Ep {ep+1:4d} | return={G:6.2f} | eps={eps:.3f}\")\n    return Q, np.array(returns)\n\nQ, ret_hist = q_learning(QLCFG)\nV_hat = np.max(Q, axis=1)\nPi_hat = np.argmax(Q, axis=1)\nplot_value_and_policy(V_hat, Pi_hat, title=\"Q‑Learning — V^ and greedy π(Q)\")\n\nfig = plt.figure(figsize=(6,4))\nplt.plot(ret_hist, alpha=0.7)\nif len(ret_hist)>50:\n    mv = np.convolve(ret_hist, np.ones(50)/50, mode='valid')\n    plt.plot(np.arange(len(mv))+49, mv, label=\"moving avg (50)\")\nplt.xlabel(\"Episode\"); plt.ylabel(\"Return\"); plt.title(\"Q‑Learning: episodic return\")\nplt.legend(); plt.tight_layout(); plt.show()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-rl-fromscratch-toygridworld-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `dataclasses`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 2-10 define the class `QLConfig`.",
+   "kind": "reveal",
+   "lines": "2-10"
+  },
+  {
+   "description": "Line 11 runs the main code.",
+   "kind": "reveal",
+   "lines": "11"
+  },
+  {
+   "description": "Lines 13-16 define `epsilon_greedy(q_row, eps)`.",
+   "kind": "reveal",
+   "lines": "13-16"
+  },
+  {
+   "description": "Line 14 checks `rng.random() < eps`.",
+   "kind": "focus",
+   "lines": "14"
+  },
+  {
+   "description": "Line 16 returns `int(np.argmax(q_row))`.",
+   "kind": "focus",
+   "lines": "16"
+  },
+  {
+   "description": "Lines 18-38 define `q_learning(cfg)`.",
+   "kind": "reveal",
+   "lines": "18-38"
+  },
+  {
+   "description": "Line 26 loops over `range(cfg.max_steps)`.",
+   "kind": "focus",
+   "lines": "26"
+  },
+  {
+   "description": "Line 36 checks `(ep+1) % 200 == 0`.",
+   "kind": "focus",
+   "lines": "36"
+  },
+  {
+   "description": "Lines 40-51 continue the main code.",
+   "kind": "reveal",
+   "lines": "40-51"
+  },
+  {
+   "description": "Line 51 continues the main code.",
+   "kind": "reveal",
+   "lines": "51"
+  }
+ ],
+ "title": "Notebook RL_FromScratch_ToyGridworld.ipynb",
+ "version": 1
+}

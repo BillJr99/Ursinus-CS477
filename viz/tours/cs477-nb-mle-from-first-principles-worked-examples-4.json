@@ -1,0 +1,23 @@
+{
+ "code": "m = 150\nlam_true = 2.3\ny = rng.poisson(lam_true, size=m)\nlam_hat = y.mean()\nI_obs = m / (lam_hat + 1e-12)\nci_lo, ci_hi, se = wald_ci(lam_hat, I_obs)\nprint(f\"Poisson: m={m}, true λ={lam_true:.3f}, MLE λ̂={lam_hat:.3f}, SE≈{se:.4f}, 95% CI=({ci_lo:.3f}, {ci_hi:.3f})\")\n\ngrid = np.linspace(0.1, 6.0, 300)\nll = y.sum()*np.log(grid) - m*grid\nplot_ll(grid, ll, lam_hat, true_theta=lam_true, xlabel=r\"$\\lambda$\", title=\"Poisson log-likelihood\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-mle-from-first-principles-worked-examples-4",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-11 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "1-11"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "11",
+   "trace_step": 10
+  }
+ ],
+ "title": "Notebook MLE_From_First_Principles_Worked_Examples.ipynb",
+ "version": 1
+}

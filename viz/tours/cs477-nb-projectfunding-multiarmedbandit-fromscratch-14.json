@@ -1,0 +1,37 @@
+{
+ "code": "N_RUNS = 20\nlabels = [\"ε‑greedy\", \"UCB1\", \"Thompson\"]\ncum_rewards = {lab: np.zeros((N_RUNS, T)) for lab in labels}\n\nfor r in range(N_RUNS):\n    eg_r = EpsilonGreedy(k, R, C, names, epsilon=eps, init_mean=0.0)\n    ucb_r = UCB1(k, R, C, names)\n    ts_r  = ThompsonSampling(k, R, C, names, alpha0=alpha_prior, beta0=beta_prior)\n    for lab, strat in [(\"ε‑greedy\", eg_r), (\"UCB1\", ucb_r), (\"Thompson\", ts_r)]:\n        out = simulate_single(strat, T, seed=rng.integers(0, 1<<31))\n        cum_rewards[lab][r, :] = np.cumsum(out[\"rewards\"])\n\nfig = plt.figure(figsize=(7,4))\nfor lab in labels:\n    m = np.mean(cum_rewards[lab], axis=0)\n    lo = np.percentile(cum_rewards[lab], 10, axis=0)\n    hi = np.percentile(cum_rewards[lab], 90, axis=0)\n    plt.plot(m, label=lab)\n    plt.fill_between(np.arange(T), lo, hi, alpha=0.2)\nplt.xlabel(\"Round\"); plt.ylabel(\"Cumulative reward\")\nplt.title(\"Average Cumulative Reward (shaded 10–90%)\")\nplt.legend(); plt.tight_layout(); plt.show()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-14",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-13 run the main code.",
+   "kind": "reveal",
+   "lines": "1-13"
+  },
+  {
+   "description": "Line 5 loops over `range(N_RUNS)`.",
+   "kind": "focus",
+   "lines": "5"
+  },
+  {
+   "description": "Line 9 starts a loop.",
+   "kind": "focus",
+   "lines": "9"
+  },
+  {
+   "description": "Lines 14-22 continue the main code.",
+   "kind": "reveal",
+   "lines": "14-22"
+  },
+  {
+   "description": "Line 14 loops over `labels`.",
+   "kind": "focus",
+   "lines": "14"
+  }
+ ],
+ "title": "Notebook ProjectFunding_MultiArmedBandit_FromScratch.ipynb",
+ "version": 1
+}

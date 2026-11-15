@@ -1,0 +1,57 @@
+{
+ "code": "import os\nos.makedirs(\"artifacts\", exist_ok=True)\n\nnp.savez(\"artifacts/astar_run.npz\",\n         grid=grid, start=np.array(start), goal=np.array(goal),\n         path=np.array(path, dtype=int))\n\n# Try to save an MP4\ntry:\n    anim = animate_search(grid, start, goal, RES[\"snapshots\"], path=path, interval=80)\n    anim.save(\"artifacts/astar_animation.mp4\")\n    print(\"Saved animation to artifacts/astar_animation.mp4\")\nexcept Exception as e:\n    print(\"Could not save MP4 animation (ffmpeg likely missing or environment-limited):\", e)\n\n# Save static PNGs\ndef save_frame(img, fname, title):\n    fig = plt.figure(figsize=(5,5))\n    plt.imshow(img, interpolation='nearest'); plt.title(title); plt.axis('off'); plt.tight_layout()\n    fig.savefig(f\"artifacts/{fname}\", dpi=120); plt.close(fig)\n\n# Save initial, mid, final snapshots\nif RES[\"snapshots\"]:\n    t0 = 0; tm = len(RES[\"snapshots\"])//2; tL = len(RES[\"snapshots\"])-1\n    for t, label in [(t0, \"t0\"), (tm, \"tmid\"), (tL, \"tlast\")]:\n        open_t, closed_t, cur = RES[\"snapshots\"][t]\n        H, W = grid.shape\n        base = np.zeros((H,W)); base[:,:] = 0.9; base[grid==1] = 0.2\n        for (i,j) in closed_t:\n            if grid[i,j]==0: base[i,j] = 0.6\n        for (i,j) in open_t:\n            if grid[i,j]==0 and (i,j) not in closed_t: base[i,j] = 0.75\n        save_frame(base, f\"astar_{label}.png\", f\"A* {label}\")\nelse:\n    print(\"No snapshots to save as PNGs.\")\n\nprint(\"Artifacts:\", os.listdir(\"artifacts\"))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-astar-search-with-graphics-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `os`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 2-14 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-14"
+  },
+  {
+   "description": "Lines 17-20 define `save_frame(img, fname, title)`.",
+   "kind": "reveal",
+   "lines": "17-20"
+  },
+  {
+   "description": "Lines 23-35 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "23-35"
+  },
+  {
+   "description": "Line 23 checks `RES[\"snapshots\"]`.",
+   "kind": "focus",
+   "lines": "23"
+  },
+  {
+   "description": "Line 25 starts a loop.",
+   "kind": "focus",
+   "lines": "25"
+  },
+  {
+   "description": "Line 30 checks `grid[i,j]==0`.",
+   "kind": "focus",
+   "lines": "30"
+  },
+  {
+   "description": "Line 31 loops over `open_t`.",
+   "kind": "focus",
+   "lines": "31"
+  },
+  {
+   "description": "Line 37 continues the main code and print the results.",
+   "kind": "reveal",
+   "lines": "37"
+  }
+ ],
+ "title": "Notebook AStar_Search_With_Graphics.ipynb",
+ "version": 1
+}

@@ -1,0 +1,28 @@
+{
+ "code": "# --- Prior over prevalence π ~ Beta(A,B) ---\n# Example: a rare disease with mean prevalence ≈ 1% and moderate uncertainty.\nA, B = 1.0, 99.0   # mean = A/(A+B) = 0.01\n\n# --- Sensitivity & Specificity ---\n# You can specify fixed values or Beta priors for uncertainty.\n# Fixed example:\nS_FIXED = 0.95     # sensitivity\nC_FIXED = 0.98     # specificity\n\n# Or, use Beta priors to reflect uncertainty (set to None to use fixed):\nS_BETA = None      # e.g., (95, 5) centers ~0.95 with moderate confidence\nC_BETA = None      # e.g., (98, 2) centers ~0.98 with high confidence\n\n# Monte Carlo samples\nN_SAMPLES = 100_000\nprint(\"Configured. E[π] =\", A/(A+B))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-bayesian-diagnostic-test-belief-updating-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 3-16 run the main code.",
+   "kind": "reveal",
+   "lines": "3-16"
+  },
+  {
+   "description": "Line 17 continues the main code and print the results.",
+   "kind": "reveal",
+   "lines": "17"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "17",
+   "trace_step": 7
+  }
+ ],
+ "title": "Notebook Bayesian_Diagnostic_Test_Belief_Updating.ipynb",
+ "version": 1
+}

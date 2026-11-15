@@ -1,0 +1,28 @@
+{
+ "code": "# Prior: uniform over free cells\nb0 = np.zeros(N, dtype=float)\nb0[free_states] = 1.0 / len(free_states)\n\nbeliefs = bayes_filter(actions, observations, T_by_action_sim, sensor_correct, b0)\nprint(\"Computed beliefs for T+1 =\", len(beliefs))\n\nfor t, b in enumerate(beliefs):\n    show_heatmap(belief_to_grid(b), title=f\"Belief Heatmap — t={t}\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-9 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-9"
+  },
+  {
+   "description": "Line 8 loops over `enumerate(beliefs)`.",
+   "kind": "focus",
+   "lines": "8"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "8",
+   "trace_step": 39
+  }
+ ],
+ "title": "Notebook Bayesian_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+ "version": 1
+}

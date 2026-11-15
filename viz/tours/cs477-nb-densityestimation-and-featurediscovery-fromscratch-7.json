@@ -1,0 +1,57 @@
+{
+ "code": "def pca_svd(X, n_components=None):\n    Xc = X - X.mean(axis=0, keepdims=True)\n    U, S, Vt = np.linalg.svd(Xc, full_matrices=False)\n    comps = Vt\n    explained_var = (S**2) / (len(X)-1)\n    evr = explained_var / explained_var.sum()\n    if n_components is not None:\n        return Xc @ comps[:n_components].T, comps[:n_components], evr[:n_components], evr\n    return Xc @ comps.T, comps, evr, evr\n\nZw, Cw, evr_k, evr_all = pca_svd(Xws, n_components=2)\ncum_evr = np.cumsum(evr_all)\n\nfig = plt.figure(figsize=(6,3.8))\nplt.plot(np.arange(1,len(evr_all)+1), cum_evr, marker='o')\nplt.xlabel(\"Number of components\"); plt.ylabel(\"Cumulative explained variance\")\nplt.title(\"PCA on Wine (standardized)\"); plt.tight_layout(); plt.show()\n\nfig = plt.figure(figsize=(6,5))\nplt.scatter(Zw[:,0], Zw[:,1], c=yw, s=20, cmap='viridis')\nplt.xlabel(\"PC1\"); plt.ylabel(\"PC2\"); plt.title(\"Wine projected to first 2 PCs\")\nplt.tight_layout(); plt.show()\n\ndef top_loadings(C, feature_names, k=5):\n    for i in range(min(2, C.shape[0])):\n        w = C[i]\n        order = np.argsort(np.abs(w))[::-1][:k]\n        print(f\"PC{i+1} top {k} loadings:\")\n        for j in order:\n            print(f\"  {feature_names[j]:25s} {w[j]:+.3f}\")\ntop_loadings(Cw, wine.feature_names, k=6)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-9 define `pca_svd(X, n_components)`.",
+   "kind": "reveal",
+   "lines": "1-9"
+  },
+  {
+   "description": "Line 7 checks `n_components is not None`.",
+   "kind": "focus",
+   "lines": "7"
+  },
+  {
+   "description": "Line 8 returns a value.",
+   "kind": "focus",
+   "lines": "8"
+  },
+  {
+   "description": "Line 9 returns `Xc @ comps.T, comps, evr, evr`.",
+   "kind": "focus",
+   "lines": "9"
+  },
+  {
+   "description": "Lines 11-22 run the main code.",
+   "kind": "reveal",
+   "lines": "11-22"
+  },
+  {
+   "description": "Line 22 continues the main code.",
+   "kind": "reveal",
+   "lines": "22"
+  },
+  {
+   "description": "Lines 24-30 define `top_loadings(C, feature_names, k)`.",
+   "kind": "reveal",
+   "lines": "24-30"
+  },
+  {
+   "description": "Line 25 loops over `range(min(2, C.shape[0]))`.",
+   "kind": "focus",
+   "lines": "25"
+  },
+  {
+   "description": "Line 31 continues the main code.",
+   "kind": "reveal",
+   "lines": "31"
+  }
+ ],
+ "title": "Notebook DensityEstimation_and_FeatureDiscovery_FromScratch.ipynb",
+ "version": 1
+}

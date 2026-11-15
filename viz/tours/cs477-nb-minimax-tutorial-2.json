@@ -1,0 +1,28 @@
+{
+ "code": "\n# Payoff matrix A: rows = {Ad A, Ad B, Ad C}, columns = {Search, Social, Video}\nA = np.array([\n    [ 6.0,  2.0,  3.5],   # Ad A vs {Search, Social, Video}\n    [ 4.0,  5.5,  2.0],   # Ad B\n    [ 3.0,  2.5,  6.0]    # Ad C\n], dtype=float)\n\nrow_labels = [\"Ad A\", \"Ad B\", \"Ad C\"]\ncol_labels = [\"Search\", \"Social\", \"Video\"]\n\nprint(\"Payoff matrix A (Row's payoff; Column sees -A):\")\nprint(\"rows =\", row_labels)\nprint(\"cols =\", col_labels)\nprint(A)\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-minimax-tutorial-2",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 3-14 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "3-14"
+  },
+  {
+   "description": "Line 15 continues the main code and print the results.",
+   "kind": "reveal",
+   "lines": "15"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "15",
+   "trace_step": 13
+  }
+ ],
+ "title": "Notebook Minimax_Tutorial.ipynb",
+ "version": 1
+}

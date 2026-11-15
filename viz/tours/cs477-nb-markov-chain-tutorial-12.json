@@ -1,0 +1,57 @@
+{
+ "code": "import numpy as np\nfrom sklearn.preprocessing import normalize\n\n# -------------------------------\n# PageRank example using scikit-learn + NumPy\n# -------------------------------\n\n# Tiny directed web graph with 4 pages (0,1,2,3)\n# A[i, j] = 1 if page i links to page j\nA = np.array([\n    [0, 1, 1, 0],  # 0 -> 1,2\n    [0, 0, 1, 0],  # 1 -> 2\n    [1, 0, 0, 1],  # 2 -> 0,3\n    [0, 0, 0, 0],  # 3 -> (dangling)\n], dtype=float)\n\nn = A.shape[0]\n\n# Handle dangling nodes: replace zero rows with ones (so they become uniform after normalization)\nrow_sums = A.sum(axis=1)\ndangling = (row_sums == 0)\nA[dangling, :] = 1.0\n\n# Row-normalize adjacency matrix to get transition matrix P\nP = normalize(A, norm=\"l1\", axis=1)  # each row sums to 1\n\n# Construct Google matrix G for PageRank\nalpha = 0.85  # damping factor\nv = np.ones(n) / n  # teleportation distribution (uniform)\nG = alpha * P + (1 - alpha) * np.outer(np.ones(n), v)\n\n# Power iteration to compute PageRank (stationary distribution of G)\ndef pagerank_power_iteration(G, tol=1e-8, max_iter=1000):\n    n = G.shape[0]\n    pi = np.ones(n) / n  # initial distribution\n    for it in range(max_iter):\n        pi_new = pi @ G\n        if np.linalg.norm(pi_new - pi, ord=1) < tol:\n            return pi_new, it + 1\n        pi = pi_new\n    return pi, max_iter\n\npi, iters = pagerank_power_iteration(G)\n\n# Display results\nprint(\"Google matrix G:\\n\", G)\nprint(\"\\nPageRank vector (stationary distribution):\")\nfor i, score in enumerate(pi):\n    print(f\"Page {i}: {score:.4f}\")\nprint(\"\\nConverged in\", iters, \"iterations; sum(pi) =\", pi.sum())\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-markov-chain-tutorial-12",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-2 import `numpy` and `sklearn.preprocessing`.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "description": "Lines 10-21 run the main code.",
+   "kind": "reveal",
+   "lines": "10-21"
+  },
+  {
+   "description": "Lines 22-30 continue the main code.",
+   "kind": "reveal",
+   "lines": "22-30"
+  },
+  {
+   "description": "Lines 33-41 define `pagerank_power_iteration(G, tol, max_iter)`.",
+   "kind": "reveal",
+   "lines": "33-41"
+  },
+  {
+   "description": "Line 36 loops over `range(max_iter)`.",
+   "kind": "focus",
+   "lines": "36"
+  },
+  {
+   "description": "Line 38 checks `np.linalg.norm(pi_new - pi, ord=1) < tol`.",
+   "kind": "focus",
+   "lines": "38"
+  },
+  {
+   "description": "Line 39 returns `pi_new, it + 1`.",
+   "kind": "focus",
+   "lines": "39"
+  },
+  {
+   "description": "Line 41 returns `pi, max_iter`.",
+   "kind": "focus",
+   "lines": "41"
+  },
+  {
+   "description": "Lines 43-50 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "43-50"
+  }
+ ],
+ "title": "Notebook Markov_Chain_Tutorial.ipynb",
+ "version": 1
+}

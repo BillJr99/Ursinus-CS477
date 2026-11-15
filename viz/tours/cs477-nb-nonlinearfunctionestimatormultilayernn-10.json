@@ -1,0 +1,28 @@
+{
+ "code": "# ---------- Explicit ReLU equation (term-by-term) ----------\nrelu_terms = []\nfor i in range(hidden_size):\n    relu_terms.append(f\"({w2[i,0]:.6g} * max(0, {w1[0,i]:.6g} * x + {b1[i]:.6g}))\")\nrelu_equation = \" + \".join(relu_terms) + f\" + {b2[0]:.6g}\"\n\nprint(\"Neural network learned function (explicit ReLU form):\")\nprint(f\"y_hat(x) = {relu_equation}\\n\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-nonlinearfunctionestimatormultilayernn-10",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-8 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-8"
+  },
+  {
+   "description": "Line 3 loops over `range(hidden_size)`.",
+   "kind": "focus",
+   "lines": "3"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "8",
+   "trace_step": 25
+  }
+ ],
+ "title": "Notebook NonLinearFunctionEstimatorMultiLayerNN.ipynb",
+ "version": 1
+}

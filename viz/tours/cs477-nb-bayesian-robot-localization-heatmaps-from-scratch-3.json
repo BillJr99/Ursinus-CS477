@@ -1,0 +1,62 @@
+{
+ "code": "@dataclass\nclass Maze:\n    grid: np.ndarray   # 0=free, 1=wall\n    colors: np.ndarray # integer color labels (meaningful only at free cells)\n\ndef make_maze():\n    grid = np.array([\n        [0,0,0,0,0,0,0],\n        [0,1,1,0,1,1,0],\n        [0,0,0,0,0,0,0],\n        [0,1,0,1,0,1,0],\n        [0,0,0,0,0,0,0]\n    ], dtype=int)\n    H, W = grid.shape\n    colors = np.zeros_like(grid)\n    for i in range(H):\n        for j in range(W):\n            if grid[i,j]==0:\n                colors[i,j] = (2*i + j) % 4  # simple pattern with 4 colors\n    return Maze(grid=grid, colors=colors)\n\nmaze = make_maze()\nH, W = maze.grid.shape\nN = H*W\nfree_mask = (maze.grid == 0)\nfree_states = np.where(free_mask.reshape(-1))[0]\nnum_free = len(free_states)\nn_colors = int(maze.colors.max() + 1)\nprint(\"Maze:\", H, \"x\", W, \"| free cells:\", num_free, \"| colors:\", n_colors)\n\ndef idx(i,j,W): return i*W + j\ndef ij(s,W): return divmod(s, W)\n\ndef belief_to_grid(b):\n    g = np.zeros((H,W), dtype=float)\n    g[free_mask] = b[free_mask.reshape(-1)]\n    return g",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-4 define the class `Maze`.",
+   "kind": "reveal",
+   "lines": "1-4"
+  },
+  {
+   "description": "Lines 6-20 define `make_maze()`.",
+   "kind": "reveal",
+   "lines": "6-20"
+  },
+  {
+   "description": "Line 16 loops over `range(H)`.",
+   "kind": "focus",
+   "lines": "16"
+  },
+  {
+   "description": "Line 17 loops over `range(W)`.",
+   "kind": "focus",
+   "lines": "17"
+  },
+  {
+   "description": "Line 20 returns `Maze(grid=grid, colors=colors)`.",
+   "kind": "focus",
+   "lines": "20"
+  },
+  {
+   "description": "Lines 22-29 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "22-29"
+  },
+  {
+   "description": "Line 31 defines `idx(i, j, W)`.",
+   "kind": "reveal",
+   "lines": "31"
+  },
+  {
+   "description": "Line 32 defines `ij(s, W)`.",
+   "kind": "reveal",
+   "lines": "32"
+  },
+  {
+   "description": "Line 32 returns `divmod(s, W)`.",
+   "kind": "focus",
+   "lines": "32"
+  },
+  {
+   "description": "Lines 34-37 define `belief_to_grid(b)`.",
+   "kind": "reveal",
+   "lines": "34-37"
+  }
+ ],
+ "title": "Notebook Bayesian_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+ "version": 1
+}

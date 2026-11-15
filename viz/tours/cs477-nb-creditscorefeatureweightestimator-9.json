@@ -1,0 +1,38 @@
+{
+ "code": "# Print the equation for interpretability\nprint(\"\\nEquation for Feature Influence on Credit Score:\")\n\n# Construct the equation string for a linear relationship\nequation_terms = []\nfor i, (weight, feature_name) in enumerate(zip(weights[0], feature_names)):\n    equation_terms.append(f\"({weight.item():.4f}) * {feature_name}\")\n\nequation = \" + \".join(equation_terms) + f\" + Bias({bias.item():.4f})\"\nprint(\"Credit Score Estimate = \" + equation)\n\n# Compute percentage contribution of each feature\nabsolute_weights = torch.abs(weights[0])  # Take absolute values to consider magnitude only\ntotal_weight = torch.sum(absolute_weights)\npercent_contributions = (absolute_weights / total_weight) * 100  # Calculate percentage contributions\n\n# Print the percentage contribution of each feature\nprint(\"\\nPercentage Contribution of Each Feature to the Credit Score Estimate:\")\nfor i, (feature_name, contribution) in enumerate(zip(feature_names, percent_contributions)):\n    print(f\"{feature_name}: {contribution.item():.2f}%\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-creditscorefeatureweightestimator-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-13 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-13"
+  },
+  {
+   "description": "Line 6 starts a loop.",
+   "kind": "focus",
+   "lines": "6"
+  },
+  {
+   "description": "Lines 14-20 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "14-20"
+  },
+  {
+   "description": "Line 19 starts a loop.",
+   "kind": "focus",
+   "lines": "19"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "19",
+   "trace_step": 30
+  }
+ ],
+ "title": "Notebook CreditScoreFeatureWeightEstimator.ipynb",
+ "version": 1
+}

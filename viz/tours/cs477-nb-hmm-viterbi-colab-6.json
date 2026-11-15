@@ -1,0 +1,23 @@
+{
+ "code": "\nlik_normal, alpha = forward_normal(hmm, obs_seq)\nloglik, log_alpha = forward_log(hmm, obs_seq)\n\nprint(\"Forward (normal) likelihood:\", lik_normal)\nprint(\"Forward (log)   log-likelihood:\", loglik)\nprint(\"Forward (log)   likelihood via exp:\", float(np.exp(loglik)))\n\nprint(\"Alpha (normal domain):\", alpha)\nprint(\"Log-Alpha (log domain):\", log_alpha)\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-hmm-viterbi-colab-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-10 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-10"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "10",
+   "trace_step": 7
+  }
+ ],
+ "title": "Notebook HMM_Viterbi_Colab.ipynb",
+ "version": 1
+}

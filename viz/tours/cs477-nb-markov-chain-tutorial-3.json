@@ -1,0 +1,23 @@
+{
+ "code": "\nstates = [\"Sunny\", \"Cloudy\", \"Rainy\"]\nP = np.array([\n    [0.7, 0.2, 0.1],\n    [0.3, 0.4, 0.3],\n    [0.2, 0.3, 0.5]\n], dtype=float)\n\ndiags = check_stochastic_matrix(P)\nprint(\"Diagnostics:\", {k: (v.tolist() if isinstance(v, np.ndarray) else v) for k, v in diags.items()})\nassert diags[\"is_stochastic\"], \"P must be a valid row-stochastic (square) matrix.\"\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-markov-chain-tutorial-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-11 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-11"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "11",
+   "trace_step": 19
+  }
+ ],
+ "title": "Notebook Markov_Chain_Tutorial.ipynb",
+ "version": 1
+}

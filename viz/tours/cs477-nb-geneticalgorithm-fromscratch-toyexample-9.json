@@ -1,0 +1,33 @@
+{
+ "code": "import os, json as _json\nos.makedirs(\"artifacts\", exist_ok=True)\n\nsummary = {\n    \"best_x\": best_x.tolist(),\n    \"best_fitness\": float(best_f),\n    \"config\": {k: (int(v) if isinstance(v, (np.integer,)) else float(v) if isinstance(v, (np.floating,)) else v)\n               for k,v in CFG.__dict__.items()}\n}\nwith open(\"artifacts/ga_summary.json\",\"w\") as f:\n    _json.dump(summary, f, indent=2)\n\nnp.savez(\"artifacts/ga_logs_and_population.npz\",\n         best_hist=best_hist, mean_hist=mean_hist,\n         final_pop=pop, final_fit=fit)\n\nprint(\"Artifacts:\", os.listdir(\"artifacts\"))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-geneticalgorithm-fromscratch-toyexample-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `os` and `json`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 2-15 run the main code.",
+   "kind": "reveal",
+   "lines": "2-15"
+  },
+  {
+   "description": "Line 17 continues the main code and print the results.",
+   "kind": "reveal",
+   "lines": "17"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "17",
+   "trace_step": 33
+  }
+ ],
+ "title": "Notebook GeneticAlgorithm_FromScratch_ToyExample.ipynb",
+ "version": 1
+}

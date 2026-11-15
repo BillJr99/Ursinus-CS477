@@ -1,0 +1,50 @@
+{
+ "code": "def run_seeds(n=5):\n    bests = []\n    for s in range(n):\n        cfg = GAConfig(seed=SEED + s)\n        pop, fit, bh, mh, _ = evolve(cfg, verbose=False)\n        bests.append(fit[0])\n    return np.array(bests)\n\nbests = run_seeds(5)\nprint(\"Best fitness across 5 seeds:\", bests, \"mean=\", bests.mean(), \"std=\", bests.std())",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-geneticalgorithm-fromscratch-toyexample-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-7 define `run_seeds(n)`.",
+   "kind": "reveal",
+   "lines": "1-7"
+  },
+  {
+   "description": "Line 3 loops over `range(n)`.",
+   "kind": "focus",
+   "lines": "3"
+  },
+  {
+   "description": "Line 7 returns `np.array(bests)`.",
+   "kind": "focus",
+   "lines": "7"
+  },
+  {
+   "description": "Lines 9-10 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "9-10"
+  },
+  {
+   "description": "Here `run_seeds` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "2",
+   "trace_step": 2
+  },
+  {
+   "description": "Here `run_seeds` returns, the first time it does.",
+   "kind": "run",
+   "lines": "7",
+   "trace_step": 25
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "10",
+   "trace_step": 27
+  }
+ ],
+ "title": "Notebook GeneticAlgorithm_FromScratch_ToyExample.ipynb",
+ "version": 1
+}

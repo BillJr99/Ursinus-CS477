@@ -1,0 +1,22 @@
+{
+ "code": "gnb = GaussianNaiveBayes(var_smoothing=1e-9)\ngnb.fit(X_train, y_train)\n\n# 4. Predictions\ny_pred = gnb.predict(X_test)\n\n# 5. Evaluation\nprint(\"Accuracy:\", accuracy_score(y_test, y_pred))\nprint(\"F1 Score:\", f1_score(y_test, y_pred))\nprint(\"\\nClassification Report:\\n\", classification_report(y_test, y_pred, target_names=cancer.target_names))\n\ncm = confusion_matrix(y_test, y_pred)\ndisp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=cancer.target_names)\ndisp.plot(values_format=\"d\")\nplt.title(\"Confusion Matrix — From-Scratch Gaussian Naïve Bayes\")\nplt.show()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-linear-logistic-regression-demo-17",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-12 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "1-12"
+  },
+  {
+   "description": "Lines 13-16 continue the main code.",
+   "kind": "reveal",
+   "lines": "13-16"
+  }
+ ],
+ "title": "Notebook linear_logistic_regression_demo.ipynb",
+ "version": 1
+}

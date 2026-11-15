@@ -1,0 +1,23 @@
+{
+ "code": "betas = backward_messages(actions, observations, maze, T_by_action_sim, sensor_correct=sensor_correct)\nsmoothed = smooth(beliefs, betas)\npath = viterbi(actions, observations, maze, T_by_action_sim, b0, sensor_correct=sensor_correct)\n\n# Show terminal beliefs vs smoothed\nshow_heatmap(belief_to_grid(beliefs[-1], maze), maze, title=\"Filtering Belief at T\")\nshow_heatmap(belief_to_grid(smoothed[-1], maze), maze, title=\"Smoothed Belief at T\")\n\n# Project Viterbi path to (i,j) for display\nvj = [ij(s, W) for s in path]\nprint(\"Viterbi (i,j) positions:\")\nprint(vj)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-13",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-12 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "1-12"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "12",
+   "trace_step": 25
+  }
+ ],
+ "title": "Notebook HMM_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+ "version": 1
+}

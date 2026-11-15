@@ -1,0 +1,45 @@
+{
+ "code": "\ndef mse(theta0, theta1, X, y):\n    y_hat = theta0 + theta1 * X[:, 0]\n    return np.mean((y_hat - y)**2)\n\nprint(\"MSE at theta0=0, theta1=0:\", mse(0, 0, X, y))\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-linear-and-logistic-regression-tutorial-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-4 define `mse(theta0, theta1, X, y)`.",
+   "kind": "reveal",
+   "lines": "2-4"
+  },
+  {
+   "description": "Line 4 returns `np.mean((y_hat - y)**2)`.",
+   "kind": "focus",
+   "lines": "4"
+  },
+  {
+   "description": "Line 6 runs the main code and print the results.",
+   "kind": "reveal",
+   "lines": "6"
+  },
+  {
+   "description": "Here `mse` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "3",
+   "trace_step": 2
+  },
+  {
+   "description": "Here `mse` returns, the first time it does.",
+   "kind": "run",
+   "lines": "4",
+   "trace_step": 4
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "6",
+   "trace_step": 5
+  }
+ ],
+ "title": "Notebook Linear_and_Logistic_Regression_Tutorial.ipynb",
+ "version": 1
+}

@@ -1,0 +1,60 @@
+{
+ "code": "# Tiny numeric check for the scalar case\nimport numpy as np\n\nx, y = 2.0, 5.0\nw, b = 1.0, 0.0\nv, c = 1.0, 0.0\n\ndef forward(w, b, v, c):\n    z1 = w * x + b\n    h  = np.tanh(z1)\n    yhat = v * h + c\n    L = 0.5 * (yhat - y)**2\n    return L, z1, h, yhat\n\n# analytic gradient wrt w\nL, z1, h, yhat = forward(w, b, v, c)\ndL_dyhat = yhat - y\ndL_dz1 = dL_dyhat * v * (1 - np.tanh(z1)**2)\ndL_dw = dL_dz1 * x\n\n# finite difference\neps = 1e-5\nL_plus, *_ = forward(w + eps, b, v, c)\nL_minus, *_ = forward(w - eps, b, v, c)\nfd = (L_plus - L_minus) / (2 * eps)\n\nprint(\"Analytic dL/dw:\", dL_dw)\nprint(\"Finite diff   :\", fd)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-neuralnets-2",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 2 imports `numpy`.",
+   "kind": "reveal",
+   "lines": "2"
+  },
+  {
+   "description": "Lines 4-6 run the main code.",
+   "kind": "reveal",
+   "lines": "4-6"
+  },
+  {
+   "description": "Lines 8-13 define `forward(w, b, v, c)`.",
+   "kind": "reveal",
+   "lines": "8-13"
+  },
+  {
+   "description": "Line 13 returns `L, z1, h, yhat`.",
+   "kind": "focus",
+   "lines": "13"
+  },
+  {
+   "description": "Lines 16-27 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "16-27"
+  },
+  {
+   "description": "Line 28 continues the main code and print the results.",
+   "kind": "reveal",
+   "lines": "28"
+  },
+  {
+   "description": "Here `forward` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "9",
+   "trace_step": 6
+  },
+  {
+   "description": "Here `forward` returns, the first time it does.",
+   "kind": "run",
+   "lines": "13",
+   "trace_step": 11
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "28",
+   "trace_step": 33
+  }
+ ],
+ "title": "Calculus of Error: Worked Example",
+ "version": 1
+}

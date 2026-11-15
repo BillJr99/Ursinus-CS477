@@ -1,0 +1,27 @@
+{
+ "code": "# Colab download helper\nimport shutil\nfrom pathlib import Path\ntry:\n    from google.colab import files  # type: ignore\n    if Path('artifacts').exists():\n        shutil.make_archive('artifacts', 'zip', 'artifacts')\n        files.download('artifacts.zip')\n    else:\n        print('No artifacts folder found.')\nexcept Exception as e:\n    print('Colab download helper not available in this environment:', e)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-10",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-3 import `shutil` and `pathlib`.",
+   "kind": "reveal",
+   "lines": "2-3"
+  },
+  {
+   "description": "Lines 4-12 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "4-12"
+  },
+  {
+   "description": "Line 6 checks `Path('artifacts').exists()`.",
+   "kind": "focus",
+   "lines": "6"
+  }
+ ],
+ "title": "Notebook Kalman_Filter_Robot_Localization_Maze_Heatmaps.ipynb",
+ "version": 1
+}

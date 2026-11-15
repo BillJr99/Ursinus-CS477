@@ -1,0 +1,23 @@
+{
+ "code": "X_std, mu, sigma = standardize(X)\nX_tr, X_te, y_tr, y_te = train_test_split(X_std, y, test_size=0.25, rng=rng)\nprint(\"Train size:\", X_tr.shape, \"Test size:\", X_te.shape)\n\n# Add intercept\nPhi_tr = add_intercept(X_tr)\nPhi_te = add_intercept(X_te)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-logistic-regression-mle-from-scratch-4",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-7 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "1-7"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "7",
+   "trace_step": 5
+  }
+ ],
+ "title": "Notebook Logistic_Regression_MLE_From_Scratch.ipynb",
+ "version": 1
+}

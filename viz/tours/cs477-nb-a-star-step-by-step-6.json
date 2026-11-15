@@ -1,0 +1,37 @@
+{
+ "code": "\ndef show_grid_path(grid, path=None, start=None, goal=None, title=\"Grid and Path\"):\n    import matplotlib.pyplot as plt\n    H, W = grid.shape\n    plt.figure(figsize=(6,5))\n    plt.imshow(grid, origin=\"upper\")\n    if path:\n        ys = [y for (y, x) in path]\n        xs = [x for (y, x) in path]\n        plt.plot(xs, ys, linewidth=3)\n    if start:\n        plt.scatter([start[1]], [start[0]], s=60, marker=\"o\")\n        plt.text(start[1]+0.2, start[0]+0.2, \"S\")\n    if goal:\n        plt.scatter([goal[1]], [goal[0]], s=60, marker=\"x\")\n        plt.text(goal[1]+0.2, goal[0]+0.2, \"G\")\n    plt.title(title)\n    plt.gca().invert_yaxis()  # draw (0,0) at top-left\n    plt.show()\n\nshow_grid_path(grid, path_grid, start, goal, \"A* on 4-connected Grid (Manhattan h)\")\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-a-star-step-by-step-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-19 define `show_grid_path(grid, path, start, goal, title)`.",
+   "kind": "reveal",
+   "lines": "2-19"
+  },
+  {
+   "description": "Line 7 checks `path`.",
+   "kind": "focus",
+   "lines": "7"
+  },
+  {
+   "description": "Line 11 checks `start`.",
+   "kind": "focus",
+   "lines": "11"
+  },
+  {
+   "description": "Line 14 checks `goal`.",
+   "kind": "focus",
+   "lines": "14"
+  },
+  {
+   "description": "Line 21 runs the main code.",
+   "kind": "reveal",
+   "lines": "21"
+  }
+ ],
+ "title": "Notebook A_star_step_by_step.ipynb",
+ "version": 1
+}

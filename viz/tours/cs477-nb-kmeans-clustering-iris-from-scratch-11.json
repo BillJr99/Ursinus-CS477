@@ -1,0 +1,33 @@
+{
+ "code": "import os, json as _json\nos.makedirs(\"artifacts\", exist_ok=True)\n\nnp.savez(\"artifacts/kmeans_iris_from_scratch.npz\",\n         X=X, X_std=X_std, y=y, labels=labels, centroids=C, inertia=np.array([inertia]),\n         mu=mu, sd=sd, pcs=comps, Z=Z, silhouette=np.array([sil_mean]))\n\nwith open(\"artifacts/summary.json\",\"w\") as f:\n    _json.dump({\n        \"k\": int(k),\n        \"inertia\": float(inertia),\n        \"silhouette\": float(sil_mean),\n        \"purity\": float(purity),\n        \"cluster_to_species\": {int(j): (None if mapping[j] is None else target_names[mapping[j]]) for j in range(k)}\n    }, f, indent=2)\n\nprint(\"Artifacts:\", os.listdir(\"artifacts\"))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-kmeans-clustering-iris-from-scratch-11",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `os` and `json`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 2-15 run the main code.",
+   "kind": "reveal",
+   "lines": "2-15"
+  },
+  {
+   "description": "Line 17 continues the main code and print the results.",
+   "kind": "reveal",
+   "lines": "17"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "17",
+   "trace_step": 21
+  }
+ ],
+ "title": "Notebook KMeans_Clustering_Iris_From_Scratch.ipynb",
+ "version": 1
+}

@@ -1,0 +1,17 @@
+{
+ "code": "lam = np.maximum(evals, 0)\nprop = lam / np.sum(lam) if np.sum(lam)>0 else lam\nfig = plt.figure(figsize=(5,3.5))\nplt.bar(range(1,len(lam)+1), prop)\nplt.xlabel(\"LDA component\"); plt.ylabel(\"Proportion\")\nplt.title(\"Discriminative power (eigenvalue proportions)\")\nplt.tight_layout(); plt.show()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-lda-and-fisherscore-fromscratch-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-7 run the main code.",
+   "kind": "reveal",
+   "lines": "1-7"
+  }
+ ],
+ "title": "Notebook LDA_and_FisherScore_FromScratch.ipynb",
+ "version": 1
+}

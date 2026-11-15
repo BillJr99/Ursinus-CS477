@@ -1,0 +1,17 @@
+{
+ "code": "fpr, tpr, thr = roc_curve(yc_test, y_prob)\nroc_auc = auc(fpr, tpr)\n\nRocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=roc_auc, estimator_name='LogisticRegression').plot()\nplt.title(f'ROC Curve (AUC = {roc_auc:.3f})')\nplt.show()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-perceptronsmodelevaluation-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-6 run the main code.",
+   "kind": "reveal",
+   "lines": "1-6"
+  }
+ ],
+ "title": "8. ROC Curve & AUC",
+ "version": 1
+}

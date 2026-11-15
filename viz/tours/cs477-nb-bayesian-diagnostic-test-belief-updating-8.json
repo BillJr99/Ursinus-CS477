@@ -1,0 +1,38 @@
+{
+ "code": "import os, json\nos.makedirs(\"artifacts\", exist_ok=True)\n\nnp.savez(\"artifacts/posteriors_samples.npz\",\n         ppv=ppv_samps, neg=neg_samps,\n         pi_samps=pi_samps, s_samps=s_samps, c_samps=c_samps,\n         meta=np.array([A, B, s_mean, c_mean, N_SAMPLES], dtype=float))\n\n# Minimal text summary\nsummary = {}\nfor name, samples, point in [\n    (\"P(D=1 | T=+)\", ppv_samps, ppv_point),\n    (\"P(D=1 | T=-)\", neg_samps, neg_point)\n]:\n    lo, med, hi = ci_quantiles(samples, (0.025, 0.5, 0.975))\n    summary[name] = {\"mean\": float(np.mean(samples)),\n                     \"median\": float(med),\n                     \"ci95\": [float(lo), float(hi)],\n                     \"point_estimate\": float(point)}\nwith open(\"artifacts/summary.json\", \"w\") as f:\n    json.dump(summary, f, indent=2)\n\nprint(\"Saved artifacts:\", os.listdir(\"artifacts\"))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-bayesian-diagnostic-test-belief-updating-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `os` and `json`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 2-19 run the main code.",
+   "kind": "reveal",
+   "lines": "2-19"
+  },
+  {
+   "description": "Line 11 starts a loop.",
+   "kind": "focus",
+   "lines": "11"
+  },
+  {
+   "description": "Lines 20-23 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "20-23"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "23",
+   "trace_step": 29
+  }
+ ],
+ "title": "Notebook Bayesian_Diagnostic_Test_Belief_Updating.ipynb",
+ "version": 1
+}

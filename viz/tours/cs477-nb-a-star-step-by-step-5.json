@@ -1,0 +1,77 @@
+{
+ "code": "\nimport numpy as np\nimport random\n\ndef make_grid(w=20, h=12, obstacle_prob=0.20, seed=7):\n    rng = random.Random(seed)\n    grid = np.zeros((h, w), dtype=np.int8)\n    for y in range(h):\n        for x in range(w):\n            if rng.random() < obstacle_prob:\n                grid[y, x] = 1  # obstacle\n    return grid\n\ndef grid_neighbors(grid, cell):\n    y, x = cell\n    H, W = grid.shape\n    for dy, dx in [(-1,0), (1,0), (0,-1), (0,1)]:  # 4-connected\n        ny, nx = y+dy, x+dx\n        if 0 <= ny < H and 0 <= nx < W and grid[ny, nx] == 0:\n            yield (ny, nx)\n\ndef grid_cost(_u, _v):  # unit cost\n    return 1.0\n\ndef manhattan(cell, goal):\n    (y, x), (gy, gx) = cell, goal\n    return abs(y - gy) + abs(x - gx)\n\n# Build grid and ensure start/goal are free\ngrid = make_grid(w=28, h=18, obstacle_prob=0.22, seed=13)\nstart, goal = (1, 1), (grid.shape[0]-2, grid.shape[1]-3)\ngrid[start] = 0\ngrid[goal] = 0\n\ndef is_goal_cell(c): return c == goal\ndef h_manhattan(c): return float(manhattan(c, goal))\n\npath_grid, info_grid = astar(\n    start=start,\n    is_goal=is_goal_cell,\n    neighbors=lambda c: grid_neighbors(grid, c),\n    cost=grid_cost,\n    h=h_manhattan,\n    debug=False\n)\n\nprint(\"Path length:\", None if path_grid is None else len(path_grid)-1)\nprint(\"Info:\", info_grid)\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-a-star-step-by-step-5",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-3 import `numpy` and `random`.",
+   "kind": "reveal",
+   "lines": "2-3"
+  },
+  {
+   "description": "Lines 5-12 define `make_grid(w, h, obstacle_prob, seed)`.",
+   "kind": "reveal",
+   "lines": "5-12"
+  },
+  {
+   "description": "Line 8 loops over `range(h)`.",
+   "kind": "focus",
+   "lines": "8"
+  },
+  {
+   "description": "Line 10 checks `rng.random() < obstacle_prob`.",
+   "kind": "focus",
+   "lines": "10"
+  },
+  {
+   "description": "Lines 14-20 define the generator `grid_neighbors(grid, cell)`.",
+   "kind": "reveal",
+   "lines": "14-20"
+  },
+  {
+   "description": "Line 19 makes a decision.",
+   "kind": "focus",
+   "lines": "19"
+  },
+  {
+   "description": "Lines 22-23 define `grid_cost(_u, _v)`.",
+   "kind": "reveal",
+   "lines": "22-23"
+  },
+  {
+   "description": "Lines 25-27 define `manhattan(cell, goal)`.",
+   "kind": "reveal",
+   "lines": "25-27"
+  },
+  {
+   "description": "Line 27 returns `abs(y - gy) + abs(x - gx)`.",
+   "kind": "focus",
+   "lines": "27"
+  },
+  {
+   "description": "Lines 30-33 run the main code.",
+   "kind": "reveal",
+   "lines": "30-33"
+  },
+  {
+   "description": "Line 35 defines `is_goal_cell(c)`.",
+   "kind": "reveal",
+   "lines": "35"
+  },
+  {
+   "description": "Line 36 defines `h_manhattan(c)`.",
+   "kind": "reveal",
+   "lines": "36"
+  },
+  {
+   "description": "Lines 38-48 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "38-48"
+  }
+ ],
+ "title": "Notebook A_star_step_by_step.ipynb",
+ "version": 1
+}

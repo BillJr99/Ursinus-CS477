@@ -1,0 +1,33 @@
+{
+ "code": "# Training the network\nfor epoch in range(epochs):\n    # Forward pass\n    z1 = np.dot(x.reshape(-1, 1), w1) + b1  # Hidden layer\n    h1 = relu(z1)  # Activation\n    z2 = np.dot(h1, w2) + b2  # Output layer\n\n    # Loss (Mean Squared Error)\n    loss = np.mean((y.reshape(-1, 1) - z2)**2)\n\n    # Backpropagation\n    dz2 = z2 - y.reshape(-1, 1)  # Derivative of the loss with respect to the output\n    dw2 = np.dot(h1.T, dz2) / len(x)  # Gradient for w2\n    db2 = np.sum(dz2, axis=0) / len(x)  # Gradient for b2\n\n    dh1 = np.dot(dz2, w2.T) * relu_derivative(z1)  # Backprop through ReLU\n    dw1 = np.dot(x.reshape(-1, 1).T, dh1) / len(x)  # Gradient for w1\n    db1 = np.sum(dh1, axis=0) / len(x)  # Gradient for b1\n\n    # Update weights and biases\n    w2 -= learning_rate * dw2\n    b2 -= learning_rate * db2\n    w1 -= learning_rate * dw1\n    b1 -= learning_rate * db1\n\n    # Print loss every 500 iterations\n    if epoch % 1000 == 0:\n        print(f\"Epoch {epoch}, Loss: {loss:.6f}\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-nonlinearfunctionestimatormultilayernn-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-28 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-28"
+  },
+  {
+   "description": "Line 2 loops over `range(epochs)`.",
+   "kind": "focus",
+   "lines": "2"
+  },
+  {
+   "description": "Line 27 checks `epoch % 1000 == 0`.",
+   "kind": "focus",
+   "lines": "27"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "24",
+   "trace_step": 799
+  }
+ ],
+ "title": "Notebook NonLinearFunctionEstimatorMultiLayerNN.ipynb",
+ "version": 1
+}

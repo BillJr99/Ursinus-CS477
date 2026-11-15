@@ -1,0 +1,22 @@
+{
+ "code": "# === PCA (scikit-learn) ===\nif SKLEARN_AVAILABLE:\n    pca = SKPCA(n_components=2)\n    X_proj_skl = pca.fit_transform(X_pca)\n    evr = pca.explained_variance_ratio_\n\n    plt.figure()\n    plt.scatter(X_proj_skl[:, 0], X_proj_skl[:, 1], s=12)\n    plt.title(\"PCA (scikit-learn): First 2 PCs\")\n    plt.xlabel(\"PC1\")\n    plt.ylabel(\"PC2\")\n    plt.show()\n\n    plt.figure()\n    plt.bar([1, 2], evr[:2])\n    plt.title(\"PCA (scikit-learn): Explained Variance Ratio (First 2 PCs)\")\n    plt.xlabel(\"Principal Component\")\n    plt.ylabel(\"Explained Variance Ratio\")\n    plt.show()\nelse:\n    print(\"scikit-learn not available; skipping PCA (scikit-learn).\")\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-unsupervised-learning-colab-5",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-21 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-21"
+  },
+  {
+   "description": "Line 2 checks `SKLEARN_AVAILABLE`.",
+   "kind": "focus",
+   "lines": "2"
+  }
+ ],
+ "title": "Notebook Unsupervised_Learning_Colab.ipynb",
+ "version": 1
+}

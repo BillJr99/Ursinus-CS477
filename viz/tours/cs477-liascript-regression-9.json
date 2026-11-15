@@ -1,0 +1,17 @@
+{
+ "code": "\n# Visualize the sigmoid\nz = np.linspace(-8, 8, 400)\nsig = 1.0 / (1.0 + np.exp(-z))\nplt.plot(z, sig)\nplt.xlabel(\"z\")\nplt.ylabel(\"sigma(z)\")\nplt.title(\"Sigmoid Function\")\nplt.show()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-regression-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 3-9 run the main code.",
+   "kind": "reveal",
+   "lines": "3-9"
+  }
+ ],
+ "title": "Code Cell",
+ "version": 1
+}

@@ -1,0 +1,33 @@
+{
+ "code": "# Training loop for the simpler linear model\nepochs = 2000\nfor epoch in range(epochs):\n    # Forward pass\n    outputs = model(X)\n    loss = criterion(outputs, y)\n\n    # Backward pass and optimization\n    optimizer.zero_grad()\n    loss.backward()\n    optimizer.step()\n\n    # Print loss occasionally\n    if (epoch + 1) % 200 == 0:\n        print(f'Epoch [{epoch+1}/{epochs}], Loss: {loss.item():.4f}')",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-creditscorefeatureweightestimator-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-15 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-15"
+  },
+  {
+   "description": "Line 3 loops over `range(epochs)`.",
+   "kind": "focus",
+   "lines": "3"
+  },
+  {
+   "description": "Line 14 checks `(epoch + 1) % 200 == 0`.",
+   "kind": "focus",
+   "lines": "14"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "3",
+   "trace_step": 799
+  }
+ ],
+ "title": "Notebook CreditScoreFeatureWeightEstimator.ipynb",
+ "version": 1
+}

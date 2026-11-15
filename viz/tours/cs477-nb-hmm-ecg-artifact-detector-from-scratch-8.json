@@ -1,0 +1,38 @@
+{
+ "code": "logB = emission_loglik_sequence(Xs, model[\"means\"], model[\"vars\"])\nalpha, beta, gamma, xi, ll = forward_backward_scaled(logB, model[\"pi\"], model[\"A\"])\npath = viterbi(Xs, model)\n\nfeat_ix_hf = 3  # HF bandpower\nfeat_ix_der = 1 # abs-derivative\nscores = []\nfor k in range(K):\n    idx = np.where(path == k)[0]\n    if len(idx)==0:\n        scores.append(-np.inf)\n    else:\n        scores.append(X[idx, feat_ix_hf].mean() + X[idx, feat_ix_der].mean())\nartifact_state = int(np.argmax(scores))\nclean_state = 1 - artifact_state if K==2 else int(np.argmin(scores))\nprint(f\"Assigned labels: artifact_state={artifact_state}, clean_state={clean_state}\")\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-13 run the main code.",
+   "kind": "reveal",
+   "lines": "1-13"
+  },
+  {
+   "description": "Line 8 loops over `range(K)`.",
+   "kind": "focus",
+   "lines": "8"
+  },
+  {
+   "description": "Line 10 checks `len(idx)==0`.",
+   "kind": "focus",
+   "lines": "10"
+  },
+  {
+   "description": "Lines 14-16 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "14-16"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "16",
+   "trace_step": 18
+  }
+ ],
+ "title": "Notebook HMM_ECG_Artifact_Detector_From_Scratch.ipynb",
+ "version": 1
+}

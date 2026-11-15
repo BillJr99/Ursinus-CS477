@@ -1,0 +1,23 @@
+{
+ "code": "skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\n\n# AUC via cross_val_score (uses predict_proba by default for 'roc_auc')\nauc_cv = cross_val_score(clf, X_clf, y_clf, cv=skf, scoring='roc_auc')\nf1_cv  = cross_val_score(clf, X_clf, y_clf, cv=skf, scoring='f1')\n\nprint('CV AUC (5-fold): ', f'{auc_cv.mean():.3f} ± {auc_cv.std():.3f}')\nprint('CV F1  (5-fold): ', f'{f1_cv.mean():.3f} ± {f1_cv.std():.3f}')",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-perceptronsmodelevaluation-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-8 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "1-8"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "8",
+   "trace_step": 5
+  }
+ ],
+ "title": "9. Cross‑Validation for Classification",
+ "version": 1
+}

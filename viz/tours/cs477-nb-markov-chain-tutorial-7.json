@@ -1,0 +1,23 @@
+{
+ "code": "\nP3 = nstep_transition(P, 3)\nprint(\"P^3 =\\n\", P3)\n\nprob_rain_in_3 = P3[0, 2]  # Sunny -> Rainy in 3 steps\nprint(\"Pr[X_{t+3} = Rainy | X_t = Sunny] =\", prob_rain_in_3)\n\npi15 = advance_distribution(pi0, P, 15)\nprint(\"pi^(15) =\", pi15)\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-markov-chain-tutorial-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-9 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-9"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "9",
+   "trace_step": 6
+  }
+ ],
+ "title": "Notebook Markov_Chain_Tutorial.ipynb",
+ "version": 1
+}

@@ -1,0 +1,57 @@
+{
+ "code": "def _as_int_scalar(x, name):\n    \"\"\"Coerce x to a Python int if it is a scalar (Python, 0-D NumPy, or size-1 array).\"\"\"\n    xa = np.asarray(x)\n    if xa.ndim == 0:\n        return int(xa)\n    if xa.size == 1:\n        return int(xa.ravel()[0])\n    raise ValueError(f\"{name} must be a scalar; got array with shape {xa.shape}.\")\n\ndef gaussian_pdf_grid(mu, Sigma, H, W, scale=1.0, wall_mask=None, normalize=True, eps=1e-12):\n    \"\"\"\n    Build a (H, W) heat map of a 2D Gaussian with mean mu (x,y) and covariance Sigma (2x2).\n    - scale: multiplies grid coordinates before comparison (useful if your state is in world units).\n    - wall_mask: boolean mask with shape (H, W); locations set True will be set to 0.\n    - normalize: if True, divide by max so output is in [0,1].\n    \"\"\"\n    # --- Coerce sizes to plain ints (fixes your TypeError) ---\n    H = _as_int_scalar(H, \"H\")\n    W = _as_int_scalar(W, \"W\")\n\n    # --- Coerce and sanitize parameters ---\n    mu = np.asarray(mu, dtype=float).reshape(2)\n    Sigma = np.asarray(Sigma, dtype=float).reshape(2, 2)\n\n    # Symmetrize and floor eigenvalues for numerical stability\n    Sigma = 0.5 * (Sigma + Sigma.T)\n    w, V = np.linalg.eigh(Sigma)\n    w = np.clip(w, eps, None)\n    Sigma = (V * w) @ V.T\n\n    det = float(np.linalg.det(Sigma))\n    if not np.isfinite(det) or det <= 0.0:\n        det = max(det, eps)\n\n    Sigma_inv = np.linalg.inv(Sigma)\n\n    # --- Vectorized grid of coordinates (ij = row->y, col->x) ---\n    ys, xs = np.meshgrid(np.arange(H), np.arange(W), indexing=\"ij\")\n    coords = np.stack([xs, ys], axis=-1).astype(float)\n\n    # If your (x,y) state is in world units and each cell corresponds to `scale` units,\n    # compare in the same units by scaling grid coordinates:\n    if scale is None:\n        scale = 1.0\n    coords *= float(scale)\n\n    # --- Quadratic form for Gaussian exponent ---\n    diff = coords - mu  # shape (H, W, 2)\n    quad = (diff @ Sigma_inv * diff).sum(axis=-1)  # shape (H, W)\n\n    # --- Unnormalized PDF ---\n    pdf = np.exp(-0.5 * quad) / (2.0 * np.pi * np.sqrt(det))\n\n    # --- Apply walls if provided ---\n    if wall_mask is not None:\n        # Ensure mask has the right shape\n        mask = np.asarray(wall_mask, dtype=bool)\n        if mask.shape != (H, W):\n            raise ValueError(f\"wall_mask must have shape {(H, W)}, got {mask.shape}.\")\n        pdf = np.where(mask, 0.0, pdf)\n\n    # --- Optional normalization for visualization ---\n    if normalize:\n        m = np.nanmax(pdf)\n        if np.isfinite(m) and m > 0:\n            pdf = pdf / m\n\n    return pdf\n\nimport matplotlib.pyplot as plt\n\ndef show_heatmap(grid_img, true_pos, maze, title=None):\n    \"\"\"\n    Displays the given heatmap and marks the ground truth position with a red 'X'.\n\n    Parameters\n    ----------\n    grid_img : np.ndarray\n        The heatmap image (2D array of probability values).\n    true_pos : array-like\n        Ground truth position [x, y] in world units (same as in true_traj).\n    maze : object\n        Maze object containing .scale (world-to-grid scale factor).\n    title : str, optional\n        Title for the plot.\n    \"\"\"\n    plt.figure(figsize=(6,6))\n    plt.imshow(grid_img, cmap='jet', origin='lower')\n    if title:\n        plt.title(title)\n\n    # Compute grid coordinates from world position\n    x_true = int(round(true_pos[0] / maze.scale))\n    y_true = int(round(true_pos[1] / maze.scale))\n\n    # Draw a red X at the ground truth cell\n    plt.plot(x_true, y_true, 'rx', markersize=12, mew=3, label='Ground Truth')\n\n    plt.legend(loc='upper right')\n    plt.xlabel('X (cells)')\n    plt.ylabel('Y (cells)')\n    plt.colorbar(label='Relative Probability')\n    plt.tight_layout()\n    plt.show()\n\nwall_mask = (maze.grid == 1)\nheight, width = wall_mask.shape  # ints\n\nheatmaps = []\nfor t in range(T):\n    mu_pos = xs[t, :2]\n    Sigma_pos = Ps[t, :2, :2]\n    grid_img = gaussian_pdf_grid(mu_pos, Sigma_pos, height, width, float(maze.scale), wall_mask)\n    # zero out walls explicitly (already zero), for clarity\n    grid_img[wall_mask] = 0.0\n    heatmaps.append(grid_img)\n    show_heatmap(grid_img, true_traj[t, :2], maze, title=f\"Step {t}\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-8 define `_as_int_scalar(x, name)`.",
+   "kind": "reveal",
+   "lines": "1-8"
+  },
+  {
+   "description": "Line 4 checks `xa.ndim == 0`.",
+   "kind": "focus",
+   "lines": "4"
+  },
+  {
+   "description": "Line 7 returns `int(xa.ravel()[0])`.",
+   "kind": "focus",
+   "lines": "7"
+  },
+  {
+   "description": "Lines 10-68 define `gaussian_pdf_grid(mu, Sigma, H, W, scale, wall_mask, normalize, eps)`.",
+   "kind": "reveal",
+   "lines": "10-68"
+  },
+  {
+   "description": "Line 55 checks `wall_mask is not None`.",
+   "kind": "focus",
+   "lines": "55"
+  },
+  {
+   "description": "Line 65 checks `np.isfinite(m) and m > 0`.",
+   "kind": "focus",
+   "lines": "65"
+  },
+  {
+   "description": "Line 70 imports `matplotlib.pyplot`.",
+   "kind": "reveal",
+   "lines": "70"
+  },
+  {
+   "description": "Lines 72-104 define `show_heatmap(grid_img, true_pos, maze, title)`.",
+   "kind": "reveal",
+   "lines": "72-104"
+  },
+  {
+   "description": "Lines 106-117 run the main code.",
+   "kind": "reveal",
+   "lines": "106-117"
+  }
+ ],
+ "title": "Notebook Kalman_Filter_Robot_Localization_Maze_Heatmaps.ipynb",
+ "version": 1
+}

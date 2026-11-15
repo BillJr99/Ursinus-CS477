@@ -1,0 +1,28 @@
+{
+ "code": "svr_pipe = Pipeline([\n    (\"scaler\", StandardScaler()),\n    (\"svr\", SVR())\n])\n\nsvr_params = {\n    \"svr__kernel\": [\"rbf\"],\n    \"svr__C\": [0.1, 1, 10, 50, 100],\n    \"svr__gamma\": [\"scale\", 0.001, 0.01, 0.1, 1],\n    \"svr__epsilon\": [0.1, 1, 5]\n}\n\nsvr_grid = GridSearchCV(\n    svr_pipe,\n    svr_params,\n    cv=5,\n    scoring=\"r2\",\n    n_jobs=-1\n)\n\nsvr_grid.fit(X_train, y_train)\n\nprint(\"Best SVR parameters:\", svr_grid.best_params_)\nprint(\"Best SVR CV score:\", svr_grid.best_score_)\n\ny_pred_svr = svr_grid.predict(X_test)\nprint(\"SVR Test R²:\", r2_score(y_test, y_pred_svr))\nprint(\"SVR Test MSE:\", mean_squared_error(y_test, y_pred_svr))\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-linear-logistic-regression-demo-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-19 run the main code.",
+   "kind": "reveal",
+   "lines": "1-19"
+  },
+  {
+   "description": "Lines 21-28 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "21-28"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "28",
+   "trace_step": 22
+  }
+ ],
+ "title": "Notebook linear_logistic_regression_demo.ipynb",
+ "version": 1
+}

@@ -1,0 +1,22 @@
+{
+ "code": "\nscaler_viz = StandardScaler().fit(X)\nXv = scaler_viz.transform(X)\npca_viz = SKPCA(n_components=2, random_state=42).fit(Xv)\nZv = pca_viz.transform(Xv)\nclf_viz = OVRLinearRegression().fit(Zv, y)\n\nx1min, x1max = Zv[:,0].min()-1, Zv[:,0].max()+1\nx2min, x2max = Zv[:,1].min()-1, Zv[:,1].max()+1\nxx1, xx2 = np.meshgrid(np.linspace(x1min, x1max, 200),\n                       np.linspace(x2min, x2max, 200))\ngrid = np.c_[xx1.ravel(), xx2.ravel()]\npred = clf_viz.predict(grid).reshape(xx1.shape)\n\nplt.contourf(xx1, xx2, pred, alpha=0.3)\nplt.scatter(Zv[:,0], Zv[:,1], c=y, edgecolor=\"k\")\nplt.xlabel(\"PC1\")\nplt.ylabel(\"PC2\")\nplt.title(\"OVR Linear Regression in PCA(2) space (Iris)\")\nplt.show()\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-pca-from-scratch-and-sklearn-10",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-13 run the main code.",
+   "kind": "reveal",
+   "lines": "2-13"
+  },
+  {
+   "description": "Lines 15-20 continue the main code.",
+   "kind": "reveal",
+   "lines": "15-20"
+  }
+ ],
+ "title": "Notebook PCA_From_Scratch_and_Sklearn.ipynb",
+ "version": 1
+}

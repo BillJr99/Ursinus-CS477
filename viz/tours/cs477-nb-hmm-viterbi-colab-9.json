@@ -1,0 +1,23 @@
+{
+ "code": "\nhidden_sample, obs_sample = hmm.sample(T=10, seed=42)\nprint(\"Sampled observation indices:\", obs_sample)\nprint(\"Sampled observation names:\", [hmm.observations[i] for i in obs_sample])\nprint(\"True hidden states indices:\", hidden_sample)\nprint(\"True hidden states names:\", [hmm.states[i] for i in hidden_sample])\n\nv_path, v_logp, _, _ = viterbi_log(hmm, obs_sample)\nprint(\"Viterbi recovered states:\", v_path)\nprint(\"Viterbi recovered names:\", [hmm.states[i] for i in v_path])\nacc = np.mean(np.array(v_path) == np.array(hidden_sample))\nprint(f\"Token-wise accuracy vs. true hidden states: {acc:.2f}\")\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-hmm-viterbi-colab-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-12 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-12"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "12",
+   "trace_step": 40
+  }
+ ],
+ "title": "Notebook HMM_Viterbi_Colab.ipynb",
+ "version": 1
+}

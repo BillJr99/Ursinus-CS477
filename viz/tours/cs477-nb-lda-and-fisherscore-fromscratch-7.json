@@ -1,0 +1,32 @@
+{
+ "code": "fig = plt.figure(figsize=(6,5))\nif Z_tr.shape[1] == 1:\n    for c in np.unique(y_tr):\n        plt.hist(Z_tr[y_tr==c,0], bins=20, alpha=0.5, label=f\"class {c}\")\n    plt.xlabel(\"LD1\"); plt.title(\"LDA 1D projections (train)\"); plt.legend()\nelse:\n    for c in np.unique(y_tr):\n        plt.scatter(Z_tr[y_tr==c,0], Z_tr[y_tr==c,1], s=25, label=f\"class {c}\")\n    plt.xlabel(\"LD1\"); plt.ylabel(\"LD2\"); plt.title(\"LDA 2D projections (train)\"); plt.legend()\nplt.tight_layout(); plt.show()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-lda-and-fisherscore-fromscratch-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-10 run the main code.",
+   "kind": "reveal",
+   "lines": "1-10"
+  },
+  {
+   "description": "Line 2 checks `Z_tr.shape[1] == 1`.",
+   "kind": "focus",
+   "lines": "2"
+  },
+  {
+   "description": "Line 3 loops over `np.unique(y_tr)`.",
+   "kind": "focus",
+   "lines": "3"
+  },
+  {
+   "description": "Line 7 loops over `np.unique(y_tr)`.",
+   "kind": "focus",
+   "lines": "7"
+  }
+ ],
+ "title": "Notebook LDA_and_FisherScore_FromScratch.ipynb",
+ "version": 1
+}

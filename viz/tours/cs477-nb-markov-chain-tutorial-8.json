@@ -1,0 +1,47 @@
+{
+ "code": "\ndef estimate_hitting_time(P, target, start, trials=20000, rng=None, max_steps=10000):\n    rng = np.random.default_rng() if rng is None else rng\n    hits = []\n    for _ in range(trials):\n        x = start\n        for t in range(max_steps):\n            if x == target:\n                hits.append(t)\n                break\n            x = rng.choice(P.shape[0], p=P[x])\n    return np.mean(hits) if hits else np.inf\n\ndef hitting_time_linear_system(P, target):\n    P = np.asarray(P, dtype=float)\n    m = P.shape[0]\n    A = np.eye(m)\n    b = np.ones(m)\n    A[target, :] = 0.0\n    A[target, target] = 1.0\n    b[target] = 0.0\n    for i in range(m):\n        if i == target:\n            continue\n        A[i, :] -= P[i, :]\n    h = nla.solve(A, b)\n    return h\n\ntarget = 2  # Rainy\nh_lin = hitting_time_linear_system(P, target)\nh_mc  = [estimate_hitting_time(P, target, s, rng=rng) for s in range(P.shape[0])]\nprint(\"Expected hitting time to Rainy via linear system:\", h_lin)\nprint(\"Monte Carlo estimate:\", h_mc)\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-markov-chain-tutorial-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-12 define `estimate_hitting_time(P, target, start, trials, rng, max_steps)`.",
+   "kind": "reveal",
+   "lines": "2-12"
+  },
+  {
+   "description": "Line 5 loops over `range(trials)`.",
+   "kind": "focus",
+   "lines": "5"
+  },
+  {
+   "description": "Line 7 loops over `range(max_steps)`.",
+   "kind": "focus",
+   "lines": "7"
+  },
+  {
+   "description": "Line 12 returns `np.mean(hits) if hits else np.inf`.",
+   "kind": "focus",
+   "lines": "12"
+  },
+  {
+   "description": "Lines 14-27 define `hitting_time_linear_system(P, target)`.",
+   "kind": "reveal",
+   "lines": "14-27"
+  },
+  {
+   "description": "Line 23 checks `i == target`.",
+   "kind": "focus",
+   "lines": "23"
+  },
+  {
+   "description": "Lines 29-33 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "29-33"
+  }
+ ],
+ "title": "Notebook Markov_Chain_Tutorial.ipynb",
+ "version": 1
+}

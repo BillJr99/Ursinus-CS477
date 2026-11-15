@@ -1,0 +1,47 @@
+{
+ "code": "\nimport matplotlib.pyplot as plt\n\ndef draw_graph_path(coords, edges, path=None, title=\"Graph and Path\"):\n    plt.figure(figsize=(5,4))\n    # Draw edges\n    for u, nbrs in edges.items():\n        x1, y1 = coords[u]\n        for v, w in nbrs.items():\n            if u < v:  # draw undirected once\n                x2, y2 = coords[v]\n                plt.plot([x1, x2], [y1, y2], linewidth=1)\n                xm, ym = (x1+x2)/2, (y1+y2)/2\n                plt.text(xm, ym, f\"{w:.1f}\", fontsize=9)\n    # Draw nodes\n    for n, (x, y) in coords.items():\n        plt.scatter([x], [y], s=50)\n        plt.text(x+0.05, y+0.05, n, fontsize=11)\n    # Draw path\n    if path:\n        for u, v in zip(path, path[1:]):\n            x1, y1 = coords[u]\n            x2, y2 = coords[v]\n            plt.plot([x1, x2], [y1, y2], linewidth=3)\n    plt.title(title)\n    plt.axis(\"equal\")\n    plt.show()\n\ndraw_graph_path(coords, edges_undirected, path_h, title=\"A* Path (Euclidean h)\")\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-a-star-step-by-step-4",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 2 imports `matplotlib.pyplot`.",
+   "kind": "reveal",
+   "lines": "2"
+  },
+  {
+   "description": "Lines 4-27 define `draw_graph_path(coords, edges, path, title)`.",
+   "kind": "reveal",
+   "lines": "4-27"
+  },
+  {
+   "description": "Line 7 loops over `edges.items()`.",
+   "kind": "focus",
+   "lines": "7"
+  },
+  {
+   "description": "Line 9 loops over `nbrs.items()`.",
+   "kind": "focus",
+   "lines": "9"
+  },
+  {
+   "description": "Line 16 loops over `coords.items()`.",
+   "kind": "focus",
+   "lines": "16"
+  },
+  {
+   "description": "Line 20 checks `path`.",
+   "kind": "focus",
+   "lines": "20"
+  },
+  {
+   "description": "Line 29 runs the main code.",
+   "kind": "reveal",
+   "lines": "29"
+  }
+ ],
+ "title": "Notebook A_star_step_by_step.ipynb",
+ "version": 1
+}

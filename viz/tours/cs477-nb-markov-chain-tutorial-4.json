@@ -1,0 +1,32 @@
+{
+ "code": "\npi0 = np.array([1.0, 0.0, 0.0])\nK = 30\n\ntraj = np.zeros((K+1, len(states)))\ntraj[0] = pi0\nfor k in range(1, K+1):\n    traj[k] = traj[k-1] @ P\n\nplt.figure(figsize=(8, 4))\nfor j in range(len(states)):\n    plt.plot(range(K+1), traj[:, j], label=states[j])\nplt.xlabel(\"Step k\")\nplt.ylabel(\"Probability\")\nplt.title(\"Distribution Evolution over Time\")\nplt.legend(loc=\"best\")\nplt.show()\n\nprint(\"pi^(10) =\", traj[10])\nprint(\"pi^(30) =\", traj[30])\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-markov-chain-tutorial-4",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-13 run the main code.",
+   "kind": "reveal",
+   "lines": "2-13"
+  },
+  {
+   "description": "Line 7 loops over `range(1, K+1)`.",
+   "kind": "focus",
+   "lines": "7"
+  },
+  {
+   "description": "Line 11 loops over `range(len(states))`.",
+   "kind": "focus",
+   "lines": "11"
+  },
+  {
+   "description": "Lines 14-20 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "14-20"
+  }
+ ],
+ "title": "Notebook Markov_Chain_Tutorial.ipynb",
+ "version": 1
+}

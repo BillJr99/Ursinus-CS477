@@ -1,0 +1,43 @@
+{
+ "code": "import random\n\n# True bias of the coin (unknown to the Bayesian learner)\nTRUE_P_HEADS = 0.7\n\n# Prior: Beta(α, β)\nalpha = 1.0\nbeta  = 1.0\n\n# Number of flips to simulate\nnum_flips = 70\n\nprint(f\"{'Flip #':<7} {'Outcome':<8} {'α':<8} {'β':<8} {'Mean belief P(H)':<18}\")\nprint(\"-\" * 60)\n\nfor flip_num in range(1, num_flips + 1):\n    # Simulated outcome from the real (biased) coin\n    outcome = 'H' if random.random() < TRUE_P_HEADS else 'T'\n\n    # Bayesian update\n    if outcome == 'H':\n        alpha += 1\n    else:\n        beta += 1\n\n    mean_belief = alpha / (alpha + beta)\n    print(f\"{flip_num:<7} {outcome:<8} {alpha:<8.2f} {beta:<8.2f} {mean_belief:<18.3f}\")\n\nprint(\"\\nFinal inference:\")\nprint(f\"Posterior Beta(α={alpha:.2f}, β={beta:.2f})\")\nprint(f\"Estimated probability of heads: {alpha/(alpha+beta):.3f}\")\nprint(f\"True probability of heads:      {TRUE_P_HEADS:.3f}\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-bayesianinference-12",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `random`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 4-27 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "4-27"
+  },
+  {
+   "description": "Line 16 loops over `range(1, num_flips + 1)`.",
+   "kind": "focus",
+   "lines": "16"
+  },
+  {
+   "description": "Line 21 checks `outcome == 'H'`.",
+   "kind": "focus",
+   "lines": "21"
+  },
+  {
+   "description": "Lines 29-32 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "29-32"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "32",
+   "trace_step": 432
+  }
+ ],
+ "title": "Code: bayesiancoindetermine.py",
+ "version": 1
+}

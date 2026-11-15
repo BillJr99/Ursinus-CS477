@@ -1,0 +1,22 @@
+{
+ "code": "\n# Build design matrix with intercept\nX_design = np.c_[np.ones((n, 1)), X]  # [1, x]\ntheta_star = np.linalg.inv(X_design.T @ X_design) @ (X_design.T @ y)\n\ntheta0_star, theta1_star = theta_star\nprint(f\"Closed-form solution: theta0={theta0_star:.3f}, theta1={theta1_star:.3f}\")\nprint(f\"Estimated model equation: y = {theta1_star:.3f} x + {theta0_star:.3f}\")\nprint(f\"True equation: y = {theta1_true:.3f} x + {theta0_true:.3f}\")\n\n# Plot fitted line and true line\nx_line = np.linspace(0, 2, 100)\ny_line_fit = theta0_star + theta1_star * x_line\ny_line_true = theta0_true + theta1_true * x_line\n\nplt.scatter(X[:, 0], y, alpha=0.6, label=\"Data points\")\nplt.plot(x_line, y_line_fit, label=\"OLS fit (estimated)\", linewidth=2)\nplt.plot(x_line, y_line_true, label=\"True line (noise-free)\", linestyle=\"--\", color=\"red\")\nplt.xlabel(\"x\")\nplt.ylabel(\"y\")\nplt.title(\"OLS Fit vs True Model Line\")\nplt.legend()\nplt.show()\n\nprint(\"MSE (closed form):\", mean_squared_error(y, theta0_star + theta1_star * X[:,0]))\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-linear-and-logistic-regression-tutorial-4",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 3-14 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "3-14"
+  },
+  {
+   "description": "Lines 16-25 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "16-25"
+  }
+ ],
+ "title": "Notebook Linear_and_Logistic_Regression_Tutorial.ipynb",
+ "version": 1
+}

@@ -1,0 +1,32 @@
+{
+ "code": "\nn = 50\nx = np.linspace(-2, 2, n)\ny = 2.0 * x + 0.3 * np.random.randn(n)\nX2 = np.c_[x, y]\n\nmu2, comps2, vals2, evr2, Z2, C2 = pca_from_scratch(X2, n_components=2)\n\nprint(\"Mean:\", mu2)\nprint(\"Eigenvalues (descending):\", vals2)\nprint(\"Explained variance ratio:\", evr2)\n\nX2c = X2 - mu2\nplt.scatter(X2c[:,0], X2c[:,1], alpha=0.7)\nfor i in range(2):\n    vec = comps2[:, i] * math.sqrt(vals2[i]) * 2.5\n    plt.plot([0, vec[0]], [0, vec[1]], linewidth=2, label=f\"PC{i+1}\")\nplt.axhline(0, linestyle=\"--\", linewidth=1)\nplt.axvline(0, linestyle=\"--\", linewidth=1)\nplt.legend()\nplt.title(\"Centered data with principal axes\")\nplt.xlabel(\"x (centered)\")\nplt.ylabel(\"y (centered)\")\nplt.show()\n\nfig, axes = plt.subplots(1, 2, figsize=(10,4))\naxes[0].hist(Z2[:,0], bins=12)\naxes[0].set_title(\"Projection on PC1\")\naxes[1].hist(Z2[:,1], bins=12)\naxes[1].set_title(\"Projection on PC2\")\nplt.show()\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-pca-from-scratch-and-sklearn-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-13 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-13"
+  },
+  {
+   "description": "Lines 14-26 continue the main code.",
+   "kind": "reveal",
+   "lines": "14-26"
+  },
+  {
+   "description": "Line 15 loops over `range(2)`.",
+   "kind": "focus",
+   "lines": "15"
+  },
+  {
+   "description": "Lines 27-31 continue the main code.",
+   "kind": "reveal",
+   "lines": "27-31"
+  }
+ ],
+ "title": "Notebook PCA_From_Scratch_and_Sklearn.ipynb",
+ "version": 1
+}

@@ -1,0 +1,33 @@
+{
+ "code": "import os, json as _json\nos.makedirs(\"artifacts\", exist_ok=True)\n\nnp.savez(\"artifacts/lda_fisher_from_scratch.npz\",\n         X=X, y=y, feature_names=np.array(feature_names, dtype=object),\n         X_tr=X_tr, X_te=X_te, y_tr=y_tr, y_te=y_te,\n         W=W, evals=evals, Z_tr=Z_tr, Z_te=Z_te,\n         lda_means=lda.means_, lda_cov=lda.cov_, lda_priors=lda.priors_,\n         fisher_scores=F_multi, fisher_order=order)\n\nwith open(\"artifacts/summary.json\",\"w\") as f:\n    _json.dump({\n        \"test_accuracy_lda\": float(acc_te),\n        \"confusion_test\": confusion_matrix(y_te, yhat_te, n_classes=len(np.unique(y))).tolist(),\n        \"fisher_ranking\": [feature_names[j] for j in order],\n        \"lda_eigenvalues\": evals.tolist()\n    }, f, indent=2)\n\nprint(\"Artifacts:\", os.listdir(\"artifacts\"))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-lda-and-fisherscore-fromscratch-11",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `os` and `json`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 2-17 run the main code.",
+   "kind": "reveal",
+   "lines": "2-17"
+  },
+  {
+   "description": "Line 19 continues the main code and print the results.",
+   "kind": "reveal",
+   "lines": "19"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "19",
+   "trace_step": 24
+  }
+ ],
+ "title": "Notebook LDA_and_FisherScore_FromScratch.ipynb",
+ "version": 1
+}

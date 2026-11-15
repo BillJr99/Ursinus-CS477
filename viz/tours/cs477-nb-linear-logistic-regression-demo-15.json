@@ -1,0 +1,27 @@
+{
+ "code": "nb = GaussianNB()\nnb.fit(X_train, y_train)\n\ny_pred_nb = nb.predict(X_test)\n\nprint(\"Accuracy:\", accuracy_score(y_test, y_pred_nb))\nprint(\"F1 Score:\", f1_score(y_test, y_pred_nb))\nprint(\"\\nClassification Report:\\n\", classification_report(y_test, y_pred_nb))\nprint(f\"  ROC AUC: {roc_auc:.3f}\")\n\nfpr, tpr, thresholds = roc_curve(y_test, y_pred_nb)\n\nplt.plot(fpr, tpr, label=f\"ROC curve (AUC = {roc_auc:.3f})\")\nplt.plot([0, 0, 1], [0, 1, 1], linestyle=\"--\", label=\"Perfect classifier (for reference)\", alpha=0.5)\nplt.plot([0, 1], [0, 1], linestyle=\":\", label=\"Random classifier\", alpha=0.7)\nplt.xlabel(\"False Positive Rate\")\nplt.ylabel(\"True Positive Rate\")\nplt.title(\"ROC Curve (Naive Bayes)\")\nplt.legend()\nplt.grid(True)\nplt.show()\n\ncm = confusion_matrix(y_test, y_pred_nb)\nConfusionMatrixDisplay(cm).plot(values_format=\"d\")\nplt.title(\"Confusion Matrix — Gaussian Naïve Bayes\")\nplt.show()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-linear-logistic-regression-demo-15",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-13 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "1-13"
+  },
+  {
+   "description": "Lines 14-25 continue the main code.",
+   "kind": "reveal",
+   "lines": "14-25"
+  },
+  {
+   "description": "Line 26 continues the main code.",
+   "kind": "reveal",
+   "lines": "26"
+  }
+ ],
+ "title": "Notebook linear_logistic_regression_demo.ipynb",
+ "version": 1
+}

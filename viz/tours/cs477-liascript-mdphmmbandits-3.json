@@ -1,0 +1,70 @@
+{
+ "code": "import numpy as np\n\n# Transition matrix from the example\nA = np.array([\n    [0,   1/2, 1/2],\n    [0,   0,   1  ],\n    [1,   0,   0  ]\n])\n\ndef pagerank(A, d=0.85, tol=1e-8, max_iter=100):\n    n = A.shape[0]\n    teleport = np.ones((n, n)) / n\n    P = d * A + (1 - d) * teleport\n\n    x = np.ones(n) / n  # start uniformly\n    for _ in range(max_iter):\n        x_new = x @ P\n        if np.linalg.norm(x_new - x, 1) < tol:\n            return x_new\n        x = x_new\n    return x\n\nprint(\"PageRank:\", pagerank(A))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-mdphmmbandits-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `numpy`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 4-8 run the main code.",
+   "kind": "reveal",
+   "lines": "4-8"
+  },
+  {
+   "description": "Lines 10-21 define `pagerank(A, d, tol, max_iter)`.",
+   "kind": "reveal",
+   "lines": "10-21"
+  },
+  {
+   "description": "Line 16 loops over `range(max_iter)`.",
+   "kind": "focus",
+   "lines": "16"
+  },
+  {
+   "description": "Line 18 checks `np.linalg.norm(x_new - x, 1) < tol`.",
+   "kind": "focus",
+   "lines": "18"
+  },
+  {
+   "description": "Line 19 returns `x_new`.",
+   "kind": "focus",
+   "lines": "19"
+  },
+  {
+   "description": "Line 21 returns `x`.",
+   "kind": "focus",
+   "lines": "21"
+  },
+  {
+   "description": "Line 23 continues the main code and print the results.",
+   "kind": "reveal",
+   "lines": "23"
+  },
+  {
+   "description": "Here `pagerank` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "11",
+   "trace_step": 8
+  },
+  {
+   "description": "Here `pagerank` returns, the first time it does.",
+   "kind": "run",
+   "lines": "19",
+   "trace_step": 156
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "23",
+   "trace_step": 157
+  }
+ ],
+ "title": "Code Example",
+ "version": 1
+}

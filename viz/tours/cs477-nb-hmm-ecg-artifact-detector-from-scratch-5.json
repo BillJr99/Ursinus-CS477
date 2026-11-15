@@ -1,0 +1,57 @@
+{
+ "code": "from scipy.stats import kurtosis\n\ndef windowed_features(x, fs, win_sec=0.3, stride_sec=0.1):\n    win = int(win_sec*fs); stride = int(stride_sec*fs)\n    feats = []; idxs = []\n    for start in range(0, len(x)-win+1, stride):\n        seg = x[start:start+win]\n        rms = np.sqrt(np.mean(seg**2))\n        abs_deriv = np.mean(np.abs(np.diff(seg)))\n        zc = np.mean((seg[:-1] * seg[1:]) < 0)\n        f, Pxx = signal.welch(seg, fs=fs, nperseg=min(win, 256))\n        hf = Pxx[(f>=20) & (f<=45)].sum()\n        lf = Pxx[(f>=0.5) & (f<=5)].sum()\n        k = kurtosis(seg, fisher=False, bias=False) if len(seg)>3 else 3.0\n        feats.append([rms, abs_deriv, zc, hf, lf, k])\n        idxs.append((start, start+win))\n    return np.array(feats, dtype=float), idxs\n\nX, win_idxs = windowed_features(ecg_f, fs, win_sec=0.3, stride_sec=0.1)\nT, D = X.shape\nprint(\"Feature matrix:\", X.shape)\n\nclass StandardScalerNP:\n    def __init__(self, eps=1e-12):\n        self.mean_ = None; self.std_ = None; self.eps = eps\n    def fit(self, X):\n        self.mean_ = X.mean(axis=0)\n        self.std_ = X.std(axis=0)\n        self.std_ = np.where(self.std_ < self.eps, 1.0, self.std_)\n        return self\n    def transform(self, X):\n        return (X - self.mean_) / self.std_\n    def fit_transform(self, X):\n        return self.fit(X).transform(X)\n\nscaler = StandardScalerNP().fit(X)\nXs = scaler.transform(X)\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-5",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `scipy.stats`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 3-17 define `windowed_features(x, fs, win_sec, stride_sec)`.",
+   "kind": "reveal",
+   "lines": "3-17"
+  },
+  {
+   "description": "Line 6 loops over `range(0, len(x)-win+1, stride)`.",
+   "kind": "focus",
+   "lines": "6"
+  },
+  {
+   "description": "Line 17 returns `np.array(feats, dtype=float), idxs`.",
+   "kind": "focus",
+   "lines": "17"
+  },
+  {
+   "description": "Lines 19-21 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "19-21"
+  },
+  {
+   "description": "Lines 23-34 define the class `StandardScalerNP`, with methods `__init__`, `fit`, `transform` and `fit_transform`.",
+   "kind": "reveal",
+   "lines": "23-34"
+  },
+  {
+   "description": "Line 30 returns `self`.",
+   "kind": "focus",
+   "lines": "30"
+  },
+  {
+   "description": "Line 32 returns `(X - self.mean_) / self.std_`.",
+   "kind": "focus",
+   "lines": "32"
+  },
+  {
+   "description": "Lines 36-37 continue the main code.",
+   "kind": "reveal",
+   "lines": "36-37"
+  }
+ ],
+ "title": "Notebook HMM_ECG_Artifact_Detector_From_Scratch.ipynb",
+ "version": 1
+}

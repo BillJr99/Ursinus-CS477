@@ -1,0 +1,23 @@
+{
+ "code": "# Plug in values\nx_example = 10\ny_example = v1 * relu(w1 * x_example + b1) + v2 * relu(w2 * x_example + b2) + c\nprint(f\"For x = {x_example}, y = {y_example:.4f}\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-linearfunctionestimatormultilayernn-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-4 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-4"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "4",
+   "trace_step": 3
+  }
+ ],
+ "title": "Notebook LinearFunctionEstimatorMultiLayerNN.ipynb",
+ "version": 1
+}

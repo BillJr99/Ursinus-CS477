@@ -1,0 +1,27 @@
+{
+ "code": "ks = range(1,7)\ninertias = []\nfor kk in ks:\n    _, _, inh, _ = kmeans(X_std, k=kk, max_iter=200, tol=1e-6, n_init=10, seed=SEED)\n    inertias.append(inh)\n\nfig = plt.figure(figsize=(6,4))\nplt.plot(list(ks), inertias, marker='o')\nplt.xlabel(\"k\"); plt.ylabel(\"Inertia\")\nplt.title(\"Elbow Curve\")\nplt.xticks(list(ks))\nplt.tight_layout(); plt.show()\n\nprint(\"Inertias:\", list(zip(ks, np.round(inertias, 2))))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-kmeans-clustering-iris-from-scratch-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-12 run the main code.",
+   "kind": "reveal",
+   "lines": "1-12"
+  },
+  {
+   "description": "Line 3 loops over `ks`.",
+   "kind": "focus",
+   "lines": "3"
+  },
+  {
+   "description": "Lines 12-14 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "12-14"
+  }
+ ],
+ "title": "Notebook KMeans_Clustering_Iris_From_Scratch.ipynb",
+ "version": 1
+}

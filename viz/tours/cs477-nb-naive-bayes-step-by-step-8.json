@@ -1,0 +1,43 @@
+{
+ "code": "# Vectorize\nvect = MiniCountVectorizer(min_df=1)\nX_train_txt = vect.fit_transform(texts_train)\nX_test_txt  = vect.transform(texts_test)\n\nmnb = MultinomialNaiveBayesScratch(alpha=1.0).fit(X_train_txt, y_train_txt)\npred_txt = mnb.predict(X_test_txt)\n\nprint(f\"From‑scratch MultinomialNB accuracy: {accuracy_score(y_test_txt, pred_txt):.3f}\")\nprint(\"Confusion matrix:\")\nprint(confusion_matrix(y_test_txt, pred_txt))\nprint(\"Classification report:\")\nprint(classification_report(y_test_txt, pred_txt))\n\n# Show most informative features (log-odds)\n# log P(w|spam) - log P(w|ham)\nif set(mnb.classes_) == set([\"spam\",\"ham\"]):\n    idx_spam = np.where(mnb.classes_ == \"spam\")[0][0]\n    idx_ham  = np.where(mnb.classes_ == \"ham\")[0][0]\n    log_odds = mnb.feature_log_prob_[idx_spam] - mnb.feature_log_prob_[idx_ham]\n    top_spam = np.argsort(-log_odds)[:10]\n    top_ham  = np.argsort(log_odds)[:10]\n\n    inv_vocab = {i:t for t,i in vect.vocab_.items()}\n    print(\"\\nTop indicative words for SPAM:\")\n    for i in top_spam:\n        print(f\"  {inv_vocab[i]:<15s}  log-odds={log_odds[i]:.3f}\")\n    print(\"\\nTop indicative words for HAM:\")\n    for i in top_ham:\n        print(f\"  {inv_vocab[i]:<15s}  log-odds={log_odds[i]:.3f}\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-naive-bayes-step-by-step-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-13 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-13"
+  },
+  {
+   "description": "Lines 17-30 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "17-30"
+  },
+  {
+   "description": "Line 17 checks `set(mnb.classes_) == set([\"spam\",\"ham\"])`.",
+   "kind": "focus",
+   "lines": "17"
+  },
+  {
+   "description": "Line 26 loops over `top_spam`.",
+   "kind": "focus",
+   "lines": "26"
+  },
+  {
+   "description": "Line 29 loops over `top_ham`.",
+   "kind": "focus",
+   "lines": "29"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "29",
+   "trace_step": 133
+  }
+ ],
+ "title": "Notebook naive_bayes_step_by_step.ipynb",
+ "version": 1
+}

@@ -1,0 +1,22 @@
+{
+ "code": "\n# Generate a simple 1D synthetic dataset: y = 3x + 5 + noise\nn = 100\nX = 2 * np.random.rand(n, 1)  # feature in [0, 2)\ntheta0_true = 5.0\ntheta1_true = 3.0\ny_true = theta1_true * X[:, 0] + theta0_true\nnoise = np.random.randn(n) * 0.8\ny = y_true + noise\n\n# Visualize\nplt.scatter(X[:, 0], y, alpha=0.7, label=\"data\")\nplt.xlabel(\"x\")\nplt.ylabel(\"y\")\nplt.title(\"Synthetic data: approximately y = 3x + 5 + noise\")\nplt.legend()\nplt.show()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-regression-2",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 3-14 run the main code.",
+   "kind": "reveal",
+   "lines": "3-14"
+  },
+  {
+   "description": "Lines 15-17 continue the main code.",
+   "kind": "reveal",
+   "lines": "15-17"
+  }
+ ],
+ "title": "Code Cell",
+ "version": 1
+}

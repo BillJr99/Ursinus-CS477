@@ -1,0 +1,27 @@
+{
+ "code": "# Core\nimport math\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# scikit-learn\nfrom sklearn.model_selection import train_test_split, KFold, StratifiedKFold, cross_val_score\nfrom sklearn.preprocessing import StandardScaler, PolynomialFeatures\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.linear_model import LinearRegression, LogisticRegression\nfrom sklearn.metrics import (\n    mean_squared_error, r2_score,\n    precision_recall_fscore_support, classification_report,\n    confusion_matrix, ConfusionMatrixDisplay,\n    roc_curve, auc, RocCurveDisplay\n)\nfrom sklearn.datasets import make_regression, load_breast_cancer\n\nnp.random.seed(42)\nplt.rcParams['figure.figsize'] = (6,4)\nplt.rcParams['axes.grid'] = True\n\nprint('Environment ready.')",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-perceptronsmodelevaluation-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-4 import `math`, `numpy` and `matplotlib.pyplot`.",
+   "kind": "reveal",
+   "lines": "2-4"
+  },
+  {
+   "description": "Lines 7-17 import `sklearn.model_selection`, `sklearn.preprocessing`, `sklearn.pipeline`, `sklearn.linear_model`, `sklearn.metrics` and `sklearn.datasets`.",
+   "kind": "reveal",
+   "lines": "7-17"
+  },
+  {
+   "description": "Lines 19-23 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "19-23"
+  }
+ ],
+ "title": "0. Environment & Utilities",
+ "version": 1
+}

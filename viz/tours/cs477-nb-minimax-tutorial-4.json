@@ -1,0 +1,60 @@
+{
+ "code": "\ndef solve_col_minimax(A):\n    # Solve Column player's minimax mixed strategy for zero-sum game with payoff A to Row.\n    # Returns (y, w) where y is Column's mixed strategy, w is game value (Row's payoff).\n    m, n = A.shape\n    # Decision vars: [y_1,...,y_n, w]; objective: minimize w\n    c = np.zeros(n + 1); c[-1] = 1.0\n\n    # Constraints: A y <= w*1  <=>  A y - 1*w <= 0\n    A_ub = np.zeros((m, n + 1)); b_ub = np.zeros(m)\n    for i in range(m):\n        A_ub[i, :n] = A[i, :]\n        A_ub[i, -1] = -1.0\n\n    # Sum-to-one: sum y_j = 1\n    A_eq = np.zeros((1, n + 1)); A_eq[0, :n] = 1.0\n    b_eq = np.array([1.0])\n\n    bounds = [(0, 1)] * n + [(-1e9, 1e9)]\n\n    res = linprog(c, A_ub=A_ub, b_ub=b_ub, A_eq=A_eq, b_eq=b_eq, bounds=bounds, method=\"highs\")\n    if not res.success:\n        raise RuntimeError(\"LP failed: \" + res.message)\n    y = res.x[:n]; w = res.x[-1]\n    return y, w\n\ny, w = solve_col_minimax(A)\n\nprint(\"Column mixed strategy y:\", np.round(y, 4), \" (sum=\", np.round(y.sum(),4), \")\")\nprint(\"Minimax value w (Row's payoff):\", np.round(w, 4))\nprint(\"v vs w:\", (v, w))\n\n# Sanity check: Row's expected payoff for each of her pure actions vs y\nexpected_vs_rows = A @ y\nfor lbl, val in zip(row_labels, expected_vs_rows):\n    print(f\"Row's payoff if playing {lbl:4s} vs y: {val:.4f}\")\nprint(\"All should be <= w up to numerical tolerance.\")\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-minimax-tutorial-4",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-25 define `solve_col_minimax(A)`.",
+   "kind": "reveal",
+   "lines": "2-25"
+  },
+  {
+   "description": "Line 11 loops over `range(m)`.",
+   "kind": "focus",
+   "lines": "11"
+  },
+  {
+   "description": "Line 22 checks `not res.success`.",
+   "kind": "focus",
+   "lines": "22"
+  },
+  {
+   "description": "Line 25 returns `y, w`.",
+   "kind": "focus",
+   "lines": "25"
+  },
+  {
+   "description": "Lines 27-37 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "27-37"
+  },
+  {
+   "description": "Line 35 loops over `zip(row_labels, expected_vs_rows)`.",
+   "kind": "focus",
+   "lines": "35"
+  },
+  {
+   "description": "Here `solve_col_minimax` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "5",
+   "trace_step": 2
+  },
+  {
+   "description": "Here `solve_col_minimax` returns, the first time it does.",
+   "kind": "run",
+   "lines": "25",
+   "trace_step": 22
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "37",
+   "trace_step": 35
+  }
+ ],
+ "title": "Notebook Minimax_Tutorial.ipynb",
+ "version": 1
+}

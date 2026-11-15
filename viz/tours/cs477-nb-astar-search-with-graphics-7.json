@@ -1,0 +1,47 @@
+{
+ "code": "from matplotlib import animation\n\ndef animate_search(grid, start, goal, snapshots, path=None, interval=120):\n    fig = plt.figure(figsize=(5,5))\n    ax = plt.gca()\n    H, W = grid.shape\n    base = np.zeros((H,W)); base[:,:] = 0.9; base[grid==1] = 0.2\n    im = plt.imshow(base, interpolation='nearest', animated=True)\n    si, sj = start; gi, gj = goal\n    scat_start = plt.scatter([sj],[si], marker='o')\n    scat_goal  = plt.scatter([gj],[gi], marker='x')\n    scat_cur   = plt.scatter([], [], marker='s')\n    plt.axis('off')\n\n    def frame(k):\n        open_k, closed_k, cur = snapshots[k]\n        img = base.copy()\n        for (i,j) in closed_k:\n            if grid[i,j]==0: img[i,j] = 0.6\n        for (i,j) in open_k:\n            if grid[i,j]==0 and (i,j) not in closed_k: img[i,j] = 0.75\n        if path is not None and k == len(snapshots)-1:\n            for (i,j) in path: img[i,j] = 0.3\n        im.set_array(img)\n        if cur is not None:\n            ci, cj = cur\n            scat_cur.set_offsets([[cj, ci]])\n        return [im, scat_start, scat_goal, scat_cur]\n\n    anim = animation.FuncAnimation(fig, frame, frames=len(snapshots), interval=interval, blit=True)\n    plt.close(fig)\n    return anim\n\nif RES[\"snapshots\"]:\n    anim = animate_search(grid, start, goal, RES[\"snapshots\"], path=path, interval=100)\n    try:\n        from IPython.display import HTML\n        HTML(anim.to_jshtml())\n    except Exception as e:\n        print(\"Inline animation preview not available:\", e)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-astar-search-with-graphics-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `matplotlib`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 3-32 define `animate_search(grid, start, goal, snapshots, path, interval)`.",
+   "kind": "reveal",
+   "lines": "3-32"
+  },
+  {
+   "description": "Line 18 loops over `closed_k`.",
+   "kind": "focus",
+   "lines": "18"
+  },
+  {
+   "description": "Line 20 loops over `open_k`.",
+   "kind": "focus",
+   "lines": "20"
+  },
+  {
+   "description": "Line 23 loops over `path`.",
+   "kind": "focus",
+   "lines": "23"
+  },
+  {
+   "description": "Line 28 returns `[im, scat_start, scat_goal, scat_cur]`.",
+   "kind": "focus",
+   "lines": "28"
+  },
+  {
+   "description": "Lines 34-40 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "34-40"
+  }
+ ],
+ "title": "Notebook AStar_Search_With_Graphics.ipynb",
+ "version": 1
+}

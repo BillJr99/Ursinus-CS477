@@ -1,0 +1,75 @@
+{
+ "code": "from collections import Counter\nimport math\n\ndocs = [\n    (\"sports win team game\", 1),\n    (\"team scores goal win\", 1),\n    (\"election debate policy\", 0),\n    (\"policy vote election\", 0),\n]\n# Build vocabulary and counts\nvocab = sorted({w for s,_ in docs for w in s.split()})\nV = len(vocab)\ncls_counts = Counter(y for _,y in docs)\nword_counts = {0: Counter(), 1: Counter()}\nfor s,y in docs:\n    for w in s.split():\n        word_counts[y][w] += 1\n\nalpha = 1.0  # Laplace smoothing\nphi = {y: {} for y in cls_counts}\nfor y in cls_counts:\n    total = sum(word_counts[y].values()) + alpha*V\n    for w in vocab:\n        phi[y][w] = (word_counts[y][w] + alpha) / total\n\ndef log_score(text):\n    toks = text.split()\n    scores = {}\n    for y in cls_counts:\n        logp = math.log(cls_counts[y]/sum(cls_counts.values()))\n        for w in toks:\n            logp += math.log(phi[y].get(w, 1.0/(sum(word_counts[y].values())+alpha*V)))\n        scores[y] = logp\n    return max(scores, key=scores.get), scores\n\nprint(log_score(\"team win goal\"))\nprint(log_score(\"policy debate\"))",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-bayesianinference-4",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-2 import `collections` and `math`.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "description": "Lines 4-17 run the main code.",
+   "kind": "reveal",
+   "lines": "4-17"
+  },
+  {
+   "description": "Line 15 loops over `docs`.",
+   "kind": "focus",
+   "lines": "15"
+  },
+  {
+   "description": "Line 16 loops over `s.split()`.",
+   "kind": "focus",
+   "lines": "16"
+  },
+  {
+   "description": "Lines 19-24 continue the main code.",
+   "kind": "reveal",
+   "lines": "19-24"
+  },
+  {
+   "description": "Line 23 loops over `vocab`.",
+   "kind": "focus",
+   "lines": "23"
+  },
+  {
+   "description": "Lines 26-34 define `log_score(text)`.",
+   "kind": "reveal",
+   "lines": "26-34"
+  },
+  {
+   "description": "Line 31 loops over `toks`.",
+   "kind": "focus",
+   "lines": "31"
+  },
+  {
+   "description": "Lines 36-37 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "36-37"
+  },
+  {
+   "description": "Here `log_score` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "27",
+   "trace_step": 125
+  },
+  {
+   "description": "Here `log_score` returns, the first time it does.",
+   "kind": "run",
+   "lines": "34",
+   "trace_step": 149
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "37",
+   "trace_step": 172
+  }
+ ],
+ "title": "6.5 Code Cell: Multinomial Naïve Bayes (Toy Example)",
+ "version": 1
+}

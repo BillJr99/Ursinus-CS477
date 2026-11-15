@@ -1,0 +1,23 @@
+{
+ "code": "kf = KFold(n_splits=5, shuffle=True, random_state=42)\nscores_r2   = cross_val_score(reg, X, y, cv=kf, scoring='r2')\nscores_rmse = -cross_val_score(reg, X, y, cv=kf, scoring='neg_root_mean_squared_error')\n\nprint('CV R^2 (5-fold):   ', f'{scores_r2.mean():.3f} ± {scores_r2.std():.3f}')\nprint('CV RMSE (5-fold):  ', f'{scores_rmse.mean():.3f} ± {scores_rmse.std():.3f}')",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-perceptronsmodelevaluation-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-6 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "1-6"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "6",
+   "trace_step": 5
+  }
+ ],
+ "title": "2. K-Fold Cross-Validation (CV)",
+ "version": 1
+}

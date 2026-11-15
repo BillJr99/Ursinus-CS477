@@ -1,0 +1,27 @@
+{
+ "code": "\ndata = load_breast_cancer()\nX = data.data\ny = data.target\n\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42, stratify=y)\n\npipe = Pipeline([\n    (\"scaler\", StandardScaler(with_mean=True)),\n    (\"logreg\", LogisticRegression(max_iter=500, C=1.0)) # C is inverse regularization strength\n])\npipe.fit(X_train, y_train)\ny_pred = pipe.predict(X_test)\ny_prob = pipe.predict_proba(X_test)[:,1]\n\nprint(\"Classification Report:\\n\")\nprint(classification_report(y_test, y_pred, target_names=data.target_names))\n\n# Confusion Matrix\ncm = confusion_matrix(y_test, y_pred, labels=[0,1])\ndisp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=[\"malignant\",\"benign\"])\ndisp.plot()\nplt.title(\"Confusion Matrix\")\nplt.show()\n\n# ROC Curve\nfpr, tpr, _ = roc_curve(y_test, y_prob)\nroc_auc = auc(fpr, tpr)\nRocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=roc_auc, estimator_name=\"LogisticRegression\").plot()\nplt.title(f\"ROC Curve (AUC = {roc_auc:.3f})\")\nplt.show()\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-linear-and-logistic-regression-tutorial-12",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-13 run the main code.",
+   "kind": "reveal",
+   "lines": "2-13"
+  },
+  {
+   "description": "Lines 14-27 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "14-27"
+  },
+  {
+   "description": "Lines 28-31 continue the main code.",
+   "kind": "reveal",
+   "lines": "28-31"
+  }
+ ],
+ "title": "Notebook Linear_and_Logistic_Regression_Tutorial.ipynb",
+ "version": 1
+}

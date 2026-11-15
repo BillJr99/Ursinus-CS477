@@ -1,0 +1,32 @@
+{
+ "code": "\ndef gradient_descent(X, y, lr=0.1, steps=200):\n    theta0, theta1 = 0.0, 0.0\n    history = []\n    for t in range(steps):\n        y_hat = theta0 + theta1 * X[:, 0]\n        err = y_hat - y\n        grad0 = (2/len(X)) * np.sum(err)\n        grad1 = (2/len(X)) * np.sum(err * X[:, 0])\n        theta0 -= lr * grad0\n        theta1 -= lr * grad1\n        history.append((theta0, theta1, np.mean(err**2)))\n    return theta0, theta1, np.array(history)\n\ntheta0_gd, theta1_gd, hist = gradient_descent(X, y, lr=0.1, steps=200)\n\nprint(f\"GD solution: theta0={theta0_gd:.3f}, theta1={theta1_gd:.3f}\")\nplt.plot(hist[:,2])\nplt.xlabel(\"Iteration\")\nplt.ylabel(\"Mean Squared Error (MSE) or Loss\")\nplt.title(\"Gradient Descent Convergence\")\nplt.show()\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-linear-and-logistic-regression-tutorial-5",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-13 define `gradient_descent(X, y, lr, steps)`.",
+   "kind": "reveal",
+   "lines": "2-13"
+  },
+  {
+   "description": "Line 5 loops over `range(steps)`.",
+   "kind": "focus",
+   "lines": "5"
+  },
+  {
+   "description": "Line 13 returns `theta0, theta1, np.array(history)`.",
+   "kind": "focus",
+   "lines": "13"
+  },
+  {
+   "description": "Lines 15-22 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "15-22"
+  }
+ ],
+ "title": "Notebook Linear_and_Logistic_Regression_Tutorial.ipynb",
+ "version": 1
+}

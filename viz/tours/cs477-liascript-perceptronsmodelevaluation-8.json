@@ -1,0 +1,32 @@
+{
+ "code": "# Sweep thresholds and compute precision/recall pairs\nthresholds = np.linspace(0.0, 1.0, 21)\npairs = []\nfor thr in thresholds:\n    y_hat = (y_prob >= thr).astype(int)\n    p, r, f1, _ = precision_recall_fscore_support(yc_test, y_hat, average='binary', zero_division=0)\n    pairs.append((thr, p, r, f1))\n\nfor thr, p, r, f1 in pairs[:5]:\n    print(f't={thr:.2f}: Precision={p:.3f}, Recall={r:.3f}, F1={f1:.3f}')\n\n# Simple PR visualization\npr = np.array(pairs)\nplt.plot(pr[:,1], pr[:,2], marker='o')  # Recall (x) vs Precision (y)\nplt.xlabel('Precision'); plt.ylabel('Recall'); plt.title('Precision–Recall tradeoff (varying threshold)')\nplt.show()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-perceptronsmodelevaluation-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-13 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2-13"
+  },
+  {
+   "description": "Line 4 loops over `thresholds`.",
+   "kind": "focus",
+   "lines": "4"
+  },
+  {
+   "description": "Line 9 loops over `pairs[:5]`.",
+   "kind": "focus",
+   "lines": "9"
+  },
+  {
+   "description": "Lines 14-16 continue the main code.",
+   "kind": "reveal",
+   "lines": "14-16"
+  }
+ ],
+ "title": "10. Threshold Tuning (Precision-Recall Tradeoff)",
+ "version": 1
+}

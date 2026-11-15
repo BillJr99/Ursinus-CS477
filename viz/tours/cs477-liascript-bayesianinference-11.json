@@ -1,0 +1,87 @@
+{
+ "code": "# Bayesian updating for a coin's bias using a Beta prior\n\nfrom typing import List, Tuple\n\ndef beta_posterior_mean(alpha: float, beta: float) -> float:\n    \"\"\"Return the mean of a Beta(alpha, beta) distribution.\"\"\"\n    return alpha / (alpha + beta)\n\n\ndef update_beta_after_flip(\n    alpha: float,\n    beta: float,\n    outcome: str\n) -> Tuple[float, float]:\n    \"\"\"\n    Update Beta(alpha, beta) parameters after a single coin flip.\n\n    outcome: 'H' for heads, 'T' for tails.\n    \"\"\"\n    if outcome.upper() == 'H':\n        alpha += 1\n    elif outcome.upper() == 'T':\n        beta += 1\n    else:\n        raise ValueError(f\"Invalid outcome '{outcome}'. Use 'H' or 'T'.\")\n\n    return alpha, beta\n\n\ndef run_bayesian_coin_example():\n    # Initial prior: Beta(2, 2)\n    alpha, beta = 2.0, 2.0\n\n    # Sequence of observed flips\n    flips: List[str] = ['H', 'T', 'H', 'H', 'H']\n\n    print(\"Bayesian updating for a coin with Beta prior\")\n    print(\"Initial prior: Beta(alpha=2, beta=2)\")\n    print()\n\n    # Header for the table\n    print(f\"{'Step':<5} {'Flip':<6} {'Alpha':<8} {'Beta':<8} {'Mean p(H)':<10}\")\n    print(\"-\" * 40)\n\n    # Step 0: before seeing any data\n    step = 0\n    mean_p = beta_posterior_mean(alpha, beta)\n    print(f\"{step:<5} {'-':<6} {alpha:<8.2f} {beta:<8.2f} {mean_p:<10.3f}\")\n\n    # Sequentially update after each flip\n    for flip in flips:\n        step += 1\n        alpha, beta = update_beta_after_flip(alpha, beta, flip)\n        mean_p = beta_posterior_mean(alpha, beta)\n        print(f\"{step:<5} {flip:<6} {alpha:<8.2f} {beta:<8.2f} {mean_p:<10.3f}\")\n\n\nif __name__ == \"__main__\":\n    run_bayesian_coin_example()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-bayesianinference-11",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 3 imports `typing`.",
+   "kind": "reveal",
+   "lines": "3"
+  },
+  {
+   "description": "Lines 5-7 define `beta_posterior_mean(alpha, beta)`.",
+   "kind": "reveal",
+   "lines": "5-7"
+  },
+  {
+   "description": "Line 7 returns `alpha / (alpha + beta)`.",
+   "kind": "focus",
+   "lines": "7"
+  },
+  {
+   "description": "Lines 10-27 define `update_beta_after_flip(alpha, beta, outcome)`.",
+   "kind": "reveal",
+   "lines": "10-27"
+  },
+  {
+   "description": "Line 20 checks `outcome.upper() == 'H'`.",
+   "kind": "focus",
+   "lines": "20"
+  },
+  {
+   "description": "Line 27 returns `alpha, beta`.",
+   "kind": "focus",
+   "lines": "27"
+  },
+  {
+   "description": "Lines 30-55 define `run_bayesian_coin_example()`.",
+   "kind": "reveal",
+   "lines": "30-55"
+  },
+  {
+   "description": "Line 51 loops over `flips`.",
+   "kind": "focus",
+   "lines": "51"
+  },
+  {
+   "description": "Lines 58-59 run the main code.",
+   "kind": "reveal",
+   "lines": "58-59"
+  },
+  {
+   "description": "Here `beta_posterior_mean` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "7",
+   "trace_step": 23
+  },
+  {
+   "description": "Here `beta_posterior_mean` returns, the first time it does.",
+   "kind": "run",
+   "lines": "7",
+   "trace_step": 24
+  },
+  {
+   "description": "Here `update_beta_after_flip` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "20",
+   "trace_step": 29
+  },
+  {
+   "description": "Here `update_beta_after_flip` returns, the first time it does.",
+   "kind": "run",
+   "lines": "27",
+   "trace_step": 32
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "59",
+   "trace_step": 84
+  }
+ ],
+ "title": "Code: bayesiancoin.py",
+ "version": 1
+}

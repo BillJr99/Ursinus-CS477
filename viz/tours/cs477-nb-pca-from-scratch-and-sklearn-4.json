@@ -1,0 +1,22 @@
+{
+ "code": "\nfrom sklearn.decomposition import PCA as SKPCA\nsk = SKPCA(n_components=2).fit(X2)\nprint(\"sklearn explained variance:\", sk.explained_variance_)\nprint(\"sklearn explained variance ratio:\", sk.explained_variance_ratio_)\nprint(\"Scratch PC1 (unit):\", comps2[:,0])\nprint(\"SK PC1 (unit):     \", sk.components_[0])\nprint(\"Cosine similarity:\", np.dot(comps2[:,0], sk.components_[0]))\n",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-pca-from-scratch-and-sklearn-4",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 2 imports `sklearn.decomposition`.",
+   "kind": "reveal",
+   "lines": "2"
+  },
+  {
+   "description": "Lines 3-8 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "3-8"
+  }
+ ],
+ "title": "Notebook PCA_From_Scratch_and_Sklearn.ipynb",
+ "version": 1
+}

@@ -1,0 +1,45 @@
+{
+ "code": "def argmax_cell(b):\n    return int(np.argmax(b))\n\ntrue_ij = [ij(s, W) for s in true_states]\nmap_cells = [argmax_cell(b) for b in beliefs]\nmap_ij = [ij(s, W) for s in map_cells]\nprint(\"True positions (i,j):\", true_ij)\nprint(\"MAP positions (i,j):\", map_ij)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-10",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-2 define `argmax_cell(b)`.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "description": "Line 2 returns `int(np.argmax(b))`.",
+   "kind": "focus",
+   "lines": "2"
+  },
+  {
+   "description": "Lines 4-8 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "4-8"
+  },
+  {
+   "description": "Here `argmax_cell` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "2",
+   "trace_step": 20
+  },
+  {
+   "description": "Here `argmax_cell` returns, the first time it does.",
+   "kind": "run",
+   "lines": "2",
+   "trace_step": 21
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "8",
+   "trace_step": 91
+  }
+ ],
+ "title": "Notebook Bayesian_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+ "version": 1
+}

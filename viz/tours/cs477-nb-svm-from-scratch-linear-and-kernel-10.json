@@ -1,0 +1,23 @@
+{
+ "code": "C = 1.5\nGAMMA = 1.5 if DATASET==\"moons\" else 0.8\nksvm = KernelSVM_SMO(C=C, gamma=GAMMA, tol=1e-3, max_passes=8).fit(X_tr, y_tr)\nyhat_k = ksvm.predict(X_te)\nacc_k, prec_k, rec_k, *_ = metrics(y_te, yhat_k)\nprint(f\"Kernel RBF SVM: acc={acc_k:.3f} prec={prec_k:.3f} rec={rec_k:.3f} #SV={len(ksvm.sv_idx)}\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-svm-from-scratch-linear-and-kernel-10",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-6 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "1-6"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "6",
+   "trace_step": 6
+  }
+ ],
+ "title": "Notebook SVM_From_Scratch_Linear_and_Kernel.ipynb",
+ "version": 1
+}

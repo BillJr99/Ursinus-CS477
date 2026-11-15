@@ -1,0 +1,50 @@
+{
+ "code": "# Generate Cauchy samples (using tangent formula). We'll fix gamma=1.0 (scale).\nn = 200\ntheta_true, gamma = 0.5, 1.0\nu = rng.uniform(0, 1, size=n)\nx = theta_true + gamma * np.tan(np.pi*(u - 0.5))\n\ndef cauchy_loglik(theta, x, gamma=1.0):\n    return -np.sum(np.log(gamma**2 + (x - theta)**2))\n\n# Coarse-to-fine grid search\ng1 = np.linspace(np.percentile(x, 5)-2, np.percentile(x,95)+2, 600)\nll1 = np.array([cauchy_loglik(t, x, gamma) for t in g1])\nt1 = g1[np.argmax(ll1)]\n# refine\ng2 = np.linspace(t1-0.5, t1+0.5, 600)\nll2 = np.array([cauchy_loglik(t, x, gamma) for t in g2])\ntheta_hat = g2[np.argmax(ll2)]\n\nprint(f\"Cauchy location MLE (grid search): true θ={theta_true:.3f}, θ̂={theta_hat:.3f}\")\n\nplot_ll(g1, ll1, t1, true_theta=theta_true, xlabel=r\"$\\theta$\", title=\"Cauchy log-likelihood (coarse)\")\nplot_ll(g2, ll2, theta_hat, true_theta=theta_true, xlabel=r\"$\\theta$\", title=\"Cauchy log-likelihood (refined)\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-mle-from-first-principles-worked-examples-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 2-5 run the main code.",
+   "kind": "reveal",
+   "lines": "2-5"
+  },
+  {
+   "description": "Lines 7-8 define `cauchy_loglik(theta, x, gamma)`.",
+   "kind": "reveal",
+   "lines": "7-8"
+  },
+  {
+   "description": "Line 8 returns a value.",
+   "kind": "focus",
+   "lines": "8"
+  },
+  {
+   "description": "Lines 11-22 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "11-22"
+  },
+  {
+   "description": "Here `cauchy_loglik` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "8",
+   "trace_step": 7
+  },
+  {
+   "description": "Here `cauchy_loglik` returns, the first time it does.",
+   "kind": "run",
+   "lines": "8",
+   "trace_step": 8
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "8",
+   "trace_step": 799
+  }
+ ],
+ "title": "Notebook MLE_From_First_Principles_Worked_Examples.ipynb",
+ "version": 1
+}

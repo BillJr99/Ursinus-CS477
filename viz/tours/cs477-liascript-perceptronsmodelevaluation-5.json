@@ -1,0 +1,17 @@
+{
+ "code": "cm = confusion_matrix(yc_test, y_pred, labels=[0,1])\ndisp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=['malignant','benign'])\ndisp.plot()\nplt.title('Confusion Matrix')\nplt.show()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-perceptronsmodelevaluation-5",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-5 run the main code.",
+   "kind": "reveal",
+   "lines": "1-5"
+  }
+ ],
+ "title": "6. Confusion Matrix",
+ "version": 1
+}

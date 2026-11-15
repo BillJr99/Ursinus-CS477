@@ -1,0 +1,33 @@
+{
+ "code": "from sklearn.model_selection import GridSearchCV\n\npipe = Pipeline([\n    (\"scaler\", StandardScaler()),\n    (\"svm\", SVC(kernel=\"rbf\", probability=True))\n])\n\nparam_grid = {\n    \"svm__C\": [0.1, 1, 10],\n    \"svm__gamma\": [\"scale\", 0.1, 0.01]\n}\n\ngrid = GridSearchCV(pipe, param_grid, scoring=\"roc_auc\",\n                    cv=StratifiedKFold(n_splits=5, shuffle=True, random_state=42))\ngrid.fit(X, y)\nprint(\"Best AUC:\", grid.best_score_)\nprint(\"Best params:\", grid.best_params_)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-perceptronsmodelevaluation-11",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `sklearn.model_selection`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 3-14 run the main code.",
+   "kind": "reveal",
+   "lines": "3-14"
+  },
+  {
+   "description": "Lines 15-17 continue the main code and print the results.",
+   "kind": "reveal",
+   "lines": "15-17"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "17",
+   "trace_step": 14
+  }
+ ],
+ "title": "6. Hyperparameter Tuning (C, $\\gamma$) with Cross-Validation",
+ "version": 1
+}

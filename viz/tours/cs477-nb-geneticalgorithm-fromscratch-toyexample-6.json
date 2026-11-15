@@ -1,0 +1,17 @@
+{
+ "code": "fig = plt.figure(figsize=(6,4))\nplt.plot(best_hist, label=\"best\")\nplt.plot(mean_hist, label=\"mean\")\nplt.xlabel(\"Generation\"); plt.ylabel(\"Fitness (maximize)\")\nplt.title(\"GA Convergence on -Rastrigin (2D)\")\nplt.legend(); plt.tight_layout(); plt.show()",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-geneticalgorithm-fromscratch-toyexample-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-6 run the main code.",
+   "kind": "reveal",
+   "lines": "1-6"
+  }
+ ],
+ "title": "Notebook GeneticAlgorithm_FromScratch_ToyExample.ipynb",
+ "version": 1
+}

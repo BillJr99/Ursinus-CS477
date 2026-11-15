@@ -1,0 +1,27 @@
+{
+ "code": "def simulate_credit(n=4000, rng=rng):\n    income = rng.lognormal(mean=3.5, sigma=0.4, size=n)\n    dti = np.clip(rng.normal(0.28, 0.1, size=n), 0.01, 0.8)\n    util = np.clip(rng.beta(2,5, size=n), 0.0, 0.99)\n    hist = np.clip(rng.normal(6.0, 3.0, size=n), 0.0, 30.0)\n    inq  = np.clip(rng.poisson(2.0, size=n), 0, 10)\n    delq = np.clip((rng.poisson(0.6, size=n) > 0).astype(float) * rng.poisson(1.2, size=n), 0, 8)\n\n    X = np.c_[income, dti, util, hist, inq, delq].astype(float)\n    z = (\n        + 0.003 * income\n        - 2.2   * dti\n        - 1.6   * util\n        + 0.12  * hist\n        - 0.20  * inq\n        - 0.35  * delq\n        + 0.8   * np.maximum(0, 0.35 - util)\n        - 0.6   * np.maximum(0, dti - 0.45)\n    )\n    z += 0.4*np.tanh((income/50.0 - 1.0))\n    p = 1/(1+np.exp(-z))\n    y = (rng.random(n) < p).astype(float)\n    return X, y, [\"income_k\", \"dti\", \"util\", \"hist_len\", \"inq_12m\", \"delinq\"]\n\nX, y, feature_names = simulate_credit(5000, rng)\nX_tr_raw, X_te_raw, y_tr, y_te = train_test_split(X, y, test_size=0.25, rng=rng)\nX_tr, mu, sig = standardize(X_tr_raw)\nX_te, _, _ = standardize(X_te_raw, mu, sig)\nd = X_tr.shape[1]\nprint(\"Train:\", X_tr.shape, \"| Test:\", X_te.shape, \"| Pos rate (train):\", y_tr.mean())",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-explainableai-shapley-from-scratch-creditnn-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-23 define `simulate_credit(n, rng)`.",
+   "kind": "reveal",
+   "lines": "1-23"
+  },
+  {
+   "description": "Line 23 returns a value.",
+   "kind": "focus",
+   "lines": "23"
+  },
+  {
+   "description": "Lines 25-30 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "25-30"
+  }
+ ],
+ "title": "Notebook ExplainableAI_Shapley_From_Scratch_CreditNN.ipynb",
+ "version": 1
+}

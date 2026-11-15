@@ -1,0 +1,45 @@
+{
+ "code": "def summarize(name, samples, point=None):\n    lo, med, hi = ci_quantiles(samples, (0.025, 0.5, 0.975))\n    mean = float(np.mean(samples))\n    print(f\"{name}:\")\n    print(f\"  mean={mean:.4f}  median={med:.4f}  95% CI=({lo:.4f}, {hi:.4f})\")\n    if point is not None:\n        print(f\"  point-estimate (at mean params) = {point:.4f}\")\n    print()\n\nsummarize(\"P(D=1 | T=+)\", ppv_samps, ppv_point)\nsummarize(\"P(D=1 | T=-)\", neg_samps, neg_point)",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-bayesian-diagnostic-test-belief-updating-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-8 define `summarize(name, samples, point)`.",
+   "kind": "reveal",
+   "lines": "1-8"
+  },
+  {
+   "description": "Line 6 checks `point is not None`.",
+   "kind": "focus",
+   "lines": "6"
+  },
+  {
+   "description": "Lines 10-11 run the main code.",
+   "kind": "reveal",
+   "lines": "10-11"
+  },
+  {
+   "description": "Here `summarize` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "2",
+   "trace_step": 2
+  },
+  {
+   "description": "Here `summarize` returns, the first time it does.",
+   "kind": "run",
+   "lines": "8",
+   "trace_step": 9
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "11",
+   "trace_step": 19
+  }
+ ],
+ "title": "Notebook Bayesian_Diagnostic_Test_Belief_Updating.ipynb",
+ "version": 1
+}

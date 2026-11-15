@@ -1,0 +1,44 @@
+{
+ "code": "def cauchy_mle_grid(x, gamma=1.0):\n    g = np.linspace(np.percentile(x, 5)-2, np.percentile(x,95)+2, 500)\n    ll = np.array([cauchy_loglik(t, x, gamma) for t in g])\n    t = g[np.argmax(ll)]\n    # quick refine\n    g2 = np.linspace(t-0.5, t+0.5, 400)\n    ll2 = np.array([cauchy_loglik(t, x, gamma) for t in g2])\n    return g2[np.argmax(ll2)]\n\nB = 200\nthetas = []\nfor b in range(B):\n    xb = rng.choice(x, size=len(x), replace=True)\n    thetas.append(cauchy_mle_grid(xb, gamma))\nthetas = np.array(thetas)\nlo, hi = np.percentile(thetas, [2.5, 97.5])\nprint(f\"Bootstrap percentile 95% CI for θ: ({lo:.3f}, {hi:.3f})\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-mle-from-first-principles-worked-examples-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Lines 1-8 define `cauchy_mle_grid(x, gamma)`.",
+   "kind": "reveal",
+   "lines": "1-8"
+  },
+  {
+   "description": "Line 8 returns `g2[np.argmax(ll2)]`.",
+   "kind": "focus",
+   "lines": "8"
+  },
+  {
+   "description": "Lines 10-17 run the main code and print the results.",
+   "kind": "reveal",
+   "lines": "10-17"
+  },
+  {
+   "description": "Line 12 loops over `range(B)`.",
+   "kind": "focus",
+   "lines": "12"
+  },
+  {
+   "description": "Here `cauchy_mle_grid` is called for the first time; its frame appears on the right.",
+   "kind": "run",
+   "lines": "2",
+   "trace_step": 6
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "7",
+   "trace_step": 799
+  }
+ ],
+ "title": "Notebook MLE_From_First_Principles_Worked_Examples.ipynb",
+ "version": 1
+}

@@ -1,0 +1,23 @@
+{
+ "code": "# Final output\nprint(f\"Final parameters: v1 = {v1:.4f}, v2 = {v2:.4f}, w1 = {w1:.4f}, w2 = {w2:.4f}, b1 = {b1:.4f}, b2 = {b2:.4f}, c = {c:.4f}\")",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-nb-linearfunctionestimatormultilayernn-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 2 runs the main code and print the results.",
+   "kind": "reveal",
+   "lines": "2"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "2",
+   "trace_step": 1
+  }
+ ],
+ "title": "Notebook LinearFunctionEstimatorMultiLayerNN.ipynb",
+ "version": 1
+}

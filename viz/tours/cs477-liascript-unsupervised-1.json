@@ -1,0 +1,33 @@
+{
+ "code": "import numpy as np\n\nX = np.array([\n    [1., 2.],   # point 0\n    [3., 4.],   # point 1\n    [5., 6.]    # point 2\n])  # shape (3, 2) -> n=3, f=2\n\ncenters = np.array([\n    [0., 0.],   # centroid A\n    [1., 1.]    # centroid B\n])  # shape (2, 2) -> k=2, f=2\n\nD = ((X[:, None, :] - centers[None, :, :]) ** 2).sum(axis=2)\nprint(D)\n# Expected:\n# [\n#   [(1-0)^2 + (2-0)^2,  (1-1)^2 + (2-1)^2],   # point 0 to A, B\n#   [(3-0)^2 + (4-0)^2,  (3-1)^2 + (4-1)^2],   # point 1 to A, B\n#   [(5-0)^2 + (6-0)^2,  (5-1)^2 + (6-1)^2]    # point 2 to A, B\n# ]\n# → [[ 5.,  1.],\n#    [25.,  8.],\n#    [61., 20.]]",
+ "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "example": "cs477-liascript-unsupervised-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "skeleton",
+ "steps": [
+  {
+   "description": "Line 1 imports `numpy`.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "Lines 3-14 run the main code.",
+   "kind": "reveal",
+   "lines": "3-14"
+  },
+  {
+   "description": "Line 15 continues the main code and print the results.",
+   "kind": "reveal",
+   "lines": "15"
+  },
+  {
+   "description": "This is the end of the run: the final state, and all of the output.",
+   "kind": "run",
+   "lines": "15",
+   "trace_step": 12
+  }
+ ],
+ "title": "Concrete Example (Small Numbers)",
+ "version": 1
+}
