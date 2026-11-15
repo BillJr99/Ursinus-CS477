@@ -1,73 +1,73 @@
 {
- "version": 1,
- "example": "cs477-liascript-bayesianinference-4",
- "title": "6.5 Code Cell — Multinomial Naïve Bayes (Toy Example)",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
- "reviewed": false,
- "source": "skeleton",
- "steps": [
-  {
-   "kind": "reveal",
-   "lines": "1-2",
-   "description": "Lines 1-2 import `collections` and `math`."
-  },
-  {
-   "kind": "reveal",
-   "lines": "4-17",
-   "description": "Lines 4-17 run the main code."
-  },
-  {
-   "kind": "focus",
-   "lines": "15",
-   "description": "Line 15 loops over `docs`."
-  },
-  {
-   "kind": "focus",
-   "lines": "16",
-   "description": "Line 16 loops over `s.split()`."
-  },
-  {
-   "kind": "reveal",
-   "lines": "19-24",
-   "description": "Lines 19-24 continue the main code."
-  },
-  {
-   "kind": "focus",
-   "lines": "23",
-   "description": "Line 23 loops over `vocab`."
-  },
-  {
-   "kind": "reveal",
-   "lines": "26-34",
-   "description": "Lines 26-34 define `log_score(text)`."
-  },
-  {
-   "kind": "focus",
-   "lines": "31",
-   "description": "Line 31 loops over `toks`."
-  },
-  {
-   "kind": "reveal",
-   "lines": "36-37",
-   "description": "Lines 36-37 continue the main code and print the results."
-  },
-  {
-   "kind": "run",
-   "trace_step": 125,
-   "lines": "27",
-   "description": "Here `log_score` is called for the first time; its frame appears on the right."
-  },
-  {
-   "kind": "run",
-   "trace_step": 149,
-   "lines": "34",
-   "description": "Here `log_score` returns, the first time it does."
-  },
-  {
-   "kind": "run",
-   "trace_step": 172,
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "lines": "37"
-  }
- ]
+  "version": 1,
+  "example": "cs477-liascript-bayesianinference-4",
+  "title": "6.5 Code Cell - Multinomial Naïve Bayes (Toy Example)",
+  "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+  "reviewed": false,
+  "source": "skeleton",
+  "steps": [
+    {
+      "kind": "reveal",
+      "lines": "1-2",
+      "description": "Lines 1-2 import `collections` and `math`."
+    },
+    {
+      "kind": "reveal",
+      "lines": "4-17",
+      "description": "Lines 4-17 run the main code."
+    },
+    {
+      "kind": "focus",
+      "lines": "15",
+      "description": "Line 15 loops over `docs`."
+    },
+    {
+      "kind": "focus",
+      "lines": "16",
+      "description": "Line 16 loops over `s.split()`."
+    },
+    {
+      "kind": "reveal",
+      "lines": "19-24",
+      "description": "Lines 19-24 continue the main code."
+    },
+    {
+      "kind": "focus",
+      "lines": "23",
+      "description": "Line 23 loops over `vocab`."
+    },
+    {
+      "kind": "reveal",
+      "lines": "26-34",
+      "description": "Lines 26-34 define `log_score(text)`."
+    },
+    {
+      "kind": "focus",
+      "lines": "31",
+      "description": "Line 31 loops over `toks`."
+    },
+    {
+      "kind": "reveal",
+      "lines": "36-37",
+      "description": "Lines 36-37 continue the main code and print the results."
+    },
+    {
+      "kind": "run",
+      "trace_step": 125,
+      "lines": "27",
+      "description": "Here `log_score` is called for the first time; its frame appears on the right."
+    },
+    {
+      "kind": "run",
+      "trace_step": 149,
+      "lines": "34",
+      "description": "Here `log_score` returns, the first time it does."
+    },
+    {
+      "kind": "run",
+      "trace_step": 172,
+      "description": "This is the end of the run: the final state, and all of the output.",
+      "lines": "37"
+    }
+  ]
 }

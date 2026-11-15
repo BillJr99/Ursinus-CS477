@@ -1,80 +1,80 @@
 {
- "version": 1,
- "example": "cs477-liascript-heuristicsearch-2",
- "title": "Code Cell — Generic Hill Climber",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
- "reviewed": false,
- "source": "skeleton",
- "steps": [
-  {
-   "kind": "reveal",
-   "lines": "1-10",
-   "description": "Lines 1-10 define `hill_climb(s0, f, neighbors)`."
-  },
-  {
-   "kind": "focus",
-   "lines": "3",
-   "description": "Line 3 repeats while `True` is true."
-  },
-  {
-   "kind": "focus",
-   "lines": "5",
-   "description": "Line 5 checks `not nbrs`."
-  },
-  {
-   "kind": "focus",
-   "lines": "8",
-   "description": "Line 8 checks `f(s_best) <= f(s)`."
-  },
-  {
-   "kind": "focus",
-   "lines": "9",
-   "description": "Line 9 returns `s`."
-  },
-  {
-   "kind": "reveal",
-   "lines": "13-14",
-   "description": "Lines 13-14 define `f_int(x)`."
-  },
-  {
-   "kind": "reveal",
-   "lines": "16-18",
-   "description": "Lines 16-18 define the generator `N_int(x)`."
-  },
-  {
-   "kind": "reveal",
-   "lines": "20-21",
-   "description": "Lines 20-21 run the main code and print the results."
-  },
-  {
-   "kind": "run",
-   "trace_step": 4,
-   "lines": "2",
-   "description": "Here `hill_climb` is called for the first time; its frame appears on the right."
-  },
-  {
-   "kind": "run",
-   "trace_step": 157,
-   "lines": "9",
-   "description": "Here `hill_climb` returns, the first time it does."
-  },
-  {
-   "kind": "run",
-   "trace_step": 14,
-   "lines": "14",
-   "description": "Here `f_int` is called for the first time; its frame appears on the right."
-  },
-  {
-   "kind": "run",
-   "trace_step": 15,
-   "lines": "14",
-   "description": "Here `f_int` returns, the first time it does."
-  },
-  {
-   "kind": "run",
-   "trace_step": 161,
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "lines": "21"
-  }
- ]
+  "version": 1,
+  "example": "cs477-liascript-heuristicsearch-2",
+  "title": "Code Cell - Generic Hill Climber",
+  "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+  "reviewed": false,
+  "source": "skeleton",
+  "steps": [
+    {
+      "kind": "reveal",
+      "lines": "1-10",
+      "description": "Lines 1-10 define `hill_climb(s0, f, neighbors)`."
+    },
+    {
+      "kind": "focus",
+      "lines": "3",
+      "description": "Line 3 repeats while `True` is true."
+    },
+    {
+      "kind": "focus",
+      "lines": "5",
+      "description": "Line 5 checks `not nbrs`."
+    },
+    {
+      "kind": "focus",
+      "lines": "8",
+      "description": "Line 8 checks `f(s_best) <= f(s)`."
+    },
+    {
+      "kind": "focus",
+      "lines": "9",
+      "description": "Line 9 returns `s`."
+    },
+    {
+      "kind": "reveal",
+      "lines": "13-14",
+      "description": "Lines 13-14 define `f_int(x)`."
+    },
+    {
+      "kind": "reveal",
+      "lines": "16-18",
+      "description": "Lines 16-18 define the generator `N_int(x)`."
+    },
+    {
+      "kind": "reveal",
+      "lines": "20-21",
+      "description": "Lines 20-21 run the main code and print the results."
+    },
+    {
+      "kind": "run",
+      "trace_step": 4,
+      "lines": "2",
+      "description": "Here `hill_climb` is called for the first time; its frame appears on the right."
+    },
+    {
+      "kind": "run",
+      "trace_step": 157,
+      "lines": "9",
+      "description": "Here `hill_climb` returns, the first time it does."
+    },
+    {
+      "kind": "run",
+      "trace_step": 14,
+      "lines": "14",
+      "description": "Here `f_int` is called for the first time; its frame appears on the right."
+    },
+    {
+      "kind": "run",
+      "trace_step": 15,
+      "lines": "14",
+      "description": "Here `f_int` returns, the first time it does."
+    },
+    {
+      "kind": "run",
+      "trace_step": 161,
+      "description": "This is the end of the run: the final state, and all of the output.",
+      "lines": "21"
+    }
+  ]
 }
