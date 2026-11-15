@@ -1,72 +1,33 @@
 {
  "code": "import scipy.stats as st\n\ndef beta_posterior(alpha, beta, k, n):\n    return alpha + k, beta + (n - k)\n\ndef posterior_predictive(alpha, beta, m=1):\n    # Predictive for m future Bernoulli trials: mean of Bernoulli is E[theta]\n    return (alpha) / (alpha + beta)\n\nalpha, beta = 2, 2\nk, n = 12, 20\na_post, b_post = beta_posterior(alpha, beta, k, n)\nprint(\"Posterior Beta(alpha, beta):\", a_post, b_post)\nprint(\"Posterior mean:\", a_post/(a_post+b_post))\nprint(\"Posterior predictive mean for next trial:\", posterior_predictive(a_post, b_post))",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You can connect observed successes and failures to a next-trial prediction.",
  "example": "cs477-liascript-bayesianinference-3",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Line 1 imports `scipy.stats`.",
+   "description": "beta_posterior adds k successes to alpha and n minus k failures to beta. You return both updated parameters.",
    "kind": "reveal",
-   "lines": "1"
+   "lines": "1-4"
   },
   {
-   "description": "Lines 3-4 define `beta_posterior(alpha, beta, k, n)`.",
+   "description": "posterior_predictive returns alpha divided by the parameter sum. The driver starts from 2 and 2 with 12 successes in 20 trials.",
    "kind": "reveal",
-   "lines": "3-4"
+   "lines": "6-11"
   },
   {
-   "description": "Line 4 returns `alpha + k, beta + (n - k)`.",
-   "kind": "focus",
-   "lines": "4"
+   "answer": "It returns 14 and 10, adding 12 successes and 8 failures to the prior parameters.",
+   "kind": "predict",
+   "lines": "12-13",
+   "question": "Which parameter pair does the update return?"
   },
   {
-   "description": "Lines 6-8 define `posterior_predictive(alpha, beta, m)`.",
+   "description": "You see posterior Beta parameters 14 and 10. Both the posterior mean and next-trial predictive mean print 0.5833333333333334.",
    "kind": "reveal",
-   "lines": "6-8"
-  },
-  {
-   "description": "Line 8 returns `(alpha) / (alpha + beta)`.",
-   "kind": "focus",
-   "lines": "8"
-  },
-  {
-   "description": "Lines 10-15 run the main code and print the results.",
-   "kind": "reveal",
-   "lines": "10-15"
-  },
-  {
-   "description": "Here `beta_posterior` is called for the first time; its frame appears on the right.",
-   "kind": "run",
-   "lines": "4",
-   "trace_step": 6
-  },
-  {
-   "description": "Here `beta_posterior` returns, the first time it does.",
-   "kind": "run",
-   "lines": "4",
-   "trace_step": 7
-  },
-  {
-   "description": "Here `posterior_predictive` is called for the first time; its frame appears on the right.",
-   "kind": "run",
-   "lines": "8",
-   "trace_step": 11
-  },
-  {
-   "description": "Here `posterior_predictive` returns, the first time it does.",
-   "kind": "run",
-   "lines": "8",
-   "trace_step": 12
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "15",
-   "trace_step": 13
+   "lines": "12-15"
   }
  ],
- "title": "Code Cell: Beta-Binomial Updates and Posterior Predictive",
+ "title": "Updating Beta parameters with counts",
  "version": 1
 }

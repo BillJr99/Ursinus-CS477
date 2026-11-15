@@ -1,22 +1,33 @@
 {
  "code": "topk = 3\nfor k in range(topk):\n    j = ordg[k]\n    xs = X_te[subset, j]*sig[j] + mu[j]\n    ys = Phi[:, j]\n    fig = plt.figure(figsize=(5,3.5))\n    plt.scatter(xs, ys, s=14)\n    plt.xlabel(feature_names[j] + \" (raw units)\")\n    plt.ylabel(\"Shapley φ_j\")\n    plt.title(f\"Dependence: {feature_names[j]}\")\n    plt.tight_layout(); plt.show()",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You can follow selected feature columns into dependence scatterplots.",
  "example": "cs477-nb-explainableai-shapley-from-scratch-creditnn-10",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 1-11 run the main code.",
+   "description": "You loop over three entries from the existing ordg ordering. Each entry selects a feature index j.",
    "kind": "reveal",
-   "lines": "1-11"
+   "lines": "1-3"
   },
   {
-   "description": "Line 2 loops over `range(topk)`.",
-   "kind": "focus",
-   "lines": "2"
+   "description": "xs reverses scaling for the selected test values using sig and mu. ys selects that feature's attribution column from Phi.",
+   "kind": "reveal",
+   "lines": "4-5"
+  },
+  {
+   "answer": "No. It creates a new figure inside each iteration before drawing that feature's scatterplot.",
+   "kind": "predict",
+   "lines": "6-7",
+   "question": "Does the loop overlay all features on one figure?"
+  },
+  {
+   "description": "You label the horizontal axis in raw units and the vertical axis with the feature attribution. The supplied recording has no rendered plots or text output to inspect.",
+   "kind": "reveal",
+   "lines": "8-11"
   }
  ],
- "title": "Notebook ExplainableAI_Shapley_From_Scratch_CreditNN.ipynb",
+ "title": "Plotting feature values against attributions",
  "version": 1
 }

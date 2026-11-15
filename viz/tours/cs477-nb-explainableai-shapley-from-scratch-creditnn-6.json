@@ -1,17 +1,33 @@
 {
  "code": "fig = plt.figure(figsize=(7,4))\nplt.plot(hist[\"loss\"], label=\"train BCE\")\nplt.plot(hist[\"vauc\"], label=\"val AUC\")\nplt.xlabel(\"Epoch\"); plt.title(\"Training progress\"); plt.legend()\nplt.tight_layout(); plt.show()",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You display the stored training loss and validation AUC histories.",
  "example": "cs477-nb-explainableai-shapley-from-scratch-creditnn-6",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 1-5 run the main code.",
+   "description": "You create a figure and plot hist[loss] with the label train BCE. BCE means binary cross-entropy loss.",
    "kind": "reveal",
-   "lines": "1-5"
+   "lines": "1-2"
+  },
+  {
+   "description": "You add hist[vauc] with the label val AUC. AUC means area under the receiver operating characteristic curve.",
+   "kind": "reveal",
+   "lines": "3"
+  },
+  {
+   "answer": "The legend uses train BCE and val AUC from the plot calls. The horizontal axis is labeled Epoch.",
+   "kind": "predict",
+   "lines": "4",
+   "question": "How does the chart identify the two plotted histories?"
+  },
+  {
+   "description": "You title the chart Training progress and display it. The supplied output contains no numeric history values.",
+   "kind": "reveal",
+   "lines": "4-5"
   }
  ],
- "title": "Notebook ExplainableAI_Shapley_From_Scratch_CreditNN.ipynb",
+ "title": "Plot training progress",
  "version": 1
 }

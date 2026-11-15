@@ -1,27 +1,33 @@
 {
  "code": "# Colab download helper\nimport shutil\nfrom pathlib import Path\ntry:\n    from google.colab import files  # type: ignore\n    if Path('artifacts').exists():\n        shutil.make_archive('artifacts', 'zip', 'artifacts')\n        files.download('artifacts.zip')\n    else:\n        print('No artifacts folder found.')\nexcept Exception as e:\n    print('Colab download helper not available in this environment:', e)",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You can follow the archive path and the recorded environment fallback.",
  "example": "cs477-nb-bayesian-diagnostic-test-belief-updating-9",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 2-3 import `shutil` and `pathlib`.",
+   "description": "You import archive and path helpers, then try to import Colab's files interface. The surrounding try also covers the later archive and download calls.",
    "kind": "reveal",
-   "lines": "2-3"
+   "lines": "1-5"
   },
   {
-   "description": "Lines 4-12 run the main code and print the results.",
+   "description": "An existing artifacts path selects archive creation and download. Otherwise the code prints a missing-folder message.",
    "kind": "reveal",
-   "lines": "4-12"
+   "lines": "6-10"
   },
   {
-   "description": "Line 6 checks `Path('artifacts').exists()`.",
-   "kind": "focus",
-   "lines": "6"
+   "answer": "The exception handler catches the failure and prints its environment message.",
+   "kind": "predict",
+   "lines": "11-12",
+   "question": "Which path handles an unavailable Colab download operation?"
+  },
+  {
+   "description": "You see the helper report that google.colab.files.download is unavailable in code-viz. This supplied run does not report a successful download.",
+   "kind": "reveal",
+   "lines": "11-12"
   }
  ],
- "title": "Notebook Bayesian_Diagnostic_Test_Belief_Updating.ipynb",
+ "title": "Reading an optional Colab download helper",
  "version": 1
 }

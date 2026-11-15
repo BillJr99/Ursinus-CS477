@@ -1,33 +1,33 @@
 {
  "code": "import sys, platform, subprocess\ndef _sh(cmd):\n    try:\n        out = subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT, text=True)\n    except Exception as e:\n        out = f\"[command failed] {e}\"\n    print(out)\n\nprint(\"Python:\", sys.version)\nprint(\"Platform:\", platform.platform())\nprint(\"In Colab:\", \"google.colab\" in sys.modules)\n\n# (notebook only) !pip -q install --upgrade pip\n# (notebook only) !pip -q install numpy matplotlib\n",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You read the environment checks before the Connect4 examples.",
  "example": "cs477-nb-connect4-minimax-alphabeta-from-scratch-1",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Line 1 imports `sys`, `platform` and `subprocess`.",
+   "description": "You import environment and subprocess tools. The _sh helper prints command output or a failure message when called.",
    "kind": "reveal",
-   "lines": "1"
+   "lines": "1-7"
   },
   {
-   "description": "Lines 2-7 define `_sh(cmd)`.",
+   "description": "You print the Python version and platform description. These lines identify the environment used for this recording.",
    "kind": "reveal",
-   "lines": "2-7"
+   "lines": "9-10"
   },
   {
-   "description": "Lines 9-11 run the main code and print the results.",
-   "kind": "reveal",
-   "lines": "9-11"
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
+   "answer": "It tests whether google.colab appears in sys.modules. The recorded check prints False.",
+   "kind": "predict",
    "lines": "11",
-   "trace_step": 5
+   "question": "What does the Colab check test?"
+  },
+  {
+   "description": "You see Python 3.12.16 and a Linux platform in the recorded output. The installation lines are comments, and this example leaves _sh uncalled.",
+   "kind": "reveal",
+   "lines": "11-15"
   }
  ],
- "title": "Notebook Connect4_Minimax_AlphaBeta_From_Scratch.ipynb",
+ "title": "Inspect the notebook environment",
  "version": 1
 }

@@ -1,77 +1,33 @@
 {
  "code": "import numpy as np\nfrom numpy.random import default_rng\nrng = default_rng(0)\n\ndef post_params(alpha0, beta0, k, n):\n    return alpha0 + k, beta0 + (n - k)\n\ndef prob_A_better(alphaA, betaA, alphaB, betaB, draws=200_000, seed=0):\n    rng = default_rng(seed)\n    thA = rng.beta(alphaA, betaA, size=draws)\n    thB = rng.beta(alphaB, betaB, size=draws)\n    return float((thA > thB).mean())\n\n# Example scaffold\nalpha0, beta0 = 1.0, 1.0\nkA, nA = 45, 400\nkB, nB = 62, 420\naA, bA = post_params(alpha0, beta0, kA, nA)\naB, bB = post_params(alpha0, beta0, kB, nB)\np = prob_A_better(aA, bA, aB, bB)\nprint(\"Pr(theta_A > theta_B | data) =\", round(p, 4))\n# Add: sequential data accumulation and stopping rule at p > 0.95.",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You can follow the supplied A/B scaffold without adding its unfinished stopping logic.",
  "example": "cs477-asmt-bayesian-9",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 1-2 import `numpy` and `numpy.random`.",
+   "description": "post_params adds successes and failures to the prior pair. You use the same update expression for either group.",
    "kind": "reveal",
-   "lines": "1-2"
+   "lines": "1-6"
   },
   {
-   "description": "Line 3 runs the main code.",
-   "kind": "reveal",
-   "lines": "3"
-  },
-  {
-   "description": "Lines 5-6 define `post_params(alpha0, beta0, k, n)`.",
-   "kind": "reveal",
-   "lines": "5-6"
-  },
-  {
-   "description": "Line 6 returns `alpha0 + k, beta0 + (n - k)`.",
-   "kind": "focus",
-   "lines": "6"
-  },
-  {
-   "description": "Lines 8-12 define `prob_A_better(alphaA, betaA, alphaB, betaB, draws, seed)`.",
+   "description": "prob_A_better draws from two Beta distributions with a seeded generator. The mean of thA > thB estimates the fraction of draws where A exceeds B.",
    "kind": "reveal",
    "lines": "8-12"
   },
   {
-   "description": "Line 12 returns `float((thA > thB).mean())`.",
-   "kind": "focus",
-   "lines": "12"
+   "answer": "No. It updates from one supplied count pair per group and makes one probability estimate.",
+   "kind": "predict",
+   "lines": "15-20",
+   "question": "Does this code accumulate observations across repeated batches?"
   },
   {
-   "description": "Lines 15-21 continue the main code and print the results.",
+   "description": "You see Pr(theta_A > theta_B | data) = 0.0682. The sequential accumulation and stopping rule remain a comment in this scaffold.",
    "kind": "reveal",
-   "lines": "15-21"
-  },
-  {
-   "description": "Here `post_params` is called for the first time; its frame appears on the right.",
-   "kind": "run",
-   "lines": "6",
-   "trace_step": 9
-  },
-  {
-   "description": "Here `post_params` returns, the first time it does.",
-   "kind": "run",
-   "lines": "6",
-   "trace_step": 10
-  },
-  {
-   "description": "Here `prob_A_better` is called for the first time; its frame appears on the right.",
-   "kind": "run",
-   "lines": "9",
-   "trace_step": 15
-  },
-  {
-   "description": "Here `prob_A_better` returns, the first time it does.",
-   "kind": "run",
-   "lines": "12",
-   "trace_step": 19
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "21",
-   "trace_step": 21
+   "lines": "14-22"
   }
  ],
- "title": "Option A: Bayesian A/B Testing with Sequential Stopping",
+ "title": "Reading a sampled posterior comparison",
  "version": 1
 }

@@ -1,33 +1,33 @@
 {
  "code": "import sys, platform, subprocess\ndef _sh(cmd):\n    try:\n        out = subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT, text=True)\n    except Exception as e:\n        out = f\"[command failed] {e}\"\n    print(out)\n\nprint(\"Python:\", sys.version.split()[0])\nprint(\"Platform:\", platform.platform())\nprint(\"In Colab:\", \"google.colab\" in sys.modules)\n\n# (notebook only) !pip -q install --upgrade pip\n# (notebook only) !pip -q install numpy matplotlib scikit-learn",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You read the environment checks before the density estimation examples.",
  "example": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-1",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Line 1 imports `sys`, `platform` and `subprocess`.",
+   "description": "You define a helper that captures command output or formats an exception as a failure message. This example defines _sh without calling it.",
    "kind": "reveal",
-   "lines": "1"
+   "lines": "1-7"
   },
   {
-   "description": "Lines 2-7 define `_sh(cmd)`.",
+   "description": "You print the first part of sys.version and the platform string. The recording shows Python 3.12.16 on Linux.",
    "kind": "reveal",
-   "lines": "2-7"
+   "lines": "9-10"
   },
   {
-   "description": "Lines 9-11 run the main code and print the results.",
-   "kind": "reveal",
-   "lines": "9-11"
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
+   "answer": "The code checks whether google.colab is present in sys.modules. That check prints False in the recording.",
+   "kind": "predict",
    "lines": "11",
-   "trace_step": 5
+   "question": "Which condition produces the Colab flag?"
+  },
+  {
+   "description": "You finish with the Colab flag beneath the version and platform. The package installation lines are comments.",
+   "kind": "reveal",
+   "lines": "11-14"
   }
  ],
- "title": "Notebook DensityEstimation_and_FeatureDiscovery_FromScratch.ipynb",
+ "title": "Identify the recorded environment",
  "version": 1
 }

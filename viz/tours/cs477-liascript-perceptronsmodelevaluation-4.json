@@ -1,28 +1,45 @@
 {
  "code": "data = load_breast_cancer()\nX_clf = data.data\ny_clf = data.target  # 0 = malignant, 1 = benign\n\nXc_train, Xc_test, yc_train, yc_test = train_test_split(\n    X_clf, y_clf, test_size=0.25, random_state=42, stratify=y_clf\n)\n\nclf = Pipeline([('scaler', StandardScaler()),\n                ('logreg', LogisticRegression(max_iter=1000))])\nclf.fit(Xc_train, yc_train)\n\ny_pred = clf.predict(Xc_test)        # hard labels at threshold 0.5\ny_prob = clf.predict_proba(Xc_test)[:, 1]  # P(y=1|x)\nprint(classification_report(yc_test, y_pred, target_names=data.target_names))",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "Split the breast cancer dataset with stratify=y_clf, train a StandardScaler + LogisticRegression pipeline, and compute hard predictions, class-1 probabilities, and the classification report.",
  "example": "cs477-liascript-perceptronsmodelevaluation-4",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: agy free model",
  "steps": [
   {
-   "description": "Lines 1-13 run the main code.",
+   "description": "Load the breast cancer dataset (`0 = malignant`, `1 = benign`) and split `(X_clf, y_clf)` into 75% train and 25% test using `stratify=y_clf` to preserve class proportions.",
    "kind": "reveal",
-   "lines": "1-13"
+   "lines": "1-7"
   },
   {
-   "description": "Lines 14-15 continue the main code and print the results.",
+   "description": "Fit a `Pipeline` of `StandardScaler()` and `LogisticRegression(max_iter=1000)` on `(Xc_train, yc_train)`, then compute both `y_pred = clf.predict(Xc_test)` and `y_prob = clf.predict_proba(Xc_test)[:, 1]`, and print `classification_report`.",
    "kind": "reveal",
-   "lines": "14-15"
+   "lines": "9-15"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
+   "description": "Compare lines 13 and 14: `clf.predict(Xc_test)` returns hard `0/1` labels using threshold `0.5`, whereas `clf.predict_proba(Xc_test)[:, 1]` extracts column `1`, the continuous probability $P(y=1 \\mid x)$.",
+   "kind": "focus",
+   "lines": "13-14"
+  },
+  {
+   "answer": "`predict_proba` returns a 2-column array `[P(y=0|x), P(y=1|x)]` for each test sample, so `[:, 1]` selects the predicted probability of class 1 (`benign`).",
+   "kind": "predict",
+   "lines": "3,13-14",
+   "question": "Why does line 14 slice `[:, 1]` from `clf.predict_proba(Xc_test)`?"
+  },
+  {
+   "description": "Line 14 computes `y_prob`, storing the predicted class-1 probability for each of the 143 test samples.",
+   "kind": "run",
+   "lines": "14",
+   "trace_step": 11
+  },
+  {
+   "description": "Line 15 prints the precision, recall, f1-score, and support for `malignant` (53) and `benign` (90), with overall accuracy `0.99`.",
    "kind": "run",
    "lines": "15",
-   "trace_step": 13
+   "trace_step": 12
   }
  ],
- "title": "Part III: Logistic Regression Metrics",
+ "title": "Binary Classification with Logistic Regression and Classification Report",
  "version": 1
 }

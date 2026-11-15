@@ -1,49 +1,38 @@
 {
  "code": "def shapley_permutation(f_predict, x, background, M=256, rng=rng):\n    d = x.shape[0]\n    base_value = float(f_predict(background[None,:])[0])\n    fx = float(f_predict(x[None,:])[0])\n    phi = np.zeros(d)\n    for m in range(M):\n        perm = rng.permutation(d)\n        cur = background.copy()\n        prev_out = base_value\n        for j in perm:\n            cur[j] = x[j]\n            out = float(f_predict(cur[None,:])[0])\n            phi[j] += (out - prev_out)\n            prev_out = out\n    phi /= M\n    return phi, base_value, fx\n\n# Background: mean over a random subset\nK_BG = 200\nbg_idx = rng.choice(len(X_tr), size=min(K_BG, len(X_tr)), replace=False)\nbackground = X_tr[bg_idx].mean(axis=0)\n\ni_explain = 5\nx0 = X_te[i_explain]\nphi, f0, fx = shapley_permutation(mlp.predict_proba, x0, background, M=400, rng=rng)\nprint(\"Base f(z):\", f0, \"| f(x):\", fx, \"| sum(phi):\", phi.sum(), \"=> f(z)+sum(phi)≈\", f0+phi.sum())",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You attribute a prediction by replacing background features in sampled orders.",
  "example": "cs477-nb-explainableai-shapley-from-scratch-creditnn-7",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 1-16 define `shapley_permutation(f_predict, x, background, M, rng)`.",
+   "description": "You evaluate the background vector and x, then initialize one contribution per feature. Each sampled permutation starts from a fresh background copy.",
    "kind": "reveal",
-   "lines": "1-16"
+   "lines": "1-9"
   },
   {
-   "description": "Line 6 loops over `range(M)`.",
-   "kind": "focus",
-   "lines": "6"
-  },
-  {
-   "description": "Line 10 loops over `perm`.",
-   "kind": "focus",
-   "lines": "10"
-  },
-  {
-   "description": "Line 16 returns `phi, base_value, fx`.",
-   "kind": "focus",
-   "lines": "16"
-  },
-  {
-   "description": "Lines 19-26 run the main code and print the results.",
+   "description": "You replace one feature at a time and add the resulting output change to phi[j]. Dividing by M averages each feature's contribution across sampled orders.",
    "kind": "reveal",
-   "lines": "19-26"
+   "lines": "10-16"
   },
   {
-   "description": "Here `shapley_permutation` is called for the first time; its frame appears on the right.",
-   "kind": "run",
-   "lines": "2",
-   "trace_step": 7
+   "answer": "They add up to fx minus base_value, apart from numerical rounding. Each change starts where the previous change ended, and the final vector equals x.",
+   "kind": "predict",
+   "lines": "10-16",
+   "question": "What do all feature changes within one permutation add up to?"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "14",
-   "trace_step": 799
+   "description": "You form one background vector by averaging up to 200 sampled training rows. You explain test row 5 using 400 sampled permutations.",
+   "kind": "reveal",
+   "lines": "18-25"
+  },
+  {
+   "description": "You compare the baseline plus the summed contributions with the prediction in the final print statement. The supplied recording contains no printed values for this check.",
+   "kind": "reveal",
+   "lines": "26"
   }
  ],
- "title": "Notebook ExplainableAI_Shapley_From_Scratch_CreditNN.ipynb",
+ "title": "Average feature contributions over orders",
  "version": 1
 }

@@ -1,28 +1,33 @@
 {
  "code": "import heapq\nfrom typing import Dict, Tuple, Callable, List\n\nprint(\"A* utilities ready.\")",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You can identify what this setup block provides before a search implementation.",
  "example": "cs477-liascript-informedsearch-1",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 1-2 import `heapq` and `typing`.",
+   "description": "You import heapq, which supplies heap operations. This line makes the module available without creating a search frontier.",
    "kind": "reveal",
-   "lines": "1-2"
+   "lines": "1"
   },
   {
-   "description": "Line 4 runs the main code and print the results.",
+   "description": "You import four typing names for later annotations. The block defines no states, edges or heuristic function.",
+   "kind": "reveal",
+   "lines": "2"
+  },
+  {
+   "answer": "No. The code performs imports and prints a fixed message without running a search.",
+   "kind": "predict",
+   "lines": "4",
+   "question": "Does the readiness message mean this block has found a path?"
+  },
+  {
+   "description": "You see A* utilities ready. The supplied trace confirms that the short setup reaches its print statement.",
    "kind": "reveal",
    "lines": "4"
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "4",
-   "trace_step": 3
   }
  ],
- "title": "Code Cell",
+ "title": "Preparing informed-search imports",
  "version": 1
 }

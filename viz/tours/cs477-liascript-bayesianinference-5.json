@@ -1,92 +1,33 @@
 {
  "code": "# 1D ring grid with wrap-around motion and noisy sensor\nN = 10\nbelief = np.ones(N) / N\n\n# Transition: move +1 with prob 0.8, stay with 0.2\ndef predict(b):\n    p = np.zeros_like(b)\n    for i in range(N):\n        p[(i+1) % N] += 0.8 * b[i]\n        p[i] += 0.2 * b[i]\n    return p\n\n# Observation: sensor reports landmark at positions {3,7}; correct with 0.7\nlandmarks = {3,7}\ndef likelihood(z, i):\n    has = (i in landmarks)\n    return 0.7 if (z and has) or ((not z) and (not has)) else 0.3\n\ndef update(prior, z):\n    unnorm = np.array([likelihood(z, i)*prior[i] for i in range(N)])\n    return unnorm / unnorm.sum()\n\n# Perform one predict-update step\nbelief = predict(belief)\nbelief = update(belief, z=True)\nprint(\"Belief sums to:\", belief.sum())\nprint(\"Argmax state:\", np.argmax(belief))",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You can follow motion redistribution and a landmark observation.",
  "example": "cs477-liascript-bayesianinference-5",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 2-3 run the main code.",
+   "description": "You start uniform over ten ring positions. predict sends 0.8 of each position's mass forward with wraparound and keeps 0.2 in place.",
    "kind": "reveal",
-   "lines": "2-3"
+   "lines": "1-11"
   },
   {
-   "description": "Lines 6-11 define `predict(b)`.",
+   "description": "Positions 3 and 7 contain landmarks. likelihood assigns 0.7 when the observation agrees with landmark presence and 0.3 otherwise.",
    "kind": "reveal",
-   "lines": "6-11"
+   "lines": "13-17"
   },
   {
-   "description": "Line 8 loops over `range(N)`.",
-   "kind": "focus",
-   "lines": "8"
+   "answer": "That division normalizes the observation-weighted masses into a probability distribution.",
+   "kind": "predict",
+   "lines": "19-21",
+   "question": "Why does update divide its weighted array by its sum?"
   },
   {
-   "description": "Line 11 returns `p`.",
-   "kind": "focus",
-   "lines": "11"
-  },
-  {
-   "description": "Line 14 continues the main code.",
+   "description": "You perform one prediction and one positive-landmark update. The recording prints a sum near one and Argmax state: 3, the first of the tied landmark positions.",
    "kind": "reveal",
-   "lines": "14"
-  },
-  {
-   "description": "Lines 15-17 define `likelihood(z, i)`.",
-   "kind": "reveal",
-   "lines": "15-17"
-  },
-  {
-   "description": "Line 17 returns a value.",
-   "kind": "focus",
-   "lines": "17"
-  },
-  {
-   "description": "Lines 19-21 define `update(prior, z)`.",
-   "kind": "reveal",
-   "lines": "19-21"
-  },
-  {
-   "description": "Line 21 returns `unnorm / unnorm.sum()`.",
-   "kind": "focus",
-   "lines": "21"
-  },
-  {
-   "description": "Lines 24-27 continue the main code and print the results.",
-   "kind": "reveal",
-   "lines": "24-27"
-  },
-  {
-   "description": "Here `predict` is called for the first time; its frame appears on the right.",
-   "kind": "run",
-   "lines": "7",
-   "trace_step": 7
-  },
-  {
-   "description": "Here `predict` returns, the first time it does.",
-   "kind": "run",
-   "lines": "11",
-   "trace_step": 40
-  },
-  {
-   "description": "Here `likelihood` is called for the first time; its frame appears on the right.",
-   "kind": "run",
-   "lines": "16",
-   "trace_step": 43
-  },
-  {
-   "description": "Here `likelihood` returns, the first time it does.",
-   "kind": "run",
-   "lines": "17",
-   "trace_step": 45
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "27",
-   "trace_step": 87
+   "lines": "23-27"
   }
  ],
- "title": "Code Cell: Discrete Bayes Filter (Gridworld)",
+ "title": "Predicting and correcting a ring-grid belief",
  "version": 1
 }

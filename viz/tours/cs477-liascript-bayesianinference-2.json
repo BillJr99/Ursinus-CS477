@@ -1,72 +1,33 @@
 {
  "code": "def ppv(pi: float, Se: float, Sp: float) -> float:\n    return (Se*pi) / (Se*pi + (1-Sp)*(1-pi))\n\ndef npv(pi: float, Se: float, Sp: float) -> float:\n    return (Sp*(1-pi)) / (Sp*(1-pi) + (1-Se)*pi)\n\npriors = [0.01, 0.1, 0.5]\nSe, Sp = 0.95, 0.95\nfor p0 in priors:\n    print(f\"Prior={p0:.2f}  PPV={ppv(p0,Se,Sp):.3f}  NPV={npv(p0,Se,Sp):.3f}\")",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You can hold test parameters fixed while changing the model's base rate.",
  "example": "cs477-liascript-bayesianinference-2",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 1-2 define `ppv(pi, Se, Sp)`.",
+   "description": "ppv computes positive predictive value and npv computes negative predictive value. You use pi for the prior and Se and Sp for sensitivity and specificity.",
    "kind": "reveal",
-   "lines": "1-2"
+   "lines": "1-5"
   },
   {
-   "description": "Line 2 returns `(Se*pi) / (Se*pi + (1-Sp)*(1-pi))`.",
-   "kind": "focus",
-   "lines": "2"
-  },
-  {
-   "description": "Lines 4-5 define `npv(pi, Se, Sp)`.",
+   "description": "The loop visits priors 0.01, 0.1 and 0.5. Both test parameters remain fixed at 0.95.",
    "kind": "reveal",
-   "lines": "4-5"
+   "lines": "7-9"
   },
   {
-   "description": "Line 5 returns `(Sp*(1-pi)) / (Sp*(1-pi) + (1-Se)*pi)`.",
-   "kind": "focus",
-   "lines": "5"
+   "answer": "No. The recorded PPV values change from 0.161 to 0.679 to 0.950.",
+   "kind": "predict",
+   "lines": "10",
+   "question": "Does fixed sensitivity and specificity give the same PPV for every supplied prior?"
   },
   {
-   "description": "Lines 7-10 run the main code and print the results.",
+   "description": "You see both predictive values reach 0.950 at prior 0.50. At prior 0.01, the model instead prints PPV 0.161 and NPV 0.999.",
    "kind": "reveal",
-   "lines": "7-10"
-  },
-  {
-   "description": "Line 9 loops over `priors`.",
-   "kind": "focus",
-   "lines": "9"
-  },
-  {
-   "description": "Here `ppv` is called for the first time; its frame appears on the right.",
-   "kind": "run",
-   "lines": "2",
-   "trace_step": 6
-  },
-  {
-   "description": "Here `ppv` returns, the first time it does.",
-   "kind": "run",
-   "lines": "2",
-   "trace_step": 7
-  },
-  {
-   "description": "Here `npv` is called for the first time; its frame appears on the right.",
-   "kind": "run",
-   "lines": "5",
-   "trace_step": 8
-  },
-  {
-   "description": "Here `npv` returns, the first time it does.",
-   "kind": "run",
-   "lines": "5",
-   "trace_step": 9
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "9",
-   "trace_step": 23
+   "lines": "10"
   }
  ],
- "title": "Code Cell: Positive Predictive Value (PPV) and Negative Predictive Value (NPV)",
+ "title": "Comparing predictive values across priors",
  "version": 1
 }

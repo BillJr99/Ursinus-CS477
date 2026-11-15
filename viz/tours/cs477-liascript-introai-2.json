@@ -1,28 +1,45 @@
 {
  "code": "import numpy as np\n\n# Move 1: make arrays\nx = np.array([1.0, 2.0, 3.0])\nw = np.array([0.5, -1.0, 2.0])\n\n# Move 2: elementwise math (no loops!)\nprint(\"x * w =\", x * w)\n\n# Move 3: the dot product — the single most important operation in ML\nprint(\"x . w =\", x @ w)   # 1*0.5 + 2*(-1) + 3*2 = 4.5",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "Compare elementwise multiplication (x * w) with the dot product (x @ w) on two 3-element NumPy arrays.",
  "example": "cs477-liascript-introai-2",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: agy free model",
  "steps": [
   {
-   "description": "Line 1 imports `numpy`.",
+   "description": "Import `numpy as np` and create two 3-element arrays: `x = np.array([1.0, 2.0, 3.0])` and `w = np.array([0.5, -1.0, 2.0])`.",
    "kind": "reveal",
-   "lines": "1"
+   "lines": "1-6"
   },
   {
-   "description": "Lines 4-11 run the main code and print the results.",
+   "description": "Compute the elementwise product `x * w` on line 8 and the dot product `x @ w` on line 11.",
    "kind": "reveal",
-   "lines": "4-11"
+   "lines": "7-11"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
+   "description": "Contrast the two operators: `x * w` multiplies corresponding entries to return a 3-element array, while `x @ w` sums those pairwise products into a single scalar.",
+   "kind": "focus",
+   "lines": "8,11"
+  },
+  {
+   "answer": "`x * w` produces `[0.5, -2.0, 6.0]`, and `x @ w` sums those three values (`0.5 + (-2.0) + 6.0`) to print `4.5`.",
+   "kind": "predict",
+   "lines": "4-5,8,11",
+   "question": "What array does `x * w` produce on line 8, and what single number does `x @ w` print on line 11?"
+  },
+  {
+   "description": "Line 8 multiplies each pair of entries (`1.0*0.5`, `2.0*(-1.0)`, `3.0*2.0`) and prints `x * w = [ 0.5 -2.   6. ]`.",
+   "kind": "run",
+   "lines": "8",
+   "trace_step": 3
+  },
+  {
+   "description": "Line 11 sums the pairwise products with `x @ w` and prints `x . w = 4.5`.",
    "kind": "run",
    "lines": "11",
-   "trace_step": 5
+   "trace_step": 4
   }
  ],
- "title": "6. NumPy in Three Moves",
+ "title": "NumPy Arrays: Elementwise Multiplication and Dot Product",
  "version": 1
 }

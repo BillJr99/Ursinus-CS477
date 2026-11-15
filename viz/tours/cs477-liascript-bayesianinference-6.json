@@ -1,33 +1,33 @@
 {
  "code": "import numpy as np\n\nA, H = 1.0, 1.0\nQ, R = 0.01, 0.25\nxhat, P = 0.0, 1.0  # prior mean and variance\nu = 0.0             # no control\n\nzs = [1.2, 0.9, 1.1, 1.0, 0.95]\nfor z in zs:\n    # Predict\n    xhat = A*xhat + 0*u\n    P = A*P*A + Q\n    # Update\n    S = H*P*H + R\n    K = P*H / S\n    xhat = xhat + K*(z - H*xhat)\n    P = (1 - K*H)*P\n    print(f\"z={z:.2f}  xhat={xhat:.3f}  P={P:.3f}\")",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You can track a mean estimate and variance across five observations.",
  "example": "cs477-liascript-bayesianinference-6",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Line 1 imports `numpy`.",
+   "description": "You initialize the estimate xhat and variance P, along with model and noise parameters. zs supplies five observations.",
    "kind": "reveal",
-   "lines": "1"
+   "lines": "1-8"
   },
   {
-   "description": "Lines 3-18 run the main code and print the results.",
+   "description": "The prediction carries xhat through A and adds Q to the propagated variance. The control term contributes zero in this example.",
    "kind": "reveal",
-   "lines": "3-18"
+   "lines": "9-12"
   },
   {
-   "description": "Line 9 loops over `zs`.",
-   "kind": "focus",
-   "lines": "9"
+   "answer": "It scales z minus H times xhat, the observed value minus the predicted observation.",
+   "kind": "predict",
+   "lines": "14-16",
+   "question": "Which difference does the gain K scale in the estimate update?"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "9",
-   "trace_step": 47
+   "description": "You update both xhat and P for every z. The supplied output ends at xhat 0.982 and P 0.059, with the printed variance decreasing across these updates.",
+   "kind": "reveal",
+   "lines": "14-18"
   }
  ],
- "title": "Code Cell: Minimal 1D Kalman Filter",
+ "title": "Following a scalar Kalman update",
  "version": 1
 }

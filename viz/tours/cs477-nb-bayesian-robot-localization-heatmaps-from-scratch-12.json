@@ -1,27 +1,33 @@
 {
  "code": "# Colab download helper\nimport shutil\nfrom pathlib import Path\ntry:\n    from google.colab import files  # type: ignore\n    if Path('artifacts').exists():\n        shutil.make_archive('artifacts', 'zip', 'artifacts')\n        files.download('artifacts.zip')\n    else:\n        print('No artifacts folder found.')\nexcept Exception as e:\n    print('Colab download helper not available in this environment:', e)",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You follow the artifact archive request and its recorded fallback.",
  "example": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-12",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 2-3 import `shutil` and `pathlib`.",
+   "description": "You import tools for making an archive and checking paths. The Colab import begins the protected block.",
    "kind": "reveal",
-   "lines": "2-3"
+   "lines": "1-5"
   },
   {
-   "description": "Lines 4-12 run the main code and print the results.",
+   "description": "You check whether artifacts exists before making its ZIP archive and requesting a download. The other branch reports a missing folder.",
    "kind": "reveal",
-   "lines": "4-12"
+   "lines": "6-10"
   },
   {
-   "description": "Line 6 checks `Path('artifacts').exists()`.",
-   "kind": "focus",
-   "lines": "6"
+   "answer": "Yes. The download call sits inside the try block, so its exception reaches the helper-unavailable print statement.",
+   "kind": "predict",
+   "lines": "11-12",
+   "question": "Does an exception from files.download reach this handler?"
+  },
+  {
+   "description": "You see that message in the recorded output. The exception states that google.colab.files.download is unavailable in code-viz.",
+   "kind": "reveal",
+   "lines": "11-12"
   }
  ],
- "title": "Notebook Bayesian_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+ "title": "Read the localization download helper",
  "version": 1
 }

@@ -1,28 +1,33 @@
 {
  "code": "import sys, platform, subprocess, math\nprint(\"Python:\", sys.version.split()[0])\nprint(\"Platform:\", platform.platform())\nprint(\"In Colab:\", \"google.colab\" in sys.modules)\n\n# (notebook only) !pip -q install --upgrade pip\n# (notebook only) !pip -q install numpy matplotlib",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You identify the environment recorded for the genetic algorithm notebook.",
  "example": "cs477-nb-geneticalgorithm-fromscratch-toyexample-1",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Line 1 imports `sys`, `platform`, `subprocess` and `math`.",
+   "description": "You import the listed modules and print the first whitespace-separated part of sys.version. The recorded version is 3.12.16.",
    "kind": "reveal",
-   "lines": "1"
+   "lines": "1-2"
   },
   {
-   "description": "Lines 2-4 run the main code and print the results.",
+   "description": "You print platform.platform() to identify the operating environment. The recorded platform string begins with Linux.",
    "kind": "reveal",
-   "lines": "2-4"
+   "lines": "3"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
+   "answer": "Membership of google.colab in sys.modules determines it. The recorded value is False.",
+   "kind": "predict",
    "lines": "4",
-   "trace_step": 4
+   "question": "What determines the value printed after In Colab?"
+  },
+  {
+   "description": "You finish with three environment fields in the output. The two installation suggestions are comments.",
+   "kind": "reveal",
+   "lines": "4-7"
   }
  ],
- "title": "Notebook GeneticAlgorithm_FromScratch_ToyExample.ipynb",
+ "title": "Read the environment checks",
  "version": 1
 }

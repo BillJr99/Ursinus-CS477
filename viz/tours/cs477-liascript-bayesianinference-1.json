@@ -1,28 +1,33 @@
 {
  "code": "import math\nimport numpy as np\nfrom typing import Dict, Callable\n\nnp.set_printoptions(precision=4, suppress=True)\nprint(\"NumPy ready for small demonstrations.\")",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You can read the imports and display settings before later calculations.",
  "example": "cs477-liascript-bayesianinference-1",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 1-3 import `math`, `numpy` and `typing`.",
+   "description": "You import math and NumPy, along with two typing names. The alias np makes NumPy available to later expressions.",
    "kind": "reveal",
    "lines": "1-3"
   },
   {
-   "description": "Lines 5-6 run the main code and print the results.",
+   "description": "set_printoptions configures array display precision and small-number formatting. You supply precision 4 and suppress True.",
    "kind": "reveal",
-   "lines": "5-6"
+   "lines": "5"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
+   "answer": "No. It imports tools, configures display and prints a readiness message.",
+   "kind": "predict",
    "lines": "6",
-   "trace_step": 5
+   "question": "Does this block calculate a posterior probability before printing?"
+  },
+  {
+   "description": "You see NumPy ready for small demonstrations. The recording confirms that this setup block reaches its final print.",
+   "kind": "reveal",
+   "lines": "6"
   }
  ],
- "title": "Code Cell",
+ "title": "Preparing the probability demonstrations",
  "version": 1
 }

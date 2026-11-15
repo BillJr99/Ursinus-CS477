@@ -1,28 +1,33 @@
 {
  "code": "from sklearn.naive_bayes import MultinomialNB\nfrom sklearn.feature_extraction.text import CountVectorizer\n\ndocs = [\"team wins match\", \"player scores goal\", \"debate election policy\"]\ny = [1, 1, 0]\nvec = CountVectorizer()\nX = vec.fit_transform(docs)\nnb = MultinomialNB()\nnb.fit(X, y)\nprint(nb.predict(vec.transform([\"goal win team\"])))",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You can follow training text and a query through the same vocabulary.",
  "example": "cs477-liascript-bayesianinference-9",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 1-2 import `sklearn.naive_bayes` and `sklearn.feature_extraction.text`.",
+   "description": "You import the count vectorizer and multinomial classifier. The three documents have labels 1, 1 and 0.",
    "kind": "reveal",
-   "lines": "1-2"
+   "lines": "1-5"
   },
   {
-   "description": "Lines 4-10 run the main code and print the results.",
+   "description": "fit_transform learns the vocabulary and encodes the training documents as counts. You fit MultinomialNB with those counts and labels.",
    "kind": "reveal",
-   "lines": "4-10"
+   "lines": "6-9"
   },
   {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
+   "answer": "No. vec.transform encodes the query using the already fitted vectorizer.",
+   "kind": "predict",
    "lines": "10",
-   "trace_step": 9
+   "question": "Does the query call learn a new vocabulary?"
+  },
+  {
+   "description": "You pass the query counts to predict. The supplied output [1] reports label 1 for the single query.",
+   "kind": "reveal",
+   "lines": "10"
   }
  ],
- "title": "Implementation Highlights",
+ "title": "Vectorizing text for Naive Bayes",
  "version": 1
 }

@@ -1,50 +1,33 @@
 {
  "code": "def update_log_odds(lg_prior, log_lr):\n    return lg_prior + log_lr\n\n# Example: three independent pieces of evidence with LRs 3, 0.5, 2\npi = 0.1\nlg_prior = math.log(pi/(1-pi))\nlog_lrs = [math.log(3), math.log(0.5), math.log(2)]\nlg_post = lg_prior\nfor r in log_lrs:\n    lg_post = update_log_odds(lg_post, r)\npost = math.exp(lg_post) / (1 + math.exp(lg_post))\nprint(\"Posterior probability:\", round(post,4))",
- "description": "A walkthrough built from the code's structure: each part in reading order, then the moments to look at.",
+ "description": "You can follow three likelihood ratios into one posterior probability.",
  "example": "cs477-liascript-bayesianinference-7",
  "lang": "python",
  "reviewed": false,
- "source": "skeleton",
+ "source": "draft: codex free model",
  "steps": [
   {
-   "description": "Lines 1-2 define `update_log_odds(lg_prior, log_lr)`.",
+   "description": "update_log_odds adds the log likelihood ratio to the current log odds. You return the updated value without changing representation.",
    "kind": "reveal",
    "lines": "1-2"
   },
   {
-   "description": "Line 2 returns `lg_prior + log_lr`.",
-   "kind": "focus",
-   "lines": "2"
-  },
-  {
-   "description": "Lines 5-12 run the main code and print the results.",
+   "description": "The prior probability is 0.1. You convert it to log odds and prepare log ratios for 3, 0.5 and 2.",
    "kind": "reveal",
-   "lines": "5-12"
+   "lines": "4-8"
   },
   {
-   "description": "Line 9 loops over `log_lrs`.",
-   "kind": "focus",
-   "lines": "9"
+   "answer": "It uses the accumulated lg_post, so each piece of evidence builds on the preceding update.",
+   "kind": "predict",
+   "lines": "9-10",
+   "question": "Does the loop apply each ratio to the original prior or the accumulated value?"
   },
   {
-   "description": "Here `update_log_odds` is called for the first time; its frame appears on the right.",
-   "kind": "run",
-   "lines": "2",
-   "trace_step": 7
-  },
-  {
-   "description": "Here `update_log_odds` returns, the first time it does.",
-   "kind": "run",
-   "lines": "2",
-   "trace_step": 8
-  },
-  {
-   "description": "This is the end of the run: the final state, and all of the output.",
-   "kind": "run",
-   "lines": "12",
-   "trace_step": 20
+   "description": "You convert the final log odds back to probability. The supplied output prints Posterior probability: 0.25.",
+   "kind": "reveal",
+   "lines": "11-12"
   }
  ],
- "title": "Code Cell: Sequential Evidence Accumulation (Log-Odds)",
+ "title": "Adding evidence in log-odds form",
  "version": 1
 }
