@@ -1,0 +1,38 @@
+{
+ "code": "@dataclass\nclass Maze:\n    grid: np.ndarray   # 0=free, 1=wall\n    colors: np.ndarray # integer color labels (meaningful only at free cells)\n\ndef make_maze():\n    grid = np.array([\n        [0,0,0,0,0,0,0],\n        [0,1,1,0,1,1,0],\n        [0,0,0,0,0,0,0],\n        [0,1,0,1,0,1,0],\n        [0,0,0,0,0,0,0]\n    ], dtype=int)\n    H, W = grid.shape\n    colors = np.zeros_like(grid)\n    for i in range(H):\n        for j in range(W):\n            if grid[i,j]==0:\n                colors[i,j] = (2*i + j) % 4  # simple pattern with 4 colors\n    return Maze(grid=grid, colors=colors)\n\nmaze = make_maze()\nH, W = maze.grid.shape\nN = H*W\nfree_mask = (maze.grid == 0)\nfree_states = np.where(free_mask.reshape(-1))[0]\nnum_free = len(free_states)\nn_colors = int(maze.colors.max() + 1)\nprint(\"Maze:\", H, \"x\", W, \"| free cells:\", num_free, \"| colors:\", n_colors)\n\ndef idx(i,j,W): return i*W + j\ndef ij(s,W): return divmod(s, W)\n\ndef belief_to_grid(b):\n    g = np.zeros((H,W), dtype=float)\n    g[free_mask] = b[free_mask.reshape(-1)]\n    return g",
+ "description": "You connect the maze grid, color labels, and flattened state indices.",
+ "example": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You store the grid and color labels in Maze. The grid uses zero for free cells and one for walls.",
+   "kind": "reveal",
+   "lines": "1-13"
+  },
+  {
+   "description": "You assign each free cell the color label (2*i + j) % 4. Wall positions keep the initial zero in the colors array.",
+   "kind": "reveal",
+   "lines": "14-20"
+  },
+  {
+   "answer": "It includes only positions where the flattened free_mask is true. The recorded maze has 28 free cells on a 5 by 7 grid.",
+   "kind": "predict",
+   "lines": "22-29",
+   "question": "Does free_states include wall positions?"
+  },
+  {
+   "description": "You see four color labels in the printed maze description. The idx and ij helpers convert between row-column coordinates and flattened indices.",
+   "kind": "reveal",
+   "lines": "22-32"
+  },
+  {
+   "description": "You copy belief values at free positions into a fresh grid. Wall positions remain zero in the returned grid.",
+   "kind": "reveal",
+   "lines": "34-37"
+  }
+ ],
+ "title": "Build the maze state space",
+ "version": 1
+}

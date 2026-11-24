@@ -1,0 +1,33 @@
+{
+ "code": "# First Plot: x vs predicted y values\nplt.figure(figsize=(10, 5))\n\n# Forward pass for plotting\nx_plot = np.linspace(-20, 20, 1000)\nz1_plot = np.dot(x_plot.reshape(-1, 1), w1) + b1  # Hidden layer\nh1_plot = relu(z1_plot)                           # Apply ReLU\nz2_plot = np.dot(h1_plot, w2) + b2                # Output layer\n\n# Plot actual vs predicted\nplt.plot(x_plot, target_function(x_plot), label='Actual Function: $y = x^2 + 2x + 1$', color='green')\nplt.plot(x_plot, z2_plot, label='Predicted by NN', linestyle='--', color='red')\nplt.title('Actual vs Predicted Quadratic Function')\nplt.xlabel('x values')\nplt.ylabel('y values')\nplt.legend()\nplt.grid(True)\n\n# Display inline in the notebook\nplt.show()",
+ "description": "You evaluate the stored network weights on a grid and compare its output with the target.",
+ "example": "cs477-nb-nonlinearfunctionestimatormultilayernn-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You create x positions across the supplied interval. Reshaping them into one input column allows the first layer's matrix multiplication.",
+   "kind": "reveal",
+   "lines": "1-6"
+  },
+  {
+   "description": "You apply relu to the hidden-layer values, then compute the output layer. z2_plot contains the network predictions on the grid.",
+   "kind": "reveal",
+   "lines": "7-8"
+  },
+  {
+   "answer": "The dashed red curve uses z2_plot and the label Predicted by NN. The green curve comes from target_function.",
+   "kind": "predict",
+   "lines": "11-12",
+   "question": "Which plotted curve represents the network output?"
+  },
+  {
+   "description": "You display both curves with labeled axes, a legend, and a grid. The target label identifies the quadratic x squared plus 2x plus 1.",
+   "kind": "reveal",
+   "lines": "11-20"
+  }
+ ],
+ "title": "Plot the network's quadratic approximation",
+ "version": 1
+}

@@ -1,0 +1,43 @@
+{
+ "code": "# Visualizing the breast cancer dataset\n\n# 1) Load data and split\ndata = load_breast_cancer()\nX = data.data                  # shape (n_samples, 30)\ny = data.target                # 0 = malignant, 1 = benign\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.25, random_state=42, stratify=y\n)\n\n# 2) Fit a well-conditioned logistic regression (scale + higher max_iter)\npipe = Pipeline([\n    (\"scaler\", StandardScaler(with_mean=True)),\n    (\"logreg\", LogisticRegression(max_iter=2000, C=1.0, solver=\"lbfgs\"))\n])\npipe.fit(X_train, y_train)\n\n# 3) Compute linear score z and probabilities on the TEST set\n# For binary LogisticRegression, decision_function returns the raw logit (z = x^T theta + b).\nz_test = pipe.decision_function(X_test)          # shape (n_test,)\np_test = pipe.predict_proba(X_test)[:, 1]        # P(y=1 | x)\n\n# 4) Prepare a smooth grid in z and draw the sigmoid curve σ(z)\nz_min = z_test.min()\nz_max = z_test.max()\npadding = 0.5 * (z_max - z_min + 1e-9)\nz_grid = np.linspace(z_min - padding, z_max + padding, 400)\nsigmoid = lambda z: 1.0 / (1.0 + np.exp(-z))\nsig_grid = sigmoid(z_grid)\n\n# 5) Plot: sigmoid curve; true labels at (z_i, y_i) with small jitter; predicted probs at (z_i, p_i)\nplt.figure(figsize=(8, 5))\n\n# Sigmoid model curve\nplt.plot(z_grid, sig_grid, linewidth=2, label=\"Sigmoid model  σ(z) = 1/(1+e^{-z})\")\n\n# True labels (0/1) vs their z positions (add tiny vertical jitter for visibility)\nrng = np.random.default_rng(0)\njitter = (rng.random(len(y_test)) - 0.5) * 0.04\nplt.scatter(z_test, y_test + jitter, s=40, alpha=0.75, edgecolor=\"k\",\n            label=\"True class (0/1) at z_i\", c=y_test, cmap=\"bwr\")\n\n# Predicted probabilities at the same z positions\nplt.scatter(z_test, p_test, s=36, marker=\"x\", color=\"black\",\n            label=\"Predicted probability ŷ = σ(z_i)\")\n\nplt.title(\"Breast Cancer (Test Set): True Labels and Predicted Probabilities vs Linear Score z\")\nplt.xlabel(\"Linear score  z = xᵀθ + b   (decision_function)\")\nplt.ylabel(\"Probability / Class\")\nplt.ylim(-0.1, 1.1)\nplt.legend()\nplt.grid(True)\nplt.show()\n\n# 6) Print the learned parameters in a readable form.\n#    For a pipeline, get intercept_ and coef_ from the final estimator.\nlogreg = pipe.named_steps[\"logreg\"]\nscaler = pipe.named_steps[\"scaler\"]\n\n# --- Fix deprecation: extract scalar explicitly ---\ntheta0_std = logreg.intercept_.item()      # scalar intercept in standardized space\ntheta_std = logreg.coef_.ravel()           # shape (n_features,) in standardized space\n\nprint(\"Fitted logistic parameters (on STANDARDIZED features):\")\nprint(f\"  θ₀ (intercept) = {theta0_std:.6f}\")\nprint(f\"  ‖θ‖₂           = {np.linalg.norm(theta_std):.6f}\")\nprint(\"  First few weights:\", np.array2string(theta_std[:6], precision=4, separator=\", \"))\n\n# --- Optional: convert coefficients back to ORIGINAL feature space ---\n# StandardScaler: x_std = (x - mean_) / scale_\n# z_std = θ₀_std + Σ_j θ_std_j * x_std_j\n#      = [θ₀_std - Σ_j θ_std_j * mean_j/scale_j] + Σ_j (θ_std_j/scale_j) * x_j\n# So:\ntheta_orig = theta_std / scaler.scale_\ntheta0_orig = theta0_std - np.sum(theta_std * scaler.mean_ / scaler.scale_)\n\nprint(\"\\nFitted logistic parameters (on ORIGINAL feature scales):\")\nprint(f\"  θ₀ (intercept) = {theta0_orig:.6f}\")\nprint(f\"  ‖θ‖₂           = {np.linalg.norm(theta_orig):.6f}\")\nprint(\"  First few weights:\", np.array2string(theta_orig[:6], precision=4, separator=\", \"))\n\n# Optional: print explicit log-odds equation using feature names (original scale)\nterms_orig = [f\"{theta_orig[j]:.4f}*{data.feature_names[j]}\" for j in range(len(theta_orig))]\nequation_orig = \"log( p / (1 - p) ) = \" + f\"{theta0_orig:.4f} + \" + \" + \".join(terms_orig)\nprint(\"\\nEstimated logistic model on ORIGINAL features:\\n\", equation_orig)",
+ "description": "Compute decision_function logits z_test and probabilities p_test for the breast cancer test set, plot them on the sigmoid curve, and convert coefficients from standardized space back to original feature units.",
+ "example": "cs477-nb-linear-and-logistic-regression-tutorial-13",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Load the breast cancer dataset and split it using the supplied ratio with `stratify=y`. Fit `pipe` (`StandardScaler` + `LogisticRegression`) and compute `z_test = pipe.decision_function(X_test)` and `p_test = pipe.predict_proba(X_test)[:, 1]`.",
+   "kind": "reveal",
+   "lines": "3-22"
+  },
+  {
+   "description": "Build `z_grid` with the supplied point count spanning `[z_min - padding, z_max + padding]`. Plot the sigmoid curve `(z_grid, sig_grid)` and overlay `(z_test, y_test + jitter)` and `(z_test, p_test)`.",
+   "kind": "reveal",
+   "lines": "23-53"
+  },
+  {
+   "description": "Extract `logreg = pipe.named_steps[\"logreg\"]` and `scaler = pipe.named_steps[\"scaler\"]`, pull out `theta0_std = logreg.intercept_.item()` and `theta_std = logreg.coef_.ravel()`, and print their values in standardized space.",
+   "kind": "reveal",
+   "lines": "55-68"
+  },
+  {
+   "description": "Look at lines 70-75: substitute `x_std = (x - scaler.mean_) / scaler.scale_` into `theta0_std + theta_std @ x_std`. This divides each weight by `scaler.scale_` (`theta_orig = theta_std / scaler.scale_`). It shifts the intercept by `-np.sum(theta_std * scaler.mean_ / scaler.scale_)`.",
+   "kind": "focus",
+   "lines": "70-75"
+  },
+  {
+   "answer": "Because dividing `theta_std` by `scaler.scale_` on line 74 multiplies weights for tiny-scale features (such as `fractal dimension error` and `concave points error`) by large factors.",
+   "kind": "predict",
+   "lines": "66,74-79",
+   "question": "Why is the L2 norm of the weights so much larger in original feature units (`‖θ‖₂ = 169.364182`) than in standardized units (`‖θ‖₂ = 3.518419`)?"
+  },
+  {
+   "description": "Compute `theta_orig` and `theta0_orig` (`34.628168`), print their summary statistics, and assemble the full feature log-odds equation `equation_orig`.",
+   "kind": "reveal",
+   "lines": "69-85"
+  }
+ ],
+ "title": "Projecting Breast Cancer Test Data onto the 1D Logit Score and Unscaling Weights",
+ "version": 1
+}

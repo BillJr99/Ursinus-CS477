@@ -1,0 +1,33 @@
+{
+ "code": "import itertools, math, numpy as np\n\ndef monte_carlo_shapley(f, x, baseline, M=200, rng=None):\n    rng = np.random.default_rng(rng)\n    d = len(x)\n    phi = np.zeros(d)\n    for _ in range(M):\n        pi = rng.permutation(d)\n        x_curr = baseline.copy()\n        prev = f(x_curr)\n        for j in pi:\n            x_next = x_curr.copy()\n            x_next[j] = x[j]\n            val = f(x_next)\n            phi[j] += (val - prev)\n            x_curr, prev = x_next, val\n    return phi / M\n\n# Example f: weighted sum with ReLU\nw = np.array([0.7,-0.6,0.4,0.2])\ndef f_relu(x): return np.maximum(0, w @ x)\nx = np.array([1.0, 0.0, 2.0, -1.0])\nbaseline = np.zeros_like(x)\nphi = monte_carlo_shapley(f_relu, x, baseline, M=1000, rng=0)\nprint(\"Approx Shapley:\", np.round(phi,3), \"Sum:\", np.round(phi.sum(),3), \"Output shift:\", f_relu(x)-f_relu(baseline))",
+ "description": "You can follow the supplied Monte Carlo approximation of Shapley attributions.",
+ "example": "cs477-liascript-explainable-2",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "The function starts phi at zero and samples feature orders. You reset x_curr to the baseline for each order and evaluate its initial output.",
+   "kind": "reveal",
+   "lines": "1-10"
+  },
+  {
+   "description": "Each step replaces one baseline coordinate with its value from x. You add the resulting output change to that feature's phi entry.",
+   "kind": "reveal",
+   "lines": "11-16"
+  },
+  {
+   "answer": "The return divides every accumulated feature contribution by M, the number of sampled orders.",
+   "kind": "predict",
+   "lines": "17",
+   "question": "What turns the accumulated contributions into an average?"
+  },
+  {
+   "description": "You apply the method to a weighted sum clipped below at zero. The final print requests approximate contributions and their sum, but this capped recording includes no printed values.",
+   "kind": "reveal",
+   "lines": "19-25"
+  }
+ ],
+ "title": "Averaging feature contributions over orders",
+ "version": 1
+}

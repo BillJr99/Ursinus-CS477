@@ -1,0 +1,33 @@
+{
+ "code": "fig = plt.figure(figsize=(6,4))\nfor c in range(10):\n    ll = models[c][\"ll_history\"]\n    plt.plot(ll, label=str(c))\nplt.xlabel(\"EM iteration\")\nplt.ylabel(\"Log-likelihood (sum over class sequences)\")\nplt.title(\"EM Convergence per Class HMM\")\nplt.legend(ncol=5, fontsize=8)\nplt.tight_layout()\nplt.show()",
+ "description": "You place stored training histories on one set of labeled axes.",
+ "example": "cs477-nb-hmm-image-recognition-from-scratch-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You create a figure and visit each class model. ll refers to that model's stored ll_history.",
+   "kind": "reveal",
+   "lines": "1-3"
+  },
+  {
+   "description": "You plot the history and use the class identifier as its legend label. Each pass adds another curve.",
+   "kind": "reveal",
+   "lines": "4"
+  },
+  {
+   "answer": "It describes log-likelihood summed over class sequences. The horizontal label identifies EM iteration.",
+   "kind": "predict",
+   "lines": "5-6",
+   "question": "Does the vertical label describe a per-sequence average or a sum over class sequences?"
+  },
+  {
+   "description": "You add labels, title, legend, and layout before requesting the figure. The recording supplies no rendered curves from which to assess convergence.",
+   "kind": "reveal",
+   "lines": "5-10"
+  }
+ ],
+ "title": "Plot each class model's likelihood history",
+ "version": 1
+}

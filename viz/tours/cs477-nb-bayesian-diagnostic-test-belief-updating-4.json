@@ -1,0 +1,38 @@
+{
+ "code": "def sample_prevalence(a, b, n, rng):\n    return rng.beta(a, b, size=n)\n\ndef sample_param_fixed_or_beta(fixed, beta_params, n, rng):\n    if beta_params is None:\n        return np.full(n, fixed, dtype=float)\n    else:\n        a, b = beta_params\n        return rng.beta(a, b, size=n)\n\ndef posterior_prob_positive(pi, sens, spec):\n    # PPV: P(D=1 | T=+) = (sens*pi) / (sens*pi + (1-spec)*(1-pi))\n    num = sens * pi\n    den = sens * pi + (1.0 - spec) * (1.0 - pi)\n    return num / np.maximum(den, 1e-15)\n\ndef posterior_prob_negative(pi, sens, spec):\n    # P(D=1 | T=-) = ((1-sens)*pi) / ((1-sens)*pi + spec*(1-pi))\n    num = (1.0 - sens) * pi\n    den = (1.0 - sens) * pi + spec * (1.0 - pi)\n    return num / np.maximum(den, 1e-15)\n\n# Draw samples\npi_samps   = sample_prevalence(A, B, N_SAMPLES, rng)\ns_samps    = sample_param_fixed_or_beta(S_FIXED, S_BETA, N_SAMPLES, rng)\nc_samps    = sample_param_fixed_or_beta(C_FIXED, C_BETA, N_SAMPLES, rng)\n\nppv_samps  = posterior_prob_positive(pi_samps, s_samps, c_samps)\nneg_samps  = posterior_prob_negative(pi_samps, s_samps, c_samps)\n\n# Point-prevalence comparison (using mean prevalence and mean s,c)\npi_mean = A/(A+B)\ns_mean  = (S_FIXED if S_BETA is None else (S_BETA[0]/(S_BETA[0]+S_BETA[1])))\nc_mean  = (C_FIXED if C_BETA is None else (C_BETA[0]/(C_BETA[0]+C_BETA[1])))\nppv_point = posterior_prob_positive(pi_mean, s_mean, c_mean)\nneg_point = posterior_prob_negative(pi_mean, s_mean, c_mean)\n\nprint(f\"Point estimate PPV at mean params: {ppv_point:.4f}\")\nprint(f\"Point estimate P(D=1 | T=-) at mean params: {neg_point:.4f}\")",
+ "description": "Define sampling helpers and Bayes' rule functions posterior_prob_positive and posterior_prob_negative. Draw the supplied number of samples and compute point estimates at the parameter means.",
+ "example": "cs477-nb-bayesian-diagnostic-test-belief-updating-4",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Define `sample_prevalence(a, b, n, rng)` using `rng.beta(a, b, size=n)` and `sample_param_fixed_or_beta`, which returns `np.full(n, fixed, dtype=float)` when `beta_params is None` or draws from `rng.beta(a, b, size=n)`.",
+   "kind": "reveal",
+   "lines": "1-10"
+  },
+  {
+   "description": "Define `posterior_prob_positive(pi, sens, spec)` ($P(D=1 \\mid T=+)$) and `posterior_prob_negative(pi, sens, spec)` ($P(D=1 \\mid T=-)$) using Bayes' rule and `np.maximum(den, 1e-15)` to guard against division by zero.",
+   "kind": "reveal",
+   "lines": "11-22"
+  },
+  {
+   "description": "Compare the numerators and denominators in the two Bayes formulas. For $T=+$, the true-positive term is `sens * pi` and the false-positive term is `(1.0 - spec) * (1.0 - pi)`. For $T=-$, the false-negative term is `(1.0 - sens) * pi` and the true-negative term is `spec * (1.0 - pi)`.",
+   "kind": "focus",
+   "lines": "13-15,19-21"
+  },
+  {
+   "answer": "The true-positive term is sensitivity times mean prevalence, and the false-positive term is the false-positive rate times the remaining prevalence. Dividing the true-positive term by their sum gives `ppv_point = 0.3242`.",
+   "kind": "predict",
+   "lines": "13-15,32-38",
+   "question": "At the supplied mean parameters, what are the terms `sens * pi` and `(1 - spec) * (1 - pi)` in `posterior_prob_positive`'s denominator? What is `ppv_point`?"
+  },
+  {
+   "description": "Draw Monte Carlo arrays `pi_samps, s_samps, c_samps` using the supplied sample count and evaluate `ppv_samps` and `neg_samps` elementwise. Print the point estimates `ppv_point = 0.3242` and `neg_point = 0.0005`.",
+   "kind": "reveal",
+   "lines": "23-39"
+  }
+ ],
+ "title": "Monte Carlo Sampling and Point Estimates of Diagnostic Posteriors",
+ "version": 1
+}

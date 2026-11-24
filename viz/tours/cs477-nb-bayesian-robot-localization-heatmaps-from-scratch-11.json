@@ -1,0 +1,33 @@
+{
+ "code": "import os, json\nos.makedirs(\"artifacts\", exist_ok=True)\n\nnp.savez(\"artifacts/bayes_localization_run.npz\",\n         grid=maze.grid, colors=maze.colors,\n         actions=np.array(actions, dtype='<U1'),\n         observations=np.array(observations, dtype=int),\n         beliefs=np.array(beliefs),\n         smoothed=np.array(smoothed),\n         true_states=np.array(true_states, dtype=int))\n\ndef save_heat(grid_b, fname, title):\n    fig = plt.figure(figsize=(4,4))\n    plt.imshow(grid_b, interpolation='nearest')\n    plt.title(title); plt.axis('off'); plt.tight_layout()\n    fig.savefig(f\"artifacts/{fname}\", dpi=120); plt.close(fig)\n\nsave_heat(belief_to_grid(beliefs[0]), \"belief_t0.png\", \"Belief t=0\")\nmid = len(beliefs)//2\nsave_heat(belief_to_grid(beliefs[mid]), f\"belief_t{mid}.png\", f\"Belief t={mid}\")\nsave_heat(belief_to_grid(beliefs[-1]), \"belief_tT.png\", \"Belief t=T\")\n\nprint(\"Saved artifacts:\", os.listdir(\"artifacts\"))",
+ "description": "You can follow stored arrays and selected heatmaps into artifact files.",
+ "example": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-11",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You create artifacts if needed and save the maze and run arrays into one NPZ archive. The named entries include beliefs, smoothed values and true states.",
+   "kind": "reveal",
+   "lines": "1-10"
+  },
+  {
+   "description": "save_heat renders a grid, saves its figure under artifacts and closes the figure. You pass the file name and title into this helper.",
+   "kind": "reveal",
+   "lines": "12-16"
+  },
+  {
+   "answer": "No. It selects the first, middle and last beliefs for three heatmap calls.",
+   "kind": "predict",
+   "lines": "18-21",
+   "question": "Does this block save one heatmap for every belief?"
+  },
+  {
+   "description": "The supplied directory listing includes the NPZ archive and three PNG files. You see belief_t8.png as the selected middle image in this recording.",
+   "kind": "reveal",
+   "lines": "18-23"
+  }
+ ],
+ "title": "Saving a localization run",
+ "version": 1
+}

@@ -1,0 +1,8 @@
+Best Ridge parameters: {'ridge__alpha': 10, 'ridge__fit_intercept': True}
+Best Ridge CV score: 0.3696567485452579
+Ridge Test R²: 0.30127814317608825
+Ridge Test MSE: 3701.9344274583746
+Best Lasso parameters: {'lasso__alpha': 1, 'lasso__fit_intercept': True}
+Best Lasso CV score: 0.3719815048773156
+Lasso Test R²: 0.30112052728259886
+Lasso Test MSE: 3702.7695003800595

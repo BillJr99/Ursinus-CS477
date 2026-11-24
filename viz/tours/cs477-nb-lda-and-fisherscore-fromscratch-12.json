@@ -1,0 +1,33 @@
+{
+ "code": "# Colab download helper\nimport shutil\nfrom pathlib import Path\ntry:\n    from google.colab import files  # type: ignore\n    if Path('artifacts').exists():\n        shutil.make_archive('artifacts', 'zip', 'artifacts')\n        files.download('artifacts.zip')\n    else:\n        print('No artifacts folder found.')\nexcept Exception as e:\n    print('Colab download helper not available in this environment:', e)",
+ "description": "You inspect the optional artifact archive and download branches.",
+ "example": "cs477-nb-lda-and-fisherscore-fromscratch-12",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You import shutil and Path before trying the Colab files import. The try block covers the subsequent archive and download operations.",
+   "kind": "reveal",
+   "lines": "1-5"
+  },
+  {
+   "description": "You create artifacts.zip and request its download when artifacts exists. Otherwise, the helper reports a missing folder.",
+   "kind": "reveal",
+   "lines": "6-10"
+  },
+  {
+   "answer": "The except block prints Colab download helper not available in this environment, followed by the exception text.",
+   "kind": "predict",
+   "lines": "11-12",
+   "question": "Which message handles a download operation that raises an exception?"
+  },
+  {
+   "description": "You see that message in the recording. The exception states that google.colab.files.download is unavailable in code-viz.",
+   "kind": "reveal",
+   "lines": "11-12"
+  }
+ ],
+ "title": "Read the LDA download fallback",
+ "version": 1
+}

@@ -1,0 +1,33 @@
+{
+ "code": "\nbest_path, best_logprob, delta, psi = viterbi_log(hmm, obs_seq)\nbest_path_names = [hmm.states[i] for i in best_path]\n\nprint(\"Viterbi best path (indices):\", best_path)\nprint(\"Viterbi best path (names):\", best_path_names)\nprint(\"Viterbi best path log-prob:\", best_logprob)\nprint(\"Viterbi best path prob:\", float(np.exp(best_logprob)))\n\n# Visualize delta (trellis of scores)\nplt.figure()\nplt.imshow(delta, aspect='auto')\nplt.title(\"Viterbi Trellis (delta: log-scores)\")\nplt.xlabel(\"State index\")\nplt.ylabel(\"Time step\")\nplt.colorbar()\nplt.show()\n",
+ "description": "You inspect Viterbi's selected states, probability, and score display.",
+ "example": "cs477-nb-hmm-viterbi-colab-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You receive a best path, its log probability, and two algorithm tables. The list comprehension translates each path index into a state name.",
+   "kind": "reveal",
+   "lines": "2-3"
+  },
+  {
+   "answer": "The recording maps them to Sunny, Rainy, Rainy.",
+   "kind": "predict",
+   "lines": "5-8",
+   "question": "Which named path corresponds to the recorded indices?"
+  },
+  {
+   "description": "You print the path log probability and exponentiate it to recover probability. The recorded probability is about 0.01344.",
+   "kind": "reveal",
+   "lines": "5-8"
+  },
+  {
+   "description": "You display delta as a trellis, a grid of log scores by position and state. The axes identify state index and sequence step, and the color bar shows the score scale.",
+   "kind": "reveal",
+   "lines": "10-17"
+  }
+ ],
+ "title": "Read the decoded weather path",
+ "version": 1
+}

@@ -1,0 +1,33 @@
+{
+ "code": "import os, json\nos.makedirs(\"artifacts\", exist_ok=True)\n\nart = {\n    \"H\": env.H, \"W\": env.W, \"walls\": list(map(list, env.walls)),\n    \"terminals\": {str(k): v for k,v in env.terminals.items()},\n    \"step_cost\": env.step_cost, \"slip\": env.slip\n}\nnp.savez(\"artifacts/gridworld_results.npz\",\n         S=np.array(S, dtype=object),\n         V_star=V_star, Pi_star=Pi_star,\n         V_hat=V_hat, Pi_hat=Pi_hat,\n         returns=returns)\nwith open(\"artifacts/gridworld_meta.json\", \"w\") as f:\n    json.dump(art, f, indent=2)\n\nprint(\"Artifacts:\", os.listdir(\"artifacts\"))",
+ "description": "You separate environment metadata from stored values, policies, and returns.",
+ "example": "cs477-nb-qlearning-vs-valueiteration-gridworld-11",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You create artifacts and collect the environment dimensions, walls, terminals, step cost, and slip. Terminal keys become strings for JSON.",
+   "kind": "reveal",
+   "lines": "1-8"
+  },
+  {
+   "description": "You store state descriptions, both value arrays, both policy arrays, and returns in one NumPy archive. Named entries identify each result.",
+   "kind": "reveal",
+   "lines": "9-13"
+  },
+  {
+   "answer": "It receives art, the environment metadata dictionary. The policy arrays are entries in gridworld_results.npz.",
+   "kind": "predict",
+   "lines": "14-15",
+   "question": "Does gridworld_meta.json contain the policy arrays?"
+  },
+  {
+   "description": "You write the metadata with indentation and list artifacts. The recording names gridworld_meta.json and gridworld_results.npz.",
+   "kind": "reveal",
+   "lines": "14-17"
+  }
+ ],
+ "title": "Inspect the gridworld result exports",
+ "version": 1
+}

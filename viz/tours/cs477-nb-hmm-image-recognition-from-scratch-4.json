@@ -1,0 +1,33 @@
+{
+ "code": "digits = load_digits()\nX_images = digits.images.astype(np.float64)  # shape (N, 8, 8)\ny_labels = digits.target.astype(int)\n\nX_images /= 16.0  # normalize to [0,1]\n\ndef image_to_sequence(img):\n    # img: (8,8). Sequence is list/array of length 8; each obs is (8,)\n    # time t corresponds to column t\n    return img.T  # (8,8): columns become rows (T,D)\n\nsequences = [image_to_sequence(img) for img in X_images]  # list of (T=8, D=8)\n\nprint(\"Total images:\", len(sequences))\nprint(\"Example sequence shape:\", sequences[0].shape)",
+ "description": "You represent each image as eight column observations.",
+ "example": "cs477-nb-hmm-image-recognition-from-scratch-4",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You load digit images as floating-point arrays and labels as integers. Dividing the image values by 16 normalizes them to the stated range [0,1].",
+   "kind": "reveal",
+   "lines": "1-5"
+  },
+  {
+   "description": "You transpose each 8 by 8 image. Each original column becomes one row in the returned sequence.",
+   "kind": "reveal",
+   "lines": "7-10"
+  },
+  {
+   "answer": "The shape stays (8,8). Its meaning changes: the first axis selects an image column, and each observation contains eight values.",
+   "kind": "predict",
+   "lines": "12",
+   "question": "Does transposing the image change the sequence's shape?"
+  },
+  {
+   "description": "You create one sequence per image and request the total count and first sequence shape. The supplied recording contains no printed values.",
+   "kind": "reveal",
+   "lines": "12-15"
+  }
+ ],
+ "title": "Turn digit images into sequences",
+ "version": 1
+}

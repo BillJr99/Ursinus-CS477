@@ -1,0 +1,33 @@
+{
+ "code": "# === GMM (scikit-learn) ===\nif SKLEARN_AVAILABLE:\n    gmm = GaussianMixture(n_components=2, random_state=42).fit(X_gmm)\n    skl_labels = gmm.predict(X_gmm)\n    skl_means = gmm.means_\n\n    plt.figure()\n    plt.scatter(X_gmm[:, 0], X_gmm[:, 1], c=skl_labels, s=12)\n    plt.scatter(skl_means[:, 0], skl_means[:, 1], marker='x', s=120)\n    plt.title(\"GMM (scikit-learn): Hard Assignments\")\n    plt.xlabel(\"Feature 1\")\n    plt.ylabel(\"Feature 2\")\n    plt.show()\nelse:\n    print(\"scikit-learn not available; skipping GMM (scikit-learn).\")\n",
+ "description": "You inspect the optional library fit and its component-mean overlay.",
+ "example": "cs477-nb-unsupervised-learning-colab-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You fit a two-component Gaussian mixture when SKLEARN_AVAILABLE is true. The same observations receive predicted component labels.",
+   "kind": "reveal",
+   "lines": "1-5"
+  },
+  {
+   "answer": "skl_labels determines observation colors. skl_means supplies the component means drawn as large x markers.",
+   "kind": "predict",
+   "lines": "8-9",
+   "question": "Which values determine point colors and which determine the large x markers?"
+  },
+  {
+   "description": "You plot both feature coordinates and title the figure Hard Assignments. Each point receives one predicted component label in this display.",
+   "kind": "reveal",
+   "lines": "7-13"
+  },
+  {
+   "description": "You print a skip message when the availability guard fails. The supplied output includes no numeric component means or assignments.",
+   "kind": "reveal",
+   "lines": "14-15"
+  }
+ ],
+ "title": "Display Gaussian mixture assignments",
+ "version": 1
+}

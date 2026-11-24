@@ -1,0 +1,33 @@
+{
+ "code": "iris = datasets.load_iris()\nX = iris.data\ny = iris.target\ntarget_names = iris.target_names\n\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42, stratify=y)\n\ngnb = GaussianNaiveBayesScratch(var_smoothing=1e-9).fit(X_train, y_train)\ny_pred = gnb.predict(X_test)\n\nacc = accuracy_score(y_test, y_pred)\ncm  = confusion_matrix(y_test, y_pred)\n\nprint(f\"From‑scratch GaussianNB accuracy: {acc:.3f}\")\nprint(\"Confusion matrix:\\n\", cm)\n\n# Visualize confusion matrix\nplt.figure()\nplt.imshow(cm, interpolation='nearest')\nplt.title('Gaussian NB (Scratch) — Confusion Matrix')\nplt.xlabel('Predicted label')\nplt.ylabel('True label')\nplt.xticks(range(len(target_names)), target_names, rotation=45)\nplt.yticks(range(len(target_names)), target_names)\nfor (i, j), v in np.ndenumerate(cm):\n    plt.text(j, i, str(v), ha='center', va='center')\nplt.tight_layout()\nplt.show()",
+ "description": "You compare Iris predictions with test labels and read their confusion matrix.",
+ "example": "cs477-nb-naive-bayes-step-by-step-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You load Iris and split the data with stratify=y. This requests a split that preserves class proportions.",
+   "kind": "reveal",
+   "lines": "1-6"
+  },
+  {
+   "description": "You fit the scratch Gaussian classifier on training rows and predict test rows. The recorded accuracy is 0.920.",
+   "kind": "reveal",
+   "lines": "8-15"
+  },
+  {
+   "answer": "Rows identify true labels, and columns identify predicted labels. The axis labels state this orientation.",
+   "kind": "predict",
+   "lines": "21-22",
+   "question": "In the plotted confusion matrix, do rows identify true or predicted labels?"
+  },
+  {
+   "description": "You label both axes with species names and write each count inside its cell. The recorded matrix has diagonal counts 16, 16, and 14, with four off-diagonal errors.",
+   "kind": "reveal",
+   "lines": "17-28"
+  }
+ ],
+ "title": "Evaluate the scratch Gaussian classifier",
+ "version": 1
+}

@@ -1,0 +1,7 @@
+Column mixed strategy y: [0.3333 0.3333 0.3333]  (sum= 1.0 )
+Minimax value w (Row's payoff): 3.8333
+v vs w: (np.float64(3.833333333333333), np.float64(3.833333333333333))
+Row's payoff if playing Ad A vs y: 3.8333
+Row's payoff if playing Ad B vs y: 3.8333
+Row's payoff if playing Ad C vs y: 3.8333
+All should be <= w up to numerical tolerance.

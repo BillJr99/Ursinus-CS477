@@ -1,0 +1,12 @@
+sklearn GaussianNB accuracy: 0.920
+Classification report (sklearn):
+              precision    recall  f1-score   support
+
+      setosa       1.00      1.00      1.00        16
+  versicolor       0.84      0.94      0.89        17
+   virginica       0.93      0.82      0.88        17
+
+    accuracy                           0.92        50
+   macro avg       0.93      0.92      0.92        50
+weighted avg       0.92      0.92      0.92        50
+

@@ -1,0 +1,21 @@
+=== Linear SVM Report ===
+              precision    recall  f1-score   support
+
+           0       0.48      0.42      0.45       100
+           1       0.49      0.55      0.52       100
+
+    accuracy                           0.48       200
+   macro avg       0.48      0.48      0.48       200
+weighted avg       0.48      0.48      0.48       200
+
+=== RBF SVM Report ===
+              precision    recall  f1-score   support
+
+           0       0.89      0.93      0.91       100
+           1       0.93      0.88      0.90       100
+
+    accuracy                           0.91       200
+   macro avg       0.91      0.91      0.90       200
+weighted avg       0.91      0.91      0.90       200
+
+AUC: 0.9649

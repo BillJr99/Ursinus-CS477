@@ -1,0 +1,33 @@
+{
+ "code": "pi = 0.01  # prior disease probability\nSe, Sp = 0.95, 0.95\npost = (Se*pi) / (Se*pi + (1-Sp)*(1-pi))\nprint(f\"Posterior probability given positive test: {post:.3f}\")",
+ "description": "You can identify the numerator and normalizing terms in the supplied probability calculation.",
+ "example": "cs477-liascript-bayesianinference-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You set prior pi to 0.01 and both Se and Sp to 0.95. These are the fixed inputs for this model calculation.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "description": "Se times pi forms the numerator. The denominator adds the positive-result contribution from the complementary case.",
+   "kind": "reveal",
+   "lines": "3"
+  },
+  {
+   "answer": "It displays three decimal places because the format uses .3f.",
+   "kind": "predict",
+   "lines": "4",
+   "question": "How many decimal places will this print display?"
+  },
+  {
+   "description": "You see Posterior probability given positive test: 0.161. The value comes from the supplied prior and test parameters in this single update.",
+   "kind": "reveal",
+   "lines": "4"
+  }
+ ],
+ "title": "Reading one positive-result update",
+ "version": 1
+}

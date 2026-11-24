@@ -1,0 +1,33 @@
+{
+ "code": "# Prior: uniform over free cells\nb0 = np.zeros(N, dtype=float)\nb0[free_states] = 1.0 / len(free_states)\n\nbeliefs = bayes_filter(actions, observations, T_by_action_sim, sensor_correct, b0)\nprint(\"Computed beliefs for T+1 =\", len(beliefs))\n\nfor t, b in enumerate(beliefs):\n    show_heatmap(belief_to_grid(b), title=f\"Belief Heatmap — t={t}\")",
+ "description": "You start from a uniform prior and display each returned belief as a heatmap.",
+ "example": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You create a zero-filled belief vector and assign equal probability to every free state. Wall positions retain zero probability.",
+   "kind": "reveal",
+   "lines": "1-3"
+  },
+  {
+   "description": "You pass the actions, observations, transition models, sensor parameter, and prior to bayes_filter. The recorded result contains 17 beliefs.",
+   "kind": "reveal",
+   "lines": "5-6"
+  },
+  {
+   "answer": "enumerate starts at zero, so beliefs[0] receives t=0. Each subsequent returned belief receives the next index.",
+   "kind": "predict",
+   "lines": "8-9",
+   "question": "Which belief gets the first heatmap index?"
+  },
+  {
+   "description": "You convert each belief vector into a grid before calling show_heatmap. The loop requests one heatmap for every belief in the returned sequence.",
+   "kind": "reveal",
+   "lines": "8-9"
+  }
+ ],
+ "title": "Display the belief sequence",
+ "version": 1
+}

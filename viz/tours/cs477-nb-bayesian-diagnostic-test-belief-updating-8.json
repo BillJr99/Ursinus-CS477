@@ -1,0 +1,33 @@
+{
+ "code": "import os, json\nos.makedirs(\"artifacts\", exist_ok=True)\n\nnp.savez(\"artifacts/posteriors_samples.npz\",\n         ppv=ppv_samps, neg=neg_samps,\n         pi_samps=pi_samps, s_samps=s_samps, c_samps=c_samps,\n         meta=np.array([A, B, s_mean, c_mean, N_SAMPLES], dtype=float))\n\n# Minimal text summary\nsummary = {}\nfor name, samples, point in [\n    (\"P(D=1 | T=+)\", ppv_samps, ppv_point),\n    (\"P(D=1 | T=-)\", neg_samps, neg_point)\n]:\n    lo, med, hi = ci_quantiles(samples, (0.025, 0.5, 0.975))\n    summary[name] = {\"mean\": float(np.mean(samples)),\n                     \"median\": float(med),\n                     \"ci95\": [float(lo), float(hi)],\n                     \"point_estimate\": float(point)}\nwith open(\"artifacts/summary.json\", \"w\") as f:\n    json.dump(summary, f, indent=2)\n\nprint(\"Saved artifacts:\", os.listdir(\"artifacts\"))",
+ "description": "You can follow sample arrays into an archive and two labeled JSON summaries.",
+ "example": "cs477-nb-bayesian-diagnostic-test-belief-updating-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You create artifacts and save the existing sample arrays in an NPZ file. The archive also includes a numeric metadata array.",
+   "kind": "reveal",
+   "lines": "1-7"
+  },
+  {
+   "description": "The loop visits the positive-result and negative-result sample sets separately. You request lower, median and upper quantiles from each set.",
+   "kind": "reveal",
+   "lines": "9-15"
+  },
+  {
+   "answer": "Yes. It stores mean, median, the two interval endpoints and point_estimate under each label.",
+   "kind": "predict",
+   "lines": "16-19",
+   "question": "Does each JSON entry retain both a sampled summary and a point estimate?"
+  },
+  {
+   "description": "You write the summary dictionary as JSON and list the directory. The supplied output names posteriors_samples.npz and summary.json.",
+   "kind": "reveal",
+   "lines": "20-23"
+  }
+ ],
+ "title": "Exporting sampled-model summaries",
+ "version": 1
+}

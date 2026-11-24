@@ -1,0 +1,38 @@
+{
+ "code": "def roc_auc(y_true, scores):\n    # trapezoid on ROC constructed from thresholds\n    o = np.argsort(scores)\n    P = np.sum(y_true==1); N = np.sum(y_true==0)\n    if P==0 or N==0: return np.nan\n    t = np.r_[np.inf, np.unique(scores)[::-1], -np.inf]\n    tpr=[]; fpr=[]\n    for thr in t:\n        m = scores>=thr\n        tp = np.sum((y_true==1)&m); fp = np.sum((y_true==0)&m)\n        tpr.append(tp/(P+1e-12)); fpr.append(fp/(N+1e-12))\n    tpr=np.array(tpr); fpr=np.array(fpr)\n    order=np.argsort(fpr)\n    return np.trapz(tpr[order], fpr[order])\n\ndef train(model, X, y, Xv, yv, lr=7e-3, epochs=80, batch=256):\n    n = len(y)\n    hist = {\"loss\": [], \"vauc\": []}\n    for ep in range(1, epochs+1):\n        idx = np.arange(n); rng.shuffle(idx)\n        for i0 in range(0, n, batch):\n            j = idx[i0:i0+batch]\n            L, g = model.loss_and_grads(X[j], y[j])\n            model.step(g, lr=lr)\n        p = model.predict_proba(Xv)\n        auc = roc_auc(yv, p)\n        hist[\"loss\"].append(L); hist[\"vauc\"].append(auc)\n        if ep%10==0:\n            print(f\"epoch {ep:02d}  loss={L:.4f}  val AUC={auc:.3f}\")\n    return hist\n\nhist = train(mlp, X_tr, y_tr, X_te, y_te, lr=7e-3, epochs=80, batch=256)\np_te = mlp.predict_proba(X_te)\nyhat = (p_te>=0.5).astype(float)\nacc = (yhat==y_te).mean()\nprint(f\"Test accuracy: {acc:.3f}\")",
+ "description": "You follow batch updates and distinguish validation AUC from thresholded accuracy.",
+ "example": "cs477-nb-explainableai-shapley-from-scratch-creditnn-5",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You build a receiver operating characteristic curve by varying the score threshold and counting true and false positives. Trapezoidal integration computes its area, AUC.",
+   "kind": "reveal",
+   "lines": "1-14"
+  },
+  {
+   "description": "You shuffle row indices each epoch and update the model on batches. Each batch produces a loss L and gradients g.",
+   "kind": "reveal",
+   "lines": "16-24"
+  },
+  {
+   "answer": "It stores L from the final batch. The validation AUC uses predictions on all of Xv.",
+   "kind": "predict",
+   "lines": "25-29",
+   "question": "Does the stored loss average all batches in the epoch?"
+  },
+  {
+   "description": "You store both histories and print every tenth epoch across 80 epochs. The recorded final validation AUC is 0.636.",
+   "kind": "reveal",
+   "lines": "25-32"
+  },
+  {
+   "description": "You classify test probabilities at the supplied threshold and measure the fraction matching y_te. The recorded test accuracy is 0.674.",
+   "kind": "reveal",
+   "lines": "33-36"
+  }
+ ],
+ "title": "Train and evaluate the credit model",
+ "version": 1
+}

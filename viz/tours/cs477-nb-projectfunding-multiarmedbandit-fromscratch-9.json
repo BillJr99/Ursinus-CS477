@@ -1,0 +1,33 @@
+{
+ "code": "k = len(p_true)\n\n# Use past data to set initial empirical means for ε‑greedy (via implied expected reward)\n# We use posterior means for p_i: (s+a)/(s+f+a+b) with default a=b=1 if no past supplied.\nalpha_prior = past_successes + 1.0\nbeta_prior  = past_failures  + 1.0\np_post_mean = alpha_prior / (alpha_prior + beta_prior)\ninit_mean_reward = p_post_mean * R - C\n\neps = 0.1  # exploration rate\neg = EpsilonGreedy(k, R, C, names, epsilon=eps, init_mean=0.0)  # start neutral; it will learn\nucb = UCB1(k, R, C, names)\nts  = ThompsonSampling(k, R, C, names, alpha0=alpha_prior, beta0=beta_prior)\nprint(\"Initial posterior mean expected rewards:\", (p_post_mean*R - C))",
+ "description": "You distinguish computed posterior rewards from the values passed into each strategy.",
+ "example": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You add one to past successes and failures to form alpha_prior and beta_prior. Their ratio gives posterior mean success probabilities, which become expected net rewards.",
+   "kind": "reveal",
+   "lines": "1-8"
+  },
+  {
+   "answer": "Its constructor receives init_mean=0.0. The computed array is not passed to that constructor in this block.",
+   "kind": "predict",
+   "lines": "10-11",
+   "question": "Does epsilon-greedy receive the computed init_mean_reward array?"
+  },
+  {
+   "description": "You create epsilon-greedy with exploration rate 0.1 and a UCB1 object. ThompsonSampling receives alpha_prior and beta_prior explicitly.",
+   "kind": "reveal",
+   "lines": "11-13"
+  },
+  {
+   "description": "You print posterior mean expected rewards [3.6364,4.6923,18.3333,7.6364,5.5455]. These printed estimates come from prior evidence and the reward and cost arrays.",
+   "kind": "reveal",
+   "lines": "14"
+  }
+ ],
+ "title": "Initialize bandit strategies from prior evidence",
+ "version": 1
+}

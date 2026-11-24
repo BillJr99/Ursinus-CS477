@@ -1,0 +1,33 @@
+{
+ "code": "# ---------- Explicit ReLU equation (term-by-term) ----------\nrelu_terms = []\nfor i in range(hidden_size):\n    relu_terms.append(f\"({w2[i,0]:.6g} * max(0, {w1[0,i]:.6g} * x + {b1[i]:.6g}))\")\nrelu_equation = \" + \".join(relu_terms) + f\" + {b2[0]:.6g}\"\n\nprint(\"Neural network learned function (explicit ReLU form):\")\nprint(f\"y_hat(x) = {relu_equation}\\n\")",
+ "description": "You inspect how stored weights become a printed equation.",
+ "example": "cs477-nb-nonlinearfunctionestimatormultilayernn-10",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You initialize a list and visit every hidden unit. Each unit contributes one term to the printed function.",
+   "kind": "reveal",
+   "lines": "1-3"
+  },
+  {
+   "description": "You format the unit as its output weight times max(0, input weight times x plus hidden bias). max(0,...) is the rectified linear unit, or ReLU.",
+   "kind": "reveal",
+   "lines": "4"
+  },
+  {
+   "answer": "It appears once after the joined hidden-unit terms. The string adds b2[0] outside their ReLU expressions.",
+   "kind": "predict",
+   "lines": "5",
+   "question": "Where does the output bias appear in the equation?"
+  },
+  {
+   "description": "You print the assembled y_hat(x) expression using six significant digits for each parameter. The recorded equation contains ten ReLU terms followed by output bias 0.00917383.",
+   "kind": "reveal",
+   "lines": "5-8"
+  }
+ ],
+ "title": "Write the learned network as ReLU terms",
+ "version": 1
+}

@@ -1,0 +1,38 @@
+{
+ "code": "from collections import Counter\nimport math\n\ndocs = [\n    (\"sports win team game\", 1),\n    (\"team scores goal win\", 1),\n    (\"election debate policy\", 0),\n    (\"policy vote election\", 0),\n]\n# Build vocabulary and counts\nvocab = sorted({w for s,_ in docs for w in s.split()})\nV = len(vocab)\ncls_counts = Counter(y for _,y in docs)\nword_counts = {0: Counter(), 1: Counter()}\nfor s,y in docs:\n    for w in s.split():\n        word_counts[y][w] += 1\n\nalpha = 1.0  # Laplace smoothing\nphi = {y: {} for y in cls_counts}\nfor y in cls_counts:\n    total = sum(word_counts[y].values()) + alpha*V\n    for w in vocab:\n        phi[y][w] = (word_counts[y][w] + alpha) / total\n\ndef log_score(text):\n    toks = text.split()\n    scores = {}\n    for y in cls_counts:\n        logp = math.log(cls_counts[y]/sum(cls_counts.values()))\n        for w in toks:\n            logp += math.log(phi[y].get(w, 1.0/(sum(word_counts[y].values())+alpha*V)))\n        scores[y] = logp\n    return max(scores, key=scores.get), scores\n\nprint(log_score(\"team win goal\"))\nprint(log_score(\"policy debate\"))",
+ "description": "You can follow a small multinomial Naive Bayes classifier from counts to predictions.",
+ "example": "cs477-liascript-bayesianinference-4",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You build a shared vocabulary and count documents and words by class. The four documents use labels 1 and 0.",
+   "kind": "reveal",
+   "lines": "1-17"
+  },
+  {
+   "description": "Laplace smoothing adds alpha to each word count. You divide by the class token total plus alpha times the vocabulary size.",
+   "kind": "reveal",
+   "lines": "19-24"
+  },
+  {
+   "description": "log_score begins with the class log prior and adds each token's log likelihood. You return the label with the largest score alongside the scores themselves.",
+   "kind": "reveal",
+   "lines": "26-34"
+  },
+  {
+   "answer": "Label 1 has the larger score compared with label 0.",
+   "kind": "predict",
+   "lines": "36",
+   "question": "Which label has the larger recorded score for team win goal?"
+  },
+  {
+   "description": "You see label 1 for team win goal and label 0 for policy debate. The output includes both class scores for each supplied text.",
+   "kind": "reveal",
+   "lines": "36-37"
+  }
+ ],
+ "title": "Scoring text with word counts",
+ "version": 1
+}

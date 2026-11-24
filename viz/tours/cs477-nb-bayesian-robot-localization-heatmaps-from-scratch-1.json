@@ -1,0 +1,33 @@
+{
+ "code": "import sys, platform, subprocess\ndef _sh(cmd):\n    try:\n        out = subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT, text=True)\n    except Exception as e:\n        out = f\"[command failed] {e}\"\n    print(out)\n\nprint(\"Python:\", sys.version)\nprint(\"Platform:\", platform.platform())\nprint(\"In Colab:\", \"google.colab\" in sys.modules)\nprint(\"\\nNVIDIA SMI (if present):\")\n_sh(\"nvidia-smi || true\")\n\n# (notebook only) !pip -q install --upgrade pip\n# (notebook only) !pip -q install numpy matplotlib",
+ "description": "You inspect the environment printout and optional NVIDIA command.",
+ "example": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You define _sh to capture a shell command's output, including standard error. It prints the captured text after the command returns.",
+   "kind": "reveal",
+   "lines": "1-7"
+  },
+  {
+   "description": "You print the Python version, platform, and Colab module check before the NVIDIA heading.",
+   "kind": "reveal",
+   "lines": "9-12"
+  },
+  {
+   "answer": "The shell reports nvidia-smi: not found. The command includes || true, so that missing command still leads to printing the captured output.",
+   "kind": "predict",
+   "lines": "13",
+   "question": "What text does the supplied recording show for the NVIDIA command?"
+  },
+  {
+   "description": "You see Python 3.12.16, Linux, and In Colab: False in the recording. The package installation lines remain comments.",
+   "kind": "reveal",
+   "lines": "13-16"
+  }
+ ],
+ "title": "Check the localization environment",
+ "version": 1
+}

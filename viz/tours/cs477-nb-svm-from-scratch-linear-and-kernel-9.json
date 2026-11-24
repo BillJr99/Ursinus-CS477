@@ -1,0 +1,33 @@
+{
+ "code": "fig = plt.figure(figsize=(10,4))\nax1 = plt.subplot(1,2,1)\ndef sign_pg(Z): return dec_lin_pg(Z)\nplot_data_and_boundary(ax1, X_tr, y_tr, predict_fn=sign_pg, title=\"Linear SVM (Pegasos) — Train\")\n\nax2 = plt.subplot(1,2,2)\ndef sign_bs(Z): return dec_lin_bs(Z)\nplot_data_and_boundary(ax2, X_tr, y_tr, predict_fn=sign_bs, title=\"Linear SVM (Batch) — Train\")\nplt.tight_layout(); plt.show()",
+ "description": "You pass each model's decision function to a training-data plot.",
+ "example": "cs477-nb-svm-from-scratch-linear-and-kernel-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You create the left panel and pass sign_pg to the plotting helper. sign_pg returns the Pegasos decision function's values directly.",
+   "kind": "reveal",
+   "lines": "1-4"
+  },
+  {
+   "answer": "Each wrapper returns its decision function's result unchanged. There is no threshold operation in either wrapper.",
+   "kind": "predict",
+   "lines": "3,7",
+   "question": "Do these wrappers threshold scores into class labels?"
+  },
+  {
+   "description": "You create the right panel using the batch model's decision function. Both plot calls receive X_tr and y_tr.",
+   "kind": "reveal",
+   "lines": "6-8"
+  },
+  {
+   "description": "You lay out and display the panels together. Their titles distinguish Pegasos from Batch on the same training data.",
+   "kind": "reveal",
+   "lines": "9"
+  }
+ ],
+ "title": "Display two linear SVM boundaries",
+ "version": 1
+}

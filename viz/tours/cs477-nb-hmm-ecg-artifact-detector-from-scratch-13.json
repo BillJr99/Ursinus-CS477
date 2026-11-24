@@ -1,0 +1,33 @@
+{
+ "code": "import os, json\nos.makedirs(\"artifacts\", exist_ok=True)\n\nnp.savez(\"artifacts/hmm_ecg_artifact_model_and_results.npz\",\n         pi=model[\"pi\"], A=model[\"A\"], means=model[\"means\"], vars=model[\"vars\"],\n         gamma=gamma, path=path, artifact_state=np.array([artifact_state]),\n         win_idxs=np.array(win_idxs, dtype=int), scaler_mean=scaler.mean_, scaler_std=scaler.std_,\n         time=time, p_artifact=p_artifact, ecg=ecg, fs=np.array([fs]))\n\n# Save quick PNGs\ndef save_plot(series, ttl, fname, x=None):\n    fig = plt.figure(figsize=(10,3))\n    if x is None: x = np.arange(len(series))\n    plt.plot(x, series); plt.title(ttl); plt.tight_layout()\n    fig.savefig(f\"artifacts/{fname}\", dpi=120); plt.close(fig)\n\nsave_plot(ecg, \"ECG\", \"ecg.png\", x=time)\nsave_plot(p_artifact, \"P(artifact)\", \"p_artifact.png\", x=time)\n\nprint(\"Saved artifacts:\", os.listdir(\"artifacts\"))\n",
+ "description": "You follow model parameters and result arrays into the example's artifacts.",
+ "example": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-13",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You create artifacts and save one NumPy archive. Its entries include model parameters, state results, window indices, scaling parameters, and the signal arrays.",
+   "kind": "reveal",
+   "lines": "1-8"
+  },
+  {
+   "description": "You define save_plot to draw a series, save its figure, and close it. When x is omitted, the helper uses sample indices.",
+   "kind": "reveal",
+   "lines": "10-15"
+  },
+  {
+   "answer": "Both calls pass x=time, so the helper uses the supplied time array.",
+   "kind": "predict",
+   "lines": "17-18",
+   "question": "Do these two saved plots use sample indices or the supplied time array?"
+  },
+  {
+   "description": "You save ecg.png and p_artifact.png. The recorded listing contains both images and hmm_ecg_artifact_model_and_results.npz.",
+   "kind": "reveal",
+   "lines": "17-20"
+  }
+ ],
+ "title": "Inspect the ECG result exports",
+ "version": 1
+}

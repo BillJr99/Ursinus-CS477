@@ -1,0 +1,13 @@
+Fitted logistic parameters (on STANDARDIZED features):
+  θ₀ (intercept) = 0.280555
+  ‖θ‖₂           = 3.518419
+  First few weights: [-0.5231, -0.5187, -0.4837, -0.5573, -0.301 ,  0.6942]
+
+Fitted logistic parameters (on ORIGINAL feature scales):
+  θ₀ (intercept) = 34.628168
+  ‖θ‖₂           = 169.364182
+  First few weights: [-1.4924e-01, -1.1675e-01, -2.0023e-02, -1.6130e-03, -2.2581e+01,
+  1.3197e+01]
+
+Estimated logistic model on ORIGINAL features:
+ log( p / (1 - p) ) = 34.6282 + -0.1492*mean radius + -0.1167*mean texture + -0.0200*mean perimeter + -0.0016*mean area + -22.5814*mean smoothness + 13.1973*mean compactness + -6.9944*mean concavity + -17.6026*mean concave points + -4.5716*mean symmetry + 11.5825*mean fractal dimension + -4.0684*radius error + 0.4579*texture error + -0.2519*perimeter error + -0.0228*area error + -47.1912*smoothness error + 33.3473*compactness error + 4.6991*concavity error + -54.3002*concave points error + 47.9814*symmetry error + 132.0277*fractal dimension error + -0.1910*worst radius + -0.1983*worst texture + -0.0216*worst perimeter + -0.0017*worst area + -29.6008*worst smoothness + 0.2873*worst compactness + -3.6364*worst concavity + -14.0219*worst concave points + -14.6572*worst symmetry + -11.1909*worst fractal dimension

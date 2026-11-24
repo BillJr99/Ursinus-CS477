@@ -1,0 +1,5 @@
+Accuracy train=0.971  test=0.978
+Confusion (test):
+ [[14  0  0]
+ [ 0 13  1]
+ [ 0  0 17]]

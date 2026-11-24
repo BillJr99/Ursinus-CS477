@@ -1,0 +1,38 @@
+{
+ "code": "\n# Synthetic binary classification data\nn = 300\nmean0, mean1 = np.array([0, 0]), np.array([2, 2])\ncov = np.array([[1.0, 0.2],[0.2, 1.0]])\nX0 = np.random.multivariate_normal(mean0, cov, size=n//2)\nX1 = np.random.multivariate_normal(mean1, cov, size=n//2)\nX_bin = np.vstack([X0, X1])\ny_bin = np.hstack([np.zeros(n//2, dtype=int), np.ones(n//2, dtype=int)])\n\n# Shuffle\nperm = np.random.permutation(n)\nX_bin, y_bin = X_bin[perm], y_bin[perm]\n\ndef sigmoid(z):\n    return 1.0 / (1.0 + np.exp(-z))\n\ndef logistic_loss(theta, X, y):\n    z = X @ theta\n    p = sigmoid(z)\n    eps = 1e-12\n    return -np.mean(y * np.log(p + eps) + (1-y)*np.log(1 - p + eps))\n\ndef logistic_gd(X, y, lr=0.1, steps=500):\n    theta = np.zeros(X.shape[1])\n    history = []\n    for t in range(steps):\n        z = X @ theta\n        p = sigmoid(z)\n        grad = X.T @ (p - y) / len(y)\n        theta -= lr * grad\n        history.append(logistic_loss(theta, X, y))\n    return theta, np.array(history)\n\n# Add intercept term\nX_aug = np.c_[np.ones((n, 1)), X_bin]\ntheta, hist = logistic_gd(X_aug, y_bin, lr=0.2, steps=500)\n\nprint(\"Final loss:\", hist[-1])\n\nplt.plot(hist)\nplt.xlabel(\"Iteration\")\nplt.ylabel(\"Log loss\")\nplt.title(\"Logistic Regression (from scratch) — Convergence\")\nplt.show()\n\n# Visualize decision boundary\nxx, yy = np.meshgrid(np.linspace(X_bin[:,0].min()-1, X_bin[:,0].max()+1, 200),\n                     np.linspace(X_bin[:,1].min()-1, X_bin[:,1].max()+1, 200))\ngrid = np.c_[np.ones((xx.size, 1)), xx.ravel(), yy.ravel()]\nprobs = sigmoid(grid @ theta).reshape(xx.shape)\n\nplt.contourf(xx, yy, probs, levels=np.linspace(0,1,11), alpha=0.6)\nplt.scatter(X_bin[y_bin==0,0], X_bin[y_bin==0,1], label=\"class 0\", alpha=0.8)\nplt.scatter(X_bin[y_bin==1,0], X_bin[y_bin==1,1], label=\"class 1\", alpha=0.8)\nplt.colorbar(label=\"P(y=1 | x)\")\nplt.legend(); plt.title(\"Decision Boundary (from scratch)\")\nplt.show()",
+ "description": "Generate two 2D Gaussian clusters, minimize binary cross-entropy loss with batch gradient descent on augmented features X_aug, and plot the convergence curve and decision boundary.",
+ "example": "cs477-liascript-regression-10",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Draw points around `mean0 = [0, 0]` (`class 0`) and `mean1 = [2, 2]` (`class 1`). Stack them into `X_bin` and `y_bin`, and shuffle with `np.random.permutation(n)`.",
+   "kind": "reveal",
+   "lines": "2-13"
+  },
+  {
+   "description": "Define `sigmoid(z)` and `logistic_loss(theta, X, y)` (average binary cross-entropy with the supplied eps). Define `logistic_gd(X, y, ...)`, which updates `theta -= lr * grad` using `grad = X.T @ (p - y) / len(y)`.",
+   "kind": "reveal",
+   "lines": "15-33"
+  },
+  {
+   "description": "Inside `logistic_gd`, each step computes logits `z = X @ theta`, probabilities `p = sigmoid(z)`, and vectorized cross-entropy gradient `X.T @ (p - y) / len(y)`.",
+   "kind": "focus",
+   "lines": "28-32"
+  },
+  {
+   "answer": "Prepending a column of `1`s lets `theta[0]` act as the bias (intercept) term inside the single matrix-vector product `X @ theta`.",
+   "kind": "predict",
+   "lines": "36-37,50-51",
+   "question": "Why does line 36 prepend a column of ones `np.ones((n, 1))` to `X_bin` to form `X_aug` (and line 50 do the same for `grid`)?"
+  },
+  {
+   "description": "Augment `X_bin` with a column of ones (`X_aug`). Run `logistic_gd` on `X_aug` and `y_bin` with the supplied settings to reach `Final loss: 0.23222309478529818`. Plot both `hist` and the contour map of `sigmoid(grid @ theta)`.",
+   "kind": "reveal",
+   "lines": "35-58"
+  }
+ ],
+ "title": "Binary Logistic Regression from Scratch with Gradient Descent",
+ "version": 1
+}

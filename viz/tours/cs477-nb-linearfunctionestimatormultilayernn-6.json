@@ -1,0 +1,33 @@
+{
+ "code": "# Training the network\nfor epoch in range(epochs):\n    # Forward pass: compute hidden layer activations\n    z1 = w1 * x + b1  # First hidden neuron\n    z2 = w2 * x + b2  # Second hidden neuron\n\n    h1 = relu(z1)  # Activation of first hidden neuron\n    h2 = relu(z2)  # Activation of second hidden neuron\n\n    # Compute output layer prediction\n    y_pred = v1 * h1 + v2 * h2 + c\n\n    # Loss (MSE)\n    loss = (1 / n) * np.sum((y - y_pred) ** 2)\n\n    # Backpropagation\n    # Output layer gradients\n    dy_pred = -(2 / n) * (y - y_pred)\n    dv1 = np.sum(dy_pred * h1)\n    dv2 = np.sum(dy_pred * h2)\n    dc = np.sum(dy_pred)\n\n    # Gradients for hidden layer\n    dh1 = dy_pred * v1 * relu_derivative(z1)\n    dh2 = dy_pred * v2 * relu_derivative(z2)\n\n    dw1 = np.sum(dh1 * x)\n    db1 = np.sum(dh1)\n    dw2 = np.sum(dh2 * x)\n    db2 = np.sum(dh2)\n\n    # Update parameters\n    v1 -= learning_rate * dv1\n    v2 -= learning_rate * dv2\n    c -= learning_rate * dc\n    w1 -= learning_rate * dw1\n    b1 -= learning_rate * db1\n    w2 -= learning_rate * dw2\n    b2 -= learning_rate * db2\n\n    # Print loss every 100 iterations\n    if epoch % 100 == 0:\n        print(f\"Epoch {epoch}: Loss = {loss:.4f}\")",
+ "description": "You trace forward prediction and backpropagation through the small network.",
+ "example": "cs477-nb-linearfunctionestimatormultilayernn-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You compute two weighted inputs, apply rectified linear unit activations, and combine them into y_pred. The loss averages squared residuals.",
+   "kind": "reveal",
+   "lines": "1-14"
+  },
+  {
+   "description": "You compute output gradients for v1, v2, and c. Each output weight gradient uses its corresponding hidden activation.",
+   "kind": "reveal",
+   "lines": "16-21"
+  },
+  {
+   "answer": "Each hidden gradient multiplies dy_pred by its output weight and relu_derivative at its weighted input. Multiplying by x then gives the input-weight gradient.",
+   "kind": "predict",
+   "lines": "24-30",
+   "question": "Which quantities control the gradient passed to each hidden neuron's input parameters?"
+  },
+  {
+   "description": "You update all seven parameters and print every hundred epochs. The recorded loss falls by epoch 100 and prints as 0.0000 from epoch 200 onward.",
+   "kind": "reveal",
+   "lines": "32-43"
+  }
+ ],
+ "title": "Train two hidden ReLU neurons",
+ "version": 1
+}

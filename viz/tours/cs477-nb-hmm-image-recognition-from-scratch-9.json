@@ -1,0 +1,33 @@
+{
+ "code": "def predict(seq, models):\n    scores = np.array([sequence_loglik(seq, models[c]) for c in range(10)])\n    return int(np.argmax(scores)), scores\n\ny_pred = []\nall_scores = []\nfor seq in X_test:\n    label, scores = predict(seq, models)\n    y_pred.append(label)\n    all_scores.append(scores)\n\ny_pred = np.array(y_pred)\nall_scores = np.vstack(all_scores)\n\nacc = accuracy_score(y_test, y_pred)\nprint(f\"Test Accuracy: {acc:.4f}\")\nprint(classification_report(y_test, y_pred))\n\ncm = confusion_matrix(y_test, y_pred)\nfig = plt.figure(figsize=(5,4))\nplt.imshow(cm, interpolation='nearest')\nplt.title('Confusion Matrix (HMM columns-as-sequence)')\nplt.xlabel('Predicted'); plt.ylabel('True')\nplt.xticks(range(10), range(10))\nplt.yticks(range(10), range(10))\nfor (i, j), v in np.ndenumerate(cm):\n    plt.text(j, i, str(v), ha='center', va='center')\nplt.tight_layout()\nplt.show()",
+ "description": "You score each test sequence under the class models and evaluate the selected labels.",
+ "example": "cs477-nb-hmm-image-recognition-from-scratch-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You compute sequence_loglik under each class model. argmax selects the index with the largest score, and predict returns both the label and score array.",
+   "kind": "reveal",
+   "lines": "1-3"
+  },
+  {
+   "description": "You collect one predicted label and score array per test sequence. vstack arranges those score arrays into rows.",
+   "kind": "reveal",
+   "lines": "5-13"
+  },
+  {
+   "answer": "Both compare y_test with y_pred. all_scores retains likelihood scores but is separate from these label comparisons.",
+   "kind": "predict",
+   "lines": "15-19",
+   "question": "Which arrays determine the accuracy and confusion matrix?"
+  },
+  {
+   "description": "You print the metrics and request a confusion-matrix display with true labels on rows and predicted labels on columns. The recording reports Test Accuracy: 0.7662.",
+   "kind": "reveal",
+   "lines": "15-29"
+  }
+ ],
+ "title": "Classify sequences by their model likelihoods",
+ "version": 1
+}

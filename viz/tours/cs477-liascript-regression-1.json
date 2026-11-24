@@ -1,0 +1,38 @@
+{
+ "code": "\n# Core libraries\nimport math\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# Data and models\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, PolynomialFeatures\nfrom sklearn.linear_model import LinearRegression, Ridge, Lasso, SGDRegressor, LogisticRegression\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.metrics import mean_squared_error, r2_score, confusion_matrix, ConfusionMatrixDisplay\nfrom sklearn.metrics import roc_curve, auc, RocCurveDisplay, precision_recall_fscore_support, classification_report\nfrom sklearn.datasets import load_breast_cancer, load_iris\n\n# For reproducibility\nnp.random.seed(42)\n\n# Matplotlib defaults (avoid seaborn; keep neutral style for clarity)\nplt.rcParams[\"figure.figsize\"] = (6,4)\nplt.rcParams[\"axes.grid\"] = True\n\nprint(\"Environment ready.\")",
+ "description": "Import NumPy, Matplotlib, and scikit-learn regression/classification models, metrics, and datasets, then set the random seed and plot defaults.",
+ "example": "cs477-liascript-regression-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Import `math`, `numpy`, `matplotlib.pyplot`, and scikit-learn tools for data splitting (`train_test_split`), preprocessing (`StandardScaler`, `PolynomialFeatures`), linear models (`LinearRegression`, `Ridge`, `Lasso`, `SGDRegressor`, `LogisticRegression`), and `Pipeline`.",
+   "kind": "reveal",
+   "lines": "2-11"
+  },
+  {
+   "description": "Import regression and classification evaluation metrics (`mean_squared_error`, `r2_score`, `confusion_matrix`, `roc_curve`, `auc`, `classification_report`) and the built-in `load_breast_cancer` and `load_iris` datasets.",
+   "kind": "reveal",
+   "lines": "12-15"
+  },
+  {
+   "description": "Set NumPy's random seed to the supplied value for reproducible runs, configure `plt.rcParams` for figure size `(6, 4)` and axes grid, and print `\"Environment ready.\"`.",
+   "kind": "reveal",
+   "lines": "16-23"
+  },
+  {
+   "description": "Notice the five linear models imported on line 10: `LinearRegression` (OLS), `Ridge` (L2 penalty), `Lasso` (L1 penalty), `SGDRegressor` (stochastic gradient descent), and `LogisticRegression` (classification).",
+   "kind": "focus",
+   "lines": "9-11"
+  },
+  {
+   "answer": "It prints `Environment ready.` on line 23 after importing the libraries and configuring NumPy and Matplotlib.",
+   "kind": "predict",
+   "lines": "17-23",
+   "question": "What does this setup cell print when executed?"
+  }
+ ],
+ "title": "Environment Setup for Linear, Regularized, and Logistic Regression",
+ "version": 1
+}

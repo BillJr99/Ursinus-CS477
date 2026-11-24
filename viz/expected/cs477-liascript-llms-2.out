@@ -1,0 +1,2 @@
+attention weights over ['the','black','cat']: [0.22 0.23 0.56]
+context vector: [0.22 0.23 0.56 1.  ]

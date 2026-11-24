@@ -1,0 +1,38 @@
+{
+ "code": "# Ridge\nridge_pipe = Pipeline([\n    (\"scaler\", StandardScaler()),\n    (\"ridge\", Ridge())\n])\n\nridge_params = {\n    \"ridge__alpha\": [0.001, 0.01, 0.1, 1, 10, 50, 100, 250],\n    \"ridge__fit_intercept\": [True, False]\n}\n\nridge_grid = GridSearchCV(\n    ridge_pipe,\n    ridge_params,\n    cv=5,\n    scoring=\"r2\",\n    n_jobs=-1\n)\n\nridge_grid.fit(X_train, y_train)\n\nprint(\"Best Ridge parameters:\", ridge_grid.best_params_)\nprint(\"Best Ridge CV score:\", ridge_grid.best_score_)\n\ny_pred_ridge = ridge_grid.predict(X_test)\nprint(\"Ridge Test R²:\", r2_score(y_test, y_pred_ridge))\nprint(\"Ridge Test MSE:\", mean_squared_error(y_test, y_pred_ridge))\n\n# Lasso\nlasso_pipe = Pipeline([\n    (\"scaler\", StandardScaler()),\n    (\"lasso\", Lasso(max_iter=5000))\n])\n\nlasso_params = {\n    \"lasso__alpha\": [0.0001, 0.001, 0.01, 0.1, 1, 5, 10],\n    \"lasso__fit_intercept\": [True, False]\n}\n\nlasso_grid = GridSearchCV(\n    lasso_pipe,\n    lasso_params,\n    cv=5,\n    scoring=\"r2\",\n    n_jobs=-1\n)\n\nlasso_grid.fit(X_train, y_train)\n\nprint(\"Best Lasso parameters:\", lasso_grid.best_params_)\nprint(\"Best Lasso CV score:\", lasso_grid.best_score_)\n\ny_pred_lasso = lasso_grid.predict(X_test)\nprint(\"Lasso Test R²:\", r2_score(y_test, y_pred_lasso))\nprint(\"Lasso Test MSE:\", mean_squared_error(y_test, y_pred_lasso))",
+ "description": "You select regularization settings by cross-validation and compare test metrics.",
+ "example": "cs477-nb-linear-logistic-regression-demo-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You place scaling and Ridge regression in one pipeline. The grid compares alpha values and intercept choices with five-fold R-squared scoring.",
+   "kind": "reveal",
+   "lines": "1-18"
+  },
+  {
+   "description": "You fit the Ridge search on training rows and evaluate its selected model on test rows. The recording selects alpha=10 with an intercept and reports test R-squared.",
+   "kind": "reveal",
+   "lines": "20-27"
+  },
+  {
+   "description": "You build a second scaled pipeline for Lasso and its own alpha grid. It uses the same fold count and scoring metric.",
+   "kind": "reveal",
+   "lines": "29-46"
+  },
+  {
+   "answer": "Lasso's recorded cross-validation score is slightly higher than Ridge's. Its recorded test R-squared is slightly lower.",
+   "kind": "predict",
+   "lines": "50-55",
+   "question": "Does Lasso's slightly higher recorded cross-validation score also give it a higher recorded test R-squared?"
+  },
+  {
+   "description": "You print the selected Lasso settings and test errors. The recording selects alpha=1 with an intercept and reports test mean squared error.",
+   "kind": "reveal",
+   "lines": "48-55"
+  }
+ ],
+ "title": "Tune Ridge and Lasso pipelines",
+ "version": 1
+}

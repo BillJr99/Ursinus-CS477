@@ -1,0 +1,45 @@
+{
+ "code": "import numpy as np\n\ndef sgd_linear_svm(X, y, C=1.0, lr=1e-2, epochs=200):\n    # y in {-1, +1}\n    n, d = X.shape\n    w = np.zeros(d); b = 0.0\n    for _ in range(epochs):\n        for i in np.random.permutation(n):\n            margin = y[i]*(X[i].dot(w) + b)\n            if margin >= 1:\n                # Only regularization term\n                w -= lr * w\n            else:\n                # Regularization + hinge penalty gradient\n                w -= lr * (w - C * y[i] * X[i])\n                b += lr * (C * y[i])\n    return w, b\n\n# Example on a linearly separable toy set\nrng = np.random.default_rng(0)\nX_pos = rng.normal(loc=[2,2], scale=0.5, size=(50,2))\nX_neg = rng.normal(loc=[-2,-2], scale=0.5, size=(50,2))\nX_toy = np.vstack([X_pos, X_neg])\ny_toy = np.hstack([np.ones(50), -np.ones(50)])\n\nw, b = sgd_linear_svm(X_toy, y_toy, C=1.0, lr=1e-2, epochs=20)\nprint(\"w:\", w, \"b:\", b)",
+ "description": "Update weight vector w and bias b sample by sample using the hinge-loss margin y[i] * (X[i].dot(w) + b) and L2 regularization.",
+ "example": "cs477-liascript-perceptronsmodelevaluation-10",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Define `sgd_linear_svm(X, y, C=1.0, lr=1e-2, epochs=200)`: initialize `w = np.zeros(d)` and `b = 0.0`, then loop over random permutations of sample indices `i` and compute `margin = y[i]*(X[i].dot(w) + b)`.",
+   "kind": "reveal",
+   "lines": "1-17"
+  },
+  {
+   "description": "Generate 50 positive points around `[2, 2]` (`y = +1`) and 50 negative points around `[-2, -2]` (`y = -1`), stack them into `X_toy` and `y_toy`, and run `sgd_linear_svm` for 20 epochs.",
+   "kind": "reveal",
+   "lines": "19-27"
+  },
+  {
+   "description": "Compare the two branches on lines 10-16. When `margin >= 1`, hinge loss is zero, so `w` only shrinks by the L2 regularization step `w -= lr * w`. When `margin < 1`, the update also adds `lr * C * y[i] * X[i]` to `w` and `lr * C * y[i]` to `b`.",
+   "kind": "focus",
+   "lines": "9-16"
+  },
+  {
+   "answer": "Because `w` and `b` are zero, `margin` is `0.0`, which is less than `1`, so the `else` branch (lines 15-16) executes and nudges `w` and `b` toward `y[i] * X[i]` and `y[i]`.",
+   "kind": "predict",
+   "lines": "6,9-16",
+   "question": "On the very first sample (`w = [0, 0]`, `b = 0.0`), what is `margin` on line 9, and which branch (`if margin >= 1` or `else`) executes?"
+  },
+  {
+   "description": "On the first sample (`margin = 0.0 < 1`), execution enters the `else` branch at line 15 to apply both the regularization step and the hinge-loss update.",
+   "kind": "run",
+   "lines": "15",
+   "trace_step": 14
+  },
+  {
+   "description": "Once `w` and `b` grow large enough that `margin >= 1` for a sample, line 12 applies only the regularization shrinkage `w -= lr * w`.",
+   "kind": "run",
+   "lines": "12",
+   "trace_step": 79
+  }
+ ],
+ "title": "Linear SVM Training via Hinge-Loss Subgradient Descent",
+ "version": 1
+}

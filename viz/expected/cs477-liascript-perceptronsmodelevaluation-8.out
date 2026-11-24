@@ -1,0 +1,5 @@
+t=0.00: Precision=0.629, Recall=1.000, F1=0.773
+t=0.05: Precision=0.909, Recall=1.000, F1=0.952
+t=0.10: Precision=0.928, Recall=1.000, F1=0.963
+t=0.15: Precision=0.928, Recall=1.000, F1=0.963
+t=0.20: Precision=0.957, Recall=1.000, F1=0.978

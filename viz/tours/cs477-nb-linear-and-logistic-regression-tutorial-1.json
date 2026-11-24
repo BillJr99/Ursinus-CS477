@@ -1,0 +1,38 @@
+{
+ "code": "\n# Core libraries\nimport math\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# Data and models\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, PolynomialFeatures\nfrom sklearn.linear_model import LinearRegression, Ridge, Lasso, SGDRegressor, LogisticRegression\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.metrics import mean_squared_error, r2_score, confusion_matrix, ConfusionMatrixDisplay\nfrom sklearn.metrics import roc_curve, auc, RocCurveDisplay, precision_recall_fscore_support, classification_report\nfrom sklearn.datasets import load_breast_cancer, load_iris\n\n# For reproducibility\nnp.random.seed(42)\n\n# Matplotlib defaults (avoid seaborn; keep neutral style for clarity)\nplt.rcParams[\"figure.figsize\"] = (6,4)\nplt.rcParams[\"axes.grid\"] = True\n\nprint(\"Environment ready.\")\n",
+ "description": "Import NumPy, Matplotlib, and scikit-learn models, preprocessing utilities, metrics, and datasets, then set NumPy's random seed and Matplotlib plot defaults.",
+ "example": "cs477-nb-linear-and-logistic-regression-tutorial-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Import `math`, `numpy`, `matplotlib.pyplot`, and scikit-learn utilities for train/test splitting, feature scaling and polynomial expansion, linear and logistic regression models (`LinearRegression`, `Ridge`, `Lasso`, `SGDRegressor`, `LogisticRegression`), and `Pipeline`.",
+   "kind": "reveal",
+   "lines": "2-11"
+  },
+  {
+   "description": "Import regression and classification evaluation metrics (`mean_squared_error`, `r2_score`, `confusion_matrix`, `roc_curve`, `auc`, `classification_report`) and the `load_breast_cancer` and `load_iris` dataset loaders.",
+   "kind": "reveal",
+   "lines": "12-15"
+  },
+  {
+   "description": "Seed NumPy's random generator with the supplied value, set `plt.rcParams` for `(6, 4)` figures and grid lines, and print `\"Environment ready.\"`.",
+   "kind": "reveal",
+   "lines": "16-23"
+  },
+  {
+   "description": "Look at lines 9-11 and 17: `StandardScaler`, `PolynomialFeatures`, and the five `linear_model` estimators plug into `Pipeline` objects. Setting NumPy's random seed makes every synthetic data draw repeatable.",
+   "kind": "focus",
+   "lines": "9-11,17"
+  },
+  {
+   "answer": "It prints `Environment ready.` on line 23 after importing the libraries and configuring NumPy and Matplotlib.",
+   "kind": "predict",
+   "lines": "17-23",
+   "question": "What output does this setup cell print when run?"
+  }
+ ],
+ "title": "Environment Setup for the Linear and Logistic Regression Tutorial",
+ "version": 1
+}

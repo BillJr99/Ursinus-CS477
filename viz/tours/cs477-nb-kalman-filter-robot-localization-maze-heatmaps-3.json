@@ -1,0 +1,33 @@
+{
+ "code": "@dataclass\nclass Maze:\n    grid: np.ndarray  # 0=free, 1=wall\n    scale: float      # meters per cell\n\ndef make_maze():\n    grid = np.array([\n        [0,0,0,0,0,0,0,0,0,0],\n        [0,1,1,0,1,1,0,1,1,0],\n        [0,0,0,0,0,0,0,0,0,0],\n        [0,1,0,1,0,1,0,1,0,1],\n        [0,0,0,0,0,0,0,0,0,0],\n        [0,1,1,0,1,1,0,1,1,0],\n        [0,0,0,0,0,0,0,0,0,0]\n    ], dtype=int)\n    scale = 1.0  # 1 meter per cell\n    return Maze(grid=grid, scale=scale)\n\nmaze = make_maze()\nH, W = maze.grid.shape\nfree_mask = (maze.grid == 0)\nprint(\"Maze size:\", H, \"x\", W, \"| free cells:\", free_mask.sum())",
+ "description": "You define free cells, walls, and their world-unit scale.",
+ "example": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You define Maze with a grid and scale. The comments assign zero to free cells, one to walls, and meters per cell to scale.",
+   "kind": "reveal",
+   "lines": "1-4"
+  },
+  {
+   "description": "You construct a seven-row grid with ten columns. The returned maze uses scale=1.0, or one meter per cell.",
+   "kind": "reveal",
+   "lines": "6-17"
+  },
+  {
+   "answer": "Entries equal to zero become True. Wall entries become False.",
+   "kind": "predict",
+   "lines": "20-21",
+   "question": "Which grid entries become True in free_mask?"
+  },
+  {
+   "description": "You construct the maze and count True entries in free_mask. The recorded output reports a 7 by 10 grid with 53 free cells.",
+   "kind": "reveal",
+   "lines": "19-22"
+  }
+ ],
+ "title": "Build the scaled maze grid",
+ "version": 1
+}

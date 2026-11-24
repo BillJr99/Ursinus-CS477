@@ -1,0 +1,45 @@
+{
+ "code": "import sys, platform, subprocess\ndef _sh(cmd):\n    try:\n        out = subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT, text=True)\n    except Exception as e:\n        out = f\"[command failed] {e}\"\n    print(out)\n\nprint(\"Python:\", sys.version)\nprint(\"Platform:\", platform.platform())\nprint(\"In Colab:\", \"google.colab\" in sys.modules)\n\n# (notebook only) !pip -q install --upgrade pip\n# (notebook only) !pip -q install numpy matplotlib",
+ "description": "Import sys, platform, and subprocess, define a shell helper _sh(cmd), and print the Python version, OS platform, and whether google.colab is loaded.",
+ "example": "cs477-nb-astar-search-with-graphics-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model",
+ "steps": [
+  {
+   "description": "Import `sys`, `platform`, and `subprocess` and define `_sh(cmd)` to run a shell command with `subprocess.check_output` inside a `try/except` block.",
+   "kind": "reveal",
+   "lines": "1-7"
+  },
+  {
+   "description": "Print `sys.version`, `platform.platform()`, and `\"google.colab\" in sys.modules` to report the runtime environment.",
+   "kind": "reveal",
+   "lines": "9-14"
+  },
+  {
+   "description": "Look at line 11 (`\"google.colab\" in sys.modules`): checking `sys.modules` tests whether the `google.colab` package has been imported in the current Python session, returning a boolean.",
+   "kind": "focus",
+   "lines": "9-11"
+  },
+  {
+   "answer": "`_sh(cmd)` is only defined and never called in this cell, and `\"google.colab\" in sys.modules` evaluates to `False` outside Colab.",
+   "kind": "predict",
+   "lines": "2-11",
+   "question": "Does `_sh(cmd)` on lines 2-7 execute during this cell, and what boolean does `\"google.colab\" in sys.modules` print when running outside Google Colab?"
+  },
+  {
+   "description": "Line 9 prints the active `sys.version` string.",
+   "kind": "run",
+   "lines": "9",
+   "trace_step": 2
+  },
+  {
+   "description": "Line 11 checks `\"google.colab\" in sys.modules` and prints `In Colab: False`.",
+   "kind": "run",
+   "lines": "11",
+   "trace_step": 4
+  }
+ ],
+ "title": "Inspecting the Python Runtime and Notebook Environment",
+ "version": 1
+}

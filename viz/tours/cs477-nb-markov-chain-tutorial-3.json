@@ -1,0 +1,33 @@
+{
+ "code": "\nstates = [\"Sunny\", \"Cloudy\", \"Rainy\"]\nP = np.array([\n    [0.7, 0.2, 0.1],\n    [0.3, 0.4, 0.3],\n    [0.2, 0.3, 0.5]\n], dtype=float)\n\ndiags = check_stochastic_matrix(P)\nprint(\"Diagnostics:\", {k: (v.tolist() if isinstance(v, np.ndarray) else v) for k, v in diags.items()})\nassert diags[\"is_stochastic\"], \"P must be a valid row-stochastic (square) matrix.\"\n",
+ "description": "You define state probabilities and inspect row-stochastic diagnostics.",
+ "example": "cs477-nb-markov-chain-tutorial-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You order states as Sunny, Cloudy, and Rainy and define a three-by-three transition matrix. Each row gives probabilities for the next state.",
+   "kind": "reveal",
+   "lines": "2-7"
+  },
+  {
+   "answer": "Yes. The diagnostics treat the first row's floating-point sum, 0.9999999999999999, as close to one, and the other two sums print as 1.0.",
+   "kind": "predict",
+   "lines": "4-6",
+   "question": "Do the three entries in each row sum to one?"
+  },
+  {
+   "description": "You call check_stochastic_matrix and print its diagnostics. They report a square matrix with entries between 0.1 and 0.7 and valid probability bounds.",
+   "kind": "reveal",
+   "lines": "9-10"
+  },
+  {
+   "description": "You require is_stochastic to hold with an assertion. The supplied diagnostics mark it True, so this recorded matrix passes the check.",
+   "kind": "reveal",
+   "lines": "11"
+  }
+ ],
+ "title": "Validate the weather transition matrix",
+ "version": 1
+}

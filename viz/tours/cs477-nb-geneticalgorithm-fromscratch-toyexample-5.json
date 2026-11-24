@@ -1,0 +1,38 @@
+{
+ "code": "from dataclasses import dataclass\n\n@dataclass\nclass GAConfig:\n    pop_size:int = 60\n    gens:int = 120\n    tournament:int = 3\n    alpha:float = 0.5          # BLX-α\n    mut_sigma:float = 0.15\n    mut_prob:float = 0.2\n    elite:int = 4\n    seed:int = SEED\n\nCFG = GAConfig()\n\ndef evaluate(pop):\n    return np.array([fitness(ind) for ind in pop], dtype=float)\n\ndef evolve(cfg=CFG, verbose=True):\n    rng_local = np.random.default_rng(cfg.seed)\n    global rng\n    rng = rng_local  # use local seed\n\n    pop = sample_uniform(cfg.pop_size)\n    fit = evaluate(pop)\n\n    best_hist = []\n    mean_hist = []\n    snap_pop = {}\n\n    for g in range(cfg.gens):\n        order = np.argsort(-fit)\n        pop = pop[order]\n        fit = fit[order]\n\n        best_hist.append(float(fit[0]))\n        mean_hist.append(float(np.mean(fit)))\n\n        if verbose and (g % 10 == 0 or g == cfg.gens-1):\n            print(f\"Gen {g:03d} | best={fit[0]:.4f} | mean={np.mean(fit):.4f} | best_x={pop[0]}\")\n\n        # Keep snapshots (start, mid, end)\n        if g in [0, cfg.gens//2, cfg.gens-1]:\n            snap_pop[g] = pop.copy()\n\n        # Elitism\n        new_pop = [pop[i].copy() for i in range(cfg.elite)]\n\n        # Create offspring\n        while len(new_pop) < cfg.pop_size:\n            i = tournament_select(pop, fit, cfg.tournament)\n            j = tournament_select(pop, fit, cfg.tournament)\n            c = blx_alpha_crossover(pop[i], pop[j], cfg.alpha)\n            c = gaussian_mutation(c, sigma=cfg.mut_sigma, p=cfg.mut_prob)\n            new_pop.append(c)\n\n        pop = np.array(new_pop)\n        fit = evaluate(pop)\n\n    # final sort\n    order = np.argsort(-fit)\n    pop = pop[order]; fit = fit[order]\n\n    return pop, fit, np.array(best_hist), np.array(mean_hist), snap_pop\n\npop, fit, best_hist, mean_hist, snap_pop = evolve(CFG, verbose=True)\nbest_x, best_f = pop[0], fit[0]\nprint(\"Best found:\", best_x, \"fitness:\", best_f)",
+ "description": "You trace selection, retained candidates, and offspring through the genetic algorithm.",
+ "example": "cs477-nb-geneticalgorithm-fromscratch-toyexample-5",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You configure a population of 60 for the supplied generation count and retain four elite candidates. evaluate calls fitness once for each candidate.",
+   "kind": "reveal",
+   "lines": "1-17"
+  },
+  {
+   "description": "You seed the generator, sample a population, and sort by descending fitness each generation. The histories record that generation's best and mean before offspring creation.",
+   "kind": "reveal",
+   "lines": "19-37"
+  },
+  {
+   "description": "You print selected generations and copy three population snapshots. Elitism copies the first four sorted candidates into new_pop.",
+   "kind": "reveal",
+   "lines": "39-47"
+  },
+  {
+   "answer": "It selects two parents by tournament, applies crossover and mutation, and appends the child. It repeats until new_pop reaches pop_size, then evaluates the new population.",
+   "kind": "predict",
+   "lines": "50-58",
+   "question": "How does the loop fill the positions after the elite copies?"
+  },
+  {
+   "description": "You sort once more after the final offspring generation and return the arrays and snapshots. The recording ends with best_x=[0., -0.] and fitness -0.0.",
+   "kind": "reveal",
+   "lines": "60-68"
+  }
+ ],
+ "title": "Follow the evolution loop",
+ "version": 1
+}

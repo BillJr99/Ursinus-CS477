@@ -1,0 +1,33 @@
+{
+ "code": "\nfrom sklearn.decomposition import PCA as SKPCA\nsk = SKPCA(n_components=2).fit(X2)\nprint(\"sklearn explained variance:\", sk.explained_variance_)\nprint(\"sklearn explained variance ratio:\", sk.explained_variance_ratio_)\nprint(\"Scratch PC1 (unit):\", comps2[:,0])\nprint(\"SK PC1 (unit):     \", sk.components_[0])\nprint(\"Cosine similarity:\", np.dot(comps2[:,0], sk.components_[0]))\n",
+ "description": "You fit library PCA and compare its first direction with the stored scratch result.",
+ "example": "cs477-nb-pca-from-scratch-and-sklearn-4",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You fit SKPCA with two components on X2. The recording reports their explained variances.",
+   "kind": "reveal",
+   "lines": "2-5"
+  },
+  {
+   "description": "You print the scratch direction from a column of comps2 and the library direction from a row of components_. Both recorded vectors are [0.45113454,0.89245595].",
+   "kind": "reveal",
+   "lines": "6-7"
+  },
+  {
+   "answer": "The recording prints 1.0. Their unit directions align in this run.",
+   "kind": "predict",
+   "lines": "8",
+   "question": "What dot product results for the two recorded matching unit vectors?"
+  },
+  {
+   "description": "You see the matching directions beside the library variance ratios. The first recorded component accounts for most of the variance.",
+   "kind": "focus",
+   "lines": "4-8"
+  }
+ ],
+ "title": "Compare scratch and library component directions",
+ "version": 1
+}

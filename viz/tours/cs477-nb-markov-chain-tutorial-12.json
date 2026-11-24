@@ -1,0 +1,33 @@
+{
+ "code": "import numpy as np\nfrom sklearn.preprocessing import normalize\n\n# -------------------------------\n# PageRank example using scikit-learn + NumPy\n# -------------------------------\n\n# Tiny directed web graph with 4 pages (0,1,2,3)\n# A[i, j] = 1 if page i links to page j\nA = np.array([\n    [0, 1, 1, 0],  # 0 -> 1,2\n    [0, 0, 1, 0],  # 1 -> 2\n    [1, 0, 0, 1],  # 2 -> 0,3\n    [0, 0, 0, 0],  # 3 -> (dangling)\n], dtype=float)\n\nn = A.shape[0]\n\n# Handle dangling nodes: replace zero rows with ones (so they become uniform after normalization)\nrow_sums = A.sum(axis=1)\ndangling = (row_sums == 0)\nA[dangling, :] = 1.0\n\n# Row-normalize adjacency matrix to get transition matrix P\nP = normalize(A, norm=\"l1\", axis=1)  # each row sums to 1\n\n# Construct Google matrix G for PageRank\nalpha = 0.85  # damping factor\nv = np.ones(n) / n  # teleportation distribution (uniform)\nG = alpha * P + (1 - alpha) * np.outer(np.ones(n), v)\n\n# Power iteration to compute PageRank (stationary distribution of G)\ndef pagerank_power_iteration(G, tol=1e-8, max_iter=1000):\n    n = G.shape[0]\n    pi = np.ones(n) / n  # initial distribution\n    for it in range(max_iter):\n        pi_new = pi @ G\n        if np.linalg.norm(pi_new - pi, ord=1) < tol:\n            return pi_new, it + 1\n        pi = pi_new\n    return pi, max_iter\n\npi, iters = pagerank_power_iteration(G)\n\n# Display results\nprint(\"Google matrix G:\\n\", G)\nprint(\"\\nPageRank vector (stationary distribution):\")\nfor i, score in enumerate(pi):\n    print(f\"Page {i}: {score:.4f}\")\nprint(\"\\nConverged in\", iters, \"iterations; sum(pi) =\", pi.sum())\n",
+ "description": "You turn link rows into probabilities and iterate a distribution toward a stationary result.",
+ "example": "cs477-nb-markov-chain-tutorial-12",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You store directed links in A and find rows whose sums are zero. Replacing those rows with ones prepares dangling pages for uniform outgoing probabilities.",
+   "kind": "reveal",
+   "lines": "1-22"
+  },
+  {
+   "description": "You normalize rows into P and mix them with uniform teleportation. G is the resulting PageRank transition matrix.",
+   "kind": "reveal",
+   "lines": "24-30"
+  },
+  {
+   "answer": "It compares the L1 norm of pi_new minus pi with tol. That norm sums the absolute component changes.",
+   "kind": "predict",
+   "lines": "33-41",
+   "question": "What comparison lets power iteration return before max_iter?"
+  },
+  {
+   "description": "You repeatedly multiply pi by G, then print the matrix, page scores, and distribution sum. The recording assigns Page 2 the largest score.",
+   "kind": "reveal",
+   "lines": "33-50"
+  }
+ ],
+ "title": "Build and iterate a PageRank transition matrix",
+ "version": 1
+}

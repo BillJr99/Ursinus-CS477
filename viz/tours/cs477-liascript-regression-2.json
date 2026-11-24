@@ -1,0 +1,38 @@
+{
+ "code": "\n# Generate a simple 1D synthetic dataset: y = 3x + 5 + noise\nn = 100\nX = 2 * np.random.rand(n, 1)  # feature in [0, 2)\ntheta0_true = 5.0\ntheta1_true = 3.0\ny_true = theta1_true * X[:, 0] + theta0_true\nnoise = np.random.randn(n) * 0.8\ny = y_true + noise\n\n# Visualize\nplt.scatter(X[:, 0], y, alpha=0.7, label=\"data\")\nplt.xlabel(\"x\")\nplt.ylabel(\"y\")\nplt.title(\"Synthetic data: approximately y = 3x + 5 + noise\")\nplt.legend()\nplt.show()",
+ "description": "Draw uniform feature values X in [0, 2), compute a linear target with the supplied slope and intercept, and add Gaussian noise. Scatter-plot (X[:, 0], y).",
+ "example": "cs477-liascript-regression-2",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Set `n` to the supplied sample count and draw `X = 2 * np.random.rand(n, 1)` uniformly on `[0, 2)`. Compute the noiseless linear target `y_true = theta1_true * X[:, 0] + theta0_true` using the supplied intercept and slope.",
+   "kind": "reveal",
+   "lines": "2-7"
+  },
+  {
+   "description": "Draw standard normal values with `np.random.randn(n)`, scaled by the supplied noise factor. Add them to `y_true` to form the observed target vector `y`.",
+   "kind": "reveal",
+   "lines": "8-9"
+  },
+  {
+   "description": "Notice the array shapes on lines 4 and 7: `X` has 2D shape with one feature column for scikit-learn compatibility. `X[:, 0]` extracts its 1D column with one value per sample to match the 1D `noise` vector.",
+   "kind": "focus",
+   "lines": "4,7-9"
+  },
+  {
+   "answer": "At `x = 0`, `y_true` equals the supplied intercept. At `x = 2`, it equals the supplied slope times 2 plus that intercept. Thus, the noisy points `y` cluster around the line from `(0, 5)` to `(2, 11)`.",
+   "kind": "predict",
+   "lines": "4-9",
+   "question": "As `X[:, 0]` ranges from `0` to `2`, between what two values does the noiseless line `y_true = theta1_true * X[:, 0] + theta0_true` range?"
+  },
+  {
+   "description": "Plot `X[:, 0]` against `y` with the supplied opacity and label `\"data\"`. Label the `x` and `y` axes, add the title and legend, and display the plot with `plt.show()`.",
+   "kind": "reveal",
+   "lines": "11-17"
+  }
+ ],
+ "title": "Generating and Plotting Synthetic 1D Linear Regression Data",
+ "version": 1
+}

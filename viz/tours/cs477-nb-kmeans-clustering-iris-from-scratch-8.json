@@ -1,0 +1,33 @@
+{
+ "code": "ks = range(1,7)\ninertias = []\nfor kk in ks:\n    _, _, inh, _ = kmeans(X_std, k=kk, max_iter=200, tol=1e-6, n_init=10, seed=SEED)\n    inertias.append(inh)\n\nfig = plt.figure(figsize=(6,4))\nplt.plot(list(ks), inertias, marker='o')\nplt.xlabel(\"k\"); plt.ylabel(\"Inertia\")\nplt.title(\"Elbow Curve\")\nplt.xticks(list(ks))\nplt.tight_layout(); plt.show()\n\nprint(\"Inertias:\", list(zip(ks, np.round(inertias, 2))))",
+ "description": "You collect clustering results for an elbow curve.",
+ "example": "cs477-nb-kmeans-clustering-iris-from-scratch-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You fit standardized data with k from one through six. Each call uses ten initializations and appends the returned inertia.",
+   "kind": "reveal",
+   "lines": "1-5"
+  },
+  {
+   "answer": "k=6 has the lowest recorded value, 81.53. The recorded values decrease across the tested counts.",
+   "kind": "predict",
+   "lines": "8-11",
+   "question": "Which cluster count has the lowest recorded inertia in this comparison?"
+  },
+  {
+   "description": "You plot each tested k against its inertia and title the chart Elbow Curve. Every tested count receives an axis tick.",
+   "kind": "reveal",
+   "lines": "7-12"
+  },
+  {
+   "description": "You print rounded inertia pairs, from 600.0 at k=1 to 81.53 at k=6. This block displays the comparison and leaves the cluster-count choice to you.",
+   "kind": "reveal",
+   "lines": "14"
+  }
+ ],
+ "title": "Compare inertia across cluster counts",
+ "version": 1
+}

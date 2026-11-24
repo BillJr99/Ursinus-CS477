@@ -1,0 +1,33 @@
+{
+ "code": "res = {}\nfor label, strat in [(\"ε‑greedy\", eg), (\"UCB1\", ucb), (\"Thompson\", ts)]:\n    out = simulate_single(strat, T, seed=rng.integers(0, 1<<31))\n    res[label] = out\n    cum = np.cumsum(out[\"rewards\"])\n    regret = best_mu*np.arange(1, T+1) - cum\n    print(f\"{label}: final cum. reward = {cum[-1]:.2f} | final regret = {regret[-1]:.2f}\")",
+ "description": "You store strategy traces and compare their cumulative rewards with an oracle baseline.",
+ "example": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-10",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You simulate epsilon-greedy, UCB1, and Thompson strategies with separately sampled seeds. res keeps each returned trace under its label.",
+   "kind": "reveal",
+   "lines": "1-4"
+  },
+  {
+   "description": "You accumulate the reward sequence with np.cumsum. Its final entry gives the run's total reward.",
+   "kind": "reveal",
+   "lines": "5"
+  },
+  {
+   "answer": "It subtracts the realized cumulative reward. The baseline is best_mu multiplied by the number of completed rounds.",
+   "kind": "predict",
+   "lines": "6",
+   "question": "What does this regret calculation subtract from the oracle baseline?"
+  },
+  {
+   "description": "You print recorded totals of 14965 for epsilon-greedy, 9985 for UCB1, and 14062 for Thompson. Their final regrets are 3035, 8015, and 3938 in these runs.",
+   "kind": "reveal",
+   "lines": "7"
+  }
+ ],
+ "title": "Compare single-run bandit rewards",
+ "version": 1
+}

@@ -1,0 +1,33 @@
+{
+ "code": "# Colab download helper\nimport shutil\nfrom pathlib import Path\ntry:\n    from google.colab import files  # type: ignore\n    if Path('artifacts').exists():\n        shutil.make_archive('artifacts', 'zip', 'artifacts')\n        files.download('artifacts.zip')\n    else:\n        print('No artifacts folder found.')\nexcept Exception as e:\n    print('Colab download helper not available in this environment:', e)",
+ "description": "You follow the artifact directory check and protected download request.",
+ "example": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-16",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You import shutil and Path, then try to import Colab's files helper. Exceptions from that import or later calls reach the same handler.",
+   "kind": "reveal",
+   "lines": "1-5"
+  },
+  {
+   "description": "You make artifacts.zip and request its download when artifacts exists. Otherwise, the helper prints No artifacts folder found.",
+   "kind": "reveal",
+   "lines": "6-10"
+  },
+  {
+   "answer": "The except block prints the helper-unavailable message and the exception text.",
+   "kind": "predict",
+   "lines": "11-12",
+   "question": "Which branch handles an exception from files.download?"
+  },
+  {
+   "description": "You see that message in the recording. It identifies google.colab.files.download as unavailable in code-viz.",
+   "kind": "reveal",
+   "lines": "11-12"
+  }
+ ],
+ "title": "Read the localization download fallback",
+ "version": 1
+}

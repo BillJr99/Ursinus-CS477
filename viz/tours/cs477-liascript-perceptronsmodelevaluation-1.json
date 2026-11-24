@@ -1,0 +1,38 @@
+{
+ "code": "# Core\nimport math\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# scikit-learn\nfrom sklearn.model_selection import train_test_split, KFold, StratifiedKFold, cross_val_score\nfrom sklearn.preprocessing import StandardScaler, PolynomialFeatures\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.linear_model import LinearRegression, LogisticRegression\nfrom sklearn.metrics import (\n    mean_squared_error, r2_score,\n    precision_recall_fscore_support, classification_report,\n    confusion_matrix, ConfusionMatrixDisplay,\n    roc_curve, auc, RocCurveDisplay\n)\nfrom sklearn.datasets import make_regression, load_breast_cancer\n\nnp.random.seed(42)\nplt.rcParams['figure.figsize'] = (6,4)\nplt.rcParams['axes.grid'] = True\n\nprint('Environment ready.')",
+ "description": "Import NumPy, Matplotlib, and scikit-learn splitting, preprocessing, model, and evaluation tools, then fix the random seed and plot defaults.",
+ "example": "cs477-liascript-perceptronsmodelevaluation-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Import `math`, `numpy`, `matplotlib.pyplot`, and scikit-learn utilities for data splitting (`train_test_split`, `KFold`, `StratifiedKFold`, `cross_val_score`), feature scaling and polynomials, pipelines, and linear/logistic models.",
+   "kind": "reveal",
+   "lines": "1-10"
+  },
+  {
+   "description": "Import regression and classification evaluation metrics (`mean_squared_error`, `r2_score`, `confusion_matrix`, `roc_curve`, `auc`, and display helpers) along with `make_regression` and `load_breast_cancer`.",
+   "kind": "reveal",
+   "lines": "11-18"
+  },
+  {
+   "description": "Set NumPy's random seed to the supplied value for reproducible splits and synthetic datasets, configure Matplotlib figure size `(6, 4)` and axes grid, and print `'Environment ready.'`.",
+   "kind": "reveal",
+   "lines": "19-23"
+  },
+  {
+   "description": "Notice how line 7 groups the data-splitting tools while lines 11-16 group the evaluation metrics, and line 19 seeds NumPy's random number generator so every subsequent cell uses repeatable random draws.",
+   "kind": "focus",
+   "lines": "7-16,19"
+  },
+  {
+   "answer": "It prints `Environment ready.` after loading all modules and setting the random seed and Matplotlib defaults.",
+   "kind": "predict",
+   "lines": "19-23",
+   "question": "What does this setup cell print to the console when executed?"
+  }
+ ],
+ "title": "Environment Setup for Model Evaluation and Perceptrons",
+ "version": 1
+}

@@ -1,0 +1,33 @@
+{
+ "code": "import numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nfrom scipy import signal\n\nnp.set_printoptions(precision=4, suppress=True)\nSEED = 123\nrng = np.random.default_rng(SEED)\nprint(\"Seeded.\")\n",
+ "description": "You set array formatting and create a seeded random generator.",
+ "example": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-2",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You import array, table, plotting, and signal tools. Later examples can refer to them through np, pd, plt, and signal.",
+   "kind": "reveal",
+   "lines": "1-4"
+  },
+  {
+   "description": "You set NumPy's displayed precision to four and enable suppress. These options control printed array formatting.",
+   "kind": "reveal",
+   "lines": "6"
+  },
+  {
+   "answer": "default_rng receives the value of SEED to create rng.",
+   "kind": "predict",
+   "lines": "7-8",
+   "question": "Which value initializes the random generator?"
+  },
+  {
+   "description": "You create the generator and print Seeded. That message is the complete supplied output.",
+   "kind": "reveal",
+   "lines": "7-9"
+  }
+ ],
+ "title": "Prepare imports and random sampling",
+ "version": 1
+}

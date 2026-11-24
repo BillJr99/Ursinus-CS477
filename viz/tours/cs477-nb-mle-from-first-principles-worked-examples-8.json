@@ -1,0 +1,33 @@
+{
+ "code": "def numeric_second_derivative(f, theta, h=1e-3):\n    return (f(theta+h) - 2*f(theta) + f(theta-h)) / (h*h)\n\nf = lambda th: cauchy_loglik(th, x, gamma)\nI_obs_num = -numeric_second_derivative(f, theta_hat, h=1e-3)\nci_lo, ci_hi, se = wald_ci(theta_hat, I_obs_num)\nprint(f\"Cauchy: θ̂={theta_hat:.3f}, observed I≈{I_obs_num:.3f}, SE≈{se:.4f}, 95% CI=({ci_lo:.3f}, {ci_hi:.3f})\")",
+ "description": "You approximate the Cauchy log-likelihood's second derivative at the fitted location.",
+ "example": "cs477-nb-mle-from-first-principles-worked-examples-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You estimate a second derivative from f at theta-h, theta, and theta+h. Dividing the centered difference by h squared gives the curvature approximation.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "description": "You define f as the Cauchy log-likelihood with x and gamma fixed. Only the candidate location th varies.",
+   "kind": "reveal",
+   "lines": "4"
+  },
+  {
+   "answer": "It negates the numerical second derivative at theta_hat. The call uses h=1e-3.",
+   "kind": "predict",
+   "lines": "5",
+   "question": "How does the code convert estimated curvature into observed information?"
+  },
+  {
+   "description": "You pass that information estimate to wald_ci. The recording reports theta_hat=0.296, information about 101.447, standard error about 0.0993, and interval (0.102,0.491).",
+   "kind": "reveal",
+   "lines": "5-7"
+  }
+ ],
+ "title": "Estimate uncertainty from likelihood curvature",
+ "version": 1
+}

@@ -1,0 +1,33 @@
+{
+ "code": "import sys, platform, subprocess\ndef _sh(cmd):\n    try:\n        out = subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT, text=True)\n    except Exception as e:\n        out = f\"[command failed] {e}\"\n    print(out)\n\nprint(\"Python:\", sys.version)\nprint(\"Platform:\", platform.platform())\nprint(\"In Colab:\", \"google.colab\" in sys.modules)\nprint(\"\\nNVIDIA SMI (if present):\")\n_sh(\"nvidia-smi || true\")\n\n# (notebook only) !pip -q install --upgrade pip\n# (notebook only) !pip -q install numpy pandas matplotlib scipy\n# Optional: wfdb for PhysioNet (uncomment if needed)\n# !pip -q install wfdb\n",
+ "description": "You read the environment report before the signal examples.",
+ "example": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You define a helper that captures command output and shell diagnostics. An exception becomes a formatted command-failed message.",
+   "kind": "reveal",
+   "lines": "1-7"
+  },
+  {
+   "description": "You print the Python version, platform, and Colab flag. The recording shows Python 3.12.16, Linux, and False.",
+   "kind": "reveal",
+   "lines": "9-12"
+  },
+  {
+   "answer": "The shell reports nvidia-smi: not found. The command's || true lets that text return as captured output with a successful shell status.",
+   "kind": "predict",
+   "lines": "13",
+   "question": "What diagnostic does the optional NVIDIA check produce in the recording?"
+  },
+  {
+   "description": "You see the diagnostic printed beneath the NVIDIA heading. The package and optional wfdb installation lines are comments.",
+   "kind": "reveal",
+   "lines": "13-18"
+  }
+ ],
+ "title": "Inspect the ECG notebook environment",
+ "version": 1
+}

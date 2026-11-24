@@ -1,0 +1,1 @@
+king - man + woman is closest to: queen  (cosine sims: {'king': 0.87, 'queen': 1.0, 'man': 0.34, 'woman': 0.63} )

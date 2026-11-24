@@ -1,0 +1,38 @@
+{
+ "code": "\n# Generate a simple 1D synthetic dataset: y = 3x + 5 + noise\nn = 100\nX = 2 * np.random.rand(n, 1)  # feature in [0, 2)\ntheta0_true = 5.0\ntheta1_true = 3.0\ny_true = theta1_true * X[:, 0] + theta0_true\nnoise = np.random.randn(n) * 0.8\ny = y_true + noise\n\n# Visualize\nplt.scatter(X[:, 0], y, alpha=0.7, label=\"data\")\nplt.xlabel(\"x\")\nplt.ylabel(\"y\")\nplt.title(\"Synthetic data: approximately y = 3x + 5 + noise\")\nplt.legend()\nplt.show()\n",
+ "description": "Sample uniform features X in [0, 2), compute a linear target using the supplied slope and intercept, and add Gaussian noise. Scatter-plot (X[:, 0], y).",
+ "example": "cs477-nb-linear-and-logistic-regression-tutorial-2",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Set `n` to the supplied sample count and draw a 2D feature column `X = 2 * np.random.rand(n, 1)` on `[0, 2)`. Compute the noiseless linear values `y_true = theta1_true * X[:, 0] + theta0_true`.",
+   "kind": "reveal",
+   "lines": "2-7"
+  },
+  {
+   "description": "Draw zero-mean Gaussian noise with `np.random.randn(n)` scaled by the supplied standard deviation. Add it to `y_true` to produce the observed 1D target array `y`.",
+   "kind": "reveal",
+   "lines": "8-9"
+  },
+  {
+   "description": "Look at how `X` and `y` are constructed: `X` has one column and a row for each sample. `X[:, 0]` slices column 0 as a 1D vector. Thus, `y_true + noise` produces a 1D target vector with one entry per sample.",
+   "kind": "focus",
+   "lines": "4-9"
+  },
+  {
+   "answer": "The true intercept is `theta0_true`, and the true slope is `theta1_true`. Zero-mean Gaussian noise with the supplied standard deviation is added to each point.",
+   "kind": "predict",
+   "lines": "5-9",
+   "question": "What are the true intercept and true slope of `y_true` on lines 5-7? What vertical spread around `y_true` does the supplied Gaussian noise introduce?"
+  },
+  {
+   "description": "Call `plt.scatter` on `X[:, 0]` and `y` with the supplied opacity and label `\"data\"`. Set axis labels `\"x\"` and `\"y\"` and the plot title, add the legend, and render with `plt.show()`.",
+   "kind": "reveal",
+   "lines": "11-17"
+  }
+ ],
+ "title": "Generating and Plotting Synthetic 1D Linear Regression Data",
+ "version": 1
+}

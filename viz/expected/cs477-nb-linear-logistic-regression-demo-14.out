@@ -1,0 +1,4 @@
+Logistic Regression metrics (test set):
+  Accuracy: 0.877
+  F1 score (class 1): 0.903
+  ROC AUC: 0.953

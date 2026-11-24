@@ -1,0 +1,15 @@
+Transient indices: [0, 1] Absorbing indices: [2, 3]
+Q =
+ [[0.3 0.6]
+ [0.1 0.5]]
+R =
+ [[0.1 0. ]
+ [0.2 0.2]]
+N = (I - Q)^{-1} =
+ [[1.72413793 2.06896552]
+ [0.34482759 2.4137931 ]]
+Expected steps to absorption t = [3.79310345 2.75862069]
+Absorption probabilities B =
+ [[0.5862069  0.4137931 ]
+ [0.51724138 0.48275862]]
+Row sums of B (should be 1): [1. 1.]

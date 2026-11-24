@@ -1,0 +1,38 @@
+{
+ "code": "# Sweep thresholds and compute precision/recall pairs\nthresholds = np.linspace(0.0, 1.0, 21)\npairs = []\nfor thr in thresholds:\n    y_hat = (y_prob >= thr).astype(int)\n    p, r, f1, _ = precision_recall_fscore_support(yc_test, y_hat, average='binary', zero_division=0)\n    pairs.append((thr, p, r, f1))\n\nfor thr, p, r, f1 in pairs[:5]:\n    print(f't={thr:.2f}: Precision={p:.3f}, Recall={r:.3f}, F1={f1:.3f}')\n\n# Simple PR visualization\npr = np.array(pairs)\nplt.plot(pr[:,1], pr[:,2], marker='o')  # Recall (x) vs Precision (y)\nplt.xlabel('Precision'); plt.ylabel('Recall'); plt.title('Precision–Recall tradeoff (varying threshold)')\nplt.show()",
+ "description": "Evaluate (y_prob >= thr).astype(int) across the supplied thresholds from 0.0 to 1.0, print the first five (thr, p, r, f1) rows, and plot Precision vs. Recall.",
+ "example": "cs477-liascript-perceptronsmodelevaluation-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Generate evenly spaced thresholds from 0.0 to 1.0 using the supplied count. Convert `y_prob` into binary predictions `y_hat = (y_prob >= thr).astype(int)` at each `thr`, and record `(thr, p, r, f1)` using `precision_recall_fscore_support`.",
+   "kind": "reveal",
+   "lines": "1-7"
+  },
+  {
+   "description": "Loop over the first 5 tuples in `pairs[:5]` (`t=0.00` through `t=0.20`) and print `Precision`, `Recall`, and `F1`.",
+   "kind": "reveal",
+   "lines": "9-10"
+  },
+  {
+   "description": "Look at line 5: raising `thr` requires a higher predicted probability `y_prob` before `y_hat` predicts `1`, which reduces false positives (`Precision` rises) while risking more false negatives (`Recall` eventually drops).",
+   "kind": "focus",
+   "lines": "4-7"
+  },
+  {
+   "answer": "Every probability is `>= 0.0`, so `y_hat` is `1` for all samples. `Recall` is `1.000` (all actual positives found), and `Precision` is `0.629`.",
+   "kind": "predict",
+   "lines": "5-10",
+   "question": "At `thr = 0.00` on line 5, what does `(y_prob >= 0.0).astype(int)` predict for every test sample? What are `Recall` and `Precision`?"
+  },
+  {
+   "description": "Convert `pairs` into the 2D array `pr = np.array(pairs)` and plot `pr[:, 1]` (`Precision`) against `pr[:, 2]` (`Recall`) across all thresholds.",
+   "kind": "reveal",
+   "lines": "12-16"
+  }
+ ],
+ "title": "Sweeping Decision Thresholds for Precision, Recall, and F1",
+ "version": 1
+}

@@ -1,0 +1,50 @@
+{
+ "code": "import random\nrandom.seed(477)\n\nTARGET_LEN = 20                      # maximize number of 1s (\"OneMax\")\nPOP, GENS, P_MUT = 30, 40, 0.02\n\ndef fitness(ind):        return sum(ind)\ndef random_ind():        return [random.randint(0, 1) for _ in range(TARGET_LEN)]\n\ndef tournament(pop, k=3):\n    return max(random.sample(pop, k), key=fitness)\n\ndef crossover(a, b):\n    cut = random.randrange(1, TARGET_LEN)\n    return a[:cut] + b[cut:]\n\ndef mutate(ind):\n    return [1 - g if random.random() < P_MUT else g for g in ind]\n\npop = [random_ind() for _ in range(POP)]\nfor gen in range(GENS):\n    best = max(pop, key=fitness)\n    if gen % 10 == 0:\n        print(f\"gen {gen:3d}  best fitness = {fitness(best)}/{TARGET_LEN}\")\n    elite = [best]                                   # elitism: keep the champion\n    pop = elite + [mutate(crossover(tournament(pop), tournament(pop)))\n                   for _ in range(POP - 1)]\nprint(\"final best:\", max(pop, key=fitness), \"fitness\", fitness(max(pop, key=fitness)))",
+ "description": "Evolve a population of 30 bit strings of length 20 using k=3 tournament selection, single-point crossover, bit-flip mutation, and elitism.",
+ "example": "cs477-liascript-optimizationga-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Seed `random`, set `TARGET_LEN = 20`, `POP = 30`, `GENS = 40`, and `P_MUT = 0.02`, and define `fitness(ind)` as `sum(ind)` and `random_ind()` as a list of 20 random bits.",
+   "kind": "reveal",
+   "lines": "1-9"
+  },
+  {
+   "description": "Define the three genetic operators. `tournament(pop, k=3)` picks the fittest of 3 random individuals; `crossover(a, b)` splices `a[:cut]` and `b[cut:]` at a random cut point. `mutate(ind)` flips each bit `g` to `1 - g` with probability `P_MUT`.",
+   "kind": "reveal",
+   "lines": "10-19"
+  },
+  {
+   "description": "Create the initial population of 30 random individuals. In each generation, find `best` and preserve `[best]` via elitism. Generate `POP - 1` new children by mutating the crossover of two tournament winners.",
+   "kind": "reveal",
+   "lines": "20-28"
+  },
+  {
+   "description": "Look at lines 25-27: `elite = [best]` copies the highest-fitness individual into the next generation unchanged, while the list comprehension fills the remaining 29 slots.",
+   "kind": "focus",
+   "lines": "25-27"
+  },
+  {
+   "answer": "No: the best individual from the current generation is copied unchanged into `pop` for the next generation, so the maximum fitness in `pop` is non-decreasing across generations.",
+   "kind": "predict",
+   "lines": "22,25-27",
+   "question": "Because `elite = [best]` is always kept on line 25, can `fitness(max(pop, key=fitness))` ever decrease from one generation to the next?"
+  },
+  {
+   "description": "In generation 0, `max(pop, key=fitness)` finds the best initial bit string and prints `gen   0  best fitness = 14/20`.",
+   "kind": "run",
+   "lines": "24",
+   "trace_step": 763
+  },
+  {
+   "description": "Inside `crossover(a, b)` for the first child, line 15 slices `a[:cut] + b[cut:]` before `mutate` flips bits with probability `0.02`.",
+   "kind": "run",
+   "lines": "15",
+   "trace_step": 789
+  }
+ ],
+ "title": "A Genetic Algorithm for the 20-Bit OneMax Problem",
+ "version": 1
+}

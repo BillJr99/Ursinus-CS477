@@ -1,0 +1,33 @@
+{
+ "code": "lam = np.maximum(evals, 0)\nprop = lam / np.sum(lam) if np.sum(lam)>0 else lam\nfig = plt.figure(figsize=(5,3.5))\nplt.bar(range(1,len(lam)+1), prop)\nplt.xlabel(\"LDA component\"); plt.ylabel(\"Proportion\")\nplt.title(\"Discriminative power (eigenvalue proportions)\")\nplt.tight_layout(); plt.show()",
+ "description": "You turn nonnegative eigenvalues into component proportions.",
+ "example": "cs477-nb-lda-and-fisherscore-fromscratch-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You replace negative evals entries with zero. lam therefore contains only nonnegative values.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "answer": "The conditional expression keeps lam as prop. It divides by the sum only when that sum is positive.",
+   "kind": "predict",
+   "lines": "2",
+   "question": "What happens when the sum of lam is zero?"
+  },
+  {
+   "description": "You plot prop as a bar for each component. The component positions start at one.",
+   "kind": "reveal",
+   "lines": "2-4"
+  },
+  {
+   "description": "You label the chart as discriminative power measured by eigenvalue proportions. The supplied output contains no numeric proportions to compare.",
+   "kind": "reveal",
+   "lines": "5-7"
+  }
+ ],
+ "title": "Display discriminative eigenvalue proportions",
+ "version": 1
+}

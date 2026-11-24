@@ -1,0 +1,33 @@
+{
+ "code": "import sys, platform, subprocess\ndef _sh(cmd):\n    try:\n        out = subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT, text=True)\n    except Exception as e:\n        out = f\"[command failed] {e}\"\n    print(out)\n\nprint(\"Python:\", sys.version)\nprint(\"Platform:\", platform.platform())\nprint(\"In Colab:\", \"google.colab\" in sys.modules)\n\n# (notebook only) !pip -q install --upgrade pip\n# (notebook only) !pip -q install numpy matplotlib",
+ "description": "You inspect the environment recorded for the hill climbing notebook.",
+ "example": "cs477-nb-hillclimbing-pacman-from-scratch-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You define _sh to capture command output or format an exception. This example defines the helper without calling it.",
+   "kind": "reveal",
+   "lines": "1-7"
+  },
+  {
+   "description": "You print the Python version and platform. The recorded output shows Python 3.12.16 on Linux.",
+   "kind": "reveal",
+   "lines": "9-10"
+  },
+  {
+   "answer": "The check tests whether google.colab appears in sys.modules. The recording prints False.",
+   "kind": "predict",
+   "lines": "11",
+   "question": "What condition determines the printed Colab flag?"
+  },
+  {
+   "description": "You finish with the Colab flag beneath the platform. Both installation suggestions are comments.",
+   "kind": "reveal",
+   "lines": "11-14"
+  }
+ ],
+ "title": "Read the environment checks",
+ "version": 1
+}

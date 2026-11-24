@@ -1,0 +1,33 @@
+{
+ "code": "def margin_width(w):\n    return 2.0/np.linalg.norm(w) if np.linalg.norm(w)>0 else np.inf\nprint(\"Margin width (Pegasos linear):\", margin_width(w_pg))",
+ "description": "You inspect the weight-norm formula and its zero-norm branch.",
+ "example": "cs477-nb-svm-from-scratch-linear-and-kernel-12",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You define margin_width with one weight vector argument. The next line determines its returned width.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "answer": "It returns np.inf. Division occurs only when the norm is positive.",
+   "kind": "predict",
+   "lines": "2",
+   "question": "What does the function return when the weight norm is zero?"
+  },
+  {
+   "description": "You compute width as two divided by the Euclidean weight norm in the positive-norm branch. A larger norm gives a smaller width under this formula.",
+   "kind": "reveal",
+   "lines": "2"
+  },
+  {
+   "description": "You apply the helper to w_pg. The recording reports the Pegasos linear margin width.",
+   "kind": "reveal",
+   "lines": "3"
+  }
+ ],
+ "title": "Compute the linear margin width",
+ "version": 1
+}

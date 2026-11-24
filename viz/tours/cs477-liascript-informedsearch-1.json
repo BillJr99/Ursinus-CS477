@@ -1,0 +1,33 @@
+{
+ "code": "import heapq\nfrom typing import Dict, Tuple, Callable, List\n\nprint(\"A* utilities ready.\")",
+ "description": "You can identify what this setup block provides before a search implementation.",
+ "example": "cs477-liascript-informedsearch-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You import heapq, which supplies heap operations. This line makes the module available without creating a search frontier.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "You import four typing names for later annotations. The block defines no states, edges or heuristic function.",
+   "kind": "reveal",
+   "lines": "2"
+  },
+  {
+   "answer": "No. The code performs imports and prints a fixed message without running a search.",
+   "kind": "predict",
+   "lines": "4",
+   "question": "Does the readiness message mean this block has found a path?"
+  },
+  {
+   "description": "You see A* utilities ready. The supplied trace confirms that the short setup reaches its print statement.",
+   "kind": "reveal",
+   "lines": "4"
+  }
+ ],
+ "title": "Preparing informed-search imports",
+ "version": 1
+}

@@ -1,0 +1,33 @@
+{
+ "code": "sk_mnb = MultinomialNB(alpha=1.0)\nsk_mnb.fit(X_train_txt, y_train_txt)\nsk_pred_txt = sk_mnb.predict(X_test_txt)\n\nprint(f\"sklearn MultinomialNB accuracy: {accuracy_score(y_test_txt, sk_pred_txt):.3f}\")\nprint(\"Classification report (sklearn):\")\nprint(classification_report(y_test_txt, sk_pred_txt))",
+ "description": "You fit the existing text features and inspect per-class test metrics.",
+ "example": "cs477-nb-naive-bayes-step-by-step-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You create MultinomialNB with alpha=1.0 and fit the training text matrix. The labels come from y_train_txt.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "answer": "The classifier predicts X_test_txt, the existing test text feature matrix.",
+   "kind": "predict",
+   "lines": "3",
+   "question": "Which rows receive predictions after fitting?"
+  },
+  {
+   "description": "You compare predictions with y_test_txt. The recorded accuracy is 0.667 across six test examples.",
+   "kind": "reveal",
+   "lines": "3-5"
+  },
+  {
+   "description": "You print the classification report. The recording gives ham precision and recall of 0.75 and spam precision and recall of 0.50, with supports four and two.",
+   "kind": "reveal",
+   "lines": "6-7"
+  }
+ ],
+ "title": "Evaluate the library multinomial classifier",
+ "version": 1
+}

@@ -1,0 +1,38 @@
+{
+ "code": "from scipy.stats import kurtosis\n\ndef windowed_features(x, fs, win_sec=0.3, stride_sec=0.1):\n    win = int(win_sec*fs); stride = int(stride_sec*fs)\n    feats = []; idxs = []\n    for start in range(0, len(x)-win+1, stride):\n        seg = x[start:start+win]\n        rms = np.sqrt(np.mean(seg**2))\n        abs_deriv = np.mean(np.abs(np.diff(seg)))\n        zc = np.mean((seg[:-1] * seg[1:]) < 0)\n        f, Pxx = signal.welch(seg, fs=fs, nperseg=min(win, 256))\n        hf = Pxx[(f>=20) & (f<=45)].sum()\n        lf = Pxx[(f>=0.5) & (f<=5)].sum()\n        k = kurtosis(seg, fisher=False, bias=False) if len(seg)>3 else 3.0\n        feats.append([rms, abs_deriv, zc, hf, lf, k])\n        idxs.append((start, start+win))\n    return np.array(feats, dtype=float), idxs\n\nX, win_idxs = windowed_features(ecg_f, fs, win_sec=0.3, stride_sec=0.1)\nT, D = X.shape\nprint(\"Feature matrix:\", X.shape)\n\nclass StandardScalerNP:\n    def __init__(self, eps=1e-12):\n        self.mean_ = None; self.std_ = None; self.eps = eps\n    def fit(self, X):\n        self.mean_ = X.mean(axis=0)\n        self.std_ = X.std(axis=0)\n        self.std_ = np.where(self.std_ < self.eps, 1.0, self.std_)\n        return self\n    def transform(self, X):\n        return (X - self.mean_) / self.std_\n    def fit_transform(self, X):\n        return self.fit(X).transform(X)\n\nscaler = StandardScalerNP().fit(X)\nXs = scaler.transform(X)\n",
+ "description": "You turn signal windows into six-feature observations for the model.",
+ "example": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-5",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You visit complete signal windows and compute root mean square amplitude, mean absolute sample difference, and sign-crossing fraction. Each window becomes one feature row.",
+   "kind": "reveal",
+   "lines": "1-10"
+  },
+  {
+   "description": "You add power sums from two frequency bands and kurtosis, a measure of distribution shape. You also store each window's start and end indices.",
+   "kind": "reveal",
+   "lines": "11-17"
+  },
+  {
+   "description": "You extract features from ecg_f and record the matrix dimensions. The supplied output reports 298 rows and six columns.",
+   "kind": "reveal",
+   "lines": "19-21"
+  },
+  {
+   "answer": "It substitutes one for that standard deviation. transform still subtracts the column mean before dividing.",
+   "kind": "predict",
+   "lines": "26-32",
+   "question": "What divisor does the scaler use when a column's standard deviation is smaller than eps?"
+  },
+  {
+   "description": "You fit the scaler on X and use its stored means and standard deviations to create Xs. Xs contains the standardized feature observations.",
+   "kind": "reveal",
+   "lines": "23-37"
+  }
+ ],
+ "title": "Extract and standardize signal features",
+ "version": 1
+}

@@ -1,0 +1,33 @@
+{
+ "code": "fig = plt.figure(figsize=(6,4))\nplt.plot([it for it,_ in hist], [val for _,val in hist])\nplt.xlabel(\"Iteration\"); plt.ylabel(\"Inertia (sum of squared distances)\")\nplt.title(\"K-Means Convergence (best run)\")\nplt.tight_layout(); plt.show()",
+ "description": "You unpack iteration-value pairs into a convergence chart.",
+ "example": "cs477-nb-kmeans-clustering-iris-from-scratch-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You create a figure for the stored clustering history. The later plot call supplies both coordinate lists.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "answer": "The first comprehension extracts it, the iteration. The second extracts val for the vertical coordinate.",
+   "kind": "predict",
+   "lines": "2",
+   "question": "Which part of each hist pair supplies the horizontal coordinate?"
+  },
+  {
+   "description": "You plot the paired values and label inertia as the sum of squared distances. The horizontal axis identifies iterations.",
+   "kind": "reveal",
+   "lines": "2-3"
+  },
+  {
+   "description": "You title the figure K-Means Convergence (best run) and display it. The supplied output contains no numeric history values to describe its curve.",
+   "kind": "reveal",
+   "lines": "4-5"
+  }
+ ],
+ "title": "Plot the selected run's inertia history",
+ "version": 1
+}

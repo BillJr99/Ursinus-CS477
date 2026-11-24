@@ -1,0 +1,33 @@
+{
+ "code": "import sys, platform, subprocess, math\nprint(\"Python:\", sys.version.split()[0])\nprint(\"Platform:\", platform.platform())\nprint(\"In Colab:\", \"google.colab\" in sys.modules)\n\n# (notebook only) !pip -q install --upgrade pip\n# (notebook only) !pip -q install numpy matplotlib imageio",
+ "description": "You inspect the version, platform, and Colab check.",
+ "example": "cs477-nb-rl-fromscratch-toygridworld-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You import the listed modules and print the first part of sys.version. The recorded version is 3.12.16.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "description": "You print platform.platform() to describe the runtime environment. The recorded platform string begins with Linux.",
+   "kind": "reveal",
+   "lines": "3"
+  },
+  {
+   "answer": "It checks whether google.colab is present in sys.modules. The recording prints False.",
+   "kind": "predict",
+   "lines": "4",
+   "question": "Which condition produces the Colab flag?"
+  },
+  {
+   "description": "You finish with the Colab field and two optional package-installation comments. The recorded output contains the three environment fields.",
+   "kind": "reveal",
+   "lines": "4-7"
+  }
+ ],
+ "title": "Read the toy gridworld environment report",
+ "version": 1
+}

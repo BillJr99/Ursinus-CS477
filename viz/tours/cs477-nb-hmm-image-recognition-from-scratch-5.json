@@ -1,0 +1,33 @@
+{
+ "code": "def stratified_split_indices(y, test_size=0.2, seed=SEED):\n    rng = np.random.default_rng(seed)\n    y = np.asarray(y)\n    classes = np.unique(y)\n    train_idx, test_idx = [], []\n    for c in classes:\n        idx_c = np.where(y == c)[0]\n        rng.shuffle(idx_c)\n        n_test = int(np.floor(test_size * len(idx_c)))\n        test_idx.extend(idx_c[:n_test].tolist())\n        train_idx.extend(idx_c[n_test:].tolist())\n    return np.array(train_idx), np.array(test_idx)\n\ntrain_idx, test_idx = stratified_split_indices(y_labels, test_size=0.2, seed=SEED)\nX_train = [sequences[i] for i in train_idx]\ny_train = y_labels[train_idx]\nX_test  = [sequences[i] for i in test_idx]\ny_test  = y_labels[test_idx]\n\nprint(\"Train:\", len(X_train), \"Test:\", len(X_test))",
+ "description": "You shuffle class-specific indices and use the returned lists to select sequences and labels.",
+ "example": "cs477-nb-hmm-image-recognition-from-scratch-5",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You create a seeded generator, identify classes, and prepare separate index lists. The helper works with labels rather than copying sequence data.",
+   "kind": "reveal",
+   "lines": "1-5"
+  },
+  {
+   "description": "You shuffle each class's indices and compute its test count with floor. The first slice enters test_idx, and the remaining slice enters train_idx.",
+   "kind": "reveal",
+   "lines": "6-12"
+  },
+  {
+   "answer": "Each split uses the same index array for its sequence selection and label selection.",
+   "kind": "predict",
+   "lines": "15-18",
+   "question": "How do the selected sequences stay paired with their labels?"
+  },
+  {
+   "description": "You build the training and test collections, then request their lengths with print. The supplied trace excerpt contains no final counts.",
+   "kind": "reveal",
+   "lines": "14-20"
+  }
+ ],
+ "title": "Split sequence indices within each class",
+ "version": 1
+}

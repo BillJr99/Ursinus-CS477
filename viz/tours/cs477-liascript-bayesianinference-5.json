@@ -1,0 +1,33 @@
+{
+ "code": "# 1D ring grid with wrap-around motion and noisy sensor\nN = 10\nbelief = np.ones(N) / N\n\n# Transition: move +1 with prob 0.8, stay with 0.2\ndef predict(b):\n    p = np.zeros_like(b)\n    for i in range(N):\n        p[(i+1) % N] += 0.8 * b[i]\n        p[i] += 0.2 * b[i]\n    return p\n\n# Observation: sensor reports landmark at positions {3,7}; correct with 0.7\nlandmarks = {3,7}\ndef likelihood(z, i):\n    has = (i in landmarks)\n    return 0.7 if (z and has) or ((not z) and (not has)) else 0.3\n\ndef update(prior, z):\n    unnorm = np.array([likelihood(z, i)*prior[i] for i in range(N)])\n    return unnorm / unnorm.sum()\n\n# Perform one predict-update step\nbelief = predict(belief)\nbelief = update(belief, z=True)\nprint(\"Belief sums to:\", belief.sum())\nprint(\"Argmax state:\", np.argmax(belief))",
+ "description": "You can follow motion redistribution and a landmark observation.",
+ "example": "cs477-liascript-bayesianinference-5",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You start uniform over ten ring positions. predict sends 0.8 of each position's mass forward with wraparound and keeps 0.2 in place.",
+   "kind": "reveal",
+   "lines": "1-11"
+  },
+  {
+   "description": "Positions 3 and 7 contain landmarks. likelihood assigns 0.7 when the observation agrees with landmark presence and 0.3 otherwise.",
+   "kind": "reveal",
+   "lines": "13-17"
+  },
+  {
+   "answer": "That division normalizes the observation-weighted masses into a probability distribution.",
+   "kind": "predict",
+   "lines": "19-21",
+   "question": "Why does update divide its weighted array by its sum?"
+  },
+  {
+   "description": "You perform one prediction and one positive-landmark update. The recording prints a sum near one and Argmax state: 3, the first of the tied landmark positions.",
+   "kind": "reveal",
+   "lines": "23-27"
+  }
+ ],
+ "title": "Predicting and correcting a ring-grid belief",
+ "version": 1
+}

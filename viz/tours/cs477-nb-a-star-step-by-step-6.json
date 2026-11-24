@@ -1,0 +1,33 @@
+{
+ "code": "\ndef show_grid_path(grid, path=None, start=None, goal=None, title=\"Grid and Path\"):\n    import matplotlib.pyplot as plt\n    H, W = grid.shape\n    plt.figure(figsize=(6,5))\n    plt.imshow(grid, origin=\"upper\")\n    if path:\n        ys = [y for (y, x) in path]\n        xs = [x for (y, x) in path]\n        plt.plot(xs, ys, linewidth=3)\n    if start:\n        plt.scatter([start[1]], [start[0]], s=60, marker=\"o\")\n        plt.text(start[1]+0.2, start[0]+0.2, \"S\")\n    if goal:\n        plt.scatter([goal[1]], [goal[0]], s=60, marker=\"x\")\n        plt.text(goal[1]+0.2, goal[0]+0.2, \"G\")\n    plt.title(title)\n    plt.gca().invert_yaxis()  # draw (0,0) at top-left\n    plt.show()\n\nshow_grid_path(grid, path_grid, start, goal, \"A* on 4-connected Grid (Manhattan h)\")\n",
+ "description": "Define show_grid_path to display the obstacle array with plt.imshow, plot the (x, y) coordinates of path_grid, and mark start \"S\" and goal \"G\".",
+ "example": "cs477-nb-a-star-step-by-step-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Start `show_grid_path(grid, path=None, start=None, goal=None, title=...)` and display `grid` with `plt.imshow(grid, origin=\"upper\")`. If `path` is given, unpack `ys = [y for (y, x) in path]` and `xs = [x for (y, x) in path]`. Draw `plt.plot(xs, ys, linewidth=3)`.",
+   "kind": "reveal",
+   "lines": "2-10"
+  },
+  {
+   "description": "Plot `start` (`\"S\"`, marker `\"o\"`) and `goal` (`\"G\"`, marker `\"x\"`), set the title, call `plt.gca().invert_yaxis()`, and invoke `show_grid_path` on `(grid, path_grid, start, goal)`.",
+   "kind": "reveal",
+   "lines": "11-21"
+  },
+  {
+   "description": "Look closely at the coordinate order on lines 8-16: each grid cell is stored as `(row, col) = (y, x)`. `plt.plot(xs, ys)` and `plt.scatter([start[1]], [start[0]])` take horizontal coordinate `x` (`col`) first and vertical coordinate `y` (`row`) second.",
+   "kind": "focus",
+   "lines": "8-16"
+  },
+  {
+   "answer": "Because `start` is a `(row, col)` tuple `(y, x)`, and Matplotlib's `plt.scatter(x, y)` expects the column index `start[1]` on the x-axis and the row index `start[0]` on the y-axis.",
+   "kind": "predict",
+   "lines": "8-16",
+   "question": "Why does the start-marker call pass `[start[1]], [start[0]]` to `plt.scatter` instead of `[start[0]], [start[1]]`?"
+  }
+ ],
+ "title": "Visualizing the 2D Obstacle Grid and A* Path",
+ "version": 1
+}

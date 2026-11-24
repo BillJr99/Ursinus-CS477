@@ -1,0 +1,43 @@
+{
+ "code": "import numpy as np\n\n# -----------------------------\n# 1. Model specification\n# -----------------------------\n\n# Hidden states\nstates = [\"Rainy\", \"Sunny\"]\nnum_states = len(states)\n\n# Observations\nobservations = [\"Umbrella\", \"No Umbrella\"]\nnum_obs = len(observations)\n\n# Convenience maps\nstate_to_idx = {s: i for i, s in enumerate(states)}\nobs_to_idx = {o: i for i, o in enumerate(observations)}\n\n# Initial state distribution π (prior over weather on day 1)\n# For simplicity, assume equal prior: P(Rainy) = 0.5, P(Sunny) = 0.5\npi = np.array([0.5, 0.5])\n\n# Transition matrix A: a_ij = P(Z_{t+1}=j | Z_t=i)\n# States are in order: [Rainy, Sunny]\nA = np.array([\n    [0.7, 0.3],  # from Rainy to [Rainy, Sunny]\n    [0.2, 0.8],  # from Sunny to [Rainy, Sunny]\n])\n\n# Emission matrix B: b_j(k) = P(X_t = k | Z_t = j)\n# Rows = states (Rainy, Sunny), cols = observations (Umbrella, No Umbrella)\nB = np.array([\n    [0.9, 0.1],  # Rainy: P(Umbrella)=0.9, P(No Umbrella)=0.1\n    [0.2, 0.8],  # Sunny: P(Umbrella)=0.2, P(No Umbrella)=0.8\n])\n\n# -----------------------------\n# 2. Observation sequence\n# -----------------------------\n# Suppose we see the colleague's umbrella behavior over 5 days:\n# Day 1: Umbrella\n# Day 2: Umbrella\n# Day 3: No Umbrella\n# Day 4: Umbrella\n# Day 5: Umbrella\n\nobs_seq_labels = [\"Umbrella\", \"Umbrella\", \"No Umbrella\", \"Umbrella\", \"Umbrella\"]\nT = len(obs_seq_labels)\n\n# Convert to index sequence\nobs_seq = np.array([obs_to_idx[o] for o in obs_seq_labels], dtype=int)\n\nprint(\"Observation sequence (labels):\", obs_seq_labels)\nprint(\"Observation sequence (indices):\", obs_seq.tolist())\nprint()\n\n# -----------------------------\n# 3. Viterbi algorithm (log-space)\n# -----------------------------\n\ndef viterbi(pi, A, B, obs_seq):\n    \"\"\"\n    Viterbi decoding for a discrete HMM using log-probabilities.\n\n    Args:\n        pi: 1D array of shape (K,) initial distribution\n        A: 2D array of shape (K, K) transition probabilities\n        B: 2D array of shape (K, M) emission probabilities\n        obs_seq: 1D array of length T with observation indices\n\n    Returns:\n        best_path: list of state indices (length T) for the most likely state sequence\n        best_log_prob: log-probability of that best path\n        delta_log: 2D array (T, K) of dynamic-programming values\n        psi: 2D array (T, K) of backpointers\n    \"\"\"\n    # Convert to log space to avoid underflow\n    log_pi = np.log(pi)\n    log_A = np.log(A)\n    log_B = np.log(B)\n\n    T = len(obs_seq)\n    K = len(pi)\n\n    # delta_log[t, j] = max over paths ending in state j at time t of log P(path, obs_1:t)\n    delta_log = np.full((T, K), -np.inf)\n    # psi[t, j] = argmax previous state at time t-1 that leads to best path to (t, j)\n    psi = np.full((T, K), -1, dtype=int)\n\n    # Initialization (t = 0)\n    first_obs = obs_seq[0]\n    for j in range(K):\n        delta_log[0, j] = log_pi[j] + log_B[j, first_obs]\n        psi[0, j] = -1  # no predecessor at t = 0\n\n    # Recursion\n    for t in range(1, T):\n        o_t = obs_seq[t]\n        for j in range(K):\n            # Consider transitions from each previous state i -> j\n            # score_i = delta_log[t-1, i] + log_A[i, j]\n            score_i = delta_log[t - 1] + log_A[:, j]\n            # Best predecessor i*\n            i_star = np.argmax(score_i)\n            psi[t, j] = i_star\n            delta_log[t, j] = score_i[i_star] + log_B[j, o_t]\n\n    # Termination: best final state\n    best_last_state = np.argmax(delta_log[T - 1])\n    best_log_prob = delta_log[T - 1, best_last_state]\n\n    # Backtracking\n    best_path = [best_last_state]\n    for t in range(T - 1, 0, -1):\n        best_last_state = psi[t, best_last_state]\n        best_path.append(best_last_state)\n\n    best_path.reverse()\n    return best_path, best_log_prob, delta_log, psi\n\n\n# Run Viterbi on our umbrella sequence\nbest_path_indices, best_log_prob, delta_log, psi = viterbi(pi, A, B, obs_seq)\n\n# Convert state indices back to labels\nbest_path_labels = [states[i] for i in best_path_indices]\n\nprint(\"Most likely hidden state sequence (indices):\", best_path_indices)\nprint(\"Most likely hidden state sequence (labels):\")\nfor t, s in enumerate(best_path_labels, start=1):\n    print(f\"  Day {t}: {s}\")\n\nprint()\nprint(\"Log-probability of best path:\", float(best_log_prob))\nprint(\"Probability of best path:\", float(np.exp(best_log_prob)))\n\n# -----------------------------\n# 4. (Optional) Display dynamic-programming table\n# -----------------------------\nprint(\"\\n--- Viterbi delta_log table (log probabilities) ---\")\nprint(\"Rows = time t (0-based), Columns = states [Rainy, Sunny]\")\nprint(delta_log)\n\nprint(\"\\n--- Backpointer table psi ---\")\nprint(\"Rows = time t (0-based), Columns = states [Rainy, Sunny]\")\nprint(psi)\n\n# -----------------------------\n# 5. Quick sanity check: does the path make sense?\n# -----------------------------\nprint(\"\\nSummary:\")\nfor t in range(T):\n    print(f\"Day {t+1}: Obs={obs_seq_labels[t]:12s} -> State={best_path_labels[t]}\")\n",
+ "description": "You follow log-space Viterbi scoring and backtracking through the weather model.",
+ "example": "cs477-nb-hmm-viterbi-colab-12",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You define two weather states with equal initial probabilities. A stores weather transitions, and B assigns umbrella observation probabilities to each state.",
+   "kind": "reveal",
+   "lines": "1-35"
+  },
+  {
+   "description": "You encode Umbrella, Umbrella, No Umbrella, Umbrella, Umbrella as observation indices. These five observations determine the table length.",
+   "kind": "reveal",
+   "lines": "37-55"
+  },
+  {
+   "description": "You convert probabilities to logs and allocate score and predecessor tables. The initial row combines each state's prior with its first observation probability.",
+   "kind": "reveal",
+   "lines": "61-94"
+  },
+  {
+   "description": "You choose the best predecessor for each destination state and store its index in psi. The new score adds that destination's emission log probability.",
+   "kind": "reveal",
+   "lines": "96-106"
+  },
+  {
+   "answer": "The complete path comes from backtracking the best final state. The recorded backtracking selects Rainy at every position, including the third.",
+   "kind": "predict",
+   "lines": "108-118",
+   "question": "Does the larger Sunny score in the third table row force the decoded third state to be Sunny?"
+  },
+  {
+   "description": "You reverse the backtracked indices and print the labels and tables. The recorded all-Rainy path has log probability about -4.8439 and probability about 0.00787648.",
+   "kind": "reveal",
+   "lines": "108-153"
+  }
+ ],
+ "title": "Decode the umbrella observations",
+ "version": 1
+}

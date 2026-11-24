@@ -1,0 +1,33 @@
+{
+ "code": "names = np.array(feature_names)\nx0_raw = x0*sig + mu\norder = np.argsort(np.abs(phi))[::-1]\nnames_ord = names[order]; phi_ord = phi[order]\n\nfig = plt.figure(figsize=(7,4))\nplt.bar(range(len(phi_ord)), phi_ord)\nplt.xticks(range(len(phi_ord)), names_ord, rotation=30)\nplt.ylabel(\"Contribution to output probability\")\nplt.title(\"Local Shapley Contributions (x₀)\")\nplt.tight_layout(); plt.show()\n\nprint(\"Prediction f(x0) =\", fx, \"  Base =\", f0)\nfor n, v in zip(names_ord, phi_ord):\n    print(f\"{n:>10s}: {v:+.4f}\")",
+ "description": "You order one example's Shapley contributions by magnitude while keeping their signs.",
+ "example": "cs477-nb-explainableai-shapley-from-scratch-creditnn-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You sort abs(phi) in descending order and apply that order to names and phi. The reordered contributions retain their original signs.",
+   "kind": "reveal",
+   "lines": "1-4"
+  },
+  {
+   "answer": "dti appears first with a contribution of -0.1604. Its negative sign indicates a decrease in output probability.",
+   "kind": "predict",
+   "lines": "6-10",
+   "question": "Which feature appears first in the recorded chart order, and does it raise or lower the output?"
+  },
+  {
+   "description": "You plot the signed contributions with their matching feature names. The vertical axis measures contributions to output probability.",
+   "kind": "reveal",
+   "lines": "6-11"
+  },
+  {
+   "description": "You print the prediction beside the baseline. The listed contributions put dti, delinq, and inq_12m below zero and the other three features above zero.",
+   "kind": "reveal",
+   "lines": "13-15"
+  }
+ ],
+ "title": "Read a local contribution chart",
+ "version": 1
+}

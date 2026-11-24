@@ -1,0 +1,9 @@
+epoch 10  loss=0.6927  val AUC=0.537
+epoch 20  loss=0.6388  val AUC=0.576
+epoch 30  loss=0.6310  val AUC=0.598
+epoch 40  loss=0.5779  val AUC=0.611
+epoch 50  loss=0.5776  val AUC=0.620
+epoch 60  loss=0.6233  val AUC=0.626
+epoch 70  loss=0.6215  val AUC=0.631
+epoch 80  loss=0.5626  val AUC=0.636
+Test accuracy: 0.674

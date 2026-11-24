@@ -1,0 +1,33 @@
+{
+ "code": "K = 2  # clean vs artifact\nmodel = baum_welch_diagonal_gaussian(Xs, K=K, iters=150, tol=1e-5, rng=rng, verbose=True)\nprint(\"pi:\", model[\"pi\"])\nprint(\"A:\\n\", model[\"A\"])\nprint(\"means:\\n\", model[\"means\"])\nprint(\"vars:\\n\", model[\"vars\"])\n",
+ "description": "You read the fitted initial probabilities, transitions, and Gaussian parameters.",
+ "example": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You request two hidden states and fit the standardized features Xs. The call supplies an iteration limit, convergence tolerance, and random generator.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "description": "You print the initial state probabilities pi and transition matrix A. The recorded pi is [0., 1.].",
+   "kind": "reveal",
+   "lines": "3-4"
+  },
+  {
+   "answer": "Staying is larger in both rows. The diagonal entries are 0.9192 and 0.9885.",
+   "kind": "predict",
+   "lines": "4",
+   "question": "Which is larger in each recorded transition row: staying in the same state or switching?"
+  },
+  {
+   "description": "You print one mean and variance for each feature in each state. The output contains two rows of six values in both arrays.",
+   "kind": "reveal",
+   "lines": "5-6"
+  }
+ ],
+ "title": "Inspect a fitted two-state model",
+ "version": 1
+}

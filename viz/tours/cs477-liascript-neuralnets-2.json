@@ -1,0 +1,50 @@
+{
+ "code": "# Tiny numeric check for the scalar case\nimport numpy as np\n\nx, y = 2.0, 5.0\nw, b = 1.0, 0.0\nv, c = 1.0, 0.0\n\ndef forward(w, b, v, c):\n    z1 = w * x + b\n    h  = np.tanh(z1)\n    yhat = v * h + c\n    L = 0.5 * (yhat - y)**2\n    return L, z1, h, yhat\n\n# analytic gradient wrt w\nL, z1, h, yhat = forward(w, b, v, c)\ndL_dyhat = yhat - y\ndL_dz1 = dL_dyhat * v * (1 - np.tanh(z1)**2)\ndL_dw = dL_dz1 * x\n\n# finite difference\neps = 1e-5\nL_plus, *_ = forward(w + eps, b, v, c)\nL_minus, *_ = forward(w - eps, b, v, c)\nfd = (L_plus - L_minus) / (2 * eps)\n\nprint(\"Analytic dL/dw:\", dL_dw)\nprint(\"Finite diff   :\", fd)",
+ "description": "Compute the analytic chain-rule derivative dL/dw for a scalar tanh network and verify it against a centered finite-difference approximation.",
+ "example": "cs477-liascript-neuralnets-2",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Set `x = 2.0, y = 5.0` and initial parameters `w = 1.0, b = 0.0, v = 1.0, c = 0.0`. Define `forward(w, b, v, c)` to compute `z1 = w * x + b`, `h = np.tanh(z1)`, and `yhat = v * h + c`. Compute `L = 0.5 * (yhat - y)**2`.",
+   "kind": "reveal",
+   "lines": "1-14"
+  },
+  {
+   "description": "Run `forward` once and apply the chain rule step by step: `dL_dyhat = yhat - y`, `dL_dz1 = dL_dyhat * v * (1 - np.tanh(z1)**2)`, and `dL_dw = dL_dz1 * x`.",
+   "kind": "reveal",
+   "lines": "15-20"
+  },
+  {
+   "description": "Perturb `w` by `eps = 1e-5` in both directions (`w + eps` and `w - eps`). Compute the centered difference `(L_plus - L_minus) / (2 * eps)` and print both `dL_dw` and `fd`.",
+   "kind": "reveal",
+   "lines": "21-28"
+  },
+  {
+   "description": "Look at lines 12 and 17-19: differentiating `0.5 * (yhat - y)**2` cancels the `0.5` factor, so `dL_dyhat` is `yhat - y`. This then multiplies `v`, the tanh derivative `1 - np.tanh(z1)**2`, and `x`.",
+   "kind": "focus",
+   "lines": "12,17-19"
+  },
+  {
+   "answer": "`yhat = np.tanh(2.0)` is less than `y = 5.0`, making `yhat - y < 0` and `dL_dw` about `-0.5702895611`. `fd` matches it to 9 decimal places (`-0.5702895613`).",
+   "kind": "predict",
+   "lines": "10-19,23-28",
+   "question": "Why is `dL_dw` negative at `w = 1.0`, and how closely does the finite-difference estimate `fd` match `dL_dw`?"
+  },
+  {
+   "description": "Line 19 multiplies `dL_dz1` by `x` (`2.0`) to produce `dL_dw = -0.5702895611045313`.",
+   "kind": "run",
+   "lines": "19",
+   "trace_step": 14
+  },
+  {
+   "description": "Line 28 prints the finite-difference slope `-0.5702895612635928`, confirming the analytic gradient.",
+   "kind": "run",
+   "lines": "28",
+   "trace_step": 32
+  }
+ ],
+ "title": "Checking Backpropagation Gradients with Finite Differences",
+ "version": 1
+}

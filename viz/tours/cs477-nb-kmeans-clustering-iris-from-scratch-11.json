@@ -1,0 +1,33 @@
+{
+ "code": "import os, json as _json\nos.makedirs(\"artifacts\", exist_ok=True)\n\nnp.savez(\"artifacts/kmeans_iris_from_scratch.npz\",\n         X=X, X_std=X_std, y=y, labels=labels, centroids=C, inertia=np.array([inertia]),\n         mu=mu, sd=sd, pcs=comps, Z=Z, silhouette=np.array([sil_mean]))\n\nwith open(\"artifacts/summary.json\",\"w\") as f:\n    _json.dump({\n        \"k\": int(k),\n        \"inertia\": float(inertia),\n        \"silhouette\": float(sil_mean),\n        \"purity\": float(purity),\n        \"cluster_to_species\": {int(j): (None if mapping[j] is None else target_names[mapping[j]]) for j in range(k)}\n    }, f, indent=2)\n\nprint(\"Artifacts:\", os.listdir(\"artifacts\"))",
+ "description": "You inspect the array archive and labeled JSON summary.",
+ "example": "cs477-nb-kmeans-clustering-iris-from-scratch-11",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You create artifacts and save a NumPy archive. It includes raw and standardized features, labels, centroids, scaling values, projections, and summary metrics.",
+   "kind": "reveal",
+   "lines": "1-6"
+  },
+  {
+   "description": "You begin summary.json with cluster count, inertia, silhouette, and purity. Explicit numeric conversions prepare those metric values for serialization.",
+   "kind": "reveal",
+   "lines": "8-13"
+  },
+  {
+   "answer": "The dictionary keeps None for that cluster, which JSON writes as null. Other entries use the mapped species name.",
+   "kind": "predict",
+   "lines": "14",
+   "question": "How does the summary represent a cluster whose mapping is None?"
+  },
+  {
+   "description": "You serialize the summary with indentation and list artifacts. The recording names kmeans_iris_from_scratch.npz and summary.json.",
+   "kind": "reveal",
+   "lines": "14-17"
+  }
+ ],
+ "title": "Export Iris clustering results",
+ "version": 1
+}

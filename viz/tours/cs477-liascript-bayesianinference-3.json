@@ -1,0 +1,33 @@
+{
+ "code": "import scipy.stats as st\n\ndef beta_posterior(alpha, beta, k, n):\n    return alpha + k, beta + (n - k)\n\ndef posterior_predictive(alpha, beta, m=1):\n    # Predictive for m future Bernoulli trials: mean of Bernoulli is E[theta]\n    return (alpha) / (alpha + beta)\n\nalpha, beta = 2, 2\nk, n = 12, 20\na_post, b_post = beta_posterior(alpha, beta, k, n)\nprint(\"Posterior Beta(alpha, beta):\", a_post, b_post)\nprint(\"Posterior mean:\", a_post/(a_post+b_post))\nprint(\"Posterior predictive mean for next trial:\", posterior_predictive(a_post, b_post))",
+ "description": "You can connect observed successes and failures to a next-trial prediction.",
+ "example": "cs477-liascript-bayesianinference-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "beta_posterior adds k successes to alpha and n minus k failures to beta. You return both updated parameters.",
+   "kind": "reveal",
+   "lines": "1-4"
+  },
+  {
+   "description": "posterior_predictive returns alpha divided by the parameter sum. The driver starts from 2 and 2 with 12 successes in 20 trials.",
+   "kind": "reveal",
+   "lines": "6-11"
+  },
+  {
+   "answer": "It returns 14 and 10, adding 12 successes and 8 failures to the prior parameters.",
+   "kind": "predict",
+   "lines": "12-13",
+   "question": "Which parameter pair does the update return?"
+  },
+  {
+   "description": "You see posterior Beta parameters 14 and 10. Both the posterior mean and next-trial predictive mean print 0.5833333333333334.",
+   "kind": "reveal",
+   "lines": "12-15"
+  }
+ ],
+ "title": "Updating Beta parameters with counts",
+ "version": 1
+}

@@ -1,0 +1,33 @@
+{
+ "code": "cm = confusion_matrix(yc_test, y_pred, labels=[0,1])\ndisp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=['malignant','benign'])\ndisp.plot()\nplt.title('Confusion Matrix')\nplt.show()",
+ "description": "Compute the 2x2 confusion matrix cm from yc_test and y_pred with labels=[0,1] and render it with ConfusionMatrixDisplay.",
+ "example": "cs477-liascript-perceptronsmodelevaluation-5",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model",
+ "steps": [
+  {
+   "description": "Compute the `2 x 2` matrix `cm = confusion_matrix(yc_test, y_pred, labels=[0,1])` and wrap it in `ConfusionMatrixDisplay` with `display_labels=['malignant','benign']`.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "description": "Call `disp.plot()`, set the plot title to `'Confusion Matrix'`, and display the figure with `plt.show()`.",
+   "kind": "reveal",
+   "lines": "3-5"
+  },
+  {
+   "description": "Look at `labels=[0,1]` and `display_labels=['malignant','benign']`: row and column `0` correspond to `'malignant'`, and row and column `1` correspond to `'benign'`.",
+   "kind": "focus",
+   "lines": "1-2"
+  },
+  {
+   "answer": "The main diagonal holds the correct predictions (`TN` at `cm[0, 0]` and `TP` at `cm[1, 1]`), while the off-diagonal entries hold the errors (`FP` at `cm[0, 1]` and `FN` at `cm[1, 0]`).",
+   "kind": "predict",
+   "lines": "1-3",
+   "question": "With `labels=[0,1]` and positive class `benign` (`y = 1`), which entries of `cm` sit on the main diagonal (`cm[0, 0]` and `cm[1, 1]`), and which sit off the diagonal?"
+  }
+ ],
+ "title": "Computing and Plotting a Binary Confusion Matrix",
+ "version": 1
+}

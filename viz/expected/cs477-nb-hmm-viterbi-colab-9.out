@@ -1,0 +1,7 @@
+Sampled observation indices: [2, 0, 1, 2, 2, 2, 0, 1, 2, 1]
+Sampled observation names: ['clean', 'walk', 'shop', 'clean', 'clean', 'clean', 'walk', 'shop', 'clean', 'shop']
+True hidden states indices: [0, 1, 0, 0, 0, 0, 1, 0, 0, 0]
+True hidden states names: ['Rainy', 'Sunny', 'Rainy', 'Rainy', 'Rainy', 'Rainy', 'Sunny', 'Rainy', 'Rainy', 'Rainy']
+Viterbi recovered states: [0, 1, 0, 0, 0, 0, 1, 0, 0, 0]
+Viterbi recovered names: ['Rainy', 'Sunny', 'Rainy', 'Rainy', 'Rainy', 'Rainy', 'Sunny', 'Rainy', 'Rainy', 'Rainy']
+Token-wise accuracy vs. true hidden states: 1.00

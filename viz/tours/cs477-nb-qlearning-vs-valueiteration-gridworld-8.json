@@ -1,0 +1,33 @@
+{
+ "code": "V_grid_star = grid_from_state_values(env, S, V_star)\nV_grid_hat  = grid_from_state_values(env, S, V_hat)\n\nfig = plt.figure(figsize=(10,4))\nax1 = plt.subplot(1,2,1); plot_heatmap(ax1, V_grid_star, \"V* (Value Iteration)\")\nax2 = plt.subplot(1,2,2); plot_heatmap(ax2, V_grid_hat,  \"V̂ (Q‑Learning)\")\nplt.tight_layout(); plt.show()\n\n# Policies\nPi_grid_star = grid_from_policy(env, S, Pi_star)\nPi_grid_hat  = grid_from_policy(env, S, Pi_hat)\n\nfig = plt.figure(figsize=(10,4))\nax1 = plt.subplot(1,2,1); plot_policy(ax1, env, Pi_grid_star)\nax1.set_title(\"π* (from VI)\")\nax2 = plt.subplot(1,2,2); plot_policy(ax2, env, Pi_grid_hat)\nax2.set_title(\"π̂ (from QL)\")\nplt.tight_layout(); plt.show()",
+ "description": "You map two methods' stored results onto the same environment layout.",
+ "example": "cs477-nb-qlearning-vs-valueiteration-gridworld-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You convert V_star and V_hat from state arrays into grids using the same env and state list S.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "description": "You display value iteration and Q-learning values in adjacent heatmap panels. Their titles identify which method supplies each grid.",
+   "kind": "reveal",
+   "lines": "4-7"
+  },
+  {
+   "answer": "Pi_star and Pi_hat supply the policy arrays. grid_from_policy maps each onto the environment grid.",
+   "kind": "predict",
+   "lines": "10-11",
+   "question": "Which arrays supply the next figure's actions?"
+  },
+  {
+   "description": "You display the two policy grids with method-specific titles. The supplied recording contains no rendered grids from which to claim agreement or differences.",
+   "kind": "reveal",
+   "lines": "13-18"
+  }
+ ],
+ "title": "Compare gridworld values and policies",
+ "version": 1
+}

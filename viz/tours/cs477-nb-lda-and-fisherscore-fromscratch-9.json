@@ -1,0 +1,38 @@
+{
+ "code": "def fisher_score_binary(X, y):\n    classes = np.unique(y)\n    assert len(classes)==2\n    c0, c1 = classes\n    X0 = X[y==c0]; X1 = X[y==c1]\n    mu0 = X0.mean(axis=0); mu1 = X1.mean(axis=0)\n    v0 = X0.var(axis=0, ddof=1); v1 = X1.var(axis=0, ddof=1)\n    return (mu1 - mu0)**2 / (v1 + v0 + 1e-12)\n\ndef fisher_score_multiclass(X, y):\n    classes = np.unique(y)\n    means, counts = class_stats(X, y)\n    mu = np.average(means, axis=0, weights=counts)\n    # between (per-feature)\n    num = np.zeros(X.shape[1])\n    den = np.zeros(X.shape[1])\n    for i,c in enumerate(classes):\n        Xc = X[y==c]\n        num += counts[i]*(means[i]-mu)**2\n        den += counts[i]*Xc.var(axis=0, ddof=1)\n    return num / (den + 1e-12)\n\nF_multi = fisher_score_multiclass(X_tr, y_tr)\norder = np.argsort(F_multi)[::-1]\nprint(\"Fisher scores (multiclass) sorted:\")\nfor j in order:\n    print(f\"{feature_names[j]:25s}  F={F_multi[j]:.4f}\")\n\nfig = plt.figure(figsize=(6,3.5))\nplt.bar(range(len(F_multi)), F_multi[order])\nplt.xticks(range(len(F_multi)), [feature_names[j] for j in order], rotation=25, ha='right')\nplt.ylabel(\"Fisher score\"); plt.title(\"Feature ranking (multiclass Fisher)\")\nplt.tight_layout(); plt.show()",
+ "description": "Define fisher_score_binary and fisher_score_multiclass as ratios of between-class variance to within-class variance per feature, then sort and plot the 4 Iris feature scores.",
+ "example": "cs477-nb-lda-and-fisherscore-fromscratch-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Define `fisher_score_binary(X, y)`: split `X` into `X0` and `X1`, and compute per-feature means `mu0, mu1` and sample variances `v0, v1`. Return the squared mean difference divided by the sum of variances plus the supplied stabilizing term.",
+   "kind": "reveal",
+   "lines": "1-9"
+  },
+  {
+   "description": "Define `fisher_score_multiclass(X, y)` and compute the overall weighted mean `mu = np.average(means, axis=0, weights=counts)`. Accumulate weighted between-class squared differences `num += counts[i]*(means[i]-mu)**2` and within-class variances `den += counts[i]*Xc.var(axis=0, ddof=1)`. Return `num` divided by `den` plus the supplied stabilizing term.",
+   "kind": "reveal",
+   "lines": "10-21"
+  },
+  {
+   "description": "Compare line 8 and lines 19-21: both formulas score every feature independently by dividing how far apart the class means are (`num`) by how spread out each class is internally (`den`).",
+   "kind": "focus",
+   "lines": "8,19-21"
+  },
+  {
+   "answer": "`np.argsort` sorts indices from smallest to largest, so reversing them gives descending order. This places `petal length (cm)` (`F=15.2036`) and `petal width (cm)` (`F=14.1315`) at the top.",
+   "kind": "predict",
+   "lines": "23-27",
+   "question": "Why does the ordering expression reverse `np.argsort(F_multi)`, and which two Iris features rank highest in multiclass Fisher score?"
+  },
+  {
+   "description": "Evaluate `F_multi = fisher_score_multiclass(X_tr, y_tr)`, print the features in descending `order`, and draw a bar chart of `F_multi[order]`.",
+   "kind": "reveal",
+   "lines": "23-33"
+  }
+ ],
+ "title": "Ranking Features with Binary and Multiclass Fisher Scores",
+ "version": 1
+}

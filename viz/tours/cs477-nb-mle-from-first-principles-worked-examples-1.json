@@ -1,0 +1,33 @@
+{
+ "code": "import sys, platform, subprocess\ndef _sh(cmd):\n    try:\n        out = subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT, text=True)\n    except Exception as e:\n        out = f\"[command failed] {e}\"\n    print(out)\n\nprint(\"Python:\", sys.version.split()[0])\nprint(\"Platform:\", platform.platform())\nprint(\"In Colab:\", \"google.colab\" in sys.modules)\n\n# (notebook only) !pip -q install --upgrade pip\n# (notebook only) !pip -q install numpy matplotlib\n\n# Optional:\n# !pip -q install scipy",
+ "description": "You inspect environment printing and optional setup comments.",
+ "example": "cs477-nb-mle-from-first-principles-worked-examples-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You define _sh to capture a command's output or format an exception. This example defines it without calling it.",
+   "kind": "reveal",
+   "lines": "1-7"
+  },
+  {
+   "description": "You print the first part of sys.version and the platform string. The recording shows Python 3.12.16 on Linux.",
+   "kind": "reveal",
+   "lines": "9-10"
+  },
+  {
+   "answer": "It tests whether google.colab appears in sys.modules. The recorded value is False.",
+   "kind": "predict",
+   "lines": "11",
+   "question": "What does the Colab check test?"
+  },
+  {
+   "description": "You finish with the Colab flag and commented installation suggestions. The optional SciPy installation is also a comment.",
+   "kind": "reveal",
+   "lines": "11-17"
+  }
+ ],
+ "title": "Read the estimation notebook environment",
+ "version": 1
+}

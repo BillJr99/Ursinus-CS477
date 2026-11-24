@@ -1,0 +1,33 @@
+{
+ "code": "import numpy as np\nnp.set_printoptions(precision=4, suppress=True)\nprint(\"Explainability utilities loaded.\")",
+ "description": "You can inspect a short setup block before the attribution examples.",
+ "example": "cs477-liascript-explainable-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You import NumPy under the alias np. Later expressions can use that alias for array operations.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "You configure precision 4 and suppress True for NumPy's printed arrays. This line changes display settings.",
+   "kind": "reveal",
+   "lines": "2"
+  },
+  {
+   "answer": "No. It imports NumPy, configures display and prints a readiness message.",
+   "kind": "predict",
+   "lines": "3",
+   "question": "Does this block calculate feature attributions?"
+  },
+  {
+   "description": "You see Explainability utilities loaded. The supplied trace reaches all three setup lines.",
+   "kind": "reveal",
+   "lines": "3"
+  }
+ ],
+ "title": "Preparing NumPy display for explanations",
+ "version": 1
+}

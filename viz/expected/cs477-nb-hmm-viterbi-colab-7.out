@@ -1,0 +1,4 @@
+Viterbi best path (indices): [1, 0, 0]
+Viterbi best path (names): ['Sunny', 'Rainy', 'Rainy']
+Viterbi best path log-prob: -4.309519943887134
+Viterbi best path prob: 0.013439999999999999

@@ -1,0 +1,33 @@
+{
+ "code": "# Draw the Rastrigin landscape and overlay population at start/mid/end\nres = 200\nxs = np.linspace(bounds[0,0], bounds[0,1], res)\nys = np.linspace(bounds[1,0], bounds[1,1], res)\nXX, YY = np.meshgrid(xs, ys)\nZZ = np.zeros_like(XX)\nfor i in range(res):\n    for j in range(res):\n        ZZ[i,j] = fitness(np.array([XX[i,j], YY[i,j]]))\n\ndef plot_pop(ax, P, title):\n    cs = ax.contourf(XX, YY, ZZ, levels=30)\n    ax.scatter(P[:,0], P[:,1], s=12, c='k')\n    ax.set_title(title)\n    ax.set_xlim(bounds[0,0], bounds[0,1])\n    ax.set_ylim(bounds[1,0], bounds[1,1])\n\nfig, axes = plt.subplots(1,3, figsize=(12,4))\ngens = sorted(snap_pop.keys())\ntitles = [f\"Generation {g}\" for g in gens]\nfor ax, g, t in zip(axes, gens, titles):\n    plot_pop(ax, snap_pop[g], t)\nplt.tight_layout(); plt.show()\n\nprint(\"Best solution:\", best_x, \" -> f =\", best_f, \" (global optimum is at (0,0) with f=0).\")",
+ "description": "You compare saved populations against the same fitness contours.",
+ "example": "cs477-nb-geneticalgorithm-fromscratch-toyexample-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You create a coordinate grid within bounds using the supplied resolution. Each ZZ entry stores fitness at its coordinate pair.",
+   "kind": "reveal",
+   "lines": "1-9"
+  },
+  {
+   "description": "You draw filled fitness contours and place the population's coordinates on top. The helper applies the same bounds to every panel.",
+   "kind": "reveal",
+   "lines": "11-16"
+  },
+  {
+   "answer": "sorted(snap_pop.keys()) orders the generation keys. The loop pairs those generations with axes and matching titles.",
+   "kind": "predict",
+   "lines": "18-22",
+   "question": "What determines the order of the saved generations shown across the panels?"
+  },
+  {
+   "description": "You display three population panels and print the stored best result. The recording reports [0., -0.] with fitness -0.0, alongside the stated optimum at (0,0).",
+   "kind": "reveal",
+   "lines": "18-25"
+  }
+ ],
+ "title": "Overlay populations on fitness contours",
+ "version": 1
+}

@@ -1,0 +1,33 @@
+{
+ "code": "import sys, platform, subprocess\ndef _sh(cmd):\n    try:\n        out = subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT, text=True)\n    except Exception as e:\n        out = f\"[command failed] {e}\"\n    print(out)\n\nprint(\"Python:\", sys.version.split()[0])\nprint(\"Platform:\", platform.platform())\nprint(\"In Colab:\", \"google.colab\" in sys.modules)\n\n# (notebook only) !pip -q install --upgrade pip\n# (notebook only) !pip -q install numpy matplotlib",
+ "description": "You inspect active environment checks and commented setup suggestions.",
+ "example": "cs477-nb-svm-from-scratch-linear-and-kernel-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You define _sh to capture command output or format an exception. This example leaves the helper uncalled.",
+   "kind": "reveal",
+   "lines": "1-7"
+  },
+  {
+   "description": "You print the first part of sys.version and the platform string. The recorded environment is Python 3.12.16 on Linux.",
+   "kind": "reveal",
+   "lines": "9-10"
+  },
+  {
+   "answer": "The code checks for google.colab in sys.modules. The recording prints False.",
+   "kind": "predict",
+   "lines": "11",
+   "question": "What determines the Colab flag?"
+  },
+  {
+   "description": "You finish with the Colab flag. Both installation suggestions are comments, so this snippet produces environment information.",
+   "kind": "reveal",
+   "lines": "11-14"
+  }
+ ],
+ "title": "Read the SVM notebook environment report",
+ "version": 1
+}

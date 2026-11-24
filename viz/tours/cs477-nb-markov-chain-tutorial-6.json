@@ -1,0 +1,33 @@
+{
+ "code": "\ndef simulate_markov(P, n_steps, init_state=None, rng=None):\n    try:\n        rng = np.random.default_rng() if rng is None else rng\n        P = np.asarray(P, dtype=float)\n        m = P.shape[0]\n        if init_state is None:\n            init_state = int(rng.integers(low=0, high=m))\n        X = np.empty(n_steps + 1, dtype=int)\n        X[0] = init_state\n        for t in range(n_steps):\n            X[t+1] = rng.choice(m, p=P[X[t]])\n        return X\n    except Exception as e:\n        _err(\"simulate_markov\", e)\n        raise\n\ndef empirical_stationary(P, n_steps=100_000, burn_in=1_000, rng=None):\n    try:\n        X = simulate_markov(P, n_steps=n_steps + burn_in, rng=rng)\n        X = X[burn_in:]\n        m = P.shape[0]\n        counts = np.bincount(X, minlength=m)\n        return counts / counts.sum()\n    except Exception as e:\n        _err(\"empirical_stationary\", e)\n        raise\n\nemp_est = empirical_stationary(P, rng=rng)\nprint(\"Empirical stationary (long run):\", emp_est)\nprint(\"Difference ||emp - pi*||_1:\", np.abs(emp_est - pi_star).sum())\n\npi_norms = [np.linalg.norm(traj[k] - pi_star, ord=1) for k in range(K+1)]\nplt.figure(figsize=(6, 4))\nplt.plot(range(K+1), pi_norms)\nplt.xlabel(\"Step k\")\nplt.ylabel(\"||pi^(k) - pi*||_1\")\nplt.title(\"Convergence in Total Variation (L1)\")\nplt.show()\n",
+ "description": "You sample state transitions and inspect distances from the stationary distribution.",
+ "example": "cs477-nb-markov-chain-tutorial-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You store an initial state and sample each next state from the current transition row. The returned array contains n_steps+1 states.",
+   "kind": "reveal",
+   "lines": "2-16"
+  },
+  {
+   "description": "You discard an initial burn-in slice and count the remaining state visits. Dividing by the total produces empirical state frequencies.",
+   "kind": "reveal",
+   "lines": "18-27"
+  },
+  {
+   "answer": "The recorded sum of absolute differences is nonzero, so the sampled frequencies differ slightly from pi_star.",
+   "kind": "predict",
+   "lines": "29-31",
+   "question": "Does the recorded empirical distribution exactly match pi_star?"
+  },
+  {
+   "description": "You print the empirical frequencies and plot distances for the existing distribution trajectory. The plotted calculation uses L1 distance, the sum of absolute component differences.",
+   "kind": "reveal",
+   "lines": "29-39"
+  }
+ ],
+ "title": "Compare long-run frequencies with stationarity",
+ "version": 1
+}

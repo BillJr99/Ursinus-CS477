@@ -1,0 +1,45 @@
+{
+ "code": "skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\n\n# AUC via cross_val_score (uses predict_proba by default for 'roc_auc')\nauc_cv = cross_val_score(clf, X_clf, y_clf, cv=skf, scoring='roc_auc')\nf1_cv  = cross_val_score(clf, X_clf, y_clf, cv=skf, scoring='f1')\n\nprint('CV AUC (5-fold): ', f'{auc_cv.mean():.3f} ± {auc_cv.std():.3f}')\nprint('CV F1  (5-fold): ', f'{f1_cv.mean():.3f} ± {f1_cv.std():.3f}')",
+ "description": "Evaluate the logistic regression pipeline clf across 5 stratified folds on (X_clf, y_clf) using both roc_auc and f1 scoring.",
+ "example": "cs477-liascript-perceptronsmodelevaluation-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Create `skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)` and compute 5-fold cross-validation scores for `clf` on `(X_clf, y_clf)` using `scoring='roc_auc'` (`auc_cv`) and `scoring='f1'` (`f1_cv`).",
+   "kind": "reveal",
+   "lines": "1-5"
+  },
+  {
+   "description": "Print the mean and standard deviation across the 5 folds for both `auc_cv` and `f1_cv`.",
+   "kind": "reveal",
+   "lines": "7-8"
+  },
+  {
+   "description": "Compare `StratifiedKFold` on line 1 with the two scorers on lines 4-5. `StratifiedKFold` keeps the malignant/benign ratio balanced in every fold. `'roc_auc'` scores continuous probabilities from `predict_proba`, and `'f1'` scores hard class-1 predictions.",
+   "kind": "focus",
+   "lines": "1,4-5"
+  },
+  {
+   "answer": "`StratifiedKFold` preserves the proportion of class 0 (`malignant`) and class 1 (`benign`) samples in each of the 5 folds.",
+   "kind": "predict",
+   "lines": "1,4-5",
+   "question": "Why does line 1 use `StratifiedKFold(n_splits=5)` instead of plain `KFold(n_splits=5)` for `(X_clf, y_clf)`?"
+  },
+  {
+   "description": "Line 4 runs 5-fold stratified cross-validation with `scoring='roc_auc'`, storing the 5 fold AUCs in `auc_cv`.",
+   "kind": "run",
+   "lines": "4",
+   "trace_step": 1
+  },
+  {
+   "description": "Lines 7-8 print `CV AUC (5-fold):  0.995 ± 0.005` and `CV F1  (5-fold):  0.979 ± 0.013`.",
+   "kind": "run",
+   "lines": "8",
+   "trace_step": 4
+  }
+ ],
+ "title": "Stratified 5-Fold Cross-Validation for ROC AUC and F1",
+ "version": 1
+}

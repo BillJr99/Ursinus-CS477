@@ -1,0 +1,38 @@
+{
+ "code": "def draw_state(grid, start, goal, open_set, closed_set, current=None, path=None, title=\"A* Step\"):\n    H, W = grid.shape\n    img = np.zeros((H,W))\n    img[:,:] = 0.9  # base\n    img[grid==1] = 0.2  # walls\n\n    # closed and open overlays (avoid setting specific colors; relative intensity only)\n    for (i,j) in closed_set:\n        if grid[i,j]==0:\n            img[i,j] = 0.6\n    for (i,j) in open_set:\n        if grid[i,j]==0 and (i,j) not in closed_set:\n            img[i,j] = 0.75\n\n    if path:\n        for (i,j) in path:\n            img[i,j] = 0.3\n\n    fig = plt.figure(figsize=(5,5))\n    plt.imshow(img, interpolation='nearest')\n    si, sj = start; gi, gj = goal\n    plt.scatter([sj],[si], marker='o')   # start\n    plt.scatter([gj],[gi], marker='x')   # goal\n    if current is not None:\n        ci, cj = current\n        plt.scatter([cj],[ci], marker='s')  # current\n    plt.title(title); plt.axis('off'); plt.tight_layout()\n    plt.show()\n\n# Preview a few steps\nsnaps = RES[\"snapshots\"]\nif snaps:\n    for t in [0, len(snaps)//3, 2*len(snaps)//3, len(snaps)-1]:\n        open_t, closed_t, cur = snaps[t]\n        draw_state(grid, start, goal, open_t, closed_t, current=cur, title=f\"A* Step t={t}\")\n\n# Final path plot\ndraw_state(grid, start, goal, set(), set(), current=None, path=path, title=\"Final Path\")",
+ "description": "Define draw_state to encode free cells, walls, closed_set, open_set, and path as grayscale intensities in img, then plot four search snapshots and the final path.",
+ "example": "cs477-nb-astar-search-with-graphics-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "In `draw_state`, initialize `img` with separate supplied intensities for free cells and walls (`grid == 1`). Assign the respective intensities to `closed_set`, `open_set` cells outside `closed_set`, and cells on `path`.",
+   "kind": "reveal",
+   "lines": "1-18"
+  },
+  {
+   "description": "Display `img` with `plt.imshow(img, interpolation='nearest')` and overlay markers for `start` (`'o'`), `goal` (`'x'`), and `current` (`'s'`).",
+   "kind": "reveal",
+   "lines": "19-28"
+  },
+  {
+   "description": "Notice the intensity hierarchy in `img`: unvisited free cells, frontier cells in `open_set`, expanded cells in `closed_set`, the final `path`, and walls have distinct intensities.",
+   "kind": "focus",
+   "lines": "8-18"
+  },
+  {
+   "answer": "It keeps the closed-set intensity. Line 10 sets that intensity for `(i, j)` in `closed_set`, and the open-set update checks `(i, j) not in closed_set` before overwriting.",
+   "kind": "predict",
+   "lines": "8-14",
+   "question": "If a cell `(i, j)` appears in both `open_set` and `closed_set` during a snapshot, what intensity value does `img[i, j]` end up with after lines 8-14?"
+  },
+  {
+   "description": "Extract `snaps = RES[\"snapshots\"]` and call `draw_state` at four indices: the first, one-third, two-thirds, and last snapshot indices. Call `draw_state` once more on line 38 with `path=path`.",
+   "kind": "reveal",
+   "lines": "30-38"
+  }
+ ],
+ "title": "Rendering A* Open/Closed Set Snapshots and the Final Path",
+ "version": 1
+}

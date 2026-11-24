@@ -1,0 +1,33 @@
+{
+ "code": "nb = GaussianNB()\nnb.fit(X_train, y_train)\n\ny_pred_nb = nb.predict(X_test)\n\nprint(\"Accuracy:\", accuracy_score(y_test, y_pred_nb))\nprint(\"F1 Score:\", f1_score(y_test, y_pred_nb))\nprint(\"\\nClassification Report:\\n\", classification_report(y_test, y_pred_nb))\nprint(f\"  ROC AUC: {roc_auc:.3f}\")\n\nfpr, tpr, thresholds = roc_curve(y_test, y_pred_nb)\n\nplt.plot(fpr, tpr, label=f\"ROC curve (AUC = {roc_auc:.3f})\")\nplt.plot([0, 0, 1], [0, 1, 1], linestyle=\"--\", label=\"Perfect classifier (for reference)\", alpha=0.5)\nplt.plot([0, 1], [0, 1], linestyle=\":\", label=\"Random classifier\", alpha=0.7)\nplt.xlabel(\"False Positive Rate\")\nplt.ylabel(\"True Positive Rate\")\nplt.title(\"ROC Curve (Naive Bayes)\")\nplt.legend()\nplt.grid(True)\nplt.show()\n\ncm = confusion_matrix(y_test, y_pred_nb)\nConfusionMatrixDisplay(cm).plot(values_format=\"d\")\nplt.title(\"Confusion Matrix — Gaussian Naïve Bayes\")\nplt.show()",
+ "description": "You distinguish newly computed predictions from an existing metric variable.",
+ "example": "cs477-nb-linear-logistic-regression-demo-15",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You fit GaussianNB and predict test labels. The recording reports accuracy and F1.",
+   "kind": "reveal",
+   "lines": "1-8"
+  },
+  {
+   "answer": "It prints the existing roc_auc variable. The roc_curve call receives predicted labels y_pred_nb and does not assign roc_auc.",
+   "kind": "predict",
+   "lines": "9-13",
+   "question": "Does this block compute a new roc_auc value for Naive Bayes?"
+  },
+  {
+   "description": "You plot rates calculated from those hard labels. The legend inserts the existing AUC value, which prints as 0.953 in the recording.",
+   "kind": "reveal",
+   "lines": "11-21"
+  },
+  {
+   "description": "You compute a confusion matrix from y_test and y_pred_nb and display integer counts. This matrix uses the Naive Bayes predictions made in this block.",
+   "kind": "reveal",
+   "lines": "23-26"
+  }
+ ],
+ "title": "Inspect Naive Bayes metrics and reused AUC",
+ "version": 1
+}

@@ -1,0 +1,4193 @@
+{
+ "course": "cs477",
+ "site": "https://billjr99.github.io/Ursinus-CS477",
+ "built": "2026-11-15 01:37",
+ "examples": [
+  {
+   "id": "cs477-liascript-bayesianinference-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-bayesianinference.md",
+   "line": 67,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
+   "error": null,
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-bayesianinference-2",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-bayesianinference.md",
+   "line": 114,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
+   "error": null,
+   "steps": 24,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-bayesianinference-3",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-bayesianinference.md",
+   "line": 152,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
+   "error": null,
+   "steps": 14,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-bayesianinference-4",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-bayesianinference.md",
+   "line": 359,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
+   "error": null,
+   "steps": 173,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-bayesianinference-5",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-bayesianinference.md",
+   "line": 460,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
+   "error": null,
+   "steps": 88,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-bayesianinference-6",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-bayesianinference.md",
+   "line": 527,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
+   "error": null,
+   "steps": 48,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-bayesianinference-7",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-bayesianinference.md",
+   "line": 608,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
+   "error": null,
+   "steps": 21,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-bayesianinference-8",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-bayesianinference.md",
+   "line": 720,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
+   "error": null,
+   "steps": 5,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-bayesianinference-9",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-bayesianinference.md",
+   "line": 774,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
+   "error": null,
+   "steps": 10,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-bayesianinference-10",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-bayesianinference.md",
+   "line": 843,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
+   "error": null,
+   "steps": 18,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-bayesianinference-11",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-bayesianinference.md",
+   "line": 905,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
+   "error": null,
+   "steps": 85,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-bayesianinference-12",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-bayesianinference.md",
+   "line": 1044,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
+   "error": null,
+   "steps": 433,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-bayesianinference-13",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-bayesianinference.md",
+   "line": 1151,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-bayesianinference",
+   "error": null,
+   "steps": 89,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-datafeatures-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-datafeatures.md",
+   "line": 130,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-datafeatures",
+   "error": null,
+   "steps": 14,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-explainable-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-explainable.md",
+   "line": 38,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-explainable",
+   "error": null,
+   "steps": 4,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-explainable-2",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-explainable.md",
+   "line": 109,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-explainable",
+   "error": null,
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-heuristicsearch-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-heuristicsearch.md",
+   "line": 59,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-heuristicsearch",
+   "error": null,
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-heuristicsearch-2",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-heuristicsearch.md",
+   "line": 114,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-heuristicsearch",
+   "error": null,
+   "steps": 162,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-heuristicsearch-3",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-heuristicsearch.md",
+   "line": 154,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-heuristicsearch",
+   "error": null,
+   "steps": 161,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-heuristicsearch-4",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-heuristicsearch.md",
+   "line": 339,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-heuristicsearch",
+   "error": null,
+   "steps": 142,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-informedsearch-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-informedsearch.md",
+   "line": 45,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-informedsearch",
+   "error": null,
+   "steps": 4,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-introai-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-introai.md",
+   "line": 98,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-introai",
+   "error": null,
+   "steps": 24,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-introai-2",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-introai.md",
+   "line": 127,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-introai",
+   "error": null,
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-knowledgelogic-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-knowledgelogic.md",
+   "line": 90,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-knowledgelogic",
+   "error": null,
+   "steps": 36,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-llms-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-llms.md",
+   "line": 43,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-llms",
+   "error": null,
+   "steps": 27,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-llms-2",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-llms.md",
+   "line": 109,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-llms",
+   "error": null,
+   "steps": 14,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-mdphmmbandits-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-mdphmmbandits.md",
+   "line": 122,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-mdphmmbandits",
+   "error": null,
+   "steps": 4,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-mdphmmbandits-2",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-mdphmmbandits.md",
+   "line": 251,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-mdphmmbandits",
+   "error": null,
+   "steps": 36,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-mdphmmbandits-3",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-mdphmmbandits.md",
+   "line": 430,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-mdphmmbandits",
+   "error": null,
+   "steps": 158,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-neuralnets-1",
+   "viz": "plain",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-neuralnets.md",
+   "line": 221,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-neuralnets",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-neuralnets-2",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-neuralnets.md",
+   "line": 1173,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-neuralnets",
+   "error": null,
+   "steps": 34,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-optimizationga-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-optimizationga.md",
+   "line": 121,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-optimizationga",
+   "error": null,
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-perceptronsmodelevaluation-1",
+   "viz": "plain",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-perceptronsmodelevaluation.md",
+   "line": 32,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-perceptronsmodelevaluation",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-perceptronsmodelevaluation-2",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-perceptronsmodelevaluation.md",
+   "line": 68,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-perceptronsmodelevaluation",
+   "error": null,
+   "steps": 11,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-perceptronsmodelevaluation-3",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-perceptronsmodelevaluation.md",
+   "line": 104,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-perceptronsmodelevaluation",
+   "error": null,
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-perceptronsmodelevaluation-4",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-perceptronsmodelevaluation.md",
+   "line": 186,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-perceptronsmodelevaluation",
+   "error": null,
+   "steps": 14,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-perceptronsmodelevaluation-5",
+   "viz": "plain",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-perceptronsmodelevaluation.md",
+   "line": 212,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-perceptronsmodelevaluation",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-perceptronsmodelevaluation-6",
+   "viz": "plain",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-perceptronsmodelevaluation.md",
+   "line": 256,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-perceptronsmodelevaluation",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-perceptronsmodelevaluation-7",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-perceptronsmodelevaluation.md",
+   "line": 279,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-perceptronsmodelevaluation",
+   "error": null,
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-perceptronsmodelevaluation-8",
+   "viz": "plain",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-perceptronsmodelevaluation.md",
+   "line": 298,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-perceptronsmodelevaluation",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-perceptronsmodelevaluation-9",
+   "viz": "plain",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-perceptronsmodelevaluation.md",
+   "line": 456,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-perceptronsmodelevaluation",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-perceptronsmodelevaluation-10",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-perceptronsmodelevaluation.md",
+   "line": 516,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-perceptronsmodelevaluation",
+   "error": null,
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-perceptronsmodelevaluation-11",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-perceptronsmodelevaluation.md",
+   "line": 554,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-perceptronsmodelevaluation",
+   "error": null,
+   "steps": 15,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-probabilityfoundations-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-probabilityfoundations.md",
+   "line": 127,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-probabilityfoundations",
+   "error": null,
+   "steps": 11,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-regression-1",
+   "viz": "plain",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-regression.md",
+   "line": 82,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-regression",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-regression-2",
+   "viz": "plain",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-regression.md",
+   "line": 177,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-regression",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-regression-9",
+   "viz": "plain",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-regression.md",
+   "line": 1358,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-regression",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-regression-10",
+   "viz": "plain",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-regression.md",
+   "line": 1756,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-regression",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-regression-11",
+   "viz": "plain",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-regression.md",
+   "line": 1896,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-regression",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-trees-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-trees.md",
+   "line": 137,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-trees",
+   "error": null,
+   "steps": 23,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-uninformedsearch-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-uninformedsearch.md",
+   "line": 135,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-uninformedsearch",
+   "error": null,
+   "steps": 85,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-liascript-unsupervised-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Activities/liascript-unsupervised.md",
+   "line": 148,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Activities/liascript-unsupervised",
+   "error": null,
+   "steps": 13,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-asmt-bayesian-9",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Assignments/asmt-bayesian.md",
+   "line": 389,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Assignments/asmt-bayesian",
+   "error": null,
+   "steps": 22,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-asmt-bayesian-10",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Assignments/asmt-bayesian.md",
+   "line": 438,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Assignments/asmt-bayesian",
+   "error": null,
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-asmt-bayesian-11",
+   "viz": "env",
+   "lang": "python",
+   "page": "_pages/Assignments/asmt-bayesian.md",
+   "line": 487,
+   "page_url": "https://billjr99.github.io/Ursinus-CS477/Assignments/asmt-bayesian",
+   "error": null,
+   "steps": 13,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-astar-search-with-graphics-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/AStar_Search_With_Graphics.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-astar-search-with-graphics-5",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/AStar_Search_With_Graphics.ipynb",
+   "line": 5,
+   "page_url": "",
+   "error": null,
+   "steps": 5,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-astar-search-with-graphics-6",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/AStar_Search_With_Graphics.ipynb",
+   "line": 6,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-astar-search-with-graphics-7",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/AStar_Search_With_Graphics.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-astar-search-with-graphics-8",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/AStar_Search_With_Graphics.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-astar-search-with-graphics-9",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/AStar_Search_With_Graphics.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-a-star-step-by-step-3",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/A_star_step_by_step.ipynb",
+   "line": 3,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-a-star-step-by-step-4",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/A_star_step_by_step.ipynb",
+   "line": 4,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-a-star-step-by-step-5",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/A_star_step_by_step.ipynb",
+   "line": 5,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-a-star-step-by-step-6",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/A_star_step_by_step.ipynb",
+   "line": 6,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-a-star-step-by-step-7",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/A_star_step_by_step.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-a-star-step-by-step-9",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/A_star_step_by_step.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-a-star-step-by-step-10",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/A_star_step_by_step.ipynb",
+   "line": 10,
+   "page_url": "",
+   "error": null,
+   "steps": 19,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-bayesian-diagnostic-test-belief-updating-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/Bayesian_Diagnostic_Test_Belief_Updating.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-bayesian-diagnostic-test-belief-updating-3",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/Bayesian_Diagnostic_Test_Belief_Updating.ipynb",
+   "line": 3,
+   "page_url": "",
+   "error": null,
+   "steps": 8,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-bayesian-diagnostic-test-belief-updating-4",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Bayesian_Diagnostic_Test_Belief_Updating.ipynb",
+   "line": 4,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-bayesian-diagnostic-test-belief-updating-6",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/Bayesian_Diagnostic_Test_Belief_Updating.ipynb",
+   "line": 6,
+   "page_url": "",
+   "error": null,
+   "steps": 20,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-bayesian-diagnostic-test-belief-updating-7",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Bayesian_Diagnostic_Test_Belief_Updating.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-bayesian-diagnostic-test-belief-updating-8",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/Bayesian_Diagnostic_Test_Belief_Updating.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 30,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-bayesian-diagnostic-test-belief-updating-9",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Bayesian_Diagnostic_Test_Belief_Updating.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/Bayesian_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 12,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-3",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Bayesian_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+   "line": 3,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-7",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Bayesian_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-8",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/Bayesian_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 40,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-10",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/Bayesian_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+   "line": 10,
+   "page_url": "",
+   "error": null,
+   "steps": 92,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-11",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Bayesian_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+   "line": 11,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-12",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Bayesian_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+   "line": 12,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-connect4-minimax-alphabeta-from-scratch-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/Connect4_Minimax_AlphaBeta_From_Scratch.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-creditscorefeatureweightestimator-7",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/CreditScoreFeatureWeightEstimator.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-creditscorefeatureweightestimator-9",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/CreditScoreFeatureWeightEstimator.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 31,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/DensityEstimation_and_FeatureDiscovery_FromScratch.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-3",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/DensityEstimation_and_FeatureDiscovery_FromScratch.ipynb",
+   "line": 3,
+   "page_url": "",
+   "error": null,
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-4",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/DensityEstimation_and_FeatureDiscovery_FromScratch.ipynb",
+   "line": 4,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-5",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/DensityEstimation_and_FeatureDiscovery_FromScratch.ipynb",
+   "line": 5,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-6",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/DensityEstimation_and_FeatureDiscovery_FromScratch.ipynb",
+   "line": 6,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-7",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/DensityEstimation_and_FeatureDiscovery_FromScratch.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-8",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/DensityEstimation_and_FeatureDiscovery_FromScratch.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-9",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/DensityEstimation_and_FeatureDiscovery_FromScratch.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 25,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-10",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/DensityEstimation_and_FeatureDiscovery_FromScratch.ipynb",
+   "line": 10,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/ExplainableAI_Shapley_From_Scratch_CreditNN.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-3",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/ExplainableAI_Shapley_From_Scratch_CreditNN.ipynb",
+   "line": 3,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-5",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/ExplainableAI_Shapley_From_Scratch_CreditNN.ipynb",
+   "line": 5,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-6",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/ExplainableAI_Shapley_From_Scratch_CreditNN.ipynb",
+   "line": 6,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-7",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/ExplainableAI_Shapley_From_Scratch_CreditNN.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-8",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/ExplainableAI_Shapley_From_Scratch_CreditNN.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-9",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/ExplainableAI_Shapley_From_Scratch_CreditNN.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-10",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/ExplainableAI_Shapley_From_Scratch_CreditNN.ipynb",
+   "line": 10,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-11",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/ExplainableAI_Shapley_From_Scratch_CreditNN.ipynb",
+   "line": 11,
+   "page_url": "",
+   "error": null,
+   "steps": 13,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-explainableai-shapley-from-scratch-creditnn-12",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/ExplainableAI_Shapley_From_Scratch_CreditNN.ipynb",
+   "line": 12,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-geneticalgorithm-fromscratch-toyexample-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/GeneticAlgorithm_FromScratch_ToyExample.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 5,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-geneticalgorithm-fromscratch-toyexample-5",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/GeneticAlgorithm_FromScratch_ToyExample.ipynb",
+   "line": 5,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-geneticalgorithm-fromscratch-toyexample-6",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/GeneticAlgorithm_FromScratch_ToyExample.ipynb",
+   "line": 6,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-geneticalgorithm-fromscratch-toyexample-7",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/GeneticAlgorithm_FromScratch_ToyExample.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-geneticalgorithm-fromscratch-toyexample-8",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/GeneticAlgorithm_FromScratch_ToyExample.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 28,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-geneticalgorithm-fromscratch-toyexample-9",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/GeneticAlgorithm_FromScratch_ToyExample.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 34,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-geneticalgorithm-fromscratch-toyexample-10",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/GeneticAlgorithm_FromScratch_ToyExample.ipynb",
+   "line": 10,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-bull-bear-detection-from-scratch-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Bull_Bear_Detection_From_Scratch.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 12,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/HMM_ECG_Artifact_Detector_From_Scratch.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 12,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-2",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_ECG_Artifact_Detector_From_Scratch.ipynb",
+   "line": 2,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-3",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_ECG_Artifact_Detector_From_Scratch.ipynb",
+   "line": 3,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-5",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_ECG_Artifact_Detector_From_Scratch.ipynb",
+   "line": 5,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-7",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/HMM_ECG_Artifact_Detector_From_Scratch.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 7,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-8",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/HMM_ECG_Artifact_Detector_From_Scratch.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 19,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-10",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_ECG_Artifact_Detector_From_Scratch.ipynb",
+   "line": 10,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-11",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/HMM_ECG_Artifact_Detector_From_Scratch.ipynb",
+   "line": 11,
+   "page_url": "",
+   "error": null,
+   "steps": 14,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-12",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_ECG_Artifact_Detector_From_Scratch.ipynb",
+   "line": 12,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-13",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_ECG_Artifact_Detector_From_Scratch.ipynb",
+   "line": 13,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-14",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_ECG_Artifact_Detector_From_Scratch.ipynb",
+   "line": 14,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-image-recognition-from-scratch-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Image_Recognition_From_Scratch.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 12,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-image-recognition-from-scratch-3",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Image_Recognition_From_Scratch.ipynb",
+   "line": 3,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-image-recognition-from-scratch-4",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Image_Recognition_From_Scratch.ipynb",
+   "line": 4,
+   "page_url": "",
+   "error": null,
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-image-recognition-from-scratch-5",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Image_Recognition_From_Scratch.ipynb",
+   "line": 5,
+   "page_url": "",
+   "error": null,
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-image-recognition-from-scratch-8",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Image_Recognition_From_Scratch.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-image-recognition-from-scratch-9",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Image_Recognition_From_Scratch.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-image-recognition-from-scratch-10",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Image_Recognition_From_Scratch.ipynb",
+   "line": 10,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-image-recognition-from-scratch-11",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Image_Recognition_From_Scratch.ipynb",
+   "line": 11,
+   "page_url": "",
+   "error": null,
+   "steps": 71,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-image-recognition-from-scratch-12",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Image_Recognition_From_Scratch.ipynb",
+   "line": 12,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 12,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-4",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+   "line": 4,
+   "page_url": "",
+   "error": null,
+   "steps": 138,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-5",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+   "line": 5,
+   "page_url": "",
+   "error": null,
+   "steps": 8,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-6",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+   "line": 6,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-10",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+   "line": 10,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-11",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+   "line": 11,
+   "page_url": "",
+   "error": null,
+   "steps": 5,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-13",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+   "line": 13,
+   "page_url": "",
+   "error": null,
+   "steps": 26,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-14",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+   "line": 14,
+   "page_url": "",
+   "error": null,
+   "steps": 21,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-15",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+   "line": 15,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-16",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Robot_Localization_Heatmaps_From_Scratch.ipynb",
+   "line": 16,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-viterbi-colab-5",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Viterbi_Colab.ipynb",
+   "line": 5,
+   "page_url": "",
+   "error": null,
+   "steps": 22,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-viterbi-colab-6",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Viterbi_Colab.ipynb",
+   "line": 6,
+   "page_url": "",
+   "error": null,
+   "steps": 8,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-viterbi-colab-7",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Viterbi_Colab.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-viterbi-colab-8",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Viterbi_Colab.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-viterbi-colab-9",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Viterbi_Colab.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 41,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-viterbi-colab-11",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Viterbi_Colab.ipynb",
+   "line": 11,
+   "page_url": "",
+   "error": null,
+   "steps": 40,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-viterbi-colab-12",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Viterbi_Colab.ipynb",
+   "line": 12,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hmm-viterbi-colab-13",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/HMM_Viterbi_Colab.ipynb",
+   "line": 13,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-hillclimbing-pacman-from-scratch-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/HillClimbing_Pacman_From_Scratch.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-kmeans-clustering-iris-from-scratch-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/KMeans_Clustering_Iris_From_Scratch.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-kmeans-clustering-iris-from-scratch-3",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/KMeans_Clustering_Iris_From_Scratch.ipynb",
+   "line": 3,
+   "page_url": "",
+   "error": null,
+   "steps": 10,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-kmeans-clustering-iris-from-scratch-5",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/KMeans_Clustering_Iris_From_Scratch.ipynb",
+   "line": 5,
+   "page_url": "",
+   "error": null,
+   "steps": 4,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-kmeans-clustering-iris-from-scratch-6",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/KMeans_Clustering_Iris_From_Scratch.ipynb",
+   "line": 6,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-kmeans-clustering-iris-from-scratch-7",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/KMeans_Clustering_Iris_From_Scratch.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-kmeans-clustering-iris-from-scratch-8",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/KMeans_Clustering_Iris_From_Scratch.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-kmeans-clustering-iris-from-scratch-9",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/KMeans_Clustering_Iris_From_Scratch.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-kmeans-clustering-iris-from-scratch-10",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/KMeans_Clustering_Iris_From_Scratch.ipynb",
+   "line": 10,
+   "page_url": "",
+   "error": null,
+   "steps": 35,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-kmeans-clustering-iris-from-scratch-11",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/KMeans_Clustering_Iris_From_Scratch.ipynb",
+   "line": 11,
+   "page_url": "",
+   "error": null,
+   "steps": 22,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-kmeans-clustering-iris-from-scratch-12",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/KMeans_Clustering_Iris_From_Scratch.ipynb",
+   "line": 12,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-k-means-clustering-and-nearest-neighbors-2",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/K_Means_Clustering_and_Nearest_Neighbors.ipynb",
+   "line": 2,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/Kalman_Filter_Robot_Localization_Maze_Heatmaps.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 12,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-3",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/Kalman_Filter_Robot_Localization_Maze_Heatmaps.ipynb",
+   "line": 3,
+   "page_url": "",
+   "error": null,
+   "steps": 28,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-6",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/Kalman_Filter_Robot_Localization_Maze_Heatmaps.ipynb",
+   "line": 6,
+   "page_url": "",
+   "error": null,
+   "steps": 345,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-7",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Kalman_Filter_Robot_Localization_Maze_Heatmaps.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-8",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Kalman_Filter_Robot_Localization_Maze_Heatmaps.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-9",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Kalman_Filter_Robot_Localization_Maze_Heatmaps.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-10",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Kalman_Filter_Robot_Localization_Maze_Heatmaps.ipynb",
+   "line": 10,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-lda-and-fisherscore-fromscratch-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/LDA_and_FisherScore_FromScratch.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-lda-and-fisherscore-fromscratch-3",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/LDA_and_FisherScore_FromScratch.ipynb",
+   "line": 3,
+   "page_url": "",
+   "error": null,
+   "steps": 10,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-lda-and-fisherscore-fromscratch-4",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/LDA_and_FisherScore_FromScratch.ipynb",
+   "line": 4,
+   "page_url": "",
+   "error": null,
+   "steps": 52,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-lda-and-fisherscore-fromscratch-5",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/LDA_and_FisherScore_FromScratch.ipynb",
+   "line": 5,
+   "page_url": "",
+   "error": null,
+   "steps": 18,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-lda-and-fisherscore-fromscratch-6",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/LDA_and_FisherScore_FromScratch.ipynb",
+   "line": 6,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-lda-and-fisherscore-fromscratch-7",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/LDA_and_FisherScore_FromScratch.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-lda-and-fisherscore-fromscratch-8",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/LDA_and_FisherScore_FromScratch.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-lda-and-fisherscore-fromscratch-9",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/LDA_and_FisherScore_FromScratch.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-lda-and-fisherscore-fromscratch-10",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/LDA_and_FisherScore_FromScratch.ipynb",
+   "line": 10,
+   "page_url": "",
+   "error": null,
+   "steps": 42,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-lda-and-fisherscore-fromscratch-11",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/LDA_and_FisherScore_FromScratch.ipynb",
+   "line": 11,
+   "page_url": "",
+   "error": null,
+   "steps": 25,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-lda-and-fisherscore-fromscratch-12",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/LDA_and_FisherScore_FromScratch.ipynb",
+   "line": 12,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linearfunctionestimatormultilayernn-6",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/LinearFunctionEstimatorMultiLayerNN.ipynb",
+   "line": 6,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linearfunctionestimatormultilayernn-7",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/LinearFunctionEstimatorMultiLayerNN.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 2,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linearfunctionestimatormultilayernn-8",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/LinearFunctionEstimatorMultiLayerNN.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 4,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linearfunctionestimatormultilayernn-9",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/LinearFunctionEstimatorMultiLayerNN.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linearfunctionestimatornn-6",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/LinearFunctionEstimatorNN.ipynb",
+   "line": 6,
+   "page_url": "",
+   "error": null,
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linearfunctionestimatornn-7",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/LinearFunctionEstimatorNN.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 2,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-and-logistic-regression-tutorial-1",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Linear_and_Logistic_Regression_Tutorial.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-and-logistic-regression-tutorial-2",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Linear_and_Logistic_Regression_Tutorial.ipynb",
+   "line": 2,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-and-logistic-regression-tutorial-3",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/Linear_and_Logistic_Regression_Tutorial.ipynb",
+   "line": 3,
+   "page_url": "",
+   "error": null,
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-and-logistic-regression-tutorial-4",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Linear_and_Logistic_Regression_Tutorial.ipynb",
+   "line": 4,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-and-logistic-regression-tutorial-5",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Linear_and_Logistic_Regression_Tutorial.ipynb",
+   "line": 5,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-and-logistic-regression-tutorial-6",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Linear_and_Logistic_Regression_Tutorial.ipynb",
+   "line": 6,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-and-logistic-regression-tutorial-7",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Linear_and_Logistic_Regression_Tutorial.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-and-logistic-regression-tutorial-8",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Linear_and_Logistic_Regression_Tutorial.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-and-logistic-regression-tutorial-9",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Linear_and_Logistic_Regression_Tutorial.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-and-logistic-regression-tutorial-10",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Linear_and_Logistic_Regression_Tutorial.ipynb",
+   "line": 10,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-and-logistic-regression-tutorial-11",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Linear_and_Logistic_Regression_Tutorial.ipynb",
+   "line": 11,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-and-logistic-regression-tutorial-12",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Linear_and_Logistic_Regression_Tutorial.ipynb",
+   "line": 12,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-and-logistic-regression-tutorial-13",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Linear_and_Logistic_Regression_Tutorial.ipynb",
+   "line": 13,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-and-logistic-regression-tutorial-14",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Linear_and_Logistic_Regression_Tutorial.ipynb",
+   "line": 14,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-and-logistic-regression-tutorial-15",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Linear_and_Logistic_Regression_Tutorial.ipynb",
+   "line": 15,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-logistic-regression-mle-from-scratch-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/Logistic_Regression_MLE_From_Scratch.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-logistic-regression-mle-from-scratch-3",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Logistic_Regression_MLE_From_Scratch.ipynb",
+   "line": 3,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-logistic-regression-mle-from-scratch-4",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/Logistic_Regression_MLE_From_Scratch.ipynb",
+   "line": 4,
+   "page_url": "",
+   "error": null,
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-logistic-regression-mle-from-scratch-7",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Logistic_Regression_MLE_From_Scratch.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-logistic-regression-mle-from-scratch-8",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Logistic_Regression_MLE_From_Scratch.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-logistic-regression-mle-from-scratch-9",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Logistic_Regression_MLE_From_Scratch.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-logistic-regression-mle-from-scratch-10",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/Logistic_Regression_MLE_From_Scratch.ipynb",
+   "line": 10,
+   "page_url": "",
+   "error": null,
+   "steps": 12,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-logistic-regression-mle-from-scratch-11",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Logistic_Regression_MLE_From_Scratch.ipynb",
+   "line": 11,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-mle-from-first-principles-worked-examples-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/MLE_From_First_Principles_Worked_Examples.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-mle-from-first-principles-worked-examples-3",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/MLE_From_First_Principles_Worked_Examples.ipynb",
+   "line": 3,
+   "page_url": "",
+   "error": null,
+   "steps": 11,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-mle-from-first-principles-worked-examples-4",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/MLE_From_First_Principles_Worked_Examples.ipynb",
+   "line": 4,
+   "page_url": "",
+   "error": null,
+   "steps": 11,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-mle-from-first-principles-worked-examples-5",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/MLE_From_First_Principles_Worked_Examples.ipynb",
+   "line": 5,
+   "page_url": "",
+   "error": null,
+   "steps": 11,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-mle-from-first-principles-worked-examples-6",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/MLE_From_First_Principles_Worked_Examples.ipynb",
+   "line": 6,
+   "page_url": "",
+   "error": null,
+   "steps": 13,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-mle-from-first-principles-worked-examples-7",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/MLE_From_First_Principles_Worked_Examples.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-mle-from-first-principles-worked-examples-8",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/MLE_From_First_Principles_Worked_Examples.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 14,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-mle-from-first-principles-worked-examples-9",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/MLE_From_First_Principles_Worked_Examples.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-mle-from-first-principles-worked-examples-10",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/MLE_From_First_Principles_Worked_Examples.ipynb",
+   "line": 10,
+   "page_url": "",
+   "error": null,
+   "steps": 14,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-mle-from-first-principles-worked-examples-11",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/MLE_From_First_Principles_Worked_Examples.ipynb",
+   "line": 11,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-markov-chain-tutorial-3",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/Markov_Chain_Tutorial.ipynb",
+   "line": 3,
+   "page_url": "",
+   "error": null,
+   "steps": 20,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-markov-chain-tutorial-4",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Markov_Chain_Tutorial.ipynb",
+   "line": 4,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-markov-chain-tutorial-5",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/Markov_Chain_Tutorial.ipynb",
+   "line": 5,
+   "page_url": "",
+   "error": null,
+   "steps": 15,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-markov-chain-tutorial-6",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Markov_Chain_Tutorial.ipynb",
+   "line": 6,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-markov-chain-tutorial-7",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/Markov_Chain_Tutorial.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 7,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-markov-chain-tutorial-8",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Markov_Chain_Tutorial.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-markov-chain-tutorial-9",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/Markov_Chain_Tutorial.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 33,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-markov-chain-tutorial-10",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/Markov_Chain_Tutorial.ipynb",
+   "line": 10,
+   "page_url": "",
+   "error": null,
+   "steps": 11,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-markov-chain-tutorial-11",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Markov_Chain_Tutorial.ipynb",
+   "line": 11,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-markov-chain-tutorial-12",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Markov_Chain_Tutorial.ipynb",
+   "line": 12,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-minimax-tutorial-2",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/Minimax_Tutorial.ipynb",
+   "line": 2,
+   "page_url": "",
+   "error": null,
+   "steps": 14,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-minimax-tutorial-3",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/Minimax_Tutorial.ipynb",
+   "line": 3,
+   "page_url": "",
+   "error": null,
+   "steps": 35,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-minimax-tutorial-4",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/Minimax_Tutorial.ipynb",
+   "line": 4,
+   "page_url": "",
+   "error": null,
+   "steps": 36,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-minimax-tutorial-5",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Minimax_Tutorial.ipynb",
+   "line": 5,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-nonlinearfunctionestimatormultilayernn-6",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/NonLinearFunctionEstimatorMultiLayerNN.ipynb",
+   "line": 6,
+   "page_url": "",
+   "error": null,
+   "steps": 800,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-nonlinearfunctionestimatormultilayernn-7",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/NonLinearFunctionEstimatorMultiLayerNN.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 18,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-nonlinearfunctionestimatormultilayernn-8",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/NonLinearFunctionEstimatorMultiLayerNN.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-nonlinearfunctionestimatormultilayernn-9",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/NonLinearFunctionEstimatorMultiLayerNN.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-nonlinearfunctionestimatormultilayernn-10",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/NonLinearFunctionEstimatorMultiLayerNN.ipynb",
+   "line": 10,
+   "page_url": "",
+   "error": null,
+   "steps": 26,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-pca-from-scratch-and-sklearn-1",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/PCA_From_Scratch_and_Sklearn.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-pca-from-scratch-and-sklearn-3",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/PCA_From_Scratch_and_Sklearn.ipynb",
+   "line": 3,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-pca-from-scratch-and-sklearn-4",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/PCA_From_Scratch_and_Sklearn.ipynb",
+   "line": 4,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-pca-from-scratch-and-sklearn-6",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/PCA_From_Scratch_and_Sklearn.ipynb",
+   "line": 6,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-pca-from-scratch-and-sklearn-8",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/PCA_From_Scratch_and_Sklearn.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-pca-from-scratch-and-sklearn-9",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/PCA_From_Scratch_and_Sklearn.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-pca-from-scratch-and-sklearn-10",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/PCA_From_Scratch_and_Sklearn.ipynb",
+   "line": 10,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/ProjectFunding_MultiArmedBandit_FromScratch.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-3",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/ProjectFunding_MultiArmedBandit_FromScratch.ipynb",
+   "line": 3,
+   "page_url": "",
+   "error": null,
+   "steps": 18,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-9",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/ProjectFunding_MultiArmedBandit_FromScratch.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 11,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-10",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/ProjectFunding_MultiArmedBandit_FromScratch.ipynb",
+   "line": 10,
+   "page_url": "",
+   "error": null,
+   "steps": 21,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-11",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/ProjectFunding_MultiArmedBandit_FromScratch.ipynb",
+   "line": 11,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-12",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/ProjectFunding_MultiArmedBandit_FromScratch.ipynb",
+   "line": 12,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-13",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/ProjectFunding_MultiArmedBandit_FromScratch.ipynb",
+   "line": 13,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-14",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/ProjectFunding_MultiArmedBandit_FromScratch.ipynb",
+   "line": 14,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-15",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/ProjectFunding_MultiArmedBandit_FromScratch.ipynb",
+   "line": 15,
+   "page_url": "",
+   "error": null,
+   "steps": 34,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-16",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/ProjectFunding_MultiArmedBandit_FromScratch.ipynb",
+   "line": 16,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-qlearning-vs-valueiteration-gridworld-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/QLearning_vs_ValueIteration_Gridworld.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-qlearning-vs-valueiteration-gridworld-8",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/QLearning_vs_ValueIteration_Gridworld.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-qlearning-vs-valueiteration-gridworld-9",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/QLearning_vs_ValueIteration_Gridworld.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-qlearning-vs-valueiteration-gridworld-10",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/QLearning_vs_ValueIteration_Gridworld.ipynb",
+   "line": 10,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-qlearning-vs-valueiteration-gridworld-11",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/QLearning_vs_ValueIteration_Gridworld.ipynb",
+   "line": 11,
+   "page_url": "",
+   "error": null,
+   "steps": 19,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-qlearning-vs-valueiteration-gridworld-12",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/QLearning_vs_ValueIteration_Gridworld.ipynb",
+   "line": 12,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-rl-fromscratch-toygridworld-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/RL_FromScratch_ToyGridworld.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 5,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-rl-fromscratch-toygridworld-6",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/RL_FromScratch_ToyGridworld.ipynb",
+   "line": 6,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-rl-fromscratch-toygridworld-7",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/RL_FromScratch_ToyGridworld.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-rl-fromscratch-toygridworld-8",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/RL_FromScratch_ToyGridworld.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-rl-fromscratch-toygridworld-9",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/RL_FromScratch_ToyGridworld.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-svm-from-scratch-linear-and-kernel-1",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/SVM_From_Scratch_Linear_and_Kernel.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-svm-from-scratch-linear-and-kernel-3",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/SVM_From_Scratch_Linear_and_Kernel.ipynb",
+   "line": 3,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-svm-from-scratch-linear-and-kernel-4",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/SVM_From_Scratch_Linear_and_Kernel.ipynb",
+   "line": 4,
+   "page_url": "",
+   "error": null,
+   "steps": 4,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-svm-from-scratch-linear-and-kernel-8",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/SVM_From_Scratch_Linear_and_Kernel.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 23,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-svm-from-scratch-linear-and-kernel-9",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/SVM_From_Scratch_Linear_and_Kernel.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-svm-from-scratch-linear-and-kernel-10",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/SVM_From_Scratch_Linear_and_Kernel.ipynb",
+   "line": 10,
+   "page_url": "",
+   "error": null,
+   "steps": 7,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-svm-from-scratch-linear-and-kernel-11",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/SVM_From_Scratch_Linear_and_Kernel.ipynb",
+   "line": 11,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-svm-from-scratch-linear-and-kernel-12",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/SVM_From_Scratch_Linear_and_Kernel.ipynb",
+   "line": 12,
+   "page_url": "",
+   "error": null,
+   "steps": 5,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-svm-from-scratch-linear-and-kernel-13",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/SVM_From_Scratch_Linear_and_Kernel.ipynb",
+   "line": 13,
+   "page_url": "",
+   "error": null,
+   "steps": 13,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-svm-from-scratch-linear-and-kernel-14",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/SVM_From_Scratch_Linear_and_Kernel.ipynb",
+   "line": 14,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-simple-mnist-nn-from-scratch-1",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Simple_MNIST_NN_from_scratch.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-unsupervised-learning-colab-2",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Unsupervised_Learning_Colab.ipynb",
+   "line": 2,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-unsupervised-learning-colab-3",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Unsupervised_Learning_Colab.ipynb",
+   "line": 3,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-unsupervised-learning-colab-4",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Unsupervised_Learning_Colab.ipynb",
+   "line": 4,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-unsupervised-learning-colab-5",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Unsupervised_Learning_Colab.ipynb",
+   "line": 5,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-unsupervised-learning-colab-6",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Unsupervised_Learning_Colab.ipynb",
+   "line": 6,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-unsupervised-learning-colab-7",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Unsupervised_Learning_Colab.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-unsupervised-learning-colab-8",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/Unsupervised_Learning_Colab.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-logistic-regression-demo-1",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/linear_logistic_regression_demo.ipynb",
+   "line": 1,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-logistic-regression-demo-2",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/linear_logistic_regression_demo.ipynb",
+   "line": 2,
+   "page_url": "",
+   "error": null,
+   "steps": 6,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-logistic-regression-demo-5",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/linear_logistic_regression_demo.ipynb",
+   "line": 5,
+   "page_url": "",
+   "error": null,
+   "steps": 5,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-logistic-regression-demo-6",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/linear_logistic_regression_demo.ipynb",
+   "line": 6,
+   "page_url": "",
+   "error": null,
+   "steps": 12,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-logistic-regression-demo-7",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/linear_logistic_regression_demo.ipynb",
+   "line": 7,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-logistic-regression-demo-8",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/linear_logistic_regression_demo.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 23,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-logistic-regression-demo-9",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/linear_logistic_regression_demo.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 15,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-logistic-regression-demo-13",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/linear_logistic_regression_demo.ipynb",
+   "line": 13,
+   "page_url": "",
+   "error": null,
+   "steps": 7,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-logistic-regression-demo-14",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/linear_logistic_regression_demo.ipynb",
+   "line": 14,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-logistic-regression-demo-15",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/linear_logistic_regression_demo.ipynb",
+   "line": 15,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-linear-logistic-regression-demo-17",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/linear_logistic_regression_demo.ipynb",
+   "line": 17,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-naive-bayes-step-by-step-3",
+   "viz": "plain",
+   "lang": "python",
+   "page": "files/notebooks/naive_bayes_step_by_step.ipynb",
+   "line": 3,
+   "page_url": "",
+   "error": null,
+   "steps": 0,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-naive-bayes-step-by-step-4",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/naive_bayes_step_by_step.ipynb",
+   "line": 4,
+   "page_url": "",
+   "error": null,
+   "steps": 7,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-naive-bayes-step-by-step-8",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/naive_bayes_step_by_step.ipynb",
+   "line": 8,
+   "page_url": "",
+   "error": null,
+   "steps": 134,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  },
+  {
+   "id": "cs477-nb-naive-bayes-step-by-step-9",
+   "viz": "env",
+   "lang": "python",
+   "page": "files/notebooks/naive_bayes_step_by_step.ipynb",
+   "line": 9,
+   "page_url": "",
+   "error": null,
+   "steps": 7,
+   "modes": [
+    "run",
+    "explain"
+   ]
+  }
+ ]
+}

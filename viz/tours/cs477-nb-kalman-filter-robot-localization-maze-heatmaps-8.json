@@ -1,0 +1,33 @@
+{
+ "code": "true_xy = true_traj[:, :2]\nest_xy = xs[:, :2]\n\nfig = plt.figure(figsize=(6,5))\nplt.plot(true_xy[:,0], true_xy[:,1], label=\"True path\")\nplt.plot(est_xy[:,0], est_xy[:,1], label=\"KF estimate\")\n# Draw a few covariance ellipses\nfor t in [0, len(Ps)//3, 2*len(Ps)//3, len(Ps)-1]:\n    plot_cov_ellipse(est_xy[t], Ps[t,:2,:2], nstd=2.0, ax=plt.gca())\nplt.title(\"True vs. KF Estimated Trajectory\")\nplt.xlabel(\"x (m)\"); plt.ylabel(\"y (m)\"); plt.legend()\nplt.tight_layout(); plt.show()",
+ "description": "You display position estimates and selected covariance ellipses.",
+ "example": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You select the first two columns of true_traj and xs. These arrays supply the true and estimated position coordinates.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "description": "You plot both paths on the same axes. Their labels distinguish True path from KF estimate.",
+   "kind": "reveal",
+   "lines": "4-6"
+  },
+  {
+   "answer": "It draws four selected ellipses, using the first, two interior, and last covariance entries.",
+   "kind": "predict",
+   "lines": "8-9",
+   "question": "Does the loop draw a covariance ellipse for every estimate?"
+  },
+  {
+   "description": "You center each ellipse at its selected estimate and pass its position covariance block with the supplied nstd. The displayed chart labels both position axes in meters.",
+   "kind": "reveal",
+   "lines": "8-12"
+  }
+ ],
+ "title": "Compare true and estimated paths",
+ "version": 1
+}

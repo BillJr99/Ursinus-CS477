@@ -1,0 +1,33 @@
+{
+ "code": "def idx(i, j, W):  # 2D -> 1D\n    return i*W + j\n\ndef ij(s, W):      # 1D -> 2D\n    return divmod(s, W)\n\n# Mask for free cells\nfree_mask = (maze.grid == 0)          # (H,W) True for free\nfree_states = np.where(free_mask.reshape(-1))[0]  # flattened indices of free cells\nnum_free = len(free_states)\nprint(\"Free cells:\", num_free, \"of\", N)\n\n# Helper to render a belief vector (over N) into an (H,W) image, zeroing walls.\ndef belief_to_grid(b, maze):\n    img = np.zeros((H,W), dtype=float)\n    img[free_mask] = b[free_mask.reshape(-1)]\n    return img",
+ "description": "You connect flat state indices to free cells in a grid image.",
+ "example": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-5",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You flatten row i and column j with i*W+j. divmod reverses that mapping into a row and column.",
+   "kind": "reveal",
+   "lines": "1-5"
+  },
+  {
+   "description": "You mark zero-valued grid cells as free and extract their flat indices. The recording reports 28 free cells out of 35 positions.",
+   "kind": "reveal",
+   "lines": "7-11"
+  },
+  {
+   "answer": "They remain zero. The assignment copies belief entries only where free_mask is true.",
+   "kind": "predict",
+   "lines": "14-16",
+   "question": "What values appear at wall positions in the returned belief image?"
+  },
+  {
+   "description": "You return an H by W image containing the free-cell beliefs. The helper uses the existing H, W, and free_mask to place those values.",
+   "kind": "reveal",
+   "lines": "13-17"
+  }
+ ],
+ "title": "Map belief indices onto the maze",
+ "version": 1
+}

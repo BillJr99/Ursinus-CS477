@@ -1,0 +1,33 @@
+{
+ "code": "\nols = LinearRegression().fit(X_train, y_train) # ordinary least squares\ny_pred_ols = ols.predict(X_test)\nresiduals = y_test - y_pred_ols\n\nplt.scatter(y_pred_ols, residuals, alpha=0.7)\nplt.axhline(0, linestyle=\"--\")\nplt.xlabel(\"Predicted y (OLS)\")\nplt.ylabel(\"Residual (y - y_hat)\")\nplt.title(\"Residual Plot\")\nplt.show()\n",
+ "description": "You inspect test errors from an ordinary least-squares model.",
+ "example": "cs477-nb-linear-and-logistic-regression-tutorial-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You fit LinearRegression on the training split. The comment identifies this as ordinary least squares, or OLS, and predict evaluates the test features.",
+   "kind": "reveal",
+   "lines": "2-3"
+  },
+  {
+   "answer": "y_test exceeds the prediction because residuals equals y_test minus y_pred_ols. The model predicted a lower value than the observed target.",
+   "kind": "predict",
+   "lines": "4",
+   "question": "What does a positive residual mean with this subtraction order?"
+  },
+  {
+   "description": "You scatter predictions horizontally and residuals vertically. The dashed line at zero marks exact prediction agreement.",
+   "kind": "reveal",
+   "lines": "4-7"
+  },
+  {
+   "description": "You label and display the residual plot. The supplied output contains no numeric errors or rendered pattern to interpret further.",
+   "kind": "reveal",
+   "lines": "8-11"
+  }
+ ],
+ "title": "Plot residuals against fitted predictions",
+ "version": 1
+}

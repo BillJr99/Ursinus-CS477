@@ -1,0 +1,4 @@
+Fitted parameters (theta): [-2.75992307  1.47580635  1.29800476]
+
+Estimated logistic model:
+ log( p / (1 - p) ) = -2.760 + 1.476*x1 + 1.298*x2

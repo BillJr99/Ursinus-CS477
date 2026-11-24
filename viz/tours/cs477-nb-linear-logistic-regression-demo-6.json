@@ -1,0 +1,33 @@
+{
+ "code": "# Predict on train and test\ny_train_pred = reg_pipeline.predict(X_train)\ny_test_pred = reg_pipeline.predict(X_test)\n\n# RMSE (train and test)\nrmse_train = np.sqrt(mean_squared_error(y_train, y_train_pred))\nrmse_test = np.sqrt(mean_squared_error(y_test, y_test_pred))\n\n# R^2 (train and test)\nr2_train = r2_score(y_train, y_train_pred)\nr2_test = r2_score(y_test, y_test_pred)\n\nprint(\"Linear Regression metrics:\")\nprint(f\"  Train RMSE: {rmse_train:.3f}\")\nprint(f\"  Test  RMSE: {rmse_test:.3f}\")\nprint(f\"  Train R^2: {r2_train:.3f}\")\nprint(f\"  Test  R^2: {r2_test:.3f}\")",
+ "description": "You evaluate the fitted pipeline separately on both data splits.",
+ "example": "cs477-nb-linear-logistic-regression-demo-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You predict training and test targets with the same fitted reg_pipeline. Each prediction array corresponds to its own feature split.",
+   "kind": "reveal",
+   "lines": "1-3"
+  },
+  {
+   "answer": "It takes the square root. RMSE means root mean squared error.",
+   "kind": "predict",
+   "lines": "5-7",
+   "question": "How does the code turn mean squared error into RMSE?"
+  },
+  {
+   "description": "You compute RMSE and R-squared separately for each split. Each metric compares predictions with labels from the matching split.",
+   "kind": "reveal",
+   "lines": "5-11"
+  },
+  {
+   "description": "You print training RMSE 57.991 and test RMSE 58.889 in the recording. Their R-squared values are 0.447 and 0.345 respectively.",
+   "kind": "reveal",
+   "lines": "13-17"
+  }
+ ],
+ "title": "Compare training and test regression errors",
+ "version": 1
+}

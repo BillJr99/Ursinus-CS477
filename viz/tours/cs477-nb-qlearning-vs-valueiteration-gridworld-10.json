@@ -1,0 +1,33 @@
+{
+ "code": "def act_greedy(Q, s):\n    return int(np.argmax(Q[s])) if s in Q else 0\n\ndef rollout(env, Q, start=(4,6), max_steps=200):\n    s = env.reset(start=start)\n    traj = [s]\n    ret = 0.0; done=False\n    for t in range(max_steps):\n        if env.is_terminal(s): break\n        a = act_greedy(Q, s)\n        s, r, done = env.step(a)\n        traj.append(s); ret += r\n        if done: break\n    return traj, ret\n\ntraj, ret = rollout(env, Q_hat, start=(4,6))\nprint(\"Rollout return (learned policy):\", ret)\n\n# Plot path\nfig = plt.figure(figsize=(5,4.5))\nax = plt.gca()\nax.imshow(np.ones((env.H, env.W))*0.95, interpolation='nearest', cmap='gray')\nfor wcell in env.walls:\n    ax.add_patch(plt.Rectangle((wcell[1]-0.5, wcell[0]-0.5), 1, 1, color='black'))\nfor tcell, rwd in env.terminals.items():\n    col = 'green' if rwd>0 else 'red'\n    ax.add_patch(plt.Rectangle((tcell[1]-0.5, tcell[0]-0.5), 1, 1, color=col, alpha=0.6))\nxs = [c for (r,c) in traj]; ys = [r for (r,c) in traj]\nax.plot(xs, ys, marker='o')\nax.set_xticks([]); ax.set_yticks([]); ax.set_title(\"Trajectory under learned policy\")\nplt.tight_layout(); plt.show()",
+ "description": "You follow greedy action choices and plot the sampled trajectory.",
+ "example": "cs477-nb-qlearning-vs-valueiteration-gridworld-10",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You choose the largest Q entry for a known state and action zero otherwise. rollout resets the environment and stores the starting state.",
+   "kind": "reveal",
+   "lines": "1-7"
+  },
+  {
+   "answer": "It reads Q to choose actions and accumulates rewards, but contains no Q update. Terminal checks or the step limit end the rollout.",
+   "kind": "predict",
+   "lines": "8-13",
+   "question": "Does this rollout update Q after receiving rewards?"
+  },
+  {
+   "description": "You append each next state and add its reward to ret. The recorded rollout from the supplied start returns 0.92.",
+   "kind": "reveal",
+   "lines": "8-17"
+  },
+  {
+   "description": "You draw walls and terminal cells, then plot the stored trajectory. Columns become horizontal coordinates and rows become vertical coordinates.",
+   "kind": "reveal",
+   "lines": "19-31"
+  }
+ ],
+ "title": "Roll out the learned gridworld policy",
+ "version": 1
+}

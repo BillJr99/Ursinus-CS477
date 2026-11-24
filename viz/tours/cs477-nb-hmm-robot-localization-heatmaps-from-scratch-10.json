@@ -1,0 +1,38 @@
+{
+ "code": "def random_free_cell(maze):\n    idxs = np.argwhere(maze.grid==0)\n    i, j = idxs[rng.integers(0, len(idxs))]\n    return int(i), int(j)\n\n# Generate a hand-crafted action sequence (alternating corridors), or random\ndef generate_actions(T):\n    base = ['E']*3 + ['S']*2 + ['W']*3 + ['S']*1 + ['E']*2 + ['N']*2 + ['E']*2\n    if len(base) >= T:\n        return base[:T]\n    # pad with random if needed\n    extra = rng.choice(ACTIONS, size=T-len(base)).tolist()\n    return base + extra\n\ndef simulate(maze, actions, sensor_correct=0.85, p_success=0.8, p_slip=0.15):\n    # Build T for each action with provided motion params\n    T_by_action_sim = {a: transition_matrix_for_action(a, maze, p_success=p_success, p_slip=p_slip) for a in ACTIONS}\n    # start in a random free cell\n    i0, j0 = random_free_cell(maze)\n    s = idx(i0, j0, W)\n    true_states = [s]\n    observations = []\n    for a in actions:\n        # sample next state\n        probs = T_by_action_sim[a][s]\n        s = int(rng.choice(np.arange(N), p=probs))\n        true_states.append(s)\n        # sample observation color\n        ii, jj = ij(s, W)\n        true_color = maze.colors[ii, jj]\n        if rng.random() < sensor_correct:\n            obs = int(true_color)\n        else:\n            # choose an incorrect color uniformly\n            choices = [c for c in range(int(maze.colors.max()+1)) if c != true_color]\n            obs = int(rng.choice(choices))\n        observations.append(obs)\n    return true_states, observations, T_by_action_sim\n\n# Parameters\nT_len = 16\nsensor_correct = 0.85\np_success = 0.8\np_slip = 0.15\n\nactions = generate_actions(T_len)\ntrue_states, observations, T_by_action_sim = simulate(maze, actions, sensor_correct, p_success, p_slip)\n\nprint(\"Actions:\", actions)\nprint(\"Observations (colors):\", observations)\nprint(\"True path length:\", len(true_states))",
+ "description": "You follow sampled robot motion and observations through the simulation.",
+ "example": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-10",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You choose a random free cell and define a fixed action prefix. generate_actions truncates that prefix or appends random actions to meet T.",
+   "kind": "reveal",
+   "lines": "1-13"
+  },
+  {
+   "description": "You build action transition matrices using the supplied motion parameters. Each action samples a next state from the current state's transition row.",
+   "kind": "reveal",
+   "lines": "15-27"
+  },
+  {
+   "description": "You read the new state's color. The sensor reports that color with probability sensor_correct and otherwise samples a different color.",
+   "kind": "reveal",
+   "lines": "28-38"
+  },
+  {
+   "answer": "There are 17 true states because the list includes the initial state before the sampled transitions.",
+   "kind": "predict",
+   "lines": "21-27,41-47",
+   "question": "How many true states accompany the supplied actions?"
+  },
+  {
+   "description": "You call the simulation with the supplied sensor_correct, p_success, and p_slip values. The recorded output lists the actions and color readings, followed by a true path length of 17.",
+   "kind": "reveal",
+   "lines": "41-51"
+  }
+ ],
+ "title": "Generate a hidden path and color readings",
+ "version": 1
+}

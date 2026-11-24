@@ -1,0 +1,38 @@
+{
+ "code": "# Equivalent to sq_dists = ((X[:, None, :] - centers[None, :, :]) ** 2).sum(axis=2)\ndef pairwise_sq_dists_loops(X: np.ndarray, centers: np.ndarray) -> np.ndarray:\n    \"\"\"\n    Compute pairwise squared Euclidean distances between each row of X and each row of centers\n    using explicit Python loops (no broadcasting).\n\n    Parameters\n    ----------\n    X : (n_samples, n_features) array\n    centers : (k, n_features) array\n\n    Returns\n    -------\n    sq_dists : (n_samples, k) array\n        sq_dists[i, j] = ||X[i] - centers[j]||^2\n    \"\"\"\n    n, f = X.shape\n    k = centers.shape[0]\n    sq_dists = np.empty((n, k), dtype=np.result_type(X.dtype, centers.dtype))\n\n    for i in range(n):\n        xi = X[i]\n        for j in range(k):\n            diff = xi - centers[j]\n            # squared Euclidean distance = dot(diff, diff)\n            sq_dists[i, j] = np.dot(diff, diff)\n\n    return sq_dists\n\ndef plot(X, labels, centers):\n  plt.figure()\n  plt.scatter(X[:, 0], X[:, 1], c=labels, s=12)\n  plt.scatter(centers[:, 0], centers[:, 1], marker='x', s=120)\n  plt.title(\"K-Means: Cluster Assignments\")\n  plt.xlabel(\"Feature 1\")\n  plt.ylabel(\"Feature 2\")\n  plt.show()\n\n# === K-Means (From Scratch) ===\nnp.random.seed(1)\n\n# 1) Generate a 2D dataset with 3 clusters\ntrue_centers = np.array([[0, 0], [5, 0], [2.5, 4]])\npoints_per_cluster = 120\nA = np.random.randn(points_per_cluster, 2) + true_centers[0]\nB = np.random.randn(points_per_cluster, 2) + true_centers[1]\nC = np.random.randn(points_per_cluster, 2) + true_centers[2]\nX_km = np.vstack([A, B, C])\n\n# 2) K-means via Lloyd's algorithm\ndef kmeans_from_scratch(X, K=3, max_iters=100, seed=0):\n    # Randomly pick K points as initial centroids\n    rng = np.random.default_rng(seed)\n    n = X.shape[0]\n    centers = X[rng.choice(n, size=K, replace=False)]\n\n    for _ in range(max_iters):\n        # Compute squared distances to each center -> (n, K)\n        sq_dists = ((X[:, None, :] - centers[None, :, :]) ** 2).sum(axis=2)\n\n        # Assign to nearest center\n        labels = np.argmin(sq_dists, axis=1)\n\n        # Plot this iteration\n        plot(X, labels, centers)\n\n        # Update centers as mean of assigned points (if cluster empty, keep old center)\n        new_centers = np.array([\n            X[labels == k].mean(axis=0) if np.any(labels == k) else centers[k]\n            for k in range(K)\n        ])\n\n        # If centers did not move much, stop\n        if np.allclose(centers, new_centers):\n            centers = new_centers\n            break\n\n        centers = new_centers\n\n    return centers, labels\n\ncenters, labels = kmeans_from_scratch(X_km, K=3, max_iters=100, seed=123)\n",
+ "description": "You compare distance calculations and trace assignment and centroid updates.",
+ "example": "cs477-nb-k-means-clustering-and-nearest-neighbors-2",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You compute one squared distance per observation-center pair with nested loops. Taking the dot product of diff with itself sums squared feature differences.",
+   "kind": "reveal",
+   "lines": "1-28"
+  },
+  {
+   "description": "You define a cluster plot and sample observations around each of three stated centers. Stacking the groups creates the two-dimensional dataset.",
+   "kind": "reveal",
+   "lines": "30-48"
+  },
+  {
+   "description": "You select initial centers from distinct rows. The active clustering loop uses broadcasting for squared distances and assigns each point to its nearest center before plotting.",
+   "kind": "reveal",
+   "lines": "50-65"
+  },
+  {
+   "answer": "It keeps centers[k]. A populated cluster instead receives the mean of its assigned observations.",
+   "kind": "predict",
+   "lines": "67-71",
+   "question": "What happens to the center of an empty cluster?"
+  },
+  {
+   "description": "You stop when old and new centers are close, or finish the iteration limit. The final call returns centers and labels for K=3 using the supplied seed.",
+   "kind": "reveal",
+   "lines": "67-82"
+  }
+ ],
+ "title": "Follow Lloyd's clustering updates",
+ "version": 1
+}

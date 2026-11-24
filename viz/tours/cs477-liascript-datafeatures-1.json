@@ -1,0 +1,33 @@
+{
+ "code": "import numpy as np\nrng = np.random.default_rng(477)\n\n# 1. \"Collect\" data: y = 3*x1 + 20*x2 + noise  (n=200, d=2)\nn = 200\nX = np.column_stack([rng.uniform(0, 10, n), rng.integers(1, 5, n)])\ny = 3 * X[:, 0] + 20 * X[:, 1] + rng.normal(0, 4, n)\n\n# 2. Split BEFORE fitting (80/20)\nidx = rng.permutation(n)\ntrain, test = idx[:160], idx[160:]\n\n# 3. Fit a weighted-sum model on TRAINING data only (least squares)\nXb = np.column_stack([X, np.ones(n)])                  # add bias column\nw, *_ = np.linalg.lstsq(Xb[train], y[train], rcond=None)\nprint(\"learned weights:\", np.round(w, 2), \" (true: [3, 20, 0])\")\n\n# 4. Evaluate on the untouched TEST split\npred = Xb[test] @ w\nrmse = np.sqrt(np.mean((pred - y[test]) ** 2))\nprint(\"test RMSE:\", round(rmse, 2), \" (noise floor was 4)\")",
+ "description": "You can follow synthetic data through a training split and a held-out error calculation.",
+ "example": "cs477-liascript-datafeatures-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You seed the generator and create 200 two-feature observations. y combines the two columns with known weights and added noise.",
+   "kind": "reveal",
+   "lines": "1-7"
+  },
+  {
+   "description": "A shuffled index array separates 160 training rows from the remaining test rows. You append a constant bias column and fit least squares using only train indices.",
+   "kind": "reveal",
+   "lines": "9-15"
+  },
+  {
+   "answer": "Only the test rows, selected by Xb[test], produce these predictions.",
+   "kind": "predict",
+   "lines": "19",
+   "question": "Which rows produce pred for the error calculation?"
+  },
+  {
+   "description": "You see learned weights [3.02, 19.86, 0.07]. The held-out root mean squared error, the square root of the mean squared prediction error, prints 4.02.",
+   "kind": "reveal",
+   "lines": "16-21"
+  }
+ ],
+ "title": "Separating model fitting from evaluation",
+ "version": 1
+}

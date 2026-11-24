@@ -1,0 +1,33 @@
+{
+ "code": "gnb = GaussianNaiveBayes(var_smoothing=1e-9)\ngnb.fit(X_train, y_train)\n\n# 4. Predictions\ny_pred = gnb.predict(X_test)\n\n# 5. Evaluation\nprint(\"Accuracy:\", accuracy_score(y_test, y_pred))\nprint(\"F1 Score:\", f1_score(y_test, y_pred))\nprint(\"\\nClassification Report:\\n\", classification_report(y_test, y_pred, target_names=cancer.target_names))\n\ncm = confusion_matrix(y_test, y_pred)\ndisp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=cancer.target_names)\ndisp.plot(values_format=\"d\")\nplt.title(\"Confusion Matrix — From-Scratch Gaussian Naïve Bayes\")\nplt.show()",
+ "description": "You inspect test metrics and a class-labeled confusion matrix.",
+ "example": "cs477-nb-linear-logistic-regression-demo-17",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You fit GaussianNaiveBayes with var_smoothing=1e-9 on training rows. The fitted model predicts X_test.",
+   "kind": "reveal",
+   "lines": "1-5"
+  },
+  {
+   "description": "You compare predictions with y_test and print accuracy, F1, and a classification report. The recording includes both metrics.",
+   "kind": "reveal",
+   "lines": "7-10"
+  },
+  {
+   "answer": "Benign has recall 0.93, compared with 0.79 for malignant. The report lists supports of 72 and 42 respectively.",
+   "kind": "predict",
+   "lines": "10",
+   "question": "Which class has higher recorded recall?"
+  },
+  {
+   "description": "You build a confusion matrix from the same test labels and predictions. The display uses cancer.target_names and prints its cell values as integers.",
+   "kind": "reveal",
+   "lines": "12-16"
+  }
+ ],
+ "title": "Evaluate the scratch Gaussian classifier",
+ "version": 1
+}

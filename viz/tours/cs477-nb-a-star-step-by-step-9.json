@@ -1,0 +1,45 @@
+{
+ "code": "\ndef run_trial(W=40, H=28, p=0.22, w=1.0, seed=0):\n    grid = make_grid(W, H, p, seed)\n    start, goal = (1,1), (H-2, W-3)\n    grid[start] = 0; grid[goal] = 0\n    def h_m(c): return manhattan(c, goal)\n    path, info = astar_weighted(\n        start, lambda c: c==goal, lambda c: grid_neighbors(grid, c), grid_cost, h_m, weight=w\n    )\n    return (path is not None), (None if path is None else len(path)-1), info[\"expanded\"], info[\"time_sec\"]\n\nfor p in [0.15, 0.22, 0.30]:\n    for w in [1.0, 1.2, 1.5]:\n        ok, plen, expanded, t = run_trial(p=p, w=w, seed=42)\n        print(f\"p={p:.2f}, w={w:.1f}  ->  solved={ok}, path_len={plen}, expanded={expanded}, time={t*1000:.1f} ms\")\n",
+ "description": "Define run_trial to run astar_weighted on a 28x40 grid and sweep obstacle probability p in [0.15, 0.22, 0.30] and heuristic weight w in [1.0, 1.2, 1.5].",
+ "example": "cs477-nb-a-star-step-by-step-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Define `run_trial(W=40, H=28, p=0.22, w=1.0, seed=0)` to create a `(H, W)` obstacle grid with density `p`. Run `astar_weighted` with `weight=w` and `h_m(c) = manhattan(c, goal)`, and return `(solved, path_len, expanded, time_sec)`.",
+   "kind": "reveal",
+   "lines": "2-10"
+  },
+  {
+   "description": "Use nested loops over `p in [0.15, 0.22, 0.30]` and `w in [1.0, 1.2, 1.5]` to run `run_trial(p=p, w=w, seed=42)` and print `solved`, `path_len`, `expanded`, and elapsed time in milliseconds.",
+   "kind": "reveal",
+   "lines": "12-15"
+  },
+  {
+   "description": "Look at lines 7-9 and 12-13: for each fixed obstacle density `p`, `seed=42` gives the exact same grid. The inner loop tests `w = 1.0` (standard A*), `w = 1.2`, and `w = 1.5` (weighted A*).",
+   "kind": "focus",
+   "lines": "7-9,12-15"
+  },
+  {
+   "answer": "The two 3-element loops make `3 * 3 = 9` calls to `run_trial`. Fixing `seed=42` guarantees that for a given `p`, all three heuristic weights `w` are evaluated on the exact same obstacle layout.",
+   "kind": "predict",
+   "lines": "2-5,12-15",
+   "question": "How many total calls to `run_trial` do the nested loops on lines 12-14 make? Why does passing the same `seed=42` on line 14 matter when comparing `w = 1.0, 1.2, 1.5`?"
+  },
+  {
+   "description": "On the first iteration (`p = 0.15`, `w = 1.0`), line 14 calls `run_trial(p=0.15, w=1.0, seed=42)`.",
+   "kind": "run",
+   "lines": "14",
+   "trace_step": 3
+  },
+  {
+   "description": "Inside `run_trial`, line 7 invokes `astar_weighted` on the `28 x 40` grid from `(1, 1)` to `(26, 37)`.",
+   "kind": "run",
+   "lines": "7",
+   "trace_step": 8
+  }
+ ],
+ "title": "Benchmarking Weighted A* across Obstacle Densities and Heuristic Weights",
+ "version": 1
+}

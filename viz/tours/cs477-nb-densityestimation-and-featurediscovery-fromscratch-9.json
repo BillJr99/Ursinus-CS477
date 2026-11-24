@@ -1,0 +1,33 @@
+{
+ "code": "import os, json as _json\nos.makedirs(\"artifacts\", exist_ok=True)\n\nart = {\n    \"kde\": {\"h_1d\": float(h_best)},\n    \"gmm\": {\"k_star\": int(k_best), \"pi\": best_gmm[\"pi\"].tolist(),\n            \"mu\": best_gmm[\"mu\"].tolist(),\n            \"Sigma\": [S.tolist() for S in best_gmm[\"Sigma\"]]},\n    \"pca\": {\"cum_evr\": np.cumsum(evr_all).tolist()},\n    \"ica\": {\"W\": Wica.tolist()}\n}\nwith open(\"artifacts/summary.json\",\"w\") as f:\n    _json.dump(art, f, indent=2)\n\nnp.savez(\"artifacts/density_feature_models.npz\",\n         X2=X2, X2s=X2s, mu2=mu2, sd2=sd2,\n         Xw=Xw, Xws=Xws, muw=muw, sdw=sdw,\n         kde1d_h=h_best, gmm_pi=best_gmm[\"pi\"], gmm_mu=best_gmm[\"mu\"], gmm_Sigma=np.array(best_gmm[\"Sigma\"], dtype=object),\n         pca_components=Cw, pca_scores=Zw, pca_evr=evr_all,\n         ica_sources=Sica, ica_W=Wica, ica_A=Aica)\n\nprint(\"Artifacts:\", os.listdir(\"artifacts\"))",
+ "description": "You can distinguish a JSON summary from a NumPy archive of model data.",
+ "example": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You create an artifact directory and collect selected model values in art. Scalars become float or int values, and array values become lists for JSON.",
+   "kind": "reveal",
+   "lines": "1-11"
+  },
+  {
+   "description": "The with block writes art into summary.json. indent=2 formats the serialized object for reading.",
+   "kind": "reveal",
+   "lines": "12-13"
+  },
+  {
+   "answer": "No. It also names datasets, scaling values, component arrays and scores as archive entries.",
+   "kind": "predict",
+   "lines": "15-20",
+   "question": "Does the NPZ call save only the values already placed in art?"
+  },
+  {
+   "description": "You finish by listing artifacts. The supplied output names density_feature_models.npz and summary.json.",
+   "kind": "reveal",
+   "lines": "15-22"
+  }
+ ],
+ "title": "Exporting model summaries and arrays",
+ "version": 1
+}

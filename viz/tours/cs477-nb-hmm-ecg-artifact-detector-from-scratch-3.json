@@ -1,0 +1,38 @@
+{
+ "code": "# === Option A: Upload CSV ===\n# from google.colab import files  # type: ignore\n# up = files.upload()\n# import io\n# name = list(up.keys())[0]\n# df = pd.read_csv(io.BytesIO(up[name]))\n# assert {\"time\",\"ecg\"}.issubset(df.columns), \"CSV must contain 'time' and 'ecg'\"\n# time = df[\"time\"].to_numpy()\n# ecg  = df[\"ecg\"].to_numpy()\n# fs   = 1.0 / np.median(np.diff(time))\n\n# === Option B: Synthetic ECG with artifacts (default) ===\ndef synthetic_ecg(T=20.0, fs=250.0, heart_rate=60, noise_std=0.02,\n                  baseline_amp=0.1, baseline_freq=0.3,\n                  artifact_bursts=None, artifact_amp=0.4, artifact_bw=(20,90)):\n    '''\n    Create a toy ECG: narrow Gaussian QRS pulses + low-amplitude sine (P/T) + baseline wander.\n    Inject EMG-like high-frequency bursts in given intervals and return binary artifact labels.\n    '''\n    if artifact_bursts is None:\n        artifact_bursts = [(5.0,6.0), (12.0,12.5)]\n    t = np.arange(0, T, 1/fs)\n    # Baseline wander\n    baseline = baseline_amp * np.sin(2*np.pi*baseline_freq*t)\n    # P/T proxy\n    pt = 0.05 * np.sin(2*np.pi*(heart_rate/60.0)*t)\n    # QRS pulses\n    rr = int(np.round(fs*60.0/heart_rate))\n    qrs = np.zeros_like(t)\n    for k in range(1, int(T*heart_rate/60)+1):\n        idx = int(k*rr)\n        if idx < len(t):\n            width = int(0.03*fs)  # ~30ms\n            win = signal.windows.gaussian(6*width+1, std=width/2)\n            start = max(0, idx-3*width)\n            end   = min(len(t), idx+3*width+1)\n            w = win[:end-start]\n            qrs[start:end] += 1.0 * w / (w.max()+1e-12)\n    clean = pt + qrs + baseline\n    noisy = clean + rng.normal(0, noise_std, size=len(t))\n    labels = np.zeros(len(t), dtype=int)\n    # EMG-like bursts\n    b, a = signal.butter(4, [artifact_bw[0]/(fs/2), artifact_bw[1]/(fs/2)], btype='band')\n    def burst_noise(n):\n        return signal.filtfilt(b, a, rng.normal(0, 1, size=n))\n    for (s,e) in artifact_bursts:\n        sidx = int(s*fs); eidx = int(e*fs)\n        emg = burst_noise(eidx-sidx)\n        emg = artifact_amp * emg / (np.std(emg)+1e-12)\n        noisy[sidx:eidx] += emg\n        labels[sidx:eidx] = 1\n    return t, noisy, labels, fs\n\ntime, ecg, labels_true, fs = synthetic_ecg(T=30.0, fs=300.0, heart_rate=70,\n                                           artifact_bursts=[(6.0,7.2),(17.0,18.0),(24.0,25.0)])\nprint(f\"Synthetic ECG length: {len(ecg)} samples @ {fs} Hz\")\n\n# === Option C: PhysioNet via wfdb ===\n# import wfdb\n# record = wfdb.rdrecord('mitdb/100', sampto=6500)\n# ecg = record.p_signal[:,0]; fs = record.fs; time = np.arange(len(ecg))/fs\n# labels_true = None  # unless you load annotations\n",
+ "description": "You follow the active synthetic ECG generator and its artifact labels.",
+ "example": "cs477-nb-hmm-ecg-artifact-detector-from-scratch-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You pass over the commented CSV upload option and reach synthetic_ecg. Its time array provides sample positions for a toy electrocardiogram, or ECG.",
+   "kind": "reveal",
+   "lines": "1-22"
+  },
+  {
+   "description": "You combine baseline and P/T sine terms with Gaussian QRS pulses. Adding sampled noise produces the initial noisy signal.",
+   "kind": "reveal",
+   "lines": "23-40"
+  },
+  {
+   "description": "You initialize every artifact label to zero. A band-pass filter shapes random noise, and artifact_amp scales each burst.",
+   "kind": "reveal",
+   "lines": "41-49"
+  },
+  {
+   "answer": "The same slices that receive an added artifact burst. Each burst updates both noisy[sidx:eidx] and labels[sidx:eidx].",
+   "kind": "predict",
+   "lines": "50-52",
+   "question": "Which samples receive label 1?"
+  },
+  {
+   "description": "You call the generator with three explicit artifact intervals. The recorded result contains 9000 samples at 300.0 Hz; the PhysioNet loading option remains commented.",
+   "kind": "reveal",
+   "lines": "50-63"
+  }
+ ],
+ "title": "Build a labeled synthetic signal",
+ "version": 1
+}

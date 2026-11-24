@@ -1,0 +1,33 @@
+{
+ "code": "@dataclass\nclass Maze:\n    grid: np.ndarray        # (H,W) 0=free, 1=wall\n    colors: np.ndarray      # (H,W) integer color labels for free cells; meaningful only where grid==0\n\ndef make_simple_maze():\n    # 0=free, 1=wall\n    grid = np.array([\n        [0,0,0,0,0,0,0],\n        [0,1,1,0,1,1,0],\n        [0,0,0,0,0,0,0],\n        [0,1,0,1,0,1,0],\n        [0,0,0,0,0,0,0]\n    ], dtype=int)\n    H, W = grid.shape\n\n    # assign colors (e.g., 0..3) to free cells deterministically for variability\n    colors = np.zeros_like(grid)\n    c = 0\n    for i in range(H):\n        for j in range(W):\n            if grid[i,j]==0:\n                colors[i,j] = (i + 2*j + c) % 4\n    return Maze(grid=grid, colors=colors)\n\nmaze = make_simple_maze()\nH, W = maze.grid.shape\nN = H*W\nn_colors = int(maze.colors.max() + 1)\nprint(\"Maze size:\", H, \"x\", W, \"| num states:\", N, \"| colors:\", n_colors)",
+ "description": "You build the wall grid and assign deterministic labels to free cells.",
+ "example": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-4",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You define Maze with grid and colors arrays. The five-row grid uses zero for free cells and one for walls.",
+   "kind": "reveal",
+   "lines": "1-14"
+  },
+  {
+   "description": "You initialize color values to zero and assign (i + 2*j + c) % 4 at free cells. c remains zero throughout these loops.",
+   "kind": "reveal",
+   "lines": "15-24"
+  },
+  {
+   "answer": "N is H*W, so it counts every position, including walls. Here 5*7 gives 35 states.",
+   "kind": "predict",
+   "lines": "26-29",
+   "question": "Does N count only free cells or every grid position?"
+  },
+  {
+   "description": "You construct the maze and derive its dimensions and color count. The recording reports a 5 by 7 maze, 35 states, and four colors.",
+   "kind": "reveal",
+   "lines": "26-30"
+  }
+ ],
+ "title": "Define the colored maze",
+ "version": 1
+}

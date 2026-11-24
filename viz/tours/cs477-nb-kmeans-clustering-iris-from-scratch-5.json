@@ -1,0 +1,33 @@
+{
+ "code": "k = 3\nC, labels, inertia, hist = kmeans(X_std, k=k, max_iter=300, tol=1e-7, n_init=20, seed=SEED)\nprint(f\"k={k} | inertia={inertia:.4f} | iterations={len(hist)}\")",
+ "description": "You inspect the clustering call and its recorded return values.",
+ "example": "cs477-nb-kmeans-clustering-iris-from-scratch-5",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You set k to three. The next call uses that value as its cluster count.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "answer": "It receives X_std, the standardized features. The call also requests 20 initializations and supplies SEED.",
+   "kind": "predict",
+   "lines": "2",
+   "question": "Which feature representation does the clustering call receive?"
+  },
+  {
+   "description": "You collect centroids C, labels, inertia, and hist from the call. max_iter=300 and tol=1e-7 are the supplied iteration and tolerance settings.",
+   "kind": "reveal",
+   "lines": "2"
+  },
+  {
+   "description": "You print the cluster count, inertia, and history length. The recording reports k=3, inertia=139.8205, and five history entries.",
+   "kind": "reveal",
+   "lines": "3"
+  }
+ ],
+ "title": "Fit three clusters to standardized Iris data",
+ "version": 1
+}

@@ -1,0 +1,33 @@
+{
+ "code": "\ndef estimate_hitting_time(P, target, start, trials=20000, rng=None, max_steps=10000):\n    rng = np.random.default_rng() if rng is None else rng\n    hits = []\n    for _ in range(trials):\n        x = start\n        for t in range(max_steps):\n            if x == target:\n                hits.append(t)\n                break\n            x = rng.choice(P.shape[0], p=P[x])\n    return np.mean(hits) if hits else np.inf\n\ndef hitting_time_linear_system(P, target):\n    P = np.asarray(P, dtype=float)\n    m = P.shape[0]\n    A = np.eye(m)\n    b = np.ones(m)\n    A[target, :] = 0.0\n    A[target, target] = 1.0\n    b[target] = 0.0\n    for i in range(m):\n        if i == target:\n            continue\n        A[i, :] -= P[i, :]\n    h = nla.solve(A, b)\n    return h\n\ntarget = 2  # Rainy\nh_lin = hitting_time_linear_system(P, target)\nh_mc  = [estimate_hitting_time(P, target, s, rng=rng) for s in range(P.shape[0])]\nprint(\"Expected hitting time to Rainy via linear system:\", h_lin)\nprint(\"Monte Carlo estimate:\", h_mc)\n",
+ "description": "You compare sampled first-arrival counts with a linear-system calculation.",
+ "example": "cs477-nb-markov-chain-tutorial-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You simulate from start until the target is first seen or the loop limit is reached. hits records only trials that reach the target within the checked steps.",
+   "kind": "reveal",
+   "lines": "2-12"
+  },
+  {
+   "description": "You build equations for expected transitions to the target. The target row fixes its own value at zero, while other rows subtract transition probabilities.",
+   "kind": "reveal",
+   "lines": "14-26"
+  },
+  {
+   "answer": "It records zero because the target check happens before sampling a transition. The linear system also assigns zero to the target.",
+   "kind": "predict",
+   "lines": "6-10,29-31",
+   "question": "What count does a trial record when it starts in Rainy, the target state?"
+  },
+  {
+   "description": "You compare the two results by starting state. The recorded linear values are close to the sampled estimates.",
+   "kind": "reveal",
+   "lines": "29-33"
+  }
+ ],
+ "title": "Compare expected steps to reach Rainy",
+ "version": 1
+}

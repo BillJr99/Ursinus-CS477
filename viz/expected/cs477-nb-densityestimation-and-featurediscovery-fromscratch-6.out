@@ -1,0 +1,6 @@
+k=1  logL=-1984.68  BIC=4002.11
+k=2  logL=-1700.50  BIC=3473.07
+k=3  logL=-1588.92  BIC=3289.20
+k=4  logL=-1580.25  BIC=3311.18
+k=5  logL=-1578.34  BIC=3346.66
+Selected k* by BIC: 3

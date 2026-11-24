@@ -1,0 +1,33 @@
+{
+ "code": "# Colab download helper\nimport shutil\nfrom pathlib import Path\ntry:\n    from google.colab import files  # type: ignore\n    if Path('artifacts').exists():\n        shutil.make_archive('artifacts', 'zip', 'artifacts')\n        files.download('artifacts.zip')\n    else:\n        print('No artifacts folder found.')\nexcept Exception as e:\n    print('Colab download helper not available in this environment:', e)",
+ "description": "You inspect the artifact check and recorded download fallback.",
+ "example": "cs477-nb-kmeans-clustering-iris-from-scratch-12",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You import archive and path tools, then try to load Colab's files helper. The try block also encloses archive creation and download.",
+   "kind": "reveal",
+   "lines": "1-5"
+  },
+  {
+   "description": "You create artifacts.zip and request its download when artifacts exists. The other branch prints a missing-folder message.",
+   "kind": "reveal",
+   "lines": "6-10"
+  },
+  {
+   "answer": "The except block prints the helper-unavailable message followed by the exception text.",
+   "kind": "predict",
+   "lines": "11-12",
+   "question": "Where does an exception from files.download go?"
+  },
+  {
+   "description": "You see that fallback in the recording. It identifies google.colab.files.download as unavailable in code-viz.",
+   "kind": "reveal",
+   "lines": "11-12"
+  }
+ ],
+ "title": "Follow the clustering download helper",
+ "version": 1
+}

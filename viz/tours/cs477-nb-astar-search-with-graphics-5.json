@@ -1,0 +1,45 @@
+{
+ "code": "RES = astar(grid, start, goal, eight=WORLD.eight_connected, heuristic=\"manhattan\")\npath = RES[\"path\"]\nprint(\"Path length (number of nodes):\", len(path))\nprint(\"Reached goal:\", bool(path and path[-1]==goal))",
+ "description": "Call astar(grid, start, goal, eight=WORLD.eight_connected, heuristic=\"manhattan\"), extract RES[\"path\"], and print the node count and goal check.",
+ "example": "cs477-nb-astar-search-with-graphics-5",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Run `astar(grid, start, goal, eight=WORLD.eight_connected, heuristic=\"manhattan\")` to store the search result dictionary in `RES` and extract the node sequence `path = RES[\"path\"]`.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "description": "Print the number of nodes `len(path)` and verify `bool(path and path[-1]==goal)`.",
+   "kind": "reveal",
+   "lines": "3-4"
+  },
+  {
+   "description": "Look at line 4 (`bool(path and path[-1]==goal)`). Checking `path` first guards against indexing an empty list when no path exists. `path[-1] == goal` checks that the last node in `path` is `goal`.",
+   "kind": "focus",
+   "lines": "2,4"
+  },
+  {
+   "answer": "Line 3 prints `Path length (number of nodes): 18` and line 4 prints `Reached goal: True`.",
+   "kind": "predict",
+   "lines": "1-4",
+   "question": "If `path` contains 18 nodes from `start` (`path[0]`) to `goal` (`path[-1]`), what do lines 3 and 4 print?"
+  },
+  {
+   "description": "After `astar` finishes, line 2 binds `path` to the 18-node list `RES[\"path\"]`.",
+   "kind": "run",
+   "lines": "2",
+   "trace_step": 1
+  },
+  {
+   "description": "Line 4 confirms `path[-1] == goal` and prints `Reached goal: True`.",
+   "kind": "run",
+   "lines": "4",
+   "trace_step": 3
+  }
+ ],
+ "title": "Running Grid A* and Verifying That the Path Reaches the Goal",
+ "version": 1
+}

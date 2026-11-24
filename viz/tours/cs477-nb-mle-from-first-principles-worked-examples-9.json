@@ -1,0 +1,33 @@
+{
+ "code": "def cauchy_mle_grid(x, gamma=1.0):\n    g = np.linspace(np.percentile(x, 5)-2, np.percentile(x,95)+2, 500)\n    ll = np.array([cauchy_loglik(t, x, gamma) for t in g])\n    t = g[np.argmax(ll)]\n    # quick refine\n    g2 = np.linspace(t-0.5, t+0.5, 400)\n    ll2 = np.array([cauchy_loglik(t, x, gamma) for t in g2])\n    return g2[np.argmax(ll2)]\n\nB = 200\nthetas = []\nfor b in range(B):\n    xb = rng.choice(x, size=len(x), replace=True)\n    thetas.append(cauchy_mle_grid(xb, gamma))\nthetas = np.array(thetas)\nlo, hi = np.percentile(thetas, [2.5, 97.5])\nprint(f\"Bootstrap percentile 95% CI for θ: ({lo:.3f}, {hi:.3f})\")",
+ "description": "You refine a likelihood search and repeat it on resampled observations.",
+ "example": "cs477-nb-mle-from-first-principles-worked-examples-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You create candidate locations across a percentile-based interval. The helper scores each candidate with cauchy_loglik and selects the largest score.",
+   "kind": "reveal",
+   "lines": "1-4"
+  },
+  {
+   "description": "You create a narrower grid around the selected location and repeat the likelihood comparison. The returned estimate comes from this refined grid.",
+   "kind": "reveal",
+   "lines": "5-8"
+  },
+  {
+   "answer": "Yes. rng.choice uses replace=True and draws a sample with the original length.",
+   "kind": "predict",
+   "lines": "12-14",
+   "question": "Can a bootstrap sample contain the same observation more than once?"
+  },
+  {
+   "description": "You collect estimates from the resamples and use their percentiles for interval endpoints. The print requests the interval, but the supplied trace excerpt contains no final output.",
+   "kind": "reveal",
+   "lines": "10-17"
+  }
+ ],
+ "title": "Bootstrap a grid-based location estimate",
+ "version": 1
+}

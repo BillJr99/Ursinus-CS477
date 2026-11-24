@@ -1,0 +1,38 @@
+{
+ "code": "from dataclasses import dataclass\nfrom typing import List\n\n\n@dataclass\nclass TestCharacteristics:\n    \"\"\"\n    Characteristics of a diagnostic test.\n\n    sensitivity = P(test is positive | disease is present)\n    specificity = P(test is negative | disease is absent)\n    \"\"\"\n    sensitivity: float  # True positive rate\n    specificity: float  # True negative rate\n\n\ndef update_disease_probability(\n    prior_disease: float,\n    result: str,\n    test: TestCharacteristics\n) -> float:\n    \"\"\"\n    Update the probability of disease given a new test result.\n\n    prior_disease: P(D) before seeing this test\n    result: 'P' or '+' for positive, 'N' or '-' for negative\n    test: TestCharacteristics(sensitivity, specificity)\n\n    Returns:\n        posterior_disease: P(D | result)\n    \"\"\"\n    sens = test.sensitivity\n    spec = test.specificity\n\n    if not (0.0 <= prior_disease <= 1.0):\n        raise ValueError(f\"Invalid prior_disease={prior_disease}. Must be in [0, 1].\")\n\n    if result.upper() in ['P', '+']:\n        # Positive test\n        # P(+ | D) = sensitivity\n        # P(+ | ¬D) = 1 - specificity\n        p_pos_given_d = sens\n        p_pos_given_not_d = 1.0 - spec\n\n        # Total probability of a positive test:\n        # P(+) = P(+|D)P(D) + P(+|¬D)P(¬D)\n        p_pos = p_pos_given_d * prior_disease + p_pos_given_not_d * (1.0 - prior_disease)\n\n        if p_pos == 0.0:\n            raise ZeroDivisionError(\"P(positive) = 0; cannot update.\")\n\n        # Bayes:\n        # P(D | +) = P(+|D)P(D) / P(+)\n        posterior = (p_pos_given_d * prior_disease) / p_pos\n\n    elif result.upper() in ['N', '-']:\n        # Negative test\n        # P(- | D) = 1 - sensitivity  (false negative rate)\n        # P(- | ¬D) = specificity\n        p_neg_given_d = 1.0 - sens\n        p_neg_given_not_d = spec\n\n        # Total probability of a negative test:\n        # P(-) = P(-|D)P(D) + P(-|¬D)P(¬D)\n        p_neg = p_neg_given_d * prior_disease + p_neg_given_not_d * (1.0 - prior_disease)\n\n        if p_neg == 0.0:\n            raise ZeroDivisionError(\"P(negative) = 0; cannot update.\")\n\n        # Bayes:\n        # P(D | -) = P(-|D)P(D) / P(-)\n        posterior = (p_neg_given_d * prior_disease) / p_neg\n\n    else:\n        raise ValueError(f\"Invalid test result '{result}'. Use 'P', '+', 'N', or '-'.\")\n\n    return posterior\n\n\ndef run_disease_testing_example():\n    \"\"\"\n    Demonstrate Bayesian updating for disease testing over multiple test results.\n    \"\"\"\n\n    # --- Model setup ---\n\n    # Suppose the disease is relatively rare in the population:\n    # prior P(D) = 1%\n    prior_disease = 0.01\n\n    # A single type of test with given sensitivity and specificity.\n    # Example: sensitivity = 95%, specificity = 98%.\n    test = TestCharacteristics(\n        sensitivity=0.95,\n        specificity=0.98\n    )\n\n    # Sequence of test results over time: positive, positive, negative, ...\n    # (You can modify this sequence to explore different patterns.)\n    test_results: List[str] = ['+', '+', '-']\n\n    # --- Print header and initial state ---\n    print(\"Bayesian Updating for Disease Testing\")\n    print(\"------------------------------------\")\n    print(f\"Initial prior probability of disease: {prior_disease:.4f}\")\n    print(f\"Test sensitivity: {test.sensitivity:.2f}\")\n    print(f\"Test specificity: {test.specificity:.2f}\")\n    print()\n\n    print(f\"{'Step':<5} {'Result':<8} {'Posterior P(Disease)':<22}\")\n    print(\"-\" * 40)\n\n    # Step 0: before any tests\n    step = 0\n    print(f\"{step:<5} {'(prior)':<8} {prior_disease:<22.6f}\")\n\n    # --- Sequentially update as each new test result arrives ---\n    current_prob = prior_disease\n    for result in test_results:\n        step += 1\n        current_prob = update_disease_probability(current_prob, result, test)\n        print(f\"{step:<5} {result:<8} {current_prob:<22.6f}\")\n\n\nif __name__ == \"__main__\":\n    run_disease_testing_example()",
+ "description": "You can trace the supplied diagnostic-test model through three observations.",
+ "example": "cs477-liascript-bayesianinference-13",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "TestCharacteristics stores sensitivity and specificity as conditional probabilities. You check that the incoming prior lies between zero and one.",
+   "kind": "reveal",
+   "lines": "1-36"
+  },
+  {
+   "description": "Each result branch forms its total evidence probability from two cases. You divide the disease-and-result probability by that total, with a guard for zero evidence.",
+   "kind": "reveal",
+   "lines": "38-77"
+  },
+  {
+   "description": "The demonstration sets prior 0.01 and test parameters 0.95 and 0.98. You supply the result sequence positive, positive, negative.",
+   "kind": "reveal",
+   "lines": "80-115"
+  },
+  {
+   "answer": "No. current_prob receives the previous update's posterior and becomes the next call's prior.",
+   "kind": "predict",
+   "lines": "117-122",
+   "question": "Does each update restart from the initial prior?"
+  },
+  {
+   "description": "You see the model's posteriors 0.324232, 0.957966 and 0.537631. The final negative result lowers the value from the second positive result.",
+   "kind": "reveal",
+   "lines": "117-126"
+  }
+ ],
+ "title": "Following sequential probability updates",
+ "version": 1
+}

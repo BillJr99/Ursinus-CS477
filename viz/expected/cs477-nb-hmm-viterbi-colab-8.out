@@ -1,0 +1,7 @@
+Brute force best path (indices): [1, 0, 0]
+Brute force best path (names): ['Sunny', 'Rainy', 'Rainy']
+Brute force best path log-prob: -4.309519943887134
+Viterbi matches brute force? -> True
+Forward log-likelihood: -3.3928721329161653
+Exact   log-likelihood (sum over all paths): -3.3928721329161653
+Close? -> True

@@ -1,0 +1,2 @@
+[GD] Test acc=0.900  precision=0.899  recall=0.910  AUC=0.949  Brier=0.0829
+[Newton] Test acc=0.900  precision=0.899  recall=0.910  AUC=0.948  Brier=0.0829

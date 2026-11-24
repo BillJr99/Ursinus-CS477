@@ -1,0 +1,33 @@
+{
+ "code": "import os, json as _json\nos.makedirs(\"artifacts\", exist_ok=True)\n\nnp.savez(\"artifacts/credit_shap_from_scratch.npz\",\n         feature_names=np.array(feature_names, dtype=object),\n         mu=mu, sig=sig,\n         model_W1=mlp.W1, model_b1=mlp.b1,\n         model_W2=mlp.W2, model_b2=mlp.b2,\n         background=background,\n         x0=x0, phi=phi, base_value=np.array([f0]), fx=np.array([fx]),\n         global_importance=imp, Phi=Phi, subset_idx=subset)\n\nprint(\"Artifacts:\", os.listdir(\"artifacts\"))",
+ "description": "You inspect the data bundled into the example's NumPy archive.",
+ "example": "cs477-nb-explainableai-shapley-from-scratch-creditnn-11",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You create the artifacts directory if needed and begin one NumPy archive. Its first entries hold feature names and the standardization parameters mu and sig.",
+   "kind": "reveal",
+   "lines": "1-6"
+  },
+  {
+   "description": "You include both layers' weights and biases alongside the background samples. These entries preserve the model parameters and explanation background.",
+   "kind": "reveal",
+   "lines": "7-9"
+  },
+  {
+   "answer": "Phi stores the batch attributions, and subset_idx stores subset. The archive also includes global_importance.",
+   "kind": "predict",
+   "lines": "10-11",
+   "question": "Which saved entries let you connect the batch attributions to their sampled rows?"
+  },
+  {
+   "description": "You also save x0, phi, the baseline value, and fx. The recorded directory listing contains credit_shap_from_scratch.npz.",
+   "kind": "reveal",
+   "lines": "10-13"
+  }
+ ],
+ "title": "Save the credit explanation arrays",
+ "version": 1
+}

@@ -1,0 +1,45 @@
+{
+ "code": "def summarize(name, samples, point=None):\n    lo, med, hi = ci_quantiles(samples, (0.025, 0.5, 0.975))\n    mean = float(np.mean(samples))\n    print(f\"{name}:\")\n    print(f\"  mean={mean:.4f}  median={med:.4f}  95% CI=({lo:.4f}, {hi:.4f})\")\n    if point is not None:\n        print(f\"  point-estimate (at mean params) = {point:.4f}\")\n    print()\n\nsummarize(\"P(D=1 | T=+)\", ppv_samps, ppv_point)\nsummarize(\"P(D=1 | T=-)\", neg_samps, neg_point)",
+ "description": "Define summarize(name, samples, point=None) to print the Monte Carlo mean, median, 95% credible interval (0.025, 0.975 quantiles), and point estimate for P(D=1 | T=+) and P(D=1 | T=-).",
+ "example": "cs477-nb-bayesian-diagnostic-test-belief-updating-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Define `summarize(name, samples, point=None)` to unpack `lo, med, hi = ci_quantiles(samples, (0.025, 0.5, 0.975))`, compute `mean = float(np.mean(samples))`, and print `mean`, `median`, `95% CI=(lo, hi)`, and `point`.",
+   "kind": "reveal",
+   "lines": "1-8"
+  },
+  {
+   "description": "Call `summarize` first for `\"P(D=1 | T=+)\"` with `(ppv_samps, ppv_point)` and then for `\"P(D=1 | T=-)\"` with `(neg_samps, neg_point)`.",
+   "kind": "reveal",
+   "lines": "10-11"
+  },
+  {
+   "description": "Look at lines 2-7: `(0.025, 0.5, 0.975)` leaves equal probability in each tail. Thus, `(lo, hi)` spans the central 95% credible interval of `samples`. Line 7 prints the plug-in `point` estimate for comparison.",
+   "kind": "focus",
+   "lines": "2-7"
+  },
+  {
+   "answer": "`posterior_prob_positive` is a nonlinear function of `pi`. Thus, the average of `f(pi)` over Beta(1, 99) samples (`0.2715`) does not equal `f(E[pi])` (`0.3242`). The 95% credible interval spans from `0.0123` to `0.6442`.",
+   "kind": "predict",
+   "lines": "2-7,10",
+   "question": "Why does `np.mean(ppv_samps)` (`0.2715`) differ from the plug-in `ppv_point` (`0.3242`) computed at `E[pi] = 0.01`, and how wide is the 95% credible interval `(lo, hi)` for `P(D=1 | T=+)`?"
+  },
+  {
+   "description": "Inside the first `summarize` call, line 5 prints `mean=0.2715  median=0.2494  95% CI=(0.0123, 0.6442)` for `P(D=1 | T=+)`.",
+   "kind": "run",
+   "lines": "5",
+   "trace_step": 5
+  },
+  {
+   "description": "Line 11 calls `summarize` on `neg_samps` and `neg_point` (`0.0005`), printing the summary for `P(D=1 | T=-)`.",
+   "kind": "run",
+   "lines": "11",
+   "trace_step": 10
+  }
+ ],
+ "title": "Summarizing Posterior Means, Medians, and 95% Credible Intervals",
+ "version": 1
+}

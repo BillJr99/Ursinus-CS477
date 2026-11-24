@@ -1,0 +1,33 @@
+{
+ "code": "\n# Visualize the sigmoid\nz = np.linspace(-8, 8, 400)\nsig = 1.0 / (1.0 + np.exp(-z))\nplt.plot(z, sig)\nplt.xlabel(\"z\")\nplt.ylabel(\"sigma(z)\")\nplt.title(\"Sigmoid Function\")\nplt.show()\n",
+ "description": "You evaluate the sigmoid on a grid of input scores.",
+ "example": "cs477-nb-linear-and-logistic-regression-tutorial-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You create z values across the supplied interval. These values become the horizontal coordinates.",
+   "kind": "reveal",
+   "lines": "2-3"
+  },
+  {
+   "answer": "It gives 1/(1+exp(0)), or one half.",
+   "kind": "predict",
+   "lines": "4",
+   "question": "What value does the displayed formula assign to z=0?"
+  },
+  {
+   "description": "You compute the sigmoid, 1/(1+exp(-z)), at every grid value. The plot pairs each input score with its transformed value.",
+   "kind": "reveal",
+   "lines": "4-5"
+  },
+  {
+   "description": "You label the axes z and sigma(z) and display the chart. The title identifies the transformation as the sigmoid function.",
+   "kind": "reveal",
+   "lines": "6-9"
+  }
+ ],
+ "title": "Plot the sigmoid function",
+ "version": 1
+}

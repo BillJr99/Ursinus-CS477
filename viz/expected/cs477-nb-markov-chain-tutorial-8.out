@@ -1,0 +1,2 @@
+Expected hitting time to Rainy via linear system: [6.66666667 5.         0.        ]
+Monte Carlo estimate: [np.float64(6.65115), np.float64(5.0211), np.float64(0.0)]

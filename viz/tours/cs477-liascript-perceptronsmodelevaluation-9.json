@@ -1,0 +1,38 @@
+{
+ "code": "import numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import make_circles\nfrom sklearn.model_selection import train_test_split, StratifiedKFold, cross_val_score\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.svm import SVC, LinearSVC\nfrom sklearn.metrics import (\n    classification_report, confusion_matrix, ConfusionMatrixDisplay,\n    roc_curve, auc\n)\n\nX, y = make_circles(n_samples=800, factor=0.4, noise=0.25, random_state=42)\nXtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)\n\n# Linear SVM (hinge) with feature scaling\nlin_clf = Pipeline([\n    (\"scaler\", StandardScaler()),\n    (\"svm\", LinearSVC(C=1.0, max_iter=5000))\n])\n\n# RBF SVM with probability estimates for ROC\nrbf_clf = Pipeline([\n    (\"scaler\", StandardScaler()),\n    (\"svm\", SVC(C=1.0, gamma=\"scale\", kernel=\"rbf\", probability=True))\n])\n\nlin_clf.fit(Xtr, ytr)\nrbf_clf.fit(Xtr, ytr)\n\nprint(\"=== Linear SVM Report ===\")\nprint(classification_report(yte, lin_clf.predict(Xte)))\nprint(\"=== RBF SVM Report ===\")\nprint(classification_report(yte, rbf_clf.predict(Xte)))\n\n# Confusion matrix (RBF)\ncm = confusion_matrix(yte, rbf_clf.predict(Xte))\nConfusionMatrixDisplay(cm, display_labels=[\"class 0\",\"class 1\"]).plot()\nplt.title(\"RBF SVM — Confusion Matrix\")\nplt.show()\n\n# ROC AUC (RBF; use predict_proba for scores)\ny_score = rbf_clf.predict_proba(Xte)[:,1]\nfpr, tpr, thr = roc_curve(yte, y_score)\nprint(\"AUC:\", auc(fpr, tpr))",
+ "description": "Generate concentric-circle data with make_circles, fit both LinearSVC and an RBF SVC inside scaled pipelines, and compare their classification reports, confusion matrix, and ROC AUC.",
+ "example": "cs477-liascript-perceptronsmodelevaluation-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Import scikit-learn SVM and metric modules and generate concentric-circle points with `make_circles` using the supplied sample count, factor, and noise. Split `(X, y)` into training `(Xtr, ytr)` and test `(Xte, yte)` sets using the supplied ratio.",
+   "kind": "reveal",
+   "lines": "1-15"
+  },
+  {
+   "description": "Define two pipelines that each start with `StandardScaler()`. `lin_clf` uses `LinearSVC` with `C=1.0` and the supplied iteration limit; `rbf_clf` uses `SVC(C=1.0, gamma=\"scale\", kernel=\"rbf\", probability=True)`. Fit both on `(Xtr, ytr)`.",
+   "kind": "reveal",
+   "lines": "16-30"
+  },
+  {
+   "description": "Compare the dataset geometry on line 13 with the two classifiers on lines 17-26. `make_circles` places one class inside the other, and `lin_clf` can only draw a straight line in 2D. `rbf_clf` uses radial basis functions (`kernel=\"rbf\"`) to curve around the inner circle.",
+   "kind": "focus",
+   "lines": "13,17-26"
+  },
+  {
+   "answer": "`lin_clf` gets near-random accuracy (`0.48`), whereas `rbf_clf` separates the inner and outer rings with `0.91` accuracy (`AUC: 0.9649`).",
+   "kind": "predict",
+   "lines": "13,28-34",
+   "question": "How will `lin_clf` (a straight-line separator) and `rbf_clf` (an RBF kernel separator) compare in test accuracy on the 200 concentric-circle test points?"
+  },
+  {
+   "description": "Print both `classification_report` tables, display the confusion matrix for `rbf_clf`, and use `rbf_clf.predict_proba(Xte)[:, 1]` with `roc_curve` and `auc` to print `AUC: 0.9649`.",
+   "kind": "reveal",
+   "lines": "31-45"
+  }
+ ],
+ "title": "Comparing Linear and RBF SVMs on Concentric Circles",
+ "version": 1
+}

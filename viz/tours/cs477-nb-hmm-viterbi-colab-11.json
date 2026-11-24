@@ -1,0 +1,38 @@
+{
+ "code": "\ndef random_stochastic_matrix(shape, rng: np.random.Generator) -> np.ndarray:\n    rows, cols = shape\n    X = rng.random((rows, cols))\n    X /= X.sum(axis=1, keepdims=True)\n    return X\n\ndef random_hmm(S: int, O: int, seed: int = 0) -> HMM:\n    rng = np.random.default_rng(seed)\n    A = random_stochastic_matrix((S, S), rng)\n    B = random_stochastic_matrix((S, O), rng)\n    pi = random_stochastic_matrix((1, S), rng).ravel()\n    states = [f\"s{i}\" for i in range(S)]\n    observations = [f\"o{j}\" for j in range(O)]\n    return HMM(states, observations, A, B, pi)\n\n# Quick sanity test\nhmm_r = random_hmm(3, 4, seed=7)\nobs_r = [0, 1, 2, 3, 1]\nll_log, _ = forward_log(hmm_r, obs_r)\nbp, bp_ll, _, _ = viterbi_log(hmm_r, obs_r)\nprint(\"Random HMM forward log-likelihood:\", ll_log)\nprint(\"Random HMM Viterbi best path:\", bp)\nprint(\"Random HMM Viterbi log-prob:\", bp_ll)\n",
+ "description": "You build a random hidden Markov model and compare sequence likelihood with best-path probability.",
+ "example": "cs477-nb-hmm-viterbi-colab-11",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You sample a matrix and divide each row by its sum. Each returned row therefore represents a probability distribution.",
+   "kind": "reveal",
+   "lines": "2-6"
+  },
+  {
+   "description": "You construct transition matrix A, emission matrix B, and initial distribution pi. The state and observation names follow their integer indices.",
+   "kind": "reveal",
+   "lines": "8-15"
+  },
+  {
+   "description": "You create a three-state, four-observation model using seed 7. Both algorithms receive the supplied observation sequence.",
+   "kind": "reveal",
+   "lines": "17-21"
+  },
+  {
+   "answer": "The forward value is larger than the Viterbi value. Forward combines path contributions, while Viterbi selects one best path.",
+   "kind": "predict",
+   "lines": "22-24",
+   "question": "Which recorded log value is larger: the forward likelihood or the Viterbi best-path probability?"
+  },
+  {
+   "description": "You print the decoded path alongside both log values. Each decoded entry corresponds to one observation position.",
+   "kind": "reveal",
+   "lines": "22-24"
+  }
+ ],
+ "title": "Compare forward and Viterbi results",
+ "version": 1
+}

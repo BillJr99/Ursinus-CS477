@@ -1,0 +1,50 @@
+{
+ "code": "import numpy as np\n\n# Transition matrix from the example\nA = np.array([\n    [0,   1/2, 1/2],\n    [0,   0,   1  ],\n    [1,   0,   0  ]\n])\n\ndef pagerank(A, d=0.85, tol=1e-8, max_iter=100):\n    n = A.shape[0]\n    teleport = np.ones((n, n)) / n\n    P = d * A + (1 - d) * teleport\n\n    x = np.ones(n) / n  # start uniformly\n    for _ in range(max_iter):\n        x_new = x @ P\n        if np.linalg.norm(x_new - x, 1) < tol:\n            return x_new\n        x = x_new\n    return x\n\nprint(\"PageRank:\", pagerank(A))",
+ "description": "Combine a 3x3 link matrix A with a uniform teleportation matrix using damping factor d = 0.85, then iterate x_new = x @ P until convergence.",
+ "example": "cs477-liascript-mdphmmbandits-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Import `numpy as np` and define the `3 x 3` link transition matrix `A` for three web pages.",
+   "kind": "reveal",
+   "lines": "1-8"
+  },
+  {
+   "description": "Inside `pagerank(A, d=0.85, tol=1e-8, max_iter=100)`, build `teleport = np.ones((n, n)) / n` and blend it with `A` via `P = d * A + (1 - d) * teleport`.",
+   "kind": "reveal",
+   "lines": "10-14"
+  },
+  {
+   "description": "Start from the uniform vector `x = np.ones(n) / n` and repeatedly multiply `x_new = x @ P`. Stop when the L1 change `np.linalg.norm(x_new - x, 1)` drops below `tol`, and print the final PageRank vector.",
+   "kind": "reveal",
+   "lines": "15-23"
+  },
+  {
+   "description": "Look at lines 12-13 and 17-19. `P` gives every state at least `(1 - d) / n` transition probability to every other state. Power iteration stops as soon as `x_new` and `x` differ by less than `1e-8` in L1 norm.",
+   "kind": "focus",
+   "lines": "12-13,17-19"
+  },
+  {
+   "answer": "Page 2 (the third entry) gets the highest PageRank score (`0.39739966`), followed closely by page 0 (`0.38778971`, which receives all of page 2's outgoing link weight).",
+   "kind": "predict",
+   "lines": "4-8,17-23",
+   "question": "Look at the columns of `A`: page 2 (column index 2) receives half of page 0's link weight and all of page 1's link weight. Which of the three pages ends up with the highest PageRank score?"
+  },
+  {
+   "description": "Line 13 constructs the Google matrix `P = 0.85 * A + (1 - d) * teleport`.",
+   "kind": "run",
+   "lines": "13",
+   "trace_step": 10
+  },
+  {
+   "description": "Once `np.linalg.norm(x_new - x, 1) < tol`, line 19 returns `x_new` (`[0.38778971, 0.21481063, 0.39739966]`).",
+   "kind": "run",
+   "lines": "19",
+   "trace_step": 155
+  }
+ ],
+ "title": "Computing PageRank with Damping and Power Iteration",
+ "version": 1
+}

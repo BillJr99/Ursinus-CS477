@@ -1,0 +1,33 @@
+{
+ "code": "true_ij = [ij(s, W) for s in true_states]\nprint(\"True (i,j):\", true_ij)\nprint(\"Viterbi (i,j):\", vj)",
+ "description": "You inspect the simulated and Viterbi paths in the same coordinate format.",
+ "example": "cs477-nb-hmm-robot-localization-heatmaps-from-scratch-14",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You convert each true state index to a row-column pair using ij and W. The list preserves the order of true_states.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "description": "You print the converted true path. Its first recorded position is (3,4).",
+   "kind": "reveal",
+   "lines": "2"
+  },
+  {
+   "answer": "It starts at (4,5), while the true path starts at (3,4). The initial positions differ.",
+   "kind": "predict",
+   "lines": "3",
+   "question": "Does the recorded Viterbi path start at the true initial position?"
+  },
+  {
+   "description": "You compare the two printed sequences entry by entry. They share several later positions, but their final positions differ: true ends at (2,5) and Viterbi ends at (0,6).",
+   "kind": "reveal",
+   "lines": "3"
+  }
+ ],
+ "title": "Compare true and decoded coordinates",
+ "version": 1
+}

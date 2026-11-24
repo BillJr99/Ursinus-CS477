@@ -1,0 +1,33 @@
+{
+ "code": "\nP3 = nstep_transition(P, 3)\nprint(\"P^3 =\\n\", P3)\n\nprob_rain_in_3 = P3[0, 2]  # Sunny -> Rainy in 3 steps\nprint(\"Pr[X_{t+3} = Rainy | X_t = Sunny] =\", prob_rain_in_3)\n\npi15 = advance_distribution(pi0, P, 15)\nprint(\"pi^(15) =\", pi15)\n",
+ "description": "You extract a conditional probability and advance an initial distribution.",
+ "example": "cs477-nb-markov-chain-tutorial-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You compute the three-step transition matrix and print it. P3 stores probabilities for moving between states across three transitions.",
+   "kind": "reveal",
+   "lines": "2-3"
+  },
+  {
+   "answer": "P3[0,2] gives 0.222, following the state interpretation in the comment.",
+   "kind": "predict",
+   "lines": "5",
+   "question": "Which recorded value gives Sunny to Rainy in three steps?"
+  },
+  {
+   "description": "You print that entry as the probability of Rainy at t+3 given Sunny at t. It describes the endpoint state after three transitions.",
+   "kind": "reveal",
+   "lines": "5-6"
+  },
+  {
+   "description": "You advance pi0 by 15 transitions and print the resulting distribution.",
+   "kind": "reveal",
+   "lines": "8-9"
+  }
+ ],
+ "title": "Read multi-step transition probabilities",
+ "version": 1
+}

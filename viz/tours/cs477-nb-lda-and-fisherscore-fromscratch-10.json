@@ -1,0 +1,33 @@
+{
+ "code": "top1 = order[0]\nXtr1 = X_tr[:, [top1]]\nXte1 = X_te[:, [top1]]\n\nclass Naive1D:\n    def fit(self, X, y):\n        classes = np.unique(y)\n        self.means = []; self.vars = []; self.priors = []\n        for c in classes:\n            Xc = X[y==c, 0]\n            self.means.append(Xc.mean()); self.vars.append(Xc.var(ddof=1)); self.priors.append(len(Xc)/len(X))\n        self.means = np.array(self.means); self.vars = np.array(self.vars); self.priors = np.array(self.priors)\n        return self\n    def predict(self, X):\n        # Gaussian log-likelihood for each class\n        g = []\n        for m,v,pi in zip(self.means, self.vars, self.priors):\n            v = max(v, 1e-6)\n            g.append(-0.5*np.log(2*np.pi*v) - (X[:,0]-m)**2/(2*v) + np.log(pi+1e-300))\n        return np.argmax(np.vstack(g).T, axis=1)\n\nnb1 = Naive1D().fit(Xtr1, y_tr)\nyhat1 = nb1.predict(Xte1)\nacc1 = (yhat1==y_te).mean()\nprint(f\"Top-1 feature ({feature_names[top1]}) naive accuracy (test): {acc1:.3f}\")\nprint(f\"LDA accuracy (test): {acc_te:.3f}\")",
+ "description": "You fit a one-feature Gaussian classifier and compare its test accuracy with the stored LDA result.",
+ "example": "cs477-nb-lda-and-fisherscore-fromscratch-10",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You select order[0] and keep that same feature in both data splits. Double brackets preserve a two-dimensional feature matrix.",
+   "kind": "reveal",
+   "lines": "1-3"
+  },
+  {
+   "description": "You estimate each class's feature mean, sample variance, and prior fraction from training rows. The fitted object stores those arrays.",
+   "kind": "reveal",
+   "lines": "5-13"
+  },
+  {
+   "answer": "The largest Gaussian log-likelihood plus log prior wins. Each variance is bounded below by 1e-6 before scoring.",
+   "kind": "predict",
+   "lines": "17-20",
+   "question": "Which score determines the predicted class index?"
+  },
+  {
+   "description": "You predict the test rows and compare accuracy with acc_te. The recording identifies petal length as the selected feature and reports 0.933 for this classifier versus 0.978 for LDA.",
+   "kind": "reveal",
+   "lines": "14-26"
+  }
+ ],
+ "title": "Compare one feature with LDA",
+ "version": 1
+}

@@ -1,0 +1,33 @@
+{
+ "code": "post = res[\"Thompson\"].get(\"post\", None)\nif post is not None:\n    alpha = post[\"alpha\"]; beta = post[\"beta\"]\n    mean_p = alpha / (alpha + beta)\n    fig = plt.figure(figsize=(7,4))\n    plt.bar(np.arange(k), mean_p)\n    plt.xticks(np.arange(k), names)\n    plt.ylabel(\"Posterior mean p_i\")\n    plt.title(\"Thompson Posterior Means of Success Rates\")\n    plt.tight_layout(); plt.show()\n    print(\"Posterior mean E[p]:\", mean_p)\nelse:\n    print(\"No posterior found for Thompson (unexpected).\")",
+ "description": "You extract stored posterior parameters and display one mean probability per project.",
+ "example": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-13",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You retrieve post from the Thompson result, using None when the key is missing. The plotting branch requires a posterior object.",
+   "kind": "reveal",
+   "lines": "1-3"
+  },
+  {
+   "answer": "It uses only alpha/(alpha+beta), so it represents posterior mean success probabilities. This expression contains no R or C terms.",
+   "kind": "predict",
+   "lines": "4",
+   "question": "Does mean_p include project rewards and costs?"
+  },
+  {
+   "description": "You draw one probability bar per project and label the positions with names. The title identifies Thompson posterior means of success rates.",
+   "kind": "reveal",
+   "lines": "4-10"
+  },
+  {
+   "description": "You print recorded means [0.0972,0.1613,0.0777,0.2866,0.2155]. If post were None, the other branch would print the missing-posterior message.",
+   "kind": "reveal",
+   "lines": "11-13"
+  }
+ ],
+ "title": "Inspect Thompson posterior success estimates",
+ "version": 1
+}

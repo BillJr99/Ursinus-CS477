@@ -1,0 +1,2 @@
+alpha_hat, beta_hat = 9.81 14.55
+Posterior means: [0.373 0.456 0.402 0.463 0.427 0.381]

@@ -1,0 +1,5 @@
+From‑scratch GaussianNB accuracy: 0.920
+Confusion matrix:
+ [[16  0  0]
+ [ 0 16  1]
+ [ 0  3 14]]

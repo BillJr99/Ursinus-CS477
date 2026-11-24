@@ -1,0 +1,33 @@
+{
+ "code": "import os, json\nos.makedirs(\"artifacts\", exist_ok=True)\n\n# Save models\nfor c in range(10):\n    np.savez(f\"artifacts/hmm_class_{c}.npz\",\n             pi=models[c][\"pi\"], A=models[c][\"A\"],\n             means=models[c][\"means\"], vars=models[c][\"vars\"],\n             ll_history=np.array(models[c][\"ll_history\"], dtype=np.float64))\n\n# Save metrics\nmetrics = {\n    \"accuracy\": float(acc),\n    \"confusion_matrix\": cm.tolist()\n}\nwith open(\"artifacts/metrics.json\", \"w\") as f:\n    json.dump(metrics, f, indent=2)\n\nprint(\"Saved files:\", os.listdir(\"artifacts\"))",
+ "description": "You inspect the arrays and metrics written into separate artifact files.",
+ "example": "cs477-nb-hmm-image-recognition-from-scratch-11",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You import file and JSON tools and create the artifacts directory if needed.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "description": "You save each class model into a named NPZ archive. Each archive contains its initial probabilities, transitions, emission parameters, and likelihood history.",
+   "kind": "reveal",
+   "lines": "4-9"
+  },
+  {
+   "answer": "The metrics dictionary contains accuracy converted to float and the confusion matrix converted to a list.",
+   "kind": "predict",
+   "lines": "12-17",
+   "question": "Which values enter the metrics JSON rather than the model archives?"
+  },
+  {
+   "description": "You write metrics.json and list the artifact directory. The recorded listing includes the class archives and metrics file.",
+   "kind": "reveal",
+   "lines": "12-19"
+  }
+ ],
+ "title": "Save class models and evaluation metrics",
+ "version": 1
+}

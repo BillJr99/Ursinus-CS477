@@ -1,0 +1,33 @@
+{
+ "code": "\npi0 = np.array([1.0, 0.0, 0.0])\nK = 30\n\ntraj = np.zeros((K+1, len(states)))\ntraj[0] = pi0\nfor k in range(1, K+1):\n    traj[k] = traj[k-1] @ P\n\nplt.figure(figsize=(8, 4))\nfor j in range(len(states)):\n    plt.plot(range(K+1), traj[:, j], label=states[j])\nplt.xlabel(\"Step k\")\nplt.ylabel(\"Probability\")\nplt.title(\"Distribution Evolution over Time\")\nplt.legend(loc=\"best\")\nplt.show()\n\nprint(\"pi^(10) =\", traj[10])\nprint(\"pi^(30) =\", traj[30])\n",
+ "description": "You store successive probability vectors and compare later steps.",
+ "example": "cs477-nb-markov-chain-tutorial-4",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You put all initial probability in the first state. traj allocates enough rows to hold the initial vector and 30 updates.",
+   "kind": "reveal",
+   "lines": "2-6"
+  },
+  {
+   "answer": "The previous row multiplies P on the right. Each update advances the distribution by one transition.",
+   "kind": "predict",
+   "lines": "7-8",
+   "question": "Which vector produces traj[k] on each iteration?"
+  },
+  {
+   "description": "You store every updated vector and plot one probability curve per state. The legend uses the existing state names.",
+   "kind": "reveal",
+   "lines": "7-17"
+  },
+  {
+   "description": "You compare the printed vectors at steps 10 and 30. They are close.",
+   "kind": "reveal",
+   "lines": "19-20"
+  }
+ ],
+ "title": "Advance a state distribution repeatedly",
+ "version": 1
+}

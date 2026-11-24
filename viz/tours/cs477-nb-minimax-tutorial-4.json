@@ -1,0 +1,33 @@
+{
+ "code": "\ndef solve_col_minimax(A):\n    # Solve Column player's minimax mixed strategy for zero-sum game with payoff A to Row.\n    # Returns (y, w) where y is Column's mixed strategy, w is game value (Row's payoff).\n    m, n = A.shape\n    # Decision vars: [y_1,...,y_n, w]; objective: minimize w\n    c = np.zeros(n + 1); c[-1] = 1.0\n\n    # Constraints: A y <= w*1  <=>  A y - 1*w <= 0\n    A_ub = np.zeros((m, n + 1)); b_ub = np.zeros(m)\n    for i in range(m):\n        A_ub[i, :n] = A[i, :]\n        A_ub[i, -1] = -1.0\n\n    # Sum-to-one: sum y_j = 1\n    A_eq = np.zeros((1, n + 1)); A_eq[0, :n] = 1.0\n    b_eq = np.array([1.0])\n\n    bounds = [(0, 1)] * n + [(-1e9, 1e9)]\n\n    res = linprog(c, A_ub=A_ub, b_ub=b_ub, A_eq=A_eq, b_eq=b_eq, bounds=bounds, method=\"highs\")\n    if not res.success:\n        raise RuntimeError(\"LP failed: \" + res.message)\n    y = res.x[:n]; w = res.x[-1]\n    return y, w\n\ny, w = solve_col_minimax(A)\n\nprint(\"Column mixed strategy y:\", np.round(y, 4), \" (sum=\", np.round(y.sum(),4), \")\")\nprint(\"Minimax value w (Row's payoff):\", np.round(w, 4))\nprint(\"v vs w:\", (v, w))\n\n# Sanity check: Row's expected payoff for each of her pure actions vs y\nexpected_vs_rows = A @ y\nfor lbl, val in zip(row_labels, expected_vs_rows):\n    print(f\"Row's payoff if playing {lbl:4s} vs y: {val:.4f}\")\nprint(\"All should be <= w up to numerical tolerance.\")\n",
+ "description": "You encode Column's mixture and compare the two players' game values.",
+ "example": "cs477-nb-minimax-tutorial-4",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You minimize w, an upper bound on Row's expected payoff. One inequality per row requires A@y to stay at or below w.",
+   "kind": "reveal",
+   "lines": "2-13"
+  },
+  {
+   "description": "You constrain Column's probabilities to sum to one and lie between zero and one. A failed optimization raises RuntimeError; success returns y and w.",
+   "kind": "reveal",
+   "lines": "15-25"
+  },
+  {
+   "answer": "Both are 3.833333333333333. The recorded Column mixture is one third on each action.",
+   "kind": "predict",
+   "lines": "29-31",
+   "question": "How do the recorded Column value w and stored Row value v compare?"
+  },
+  {
+   "description": "You compute Row's payoff for every pure row action against y. Ad A, Ad B, and Ad C each print 3.8333, matching the recorded upper bound.",
+   "kind": "reveal",
+   "lines": "27-37"
+  }
+ ],
+ "title": "Solve Column's payoff-limiting strategy",
+ "version": 1
+}

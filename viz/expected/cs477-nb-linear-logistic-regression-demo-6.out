@@ -1,0 +1,5 @@
+Linear Regression metrics:
+  Train RMSE: 57.991
+  Test  RMSE: 58.889
+  Train R^2: 0.447
+  Test  R^2: 0.345

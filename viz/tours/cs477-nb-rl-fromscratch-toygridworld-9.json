@@ -1,0 +1,33 @@
+{
+ "code": "import os, json as _json, numpy as _np, shutil\nos.makedirs(\"artifacts\", exist_ok=True)\n\nnp.savez(\"artifacts/qlearning_results.npz\",\n         Q=Q, returns=ret_hist, V_hat=np.max(Q,axis=1), Pi_hat=np.argmax(Q,axis=1),\n         V_star=V_star, Pi_star=Pi_star)\n\nwith open(\"artifacts/world_spec.json\",\"w\") as f:\n    _json.dump({\"H\": CFG.H, \"W\": CFG.W, \"p_slip\": CFG.p_slip,\n                \"rewards\":{\"step\":CFG.step_cost, \"goal\":CFG.goal_reward, \"pit\":CFG.pit_reward}}, f, indent=2)\n\ntry:\n    from google.colab import files  # type: ignore\n    shutil.make_archive('artifacts','zip','artifacts'); files.download('artifacts.zip')\nexcept Exception as e:\n    print(\"Colab download helper not available here:\", e)",
+ "description": "You separate numerical results from environment settings and inspect the optional download handler.",
+ "example": "cs477-nb-rl-fromscratch-toygridworld-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You create the artifact directory and save Q, returns, derived values and actions, and the stored reference results. np.savez keeps these named arrays together.",
+   "kind": "reveal",
+   "lines": "1-6"
+  },
+  {
+   "description": "You write world dimensions, slip probability, and reward settings as JSON. These settings describe the environment separately from the numerical results.",
+   "kind": "reveal",
+   "lines": "8-10"
+  },
+  {
+   "answer": "The handler prints the unavailable-helper message with the exception. The archive and download attempt follows the earlier result-saving statements.",
+   "kind": "predict",
+   "lines": "12-16",
+   "question": "What happens when the Colab download call raises an exception?"
+  },
+  {
+   "description": "You inspect the supplied output. It reports that google.colab.files.download is unavailable in code-viz.",
+   "kind": "reveal",
+   "lines": "12-16"
+  }
+ ],
+ "title": "Save learned values and the world specification",
+ "version": 1
+}

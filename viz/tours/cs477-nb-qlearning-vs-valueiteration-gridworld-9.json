@@ -1,0 +1,33 @@
+{
+ "code": "fig = plt.figure(figsize=(7,4))\nplt.plot(returns, alpha=0.5, label=\"episode return\")\n# simple moving average\nw = 100\nma = np.convolve(returns, np.ones(w)/w, mode='same')\nplt.plot(ma, label=f\"moving avg (w={w})\")\nplt.xlabel(\"Episode\"); plt.ylabel(\"Return\"); plt.title(\"Q‑Learning Learning Curve\"); plt.legend()\nplt.tight_layout(); plt.show()",
+ "description": "You display raw learning returns alongside a smoothed series.",
+ "example": "cs477-nb-qlearning-vs-valueiteration-gridworld-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You plot returns with partial transparency and label the series episode return. Each entry supplies one plotted episode value.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "answer": "Each kernel entry receives one divided by the supplied window width. np.convolve applies that equal-weight kernel with mode=same.",
+   "kind": "predict",
+   "lines": "4-5",
+   "question": "What weight does each entry of the smoothing kernel receive?"
+  },
+  {
+   "description": "You compute ma and plot it over the raw returns. Its legend label includes the window width.",
+   "kind": "reveal",
+   "lines": "4-6"
+  },
+  {
+   "description": "You label the axes Episode and Return and display the Q-learning curve. The supplied output includes no numeric series from which to assess improvement.",
+   "kind": "reveal",
+   "lines": "7-8"
+  }
+ ],
+ "title": "Plot episode returns and their moving average",
+ "version": 1
+}

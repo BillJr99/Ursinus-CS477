@@ -1,0 +1,33 @@
+{
+ "code": "# Colab download helper\nimport shutil\nfrom pathlib import Path\ntry:\n    from google.colab import files  # type: ignore\n    if Path('artifacts').exists():\n        shutil.make_archive('artifacts', 'zip', 'artifacts')\n        files.download('artifacts.zip')\n    else:\n        print('No artifacts folder found.')\nexcept Exception as e:\n    print('Colab download helper not available in this environment:', e)",
+ "description": "You can follow the archive path and the recorded environment fallback.",
+ "example": "cs477-nb-bayesian-diagnostic-test-belief-updating-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You import archive and path helpers, then try to import Colab's files interface. The surrounding try also covers the later archive and download calls.",
+   "kind": "reveal",
+   "lines": "1-5"
+  },
+  {
+   "description": "An existing artifacts path selects archive creation and download. Otherwise the code prints a missing-folder message.",
+   "kind": "reveal",
+   "lines": "6-10"
+  },
+  {
+   "answer": "The exception handler catches the failure and prints its environment message.",
+   "kind": "predict",
+   "lines": "11-12",
+   "question": "Which path handles an unavailable Colab download operation?"
+  },
+  {
+   "description": "You see the helper report that google.colab.files.download is unavailable in code-viz. This supplied run does not report a successful download.",
+   "kind": "reveal",
+   "lines": "11-12"
+  }
+ ],
+ "title": "Reading an optional Colab download helper",
+ "version": 1
+}

@@ -1,0 +1,33 @@
+{
+ "code": "# Colab download helper\nimport shutil\nfrom pathlib import Path\ntry:\n    from google.colab import files  # type: ignore\n    if Path('artifacts').exists():\n        shutil.make_archive('artifacts', 'zip', 'artifacts')\n        files.download('artifacts.zip')\n    else:\n        print('No artifacts folder found.')\nexcept Exception as e:\n    print('Colab download helper not available in this environment:', e)",
+ "description": "You trace the directory check and exception handler in the download helper.",
+ "example": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-10",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You import shutil and Path, then try to load Colab's files helper. The import sits inside the same try block as the download.",
+   "kind": "reveal",
+   "lines": "1-5"
+  },
+  {
+   "description": "You check for artifacts before making artifacts.zip. An existing folder leads to the download call; the other branch prints a missing-folder message.",
+   "kind": "reveal",
+   "lines": "6-10"
+  },
+  {
+   "answer": "The except block catches it and prints the helper-unavailable message with its exception text.",
+   "kind": "predict",
+   "lines": "11-12",
+   "question": "What happens when the download helper raises an exception?"
+  },
+  {
+   "description": "You see the exception handler's output in the recording. It identifies google.colab.files.download as unavailable in code-viz.",
+   "kind": "reveal",
+   "lines": "11-12"
+  }
+ ],
+ "title": "Inspect the artifact download branches",
+ "version": 1
+}

@@ -1,0 +1,33 @@
+{
+ "code": "\n# Payoff matrix A: rows = {Ad A, Ad B, Ad C}, columns = {Search, Social, Video}\nA = np.array([\n    [ 6.0,  2.0,  3.5],   # Ad A vs {Search, Social, Video}\n    [ 4.0,  5.5,  2.0],   # Ad B\n    [ 3.0,  2.5,  6.0]    # Ad C\n], dtype=float)\n\nrow_labels = [\"Ad A\", \"Ad B\", \"Ad C\"]\ncol_labels = [\"Search\", \"Social\", \"Video\"]\n\nprint(\"Payoff matrix A (Row's payoff; Column sees -A):\")\nprint(\"rows =\", row_labels)\nprint(\"cols =\", col_labels)\nprint(A)\n",
+ "description": "You connect row and column actions to Row's payoff values.",
+ "example": "cs477-nb-minimax-tutorial-2",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You define a three-by-three floating-point payoff matrix. Each row contains one ad's payoffs against Search, Social, and Video.",
+   "kind": "reveal",
+   "lines": "2-7"
+  },
+  {
+   "description": "You name the rows Ad A, Ad B, and Ad C. The column labels preserve Search, Social, Video order.",
+   "kind": "reveal",
+   "lines": "9-10"
+  },
+  {
+   "answer": "It is A[1,2], or 2.0. Ad B selects the second row and Video the third column.",
+   "kind": "predict",
+   "lines": "4-6",
+   "question": "What is Row's payoff for Ad B against Video?"
+  },
+  {
+   "description": "You print the labels and matrix together. The heading states that Column receives the negative of Row's payoff.",
+   "kind": "reveal",
+   "lines": "12-15"
+  }
+ ],
+ "title": "Read the advertising payoff matrix",
+ "version": 1
+}

@@ -1,0 +1,33 @@
+{
+ "code": "C_proj = (C - X_std.mean(axis=0)) @ comps.T\nfig = plt.figure(figsize=(6,5))\nfor j in range(k):\n    pts = Z[labels==j]\n    plt.scatter(pts[:,0], pts[:,1], label=f\"cluster {j}\", s=24)\nplt.scatter(C_proj[:,0], C_proj[:,1], marker='X', s=150)\nplt.xlabel(\"PC1\"); plt.ylabel(\"PC2\"); plt.title(\"K-Means Clusters (PCA 2D)\")\nplt.legend(); plt.tight_layout(); plt.show()",
+ "description": "You plot projected observations and centroids on the same axes.",
+ "example": "cs477-nb-kmeans-clustering-iris-from-scratch-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You center the centroids with the standardized data mean and project them using comps.T. C_proj supplies centroid coordinates for the figure.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "description": "You select rows of Z by cluster label and plot each group separately. Each scatter call adds a matching cluster label.",
+   "kind": "reveal",
+   "lines": "3-5"
+  },
+  {
+   "answer": "The centroid scatter uses large X markers. Observation points use smaller markers.",
+   "kind": "predict",
+   "lines": "6",
+   "question": "How does the chart distinguish centroids from the observation points?"
+  },
+  {
+   "description": "You display observations and centroids along PC1 and PC2, the first two principal-component axes. The legend identifies the observation groups by cluster number.",
+   "kind": "reveal",
+   "lines": "6-8"
+  }
+ ],
+ "title": "Display clusters in principal-component coordinates",
+ "version": 1
+}

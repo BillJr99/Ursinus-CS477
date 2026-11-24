@@ -1,0 +1,33 @@
+{
+ "code": "# Colab download helper\nimport shutil\nfrom pathlib import Path\ntry:\n    from google.colab import files  # type: ignore\n    if Path('artifacts').exists():\n        shutil.make_archive('artifacts', 'zip', 'artifacts')\n        files.download('artifacts.zip')\n    else:\n        print('No artifacts folder found.')\nexcept Exception as e:\n    print('Colab download helper not available in this environment:', e)",
+ "description": "Import shutil and Path, check whether the artifacts directory exists, zip it into artifacts.zip, and call google.colab.files.download inside a try/except block.",
+ "example": "cs477-nb-astar-search-with-graphics-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model",
+ "steps": [
+  {
+   "description": "Import `shutil` and `Path`, then inside a `try` block import `files` from `google.colab`, check `if Path('artifacts').exists():`, create `'artifacts.zip'` with `shutil.make_archive('artifacts', 'zip', 'artifacts')`, and call `files.download('artifacts.zip')`.",
+   "kind": "reveal",
+   "lines": "1-8"
+  },
+  {
+   "description": "Handle the missing-folder case in `else:` and catch any import or download error in `except Exception as e:` on lines 11-12.",
+   "kind": "reveal",
+   "lines": "9-12"
+  },
+  {
+   "description": "Look at how the `try/except` block wraps both `from google.colab import files` and `files.download('artifacts.zip')`: when the cell runs outside Google Colab, the `except` branch catches the exception and prints a status message.",
+   "kind": "focus",
+   "lines": "4-8,11-12"
+  },
+  {
+   "answer": "Line 12 inside the `except Exception as e:` block prints `Colab download helper not available in this environment:` followed by the exception message.",
+   "kind": "predict",
+   "lines": "4-12",
+   "question": "When this cell runs in a non-Colab environment where `google.colab.files.download` is unavailable, which line prints the output?"
+  }
+ ],
+ "title": "Zipping and Downloading Saved Artifacts in Colab",
+ "version": 1
+}

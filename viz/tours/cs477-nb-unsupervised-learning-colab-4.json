@@ -1,0 +1,33 @@
+{
+ "code": "# === PCA (From Scratch) ===\nnp.random.seed(0)\n\n# 1) Build a 3D synthetic dataset with correlated features\nn_samples = 200\nf1 = np.random.normal(0, 1, n_samples)\nf2 = 2 * f1 + np.random.normal(0, 0.5, n_samples)\nf3 = f1 - f2 + np.random.normal(0, 0.2, n_samples)\nX_pca = np.column_stack([f1, f2, f3])\n\n# 2) Center the data\nX_centered = X_pca - X_pca.mean(axis=0)\n\n# 3) Covariance and eigendecomposition\nCov = np.cov(X_centered, rowvar=False)\neigenvalues, eigenvectors = np.linalg.eigh(Cov)\norder = np.argsort(eigenvalues)[::-1]\neigenvalues = eigenvalues[order]\neigenvectors = eigenvectors[:, order]\n\n# 4) Project onto the first 2 PCs\nX_proj = X_centered @ eigenvectors[:, :2]\n\n# 5) Plot\nplt.figure()\nplt.scatter(X_proj[:, 0], X_proj[:, 1], s=12)\nplt.title(\"PCA (From Scratch): First 2 PCs\")\nplt.xlabel(\"PC1\")\nplt.ylabel(\"PC2\")\nplt.show()\n",
+ "description": "You compute principal component directions from the centered covariance matrix.",
+ "example": "cs477-nb-unsupervised-learning-colab-4",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You seed sampling and generate the supplied number of rows with three related features. f2 depends on f1, and f3 depends on both with added noise.",
+   "kind": "reveal",
+   "lines": "1-9"
+  },
+  {
+   "description": "You subtract each feature mean and compute covariance across columns. eigh returns covariance eigenvalues and their direction vectors.",
+   "kind": "reveal",
+   "lines": "11-16"
+  },
+  {
+   "answer": "Sorting eigenvalues in descending order moves the largest-variance directions first. The projection uses the first two reordered columns.",
+   "kind": "predict",
+   "lines": "17-22",
+   "question": "Which two eigenvectors supply the projection directions?"
+  },
+  {
+   "description": "You multiply centered data by those directions to obtain two coordinates per row. The final scatter plot displays PC1 against PC2.",
+   "kind": "reveal",
+   "lines": "21-30"
+  }
+ ],
+ "title": "Project correlated features onto two components",
+ "version": 1
+}

@@ -1,0 +1,38 @@
+{
+ "code": "def pca_svd(X, n_components=None):\n    Xc = X - X.mean(axis=0, keepdims=True)\n    U, S, Vt = np.linalg.svd(Xc, full_matrices=False)\n    comps = Vt\n    explained_var = (S**2) / (len(X)-1)\n    evr = explained_var / explained_var.sum()\n    if n_components is not None:\n        return Xc @ comps[:n_components].T, comps[:n_components], evr[:n_components], evr\n    return Xc @ comps.T, comps, evr, evr\n\nZw, Cw, evr_k, evr_all = pca_svd(Xws, n_components=2)\ncum_evr = np.cumsum(evr_all)\n\nfig = plt.figure(figsize=(6,3.8))\nplt.plot(np.arange(1,len(evr_all)+1), cum_evr, marker='o')\nplt.xlabel(\"Number of components\"); plt.ylabel(\"Cumulative explained variance\")\nplt.title(\"PCA on Wine (standardized)\"); plt.tight_layout(); plt.show()\n\nfig = plt.figure(figsize=(6,5))\nplt.scatter(Zw[:,0], Zw[:,1], c=yw, s=20, cmap='viridis')\nplt.xlabel(\"PC1\"); plt.ylabel(\"PC2\"); plt.title(\"Wine projected to first 2 PCs\")\nplt.tight_layout(); plt.show()\n\ndef top_loadings(C, feature_names, k=5):\n    for i in range(min(2, C.shape[0])):\n        w = C[i]\n        order = np.argsort(np.abs(w))[::-1][:k]\n        print(f\"PC{i+1} top {k} loadings:\")\n        for j in order:\n            print(f\"  {feature_names[j]:25s} {w[j]:+.3f}\")\ntop_loadings(Cw, wine.feature_names, k=6)",
+ "description": "You inspect variance ratios, a two-component projection, and feature loadings.",
+ "example": "cs477-nb-densityestimation-and-featurediscovery-fromscratch-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You center X and compute its singular value decomposition. Squared singular values give component variances, which you divide by their sum to get explained variance ratios.",
+   "kind": "reveal",
+   "lines": "1-9"
+  },
+  {
+   "description": "You request two principal components for the wine data and retain the full variance-ratio array. The first plot shows cumulative explained variance across all components.",
+   "kind": "reveal",
+   "lines": "11-17"
+  },
+  {
+   "description": "You plot the first two projected coordinates and use yw to color the observations. The axes identify PC1 and PC2.",
+   "kind": "reveal",
+   "lines": "19-22"
+  },
+  {
+   "answer": "It sorts the absolute component weights in descending order. It prints the selected weights with their original signs.",
+   "kind": "predict",
+   "lines": "24-31",
+   "question": "How does top_loadings choose which six features to print for each component?"
+  },
+  {
+   "description": "You read the largest feature weights for each direction, called loadings. The recorded PC1 list begins with flavanoids at -0.423, and PC2 begins with color_intensity at -0.530.",
+   "kind": "reveal",
+   "lines": "24-31"
+  }
+ ],
+ "title": "Project wine data onto principal components",
+ "version": 1
+}

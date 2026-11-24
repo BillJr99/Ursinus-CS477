@@ -1,0 +1,33 @@
+{
+ "code": "# Bayesian updating for a coin's bias using a Beta prior\n\nfrom typing import List, Tuple\n\ndef beta_posterior_mean(alpha: float, beta: float) -> float:\n    \"\"\"Return the mean of a Beta(alpha, beta) distribution.\"\"\"\n    return alpha / (alpha + beta)\n\n\ndef update_beta_after_flip(\n    alpha: float,\n    beta: float,\n    outcome: str\n) -> Tuple[float, float]:\n    \"\"\"\n    Update Beta(alpha, beta) parameters after a single coin flip.\n\n    outcome: 'H' for heads, 'T' for tails.\n    \"\"\"\n    if outcome.upper() == 'H':\n        alpha += 1\n    elif outcome.upper() == 'T':\n        beta += 1\n    else:\n        raise ValueError(f\"Invalid outcome '{outcome}'. Use 'H' or 'T'.\")\n\n    return alpha, beta\n\n\ndef run_bayesian_coin_example():\n    # Initial prior: Beta(2, 2)\n    alpha, beta = 2.0, 2.0\n\n    # Sequence of observed flips\n    flips: List[str] = ['H', 'T', 'H', 'H', 'H']\n\n    print(\"Bayesian updating for a coin with Beta prior\")\n    print(\"Initial prior: Beta(alpha=2, beta=2)\")\n    print()\n\n    # Header for the table\n    print(f\"{'Step':<5} {'Flip':<6} {'Alpha':<8} {'Beta':<8} {'Mean p(H)':<10}\")\n    print(\"-\" * 40)\n\n    # Step 0: before seeing any data\n    step = 0\n    mean_p = beta_posterior_mean(alpha, beta)\n    print(f\"{step:<5} {'-':<6} {alpha:<8.2f} {beta:<8.2f} {mean_p:<10.3f}\")\n\n    # Sequentially update after each flip\n    for flip in flips:\n        step += 1\n        alpha, beta = update_beta_after_flip(alpha, beta, flip)\n        mean_p = beta_posterior_mean(alpha, beta)\n        print(f\"{step:<5} {flip:<6} {alpha:<8.2f} {beta:<8.2f} {mean_p:<10.3f}\")\n\n\nif __name__ == \"__main__\":\n    run_bayesian_coin_example()",
+ "description": "You can follow two Beta parameters through the supplied observation sequence.",
+ "example": "cs477-liascript-bayesianinference-11",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "The mean is alpha divided by alpha plus beta. You increase alpha for heads and beta for tails, rejecting other outcome strings.",
+   "kind": "reveal",
+   "lines": "1-27"
+  },
+  {
+   "description": "The driver starts at Beta(2, 2) and supplies H, T, H, H, H. You print the initial mean 0.500 before processing any flip.",
+   "kind": "reveal",
+   "lines": "30-48"
+  },
+  {
+   "answer": "They become 3 and 2 after the head, then 3 and 3 after the tail.",
+   "kind": "predict",
+   "lines": "51-54",
+   "question": "What parameters follow the first head and then the tail?"
+  },
+  {
+   "description": "You keep the updated pair for each next flip and print a row after every update. The final recorded pair is 6 and 3 with mean 0.667.",
+   "kind": "reveal",
+   "lines": "50-59"
+  }
+ ],
+ "title": "Updating a coin model after each flip",
+ "version": 1
+}

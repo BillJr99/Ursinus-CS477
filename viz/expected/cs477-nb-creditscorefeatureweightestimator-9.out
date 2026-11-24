@@ -1,0 +1,10 @@
+
+Equation for Feature Influence on Credit Score:
+Credit Score Estimate = (6.9998) * Payment History + (1.7044) * Credit Utilization + (2.9523) * Credit History Length + (0.1791) * Types of Credit + (2.4338) * New Credit Inquiries + Bias(0.1352)
+
+Percentage Contribution of Each Feature to the Credit Score Estimate:
+Payment History: 49.05%
+Credit Utilization: 11.94%
+Credit History Length: 20.69%
+Types of Credit: 1.25%
+New Credit Inquiries: 17.06%

@@ -1,0 +1,33 @@
+{
+ "code": "def run_seeds(n=5):\n    bests = []\n    for s in range(n):\n        cfg = GAConfig(seed=SEED + s)\n        pop, fit, bh, mh, _ = evolve(cfg, verbose=False)\n        bests.append(fit[0])\n    return np.array(bests)\n\nbests = run_seeds(5)\nprint(\"Best fitness across 5 seeds:\", bests, \"mean=\", bests.mean(), \"std=\", bests.std())",
+ "description": "You collect the best final fitness from five seeded runs.",
+ "example": "cs477-nb-geneticalgorithm-fromscratch-toyexample-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You start an empty results list and create a configuration for each seed. Each iteration increments the seed from SEED by s.",
+   "kind": "reveal",
+   "lines": "1-4"
+  },
+  {
+   "description": "You call evolve with verbose=False and retain fit[0] from each run. The function returns these best fitness values as an array.",
+   "kind": "reveal",
+   "lines": "5-7"
+  },
+  {
+   "answer": "Four entries print as -0., while one is -0.99496. The recorded runs therefore have different final results.",
+   "kind": "predict",
+   "lines": "9-10",
+   "question": "Do all five recorded seeds reach the same best fitness?"
+  },
+  {
+   "description": "You print the five results with their mean and standard deviation.",
+   "kind": "reveal",
+   "lines": "9-10"
+  }
+ ],
+ "title": "Compare results across random seeds",
+ "version": 1
+}

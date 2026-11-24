@@ -1,0 +1,33 @@
+{
+ "code": "# Cumulative reward\nfig = plt.figure(figsize=(7,4))\nfor label, out in res.items():\n    plt.plot(np.cumsum(out[\"rewards\"]), label=label)\nplt.xlabel(\"Round\"); plt.ylabel(\"Cumulative reward\")\nplt.title(\"Cumulative Reward\"); plt.legend(); plt.tight_layout(); plt.show()\n\n# Cumulative regret\nfig = plt.figure(figsize=(7,4))\nfor label, out in res.items():\n    regret = best_mu*np.arange(1, T+1) - np.cumsum(out[\"rewards\"])\n    plt.plot(regret, label=label)\nplt.xlabel(\"Round\"); plt.ylabel(\"Cumulative regret\")\nplt.title(\"Cumulative Regret\"); plt.legend(); plt.tight_layout(); plt.show()",
+ "description": "You display two views of the stored strategy reward sequences.",
+ "example": "cs477-nb-projectfunding-multiarmedbandit-fromscratch-11",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You visit each labeled result and plot its running reward sum. Each curve comes from out[rewards] in res.",
+   "kind": "reveal",
+   "lines": "1-4"
+  },
+  {
+   "description": "You label the first chart Cumulative Reward with Round on the horizontal axis. The legend preserves the result labels.",
+   "kind": "reveal",
+   "lines": "5-6"
+  },
+  {
+   "answer": "It uses best_mu*r, then subtracts the realized reward accumulated through that round. np.arange starts the baseline at round one.",
+   "kind": "predict",
+   "lines": "11",
+   "question": "What baseline does the regret curve use at round r?"
+  },
+  {
+   "description": "You plot those regret sequences in a second figure. Both charts use the same stored runs; the supplied output gives no numeric curve values.",
+   "kind": "reveal",
+   "lines": "8-14"
+  }
+ ],
+ "title": "Plot cumulative reward and regret",
+ "version": 1
+}

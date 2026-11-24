@@ -1,0 +1,33 @@
+{
+ "code": "C = 1.5\nGAMMA = 1.5 if DATASET==\"moons\" else 0.8\nksvm = KernelSVM_SMO(C=C, gamma=GAMMA, tol=1e-3, max_passes=8).fit(X_tr, y_tr)\nyhat_k = ksvm.predict(X_te)\nacc_k, prec_k, rec_k, *_ = metrics(y_te, yhat_k)\nprint(f\"Kernel RBF SVM: acc={acc_k:.3f} prec={prec_k:.3f} rec={rec_k:.3f} #SV={len(ksvm.sv_idx)}\")",
+ "description": "You inspect dataset-dependent kernel settings and test results.",
+ "example": "cs477-nb-svm-from-scratch-linear-and-kernel-10",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You set C to 1.5. The next model constructor receives that value.",
+   "kind": "reveal",
+   "lines": "1"
+  },
+  {
+   "answer": "It selects 1.5 for moons and 0.8 for the other branch.",
+   "kind": "predict",
+   "lines": "2",
+   "question": "Which gamma does the code select for the moons dataset?"
+  },
+  {
+   "description": "You fit KernelSVM_SMO on training rows and predict test rows. metrics compares those predicted labels with y_te.",
+   "kind": "reveal",
+   "lines": "3-5"
+  },
+  {
+   "description": "You print radial-basis-function kernel results: accuracy 0.925, precision 0.969, and recall 0.887. The recording also reports 180 support vectors through len(ksvm.sv_idx).",
+   "kind": "reveal",
+   "lines": "6"
+  }
+ ],
+ "title": "Fit and evaluate the kernel SVM",
+ "version": 1
+}

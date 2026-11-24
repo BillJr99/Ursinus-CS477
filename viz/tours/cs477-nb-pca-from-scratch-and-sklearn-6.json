@@ -1,0 +1,33 @@
+{
+ "code": "\niris = load_iris()\nX = iris.data.copy()\ny = iris.target.copy()\n\nscaler = StandardScaler().fit(X)\nXs = scaler.transform(X)\n\nmu, comps, vals, evr, Z, C = pca_from_scratch(Xs, n_components=4)\n\nfisher_scores = []\nfor k in range(Z.shape[1]):\n    s, _ = fisher_multiclass_1d(Z[:,k], y)\n    fisher_scores.append(s)\n\nprint(\"Eigenvalues:\", vals)\nprint(\"Explained variance ratio:\", evr)\nprint(\"Fisher scores per PC:\", fisher_scores)\n\nfig, ax = plt.subplots()\nax.plot(range(1, len(vals)+1), vals, marker=\"o\")\nax.set_xlabel(\"PC index\")\nax.set_ylabel(\"Eigenvalue\")\nax.set_title(\"PCA Eigenvalues (Iris, scaled)\")\nplt.show()\n\nfig, ax = plt.subplots()\nax.plot(range(1, len(fisher_scores)+1), fisher_scores, marker=\"o\")\nax.set_xlabel(\"PC index\")\nax.set_ylabel(\"Fisher separability (avg over pairs)\")\nax.set_title(\"Fisher Scores per PC\")\nplt.show()\n",
+ "description": "You inspect eigenvalues and Fisher scores for four Iris principal components.",
+ "example": "cs477-nb-pca-from-scratch-and-sklearn-6",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You standardize Iris features and request four principal components. Z holds their projected coordinates.",
+   "kind": "reveal",
+   "lines": "2-9"
+  },
+  {
+   "description": "You compute a Fisher score for each projected component using the class labels y. The output lists these separability scores alongside eigenvalues and explained variance ratios.",
+   "kind": "reveal",
+   "lines": "11-18"
+  },
+  {
+   "answer": "The first component leads both lists, with the largest eigenvalue and Fisher score.",
+   "kind": "predict",
+   "lines": "16-18",
+   "question": "Which component has the largest recorded eigenvalue and Fisher score?"
+  },
+  {
+   "description": "You display separate charts for eigenvalues and Fisher scores by component index. The latter axis labels the score as separability averaged over pairs.",
+   "kind": "reveal",
+   "lines": "20-32"
+  }
+ ],
+ "title": "Compare variance and class separability",
+ "version": 1
+}

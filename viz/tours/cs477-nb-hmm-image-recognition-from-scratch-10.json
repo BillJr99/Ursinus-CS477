@@ -1,0 +1,33 @@
+{
+ "code": "def show_image_and_path(seq, true_label, pred_label, path):\n    # seq is (T=8, D=8); show original image (transpose back) and state path\n    img = seq.T  # back to (8,8)\n    fig = plt.figure(figsize=(4,3))\n    plt.subplot(2,1,1)\n    plt.imshow(img, cmap='gray', vmin=0, vmax=1)\n    plt.axis('off')\n    plt.title(f\"True {true_label} / Pred {pred_label}\")\n    plt.subplot(2,1,2)\n    plt.plot(path, marker='o')\n    plt.ylim(-0.5, max(path)+0.5)\n    plt.yticks(range(max(path)+1))\n    plt.xlabel(\"Time (column index)\"); plt.ylabel(\"State\")\n    plt.tight_layout()\n    plt.show()\n\nfor i in range(5):\n    seq = X_test[i]\n    tl = y_test[i]\n    pl = y_pred[i]\n    path, _ = viterbi_path(seq, models[pl])\n    show_image_and_path(seq, tl, pl, path)",
+ "description": "You connect each test image to a path decoded with its predicted class model.",
+ "example": "cs477-nb-hmm-image-recognition-from-scratch-10",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You transpose seq back into image orientation and display it in grayscale. The title includes the supplied true and predicted labels.",
+   "kind": "reveal",
+   "lines": "1-8"
+  },
+  {
+   "description": "You plot the path in a second panel. Its horizontal positions represent image columns, and its vertical values represent states.",
+   "kind": "reveal",
+   "lines": "9-15"
+  },
+  {
+   "answer": "It receives models[pl], where pl comes from y_pred. The true label is passed to the display separately.",
+   "kind": "predict",
+   "lines": "17-21",
+   "question": "Does viterbi_path receive the true-label model or predicted-label model?"
+  },
+  {
+   "description": "You decode and display the selected test examples. The supplied recording contains no rendered figures or text output to assess.",
+   "kind": "reveal",
+   "lines": "17-22"
+  }
+ ],
+ "title": "Display a digit and its decoded state path",
+ "version": 1
+}

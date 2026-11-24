@@ -1,0 +1,33 @@
+{
+ "code": "gbr_pipe = Pipeline([\n    (\"scaler\", StandardScaler()),       # scaling helps convergence\n    (\"gbr\", GradientBoostingRegressor(\n        n_estimators=300,\n        learning_rate=0.05,\n        max_depth=3,\n        subsample=0.9,\n        random_state=42\n    ))\n])\n\ngbr_pipe.fit(X_train, y_train)\ny_pred_gbr = gbr_pipe.predict(X_test)\n\nprint(\"GBR Test R²:\", r2_score(y_test, y_pred_gbr))\nprint(\"GBR Test MSE:\", mean_squared_error(y_test, y_pred_gbr))\n",
+ "description": "You inspect the fixed estimator settings and test-set regression metrics.",
+ "example": "cs477-nb-linear-logistic-regression-demo-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You place a scaler before GradientBoostingRegressor. The estimator requests 300 boosting stages with learning_rate=0.05.",
+   "kind": "reveal",
+   "lines": "1-5"
+  },
+  {
+   "description": "You set max_depth=3, subsample=0.9, and random_state=42. These settings form a single configured pipeline.",
+   "kind": "reveal",
+   "lines": "6-10"
+  },
+  {
+   "answer": "fit receives X_train and y_train. predict receives X_test.",
+   "kind": "predict",
+   "lines": "12-13",
+   "question": "Which data fits the pipeline, and which data receives predictions?"
+  },
+  {
+   "description": "You compare the test predictions with y_test. The recording reports R-squared and mean squared error.",
+   "kind": "reveal",
+   "lines": "15-16"
+  }
+ ],
+ "title": "Evaluate a gradient boosting pipeline",
+ "version": 1
+}

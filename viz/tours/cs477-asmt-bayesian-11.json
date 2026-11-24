@@ -1,0 +1,33 @@
+{
+ "code": "import numpy as np\n\n# toy data: successes k_i out of n_i\nk = np.array([3, 15, 2, 20, 7, 1])\nn = np.array([10, 30, 5, 40, 15, 4])\n\np_hat = k / n\nm = p_hat.mean(); v = p_hat.var()\n# moment matching for Beta: alpha,beta > 0, v = ab / ((a+b)^2 (a+b+1))\nA = m*(1-m)/v - 1\nalpha_hat = m*A; beta_hat = (1-m)*A\nprint(\"alpha_hat, beta_hat =\", round(alpha_hat,2), round(beta_hat,2))\n\n# group-level posteriors\nalpha_post = alpha_hat + k\nbeta_post  = beta_hat + (n - k)\ntheta_post_mean = alpha_post / (alpha_post + beta_post)\nprint(\"Posterior means:\", np.round(theta_post_mean, 3))",
+ "description": "You can follow the supplied moment estimates into group posterior means.",
+ "example": "cs477-asmt-bayesian-11",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "k and n hold six groups' successes and trial counts. You calculate each group's observed proportion, then its across-group mean and variance.",
+   "kind": "reveal",
+   "lines": "1-8"
+  },
+  {
+   "description": "The moment-matching expressions produce shared alpha_hat and beta_hat. The supplied output prints 9.81 and 14.55.",
+   "kind": "reveal",
+   "lines": "9-12"
+  },
+  {
+   "answer": "alpha_post adds successes k. beta_post adds failures n minus k.",
+   "kind": "predict",
+   "lines": "15-16",
+   "question": "Which observed counts are added to the two posterior parameters?"
+  },
+  {
+   "description": "You divide alpha_post by the sum of both parameters for each group. The output lists six posterior means, beginning with 0.373 and ending with 0.381.",
+   "kind": "reveal",
+   "lines": "14-18"
+  }
+ ],
+ "title": "Reading shared Beta prior estimates",
+ "version": 1
+}

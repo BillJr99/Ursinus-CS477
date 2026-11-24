@@ -1,0 +1,38 @@
+{
+ "code": "\niris = load_iris()\nX = iris.data[:, :2]  # use 2 features for visualization\ny = iris.target\n\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42, stratify=y)\n\nclf = Pipeline([(\"scaler\", StandardScaler()),\n                (\"logreg\", LogisticRegression(max_iter=500))])\nclf.fit(X_train, y_train)\nacc = clf.score(X_test, y_test)\nprint(f\"Test accuracy (Iris, 2 features): {acc:.3f}\")\n\n# Plot decision regions\nxx, yy = np.meshgrid(np.linspace(X[:,0].min()-0.5, X[:,0].max()+0.5, 300),\n                     np.linspace(X[:,1].min()-0.5, X[:,1].max()+0.5, 300))\ngrid = np.c_[xx.ravel(), yy.ravel()]\nZ = clf.predict(grid).reshape(xx.shape)\n\nplt.contourf(xx, yy, Z, alpha=0.5, levels=np.arange(4)-0.5)\nplt.scatter(X[:,0], X[:,1], c=y, edgecolor=\"k\")\nplt.xlabel(iris.feature_names[0]); plt.ylabel(iris.feature_names[1])\nplt.title(\"Multiclass Logistic Regression Decision Regions (Iris)\")\nplt.show()\n",
+ "description": "Select the first two Iris features iris.data[:, :2], fit a StandardScaler + LogisticRegression pipeline, report test accuracy, and plot the 3-class decision regions over a meshgrid.",
+ "example": "cs477-nb-linear-and-logistic-regression-tutorial-15",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Load `iris = load_iris()`, slice the first two feature columns `X = iris.data[:, :2]` and 3-class labels `y = iris.target`. Split using the supplied ratio with `stratify=y`.",
+   "kind": "reveal",
+   "lines": "2-7"
+  },
+  {
+   "description": "Fit a `StandardScaler` and `LogisticRegression` pipeline on `(X_train, y_train)` using the supplied iteration limit. Print `clf.score(X_test, y_test)` (`0.763`).",
+   "kind": "reveal",
+   "lines": "8-13"
+  },
+  {
+   "description": "Build a meshgrid `(xx, yy)` over the two features using the supplied resolution. Predict class labels `Z = clf.predict(grid).reshape(xx.shape)`. Fill the 3 decision regions with `plt.contourf` and overlay the data points `plt.scatter(X[:,0], X[:,1], c=y)`.",
+   "kind": "reveal",
+   "lines": "14-24"
+  },
+  {
+   "description": "Look at lines 3 and 17-20: keeping only 2 features (`X = iris.data[:, :2]`) allows 2-column points for prediction. `grid = np.c_[xx.ravel(), yy.ravel()]` passes them directly into `clf.predict(grid)`. The supplied contour levels bracket the integer class labels `0, 1, 2`.",
+   "kind": "focus",
+   "lines": "3,17-20"
+  },
+  {
+   "answer": "The levels place contour boundaries halfway between the discrete class indices `0`, `1`, and `2` in `Z`.",
+   "kind": "predict",
+   "lines": "18,20",
+   "question": "Why does line 20 set the supplied contour levels when calling `plt.contourf(xx, yy, Z, ...)`?"
+  }
+ ],
+ "title": "Multiclass Logistic Regression and 2D Decision Regions on Iris",
+ "version": 1
+}

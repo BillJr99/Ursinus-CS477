@@ -1,0 +1,11 @@
+Classification Report:
+
+              precision    recall  f1-score   support
+
+   malignant       0.98      0.98      0.98        53
+      benign       0.99      0.99      0.99        90
+
+    accuracy                           0.99       143
+   macro avg       0.99      0.99      0.99       143
+weighted avg       0.99      0.99      0.99       143
+

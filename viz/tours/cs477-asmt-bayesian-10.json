@@ -1,0 +1,33 @@
+{
+ "code": "import numpy as np\n\ndef log_marginal_mean_known_var(x, mu0, tau0_sq, sigma_sq):\n    n = len(x); xbar = x.mean()\n    prec0 = 1.0/tau0_sq; prec = 1.0/sigma_sq\n    post_var = 1.0 / (prec0 + n*prec)\n    # log evidence up to additive constants:\n    return -0.5*np.log(prec0 + n*prec) - 0.5*prec*n*(xbar - mu0)**2 + 0.5*(mu0**2*prec0 + n*prec*xbar**2)*post_var\n\ndef posterior_tau(x, mu0=0.0, tau0_sq=10.0, sigma_sq=1.0):\n    T = len(x)\n    logs = []\n    for tau in range(1, T):  # split at tau\n        l1 = log_marginal_mean_known_var(x[:tau], mu0, tau0_sq, sigma_sq)\n        l2 = log_marginal_mean_known_var(x[tau:], mu0, tau0_sq, sigma_sq)\n        logs.append(l1 + l2)\n    logs = np.array(logs)\n    logs -= logs.max()\n    p = np.exp(logs); p /= p.sum()\n    return p  # length T-1\n\n# Example: synthesize a change\nrng = np.random.default_rng(1)\nx = np.r_[rng.normal(0.0, 1.0, 60), rng.normal(1.0, 1.0, 40)]\np_tau = posterior_tau(x, mu0=0.0, tau0_sq=10.0, sigma_sq=1.0)\nprint(\"MAP tau (1..T-1) =\", int(np.argmax(p_tau)+1))",
+ "description": "You can follow the supplied change-point scaffold from slices to normalized weights.",
+ "example": "cs477-asmt-bayesian-10",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "The helper calculates a score from a segment's length, mean and supplied variance parameters. You return the expression labeled as log evidence in the scaffold.",
+   "kind": "reveal",
+   "lines": "1-8"
+  },
+  {
+   "description": "posterior_tau considers each split from 1 through T minus 1. You score the left and right slices and append their sum.",
+   "kind": "reveal",
+   "lines": "10-16"
+  },
+  {
+   "answer": "It divides by their sum, making the returned weights sum to one.",
+   "kind": "predict",
+   "lines": "17-20",
+   "question": "What does the code divide the exponentiated scores by?"
+  },
+  {
+   "description": "You concatenate two generated segments and request the highest-weight split, with one added to its array index. The capped recording stops before any final split value is printed.",
+   "kind": "reveal",
+   "lines": "22-26"
+  }
+ ],
+ "title": "Reading candidate split scores",
+ "version": 1
+}

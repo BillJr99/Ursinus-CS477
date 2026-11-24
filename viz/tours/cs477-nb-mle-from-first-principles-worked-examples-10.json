@@ -1,0 +1,33 @@
+{
+ "code": "import os, json\nos.makedirs(\"artifacts\", exist_ok=True)\n\n# Save a minimal JSON summary (you can extend as desired)\nsummary = {\n    \"bernoulli\": {\"n\": int(n), \"p_true\": float(p_true), \"p_hat\": float(p_hat)},\n    \"poisson\": {\"m\": int(m), \"lambda_true\": float(lam_true), \"lambda_hat\": float(lam_hat)},\n    \"exponential\": {\"k\": int(k), \"lambda_true\": float(lam_true), \"lambda_hat\": float(lam_hat)},\n    \"gaussian\": {\"n\": int(n), \"mu_true\": float(mu_true), \"mu_hat\": float(mu_hat), \"sigma2_hat\": float(sigma2_hat)},\n    \"cauchy\": {\"theta_true\": float(theta_true), \"theta_hat\": float(theta_hat)}\n}\nwith open(\"artifacts/mle_summary.json\", \"w\") as f:\n    json.dump(summary, f, indent=2)\n\n# Save bootstrap samples\nnp.savez(\"artifacts/cauchy_bootstrap_thetas.npz\", thetas=thetas)\n\nprint(\"Saved artifacts:\", os.listdir(\"artifacts\"))",
+ "description": "You follow current variables into a JSON summary and bootstrap archive.",
+ "example": "cs477-nb-mle-from-first-principles-worked-examples-10",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You create artifacts and begin a summary dictionary. Numeric conversions prepare current parameter values for JSON.",
+   "kind": "reveal",
+   "lines": "1-6"
+  },
+  {
+   "description": "You add Poisson, exponential, Gaussian, and Cauchy entries. Each field reads the variable bound to its name when this block executes.",
+   "kind": "reveal",
+   "lines": "7-11"
+  },
+  {
+   "answer": "Both entries read lam_true and lam_hat. This block supplies the same current lambda values to both labels.",
+   "kind": "predict",
+   "lines": "7-8",
+   "question": "Do the Poisson and exponential entries read different lambda variables?"
+  },
+  {
+   "description": "You write mle_summary.json and save thetas in cauchy_bootstrap_thetas.npz. The recorded directory listing contains those two files.",
+   "kind": "reveal",
+   "lines": "12-18"
+  }
+ ],
+ "title": "Inspect the estimation result exports",
+ "version": 1
+}

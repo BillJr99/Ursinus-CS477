@@ -1,0 +1,7 @@
+Python: 3.12.16 (main, Nov  5 2026, 07:58:20) [GCC 14.2.0]
+Platform: Linux-7.0.0-1019-azure-x86_64-with-glibc2.41
+In Colab: False
+
+NVIDIA SMI (if present):
+/bin/sh: 1: nvidia-smi: not found
+

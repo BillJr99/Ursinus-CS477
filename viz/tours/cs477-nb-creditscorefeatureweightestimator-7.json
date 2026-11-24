@@ -1,0 +1,33 @@
+{
+ "code": "# Training loop for the simpler linear model\nepochs = 2000\nfor epoch in range(epochs):\n    # Forward pass\n    outputs = model(X)\n    loss = criterion(outputs, y)\n\n    # Backward pass and optimization\n    optimizer.zero_grad()\n    loss.backward()\n    optimizer.step()\n\n    # Print loss occasionally\n    if (epoch + 1) % 200 == 0:\n        print(f'Epoch [{epoch+1}/{epochs}], Loss: {loss.item():.4f}')",
+ "description": "You connect model outputs, loss, gradients, and optimizer updates.",
+ "example": "cs477-nb-creditscorefeatureweightestimator-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You repeat training for the configured epochs. Each pass computes outputs from X and compares them with y through criterion.",
+   "kind": "reveal",
+   "lines": "1-6"
+  },
+  {
+   "description": "You clear existing gradients, compute gradients from loss, and ask the optimizer to update parameters. The calls occur in that order.",
+   "kind": "reveal",
+   "lines": "8-11"
+  },
+  {
+   "answer": "The loss was computed before optimizer.step. The print reads that stored loss value.",
+   "kind": "predict",
+   "lines": "5-11,15",
+   "question": "Does the printed loss come from before or after that pass's optimizer step?"
+  },
+  {
+   "description": "You print selected epochs with the loss formatted to four decimal places. The supplied trace excerpt contains no loss output to assess.",
+   "kind": "reveal",
+   "lines": "13-15"
+  }
+ ],
+ "title": "Read a linear model training pass",
+ "version": 1
+}

@@ -1,0 +1,43 @@
+{
+ "code": "# XOR neural network demo (manual 2-layer NN + decision boundary plot)\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# ------------------------\n# 1. Data\n# ------------------------\nX = np.array([[0,0],[0,1],[1,0],[1,1]], dtype=float)\ny = np.array([[0],[1],[1],[0]])  # column vector\n\n# ------------------------\n# 2. Plot raw XOR points\n# ------------------------\nplt.figure()\nplt.title(\"XOR in input space (not linearly separable)\")\nplt.scatter(X[y.flatten()==0,0], X[y.flatten()==0,1], label=\"class 0\", marker=\"o\")\nplt.scatter(X[y.flatten()==1,0], X[y.flatten()==1,1], label=\"class 1\", marker=\"x\")\nplt.legend()\nplt.xlabel(\"x1\")\nplt.ylabel(\"x2\")\n\n# ------------------------\n# 3. Define NN (2-2-1 architecture)\n# ------------------------\ndef sigmoid(z):\n    return 1 / (1 + np.exp(-z))\n\ndef sigmoid_deriv(z):\n    s = sigmoid(z)\n    return s * (1 - s)\n\nrng = np.random.default_rng(0)\nW1 = rng.normal(0, 1, (2, 2))   # 2 inputs -> 2 hidden\nb1 = np.zeros((1, 2))\nW2 = rng.normal(0, 1, (2, 1))   # 2 hidden -> 1 output\nb2 = np.zeros((1, 1))\n\n# ------------------------\n# 4. Train with gradient descent\n# ------------------------\nlr = 0.5\nepochs = 10000\n\nfor epoch in range(epochs):\n    # forward\n    z1 = X @ W1 + b1\n    a1 = sigmoid(z1)\n    z2 = a1 @ W2 + b2\n    a2 = sigmoid(z2)\n\n    # loss (MSE)\n    loss = np.mean((a2 - y)**2)\n\n    # backward\n    dloss_da2 = 2 * (a2 - y) / y.shape[0]\n    dloss_dz2 = dloss_da2 * sigmoid_deriv(z2)\n\n    dloss_dW2 = a1.T @ dloss_dz2\n    dloss_db2 = np.sum(dloss_dz2, axis=0, keepdims=True)\n\n    dloss_da1 = dloss_dz2 @ W2.T\n    dloss_dz1 = dloss_da1 * sigmoid_deriv(z1)\n\n    dloss_dW1 = X.T @ dloss_dz1\n    dloss_db1 = np.sum(dloss_dz1, axis=0, keepdims=True)\n\n    # update\n    W2 -= lr * dloss_dW2\n    b2 -= lr * dloss_db2\n    W1 -= lr * dloss_dW1\n    b1 -= lr * dloss_db1\n\n    if epoch % 2000 == 0:\n        print(f\"Epoch {epoch}, loss={loss:.4f}\")\n\nprint(\"\\nFinal predictions on training data:\")\nprint(a2.round(3))\n\n# ------------------------\n# 5. Plot decision boundary (classification map)\n# ------------------------\nxx, yy = np.meshgrid(np.linspace(-0.5, 1.5, 200),\n                     np.linspace(-0.5, 1.5, 200))\ngrid = np.c_[xx.ravel(), yy.ravel()]\n\n# forward pass on grid\nz1g = grid @ W1 + b1\na1g = sigmoid(z1g)\nz2g = a1g @ W2 + b2\na2g = sigmoid(z2g)\nZ = a2g.reshape(xx.shape)\n\n# plot filled contour\nplt.contourf(xx, yy, Z, levels=[0,0.5,1], alpha=0.3, colors=[\"lightblue\",\"lightcoral\"])\nplt.colorbar(label=\"Predicted probability (class 1)\")\n\n# re-plot training points on top\nplt.scatter(X[y.flatten()==0,0], X[y.flatten()==0,1], label=\"class 0\", marker=\"o\", edgecolor=\"k\")\nplt.scatter(X[y.flatten()==1,0], X[y.flatten()==1,1], label=\"class 1\", marker=\"x\", c=\"k\")\nplt.legend()\nplt.title(\"XOR with learned decision boundary\")\nplt.show()\n\n# ------------------------\n# 6. Test some values\n# ------------------------\ndef predict(Xtest):\n    z1t = Xtest @ W1 + b1\n    a1t = sigmoid(z1t)\n    z2t = a1t @ W2 + b2\n    a2t = sigmoid(z2t)\n    return a2t\n\ntest_inputs = np.array([\n    [0,0],\n    [0,1],\n    [1,0],\n    [1,1],\n    [0.2,0.8],\n    [0.9,0.9]\n])\n\nprint(\"\\nTesting some inputs:\")\nfor x in test_inputs:\n    pred = predict(x.reshape(1,-1))\n    print(f\"Input {x} -> Predicted {pred[0,0]:.3f}\")",
+ "description": "Build a 2-2-1 sigmoid neural network in NumPy, train it on the 4 XOR inputs with manual backpropagation, and plot the learned decision boundary.",
+ "example": "cs477-liascript-neuralnets-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Import NumPy and Matplotlib, define the 4-row XOR input matrix `X` and target column vector `y` (`[[0], [1], [1], [0]]`), and plot the raw points in `(x1, x2)` space.",
+   "kind": "reveal",
+   "lines": "1-22"
+  },
+  {
+   "description": "Define `sigmoid(z)` and its derivative `s * (1 - s)`, then initialize the 2-to-2 hidden layer parameters `W1, b1` and the 2-to-1 output layer parameters `W2, b2`.",
+   "kind": "reveal",
+   "lines": "23-38"
+  },
+  {
+   "description": "Run gradient descent for the supplied epochs with the configured learning rate. Each epoch computes the forward pass (`z1, a1, z2, a2`), MSE `loss`, backward gradients (`dloss_dW2, dloss_db2, dloss_dW1, dloss_db1`), and weight updates.",
+   "kind": "reveal",
+   "lines": "39-79"
+  },
+  {
+   "description": "Compare the forward pass (lines 47-50) with the backward pass (lines 56-66). `dloss_dz2` multiplies `dloss_da2` by `sigmoid_deriv(z2)`. It then propagates the error back through `W2.T` into the hidden layer (`dloss_da1 = dloss_dz2 @ W2.T`).",
+   "kind": "focus",
+   "lines": "47-50,56-66"
+  },
+  {
+   "answer": "Inputs `[0, 1]` and `[1, 0]` have predictions near `1.0` (`0.972` and `0.966`), while `[0, 0]` and `[1, 1]` have predictions near `0.0` (`0.030` and `0.027`).",
+   "kind": "predict",
+   "lines": "9-10,77-78",
+   "question": "After training on `y = [[0], [1], [1], [0]]`, which two rows of `X` should have final predictions `a2` near `1.0`? Which two should be near `0.0`?"
+  },
+  {
+   "description": "Evaluate the trained network on a meshgrid to plot the nonlinear contour boundary. Then run `predict(Xtest)` on the 4 training inputs plus `[0.2, 0.8]` (`0.624`) and `[0.9, 0.9]` (`0.027`).",
+   "kind": "reveal",
+   "lines": "80-127"
+  }
+ ],
+ "title": "Training a Two-Layer Neural Network on XOR",
+ "version": 1
+}

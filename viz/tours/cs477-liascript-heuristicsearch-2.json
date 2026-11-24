@@ -1,0 +1,33 @@
+{
+ "code": "def hill_climb(s0, f: Callable, neighbors: Callable) -> Tuple:\n    s = s0\n    while True:\n        nbrs = list(neighbors(s))\n        if not nbrs:\n            return s\n        s_best = max(nbrs, key=f)\n        if f(s_best) <= f(s):\n            return s\n        s = s_best\n\n# Toy landscape: integers with a concave parabola and small noise\ndef f_int(x: int) -> float:\n    return -(x-7)**2 + 50 + (0.05 if x % 5 == 0 else 0.0)\n\ndef N_int(x: int) -> Iterable[int]:\n    yield x - 1\n    yield x + 1\n\nsol = hill_climb(0, f_int, N_int)\nprint(\"Local optimum:\", sol, \"value:\", f_int(sol))",
+ "description": "You can follow a best-neighbor search on the supplied objective.",
+ "example": "cs477-liascript-heuristicsearch-2",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "hill_climb gathers all neighbors and selects the one with the highest f value. You stop when there are no neighbors or the best neighbor fails to improve the current value.",
+   "kind": "reveal",
+   "lines": "1-10"
+  },
+  {
+   "description": "f_int scores integers with a parabola and a small bonus at multiples of five. N_int offers only x minus one and x plus one.",
+   "kind": "reveal",
+   "lines": "12-18"
+  },
+  {
+   "answer": "No. The <= comparison returns the current state when the best neighbor ties it.",
+   "kind": "predict",
+   "lines": "8-9",
+   "question": "Does the stopping condition allow a move to an equally valued neighbor?"
+  },
+  {
+   "description": "You begin at zero and follow improving neighboring states. The supplied output reports Local optimum: 7 value: 50.0.",
+   "kind": "reveal",
+   "lines": "20-21"
+  }
+ ],
+ "title": "Climbing to a better neighboring integer",
+ "version": 1
+}

@@ -1,0 +1,33 @@
+{
+ "code": "def sarsa(cfg=QLCFG):\n    Q = np.zeros((S, 4), dtype=float)\n    eps = cfg.eps_start\n    returns = []\n    for ep in range(cfg.episodes):\n        s_rc = reset(); s = rc_to_s(*s_rc)\n        a = epsilon_greedy(Q[s], eps)\n        G = 0.0\n        for t in range(cfg.max_steps):\n            (nr,nc), r, done = step(s_rc, a, rng=rng); ns = rc_to_s(nr,nc)\n            an = epsilon_greedy(Q[ns], eps) if not done else 0\n            td_target = r + (0.0 if done else cfg.gamma * Q[ns, an])\n            Q[s,a] += cfg.alpha * (td_target - Q[s,a])\n            s_rc=(nr,nc); s=ns; a=an; G+=r\n            if done: break\n        eps = max(cfg.eps_end, eps*cfg.eps_decay)\n        returns.append(G)\n    return Q, np.array(returns)\n\n# To try SARSA:\n# Qs, ret_sarsa = sarsa(QLCFG)\n# plot_value_and_policy(np.max(Qs,1), np.argmax(Qs,1), title=\"SARSA — V^ and greedy π(Q)\")\n# plt.figure(figsize=(6,4)); plt.plot(ret_sarsa); plt.title(\"SARSA: episodic return\"); plt.show()",
+ "description": "You follow the selected action into the update and the following environment step.",
+ "example": "cs477-nb-rl-fromscratch-toygridworld-7",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You initialize Q, exploration, and returns. Each episode resets the environment and chooses an initial action.",
+   "kind": "reveal",
+   "lines": "1-8"
+  },
+  {
+   "description": "You sample a transition and select an for the next state. The target uses Q[ns, an] when the episode continues.",
+   "kind": "reveal",
+   "lines": "9-13"
+  },
+  {
+   "answer": "The assignment a=an carries the selected next action forward. That same an also supplies the continuing update target.",
+   "kind": "predict",
+   "lines": "11-14",
+   "question": "Which action is carried into the next loop pass?"
+  },
+  {
+   "description": "You accumulate return, decay eps, and return Q with episode returns. The example calls are commented out, and the supplied recording contains no output.",
+   "kind": "reveal",
+   "lines": "14-23"
+  }
+ ],
+ "title": "Read SARSA's next-action target",
+ "version": 1
+}

@@ -1,0 +1,6 @@
+Row mixed strategy x: [0.1228 0.4649 0.4123]  (sum= 1.0 )
+Guaranteed value v (expected leads/day): 3.8333
+Expected payoff vs Column=Search : 3.8333
+Expected payoff vs Column=Social : 3.8333
+Expected payoff vs Column=Video  : 3.8333
+All should be >= v up to numerical tolerance.

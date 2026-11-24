@@ -1,0 +1,33 @@
+{
+ "code": "\n# Build design matrix with intercept\nX_design = np.c_[np.ones((n, 1)), X]  # [1, x]\ntheta_star = np.linalg.inv(X_design.T @ X_design) @ (X_design.T @ y)\n\ntheta0_star, theta1_star = theta_star\nprint(f\"Closed-form solution: theta0={theta0_star:.3f}, theta1={theta1_star:.3f}\")\nprint(f\"Estimated model equation: y = {theta1_star:.3f} x + {theta0_star:.3f}\")\nprint(f\"True equation: y = {theta1_true:.3f} x + {theta0_true:.3f}\")\n\n# Plot fitted line and true line\nx_line = np.linspace(0, 2, 100)\ny_line_fit = theta0_star + theta1_star * x_line\ny_line_true = theta0_true + theta1_true * x_line\n\nplt.scatter(X[:, 0], y, alpha=0.6, label=\"Data points\")\nplt.plot(x_line, y_line_fit, label=\"OLS fit (estimated)\", linewidth=2)\nplt.plot(x_line, y_line_true, label=\"True line (noise-free)\", linestyle=\"--\", color=\"red\")\nplt.xlabel(\"x\")\nplt.ylabel(\"y\")\nplt.title(\"OLS Fit vs True Model Line\")\nplt.legend()\nplt.show()\n\nprint(\"MSE (closed form):\", mean_squared_error(y, theta0_star + theta1_star * X[:,0]))\n",
+ "description": "Augment X with a column of ones to form X_design, compute theta_star = np.linalg.inv(X_design.T @ X_design) @ (X_design.T @ y), and plot the fitted OLS line against the true noiseless line.",
+ "example": "cs477-nb-linear-and-logistic-regression-tutorial-4",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Prepend a column of ones to `X` (`X_design = np.c_[np.ones((n, 1)), X]`), compute `theta_star = np.linalg.inv(X_design.T @ X_design) @ (X_design.T @ y)`, unpack `theta0_star, theta1_star`, and print the estimated and true equations.",
+   "kind": "reveal",
+   "lines": "2-9"
+  },
+  {
+   "description": "Evaluate `y_line_fit` and `y_line_true` over the supplied evenly spaced `x_line` positions from 0 to 2. Plot both lines on top of `plt.scatter(X[:, 0], y)` and print the closed-form MSE (`0.5162141209389142`).",
+   "kind": "reveal",
+   "lines": "11-25"
+  },
+  {
+   "description": "Look at lines 3-4: `X_design` has one row per sample and 2 columns. Thus, `X_design.T @ X_design` is a `2 x 2` Gram matrix and `X_design.T @ y` is a 2-element vector. This gives the 2-element parameter vector `theta_star = [theta0_star, theta1_star]`.",
+   "kind": "focus",
+   "lines": "3-6"
+  },
+  {
+   "answer": "The observed targets `y` include finite-sample Gaussian noise with the supplied standard deviation. Thus, the line that minimizes squared error on those noisy points is slightly shifted from the underlying noiseless line.",
+   "kind": "predict",
+   "lines": "4-9,25",
+   "question": "Why does `theta_star` (`theta0=5.172, theta1=2.816`) come out close to, but not exactly equal to, `theta0_true=5.000, theta1_true=3.000`?"
+  }
+ ],
+ "title": "Solving Ordinary Least Squares (OLS) via the Normal Equations",
+ "version": 1
+}

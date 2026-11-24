@@ -1,0 +1,33 @@
+{
+ "code": "import numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import load_digits\nfrom sklearn.metrics import accuracy_score, classification_report, confusion_matrix\n\nSEED = 123\nrng = np.random.default_rng(SEED)\nnp.set_printoptions(precision=4, suppress=True)\nprint(\"Seeded.\")",
+ "description": "You import data and evaluation tools and initialize random sampling.",
+ "example": "cs477-nb-hmm-image-recognition-from-scratch-3",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You import NumPy, plotting tools, the digits loader, and classification metrics. These imports make the named tools available for later examples.",
+   "kind": "reveal",
+   "lines": "1-4"
+  },
+  {
+   "answer": "It receives the value of SEED.",
+   "kind": "predict",
+   "lines": "6-7",
+   "question": "Which seed does the new random generator receive?"
+  },
+  {
+   "description": "You create rng and set NumPy array display precision to four. suppress=True also controls array number formatting.",
+   "kind": "reveal",
+   "lines": "6-8"
+  },
+  {
+   "description": "You print Seeded after the setup statements. The supplied output contains that message.",
+   "kind": "reveal",
+   "lines": "9"
+  }
+ ],
+ "title": "Prepare the image notebook tools",
+ "version": 1
+}

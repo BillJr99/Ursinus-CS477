@@ -1,0 +1,33 @@
+{
+ "code": "sk_gnb = GaussianNB(var_smoothing=1e-9)\nsk_gnb.fit(X_train, y_train)\nsk_pred = sk_gnb.predict(X_test)\n\nprint(f\"sklearn GaussianNB accuracy: {accuracy_score(y_test, sk_pred):.3f}\")\nprint(\"Classification report (sklearn):\")\nprint(classification_report(y_test, sk_pred, target_names=target_names))",
+ "description": "You fit the training split and read species-level test metrics.",
+ "example": "cs477-nb-naive-bayes-step-by-step-4",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You create GaussianNB with var_smoothing=1e-9. fit receives the existing training features and labels.",
+   "kind": "reveal",
+   "lines": "1-2"
+  },
+  {
+   "answer": "The classifier predicts X_test, so accuracy_score compares sk_pred with y_test.",
+   "kind": "predict",
+   "lines": "3",
+   "question": "Which labels are used to evaluate sk_pred after prediction?"
+  },
+  {
+   "description": "You print the test accuracy to three decimal places. The recording reports 0.920 across 50 test examples.",
+   "kind": "reveal",
+   "lines": "3-5"
+  },
+  {
+   "description": "You label the report with target_names. The recorded setosa precision and recall are both 1.00, while versicolor and virginica have different precision and recall values.",
+   "kind": "reveal",
+   "lines": "6-7"
+  }
+ ],
+ "title": "Evaluate library Gaussian Naive Bayes",
+ "version": 1
+}

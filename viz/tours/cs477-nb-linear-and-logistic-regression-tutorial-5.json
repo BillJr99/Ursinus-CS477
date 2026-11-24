@@ -1,0 +1,33 @@
+{
+ "code": "\ndef gradient_descent(X, y, lr=0.1, steps=200):\n    theta0, theta1 = 0.0, 0.0\n    history = []\n    for t in range(steps):\n        y_hat = theta0 + theta1 * X[:, 0]\n        err = y_hat - y\n        grad0 = (2/len(X)) * np.sum(err)\n        grad1 = (2/len(X)) * np.sum(err * X[:, 0])\n        theta0 -= lr * grad0\n        theta1 -= lr * grad1\n        history.append((theta0, theta1, np.mean(err**2)))\n    return theta0, theta1, np.array(history)\n\ntheta0_gd, theta1_gd, hist = gradient_descent(X, y, lr=0.1, steps=200)\n\nprint(f\"GD solution: theta0={theta0_gd:.3f}, theta1={theta1_gd:.3f}\")\nplt.plot(hist[:,2])\nplt.xlabel(\"Iteration\")\nplt.ylabel(\"Mean Squared Error (MSE) or Loss\")\nplt.title(\"Gradient Descent Convergence\")\nplt.show()\n",
+ "description": "Iteratively update theta0 and theta1 using the partial derivatives of MSE (grad0 and grad1), with the supplied step count and learning rate. Plot the MSE convergence curve.",
+ "example": "cs477-nb-linear-and-logistic-regression-tutorial-5",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Define `gradient_descent` with the supplied defaults, starting `theta0` and `theta1` at zero. Compute predictions `y_hat = theta0 + theta1 * X[:, 0]`, residuals `err = y_hat - y`, and partial derivatives `grad0` and `grad1`. Update `theta0 -= lr * grad0` and `theta1 -= lr * grad1`.",
+   "kind": "reveal",
+   "lines": "2-13"
+  },
+  {
+   "description": "Run `gradient_descent(X, y, ...)` with the supplied settings and print `theta0_gd` and `theta1_gd`. Plot the third column of `hist` (`hist[:, 2]`, the MSE at each iteration).",
+   "kind": "reveal",
+   "lines": "15-22"
+  },
+  {
+   "description": "Compare `grad0` and `grad1` on lines 8-9. Differentiating $\\frac{1}{n} \\sum (\\theta_0 + \\theta_1 x_i - y_i)^2$ with respect to $\\theta_0$ averages `2 * err`. Differentiating with respect to $\\theta_1$ averages `2 * err * X[:, 0]`.",
+   "kind": "focus",
+   "lines": "8-12"
+  },
+  {
+   "answer": "`theta0_gd=5.171` and `theta1_gd=2.817` closely match the closed-form solution. `hist[:, 2]` selects the third entry `np.mean(err**2)` recorded at each step.",
+   "kind": "predict",
+   "lines": "12-18",
+   "question": "After the supplied training steps, how closely do `theta0_gd` and `theta1_gd` match the closed-form normal equation solution? What does `hist[:, 2]` on line 18 select?"
+  }
+ ],
+ "title": "Fitting 1D Linear Regression with Batch Gradient Descent",
+ "version": 1
+}

@@ -1,0 +1,33 @@
+{
+ "code": "svr_pipe = Pipeline([\n    (\"scaler\", StandardScaler()),\n    (\"svr\", SVR())\n])\n\nsvr_params = {\n    \"svr__kernel\": [\"rbf\"],\n    \"svr__C\": [0.1, 1, 10, 50, 100],\n    \"svr__gamma\": [\"scale\", 0.001, 0.01, 0.1, 1],\n    \"svr__epsilon\": [0.1, 1, 5]\n}\n\nsvr_grid = GridSearchCV(\n    svr_pipe,\n    svr_params,\n    cv=5,\n    scoring=\"r2\",\n    n_jobs=-1\n)\n\nsvr_grid.fit(X_train, y_train)\n\nprint(\"Best SVR parameters:\", svr_grid.best_params_)\nprint(\"Best SVR CV score:\", svr_grid.best_score_)\n\ny_pred_svr = svr_grid.predict(X_test)\nprint(\"SVR Test R²:\", r2_score(y_test, y_pred_svr))\nprint(\"SVR Test MSE:\", mean_squared_error(y_test, y_pred_svr))\n",
+ "description": "You inspect a scaled regression grid search and its held-out results.",
+ "example": "cs477-nb-linear-logistic-regression-demo-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model + edit: codex",
+ "steps": [
+  {
+   "description": "You place StandardScaler before support vector regression, or SVR. The parameter grid fixes the radial-basis-function kernel and varies C, gamma, and epsilon.",
+   "kind": "reveal",
+   "lines": "1-11"
+  },
+  {
+   "answer": "GridSearchCV uses R-squared with five-fold cross-validation. The later test mean squared error is reported separately.",
+   "kind": "predict",
+   "lines": "13-18",
+   "question": "Which metric selects the best parameter combination?"
+  },
+  {
+   "description": "You fit the search on training rows. The recording selects C=50, epsilon=5, gamma=0.01, and the rbf kernel, and reports the cross-validation score.",
+   "kind": "reveal",
+   "lines": "21-24"
+  },
+  {
+   "description": "You predict test rows with the selected estimator. The recording reports test R-squared and mean squared error.",
+   "kind": "reveal",
+   "lines": "26-28"
+  }
+ ],
+ "title": "Tune support vector regression",
+ "version": 1
+}

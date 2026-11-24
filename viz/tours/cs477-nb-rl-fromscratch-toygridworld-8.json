@@ -1,0 +1,33 @@
+{
+ "code": "def render_frame(state):\n    r,c = state\n    H,W = WORLD.shape\n    img = np.zeros((H, W, 3), dtype=np.uint8)\n    img[:,:,:] = [30,30,45]\n    for rr in range(H):\n        for cc in range(W):\n            if WORLD[rr,cc]==1: img[rr,cc]=[0,0,0]\n            elif WORLD[rr,cc]==2: img[rr,cc]=[30,160,60]\n            elif WORLD[rr,cc]==3: img[rr,cc]=[180,40,40]\n            else: img[rr,cc]=[70,70,95]\n    img[r,c] = [230, 210, 60]\n    scale=40\n    return np.kron(img, np.ones((scale,scale,1), dtype=np.uint8))\n\ndef rollout_greedy(Q, max_steps=200):\n    s = reset(); frames=[]; total=0.0\n    for t in range(max_steps):\n        frames.append(render_frame(s))\n        if is_terminal(s): break\n        sr = rc_to_s(*s)\n        a = int(np.argmax(Q[sr]))\n        s, r, done = step(s, a, rng=rng); total += r\n        if done:\n            frames.append(render_frame(s)); break\n    return total, frames\n\nG_eval, frames = rollout_greedy(Q, max_steps=200)\nprint(\"Greedy rollout return:\", G_eval)\n\nimport os\nos.makedirs(\"artifacts\", exist_ok=True)\ngif_path = \"artifacts/gridworld_qlearning_rollout.gif\"\nif frames:\n    imageio.mimsave(gif_path, frames, duration=1/6.0)\n    print(\"Saved animation:\", gif_path)",
+ "description": "You collect grid images and rewards while following the largest Q entry at each state.",
+ "example": "cs477-nb-rl-fromscratch-toygridworld-8",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You build a color image from WORLD and overwrite the current cell with the agent color. np.kron enlarges the cell image for display.",
+   "kind": "reveal",
+   "lines": "1-14"
+  },
+  {
+   "description": "You reset the environment and collect a frame before each action. argmax selects from the current state's Q row, and each sampled reward adds to total.",
+   "kind": "reveal",
+   "lines": "16-23"
+  },
+  {
+   "answer": "Yes. When done is true, the code renders the new state before breaking.",
+   "kind": "predict",
+   "lines": "24-25",
+   "question": "Does a terminal transition contribute a frame of its destination?"
+  },
+  {
+   "description": "You print the rollout return and save frames as a GIF when frames exist. The recording reports return -12.0 and the saved animation path.",
+   "kind": "reveal",
+   "lines": "26-36"
+  }
+ ],
+ "title": "Render a greedy policy rollout",
+ "version": 1
+}

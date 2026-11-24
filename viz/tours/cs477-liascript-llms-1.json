@@ -1,0 +1,45 @@
+{
+ "code": "import numpy as np\n\n# Toy 4-word embedding space (2 dimensions for drawing; real ones use 300-12,000)\nemb = {\n    \"king\":  np.array([0.9, 0.8]),\n    \"queen\": np.array([0.9, 0.2]),\n    \"man\":   np.array([0.1, 0.8]),\n    \"woman\": np.array([0.1, 0.2]),\n}\nanalogy = emb[\"king\"] - emb[\"man\"] + emb[\"woman\"]\nsims = {w: float(v @ analogy / (np.linalg.norm(v) * np.linalg.norm(analogy)))\n        for w, v in emb.items()}\nprint(\"king - man + woman is closest to:\",\n      max(sims, key=sims.get), \" (cosine sims:\", {k: round(s,2) for k,s in sims.items()}, \")\")",
+ "description": "Compute emb[\"king\"] - emb[\"man\"] + emb[\"woman\"] and find which word vector in emb has the highest cosine similarity to the result.",
+ "example": "cs477-liascript-llms-1",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: agy free model + edit: codex",
+ "steps": [
+  {
+   "description": "Import `numpy as np` and define a 4-word dictionary `emb` that maps `\"king\"`, `\"queen\"`, `\"man\"`, and `\"woman\"` to 2D NumPy vectors.",
+   "kind": "reveal",
+   "lines": "1-9"
+  },
+  {
+   "description": "Compute `analogy = emb[\"king\"] - emb[\"man\"] + emb[\"woman\"]`, calculate the cosine similarity between `analogy` and every vector in `emb`, and print the word with the highest similarity.",
+   "kind": "reveal",
+   "lines": "10-14"
+  },
+  {
+   "description": "Look at lines 10-11: vector subtraction and addition run coordinate by coordinate on line 10. Line 11 divides the dot product `v @ analogy` by the product of the two vector norms to get cosine similarity.",
+   "kind": "focus",
+   "lines": "10-12"
+  },
+  {
+   "answer": "`[0.9, 0.8] - [0.1, 0.8] + [0.1, 0.2]` equals `[0.9, 0.2]`, which is identical to `emb[\"queen\"]`, giving `\"queen\"` a cosine similarity of `1.0`.",
+   "kind": "predict",
+   "lines": "5-10",
+   "question": "What 2D vector does `emb[\"king\"] - emb[\"man\"] + emb[\"woman\"]` produce on line 10, and which word in `emb` has cosine similarity `1.0` with it?"
+  },
+  {
+   "description": "Line 10 computes `analogy = np.array([0.9, 0.2])`.",
+   "kind": "run",
+   "lines": "10",
+   "trace_step": 6
+  },
+  {
+   "description": "After computing all four cosine similarities, `max(sims, key=sims.get)` selects `queen` with cosine similarity `1.0`.",
+   "kind": "run",
+   "lines": "14",
+   "trace_step": 20
+  }
+ ],
+ "title": "Vector Arithmetic and Cosine Similarity in a Toy Embedding Space",
+ "version": 1
+}

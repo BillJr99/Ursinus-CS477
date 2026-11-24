@@ -1,0 +1,33 @@
+{
+ "code": "import os\nos.makedirs(\"artifacts\", exist_ok=True)\n\nnp.savez(\"artifacts/kf_localization_run.npz\",\n         maze_grid=maze.grid, maze_scale=np.array([maze.scale]),\n         dt=np.array([dt]),\n         true_traj=true_traj, gps=gps, odo=odo, zs=zs,\n         xs=xs, Ps=Ps)\n\n# Save sample heatmaps\ndef save_heat(img, fname, title):\n    fig = plt.figure(figsize=(4.5,4.5))\n    plt.imshow(img, interpolation='nearest')\n    plt.title(title); plt.axis('off'); plt.tight_layout()\n    fig.savefig(f\"artifacts/{fname}\", dpi=120); plt.close(fig)\n\nsave_heat(heatmaps[0], \"belief_t0.png\", \"Belief t=0\")\nmid = len(heatmaps)//2\nsave_heat(heatmaps[mid], f\"belief_t{mid}.png\", f\"Belief t={mid}\")\nsave_heat(heatmaps[-1], \"belief_tT.png\", \"Belief t=T\")\n\nprint(\"Saved artifacts:\", os.listdir(\"artifacts\"))",
+ "description": "You follow stored measurements, estimates, and selected heatmaps into artifacts.",
+ "example": "cs477-nb-kalman-filter-robot-localization-maze-heatmaps-9",
+ "lang": "python",
+ "reviewed": false,
+ "source": "draft: codex free model",
+ "steps": [
+  {
+   "description": "You create artifacts and save kf_localization_run.npz. Named entries include maze data, the sampling interval, true trajectory, measurements, estimates, and covariances.",
+   "kind": "reveal",
+   "lines": "1-8"
+  },
+  {
+   "description": "You define save_heat to draw an existing heatmap, save its figure, and close it. The helper places each image under artifacts.",
+   "kind": "reveal",
+   "lines": "10-15"
+  },
+  {
+   "answer": "It exports the first, middle, and last maps. The middle index uses integer division of the heatmap count by two.",
+   "kind": "predict",
+   "lines": "17-20",
+   "question": "Which heatmaps does this block export?"
+  },
+  {
+   "description": "You list the artifact directory after saving. The recording includes the NPZ archive and belief_t0.png, belief_t15.png, and belief_tT.png.",
+   "kind": "reveal",
+   "lines": "17-22"
+  }
+ ],
+ "title": "Inspect the localization exports",
+ "version": 1
+}
