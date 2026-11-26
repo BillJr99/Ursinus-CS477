@@ -28,7 +28,7 @@ This module provides a complete, first-principles introduction to **Bayesian inf
 
 ## Open Colab: Robot Localization Heatmaps (From Scratch)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/gh-pages/files/notebooks/Bayesian_Robot_Localization_Heatmaps_From_Scratch.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/Bayesian_Robot_Localization_Heatmaps_From_Scratch.ipynb)
 
 [Visualize this notebook's examples](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-1): [cell 1](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-1) [cell 3](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-3) [cell 7](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-7) [cell 8](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-8) [cell 10](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-10) [cell 11](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-11) [cell 12](https://billjr99.github.io/Ursinus-CS477/viz/#cs477-nb-bayesian-robot-localization-heatmaps-from-scratch-12) <!-- code-viz link -->
 
@@ -685,7 +685,7 @@ Compare posteriors under multiple plausible priors $p_1(\theta), p_2(\theta)$. I
 ## Open Colab Links 
 
 - Diagnostic Testing & Belief Updating: [Open in Colab](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/Bayesian_Diagnostic_Test_Belief_Updating.ipynb)
-- Robot Localization Heatmaps (From Scratch): [Open in Colab](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/gh-pages/files/notebooks/Bayesian_Robot_Localization_Heatmaps_From_Scratch.ipynb)
+- Robot Localization Heatmaps (From Scratch): [Open in Colab](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/Bayesian_Robot_Localization_Heatmaps_From_Scratch.ipynb)
 - Naive Bayes: [Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BillJr99/Ursinus-CS477/blob/gh-pages/files/notebooks/naive_bayes_step_by_step.ipynb)
 
 ---
