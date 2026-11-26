@@ -9,7 +9,7 @@ info:
   - section: "A"
   course_title: "Artificial Intelligence and Machine Learning"
   credit_hours: "4 Semester Hours"
-  course_homepage: "https://www.billmongan.com/Ursinus-CS477/"
+  course_homepage: "https://www.billmongan.com/Ursinus-CS477-Fall2025/"
   class_notebook: https://ursinuscollege365-my.sharepoint.com/personal/wmongan_ursinus_edu/Documents/Class%20Notebooks/CS477%20Fall%202025
   teamshelproom: https://teams.microsoft.com/l/team/19%3AfpUR265Vrfzyz5o-Gs0ExDUi0RhM4ipEsnvMOzQiz2E1%40thread.tacv2/conversations?groupId=68f7b57a-1b95-402b-88b9-f2a63d9563c5&tenantId=921f1c03-8689-4e60-a722-f5ea581e00fe
   ical: files/CS477.ics
