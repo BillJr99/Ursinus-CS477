@@ -3,7 +3,7 @@ author:   William M. Mongan
 language: en
 narrator: US English Male
 
-comment: Render with https://liascript.github.io/course/?https://github.com/BillJr99/Ursinus-CS477/blob/gh-pages/_pages/Activities/liascript-mdp-hmm-bandits.md or locally if deployed via https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-mdp-hmm-bandits.md
+comment: Render with https://liascript.github.io/course/?https://github.com/BillJr99/Ursinus-CS477/blob/gh-pages/_pages/Activities/liascript-mdphmmbandits.md or locally if deployed via https://www.billmongan.com/LiaScript/?https://raw.githubusercontent.com/BillJr99/Ursinus-CS477/gh-pages/_pages/Activities/liascript-mdphmmbandits.md
 
 import: https://raw.githubusercontent.com/liascript/CodeRunner/master/README.md
 
